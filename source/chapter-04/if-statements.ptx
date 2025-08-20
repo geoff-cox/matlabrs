@@ -72,14 +72,14 @@
 								\node [rect node 2]                 (50) at (0, 0.5) {};
 								
 								\draw [draw=black, line width=0.3mm]          (00.south) to (10.north);
-								\draw [->,draw=blue, line width=0.3mm]        (10.east) to  (11.west);
+								\draw [-&gt;,draw=blue, line width=0.3mm]        (10.east) to  (11.west);
 								\draw [draw=black, line width=0.3mm]          (10.south) to (20.north);
-								\draw [->,draw=red, line width=0.3mm]         (20.east) to  (21.west);
+								\draw [-&gt;,draw=red, line width=0.3mm]         (20.east) to  (21.west);
 								\draw [draw=black, line width=0.3mm]          (20.south) to (30.north);
-								\draw [->,draw=darkgreen, line width=0.3mm]   (30.east) to  (31.west);
+								\draw [-&gt;,draw=darkgreen, line width=0.3mm]   (30.east) to  (31.west);
 								\draw [draw=black, line width=0.3mm]          (30.south) to (40.north);
-								\draw [->,draw=orange, line width=0.3mm]      (40.east) to  (41.west);
-								\draw [->,draw=black, line width=0.3mm]       (40.south) to (50.north);
+								\draw [-&gt;,draw=orange, line width=0.3mm]      (40.east) to  (41.west);
+								\draw [-&gt;,draw=black, line width=0.3mm]       (40.south) to (50.north);
 							\end{tikzpicture}
 						</latex-image>
 					</image>
@@ -95,7 +95,7 @@
 				</aside>
 				<sidebyside width="100%">
 				<program language="matlab">
-					<input>
+					<code>
 						if condition_1
 
 							task A commands
@@ -113,7 +113,7 @@
 							task D commands
 
 						end
-					</input>
+					</code>
 				</program>
 				</sidebyside>
 				<p/>
@@ -156,32 +156,32 @@
 				<p> 
 					Lines 2-7 should look something like 
 					<program language="matlab">
-						<input>
+						<code>
 							if x > 10
 								x = x + 5;
 							else
 								x = x - 5;
 							end
 							disp(x)
-						</input>
+						</code>
 					</program>
 				</p>
 
 				<p>
 					then, setting <c>x = 4</c> on line 1 and running the commands, outputs
 					<program language="matlab">
-						<input>
+						<code>
 							-1
-						</input>
+						</code>
 					</program>
 				</p>
 
 				<p>
 					Using <c>x = 50</c> instead, yields
 					<program language="matlab">
-						<input>
+						<code>
 							55
-						</input>
+						</code>
 					</program>
 				</p>
 
@@ -229,7 +229,7 @@
 				<p>
 					in this order. In MATLAB, this translate to the commands
 					<program language="matlab">
-						<input>
+						<code>
 							if v(1) > 0
 								k = 1;
 							elseif v(2) > 0
@@ -239,25 +239,25 @@
 							else
 								k = -1;
 							end
-						</input>
+						</code>
 					</program>
 				</p>
 
 				<p>
 					Finally, setting <c>v = [3, 6, -3]</c> on line 1 and clicking run, outputs
 					<program language="matlab">
-						<input>
+						<code>
 							3
-						</input>
+						</code>
 					</program>
 				</p>
 
 				<p>
 					whereas, using <c>v = [3, 6, 3]</c> instead, yields
 					<program language="matlab">
-						<input>
+						<code>
 							-1
-						</input>
+						</code>
 					</program>
 				</p>
 
@@ -297,14 +297,14 @@
 			<p>
 				If <c>x = 0</c>, the below script runs the commands <c>x = x - 5</c> and <c>disp(x)</c>, outputting <c>-5</c>. However, if <c>x = 10</c>, only the <c>disp(x)</c> command is run, producing an output of <c>10</c>.
 				<program language="matlab">
-					<input>
+					<code>
 						if x &gt; 10
 							x = x + 5;
 						elseif x &lt; 10
 							x = x - 5;
 						end
 						disp(x)
-					</input>
+					</code>
 				</program>
 			</p>
 

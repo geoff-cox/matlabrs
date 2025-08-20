@@ -90,11 +90,10 @@ Add any notes
 		}
 		% Node styles
 		\tikzstyle{circle node 0}=[fill=white, draw=black, shape=circle, inner sep=0pt]
-		\tikzstyle{hrect node 0}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
-		\tikzstyle{vrect node 0}=[fill=white, draw=black, inner sep=0pt, outer sep=0pt]
-		\tikzstyle{hidden node 0}=[inner sep=0pt, outer sep=0pt] 
 		\tikzstyle{circle node 2}=[fill=white, draw=black, shape=circle, inner sep=2pt]
-		\tikzstyle{hrect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+		\tikzstyle{hrect node}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+		\tikzstyle{vrect node}=[fill=white, draw=black, inner sep=0pt, outer sep=0pt]
+		\tikzstyle{hidden node 0}=[inner sep=0pt, outer sep=0pt] 
 		\tikzstyle{hidden node 2}=[fill=white, inner sep=2pt, outer sep=2pt]
 		\tikzstyle{rect node 1}=[fill=white, inner sep=2pt, outer sep=0pt]
 		\tikzstyle{rect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=0pt]
@@ -106,6 +105,7 @@ Add any notes
 	<!-- tikz package and libraries for images -->
 	<latex-image-preamble>
 		\usepackage{tikz}
+		\usepackage{xfp}
 		\usetikzlibrary{backgrounds}
 		\usetikzlibrary{arrows,arrows.meta,matrix}
 		\usetikzlibrary{decorations}
@@ -120,21 +120,14 @@ Add any notes
 		\usepgfmodule {nonlineartransformations}
 		\usetikzlibrary {curvilinear}
 		\usepackage{graphicx} % For scalebox
-		\usepackage{xfrac}
-		\usepackage{mathtools}
-		\usepackage{ulem}
-		\usepackage{transparent}
-%		\usepackage{ifthen}
 	</latex-image-preamble>
 
-
-
-	<!-- <latex-preamble>
-		\usepackage[makeroom]{cancel}
-		\usepackage[normalem]{ulem}
-	</latex-preamble>	-->
-
-	<!-- other latex packages -->
+	\usepackage[makeroom]{cancel}
+	\usepackage[normalem]{ulem}
+	\usepackage{xfrac}
+	\usepackage{mathtools}
+	\usepackage{transparent}
+	\usepackage{ifthen}
 	\usepackage{soul}
 	\usepackage{enumitem}
 	\usepackage{amssymb}

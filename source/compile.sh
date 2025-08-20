@@ -9,7 +9,7 @@ cd BOOK-OUTPUT
 if [ $# == 0 ]
 then
   echo Processing basic pretext file ...
-  xsltproc --xinclude -stringparam publisher matlab-pub.xml /mathbook/xsl/pretext-html.xsl ../matlab-book-main.xml
+  xsltproc --xinclude -stringparam publisher matlab-pub.ptx /mathbook/xsl/pretext-html.xsl ../matlab-book-main.xml
   #python3 /mnt/c/Users/gcox0/'Google Drive'/1--MATLAB_textbook/4--master_copy/matlab-ebook/parsing-code/convert_evalsage_button_text.py /mnt/c/Users/gcox0/'Google Drive'/1--MATLAB_textbook/4--master_copy/matlab-ebook/BOOK-OUTPUT/ 'Evaluate \(Octave\)' 'Run Commands'
   python3 ../parsing-code/convert_evalsage_button_text.py ../BOOK-OUTPUT/ 'Evaluate \(Octave\)' 'Run Commands'
 else

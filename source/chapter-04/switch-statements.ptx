@@ -71,13 +71,13 @@
 								\node [rect node 2, inner sep=3pt]  (72)  at ( 0.0, 4.1) {};
 								\node [hidden node 0]               (73)  at ( 1.7, 4.0) {};
 								\node [hidden node 0]               (74)  at ( 4.3, 4.1) {};
-								\node [hidden node, inner sep=0pt]  (600) at (-4.8, 3.6) {\color{blue}is $\texttt{var = v1}$?};
+								\node [hidden node 0, inner sep=0pt]  (600) at (-4.8, 3.6) {\color{blue}is $\texttt{var = v1}$?};
 								\node [rect node 2, draw=blue]      (60)  at (-4.8, 3.0) {\color{blue}task A};
-								\node [hidden node, inner sep=0pt]  (501) at (-1.7, 3.0) {\color{dgreen}is $\texttt{var = v2}$ or $\texttt{v3}$?};
+								\node [hidden node 0, inner sep=0pt]  (501) at (-1.7, 3.0) {\color{dgreen}is $\texttt{var = v2}$ or $\texttt{v3}$?};
 								\node [rect node 2, draw=dgreen]    (51)  at (-1.7, 2.4) {\color{dgreen}task B};
-								\node [hidden node, inner sep=0pt]  (403) at ( 1.7, 2.6) {\color{orange}is $\texttt{var = v4}$?};
+								\node [hidden node 0, inner sep=0pt]  (403) at ( 1.7, 2.6) {\color{orange}is $\texttt{var = v4}$?};
 								\node [rect node 2, draw=dgreen]    (43)  at ( 1.7, 2.0) {\color{orange}task C};
-								\node [hidden node, inner sep=0pt]  (304) at ( 4.3, 2.2) {\color{red}otherwise};
+								\node [hidden node 0, inner sep=0pt]  (304) at ( 4.3, 2.2) {\color{red}otherwise};
 								\node [rect node 2, draw=red]       (34)  at ( 4.3, 1.6) {\color{red}task D};
 								\node [hidden node 0]               (20)  at (-4.8, 1.0) {};
 								\node [hidden node 0]               (21)  at (-1.7, 1.1) {};
@@ -86,7 +86,7 @@
 								\node [hidden node 0]               (24)  at ( 4.3, 1.0) {};
 								\node [hidden node 0]               (02)  at ( 0.0, 0.5) {};
 								
-								\draw [->,draw=black,  line width=0.3mm]                (82.center)     to (72.north);
+								\draw [-&gt;,draw=black,  line width=0.3mm]                (82.center)     to (72.north);
 								\draw [   draw=blue,   line width=0.5mm]                (70.center)     to (72.west);
 								\draw [   draw=dgreen, line width=0.5mm]                (71.center)     to (72.south west);
 								\draw [   draw=orange, line width=0.5mm]                (72.south east) to (73.center);
@@ -108,7 +108,7 @@
 								\draw [-{Latex[right]}, draw=orange, line width=0.5mm]  (23.center)     to (22.north east);
 								\draw [-{Latex[left]},  draw=red,    line width=0.5mm]  (24.center)     to (22.east);
 								
-								\draw [->,draw=black,  line width=0.3mm] (22.south)  to (02.center);
+								\draw [-&gt;,draw=black,  line width=0.3mm] (22.south)  to (02.center);
 							\end{tikzpicture}
 						</latex-image>
 					</image>
@@ -122,7 +122,7 @@
 				</aside>
 				<sidebyside width="100%">
 				<program language="matlab">
-					<input>
+					<code>
 						switch var
 
 							case {v1}
@@ -142,7 +142,7 @@
 								task D commands
 
 						end
-					</input>
+					</code>
 				</program>
 				</sidebyside>
 				<p/>
@@ -170,7 +170,7 @@
 
 			<sidebyside width="100%">
 				<program language="matlab">
-					<input>
+					<code>
 						Year = 'second class'; 
 						switch Year
 							case{'fourth class','third class'}
@@ -180,7 +180,7 @@
 							otherwise
 								'You must be a fifth year.'
 						end
-					</input>
+					</code>
 				</program>
 			</sidebyside>
 
@@ -190,9 +190,9 @@
 
 			<sidebyside width="100%">
 				<program language="matlab">
-					<input>
+					<code>
 						You are in the last two years.
-					</input>
+					</code>
 				</program>
 			</sidebyside>
 		</example>
