@@ -1,0 +1,242 @@
+
+<!--********************************************************************-->
+ 
+<section xml:id="sec-Matlab_structured_arrays" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Structured Arrays</title>
+
+	<p>
+		<note>
+			This section requires that you have the Matlab Bioinformatics toolbox.
+		</note>
+	</p>
+
+	<p>
+		One example of using a <c>struct</c> is in using data about a protein structure. You will retrieve data from the national Protein Data Bank (PDB), work with the resulting structure arrays and export data to Excel.
+	</p>
+
+	<p>
+		The PDB is a free database open to researchers that contains nearly 200,000 structures as of 2021 that have been submitted by researchers. The proteins we will consider have had their structures determined using X-ray crystallography with a high degree of resolution.
+	</p>
+	
+	<p>
+		Each protein in the PDB is identified using a four character alphanumeric identifier (a digit followed by three letters, such as 1AKO). In Matlab, there are certain commands devoted to the PDB that can be found in the bioinformatics toolbox, which is not part of the main Matlab package.
+	</p>
+
+	<p>
+		The PDB file for 1AKO contains parts that look like:
+	</p>
+
+	<cd>
+	SEQRES 1 A 268 MET LYS PHE VAL SER PHE ASN ILE ASN GLY LEU ARG ALA
+	SEQRES 2 A 268 ARG PRO HIS GLN LEU GLU ALA ILE VAL GLU LYS HIS GLN
+	SEQRES 3 A 268 PRO ASP VAL ILE GLY LEU GLN GLU THR LYS VAL HIS ASP
+	SEQRES 4 A 268 ASP MET PHE PRO LEU GLU GLU VAL ALA LYS LEU GLY TYR
+	SEQRES 5 A 268 ASN VAL PHE TYR HIS GLY GLN LYS GLY HIS TYR GLY VAL
+	SEQRES 6 A 268 ALA LEU LEU THR LYS GLU THR PRO ILE ALA VAL ARG ARG
+	SEQRES 7 A 268 GLY PHE PRO GLY ASP ASP GLU GLU ALA GLN ARG ARG ILE
+	SEQRES 8 A 268 ILE MET ALA GLU ILE PRO SER LEU LEU GLY ASN VAL THR
+	</cd>
+
+<!--
+	<p>
+	<sidebyside widths="50%">
+		<table>
+		<title>SEQRES data</title>
+		<caption>SEQRES data</caption>
+		<tabular halign="center">
+			<row>
+				<cell>SEQRES</cell><cell>1</cell><cell>A</cell><cell>268</cell><cell>MET</cell><cell>LYS</cell><cell>PHE</cell><cell>VAL</cell><cell>SER</cell><cell>PHE</cell><cell>ASN</cell><cell>ILE</cell><cell>ASN</cell><cell>GLY</cell><cell>LEU</cell><cell>ARG</cell><cell>ALA</cell>
+			</row>
+			<row>
+				<cell>SEQRES</cell><cell>2</cell><cell>A</cell><cell>268</cell><cell>ARG</cell><cell>PRO</cell><cell>HIS</cell><cell>GLN</cell><cell>LEU</cell><cell>GLU</cell><cell>ALA</cell><cell>ILE</cell><cell>VAL</cell><cell>GLU</cell><cell>LYS</cell><cell>HIS</cell><cell>GLN</cell>
+			</row>
+			<row>
+				<cell>SEQRES</cell><cell>3</cell><cell>A</cell><cell>268</cell><cell>PRO</cell><cell>ASP</cell><cell>VAL</cell><cell>ILE</cell><cell>GLY</cell><cell>LEU</cell><cell>GLN</cell><cell>GLU</cell><cell>THR</cell><cell>LYS</cell><cell>VAL</cell><cell>HIS</cell><cell>ASP</cell>
+			</row>
+			<row>
+				<cell>SEQRES</cell><cell>4</cell><cell>A</cell><cell>268</cell><cell>ASP</cell><cell>MET</cell><cell>PHE</cell><cell>PRO</cell><cell>LEU</cell><cell>GLU</cell><cell>GLU</cell><cell>VAL</cell><cell>ALA</cell><cell>LYS</cell><cell>LEU</cell><cell>GLY</cell><cell>TYR</cell>
+			</row>
+			<row>
+				<cell>SEQRES</cell><cell>5</cell><cell>A</cell><cell>268</cell><cell>ASN</cell><cell>VAL</cell><cell>PHE</cell><cell>TYR</cell><cell>HIS</cell><cell>GLY</cell><cell>GLN</cell><cell>LYS</cell><cell>GLY</cell><cell>HIS</cell><cell>TYR</cell><cell>GLY</cell><cell>VAL</cell>
+			</row>
+			<row>
+				<cell>SEQRES</cell><cell>6</cell><cell>A</cell><cell>268</cell><cell>ALA</cell><cell>LEU</cell><cell>LEU</cell><cell>THR</cell><cell>LYS</cell><cell>GLU</cell><cell>THR</cell><cell>PRO</cell><cell>ILE</cell><cell>ALA</cell><cell>VAL</cell><cell>ARG</cell><cell>ARG</cell>
+			</row>
+			<row>
+				<cell>SEQRES</cell><cell>7</cell><cell>A</cell><cell>268</cell><cell>GLY</cell><cell>PHE</cell><cell>PRO</cell><cell>GLY</cell><cell>ASP</cell><cell>ASP</cell><cell>GLU</cell><cell>GLU</cell><cell>ALA</cell><cell>GLN</cell><cell>ARG</cell><cell>ARG</cell><cell>ILE</cell>
+			</row>
+			<row>
+				<cell>SEQRES</cell><cell>8</cell><cell>A</cell><cell>268</cell><cell>ILE</cell><cell>MET</cell><cell>ALA</cell><cell>GLU</cell><cell>ILE</cell><cell>PRO</cell><cell>SER</cell><cell>LEU</cell><cell>LEU</cell><cell>GLY</cell><cell>ASN</cell><cell>VAL</cell><cell>THR</cell>
+			</row>
+		</tabular>
+		</table>
+		</sidebyside>
+	</p>
+-->
+
+	<p>
+		and
+	</p>
+
+	<cd>
+	ATOM 1  N   MET A 1 21.182 23.095 19.731 1.00 15.74 N
+	ATOM 2  CA  MET A 1 21.175 22.975 18.256 1.00 15.48 C
+	ATOM 3  C   MET A 1 22.352 22.067 17.886 1.00 14.01 C
+	ATOM 4  O   MET A 1 23.494 22.373 18.208 1.00 15.09 O
+	ATOM 5  CB  MET A 1 21.350 24.356 17.631 1.00 17.44 C
+	ATOM 6  CG  MET A 1 20.916 24.451 16.185 1.00 22.09 C
+	ATOM 7  SD  MET A 1 21.223 26.088 15.485 1.00 26.05 S
+	ATOM 8  CE  MET A 1 19.716 26.929 15.949 1.00 27.39 C
+	ATOM 9  N   LYS A 2 22.055 20.919 17.294 1.00 12.03 N
+	ATOM 10 CA  LYS A 2 23.083 19.965 16.910 1.00 11.20 C
+	ATOM 11 C   LYS A 2 23.323 19.998 15.412 1.00 11.72 C
+	ATOM 12 O   LYS A 2 22.370 19.975 14.621 1.00 8.700 O
+	ATOM 13 CB  LYS A 2 22.691 18.545 17.324 1.00 11.60 C
+	ATOM 14 CG  LYS A 2 23.732 17.510 16.889 1.00 15.54 C
+	ATOM 15 CD  LYS A 2 23.348 16.067 17.184 1.00 19.51 C
+	ATOM 16 CE  LYS A 2 23.644 15.671 18.615 1.00 24.43 C
+	ATOM 17 NZ  LYS A 2 23.652 14.183 18.793 1.00 26.01 N
+	ATOM 18 N   PHE A 3 24.599 20.005 15.041 1.00 10.58 N
+	ATOM 19 CA  PHE A 3 25.023 20.038 13.651 1.00 11.39 C
+	ATOM 20 C   PHE A 3 25.822 18.789 13.332 1.00 9.470 C
+	ATOM 21 O   PHE A 3 26.672 18.375 14.123 1.00 9.150 O
+	ATOM 22 CB  PHE A 3 25.965 21.220 13.398 1.00 11.47 C
+	ATOM 23 CG  PHE A 3 25.330 22.564 13.552 1.00 13.33 C
+	ATOM 24 CD1 PHE A 3 25.107 23.107 14.812 1.00 13.95 C
+	ATOM 25 CD2 PHE A 3 24.996 23.313 12.430 1.00 14.77 C
+	ATOM 26 CE1 PHE A 3 24.561 24.387 14.951 1.00 14.75 C
+	ATOM 27 CE2 PHE A 3 24.450 24.593 12.561 1.00 14.39 C
+	ATOM 28 CZ  PHE A 3 24.234 25.129 13.819 1.00 11.32 C
+	</cd>
+
+<!--
+	<p>
+		<tabular>
+			<row>
+				<cell>ATOM</cell><cell>1</cell><cell>N</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>21.182</cell><cell>23.095</cell><cell>19.731</cell><cell>1.00</cell><cell>15.74</cell><cell>N</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>2</cell><cell>CA</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>21.175</cell><cell>22.975</cell><cell>18.256</cell><cell>1.00</cell><cell>15.48</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>3</cell><cell>C</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>22.352</cell><cell>22.067</cell><cell>17.886</cell><cell>1.00</cell><cell>14.01</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>4</cell><cell>O</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>23.494</cell><cell>22.373</cell><cell>18.208</cell><cell>1.00</cell><cell>15.09</cell><cell>O</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>5</cell><cell>CB</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>21.350</cell><cell>24.356</cell><cell>17.631</cell><cell>1.00</cell><cell>17.44</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>6</cell><cell>CG</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>20.916</cell><cell>24.451</cell><cell>16.185</cell><cell>1.00</cell><cell>22.09</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>7</cell><cell>SD</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>21.223</cell><cell>26.088</cell><cell>15.485</cell><cell>1.00</cell><cell>26.05</cell><cell>S</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>8</cell><cell>CE</cell><cell>MET</cell><cell>A</cell><cell>1</cell><cell>19.716</cell><cell>26.929</cell><cell>15.949</cell><cell>1.00</cell><cell>27.39</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>9</cell><cell>N</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>22.055</cell><cell>20.919</cell><cell>17.294</cell><cell>1.00</cell><cell>12.03</cell><cell>N</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>10</cell><cell>CA</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>23.083</cell><cell>19.965</cell><cell>16.910</cell><cell>1.00</cell><cell>11.20</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>11</cell><cell>C</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>23.323</cell><cell>19.998</cell><cell>15.412</cell><cell>1.00</cell><cell>11.72</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>12</cell><cell>O</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>22.370</cell><cell>19.975</cell><cell>14.621</cell><cell>1.00</cell><cell>8.70</cell><cell>O</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>13</cell><cell>CB</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>22.691</cell><cell>18.545</cell><cell>17.324</cell><cell>1.00</cell><cell>11.60</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>14</cell><cell>CG</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>23.732</cell><cell>17.510</cell><cell>16.889</cell><cell>1.00</cell><cell>15.54</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>15</cell><cell>CD</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>23.348</cell><cell>16.067</cell><cell>17.184</cell><cell>1.00</cell><cell>19.51</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>16</cell><cell>CE</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>23.644</cell><cell>15.671</cell><cell>18.615</cell><cell>1.00</cell><cell>24.43</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>17</cell><cell>NZ</cell><cell>LYS</cell><cell>A</cell><cell>2</cell><cell>23.652</cell><cell>14.183</cell><cell>18.793</cell><cell>1.00</cell><cell>26.01</cell><cell>N</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>18</cell><cell>N</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>24.599</cell><cell>20.005</cell><cell>15.041</cell><cell>1.00</cell><cell>10.58</cell><cell>N</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>19</cell><cell>CA</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>25.023</cell><cell>20.038</cell><cell>13.651</cell><cell>1.00</cell><cell>11.39</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>20</cell><cell>C</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>25.822</cell><cell>18.789</cell><cell>13.332</cell><cell>1.00</cell><cell>9.47</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>21</cell><cell>O</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>26.672</cell><cell>18.375</cell><cell>14.123</cell><cell>1.00</cell><cell>9.15</cell><cell>O</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>22</cell><cell>CB</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>25.965</cell><cell>21.220</cell><cell>13.398</cell><cell>1.00</cell><cell>11.47</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>23</cell><cell>CG</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>25.330</cell><cell>22.564</cell><cell>13.552</cell><cell>1.00</cell><cell>13.33</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>24</cell><cell>CD1</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>25.107</cell><cell>23.107</cell><cell>14.812</cell><cell>1.00</cell><cell>13.95</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>25</cell><cell>CD2</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>24.996</cell><cell>23.313</cell><cell>12.430</cell><cell>1.00</cell><cell>14.77</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>26</cell><cell>CE1</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>24.561</cell><cell>24.387</cell><cell>14.951</cell><cell>1.00</cell><cell>14.75</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>27</cell><cell>CE2</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>24.450</cell><cell>24.593</cell><cell>12.561</cell><cell>1.00</cell><cell>14.39</cell><cell>C</cell>
+			</row>
+			<row>
+				<cell>ATOM</cell><cell>28</cell><cell>CZ</cell><cell>PHE</cell><cell>A</cell><cell>3</cell><cell>24.234</cell><cell>25.129</cell><cell>13.819</cell><cell>1.00</cell><cell>11.32</cell><cell>C</cell>
+			</row>
+		</tabular>
+	</p>
+-->
+
+	<p>
+		This may look confusing, but here are some basics. Proteins are made up of building blocks called amino acids or simply "residues" that are bonded together. In the proteins we will look at, there can be up to 20 different types of amino acids (there are 22 amino acids involved in proteins, but we will only see 20). In the first block of information above, you can see that there are 268 residues in the sequence for 1AKO consisting of methionine (MET or M), bonded to lysine (LYS or K), bonded to phenylalanine (PHE or F), etc. As you can see here, the amino acids are listed as three letter codes although in other parts of the PDB file, they are listed as one letter codes. If you are wondering, LYS is not L since there is another amino acid called leucine and PHE is not P since there is another amino acid called proline.
+	</p>
+
+	<p>
+		In the second block, information about the atoms is given. Each amino acid is only made up of hydrogen, carbon, nitrogen, and oxygen (and sulfur in the case of CYS and MET) with all amino acids sharing a common structure of a nitrogen (N) bonded to a carbon (called the alpha carbon, or CA) which is bonded to another carbon (called the main-chain carbon, or C) which is bonded to an oxygen (O). Well, actually an individual amino acid has two oxygens bonded to the main-chain carbon, but in the protein formation, amino acids are bonded together in a polypeptide chain (or "residues" of the bonding process) and one oxygen atom is lost to a water molecule in the process.
+	</p>
+
+	<p>
+		Also bonded to the alpha carbon is the residue’s "side chain" and the side chain is what makes the amino acids different. Along the side chain, the atoms are labeled by the atom type (C, N, O, or S) followed by the level, or distance, they are from the alpha carbon. For example, CB is a carbon atom at beta position (or "beta carbon"), NZ is a nitrogen atom at zeta position (or "zeta nitrogen"), etc. Just remember the order: alpha (A), beta (B), gamma (G), delta (D), epsilon (E), zeta (Z), and eta (H). You may notice the CD1 and CD2 in atoms 25 and 26. That’s because there is a branching in PHE (a ring structure actually) after the CG to two carbons, both at the delta level.
+	</p>
+
+	<p>
+		The information along a line for the atom looks like this:
+	</p>
+
+	<p>
+		<cell>ATOM</cell>
+		<cell>15</cell>
+		<cell>CD</cell>
+		<cell>LYS</cell>
+		<cell>A</cell>
+		<cell>2</cell>
+		<cell>23.348</cell>
+		<cell>16.067</cell>
+		<cell>17.184</cell>
+		<cell>1.00</cell>
+		<cell>19.51</cell>
+		<cell>C</cell>
+	</p>
+
+	<p>
+		which means atom 15 is a delta carbon from a lysine residue in chain A and is from the 2nd residue in the protein (don’t worry about the chain part for this homework). The next three numbers are simply the x, y, and z coordinates of the location of this carbon atom measured in Angstroms. Disregard the next two numbers. The last character is the atom type (here a carbon atom).
+	</p>
+
+	<!-- HW -->
+
+</section>
+
+

@@ -1,0 +1,117 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab-for-loops" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title><c>for</c> loop</title> 
+
+<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Explain how a for loop controls the flow of code.</li>
+			<li>Explain what for loop counter is and how it is defined.</li>
+			<li>Properly write a for loop statement in MATLAB.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			Review if and switch statements (split flow control). Introduce loops.
+		</p>
+	</introduction>
+
+	<p>
+		Suppose we want to have part of our program re-run a preset number of times.  For this, we use a <c>for</c> loop. The basic format of this structure is:
+	</p>
+
+	<sidebyside width="100%">
+		<program language="matlab">
+			<input>
+				for counter conditions here
+					calculations here
+				end
+			</input>
+		</program>
+	</sidebyside>
+
+	<example xml:id="ex_forexampleonsums"><p/>
+	<title><em>Comparing for and sum.</em></title><p/>
+
+		<p>
+			Let's compare two methods for adding up the first five integers.  Using the sum command we can use
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						&gt;&gt; sum(1:5)
+
+						ans =
+							15
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			Now, using a <c>for</c> loop to create a cumulative sum:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						totalsum = 0; % initialize
+						for i = 1:5
+							totalsum = totalsum + i;
+						end
+						disp(totalsum)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			The variable <c>totalsum</c> will have value 15.
+		</p>
+	</example>
+
+	<p>
+		In the above example, the <c>for</c> loop was the long way of doing the problem (and therefore stresses the power of the <c>sum</c> function), but the following example shows a more in-depth <c>for</c> loop.
+	</p>
+
+	<example xml:id="ex_forexample"><p/>
+	<title><em>Using for</em></title><p/>
+		Let's find the first 10 Fibonacci numbers using the recursive definition.
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					A = zeros(1,10); % Initialize the matrix 
+					A(1) = 0; 
+					A(2) = 1; 
+					for i = 3:10
+						A(i) = A(i-1) + A(i-2); 
+					end
+					disp(A)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			The output for this would be
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						A =
+							0 1 1 2 3 5 8 13 21 34
+				</input>
+			</program>
+		</sidebyside>
+	</example>
+
+</section>
+
+

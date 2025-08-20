@@ -1,22 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <!-- we first include a file which contains the docinfo element: -->
-  <xi:include href="./docinfo.ptx" />
 
-  <book xml:id="my-great-book">
-    <title>My Great Book</title>
-    <subtitle>An example to get you started</subtitle>
+<xi:include href="./c0-bookends/c0-1-book-info.ptx" />
 
-    <!-- Include frontmatter -->
-    <xi:include href="./frontmatter.ptx" />
+<book xml:id="matlabrs">
+	<title>MATLAB BOOK</title>
 
-    <!-- Include chapters -->
-    <xi:include href="./ch-chapter-title.ptx" />
+  	<xi:include href="./c0-bookends/c0-2-front-matter.ptx" />
 
+	<part>
+		<title>MATLAB Basics</title>
 
-    <!-- Include backmatter -->
-    <xi:include href="./backmatter.ptx" />
+		<chapter xml:id="using-matlab">
+			<title>Getting Started</title>
 
-  </book>
+			<xi:include href="./chapter-01/_getting-started-intro.ptx" />
+			<xi:include href="./chapter-01/using-this-book.ptx" />
+			<xi:include href="./chapter-01/getting_matlab.ptx" />
+			<xi:include href="./chapter-01/matlab_desktop.ptx" />
+			<xi:include href="./chapter-01/command_window.ptx" />
+			<xi:include href="./chapter-01/scripts.ptx" />
+			<xi:include href="./chapter-01/_getting-started-exercises.ptx" />
+		</chapter>
+
+		<!-- <chapter xml:id="matrices">
+			<title>Matrices</title>
+
+			<xi:include href="./chapter-02/_matrices-intro.ptx" />
+			<xi:include href="./chapter-02/matrix-types.ptx" />
+			<xi:include href="./chapter-02/evenly-spaced-matrices.ptx" />
+			<xi:include href="./chapter-02/special-matrices.ptx" />
+			<xi:include href="./chapter-02/matrix-indexing.ptx" />
+			<xi:include href="./chapter-02/accessing-matrix-values.ptx" />
+			<xi:include href="./chapter-02/matrix-operations.ptx" />
+			<xi:include href="./chapter-02/matrix-size.ptx" />
+			<xi:include href="./chapter-02/common-matrix-functions.ptx" />
+			<xi:include href="./chapter-02/manipulating-matrices.ptx" />
+			<xi:include href="./chapter-02/systems_equations.ptx" />
+			<xi:include href="./chapter-02/_matrices-exercises.ptx" />
+		</chapter> -->
+
+		<!-- <chapter xml:id="plotting">
+			<title>Basic Plotting</title>
+		
+			<xi:include href="./chapter-03/_basic-plotting-intro.ptx" />
+			<xi:include href="./chapter-03/xy-plots.ptx" />
+			<xi:include href="./chapter-03/multiple-plots.ptx" />
+			<xi:include href="./chapter-03/_basic-plotting-exercises.ptx" />
+		</chapter> -->
+
+	</part>
+
+	<part>
+		<title>Programming</title>
+
+		<chapter xml:id="logical">
+		<title>Flow Control</title>
+
+			<xi:include href="./chapter-04/_flow-control-intro.ptx" />
+			<xi:include href="./chapter-04/flow-contol-intro.ptx" />
+			<!-- <xi:include href="./chapter-04/logical-values-operators.ptx" /> -->
+			<!-- <xi:include href="./chapter-04/if-statements.ptx" /> -->
+			<!-- <xi:include href="./chapter-04/switch-statements.ptx" /> -->
+			<!-- <xi:include href="./chapter-04/for-loops.ptx" /> -->
+			<!-- <xi:include href="./chapter-04/while-loops.ptx" /> -->
+			<!-- <xi:include href="./chapter-04/_flow-control-exercises.ptx" /> -->
+			
+		</chapter>
+
+		<!-- <chapter xml:id="functions">
+		<title>Functions</title>
+
+			<xi:include href="./chapter-05/_functions-intro.ptx" />
+			<xi:include href="./chapter-05/builtin-functions.ptx" />
+			<xi:include href="./chapter-05/pseudo-code.ptx" />
+			<xi:include href="./chapter-05/user-defined-functions.ptx" />
+			<xi:include href="./chapter-05/_functions-exercises.ptx" />
+
+		</chapter> -->
+	</part>
+
+	<!-- <part>
+		<title>Applications</title>
+
+		<xi:include href="./chapter-06/numerical-integration.ptx" />
+		<xi:include href="./chapter-07/curve-fitting.ptx" />
+
+		<chapter xml:id="fire-spread">
+		<title>Fire Spread</title>
+			<xi:include href="./chapter-08/fire-spread-overview.ptx" />
+			<xi:include href="./chapter-08/fire-spread-script.ptx" />
+			<xi:include href="./chapter-08/fire-spread-functions.ptx" />
+			<xi:include href="./chapter-08/fire-spread-tips_and_hints.ptx" />
+		</chapter>
+		
+		<chapter xml:id="monte-carlo-sim" xmlns:xi="http://www.w3.org/2001/XInclude">
+		<title>Monte Carlo Simulation</title>
+
+			<xi:include href="./chapter-09/monte-carlo-sim.ptx" />
+			<xi:include href="./chapter-09/sec-11_04-matlab_montecarlo_hw.ptx" />
+			<xi:include href="./chapter-09/sec-11_02-random_walks.ptx" />
+			<xi:include href="./chapter-09/sec-11_03-matlab_randomwalk_hw.ptx" />
+		
+		</chapter>
+
+		<chapter xml:id="traveling-salesman" xmlns:xi="http://www.w3.org/2001/XInclude">
+		<title>Traveling Saleman</title>
+			
+			<xi:include href="./chapter-10/traveling-salesman.ptx" />
+			<xi:include href="./chapter-10/sec-12_02-matlab_tspbf_hw.ptx" />
+			<xi:include href="./chapter-10/sec-12_03-matlab_tspnn.ptx" />
+			<xi:include href="./chapter-10/sec-12_04-matlab_tspnn_hw.ptx" />
+			<xi:include href="./chapter-10/sec-12_05-matlab_tspsa.ptx" />
+			<xi:include href="./chapter-10/sec-12_06-matlab_tspsa_hw.ptx" />
+			<xi:include href="./chapter-10/sec-12_07-matlab_tspga.ptx" />
+			<xi:include href="./chapter-10/sec-12_08-matlab_tspa_hw.ptx" />
+
+		</chapter>
+
+	</part> -->
+
+	<!-- <part>
+		<title>Advanced Topics</title>
+
+		<chapter xml:id="debugging">
+		<title>Debugging</title>
+			<p>INCLUDE THIS?</p>
+		</chapter>
+
+		<chapter xml:id="importing-data">
+		<title>Importing Data</title>
+			<p>INCLUDE THIS?</p>
+		</chapter>
+
+		<chapter xml:id="arrays">
+		<title>Advanced Arrays</title>
+
+			<xi:include href="./chapter-12/sec-13_01-matlab_high_dimension_arrays.ptx" />
+			<xi:include href="./chapter-12/sec-13_02-matlab_logical_arrays.ptx" />
+			<xi:include href="./chapter-12/sec-13_03-matlab_character_arrays.ptx" />
+			<xi:include href="./chapter-12/sec-13_04-matlab_cell_arrays.ptx" />
+		
+		</chapter>
+
+		<chapter xml:id="special-matlab-objects">
+		<title>Advanced MATLAB Objects</title>
+
+			<xi:include href="./chapter-13/sec-13_03-matlab_structured_arrays.ptx" />
+		
+			<section><title><c>table</c></title>
+				<p>INCLUDE THIS?</p>
+			</section>
+
+		</chapter>
+
+		<chapter xml:id="app-designer">
+		<title>App Designer</title>
+
+			<xi:include href="./chapter-14/sec-14_01-matlab_app_designer.ptx" />
+			<xi:include href="./chapter-15/sec-14_02-matlab_callback_functions.ptx" />
+			<xi:include href="./chapter-15/sec-14_03-matlab_image_editor.ptx" />
+			
+			<section><title>Front-End: Interface</title>
+				<p>INCLUDE THIS?</p>
+			</section>
+
+			<section><title>Back-End: Code</title>
+				<p>INCLUDE THIS?</p>
+			</section>
+
+		</chapter>
+	</part> -->
+
+	<!-- <part>
+		<title>Advanced Applications</title>
+
+		<chapter><title>Protein Analysis</title>
+			<xi:include href="./chapter-16/sec-13_04-matlab_protein_hw.ptx" />
+		</chapter>
+
+		<chapter><title>Tic-Tac-Toe</title>
+			<xi:include href="./chapter-17/sec-14_04-matlab_game.ptx" />
+		</chapter>
+
+	</part> -->
+
+	<!-- <part>
+		<title>Appendix</title>
+	
+		<chapter xml:id="topic-summary">
+		<title>Summary of Topics</title>
+		
+			<xi:include href="./chapter-topics/topic-index.ptx" />
+			
+		</chapter>
+
+	</part> -->
+
+</book>
+
 </pretext>

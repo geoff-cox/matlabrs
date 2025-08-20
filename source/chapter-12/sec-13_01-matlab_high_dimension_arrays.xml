@@ -1,0 +1,133 @@
+
+<!--********************************************************************-->
+ 
+<section xml:id="sec-Matlab_High_dimension_arrays" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>High Dimension  Arrays</title>
+
+	<p>
+		In this section, we look into some of the advanced arrays used in Matlab.
+	</p>
+
+	<p>
+		So far, you have dealt with one dimensional arrays (vectors) and two dimensional arrays (matrices). It is also possible to represent higher dimension arrays in Matlab. A three dimensional array consists of a 'stack' of two dimensional arrays. Each two dimensional array is called a page. A three dimensional array can be created by first making a two dimensional array
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; A = [1,2,3; 4,5,6]
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+	<p>
+		Then a second page can be added by using a third argument when indexing <c>A</c>,
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; A(:,:,2) = [0,2,3; 1,4,0]
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+	<p>
+		This creates a 2x3x2 dimension array.
+		You can add additional pages using this notation. The notation for indexing a three dimensional arrays is very similar to two dimensional arrays. For example,
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; x = A(1,3,2);
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+	<p>
+		defined x to be the element in the first row, third column, and second page.
+		<!--  Add homework problem with some basic indexing and data manipulation -->
+	</p>
+
+	<!--  Example use 1 -->
+
+	<p>
+		Suppose that you would like to store the temperature of a rectangular tray of brownies as they bake in an oven. The row and column of the matrix might represent the position in the pan, then the page represents the thickness of the brownies.
+	</p>
+
+	<p>
+		Consider the
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; T(:,:,1) = [147,144,145,148; 143,140,142,145]
+					&gt;&gt; T(:,:,2) = [150,147,148,151; 146,142,145,147]
+					&gt;&gt; T(:,:,3) = [156,153,151,156; 149,145,147,150]
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+	<p>
+		A three dimensional array can be used to store the temperature as a a three dimensional array
+	</p>
+
+	<p>
+		We might also want to use a fourth dimension to represent the temperature of the brownies at different times. The following would define the fourth dimension in out array <c>T</c>. This represents how the temperature of the brownies might change with respect to time.
+	</p>
+
+	<p>
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; T(:,:,:,2) = T+1;
+					&gt;&gt; T(:,:,:,3) = T(:,:,:,1)+2;
+					&gt;&gt; T(:,:,:,4) = T(:,:,:,1)+3;
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+	<p>
+		If you want to see how the temperature of one point in the pan changes with respect to time, you would look at
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; t = T(1,1,1,:);
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+
+	<!--  Add homework with cadet VFT score over the cadetship. row-&gt; cadet, col -&gt; exercise, page-&gt; year -->
+
+	<!--  Example use 2 -->
+
+	<p>
+		One of the most common use of higher dimension arrays are images.
+	</p>
+
+	<!--  Load images -->
+	<!--  RBG format -->
+	<!--  simple example with manpulating images -->
+
+	<!--  Homework problems -->
+	<!--  This sets students up to build a photo editor GUI in a later chapter. -->
+	Choose 4 school appropriate images.  These should be truecolor images, not grayscale.  Hint: You may want to write functions to perform some of these actions. These functions can be reused for problem 3.
+
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	<ol>
+		<li>
+			Save them in your working directory (the folder you are working in for this homework). Upload them into Matlab.
+		</li>
+		<li>
+			For the first image, create a single plot that has 4 subplots, the original image and the red, green, and blue pixels separately.  Add titles to each subfigure.
+		</li>
+		<li>
+			For the second image, create a single plot that has 4 subplots, the original image, the image with no red pixels, the image where the red pixels values are doubled, and the image where all of the pixels are changed to their maximum value.   Add titles to each subfigure.
+		</li>
+		<li>
+			For the third image, create a single plot that has 4 subplots, the original image, the image flipped over the <m>x</m>-axis, the image flipped over the <m>y</m>-axis, and the image rotated by 90 degrees.  Add titles to each subfigure.
+		</li>
+		<li>
+			For the fourth image, create a single plot that shows only the middle 50% of the original image.
+		</li>
+	</ol>
+
+</section>
+
+

@@ -1,0 +1,248 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_graphics" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Graphics</title>
+
+	<p>
+		In this section, we discuss the graphics capabilities of Matlab.
+	</p>
+
+	<p>
+		The main commands that we will use in this chapter are
+	</p>
+
+	<p>
+		<c>plot, subplot, figure,</c> and <c>hold</c> 
+	</p>
+
+	<p>
+		and the customizations
+		 
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					xlim, ylim, xlabel, ylabel,| and \verb|title
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+
+	<p>
+		Plots in Matlab are created by simply "connecting the dots."  This means that you have to provide the actual coordinates of the points <m>-</m> both the <m>x</m> and <m>y</m> coordinates.  It is not enough to simply say plot <m>y=x^2</m>, you must give \underline{exactly} which <m>x</m> values you want squared. 
+	</p>
+
+	<example xml:id="ex_basicplot"><p/>
+		<title><em>Basic Plot</em></title><p/>
+
+			<p>
+				Define:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; x = [1:10];  y = [4 15 7 17 8 19:23]; 
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				Then to plot the corresponding points, connected by line segments, use
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						plot(x,y)
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				That's all you do.  The resulting plot is
+			</p>
+
+			<p>
+				\includegraphics[scale=.75]{figures/matlab_plot1.png}
+			</p>
+		</example>
+
+		<p>
+			Let's take the last example and add some markers and labels.
+		</p>
+
+		<example xml:id="ex_labelplot"><p/>
+			<title><em>Plot with labels</em></title><p/>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								&gt;&gt; x = [1:10];  y = [4 15 7 17 8 19:23]; 
+								&gt;&gt; plot(x,y,| 	'--&gt;b'
+ \verb|)
+								&gt;&gt; title(| 	'My plot'
+ \verb|)
+ 								&gt;&gt; xlim([0,11])
+								&gt;&gt; ylim([0,30])
+						</input>
+					</program>
+				</sidebyside>
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							&gt;&gt; text(7,15,| 'My function' \verb|)
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					The plot is now:
+				</p>
+
+				<p>
+					\includegraphics[scale=.75]{figures/matlab_plot2.png}
+				</p>
+			</example>
+
+			<p>
+				In this last example, you can see that there is a title, the limits on the graph are now 0 to 11 (for <m>x</m>) and 0 to 30 (for <m>y</m>), and there is text on the screen, starting at the coordinate (7,15).  The symbols <c>'--&gt;b'</c> indicate that the lines should be dashed, the points marked with triangles and the lines colored blue (the default color if none is provided).
+			</p>
+
+			<p>
+				If you want to plot more than one set of data in the same figure window, there are two ways to do this.  You can put both in the same <c>plot</c> command or by using the <c>hold</c> command with two <c>plot</c> commands (see next example).
+			</p>
+
+			<example xml:id="ex_twofunctionplot1"><p/>
+				<title><em>Two Functions - one plot command</em></title><p/>
+
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+									&gt;&gt; x1 = [1:10];  y1 = [4 15 7 17 8 19:23]; 
+									&gt;&gt; x2 = [3:3:12];  y2 = [0 5 3 10]; 
+									&gt;&gt; plot(x1,y1,x2,y2,| 	'+'
+ \verb|)
+							</input>
+						</program>
+					</sidebyside>
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								&gt;&gt; xlim([0,13]), ylim([-1,25])
+							</input>
+						</program>
+					</sidebyside>
+
+					<p>
+						The plot is now
+					</p>
+
+					<p>
+						\includegraphics[scale=.75]{figures/matlab_plot3.png}
+					</p>
+				</example>
+
+				<p>
+					So, from this example we can see that if you want to use the same <c>plot</c> command, you simply list the pairings, (with any details following each pair) <c>x1,y1,x2,y2,x3,y3,...</c>.  The default colors start with blue followed by green.  The symbol <c>' + '</c> means that the second plot is points (not lines) marked with plus signs.
+				</p>
+
+				<example xml:id="ex_twofunctionplot2"><p/>
+					<title><em>Two Functions - two plot commands</em></title><p/>
+
+						<p>
+							We use data from the last example, but use the <c>hold</c> command.
+						</p>
+
+						<sidebyside width="100%">
+							<program language="matlab">
+								<input>
+										&gt;&gt; x1 = [1:10]; y1 = [4 15 7 17 8 19:23]; 
+										&gt;&gt; x2 = [3:3:12]; y2 = [0 5 3 10]; 
+										&gt;&gt; hold| \verb|on
+										&gt;&gt; plot(x1,y1)
+										&gt;&gt; plot(x2,y2,| 	'+'
+ \verb|)
+								</input>
+							</program>
+						</sidebyside>
+						<sidebyside width="100%">
+							<program language="matlab">
+								<input>
+									&gt;&gt; xlim([0,13]),ylim([-1,25])
+								</input>
+							</program>
+						</sidebyside>
+
+						<p>
+							The plot is now
+						</p>
+
+						<p>
+							\includegraphics{figures/matlab_plot4.png}
+						</p>
+					</example>
+
+					<p>
+						In the last example, if you didn't include the <c>hold</c> command, the second plot would simply overwrite the first.  Also, since we didn't specify new colors, both plots are blue (the default color of a single plot). 
+					</p>
+
+					<p>
+						Here we look at the <c>subplot</c> command as well as bar graphs and pie charts to create multiple graphs on the same figure.
+					</p>
+
+					<example xml:id="ex_3Dfunctionplot"><p/>
+						<title><em>The subplot command</em></title><p/>
+
+							<sidebyside width="100%">
+								<program language="matlab">
+									<input>
+											&gt;&gt; x = [1,2,4,5,8];  y = [x; 1:5]; 
+											&gt;&gt; subplot(2,3,1), bar(x)
+											&gt;&gt; subplot(2,3,2), bar(y)
+											&gt;&gt; subplot(2,3,3), bar3(y)
+									</input>
+								</program>
+							</sidebyside>
+							<sidebyside width="100%">
+								<program language="matlab">
+									<input>
+										&gt;&gt; subplot(2,1,2), pie(x)
+									</input>
+								</program>
+							</sidebyside>
+
+							<p>
+								\includegraphics{figures/matlab_plot5.png}
+							</p>
+
+							<p>
+								In this example, the <c>subplot</c> on each line does two things.  First, it (invisibly) subdivides the figure into rows and columns and second, it indicates where the plot will be shown (counting across the rows).  That is: 
+							</p>
+
+							<sidebyside width="100%">
+								<program language="matlab">
+									<input>
+										subplot(\# rows,\# columns, location)
+									</input>
+								</program>
+							</sidebyside>
+
+							<p>
+								You can see in the example that even though the plot was "broken up" into 2 rows and 3 columns in the first three subplot lines, the fourth line re-subdivides the plot into 2 rows and 1 column so that the final plot can take up the entire bottom of the plot.  Using the subplots does not require the <c>hold</c> command.
+							</p>
+						</example>
+
+						<p>
+							The previous examples give just a beginning of the graphics capabilities of Matlab (including 3D as in the last example).  We will see more graphics in the remainder of the text, but we suggest reading through the help files for (many) more details. 
+						</p>
+
+						<p>
+							\printexercises{exercises/Graphics_exercises}
+						</p>
+
+						<!--  %%%%%%  HOMEWORK AFTER THE PRACTICE PROBLEMS -->
+
+					</section>
+
+

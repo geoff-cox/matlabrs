@@ -1,0 +1,211 @@
+<!--********************************************************************-->
+
+<section xml:id="xy-plots">
+<title>2D Plots</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>plot points in MATLAB.</li>
+			<li>add basic customization options to your plot.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			In this section, we discuss the graphics capabilities of Matlab.
+		</p>
+	</introduction>
+
+	<p>
+		The main commands that we will use in this chapter are
+	</p>
+
+	<p>
+		<c>plot</c>, <c>subplot</c>, <c>figure</c>, and <c>hold</c> 
+	</p>
+
+	<p>
+		and the customizations
+	</p>
+
+	<p>
+		<c>xlim</c>, <c>ylim</c>, <c>xlabel</c>, <c>ylabel</c>, and <c>title</c>
+	</p>
+
+	<p>
+		Plots in Matlab are created by simply "connecting the dots."  This means that you have to provide the actual coordinates of the points (both the <m>x</m> and <m>y</m> coordinates).  It is not enough to simply say plot <m>y=x^2</m>, you must give <insert>exactly</insert> which <m>x</m> values you want squared. 
+	</p>
+	
+	<paragraphs xml:id="basic-plotting">
+	<title><insert>Basic Plotting</insert></title><p/>
+
+		<example xml:id="example_basicplot">
+		<title><em>Basic Plot</em></title>
+
+			<p>
+				Suppose we wanted to plot the points
+				<me>(1,4), (2,15), (3,7), (4,17), (5,8), (6,19), (7,20), (8,21), (9,22), (10,23).</me>
+			</p>
+
+			<p>
+				Give the commands that
+				<ol label="a">
+					<li>define the vector, <c>x</c>, as the <m>x</m> values of the points above.</li>
+					<li>define the vector, <c>y</c>, as the <m>y</m> values of the points above.</li>
+					<li>plot these points.</li>
+				</ol>
+			</p>
+
+			<sidebyside>
+				<p>
+					<sage language="octave">
+						<input>
+							x = ?;  
+							y = ?;
+							?
+						</input>
+					</sage>
+				</p>
+			</sidebyside>
+
+			<solution>
+				<p>
+					We first define <c>x</c> and <c>y</c> as vectors. Notice that we make use of the colon operator when we can.
+
+					<aside>
+						<p>
+							For plotting, it doesn't matter if <c>x</c> or <c>y</c> are row or column vectors. 
+						</p>
+					</aside>
+
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								x = [1:10];  
+								y = [4 15 7 17 8 19:23];
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					Then to plot the corresponding points, connected by line segments, use
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							plot(x,y)
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					That's all you do.  The resulting plot is
+				</p>
+
+				<image source="figures/matlab_plot1.png" />
+			</solution>
+		</example>
+
+		<p>
+			Let's take the last example and add some customization.
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="customizing-plots">
+	<title><insert>Customizing Plots</insert></title><p/>
+
+		<example xml:id="example_labelplot"><p/>
+		<title><em>Plot with labels</em></title><p/>
+
+			<p>
+				In the command box below, type in the following commands and press the <kbd>Run Commands</kbd> <em>to see the effect each change has on the plot</em>. 
+				<ul>
+					<li>On line 2, add the command <c>plot(x,y,'LineWidth',3)</c></li> 
+					<li>Change line 2 to <c>plot(x,y,'--','LineWidth',3)</c></li>
+					<li>Change line 2 to <c>plot(x,y,'--&gt;','LineWidth',3)</c></li>
+					<li>Change line 2 to <c>plot(x,y,'--&gt;b','LineWidth',3)</c></li>
+					<li>On line 3, add the command <c>title('My plot')</c></li> 
+					<li>On line 4, add the command <c>xlim([0,11])</c></li> 
+					<li>On line 5, add the command <c>ylim([0,30])</c></li> 
+					<li>On line 6, add the command <c>text(7,15,'My function')</c></li> 
+				</ul>
+			
+			</p>
+			
+			<sidebyside>
+				<p>
+					<sage language="octave">
+						<input>
+							x = [1:10];  y = [4 15 7 17 8 19:23];
+
+
+
+
+
+							%
+						</input>
+					</sage>
+				</p>
+			</sidebyside>
+
+			<solution>
+
+				<p>
+					In case you missed any changes, let's go over them.
+					<aside>
+						<p>
+							Notes:
+							<ul>
+								<li>default line width = 1.</li>
+								<li><c>r</c> is an appreviation for 'red' and you could have typed <c>red</c> for the same effect.</li>
+								<li>some options require single quotes, such as <c>'--'</c>. Be aware of this if you see any errors.</li>
+							</ul>
+						</p>
+					</aside>
+					<ul>
+						<li><c>'LineWidth',3</c> in <c>plot(x,y,'LineWidth',3)</c> increased the line's width to 3.</li> 
+						<li><c>'--'</c> in <c>plot(x,y,'--','LineWidth',3)</c> changed the solid line to a dashed line.</li> 
+						<li><c>'&gt;'</c> in <c>plot(x,y,'--&gt;','LineWidth',3)</c> added the triangle symbol to each point.</li>
+						<li><c>'r'</c> in <c>plot(x,y,'--&gt;r','LineWidth',3)</c> changed the color to red.</li>
+						<li><c>title('My plot')</c> added the title to the top of plot.</li> 
+						<li><c>xlim([0,11])</c> changed the range of the <m>x</m> values.</li> 
+						<li><c>ylim([0,11])</c> changed the range of the <m>y</m> values.</li> 
+						<li><c>text(7,15,'My function')</c> added text to the point <m>(7,5)</m>.</li> 
+					</ul>
+				</p>
+
+				<p>
+					All of the commands combined, as
+					<program language="matlab">
+						<input>
+							x = [1:10];  y = [4 15 7 17 8 19:23]; 
+							plot(x,y,'--&gt;b','LineWidth',3)
+							title('My plot')
+							xlim([0,11])
+							ylim([0,30])
+							text(7,15,'My function')
+						</input>
+					</program>
+				</p>
+
+				<p>
+					produces the plot:
+				</p>
+
+				<image source="figures/matlab_plot2.png" />
+
+			</solution>
+
+		</example>
+
+	</paragraphs>
+
+</section>

@@ -1,0 +1,204 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-switch-statements" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title><c>switch</c> statement</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Use an switch-statement to control which tasks your code should run.</li>
+			<li>Explain the difference between switch-statements and if-statements.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			The switch-statement is another option for controlling the flow of code in MATLAB. It works similar to the if-statement by directing your code to go down one of many possible paths (<em>Flow 2</em> type control).
+			<aside>
+				<p>
+					<image source="images/flow-control-chart-subimage2.svg"/>
+				</p>
+			</aside>
+		</p>
+		
+	</introduction>
+
+	<paragraphs xml:id="switch">
+	<title><c>switch</c> statements</title><p/>
+
+		<p>
+			The switch statement determines which task to perform based on possible values of some variable. The conditions that we use with switch-statements are in the form of cases. 
+		</p>
+
+		<lemma xml:id="switch-statement-def">
+		<title><c>switch</c>-statement</title><p/>
+			<statement>
+				<p/>
+				Suppose you need to perform different tasks based on some possible values of the variable <c>var</c>. More specifically, suppose you want your code to perform tasks A, B, C, and D, under the following conditions:
+				<p/>  
+				<sidebyside margins="10%">
+					<tabular>
+						<col  width="100%"></col>
+						<row><cell>perform task A if <c>var</c> equals <c>v1</c>,</cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+						<row><cell>perform task B if <c>var</c> equals <c>v2</c> or <c>v3</c>,</cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+						<row><cell>perform task C if <c>var</c> equals <c>v4</c>, or</cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+						<row><cell>perform task D for all other cases.</cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+					</tabular>
+				</sidebyside>
+				<p/>
+				with the flow diagram given below.
+				<sidebyside widths="70%" valign="middle">
+					<image xml:id="switch-statement-fig1">
+						<latex-image>
+							\begin{tikzpicture}
+								\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+								\node                               (82)  at ( 0.0, 4.6) {};
+								\node [hidden node 0]               (70)  at (-4.8, 4.1) {};
+								\node [hidden node 0]               (71)  at (-1.7, 4.0) {};
+								\node [rect node 2, inner sep=3pt]  (72)  at ( 0.0, 4.1) {};
+								\node [hidden node 0]               (73)  at ( 1.7, 4.0) {};
+								\node [hidden node 0]               (74)  at ( 4.3, 4.1) {};
+								\node [hidden node, inner sep=0pt]  (600) at (-4.8, 3.6) {\color{blue}is $\texttt{var = v1}$?};
+								\node [rect node 2, draw=blue]      (60)  at (-4.8, 3.0) {\color{blue}task A};
+								\node [hidden node, inner sep=0pt]  (501) at (-1.7, 3.0) {\color{dgreen}is $\texttt{var = v2}$ or $\texttt{v3}$?};
+								\node [rect node 2, draw=dgreen]    (51)  at (-1.7, 2.4) {\color{dgreen}task B};
+								\node [hidden node, inner sep=0pt]  (403) at ( 1.7, 2.6) {\color{orange}is $\texttt{var = v4}$?};
+								\node [rect node 2, draw=dgreen]    (43)  at ( 1.7, 2.0) {\color{orange}task C};
+								\node [hidden node, inner sep=0pt]  (304) at ( 4.3, 2.2) {\color{red}otherwise};
+								\node [rect node 2, draw=red]       (34)  at ( 4.3, 1.6) {\color{red}task D};
+								\node [hidden node 0]               (20)  at (-4.8, 1.0) {};
+								\node [hidden node 0]               (21)  at (-1.7, 1.1) {};
+								\node [rect node 2, inner sep=3pt]  (22)  at ( 0.0, 1.0) {};
+								\node [hidden node 0]               (23)  at ( 1.7, 1.1) {};
+								\node [hidden node 0]               (24)  at ( 4.3, 1.0) {};
+								\node [hidden node 0]               (02)  at ( 0.0, 0.5) {};
+								
+								\draw [->,draw=black,  line width=0.3mm]                (82.center)     to (72.north);
+								\draw [   draw=blue,   line width=0.5mm]                (70.center)     to (72.west);
+								\draw [   draw=dgreen, line width=0.5mm]                (71.center)     to (72.south west);
+								\draw [   draw=orange, line width=0.5mm]                (72.south east) to (73.center);
+								\draw [   draw=red,    line width=0.5mm]                (72.east)       to (74.center);
+								\draw [   draw=blue,   line width=0.5mm]                (70.center)     to (600.north);
+								\draw [   draw=blue,   line width=0.5mm]                (600.south)     to (60.north);
+								\draw [   draw=blue,   line width=0.5mm]                (60.south)      to (20.center);
+								\draw [   draw=dgreen, line width=0.5mm]                (71.center)     to (501.north);
+								\draw [   draw=dgreen, line width=0.5mm]                (501.south)     to (51.north);
+								\draw [   draw=dgreen, line width=0.5mm]                (51.south)      to (21.center);
+								\draw [   draw=orange, line width=0.5mm]                (73.center)     to (403.north);
+								\draw [   draw=orange, line width=0.5mm]                (403.south)     to (43.north);
+								\draw [   draw=orange, line width=0.5mm]                (43.south)      to (23.center);
+								\draw [   draw=red,    line width=0.5mm]                (74.center)     to (304.north);
+								\draw [   draw=red,    line width=0.5mm]                (304.south)     to (34.north);
+								\draw [   draw=red,    line width=0.5mm]                (34.south)      to (24.center);
+								\draw [-{Latex[right]}, draw=blue,   line width=0.5mm]  (20.center)     to (22.west);
+								\draw [-{Latex[left]},  draw=dgreen, line width=0.5mm]  (21.center)     to (22.north west);
+								\draw [-{Latex[right]}, draw=orange, line width=0.5mm]  (23.center)     to (22.north east);
+								\draw [-{Latex[left]},  draw=red,    line width=0.5mm]  (24.center)     to (22.east);
+								
+								\draw [->,draw=black,  line width=0.3mm] (22.south)  to (02.center);
+							\end{tikzpicture}
+						</latex-image>
+					</image>
+				</sidebyside>
+				<p/>
+				Then the switch commands required to control this flow are given by
+				<aside>
+					<p>
+						Like the if-statement, you can have as many branches as you like. You would just add additional <c>case</c> statements between the <c>switch</c> and <c>otherwise</c> statements.
+					</p>
+				</aside>
+				<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						switch var
+
+							case {v1}
+								
+								task A commands
+
+							case {v2, v3}
+						
+								task B commands
+
+							case {v4}
+
+								task C commands
+
+							otherwise
+
+								task D commands
+
+						end
+					</input>
+				</program>
+				</sidebyside>
+				<p/>
+				<p>
+					Notes:
+					<ul>
+						<li>MATLAB performs ONLY the tasks in the FIRST true case. The rest of the tasks are ignored.</li>
+						<li>When there is only one possible value for a case, the curly braces <c>{ }</c> are optional.</li>
+					</ul>
+				</p>
+			</statement>
+		</lemma>
+
+
+		<p>
+			The <c>switch</c>-<c>case</c> structure is similar to the if structure, but has a few advantages.  First of all it is easier to read and second, it is better if you are comparing strings (of possibly different lengths). The basic format is:
+		</p>
+
+		<example xml:id="ex_switchexample"><p/>
+		<title><em>Using if</em></title><p/>
+
+			<p>
+				Let's check to see if a cadet is in his\her first two years at VMI.
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						Year = 'second class'; 
+						switch Year
+							case{'fourth class','third class'}
+								'You are in the first two years.'
+							case{'second class','first class'}
+								'You are in the last two years.'
+							otherwise
+								'You must be a fifth year.'
+						end
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				The cases are grouped by curly brackets so that a case will be satisfied if the value of Year is any of the values in a specific case. Once this code is executed, the switch command will look at the value of Year and the output should be
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						You are in the last two years.
+					</input>
+				</program>
+			</sidebyside>
+		</example>
+	
+	</paragraphs>
+
+</section>
+
+

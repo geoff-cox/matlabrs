@@ -1,0 +1,566 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_relational" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Flow Control Introduction</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Explain the concept of flow control.</li>
+			<li>Describe the two ways a programmer has to alter the flow of code.</li>
+		</ol>
+	</objectives>
+
+	<p>
+		<aside><p>When we say "tasks", we just mean writing a piece of code to do something. It could be one line of code or many.</p></aside>
+		Navigating your program through a sequence of tasks is what is known as <term>flow control</term>.  By default, programs run from the top command, directly down to the bottom command. Sometimes this is the desirable behavior, but what if we want to perform one task in situation A and another task in situation B?  We may also want run the same task multiple times.  This section discusses the different flow patterns of code and the ways you can control it.
+	</p>
+
+	<p>
+		As we build a program, we need to decide which tasks we need and when we want to perform them. Luckily, most flow can be described in one of the following ways:
+		<ol>
+			<li>Tasks are performed sequentially from top to bottom (default flow).</li>
+			<li>One task out of a collection of possible tasks are performed (split flow). In this sense, the flow can be "split" down different paths. Either perform task 2A, task 2B, or task 2C.</li>
+			<li>Tasks are repeated (looped flow). In this case, you repeatedly perform the same group of tasks until you tell the code to stop.</li>
+		</ol>
+	</p>
+
+	<figure xml:id="flow-control-chart">
+		<caption/>
+		<sidebyside widths="33% 33% 33%" margins="auto" valign="bottom">
+			
+			<figure xml:id="flow-control-chart-subfig1">
+				<caption><em>Default flow</em>. Tasks are performed from top to bottom.</caption>
+				<sidebyside widths="47.7%" valign="top">
+					<image xml:id="flow-control-chart-subimage1">
+						<latex-image>
+							\begin{tikzpicture}
+								\node at (0, 7.5) {Default Flow};
+								\node [rect node 2] (0) at (0, 7.0) {};
+								\node [rect node 2] (1) at (0, 6.0) {task 1};
+								\node [rect node 2] (2) at (0, 4.3) {task 2};
+								\node [rect node 2] (3) at (0, 2.6) {task 3};
+								\node [rect node 2] (4) at (0, 1.0) {task 4};
+								\node [rect node 2] (5) at (0, 0) {};
+								\draw [-&gt;, line width=0.3mm] (0.south) to (1.north);
+								\draw [-&gt;, line width=0.3mm] (1.south) to (2.north);
+								\draw [-&gt;, line width=0.3mm] (2.south) to (3.north);
+								\draw [-&gt;, line width=0.3mm] (3.south) to (4.north);
+								\draw [-&gt;, line width=0.3mm] (4.south) to (5.north);
+							\end{tikzpicture}
+						</latex-image>
+					</image>
+				</sidebyside>
+			</figure>
+
+			<figure xml:id="flow-control-chart-subfig2">
+				<caption><em>Split flow.</em> After task 1, either task 2A, 2B, OR 2C is performed next.</caption>
+				<sidebyside widths="100%" valign="top">
+					<image xml:id="flow-control-chart-subimage2">
+						<latex-image>
+							\begin{tikzpicture}
+								\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+								\node at (0, 7.5) {Split Flow};
+								\node [rect node 2]                 (81) at ( 0.0, 7.0) {};
+								\node [rect node 2]                 (71) at ( 0.0, 6.0) {task 1};
+								\node                               (60) at (-1.7, 5.0) {};
+								\node                                    at (-0.9, 5.2) {\color{blue} path 1};
+								\node [rect node 2, draw=blue]      (61) at ( 0.0, 5.0) {};
+								\node                                    at ( 0.9, 5.2) {\color{red} path 3};
+								\node                               (62) at ( 1.7, 5.0) {};
+								\node [rect node 2, draw=blue]      (50) at (-1.7, 4.1) {\color{blue}task 2A};
+								\node [hidden node 0, inner sep=0pt]  (51) at ( 0.0, 4.2) {\color{dgreen} path 2};
+								\node [rect node 2, draw=dgreen]    (41) at ( 0.0, 3.4) {\color{dgreen}task 2B};
+								\node [rect node 2, draw=red]       (32) at ( 1.7, 2.7) {\color{red}task 2C};
+								\node                               (20) at (-1.7, 2.0) {};
+								\node [rect node 2]                 (21) at ( 0.0, 2.0) {};
+								\node                               (22) at ( 1.7, 2.0) {};
+								\node [rect node 2]                 (11) at ( 0.0, 1.0) {task 3};
+								\node [rect node 2]                 (01) at ( 0.0, 0.0) {};
+								
+								\draw [-&gt;,draw=black,  line width=0.3mm] (81.south)  to (71.north);
+								\draw [   draw=black,  line width=0.3mm] (71.south)  to (61.north);
+								\draw [   draw=blue,   line width=0.5mm] (61.west)   to (60.center);
+								\draw [   draw=red,    line width=0.5mm] (61.east)   to (62.center);
+								\draw [   draw=blue,   line width=0.5mm] (60.center) to (50.north);
+								\draw [   draw=dgreen, line width=0.5mm] (61.south)  to (51.north);
+								\draw [   draw=dgreen, line width=0.5mm] (51.south)  to (41.north);
+								\draw [   draw=red,    line width=0.5mm] (62.center) to (32.north);
+								\draw [   draw=blue,   line width=0.5mm] (50.south)  to (20.center);
+								\draw [   draw=red,    line width=0.5mm] (32.south)  to (22.center);
+								\draw [-&gt;,draw=dgreen, line width=0.5mm] (41.south)  to (21.north);
+								\draw [-&gt;,draw=blue,   line width=0.5mm] (20.center) to (21.west);
+								\draw [-&gt;,draw=red,    line width=0.5mm] (22.center) to (21.east);
+								\draw [-&gt;,draw=black,  line width=0.3mm] (21.south)  to (11.north);
+								\draw [-&gt;,draw=black,  line width=0.3mm] (11.south)  to (01.north);
+							\end{tikzpicture}
+						</latex-image>
+					</image>
+				</sidebyside>
+			</figure>
+
+			<figure xml:id="flow-control-chart-subfig3">
+				<caption><em>Looped flow.</em> Tasks 2 and 3 are repeated until told to stop.</caption>
+				<sidebyside widths="57%" valign="top">
+					<image xml:id="flow-control-chart-subimage3">
+						<latex-image>
+							\begin{tikzpicture}
+								\node at (0, 7.5) {Looped Flow};
+								\node [rect node 2]             (71) at ( 0.0,  7.0) {};
+								\node [rect node 2]             (61) at ( 0.0,  6.0) {task 1};
+								\node                           (50) at (-1.0,  5.0) {};
+								\node [rect node 2]             (51) at ( 0.0,  5.0) {};
+								\node                           (52) at ( 1.0,  5.0) {};
+								\node [rect node 2, draw=blue]  (42) at ( 1.0,  4.0) {\color{blue}task 2};
+								\node [rect node 2, draw=blue]  (32) at ( 1.0,  3.0) {\color{blue}task 3};
+								\node                                at ( 0.0,  2.25) {\color{blue}repeat};
+								\node                           (20) at (-1.0,  2.0) {};
+								\node                           (21) at ( 0.0,  2.0) {};
+								\node                           (22) at ( 1.0,  2.0) {};
+								\node [rect node 2]             (11) at ( 0.0,  1.0) {task 4};
+								\node [rect node 2]             (01) at ( 0.0,  0.0) {};
+								
+								\draw [-&gt;,draw=black, line width=0.3mm] (71.south)  to (61.north);
+								\draw [-&gt;,draw=black, line width=0.3mm] (61.south)  to (51.north);
+								\draw [   draw=blue,  line width=0.5mm] (51.east)   to (52.center);
+								\draw [-&gt;,draw=blue,  line width=0.5mm] (50.center) to (51.west);
+								\draw [   draw=blue,  line width=0.5mm] (50.center) to (20.center);
+								\draw [-&gt;,draw=blue,  line width=0.5mm] (52.center) to (42.north);
+								\draw [-&gt;,draw=blue,  line width=0.5mm] (42.south)  to (32.north);
+								\draw [   draw=blue,  line width=0.5mm] (32.south)  to (22.center);
+								\draw [   draw=blue,  line width=0.5mm] (20.center) to (21.center);
+								\draw [   draw=blue,  line width=0.5mm] (21.center) to (22.center);
+								\draw [-&gt;,draw=black, line width=0.3mm] (21.south)  to (11.north);
+								\draw [-&gt;,draw=black, line width=0.3mm] (11.south)  to (01.north);
+							\end{tikzpicture}
+						</latex-image>
+					</image>
+				</sidebyside>
+			</figure>
+		</sidebyside>
+	</figure>
+
+	<p>
+		The diagram shows three paths for "split flow", but, in general, you may have as many as you like. Similarly, "looped flow" shows two tasks inside the blue loop, but you can repeat as many tasks as needed. In fact, you can have "split flow" inside "looped flow" and vice versa. To see how these flow types can occur in practice, let's take a look at some examples.
+	</p>
+
+	<example xml:id="example-flow-1">
+		<title>Default Flow</title>
+
+		<p>
+			Suppose you are given a list of 3 numbers stored in <c>num_list</c> (<m>1 \times 3</m> row vector) and you want to compute the sum and mean of this list. For this problem, you have the following three tasks:
+			<ol>
+				<li>Define <c>N</c> as the number of elements of <c>num_list</c>,</li>
+				<li>Define <c>list_sum</c> as the sum of the elements of <c>num_list</c>, and</li>
+				<li>Define <c>list_avg</c> as the average of the elements of <c>num_list</c>.</li>
+			</ol>
+		</p>
+
+		<p>
+			Notice that the flow of tasks proceed sequentially with no flow control, like so
+		</p>
+
+		<aside> 
+			<p>
+				For example, suppose <c>num_list = [0 1 5]</c>, then <c>N = 3</c>, <c>list_sum = 6</c>, and <c>list_avg = 2</c>.
+			</p>
+		</aside>	
+
+		<sidebyside width="55%">
+			<image xml:id="example-no-flow-fig1">
+				<latex-image>
+					\begin{tikzpicture}
+						\node [fill=white, inner sep=1pt, outer sep=0pt] (01) at (0, 5) {given: $\texttt{num\_list}$};
+						\node [rect node 2] (11) at (0, 4) {set $\texttt{N}$};
+						\node [rect node 2] (21) at (0, 3) {set $\texttt{list\_sum}$ to the sum of $\texttt{num\_list}$};
+						\node [rect node 2] (31) at (0, 2) {set $\texttt{list\_avg}$ to the average of $\texttt{num\_list}$};
+						\node [fill=white, inner sep=1pt, outer sep=0pt] (41) at (0, 1) {goal: $\texttt{list\_sum, list\_avg}$};
+						\draw [-&gt;] (01.south) to (11.north);
+						\draw [-&gt;] (11.south) to (21.north);
+						\draw [-&gt;] (21.south) to (31.north);
+						\draw [-&gt;] (31.south) to (41.north);
+					\end{tikzpicture}
+				</latex-image>
+			</image>
+		</sidebyside>
+	</example>
+
+	<example xml:id="example-flow-2-1">
+	<title>Split Flow</title>
+		<p>
+			Suppose, in your code, you want to determine whether a number, <c>x</c>, is less than 5, between 5 and 10, or greater than 10. For each of these situations, you perform the following tasks:
+			<ul>
+				<li>if <c>x</c> is less than 5, set <c>y = 0</c>.</li>
+				<li>if <c>x</c> is between 5 and 10, set <c>y = 5</c>.</li>
+				<li>if <c>x</c> is greater than 10, set <c>y = 10</c>.</li>
+			</ul>
+		</p>
+		
+		<aside> 
+			<p>
+				For example, if <c>x = 8</c>, set <c>y = 0</c>, if <c>x = -7</c>, set <c>y = -1</c>, or if <c>x = 17</c>, then <c>y = 1</c>.
+			</p>
+		</aside>	
+		<p>
+			Depending on the value of <c>x</c>, your code can only take one of three paths, as illustrated by the diagram below.
+		</p>
+
+		<p>	
+			<sidebyside widths="70%">
+				<image xml:id="example-flow2-fig1">
+					<latex-image>
+						\begin{tikzpicture}
+							\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+							\node                               (71) at ( 0.0, 5.6) {given: value of $\texttt{x}$};
+							\node                               (60) at (-3.9, 4.6) {};
+							\node                                    at (-2.0, 4.8) {\color{blue} is $\texttt{x}$ less than 5?};
+							\node [rect node 2, draw=blue]      (61) at ( 0.0, 4.6) {};
+							\node                                    at ( 2.0, 4.8) {\color{red}is $\texttt{x}$ greater than 10?};
+							\node                               (62) at ( 3.9, 4.6) {};
+							\node [rect node 2, draw=blue]      (50) at (-3.9, 3.9) {\color{blue}set $\texttt{y = -1}$};
+							\node [hidden node 0]								  (51) at ( 0.0, 3.9) {\color{dgreen}is $\texttt{x}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (41) at ( 0.0, 3.3) {\color{dgreen}set $\texttt{y = 0}$};
+							\node [rect node 2, draw=red]       (32) at ( 3.9, 2.7) {\color{red}set $\texttt{y = 1}$};
+							\node                               (20) at (-3.9, 2.0) {};
+							\node [rect node 2]                 (21) at ( 0.0, 2.0) {};
+							\node                               (22) at ( 3.9, 2.0) {};
+							\node                               (11) at ( 0.0, 1.0) {goal: value of $\texttt{y}$};
+
+							\draw [   draw=black,  line width=0.3mm] (71.south)  to (61.north);
+							\draw [   draw=blue,   line width=0.5mm] (61.west)   to (60.center);
+							\draw [   draw=red,    line width=0.5mm] (61.east)   to (62.center);
+							\draw [   draw=blue,   line width=0.5mm] (60.center) to (50.north);
+							\draw [   draw=dgreen, line width=0.5mm] (61.south)  to (51.north);
+							\draw [   draw=dgreen, line width=0.5mm] (51.south)  to (41.north);
+							\draw [   draw=red,    line width=0.5mm] (62.center) to (32.north);
+							\draw [   draw=blue,   line width=0.5mm] (50.south)  to (20.center);
+							\draw [   draw=red,    line width=0.5mm] (32.south)  to (22.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (41.south)  to (21.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (20.center) to (21.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (22.center) to (21.east);
+							\draw [-&gt;,draw=black,  line width=0.3mm] (21.south)  to (11.north);
+						\end{tikzpicture}
+					</latex-image>
+				</image>
+			</sidebyside>
+		</p>
+		
+		<p>
+			Note, it turns out that we didn't need to check if <c>x</c> is greater than 10 because flow of this type allows you set a default task. In particular, if <c>x</c> is not less than 5, nor between 5 and 10, then it must be greater than 10 because there are no other possibilities. So, asking MATLAB if the number was greater than 10 would be unnecessary.
+		</p>
+	</example>
+
+	<p>
+		[Say some words about the order of condition checks and why we have staggered the heights of the task boxes]
+	</p>
+
+	<example xml:id="example-flow2-fig2">
+		<title>Repeated Split flow</title>
+
+		<p>
+			Let's repeat the previous example, except, instead of one number, suppose  we have a list of three numbers stored in <c>x_list</c>. We would like to apply the same idea for each value in <c>x_list</c> and store the results in <c>y_list</c>.  
+		</p>
+		
+		<aside> 
+			<p>
+				For example, if <c>x_list = [11 -2 0]</c> then we should return <c>y_list = [1 -1 -1]</c> since 11 is greater than 10 and -2, 0 are less than 5.
+			</p>
+		</aside>
+
+		<p>
+			The flow diagram for performing the same task on each element of <c>x_list</c> looks like:
+		</p>
+
+		<p>
+			<sidebyside width="95%">
+				<image xml:id="example-flow-2-fig2">
+					<latex-image>
+						\begin{tikzpicture}
+							\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+							\node                               (191) at ( 0.0, 13.6) {given: $\texttt{x\_list}$};
+
+							\node                               (180) at (-5.5, 12.6) {};
+							\node                                     at (-2.9, 12.8) {\color{blue}is $\texttt{x\_list(1)}$ less than 5?};
+							\node [rect node 2, draw=blue]      (181) at ( 0.0, 12.6) {};
+							\node                                     at ( 2.9, 12.8) {\color{red}is $\texttt{x\_list(1)}$ greater than 10?};
+							\node                               (182) at ( 5.5, 12.6) {};
+							\node [rect node 2, draw=blue]      (170) at (-5.5, 11.9) {\color{blue}set $\texttt{y\_list(1) = -1}$};
+							\node [hidden node 0, inner sep=0pt]  (171) at ( 0.0, 11.9) {\color{dgreen}is $\texttt{x\_list(1)}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (161) at ( 0.0, 11.3) {\color{dgreen}set $\texttt{y\_list(1) = 0}$};
+							\node [rect node 2, draw=red]       (152) at ( 5.5, 10.7) {\color{red}set $\texttt{y\_list(1) = 1}$};
+							\node                               (140) at (-5.5, 10.0) {};
+							\node [rect node 2]                 (141) at ( 0.0, 10.0) {};
+							\node                               (142) at ( 5.5, 10.0) {};
+
+							\node                               (131) at ( 0.0, 9.3) {};
+							
+							\node                               (120) at (-5.5, 8.6) {};
+							\node                                     at (-2.9, 8.8) {\color{blue}is $\texttt{x\_list(2)}$ less than 5?};
+							\node [rect node 2, draw=blue]      (121) at ( 0.0, 8.6) {};
+							\node                                     at ( 2.9, 8.8) {\color{red}is $\texttt{x\_list(2)}$ greater than 10?};
+							\node                               (122) at ( 5.5, 8.6) {};
+							\node [rect node 2, draw=blue]      (110) at (-5.5, 7.9) {\color{blue}set $\texttt{y\_list(2) = -1}$};
+							\node [hidden node 0, inner sep=0pt]  (111) at ( 0.0, 7.9) {\color{dgreen}is $\texttt{x\_list(2)}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (101) at ( 0.0, 7.3) {\color{dgreen}set $\texttt{y\_list(2) = 0}$};
+							\node [rect node 2, draw=red]       (92)  at ( 5.5, 6.7) {\color{red}set $\texttt{y\_list(2) = 1}$};
+							\node                               (80)  at (-5.5, 6.0) {};
+							\node [rect node 2]                 (81)  at ( 0.0, 6.0) {};
+							\node                               (82)  at ( 5.5, 6.0) {};
+							
+							\node                               (71)  at ( 0.0, 5.3) {};
+							
+							\node                               (60)  at (-5.5, 4.6) {};
+							\node                                     at (-2.9, 4.8) {\color{blue}is $\texttt{x\_list(3)}$ less than 5?};
+							\node [rect node 2, draw=blue]      (61)  at ( 0.0, 4.6) {};
+							\node                                     at ( 2.9, 4.8) {\color{red}is $\texttt{x\_list(3)}$ greater than 10?};
+							\node                               (62)  at ( 5.5, 4.6) {};
+							\node [rect node 2, draw=blue]      (50)  at (-5.5, 3.9) {\color{blue}set $\texttt{y\_list(3) = -1}$};
+							\node [hidden node 0, inner sep=0pt]  (51)  at ( 0.0, 3.9) {\color{dgreen}is $\texttt{x\_list(3)}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (41)  at ( 0.0, 3.3) {\color{dgreen}set $\texttt{y\_list(3) = 0}$};
+							\node [rect node 2, draw=red]       (32)  at ( 5.5, 2.7) {\color{red}set $\texttt{y\_list(3) = 1}$};
+							\node                               (20)  at (-5.5, 2.0) {};
+							\node [rect node 2]                 (21)  at ( 0.0, 2.0) {};
+							\node                               (22)  at ( 5.5, 2.0) {};
+							\node                               (11)  at ( 0.0, 1.0) {goal: $\texttt{y\_list}$};
+
+							\draw [   draw=black,  line width=0.3mm] (191.south)  to (181.north);
+							\draw [   draw=blue,   line width=0.5mm] (181.west)   to (180.center);
+							\draw [   draw=red,    line width=0.5mm] (181.east)   to (182.center);
+							\draw [   draw=blue,   line width=0.5mm] (180.center) to (170.north);
+							\draw [   draw=dgreen, line width=0.5mm] (181.south)  to (171.north);
+							\draw [   draw=dgreen, line width=0.5mm] (171.south)  to (161.north);
+							\draw [   draw=red,    line width=0.5mm] (182.center) to (152.north);
+							\draw [   draw=blue,   line width=0.5mm] (170.south)  to (140.center);
+							\draw [   draw=red,    line width=0.5mm] (152.south)  to (142.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (161.south)  to (141.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (140.center) to (141.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (142.center) to (141.east);
+							\draw [   draw=black,  line width=0.3mm] (141.south)  to (131.center);
+							\draw [   draw=black,  line width=0.3mm] (131.center)  to (121.north);
+							\draw [   draw=blue,   line width=0.5mm] (121.west)   to (120.center);
+							\draw [   draw=red,    line width=0.5mm] (121.east)   to (122.center);
+							\draw [   draw=blue,   line width=0.5mm] (120.center) to (110.north);
+							\draw [   draw=dgreen, line width=0.5mm] (121.south)  to (111.north);
+							\draw [   draw=dgreen, line width=0.5mm] (111.south)  to (101.north);
+							\draw [   draw=red,    line width=0.5mm] (122.center) to (92.north);
+							\draw [   draw=blue,   line width=0.5mm] (110.south)  to (80.center);
+							\draw [   draw=red,    line width=0.5mm] (92.south)   to (82.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (101.south)  to (81.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (80.center)  to (81.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (82.center)  to (81.east);
+							\draw [   draw=black,  line width=0.3mm] (81.south)  to (71.center);
+							\draw [   draw=black,  line width=0.3mm] (71.center)  to (61.north);
+							\draw [   draw=blue,   line width=0.5mm] (61.west)   to (60.center);
+							\draw [   draw=red,    line width=0.5mm] (61.east)   to (62.center);
+							\draw [   draw=blue,   line width=0.5mm] (60.center) to (50.north);
+							\draw [   draw=dgreen, line width=0.5mm] (61.south)  to (51.north);
+							\draw [   draw=dgreen, line width=0.5mm] (51.south)  to (41.north);
+							\draw [   draw=red,    line width=0.5mm] (62.center) to (32.north);
+							\draw [   draw=blue,   line width=0.5mm] (50.south)  to (20.center);
+							\draw [   draw=red,    line width=0.5mm] (32.south)  to (22.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (41.south)  to (21.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (20.center) to (21.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (22.center) to (21.east);
+							\draw [-&gt;,draw=black,  line width=0.3mm] (21.south)  to (11.north);
+						\end{tikzpicture}
+					</latex-image>
+				</image>
+			</sidebyside>
+		</p>
+	</example>
+
+	<p>
+		As you can see, in the previous example, explicitly writing out each repeated task in a program would quickly become tedious, even with 3 values. Imagine if you had to repeat this for 550 values! Luckily, we can apply a looping structure that automates the repetition of these tasks.
+	</p>
+
+	<p>
+		Before jumping straight to the "looped" version, let's add in one step that essential to understanding how loops are coded. If you notice in the figure from the previous example, each repeated block is not an exact copy of one another because of the <c>1, 2, 3</c> numbers inside the <c>x_list</c> and <c>y_list</c> variables. Let's make them identical by adding in a new variable, <c>i</c>, between each block, like so:
+		<aside>
+			<p>
+				The variable, <c>i</c>, is a special variable known as a <term>loop counter</term> and it is the key to making this repeated behavior possible. We will discuss this idea in more detail in a later section. 
+			</p>
+		</aside>
+	</p>
+
+	<p>
+		<sidebyside width="95%">
+			<figure xml:id="example-loop-flow-fig2">
+				<caption>Updated figure from the previous example. Changes are highlighted in yellow.</caption>
+				<image>
+					<latex-image>
+						\begin{tikzpicture}
+							\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+							\node                               (201) at ( 0.0, 15.2) {given: $\texttt{x\_list}$};
+							
+							\node [rect node 2]                 (191) at ( 0.0, 14.2) {\colorbox{yellow}{set $\texttt{i = 1}$}};
+							
+							\node                               (180) at (-5.5, 13.2) {};
+							\node                                     at (-2.9, 13.4) {\color{blue}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ less than 5?};
+							\node [rect node 2, draw=blue]      (181) at ( 0.0, 13.2) {};
+							\node                                     at ( 2.9, 13.4) {\color{red}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ greater than 10?};
+							\node                               (182) at ( 5.5, 13.2) {};
+							\node [rect node 2, draw=blue]      (170) at (-5.5, 12.5) {\color{blue}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = -1}$};
+							\node [hidden node 0, inner sep=0pt]  (171) at ( 0.0, 12.5) {\color{dgreen}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (161) at ( 0.0, 11.9) {\color{dgreen}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = 0}$};
+							\node [rect node 2, draw=red]       (152) at ( 5.5, 11.3) {\color{red}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = 1}$};
+							\node                               (140) at (-5.5, 10.6) {};
+							\node [rect node 2]                 (141) at ( 0.0, 10.6) {};
+							\node                               (142) at ( 5.5, 10.6) {};
+
+							\node [rect node 2]                 (131) at ( 0.0, 9.9) {\colorbox{yellow}{set $\texttt{i = 2}$}};
+							
+							\node                               (120) at (-5.5, 8.9) {};
+							\node                                     at (-2.9, 9.1) {\color{blue}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ less than 5?};
+							\node [rect node 2, draw=blue]      (121) at ( 0.0, 8.9) {};
+							\node                                     at ( 2.9, 9.1) {\color{red}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ greater than 10?};
+							\node                               (122) at ( 5.5, 8.9) {};
+							\node [rect node 2, draw=blue]      (110) at (-5.5, 8.2) {\color{blue}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = -1}$};
+							\node [hidden node 0, inner sep=0pt]  (111) at ( 0.0, 8.2) {\color{dgreen}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (101) at ( 0.0, 7.6) {\color{dgreen}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = 0}$};
+							\node [rect node 2, draw=red]       (92)  at ( 5.5, 7.0) {\color{red}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = 1}$};
+							\node                               (80)  at (-5.5, 6.3) {};
+							\node [rect node 2]                 (81)  at ( 0.0, 6.3) {};
+							\node                               (82)  at ( 5.5, 6.3) {};
+							
+							\node [rect node 2]                 (71)  at ( 0.0, 5.6) {\colorbox{yellow}{set $\texttt{i = 3}$}};
+							
+							\node                               (60)  at (-5.5, 4.6) {};
+							\node                                     at (-2.9, 4.8) {\color{blue}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ less than 5?};
+							\node [rect node 2, draw=blue]      (61)  at ( 0.0, 4.6) {};
+							\node                                     at ( 2.9, 4.8) {\color{red}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ greater than 10?};
+							\node                               (62)  at ( 5.5, 4.6) {};
+							\node [rect node 2, draw=blue]      (50)  at (-5.5, 3.9) {\color{blue}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = -1}$};
+							\node [hidden node 0, inner sep=0pt]  (51)  at ( 0.0, 3.9) {\color{dgreen}is $\texttt{x\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{)}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (41)  at ( 0.0, 3.3) {\color{dgreen}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = 0}$};
+							\node [rect node 2, draw=red]       (32)  at ( 5.5, 2.7) {\color{red}set $\texttt{y\_list(}\!$\colorbox{yellow}{$\texttt{i}$}$\!\texttt{) = 1}$};
+							\node                               (20)  at (-5.5, 2.0) {};
+							\node [rect node 2]                 (21)  at ( 0.0, 2.0) {};
+							\node                               (22)  at ( 5.5, 2.0) {};
+							\node                               (11)  at ( 0.0, 1.0) {goal: $\texttt{y\_list}$};
+
+							\draw [   draw=black,  line width=0.3mm] (201.south)  to (191.north);
+							\draw [   draw=black,  line width=0.3mm] (191.south)  to (181.north);
+							\draw [   draw=blue,   line width=0.5mm] (181.west)   to (180.center);
+							\draw [   draw=red,    line width=0.5mm] (181.east)   to (182.center);
+							\draw [   draw=blue,   line width=0.5mm] (180.center) to (170.north);
+							\draw [   draw=dgreen, line width=0.5mm] (181.south)  to (171.north);
+							\draw [   draw=dgreen, line width=0.5mm] (171.south)  to (161.north);
+							\draw [   draw=red,    line width=0.5mm] (182.center) to (152.north);
+							\draw [   draw=blue,   line width=0.5mm] (170.south)  to (140.center);
+							\draw [   draw=red,    line width=0.5mm] (152.south)  to (142.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (161.south)  to (141.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (140.center) to (141.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (142.center) to (141.east);
+							\draw [   draw=black,  line width=0.3mm] (141.south)  to (131.north);
+							\draw [   draw=black,  line width=0.3mm] (131.south)  to (121.north);
+							\draw [   draw=blue,   line width=0.5mm] (121.west)   to (120.center);
+							\draw [   draw=red,    line width=0.5mm] (121.east)   to (122.center);
+							\draw [   draw=blue,   line width=0.5mm] (120.center) to (110.north);
+							\draw [   draw=dgreen, line width=0.5mm] (121.south)  to (111.north);
+							\draw [   draw=dgreen, line width=0.5mm] (111.south)  to (101.north);
+							\draw [   draw=red,    line width=0.5mm] (122.center) to (92.north);
+							\draw [   draw=blue,   line width=0.5mm] (110.south)  to (80.center);
+							\draw [   draw=red,    line width=0.5mm] (92.south)   to (82.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (101.south)  to (81.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (80.center)  to (81.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (82.center)  to (81.east);
+							\draw [   draw=black,  line width=0.3mm] (81.south)  to (71.north);
+							\draw [   draw=black,  line width=0.3mm] (71.south)  to (61.north);
+							\draw [   draw=blue,   line width=0.5mm] (61.west)   to (60.center);
+							\draw [   draw=red,    line width=0.5mm] (61.east)   to (62.center);
+							\draw [   draw=blue,   line width=0.5mm] (60.center) to (50.north);
+							\draw [   draw=dgreen, line width=0.5mm] (61.south)  to (51.north);
+							\draw [   draw=dgreen, line width=0.5mm] (51.south)  to (41.north);
+							\draw [   draw=red,    line width=0.5mm] (62.center) to (32.north);
+							\draw [   draw=blue,   line width=0.5mm] (50.south)  to (20.center);
+							\draw [   draw=red,    line width=0.5mm] (32.south)  to (22.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (41.south)  to (21.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (20.center) to (21.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (22.center) to (21.east);
+							\draw [-&gt;,draw=black,  line width=0.3mm] (21.south)  to (11.north);
+						\end{tikzpicture}
+					</latex-image>
+				</image>
+			</figure>
+		</sidebyside>
+	</p>
+
+	<p>
+		By introducing <c>i</c>, and making the changes highlighted in yellow, each repeated block is now an identical copy of one another. The next example shows how we can leverage this change to collapse these repeated blocks down to a single block.
+	</p>
+
+	<example xml:id="example-flow-3">
+		<title>Looped flow</title>
+		<p>
+			Give a flow diagram that illustrates how the previous example can be represented with looping flow.  
+		</p>
+
+		<p> 
+			To do this, we collapse all the repeated blocks (in <xref ref="example-loop-flow-fig2"/>) down to one and specify the values of <c>i</c> we need.
+		</p>
+		
+		<p>
+			<sidebyside width="95%">
+				<image xml:id="example-loop-flow-fig3">
+					<latex-image>
+						\begin{tikzpicture}
+							\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+							\node                               (81) at ( 0.0, 6.6) {given: $\texttt{x\_list}$};
+							
+							\node [rect node 2]                 (71)  at ( 0.0, 5.6) {for each $\texttt{i = 1, 2, 3}$};
+							
+							\node                               (60)  at (-5.5, 4.6) {};
+							\node                                     at (-2.9, 4.8) {\color{blue}is $\texttt{x\_list(i)}$ less than 5?};
+							\node [rect node 2, draw=blue]      (61)  at ( 0.0, 4.6) {};
+							\node                                     at ( 2.9, 4.8) {\color{red}is $\texttt{x\_list(i)}$ greater than 10?};
+							\node                               (62)  at ( 5.5, 4.6) {};
+							\node [rect node 2, draw=blue]      (50)  at (-5.5, 3.9) {\color{blue}set $\texttt{y\_list(i) = -1}$};
+							\node [hidden node 0, inner sep=0pt]  (51)  at ( 0.0, 3.9) {\color{dgreen}is $\texttt{x\_list(i)}$ between 5 and 10?};
+							\node [rect node 2, draw=dgreen]    (41)  at ( 0.0, 3.3) {\color{dgreen}set $\texttt{y\_list(i) = 0}$};
+							\node [rect node 2, draw=red]       (32)  at ( 5.5, 2.7) {\color{red}set $\texttt{y\_list(i) = 1}$};
+							\node                               (20)  at (-5.5, 2.0) {};
+							\node [rect node 2]                 (21)  at ( 0.0, 2.0) {};
+							\node                               (22)  at ( 5.5, 2.0) {};
+							\node                               (11)  at ( 0.0, 1.0) {goal: $\texttt{y\_list}$};
+
+							\draw [   draw=black,  line width=0.3mm] (81.south)  to (71.north);
+							\draw [   draw=black,  line width=0.3mm] (71.south)  to (61.north);
+							\draw [   draw=blue,   line width=0.5mm] (61.west)   to (60.center);
+							\draw [   draw=red,    line width=0.5mm] (61.east)   to (62.center);
+							\draw [   draw=blue,   line width=0.5mm] (60.center) to (50.north);
+							\draw [   draw=dgreen, line width=0.5mm] (61.south)  to (51.north);
+							\draw [   draw=dgreen, line width=0.5mm] (51.south)  to (41.north);
+							\draw [   draw=red,    line width=0.5mm] (62.center) to (32.north);
+							\draw [   draw=blue,   line width=0.5mm] (50.south)  to (20.center);
+							\draw [   draw=red,    line width=0.5mm] (32.south)  to (22.center);
+							\draw [-&gt;,draw=dgreen, line width=0.5mm] (41.south)  to (21.north);
+							\draw [-&gt;,draw=blue,   line width=0.5mm] (20.center) to (21.west);
+							\draw [-&gt;,draw=red,    line width=0.5mm] (22.center) to (21.east);
+							\draw [-&gt;,draw=black,  line width=0.3mm] (21.south)  to (11.north);
+						\end{tikzpicture}
+					</latex-image>
+				</image>
+			</sidebyside>
+		</p>
+
+		<p>
+			Clearly, this is much more pleasing to look at than the previous figure.
+		</p>
+
+		<p>
+			As one final note to emphasize the power of this idea, suppose <c>x_list</c> had 1000 values, instead of 3. The only thing you would have to do is change the range of <c>i</c> from <c>i = 1, 2, 3</c> to <c>1, 2, ..., 1000</c>!
+		</p>
+	</example>
+
+	<p> 
+		The point of this section was to introduce you to the concept of how code flows through a program and the options that you have to control it.  In the next few sections, you will see many examples of how to code these ideas in MATLAB.
+	</p> 
+
+</section>
+
+

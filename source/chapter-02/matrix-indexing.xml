@@ -1,0 +1,430 @@
+<!--********************************************************************-->
+
+<section xml:id="matrix-indexing">
+<title>Accessing a Single Value</title> 
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Explain the difference between an index and value of a matrix.</li>
+			<li>Explain the difference between row/column indexing and absolute indexing.</li>
+			<li>Use matrix indexing to access a single value from a matrix.</li>
+		</ol>
+	</objectives>
+
+	<p>
+		<aside><p>The act of "accessing values" in a matrix is also called "referencing" a matrix.</p></aside>
+		In this section, we look at ways to access values in a matrix using two different types of indexing.
+	</p>
+
+	<paragraphs xml:id="index-value">
+	<title><insert>Indices &amp; Values</insert></title><p/>
+
+	<p>
+		All matrices contain <term>values</term>. Sometimes it makes sense to list the values in a straight line (i.e. with a vector) and other times it makes sense to list them in a rectangular grid (i.e. with a matrix). Either way, you need some way to get to these values. The location of these values is called the <term>index</term>.  In MATLAB, an index must be a counting number (i.e. <m>1, 2, 3, ...</m>).
+	</p>
+
+	<aside>
+		<p>
+			To give an analogy, suppose there is a line of four students and you say "The third student in line is Troy". Here, "Troy" would be the specified <insert>value</insert> and "third" (or 3) would be the <insert>index</insert> of this value.
+		</p>
+	</aside>
+
+	<p>
+		For example, consider the following vector, <m>{\bf v}</m>:
+		<me>
+			{\bf v} = [7.1, -4.2, 1.1], \qquad
+		</me>
+		We can summarize the values and indices of <m>{\bf v}</m> as follows:
+		<ul>
+			<li>The <insert>1</insert>st value is <m>7.1</m> and it has an index of <insert>1</insert>.</li>
+			<li>The <insert>2</insert>nd value is <m>-4.2</m> and it has an index of <insert>2</insert>.</li>
+			<li>The <insert>3</insert>rd value is <m>1.1</m> and it has an index of <insert>3</insert>.</li>
+		</ul>
+	</p> 
+
+	<p>
+		For matrices, the idea of index needs some adjustment. To see this, consider the following matrix, <m>A</m>:
+		<me>
+			A = \left[
+			\begin{matrix}
+				3 \amp 4\\
+				7 \amp 8
+			\end{matrix} \right].
+		</me>
+		Since the values are listed in a rectangular grid, it is not so clear which value is the third value since you cannot just count them left to right as you could with <m>{\bf v}</m>.
+	</p>
+
+	<p>
+		The next few sections aim to clarify this idea.
+	</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="row-column-indexing">
+	<title><insert>Row/Column Indexing</insert></title><p/>
+	<p>
+		The most common way to locate a value in a matrix is to specify the row and column that the value is in. <em>Remember, rows are counted from top to bottom and columns are counted from left to right, as shown here:</em>
+		<tabular halign="center">
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell>columns</cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell>
+					<m>
+						\begin{matrix}
+							1 					\amp 2 					\amp 3 					\amp 4\\
+							\downarrow 	\amp \downarrow \amp \downarrow \amp \downarrow
+						\end{matrix}
+					</m>
+				</cell>
+			</row>
+			<row>
+				<cell>rows</cell>
+				<cell>
+					<m>
+						\begin{matrix}
+							1 \rightarrow\\
+							2 \rightarrow\\
+							3 \rightarrow
+						\end{matrix}
+					</m>
+				</cell>
+				<cell>
+					<m>
+						\left[
+							\begin{matrix}
+								5 \amp 0 \amp 6 \amp 3\\
+								8 \amp 1 \amp 3 \amp 0\\
+								2 \amp 9 \amp 7 \amp 4
+							\end{matrix} \right].
+					</m>
+				</cell>
+			</row>
+		</tabular>
+	</p>
+
+	<p>
+		For example, the value, <m>6</m>, is in row <m>1</m> and column <m>3</m>.
+	</p>
+
+	<lemma xml:id="row-column-indexing-def">
+		<title><em>Row/Column Indexing</em></title><p/>
+		<statement>
+			<p/>
+			To access the value in <insert>row <m>\texttt{i}</m></insert> and <insert>column <m>\texttt{j}</m></insert> of matrix <m>\texttt{A}</m> , use the command:
+			<p/>
+			<cd>
+					A(i,j)
+			</cd>
+			<aside>
+				<p>
+					Important:
+					<ul>
+						<li>the row and column index must be separated by a comma, and</li>
+						<li>rows are indexed first.</li>
+					</ul>
+				</p>
+			</aside>
+			Visually, the command, <m>\texttt{A(i,j)}\,\,</m> , will give you the value located at <m>\boxed{*}</m> .
+			<p/>
+			<tabular halign="center">
+				<row>
+				</row>
+				<row>
+					<cell></cell>
+					<cell>
+						<m>
+							\begin{matrix}
+								\amp	\amp \quad\texttt{j} \amp \\
+								\amp	\amp \quad\downarrow \amp 
+							\end{matrix}
+						</m>
+					</cell>
+				</row>
+				<row>
+					<cell>
+						<m>
+							\begin{matrix}
+								\\
+								\\
+								\texttt{i} \rightarrow
+							\end{matrix}
+						</m>
+					</cell>
+					<cell>
+						<m>
+							\left[
+							\begin{matrix}
+											\amp				\amp	\vdots		\amp		\\
+											\amp				\amp	\vdots		\amp		\\
+								\dots	\amp	\dots	\amp	\boxed{*}	\amp	\dots \\
+											\amp				\amp	\vdots		\amp
+							\end{matrix} \right]
+						</m>
+					</cell>
+				</row>
+			</tabular>
+		</statement>
+	</lemma>
+
+	<example xml:id="example-access_values_01">
+	<p/>
+	<p>
+		Consider the matrix 
+		<me>
+			\left[
+				\begin{matrix}
+					5 \amp 0 \amp \boxed{6} \amp 3\\
+					8 \amp 1 \amp 3 \amp 0\\
+					2 \amp 9 \amp 7 \amp 4
+				\end{matrix} \right].
+		</me>
+		Give the MATLAB commands that 
+		<ol label="a">
+			<li>defines the variable, <c>A</c>, as this matrix above, and</li>
+			<li>defines the variable, <c>x</c>, as the boxed value in <c>A</c>.	<em>Get the value from the variable <c>A</c></em>.</li>
+		</ol> 
+	</p>
+
+	<p>
+		<em>In the box, below, replace the '?' with the appropriate commands.</em>
+		<sage language="octave">
+			<input>
+				A = [?]
+				x = A(?,?)
+			</input>
+		</sage>
+	</p>
+
+	<p/>
+	<solution>
+		<p>
+			Defining <c>A</c> should be a review. As for <c>x</c>, notice that boxed value is in row <c>1</c> and column <c>3</c> of <c>A</c>, so you should use the commands:
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						>> A = [5 0 6 3;8 1 3 0;2 9 7 4]
+						>> x = A(1,3)
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+		<p>
+			and the output you should receive is
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						A =
+
+						5 0 6 3
+						8 1 3 0
+						2 9 7 4
+
+						x = 6
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+	</solution>
+	</example>
+
+	</paragraphs>
+
+	
+	<paragraphs xml:id="absolute-indexing">
+	<title><insert>Absolute Indexing</insert></title><p/>
+
+		<p>
+			MATLAB provides another way to locate a value in a matrix using just one index called the <term>absolute index</term>. This method locates the value by counting downward through each column from left to right until the value is found. 
+		</p>
+		<p>
+			For example, suppose we wanted to the absolute index to access <m>3</m> (3rd column) in the following matrix:
+			<me>
+				\left[
+					\begin{matrix}
+						5 \amp 0 \amp 6\\
+						8 \amp 1 \amp \boxed{3}\\
+						2 \amp 9 \amp 7
+					\end{matrix} \right].
+			</me>
+		</p>
+
+		<p>
+			<em>Starting with the top-left value, count downward until you reach the bottom, then count down the next column, and continue this way until all the values have been counted.</em>
+		</p>
+		<p>
+			To clarify, we've added subscripts to the values to illustrate the counting order:
+			<me>
+				\left[
+					\begin{matrix}
+						5_\texttt{1}	\amp 0_\texttt{4} \amp 6_\texttt{7}\\
+						8_\texttt{2} 	\amp 1_\texttt{5} \amp \boxed{3}_\texttt{8}\\
+						2_\texttt{3} 	\amp 9_\texttt{6} \amp 7_\texttt{9}
+					\end{matrix} \right].
+			</me>
+		</p>
+			
+		<p>
+			Counting this way, we see that the value <m>3</m> has an absolute index of <c>8</c>. 
+		</p>
+
+		<lemma xml:id="absolute-indexing-def">
+			<title><em>Absolute Indexing</em></title><p/>
+			<statement>
+				<p/>
+				To access the value with <insert>absolute index <m>\texttt{i}</m></insert> of matrix <m>\texttt{A}</m> , use the command:
+				<p/>
+				<cd>
+					A(i)
+				</cd>
+				Visually, the command, <m>\texttt{A(i)}\,\,</m> , will give you the value located at <m>\boxed{*}</m> .
+				<p/>
+				<me>
+					\left[
+					\begin{matrix}
+									\amp				\amp	\vdots \quad 								\amp		\\
+									\amp				\amp	\vdots \quad 								\amp		\\
+						\dots	\amp	\dots	\amp	\boxed{*}_\texttt{ i}	\amp	\dots \\
+									\amp				\amp	\vdots \quad 								\amp
+					\end{matrix} \right]
+				</me>
+				where the subscript indicates the absolute index using the counting pattern:
+				<p>
+					Starting with top-left value, count downward through each column until the last value is counted.
+				</p>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-access_values_02">
+			<p/>
+			<p>
+				Consider the matrix 
+				<me>
+					\left[
+						\begin{matrix}
+							1	\amp	2	\amp	3					\amp	4\\
+							5	\amp	6	\amp	\boxed{7}	\amp	8\\
+						\end{matrix} \right].
+				</me>
+				Give the MATLAB commands that 
+				<ol label="a">
+					<li>defines the variable, <c>x_rc</c>, as the boxed value in <c>A</c> using row/column indexing.</li>
+					<li>defines the variable, <c>x_ab</c>, as the boxed value in <c>A</c> using absolute indexing.</li>
+				</ol> 
+			</p>
+
+			<p>
+				<em>In the box, below, replace the '?' with the appropriate commands.</em>
+				<sage language="octave">
+					<input>
+						A = [1 2 3 4; 5 6 7 8];
+						x_rc = ?
+						x_ab = ?
+					</input>
+				</sage>
+			</p>
+
+			<p/>
+			<solution>
+				<p>
+					Note that the boxed value is in row <c>2</c> and column <c>3</c> of <c>A</c>, so to access <c>7</c> using row/column indexing, the command is
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								>> x_rc = A(2,3)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					Counting down each column, you get
+					<me>
+						\left[
+							\begin{matrix}
+								1_\texttt{1}	\amp	2_\texttt{3}	\amp	3_\texttt{5}					\amp	4_\texttt{7}\\
+								5_\texttt{2}	\amp	6_\texttt{4}	\amp	\boxed{7}_\texttt{6}	\amp	8_\texttt{8}\\
+							\end{matrix} \right].
+					</me>
+				</p>
+
+				<p>
+					So to access <c>7</c> using the absolute index, the command is
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								>> x_ab = A(6)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					Running all three commands, 
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								A = [1 2 3 4; 5 6 7 8];
+								x_rc = A(2,3)
+								x_ab = A(6)
+					</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					gives the output
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								x_rc = 7
+								x_ab = 7
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					Recall, the matrix, <c>A</c>, does not display in the output since we ended the first line with a semicolon.
+				</p>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+		<p>
+			For completeness, in the last example, we can list out all the values of, <c>A</c>,  in a row/column index grid:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						A(1,1) = 1  A(1,2) = 2	A(1,3) = 3	A(1,4) = 4
+						A(2,1) = 5  A(2,2) = 6	A(2,3) = 7	A(2,4) = 8
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			or, an absolute index grid:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						A(1) = 1	A(3) = 2	A(5) = 3	A(7) = 4
+						A(2) = 5	A(4) = 6	A(6) = 7	A(8) = 8
+				</input>
+			</program>
+		</sidebyside>
+
+</section>

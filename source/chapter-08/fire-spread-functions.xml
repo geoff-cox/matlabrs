@@ -1,0 +1,172 @@
+
+<!--********************************************************************-->
+
+<subsection xml:id="sec-functions" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Functions</title>
+ 
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	Although this project might seem daunting initially, you have all of the tools you need to complete this. The first thing to do when programming a large project, is to break it into bite-sized pieces. We will do this by creating several small functions that each do a simple task. We will then put all of our functions together to accomplish a sizable task.
+
+	<p>
+		Remember to test that your functions are working along the way. It can be difficult to debug a large program, but debugging a small piece is much easier. Feed in a variety of inputs and check that the output you get is as expected. If you don't know the correct output is, you can't tell if the program is actually working.
+	</p>
+
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<paragraphs xml:id="initialize">
+	<title>Initialize</title><p/>
+
+		<p>
+			The goal of this function is to set up the simulation by defining the first values for the variables. This is called initializing the variables. The function should take the following parameters as inputs: <c>T</c>, <c>N</c>, <c>probTree</c>, <c>probBurn</c> and output the following updated variable: <c>Forest</c>, <c>Empty</c>, <c>Tree</c>, <c>Burning</c>.
+		</p>
+
+		<p>
+			Here are the tasks that need to be completed in this function:
+			<ol>
+				<li>
+					Create a matrix called <c>Forest</c> to store all of the data in. You can use the zeros function to create the <c>N</c><m>\times</m><c>N</c> matrix of zeros.
+				</li>
+				<li>
+					For each space in the forest, you need to determine if a tree is initially in that space.  You will want to use the rand function to generate a random number between 0 and 1. If that number is less than <c>probTree</c>, then a tree is in that space. The space should have a value of 1. Update the variable Forest appropriately.
+				</li>
+				<li>
+					If there is a tree in a space, you should then determine if it is burning. Again, generate a random number between 0 and 1. If it is less than <c>probBurn</c>, then that tree is on fire. The space should have a value of 2. Update the variable Forest appropriately.
+				</li>
+				<li>
+					Use the zeros function to create three <c>T</c>-length vectors of zeros called <c>E</c>, <c>T</c>, and <c>B</c>. For each of these, count the number of spaces of each type. Store these values as the first entry in each of the respective vector.  (Hint: You will need to count the number of each type of space after each timestep. You may want to create a helper function to do this. You can then call it each time you want to do this. )
+				</li>
+			</ol>
+		</p>
+
+		<p>
+			Once you have completed this function, update the function call in the main script. Be sure to test that it is working properly.
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	</paragraphs>
+
+	<paragraphs xml:id="firespread">
+	<title>FireSpread</title><p/>
+
+		<p>
+			This function does the bulk of the work in this simulation. The goal of this function is to determine and update the status of each space in your simulation. This function will require you to pull out and store updated information from the matrix <c>Forest</c>.   This function will take inputs: <c>Forest</c>, <c>T</c>, <c>N</c>, <c>probGrowth</c>, <c>probParty</c>, <c>burnTime</c> and output the following updated variable: <c>Forest</c>.
+		</p>
+
+		<p>
+			Here are the tasks required in this function for each space in the forest (this can be done using a for loop or a vector operation).
+			<ol>
+				<li>
+					An empty space will turn into a tree with probability <c>probGrowth</c>. You will use the helper function isGrowth for this part.
+				</li>
+				<li>
+					A tree will catch of fire with probability <c>probCatch</c>, if one of more of it's neighbor is on fire. The first step if to determine if it's neighbor is on fire. This can be done using the helper function isNeighborBurning. You can then determine if it spreads using the helper function isCatch. It will also catch on fire with probability <c>probParty</c> if a gender reveal party or lightening strike occurs there.
+				</li>
+				<li>
+					A burning space will burn for for <c>burnTime</c> iterations or time steps, then it will become an empty space. You will use the helper function, isItBurnedDown, to determine if it has burned down. If it has, the new value of the forest will be 0, otherwise it will be increased from it's current value by 1.
+				</li>
+			</ol>
+		</p>
+
+		<p>
+			There are many ways to think about the logic here. Drawing a flowchart might be helpful. <xref ref="fig-Flow"/> gives an example of the logic you might want to use.
+		</p>
+
+		<p>
+			<figure xml:id="fig-Flow">
+				<title>Fig Flow Chart</title>
+				<caption>Example flow chart of decision tree</caption>
+				<image source="figures/matlab_forest_update.png" />
+			</figure>
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="helper-functions-for-firespread">
+	<title>Helper Functions for FireSpread</title><p/>
+
+		<p>
+			Each of the diamond shaped questions in <xref ref="fig-Flow"/> can be done by making a function.
+
+			<sidebyside widths="95%" margins="5% 0%">
+				<p>
+					<term><c>isEvent</c></term>: 
+					In order to determine if certain events happen, you will need to generate a random number and compare it to the probability that the event occurred. This function will be used to determine if a new tree has grown in the empty space, if a tree catches on fire from a burning neighbor space, or if a party causes a tree to catch on fire. This function will take the input: <c>probEvent</c> and output the logical variable 0 or 1.  This is done by generating a random number between 0 and 1. If the number if less than <c>probEvent</c> the output is true, 1. Otherwise, no tree grows and the output is false, 0. If you want to determine if a new tree has grown, use <c>probTree</c> as the input. If you want to determine if a tree catches on fire from a burning neighbor space, use <c>probCatch</c> as the input. If you want to determine if a party causes a tree to catch on fire, use <c>probParty</c> as the input.
+				</p>
+			</sidebyside>
+
+			<sidebyside widths="95%" margins="5% 0%">
+				<p>
+					<term><c>isNeighborBurning</c></term>: 
+					This function will take the input: <c>Forest</c>, the index of the current space <c>i</c> and <c>j</c>, and <c>N</c>. It will output a logical variable 0 or 1. The goal of this function is to determine if any of the four neighboring spaces (up, down left, right) are on fire. In this simulation diagonal spaced are not considered adjacent. You will need to use the index <c>i</c> and <c>j</c> to determine which spaces are adjacent. This is tricky along the walls of the simulation. Use periodic boundary conditions here (assume the top is connected to the bottom and the left wall is connected to the right wall like in PAC Man).  Then fire can spread from the bottom of the simulation domain to the top. If one of the neighbors is on fire, return true 1. Otherwise return false 0.
+					</p>
+			</sidebyside>
+
+			<sidebyside widths="95%" margins="5% 0%">
+				<p>
+					<term><c>isItBurnedDown</c></term>: 
+					This function will take the input: <c>burnTime</c> and the value of the current forest space. It will output the logical variable 0 or 1.  The goal of this function is to determine if the space has been burning for the <c>burnTime</c>. According to our naming convention, a space will be have a value of 2 if it just started burning. Therefore, you need to check that the current value of the forest space is greater than 2+<c>burnTime</c>. If it is, the tree burned down and the output of the function should be true, 1. Otherwise the output is false, 0.
+				</p>
+			</sidebyside>
+			
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	</paragraphs>
+
+	<paragraphs xml:id="updatecounts">
+	<title>UpdateCounts</title><p/>
+
+		<p>
+			This function is used to determine the counts of all types of spaces in the forest. This is also used for determining then there are no longer burning spaces.
+		</p>
+
+		<p>
+			 The function should take the following variables and parameters as inputs: <c>Forest</c>, <c>counter</c>, <c>Empty</c>, <c>Tree</c>, <c>Burning</c> and output the following updated variable: <c>Forest</c>, <c>counter</c>, <c>Empty</c>, <c>Tree</c>, <c>Burning</c>.
+		</p>
+
+		<p>
+			 This function should accomplish the following tasks:
+			<ol>
+				<li>
+					Count the number of empty spaces.
+				</li>
+				<li>
+					Count the number of tree spaces.
+				</li>
+				<li>
+					Count the number of burning spaces.
+				</li>
+				<li>
+					Store these in the <c>Empty</c>(counter), <c>Tree</c>(counter), <c>Burning</c>(counter) respectively.
+				</li>
+				<li>
+					If you are using the while loop, update the counter.
+				</li>
+			</ol>
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	</paragraphs>
+
+	<paragraphs xml:id="display-forest">
+	<title>Display Forest</title><p/>
+
+		<p>
+			For this function, you want to display the forest in a nice way. There are many ways to do this. I think that creating a heatmap plot is very effective. You may use whatever you like. It should be clear which spaces are empty, contain a tree, and burning.  As always, your figure should have an appropriate title, legend, axis limits, and axis labels.
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	</paragraphs>
+
+	<paragraphs xml:id="display-results">
+	<title>Display Results</title><p/>
+
+		<p>
+			For this function, create a graph that shows the number of empty, contain a tree, and burning spaces over time.  Each space type should be plotted in a different color. Your plot should have an appropriate title, axis labels, and a legend. The function should take <c>Empty</c>, <c>Tree</c>, and <c>Burn</c> as an input. There are no outputs.
+		</p>
+
+	</paragraphs>
+
+</subsection>
+
+

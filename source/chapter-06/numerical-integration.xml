@@ -1,0 +1,105 @@
+<chapter xml:id="numerical-integration" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Numerical Integration</title>
+
+	<p>
+		In this chapter, we put several aspects of programming together.  You will learn about the numerical methods of Riemann sums, the Trapezoidal Rule and Simpson's rule.  We'll also investigate aspects of the Traveling Salesman problem.
+	</p>
+
+	<p>
+		In Calculus, you learn how to use Riemann sums, the Trapezoidal Rule and Simpson's rule to approximate definite integrals, which represent area under a curve for positive functions <m>f(x)</m>.
+		<tabular>
+			<row>
+				<cell>The area between the graph of <m>f</m> and the <m>x</m>-axis</cell>
+				<cell><m>\ds = \int_a^b f(x) \ dx</m></cell>
+			</row>
+		</tabular> 
+	</p>
+
+	<p>
+		Each involves finding the sum of areas of approximating shapes. Given a function <m>f(x)</m> defined on an interval <m>[a,b]</m>, and a value <m>n</m>, the process is as follows.
+	</p>
+
+	<ol>
+		<li>
+			First subdivide the interval <m>[a,b]</m> into <m>n</m> equal subintervals.  
+		</li>
+		<li>
+			Assign <m>x_0=a, x_1</m> as the right endpoint of the first subinterval, <m>x_2</m> as the right endpoint of the second subinterval, <m>\cdots</m> , <m>x_n</m> as the right endpoint of the <m>n</m>th interval (that is <m>x_n = b</m>).
+			For example, if <m>a=0, b=1, n=4</m>, then <m>x_0=0, x_1=.25, x_2=.5, x_3=.75</m> and <m>x_4=1</m>.
+			In this example, note that even though <m>n=4</m>, there are five <m>x</m> values.
+		</li>
+		<li>
+			Next, calculate the values <m>f(x_0), f(x_1), f(x_2),\cdots, f(x_n)</m> by substituting the <m>x_i</m> values into <m>f(x)</m>.
+		</li>
+	</ol>
+
+	<p>
+		The formulas for each of the methods are:
+	</p>
+
+	<p>
+		<term>Riemann Sum (rectangles):</term>
+		<me>
+			\int_a^b f(x) \, dx
+			\approx
+			\left(\frac{b-a}{n}\right) 
+			\left[
+			f(x_0) + f(x_1) + f(x_2) + \cdots +f(x_{n-2}) + f(x_{n-1})
+			\right]
+		</me>
+	</p>
+
+	<p>
+		<term>Trapezoidal Rule:</term>
+	</p>
+
+	<p>
+		<me>
+			\begin{split}
+			\int_a^b f(x) \, dx
+			\approx
+			\left(\frac{b-a}{2n}\right) 
+			\left[f(x_0)\right. +  2f(x_1) &amp;+ 2f(x_2) + \cdots 
+
+			&amp; + 2f(x_{n-2}) + 2f(x_{n-1})+ \left. f(x_n) \right]
+			\end{split}
+		</me>
+	</p>
+
+	<p>
+		<term>Simpson's Rule:</term>
+	</p>
+
+	<p>
+		<me>
+			\begin{split}
+			\int_a^b f(x) \, dx
+			\approx
+			\left(\frac{b-a}{3n}\right) 
+			\left[f(x_0)\right. + 4f(x_1) &amp;+ 2f(x_2) + \cdots 
+
+			&amp;+ 2f(x_{n-2}) + 4f(x_{n-1})+\left. f(x_n)) \right]
+			\end{split}
+		</me>
+	</p>
+
+	<note>
+  
+		<p>
+			The pattern of coefficients in the Trapezoidal rule is 
+			<me>1,2,2,2,\cdots, 2, 2, 1.</me>
+			where each of the middle terms is a 2.
+		</p>
+		<p>
+			In Simpson's rule, the pattern is 
+			<me>1,4,2,4,2,4,\cdots,2,4,2,4,1</me> 
+			where the middle terms start with a 4, alternate between 2 and 4, and end on a 4 (important!!).  This last fact forces <m>n</m> to be an even number to apply Simpson's rule.
+		</p>
+	
+	</note>
+
+	<xi:include href="./_numerical-integration-exercises.xml" />
+
+</chapter>
+
+

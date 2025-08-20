@@ -1,0 +1,77 @@
+
+<!--********************************************************************-->
+ 
+<section xml:id="sec-logical-arrays" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Logical Arrays</title>
+
+		<p>
+			These operations extend to matrices with an entry-by-entry comparison of matrices of the same size.
+		</p>
+
+		<example xml:id="ex_logic1"><p/>
+		<title><em></em></title><p/>
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; a = [0,1; 1,2], b = [0,0; 1,1]
+					</input>
+				</program>
+			</sidebyside>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						a =
+							0 1
+							1 2
+
+						b =
+							0 0
+							1 1
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				with
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; a &amp; b, a | b, xor(a,b)
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				returns
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						ans =
+							0 0
+							1 1
+						
+						ans =
+							0 1
+							1 1
+						
+						ans =
+							0 1
+							0 0
+					</input>
+				</program>
+			</sidebyside>
+
+		</example>
+
+		<note>
+			<p>
+				One minor point to note is that while Matlab treats 0 as false, any other positive whole number is considered as true.  So, in this example, even though the <m>(2,2)</m> entry of a is a 2, it is considered as "true" for logical comparison.
+			</p>
+		</note>
+
+</section>

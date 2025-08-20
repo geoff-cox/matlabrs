@@ -1,0 +1,175 @@
+<!--********************************************************************-->
+
+<section xml:id="command-window">
+<title>Command Window</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Run basic commands into the command window.</li>
+			<li>Properly define and use a numeric variable.</li>
+			<li>Clear all commands from the command window and clear variables from the workspace.</li>
+		</ol>
+	</objectives>
+
+	<paragraphs xml:id="basic-commands">
+	<title><insert>Basic Commands</insert></title><p/>
+
+		<note><title>Edit Thoughts</title> 
+			<ul>
+				<li>Expand description slightly to lead into the example.</li>
+				<li>Add one more computation in example?</li>
+			</ul>
+		</note>
+
+		<p>
+			Let's try some basic examples in the <xref ref="description-command-window" text="custom">command window</xref>.
+		</p>
+
+		<example>
+		<title>Simple Calculations</title><p/>
+
+			<p>
+				Enter <c>5+5</c> in the command window and press <kbd>Enter</kbd>.
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+						<code>
+							&gt;&gt; 5+5
+
+							ans =
+								10
+						</code>
+				</program>
+			</sidebyside>
+
+		</example>
+	
+	</paragraphs>
+
+	<paragraphs xml:id="variables">
+	<title><insert>Variables</insert></title><p/>
+
+		<note><title>Edit Thoughts</title> 
+			<ul>
+				<li>Expand variable discussion?</li>
+				<li>Update this example.</li>
+			</ul>
+		</note>
+
+		<p>
+			There are several rules about the naming of variables (look those up in Help or Google), but in particular, all variable names must start with a letter and all variables are case sensitive (upper case and lower case letters are considered different)!!  So, for example, the variables <c>Math</c> and <c>math</c> are treated as different variables.
+		</p>
+
+		<example>
+		<title>Calculations with Variables</title><p/>
+
+			<p>
+				Enter <c>5+5</c> in the command window and press <kbd>Enter</kbd>.
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+						<code>
+							&gt;&gt; 5+5
+
+							ans =
+								10
+						</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				This computes the value 10 and assigns this value to the variable <c>ans</c>.
+			</p>
+
+			<p>
+				Next, try the following
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+						<code>
+							&gt;&gt; a=5+5
+
+							a=
+								10
+						</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				Typing the command
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+						<code>
+							&gt;&gt; b=5+5; 
+						</code>
+				</program>
+			</sidebyside>
+		
+			<p>
+				A few things to note.  First, assignment of values to the variables is right to left (whatever is on the right of the equals sign is assigned to the variable on the left).  Here, both both a and b are equal to 10, but only a's value is displayed because the semicolon is used to suppress the output to the screen.  This is a very useful tool in programs where, for example, you want to hide the intermediate calculations.
+			</p>
+		
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="scientific-calculations">
+	<title><insert>Scientific Calculations</insert></title><p/>
+
+		<note><title>Edit Thoughts</title> 
+			<ul>
+				<li>Add short description.</li>
+				<li>Add an example.</li>
+			</ul>
+		</note>
+
+	</paragraphs>
+
+	<paragraphs xml:id="cleaning-cw-and-ws">
+	<title><insert>Cleaning the Command Window and Workspace</insert></title><p/>
+
+		<note><title>Edit Thoughts</title> 
+			<ul>
+				<li>Save <c>close</c> for the plotting/graphics section?</li>
+				<li>Save <kbd>ctrl</kbd> + <kbd>c</kbd> for the loop section?</li>
+			</ul>
+		</note>
+
+		<p>
+			While there are thousands of commands in Matlab, here are a few that you will use often:
+		</p>
+
+		<ul>
+			<li><c>clc</c> : clears the command window</li>
+			<li><c>clear	all</c> : clears all the variables from the workspace</li>
+			<li><c>clear variablename</c> : clears only the variable named <c>variablename</c></li>
+			<li><c>close all</c> : closes all open plot windows</li>
+			<li><kbd>ctrl</kbd> + <kbd>c</kbd> : stops a running process (important later!)</li>
+		</ul>
+	
+	</paragraphs>
+	
+	<paragraphs xml:id="cw-final-remarks">
+	<title><insert>Final Remarks</insert></title><p/>
+		
+		<p>
+			One final "peculiar" aspect of Matlab, is that you can only edit the line you are on!!
+		</p>
+
+		<p>	
+			You can however recall previous commands with the up and down arrow keys, or type text and use the up and down arrow keys to scroll through the commands starting with that text.
+		</p>
+
+	</paragraphs>
+
+</section>

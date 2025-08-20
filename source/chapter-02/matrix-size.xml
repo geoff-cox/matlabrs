@@ -1,0 +1,350 @@
+<!--********************************************************************-->
+
+<section xml:id="matrix-size">
+<title>Matrix Size</title> 
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Find the size and number of elements of a matrix.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			A recurring theme in programming is the idea of "scanning" through values in some matrix, <c>A</c>, and "doing" something with these values. Before you "scan" through <c>A</c>, however, you usually need the answer to one or more of the following questions:
+			<ol label="a">
+				<li>"What is the size of <c>A</c>?",</li>
+				<li>"How many rows does <c>A</c> have?",</li>
+				<li>"How many columns does <c>A</c> have?",</li>
+				<li>"How many elements does <c>A</c> have?".</li>
+			</ol>
+			This section covers the some of the built-in MATLAB functions that answer these types of questions.
+		</p>
+
+	</introduction>
+
+	<paragraphs xml:id="size-function">
+	<title><insert>The <c>size</c> function</insert></title><p/>
+
+		<p>
+			We begin with the MATLAB function that is used to answer question: "What is the size of <c>A</c>?"
+		</p>
+
+		<lemma xml:id="size-syntax">
+		<title><em><c>size</c> function</em></title><p/>
+			<statement>
+				<sidebyside widths="98% 2%">
+					<tabular>
+						<col width="20%"/>
+						<col width="80%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>A</c> be a matrix variable.</p></cell>
+						</row>
+						<row>
+							<cell>Command</cell>
+							<cell><p><c>result = size(A)</c></p></cell>
+						</row>
+						<row>
+							<cell>Output Details</cell>
+							<cell><p><c>result</c> is a <m>1 \times 2</m> matrix</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><c>result</c> = <c>[</c>number of rows of <c>A</c>, number of columns of <c>A</c><c>]</c></p></cell>
+						</row>
+						<row>
+							<cell>Command</cell>
+							<cell><p><c>result = size(A,1)</c></p></cell>
+						</row>
+						<row>
+							<cell>Output Details</cell>
+							<cell><p><c>result</c> is a <m>1 \times 1</m> matrix (number)</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><c>result</c> = number of rows of <c>A</c></p></cell>
+						</row>
+						<row>
+							<cell>Command</cell>
+							<cell><p><c>result = size(A,2)</c></p></cell>
+						</row>
+						<row>
+							<cell>Output Details</cell>
+							<cell><p><c>result</c> is a <m>1 \times 1</m> matrix (number)</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><c>result</c> = number of columns of <c>A</c></p></cell>
+						</row>
+					</tabular>	
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-rows-cols-op1">
+		<title><em><term>Number of Rows and Columns (option 1)</term></em></title>
+
+			<aside>
+				<p>
+					Variable reference:
+					<program language="matlab">
+						<input>
+							A = 
+								1	2	3	4
+								5	6	7	8
+
+							B = 
+								1
+								6
+								0
+								9
+
+							A_size = 2 4
+
+							B_size = 4 1
+
+							A_number_of_rows = 2 
+
+							A_number_of_cols = 4  
+
+							B_number_of_rows = 4  
+
+							B_number_of_cols = 1   
+						</input>
+					</program>
+				</p>
+			</aside>
+
+			<p>
+				First define two matrices, <c>A</c> and <c>B</c>, as
+				<program language="matlab">
+					<input>
+						>> A = [1 2 3 4; 5 6 7 8];
+						>> B = [1; 6; 0; 9];
+					</input>
+				</program>
+			</p>
+			
+			<p>
+				and define the variables, <c>A_size</c> and <c>B_size</c>, as
+				<program language="matlab">
+					<input>
+						>> A_size = size(A);
+						>> B_size = size(B);
+					</input>
+				</program>
+			</p>
+
+			<p>
+				Finally, get the rows and columns of <c>A</c> and <c>B</c>, with
+				<program language="matlab">
+					<input>
+						>> A_number_of_rows = A_size(1);
+						>> A_number_of_cols = A_size(2);
+						>> B_number_of_rows = B_size(1);
+						>> B_number_of_cols = B_size(2);
+					</input>
+				</program>
+			</p>
+
+		</example>
+
+		<p>
+			The previous example shows that we had to get the size of the matrix before we could get the rows and columns. However, the <c>size</c> command has an additional input that allows us to get the rows and columns directly, as the next example shows.
+		</p>
+
+		<example xml:id="ex_rowcolsize">
+		<title><em><term>Number of Rows and Columns (option 2)</term></em></title>
+
+			<p>
+				Assuming <c>A</c> is defined as in the previous example, we can get the rows and columns of <c>A</c> by typing the commands
+				<program language="matlab">
+					<input>
+						>> A_number_of_rows = size(A,1)
+						>> A_number_of_cols = size(A,2)
+					</input>
+				</program>
+			</p>
+
+			<p>
+				which produces
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								A_number_of_rows = 
+									2
+
+								A_number_of_cols = 
+									4
+						</input>
+					</program>
+				</sidebyside>
+			</p>
+
+			<p>
+				Including the <c>1</c> or <c>2</c> as an input to the <c>size</c> function tells MATLAB that you only want the rows or columns, respectively. 
+			</p>
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="numel-function">
+	<title><insert>The <c>numel</c> function</insert></title><p/>
+
+		<p>
+			Another common question you may have is "how many values are in <c>A</c>?". This is handled using the <c>numel</c> function. 
+			<fn>
+				<p>
+					The observative reader may notice that this question could be indirectly answered using the <c>size</c> function (just multiply the number of rows by the number of columns). However, being able to ask specific questions makes you code more consise and easier to read.
+				</p>
+			</fn>
+		</p>
+		
+		<lemma xml:id="length-numel-syntax">
+		<title><em><c>numel</c> function</em></title><p/>
+			<statement>
+				<aside><p><line><m>m=</m> number of rows</line><line><m>n=</m> number of columns</line></p></aside>
+				<sidebyside widths="76% 24%">
+					<tabular>
+						<col width="20%"/>
+						<col width="80%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>A</c> be a matrix variable with size <m>m \times n</m>.</p></cell>
+						</row>
+						<row>
+							<cell>Command</cell>
+							<cell><p><c>result = numel(A)</c></p></cell>
+						</row>
+						<row>
+							<cell>Output Details</cell>
+							<cell><p><c>result</c> is a <m>1 \times 1</m> matrix (number)</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><c>result</c> = number of elements of <c>A</c> (i.e. <m>m \cdot n</m>)</p></cell>
+						</row>
+					</tabular>
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+
+		<example xml:id="example_numel">
+		<title><em><term>number of elements of a matrix and a vector</term></em></title>
+			<sidebyside widths="50% 50%">
+				<program language="matlab">
+					<input>
+						>> A = [1 2 3 4; 5 6 7 8]; 
+						>> A_elements = numel(A)
+					</input>
+				</program>
+				<program language="matlab">
+					<input>
+						A_elements = 
+							8
+					</input>
+				</program>
+			</sidebyside>
+			<sidebyside widths="50% 50%">
+				<program language="matlab">
+					<input>
+						>> B = [1;  6;  0;  9];  
+						>> B_elements = numel(B) 
+					</input>
+				</program>
+				<program language="matlab">
+					<input>
+						B_elements = 
+							4
+					</input>
+				</program>
+			</sidebyside>
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="length-function">
+	<title><insert>The <c>length</c> function</insert></title><p/>
+
+		<p>
+			Another common way to get information about the size of a matrix is with the <c>length</c> function.
+		</p>
+		
+		<lemma xml:id="length-syntax">
+		<title><em><c>length</c> function</em></title><p/>
+			<statement>
+				<sidebyside widths="76% 24%">
+					<tabular>
+						<col width="20%"/>
+						<col width="80%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>A</c> be a matrix variable with size <m>m \times n</m>.</p></cell>
+						</row>
+						<row>
+							<cell>Command</cell>
+							<cell><p><c>result = length(A)</c></p></cell>
+						</row>
+						<row>
+							<cell>Output Details</cell>
+							<cell><p><c>result</c> is a <m>1 \times 1</m> matrix (number)</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><c>result</c> = number of rows of <c>A</c> (if <m>m \ge n</m>)</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><c>result</c> = number of columns of <c>A</c> (if <m>m \le n</m>)</p></cell>
+						</row>
+					</tabular>
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+
+		
+		
+		<example xml:id="example_length">
+		<title><em><term>"length" of a matrix and a vector</term></em></title>
+			<sidebyside widths="50% 50%">
+				<program language="matlab">
+					<input>
+						>> A = [1 2 3 4; 5 6 7 8]; 
+						>> A_len = length(A)
+					</input>
+				</program>
+				<program language="matlab">
+					<input>
+						A_len = 
+							4
+					</input>
+				</program>
+			</sidebyside>
+			<sidebyside widths="50% 50%">
+				<program language="matlab">
+					<input>
+						>> B = [1;  6;  0;  9];  
+						>> B_len = length(B) 
+					</input>
+				</program>
+				<program language="matlab">
+					<input>
+						B_len = 
+							4
+					</input>
+				</program>
+			</sidebyside>
+			<p>
+				When <c>length</c> is used on a vector (or a row or column of a matrix) you simply get the number of elements in the vector.
+			</p>
+		</example>
+
+	</paragraphs>
+
+</section> 

@@ -1,0 +1,358 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-user-defined-functions" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>User-Defined Functions</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li></li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			
+		</p>
+	</introduction>
+
+	<p>
+		In this section, we discuss how to create new functions in Matlab.
+	</p>
+
+	<p>
+		Up to now, the M-files that you have created are called "script" files.  Now we use the editor to create <term>function</term> M-files.  Why would you want to do this?  Well, Matlab has many built-in functions, but you may need to create your own to solve a specialized problem.
+	</p>
+
+	<p>
+		Let's look at how a function is put together. In the command window, if you were to type
+	</p>
+
+	<sidebyside width="100%">
+		<program language="matlab">
+			<input>
+				&gt;&gt; help| \verb|sin
+			</input>
+		</program>
+	</sidebyside>
+
+	<p>
+		you would get
+	</p>
+
+	<sidebyside width="100%">
+		<program language="matlab">
+			<input>
+					SIN    Sine of argument in radians.
+					SIN(X) is the sine of the elements of X.
+			</input>
+		</program>
+	</sidebyside>
+	 
+	<sidebyside width="100%">
+		<program language="matlab">
+			<input>
+					See also
+ \underline{asin, \underline{sind}}									Reference page in Help browser
+					 	doc sin
+			</input>
+		</program>
+	</sidebyside>
+
+	<p>
+		In reading this, you can see the purpose of the function, the correct usage of the function and references to additional related functions.  When you create your own functions, you will also need to create similar information.
+	</p>
+
+	<p>
+		Here's how to create a function in Matlab.  In the Editor window, follow these steps:
+	</p>
+
+	<p>
+		1) On the first line(s) put comments that describe the function and, most importantly, a usage statement or HOW THE USER ENTERS THE FUNCTION!!!
+
+		2) On the next line, put the word <c>function</c> followed by: 
+
+		a) In <c>[ ]</c>, put the variable(s) (separated by commas) for the function output(s). 
+
+		b) The = symbol
+
+		c) Your function name
+ 
+		d) In <c>( )</c>, put the variable(s) (separated by commas) for the function input(s).
+
+		3) On the following lines, put the calculations that define the output variables based on the input variables.
+	</p>
+
+	<p>
+		Easy right??
+	</p>
+
+	<!--  A couple of comments before we get to some examples. -->
+
+	<p>
+		\keyidea{idea:functiontips}{Function Tips}
+		{
+		1) If you have exactly one output the brackets aren't needed - see step 2a.
+
+		2) Functions must follow the same naming conventions as for variables.  For more, help do a Google search.}
+	</p>
+
+	<p>
+		Let's look at an example of a function that computes the area of a triangle.
+	</p>
+
+	<example xml:id="ex_trianglefunction"><p/>
+		<title><em>Area of a triangle function</em></title><p/>
+
+			<p>
+				Here is the syntax that you would type into an editor window:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						<!--   Usage: Area=TriangleArea(base,height) -->
+						<!--   Inputs:  base and height are scalars -->
+ 						<!--   Output:  Area - area of a triangle -->
+							function| \verb|Area=TriangleArea(base,height)
+					</input>
+				</program>
+			</sidebyside>
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						Area = 0.5*base.*height; 
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				Now save this file as <c>TriangleArea.m</c>.  Your file name \underline{must} exactly match the name of the function (except for the .m part) or else the function will not run.
+			</p>
+
+			<p>
+				In order to execute any function, you cannot use the Matlab run button.  You must run the function from the command window or another M-file since you need to provide the input(s).  First, check that you have provided enough comments about how to use the function:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt;| help \verb|TriangleArea
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				which will give your description of how to use the function. Now, run the function with:  
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; A = TriangleArea(3,4)
+					</input>
+				</program>
+			</sidebyside>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							A =
+							 	6
+					</input>
+				</program>
+			</sidebyside>
+		</example>
+
+		<p>
+			NOTE:  In the program <c>TriangleArea.m</c> all of the variables <c>Area, base</c> and <c>height</c> are called \underline{local} variables.  That means they are only used in this specific program.  They don't appear outside the function (or in the Workspace).
+		</p>
+
+		<example xml:id="ex_rectfunction"><p/>
+			<title><em>Rectangle function</em></title><p/>
+
+				<p>
+					Here is the syntax that you would type into an editor window:
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							<!--   Usage: [Area,Perimeter]=Rectangle(base,height)  -->
+							<!--   Inputs:  base and height are vectors of the same length  -->
+							<!--   Outputs:  -->
+							<!--   Area -  area of a rectangle -->
+							<!--   Perimeter -  perimeter of a rectangle -->
+								function| \verb|[Area,Perimeter]=Rectangle(base,height)
+								Area = base.*height; 
+						</input>
+					</program>
+				</sidebyside>
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							Perimeter = 2*(base+height); 
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					Now save this file as <c>Rectangle.m</c>
+				</p>
+
+				<p>
+					Again, make sure the usage comments are correct:   
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							&gt;&gt; help| \verb|Rectangle
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					to see your helpful comments.  Now run the function: 
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							&gt;&gt; [A,P] = Rectangle(3,4)
+						</input>
+					</program>
+				</sidebyside>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								A =
+								 	12
+								P =
+								 	14
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					Here again we are reminded of the fact that <c>Area</c> and <c>Perimeter</c> are local to the function, so when we run the function, we can call the outputs by different names.  When we run the function we use the shorter <c>A</c> and <c>P</c> to store the areas and perimeters.
+				</p>
+
+				<p>
+					What happens if you try to run the function without output variables? Try
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							&gt;&gt; Rectangle(3,4)
+						</input>
+					</program>
+				</sidebyside>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								ans =
+								 	12
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					You only get the value that would have been assigned to the first output variable (here it's the area).
+					Since the calculations are just as they would be for matrices, we can try:
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							&gt;&gt; base = 1:4;  height = [3 6 10 12]; 
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					and run the function: 
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							&gt;&gt; [A,P] = Rectangle(base,height)
+						</input>
+					</program>
+				</sidebyside>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								A =
+								 	3    12    30    48
+								P =
+								 	8    16    26    32
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					which gives us the areas and perimeters of the rectangles of the corresponding bases and heights.
+				</p>
+			</example>
+
+			<p>
+				Here are a few commands of interest:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							nargin(
+ 	'TriangleArea'
+ 	)
+ (number of inputs)
+							nargout(
+ 	'TriangleArea'
+ 	)
+  (number of outputs)
+							nargin(
+ 	'mesh'
+ 	)
+  (variable number of inputs)
+							type(
+ verb|'TriangleArea'| 	)
+  (returns code of M file)					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				One more example:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						type(| 'sin' \verb|)
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				gives an output of <c>'sin' is a built-in function</c>, which indicates that this last one is a built-in function whose code is not accessible.
+			</p>
+
+			<p>
+				\printexercises{exercises/UserFunctions_exercises}
+			</p>
+
+			<!--  %%%%%%  HOMEWORK AFTER THE PRACTICE PROBLEMS -->
+
+		</section>
+
+

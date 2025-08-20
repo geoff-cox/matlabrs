@@ -1,0 +1,115 @@
+<!--********************************************************************-->
+
+<section xml:id="manipulating-matrices">
+<title>Manipulating Matrices</title> 
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Compute the transpose of a matrix,</li>
+			<li>Convert a matrix into a vector.</li>
+			<li>Merge/Stack two or more matrices into a single matrix.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			In this section, we will look at ways you can manipulate matrices by changing there structure or combining multiple matrices into one.
+		</p>
+	</introduction>
+	
+	<paragraphs xml:id="transpose">
+	<title><insert>Matrix Transpose</insert></title><p/>
+		<p>
+			One special operation for matrices is the matrix <term>transpose</term>, given by either <c>transpose(A)</c> or the shorter <c>A'</c>.  The transpose of a matrix is another matrix with the rows and columns interchanged.
+		</p>
+
+		<example xml:id="ex_transpose"><p/>
+		<title><em><term>Transpose</term></em></title><p/>
+
+			<p>
+				<c>&gt;&gt; A = [1 2 3 4; 5 6 7 8]; A'</c>
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							ans =
+								1  5
+								2  6
+								3  7
+								4  8
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				and
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; B = [1;  6;  0;  9]; B'
+							ans =
+								1 6 0 9
+					</input>
+				</program>
+			</sidebyside>
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="matrix-to-vector---">
+	<title><insert>Convert a Matrix into a Column Vector</insert></title><p/>
+
+		<p>
+			Depending on the application, it may be required to work with vectors rather than matrices. If your variables are matrices ... 
+		</p>
+
+		<note>
+		<title>To add</title>
+			<ul>
+				<li>matrix to column vector using abs index.</li>
+			</ul>
+		</note>
+	</paragraphs>
+
+	<paragraphs xml:id="stacking-matrices">
+	<title><insert>Stacking Matrices</insert></title><p/>
+
+		<p>
+			Finally, we can create "block" matrices from smaller matrices by treating them as elements themselves and using the comma (or space) and the semicolon to create rows and columns.  We just have to make sure the dimensions of the matrices line up properly.  For example, we can stack two matrices.
+		</p>
+
+		<example xml:id="ex_stackmatrices"><p/>
+		<title><em><term>Stacking Matrices</term></em></title><p/>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; A = [1 2 3 4; 5 6 7 8]; B = [1;  6;  0;  9]; 
+							&gt;&gt; AoverBprime = [A ;  B']
+					</input>
+				</program>
+			</sidebyside>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							AoverBprime = 
+								1 2 3 4
+								5 6 7 8
+								1 6 0 9
+					</input>
+				</program>
+			</sidebyside>
+		</example>
+
+	</paragraphs>
+
+</section> 

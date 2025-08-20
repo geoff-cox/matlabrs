@@ -1,0 +1,243 @@
+<!--********************************************************************-->
+
+<section xml:id="special-matrices">
+<title>Special Matrices</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Define a matrix of all zeros or ones using the <c>zeros</c> and <c>ones</c> commands, respectively.</li>
+			<li>Define a matrix with ones down the diagonal and zeros everywhere else using the <c>eye</c> command.</li>
+		</ol>
+	</objectives>
+
+	<p>
+		MATLAB also has a many commands to build special types of matrices for different applications. A few that we will consider in this section are the <c>ones</c>,<c>zeros</c>, and <c>eye</c> commands.
+	</p>
+
+	<paragraphs xml:id="ones">
+	<title><insert><c>ones</c> Command</insert></title><p/>
+
+		<lemma>
+		<title><c>ones</c> Command</title><p/>
+			<statement>
+			<p/>
+			To define a matrix, <c>A</c>, of size <c>m</c><m>\times</m><c>n</c> conatining all ones, use:
+			<p/>
+			<cd>
+				A = ones(m,n)
+			</cd>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-ones">
+			<p/>
+			<p>
+			Give the MATLAB command that defines the variable, <c>G</c>, as the matrix,
+			<me>
+				G = \left[
+				\begin{matrix}
+					1 \amp 1 \amp 1 \amp 1 \\
+					1 \amp 1 \amp 1 \amp 1 \\
+					1 \amp 1 \amp 1 \amp 1 \\
+				\end{matrix}\right].
+			</me>
+			</p>
+
+			<sage language="octave"><input/></sage>
+
+			<solution>
+				<p>
+					Since <c>G</c> is a <c>3</c><m>\times</m><c>4</c> matrix of all ones, we use the command
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> G = ones(3,4)
+						</input>
+					</program>
+				</sidebyside>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+
+	<paragraphs xml:id="zeros">
+	<title><insert><c>zeros</c> Command</insert></title><p/>
+
+		<lemma>
+		<title><c>zeros</c> Command</title><p/>
+			<statement>
+			<p/>
+			To define a matrix, <c>A</c>, of size <c>m</c><m>\times</m><c>n</c> conatining all zeros, use:
+			<p/>
+			<cd>
+				A = zeros(m,n)
+			</cd>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-zeros">
+			<p/>
+			<p>
+			Give the MATLAB command that defines the variable, <c>H</c>, as the matrix,
+			<me>
+				H = \left[
+				\begin{matrix}
+					0 \amp 0 \amp 0 \amp 0 \amp 0 \\
+					0 \amp 0 \amp 0 \amp 0 \amp 0 \\
+				\end{matrix}\right].
+			</me>
+			</p>
+
+			<sage language="octave"><input/></sage>
+
+			<solution>
+				<p>
+					Since <c>H</c> is a <c>2</c><m>\times</m><c>5</c> matrix of all zeros, we use the command
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> H = zeros(2,5)
+						</input>
+					</program>
+				</sidebyside>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="eye">
+	<title><insert><c>eye</c> Command</insert></title><p/>
+
+		<lemma>
+		<title><c>eye</c> Command</title><p/>
+			<statement>
+			<p/>
+			To define a matrix, <c>A</c>, of size <c>m</c><m>\times</m><c>n</c>, containing ones down the diagonal and zeros everywhere else, use:
+			<p/>
+			<cd>
+				A = eye(m,n)
+			</cd>
+			<p/>
+			The <em>diagonal</em> of a matrix starts in the leftmost value of the first row and continues diagonally downward until the last row. 
+			</statement>
+		</lemma>
+
+		<example xml:id="example-eye">
+			<p/>
+			<p>
+			Give the MATLAB command that defines the variable, <c>J</c>, as the <c>3</c><m>\times</m><c>4</c> matrix with ones down the diagonal and zeros everywhere else.  That is, 
+			<me>
+				J = \left[
+				\begin{matrix}
+					1 \amp 0 \amp 0 \amp 0 \\
+					0 \amp 1 \amp 0 \amp 0 \\
+					0 \amp 0 \amp 1 \amp 0 \\
+				\end{matrix}\right].
+			</me>
+			</p>
+
+			<sage language="octave"><input/></sage>
+
+			<solution>
+				
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> J = eye(3,4)
+						</input>
+					</program>
+				</sidebyside>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="special-matrices-final-remarks">
+	<title><insert>Final Remarks</insert></title><p/>
+
+		<p>
+			We will finish by exploring what happens when you use only one input value with the commands from this section.
+		</p>
+
+		<example xml:id="example-one_eye_special_case">
+			<p/>
+			<p>
+				Using the command box below, explore what happens if you use only one input value for each of <c>ones</c>,<c>zeros</c>, and <c>eye</c> commands. 
+			</p>
+
+			<sage language="octave"><input/></sage>
+
+			<solution>
+				<p>
+					Running the command
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> ones(3)
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					you would see that the following <c>3</c><m>\times</m><c>3</c> matrix of ones:
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								1	1	1
+								1	1	1
+								1	1	1
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					Whereas, running
+				</p>
+				<aside><p>If you are familiar with the identity matrix, this example should shed some light on how the <c>eye</c> command got its name.</p></aside>
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> eye(5)
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					produces the following <c>5</c><m>\times</m><c>5</c> matrix:
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								1	0	0	0	0
+								0	1	0	0	0
+								0	0	1	0	0
+								0	0	0	1	0
+								0	0	0	0	1
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					In general, using one input for each of the commands in this section will produce a corresponding "square" matrix (i.e. number rows = number of columns) 
+				</p>
+
+			</solution>
+		</example>
+	</paragraphs>
+
+</section> 

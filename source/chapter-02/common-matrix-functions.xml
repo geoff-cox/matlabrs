@@ -1,0 +1,923 @@
+<!--********************************************************************-->
+
+<section xml:id="common-matrix-commands">
+<title>Common Matrix Functions</title> 
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Apply various scientific functions to the values of a matrix,</li>
+			<li>Compute the maximum or minimum of the values in a matrix, and</li>
+			<li>Compute the sum or product of the values in a matrix.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			In this section, we will list some common built-in functions that apply to either each value of a matrix (element-wise) or on the rows or columns of the matrix (row/column-wise).
+		</p>
+
+	</introduction>
+
+	<paragraphs xml:id="common-scientific-functions">
+	<title><insert>Common Scientific Functions</insert></title><p/>
+
+		<p>
+			MATLAB also contains a large library of functions you might find on a scienfic/graphing calculator. Most of the common functions (e.g. <m>\sin, \cos, \log,</m> etc.) require a single number input. However, MATLAB, has designed these common functions to take a matrix as an input. In particular, MATLAB applies these functions element-wise, as shown below for the <m>\sin</m> function.
+			<sidebyside>
+			<p>
+			<m>\sin</m> 
+			<m>\left( \left[
+				\begin{matrix} 
+					A_{11} \amp A_{12} \amp \dots \amp A_{1n} \\
+					A_{21} \amp A_{22} \amp \dots \amp A_{2n} \\
+					\vdots \amp \vdots \amp \ddots \amp \vdots \\
+					A_{m1} \amp A_{m2} \amp \dots \amp A_{mn} \\
+				\end{matrix}
+				\right]\right) = 
+				\left[
+				\begin{matrix} 
+					\sin(A_{11}) 	\amp	\sin(A_{12})	\amp	\dots	\amp	\sin(A_{1n}) \\
+					\sin(A_{21}) 	\amp	\sin(A_{22})	\amp	\dots	\amp	\sin(A_{2n}) \\
+					\vdots 				\amp	\vdots 			\amp	\ddots	\amp	\vdots \\
+					\sin(A_{m1}) 	\amp	\sin(A_{m2})	\amp	\dots	\amp	\sin(A_{mn}) \\
+				\end{matrix}
+				\right]
+			</m>
+			</p>
+			</sidebyside>
+		</p>
+
+		<lemma xml:id="trig-radians-syntax">
+		<title><em>Trigonometric Functions</em></title><p/>
+			<statement>
+				<sidebyside widths="100% 0%">
+					<tabular>
+						<col width="20%"/>
+						<col width="80%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>A</c> be an <m>m \times n</m> matrix variable containing values in radians.</p></cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = sin(A)</c>, <c>result = cos(A)</c>, <c>result = tan(A)</c></cell>
+						</row>
+						<row><cell/><cell><c>result = csc(A)</c>, <c>result = sec(A)</c>, <c>result = cot(A)</c></cell></row>
+						<row valign="top">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> (<m>m \times n</m>) matrix containing the chosen trig function applied to each value in <c>A</c>.
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell>Notes</cell>
+							<cell>
+								<p>
+									If <c>A</c> contains degree values instead of radians, use the functions:
+								</p>
+							</cell>
+						</row>
+						<row><cell/><cell><c>result = sind(A)</c>, <c>result = cosd(A)</c>, <c>result = tand(A)</c></cell></row>
+						<row><cell/><cell><c>result = cscd(A)</c>, <c>result = secd(A)</c>, <c>result = cotd(A)</c></cell></row>
+					</tabular>
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-matrix-computations">
+		<!--<title><em><term>Computations in a Matrix</term></em></title>-->
+			<p/>
+			<p>
+				Let <m>A</m> and <m>B</m> be given by
+				<me>
+					A = \left[
+					\begin{matrix}
+						\pi 	\amp	0			\amp 2 \\
+						2\pi 	\amp	\pi/2	\amp 4 \\
+					\end{matrix}\right], \qquad
+					B = \left[
+					\begin{matrix}
+						0	\amp	30	\amp	60	\amp	90 \\
+					\end{matrix}\right]
+				</me>
+			</p>
+
+			<p>
+				where <m>A</m> contains radian values and <m>B</m> contains degree values.
+			</p>
+
+			<p>
+				Give the MATLAB command that 
+				<ol label="a">
+					<li>defines, <c>sin_A</c>, as the matrix containing the <m>\sin</m> of all the values in <c>A</c>.</li>
+					<li>defines, <c>cos_B</c>, as the matrix containing the <m>\cos</m> of all the values in <c>B</c>.</li>
+				</ol>
+				Recall, the MATLAB constant for <m>\pi</m> is <c>pi</c>.
+			</p>
+
+			<p/>
+
+			<solution>
+				<p>
+					Since the values in <c>A</c> are in radians and the values in <c>B</c> are in degrees, we use the commands
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								A = [pi 0 2;2*pi pi/2 4];
+								sin_A = sin(A)
+								B = [0 30 60 90];
+								cos_B = cosd(A)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					Running these commands, gives the output
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								sin_A =
+
+									 0.0000         0    0.9093
+									-0.0000    1.0000   -0.7568
+
+								cos_B =
+
+									0.9985    1.0000    0.9994
+									0.9940    0.9996    0.9976
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+
+		<lemma xml:id="exp-log-sqrt-syntax">
+		<title><em><c>exp</c>,<c>log</c>, and <c>sqrt</c> functions</em></title><p/>
+			<statement>
+				<sidebyside widths="100% 0%">
+					<tabular>
+						<col width="20%"/>
+						<col width="80%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>A</c> be an <m>m \times n</m> matrix variable.</p></cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = exp(A)</c> (exponential function, <m>e^x</m>), </cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell><p><c>result</c> (<m>m \times n</m>) matrix containing the exponent of each value in <c>A</c>.</p></cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><p><c>result = log(A)</c> (natural logarithm function, <m>\ln x</m>),</p></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell><p><c>result</c> (<m>m \times n</m>) matrix containing the natural log of each value in <c>A</c>.</p></cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = sqrt(A)</c> (square root function, <m>\sqrt{x}</m>), </cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell><p><c>result</c> (<m>m \times n</m>) matrix containing the square root of each value in <c>A</c>.</p></cell>
+						</row>			
+					</tabular>
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-sqrt">
+		<!--<title><em><term>Computations in a Matrix</term></em></title>-->
+			<p/>
+			<p>
+				Let
+				<me>
+					A = \left[
+					\begin{matrix}
+						9 	\amp	0\\
+						16 	\amp	4\\
+						25 	\amp	1\\
+					\end{matrix}\right].
+				</me>
+			</p>
+
+			<p>
+				Give the command that computes the square root of all the values in <c>A</c>.
+			</p>
+
+			<p/>
+
+			<solution>
+				<p>
+					Running the commands
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								A = [9 0;16 4;25 1];
+								sqrt(A)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					gives the output
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								sqrt_A =
+
+									3     0
+									4     2
+									5     1
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="row-column-wise-functions">
+	<title><insert>Row/Column-Wise Functions</insert></title><p/>
+
+		<p>
+			MATLAB also contains a huge library of functions that perform common programming tasks on a list of numbers. For example, we may want the find the sum or maximum value of this list. It is natural to think of a list as a row or column vector and MATLAB can easily sum a list of such values. However, MATLAB goes a bit further by allowing you to sum several lists at once. Let's take a closer look at this idea.  
+		</p>
+
+		<p>
+			A fundamental concept needed in many applications is to find the sum or product of a list of numbers.
+		</p>
+		
+		<lemma xml:id="sum-prod-vector-syntax">
+		<title><em><c>sum</c> and <c>prod</c> functions (vector)</em></title><p/>
+			<statement>
+				<sidebyside widths="81% 19%">
+					<tabular>
+						<col width="20%"/>
+						<col width="80%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>v</c> be a row vector (<m>m \times 1</m>) or column vector (<m>1 \times n</m>).</p></cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = sum(v)</c></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is equal to the sum of all the elements in <c>v</c>.
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = prod(v)</c></cell>
+						</row>
+						<row valign="top">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> isequal to the product of all the elements in <c>v</c>.
+								</p>
+							</cell>
+						</row>
+					</tabular>
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+		
+		<p>
+			Another common task is to get the maximum or minimum from a list of values.
+		</p>
+
+		<lemma xml:id="min-max-vector-syntax">
+		<title><em><c>min</c> and <c>max</c> functions (vector)</em></title><p/>
+			<statement>
+				<sidebyside widths="84% 16%">
+					<tabular>
+						<col width="20%"/>
+						<col width="80%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>v</c> be a row vector (<m>m \times 1</m>) or column vector (<m>1 \times n</m>).</p></cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = min(v)</c></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is equal to the minimum of all the elements in <c>v</c>.
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = max(v)</c></cell>
+						</row>
+						<row valign="top">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is equal to the maximum of all the elements in <c>v</c>.
+								</p>
+							</cell>
+						</row>
+					</tabular>
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-vector-sum-min-max"><p/>
+			<p/>
+			
+			<p>
+				Let
+				<me>
+					v = \left[
+					\begin{matrix}
+						10	\\
+						6		\\
+						-1	\\
+					\end{matrix}\right].
+				</me>
+			</p>
+
+			<p>
+				Give the command that 
+				<ol>
+					<li>defines <c>sum_v</c> as the sum of the values in <c>v</c>.</li>
+					<li>defines <c>prod_v</c> as the product of the values in <c>v</c>.</li>
+					<li>defines <c>min_v</c> as the minimum of the values in <c>v</c>.</li>
+					<li>defines <c>max_v</c> as the maximum of the values in <c>v</c>.</li>
+				</ol>
+			</p>
+
+			<p/>
+
+			<solution>
+				<p>
+					Running the commands
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								v = [10; 6; -1];
+								sum_v = sum(v)
+								prod_v = prod(v)
+								min_v = min(v)
+								max_v = max(v)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					produces the output
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								sum_v = 15
+								prod_v = -60
+								min_v =	-1
+								max_v = 10
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+
+		<p>
+			The above example shows how common functions apply to a vector, but what about a matrix? It turns out that MATLAB treats a matrix as a list of column vectors and applies the function to each column.  The output is a row vector containing the result of the function applied to each column. Visually, if
+			<me>
+				A = \left[
+				\begin{matrix}
+					9	\amp	1	\amp	7	\\
+					5	\amp	2	\amp	1	\\
+					9	\amp	3	\amp	0	\\
+				\end{matrix}
+				\right]
+			</me>
+			then the <c>sum(A)</c> and <c>max(A)</c> would be computed, column-wise, like so,
+		</p>
+
+		<tabular halign="center">
+			<row>
+				<cell>
+					<image halign = "left" width="90%" xml:id="column-wise-sum-diagram">
+						<latex-image>
+							\begin{tikzpicture}
+								\matrixbrackets{4}{-2.3}{0.7}
+								\node [vrect node 2] (1) at (-1.7, 2.5) {${\color{blue}
+								\begin{array}{c}
+										\!\!9\!\!\\\\
+										\!\!5\!\!\\\\
+										\!\!9\!\!
+									\end{array}}$};
+
+								\node [vrect node 2] (3) at (-0.8, 2.5) {${\color{red}
+									\begin{array}{c}
+										\!\!1\!\!\\\\
+										\!\!2\!\!\\\\
+										\!\!3\!\!
+									\end{array}}$};
+
+								\node [vrect node 2] (5) at (0.1, 2.5) {${\color{orange}
+									\begin{array}{c}
+										\!\!7\!\!\\\\
+										\!\!1\!\!\\\\
+										\!\!0\!\!
+									\end{array}}$};
+								
+								\matrixbrackets[-0.7]{0.1}{-2.0}{0.9}
+								\node [circle node 2] (2) at (-1.4, -0.3) {\color{blue}$24$};
+								\node [circle node 2] (4) at (-0.5, -0.3) {\color{red}$6$};
+								\node [circle node 2] (6) at (0.4, -0.3) {\color{orange}$8$};
+
+								\node[label={[label distance=0.5cm,text depth=-1ex,rotate=-75]right:sum}] at (-1.8,1.6) {};
+								\node[label={[label distance=0.5cm,text depth=-1ex,rotate=-75]right:sum}] at (-0.9,1.6) {};
+								\node[label={[label distance=0.5cm,text depth=-1ex,rotate=-75]right:sum}] at (0.0,1.6) {};
+
+								\draw [->, bend left=0, looseness=0] (1.south) to (2.north);
+								\draw [->, bend left=0, looseness=0] (3.south) to (4.north);
+								\draw [->, bend left=0, looseness=0] (5.south) to (6.north);
+								
+								\draw [--, bend left=30, looseness=0.4] (-2.5, 0.9) to (-2.5, 4.1);
+								\draw [--, bend left=-30, looseness=0.4] (0.9, 0.9) to (0.9, 4.1);
+								\node[label] (0) at (-3.2,2.5) {sum};
+							\end{tikzpicture}
+						</latex-image>
+					</image>
+				</cell>
+				<cell>
+					<image halign = "left" width="90%" xml:id="column-wise-max-diagram">
+						<latex-image>
+							\begin{tikzpicture}
+								\matrixbrackets{4}{-2.3}{0.7}
+								\node [vrect node 2] (1) at (-1.7, 2.5) {
+									\color{blue}{$
+									\begin{array}{c}
+										\!\!9\!\!\\\\
+										\!\!5\!\!\\\\
+										\!\!9\!\!
+									\end{array}
+									$}};
+
+								\node [vrect node 2] (3) at (-0.8, 2.5) {
+									\color{red}{$
+									\begin{array}{c}
+										\!\!1\!\!\\\\
+										\!\!2\!\!\\\\
+										\!\!3\!\!
+									\end{array}
+									$}};
+
+								\node [vrect node 2] (5) at (0.1, 2.5) {
+									\color{orange}{$
+									\begin{array}{c}
+										\!\!7\!\!\\\\
+										\!\!1\!\!\\\\
+										\!\!0\!\!
+									\end{array}
+									$}};
+								
+								\matrixbrackets[-0.7]{0.1}{-2.0}{0.9}
+								\node [circle node 2] (2) at (-1.4, -0.3) {\color{blue}{$9$}};
+								\node [circle node 2] (4) at (-0.5, -0.3) {\color{red}{$3$}};
+								\node [circle node 2] (6) at (0.4, -0.3) {\color{orange}{$7$}};
+
+								\node[label={[label distance=0.5cm,text depth=-1ex,rotate=-75]right:max}] at (-1.8,1.6) {};
+								\node[label={[label distance=0.5cm,text depth=-1ex,rotate=-75]right:max}] at (-0.9,1.6) {};
+								\node[label={[label distance=0.5cm,text depth=-1ex,rotate=-75]right:max}] at (0.0,1.6) {};
+
+								\draw [->, bend left=0, looseness=0] (1.south) to (2.north);
+								\draw [->, bend left=0, looseness=0] (3.south) to (4.north);
+								\draw [->, bend left=0, looseness=0] (5.south) to (6.north);
+								
+								\draw [--, bend left=30, looseness=0.4] (-2.5, 0.9) to (-2.5, 4.1);
+								\draw [--, bend left=-30, looseness=0.4] (0.9, 0.9) to (0.9, 4.1);
+								\node[label] (0) at (-3.2,2.5) {max};
+							\end{tikzpicture}
+						</latex-image>
+					</image>
+				</cell>
+			</row>
+		</tabular>
+
+		<p>
+			This is the default behavior, but you can easily tell MATLAB to apply the function to the rows instead of the columns.
+		</p>
+
+		<lemma xml:id="sum-prod-matrix-syntax">
+		<title><em><c>sum</c> and <c>prod</c> functions (matrix)</em></title><p/>
+			<statement>
+				<tabular>
+					<col width="15%"/>
+					<col width="85%"/>
+					<row bottom="minor">
+						<cell colspan="2"><p>Let <c>A</c> be a matrix (<m>m \times n</m>).</p></cell>
+					</row>
+					<row>
+						<cell><p>Command</p></cell>
+						<cell><c>result = sum(A)</c> or <c>result = sum(A,1)</c></cell>
+					</row>
+					<row valign="top" bottom="minor">
+						<cell><p>Output</p></cell>
+						<cell>
+							<p>
+								<c>result</c> is a <m>1 \times n</m> matrix (row vector) that contains the sum of the elements in each column of <c>A</c>.
+							</p>
+						</cell>
+					</row>
+					<row>
+						<cell><p>Command</p></cell>
+						<cell><c>result = sum(A,2)</c></cell>
+					</row>
+					<row valign="top" bottom="minor">
+						<cell><p>Output</p></cell>
+						<cell>
+							<p>
+								<c>result</c> is a <m>m \times 1</m> matrix (column vector) that contains the sum of the elements in each row of <c>A</c>.
+							</p>
+						</cell>
+					</row>
+					<row>
+						<cell><p>Command</p></cell>
+						<cell><c>result = sum(sum(A))</c></cell>
+					</row>
+					<row valign="top" bottom="minor">
+						<cell><p>Output</p></cell>
+						<cell>
+							<p>
+								<c>result</c> is a <m>1 \times 1</m> matrix (number) that contains the sum of all elements in <c>A</c>.
+							</p>
+						</cell>
+					</row>
+					<row>
+						<cell><p>Command</p></cell>
+						<cell><c>result = prod(v)</c> or <c>result = prod(A,1)</c></cell>
+					</row>
+					<row valign="top" bottom="minor">
+						<cell><p>Output</p></cell>
+						<cell>
+							<p>
+								<c>result</c> is a <m>1 \times n</m> matrix (row vector) that contains the product of the elements in each column of <c>A</c>.
+							</p>
+						</cell>
+					</row>
+					<row>
+						<cell><p>Command</p></cell>
+						<cell><c>result = prod(A,2)</c></cell>
+					</row>
+					<row valign="top" bottom="minor">
+						<cell><p>Output</p></cell>
+						<cell>
+							<p>
+								<c>result</c> is a <m>m \times 1</m> matrix (column vector) that contains the product of the elements in each row of <c>A</c>.
+							</p>
+						</cell>
+					</row>
+					<row>
+						<cell><p>Command</p></cell>
+						<cell><c>result = prod(prod(A))</c></cell>
+					</row>
+					<row valign="top">
+						<cell><p>Output</p></cell>
+						<cell>
+							<p>
+								<c>result</c> is a <m>1 \times 1</m> matrix (number) that contains the product of all elements in <c>A</c>.
+							</p>
+						</cell>
+					</row>
+				</tabular>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-matrix-sum"><p/>
+			<p/>
+			
+			<p>
+				Let
+				<me>
+					A = \left[
+					\begin{matrix}
+						1 \amp 2 \amp 3 \amp 4	\\
+						5 \amp 6 \amp 7 \amp 8	
+					\end{matrix}\right].
+				</me>
+			</p>
+
+			<p>
+				Give the command that 
+				<ol label="a">
+					<li>defines <c>c_sum</c> as the sum of the values in each column of <c>A</c>.</li>
+					<li>defines <c>r_sum</c> as the sum of the values in each row of <c>A</c>.</li>
+					<li>defines <c>t_sum</c> as the sum of all the values in <c>A</c>.</li>
+				</ol>
+			</p>
+
+			<p/>
+
+			<solution>
+				<p>
+					Define <c>A</c> first, of course
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								>> A = [1 2 3 4;5 6 7 8];
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					For the column sums, use
+					<sidebyside widths="50% 50%">
+						<p>
+							Command:
+							<program language="matlab">
+								<input>
+									>> c_sum = sum(A)  % or
+									>> c_sum = sum(A,1)
+								</input>
+							</program>
+						</p>
+						<p>
+							Output:
+							<program language="matlab">
+								<input>
+									c_sum =
+										6     8    10    12
+								</input>
+							</program>
+						</p>
+					</sidebyside>
+					For the row sums, use
+					<sidebyside widths="50% 50%">
+						<p>
+							Command:
+							<program language="matlab">
+								<input>
+									>> r_sum = sum(A,2)
+								</input>
+							</program>
+						</p>
+						<p>
+							Output:
+							<program language="matlab">
+								<input>
+									r_sum =
+										10
+										26
+								</input>
+							</program>
+						</p>
+					</sidebyside>
+					Finally, we have a few options for the sum of all the elements. We can use the
+					<sidebyside widths="50% 50%">
+						<p>
+							Command:
+							<program language="matlab">
+								<input>
+									>> t_sum = sum(c_sum)  % or
+									>> t_sum = sum(r_sum)  % or
+									>> t_sum = sum(sum(A))
+								</input>
+							</program>
+						</p>
+						<p>
+							Output:
+							<program language="matlab">
+								<input>
+									t_sum =
+										36
+								</input>
+							</program>
+						</p>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+
+		<lemma xml:id="min-max-matrix-syntax">
+		<title><em><c>min</c> and <c>max</c> functions (matrix)</em></title><p/>
+			<statement>
+				<sidebyside widths="100% 0%">
+					<tabular>
+						<col width="10%"/>
+						<col width="90%"/>
+						<row bottom="minor">
+							<cell colspan="2"><p>Let <c>A</c> be a matrix (<m>m \times n</m>).</p></cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = min(A)</c> or <c>result = min(A,1)</c></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is a <m>1 \times n</m> matrix (row vector) that contains the minimum element in each column of <c>A</c>
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = min(A,2)</c></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is a <m>m \times 1</m> matrix (column vector) that contains the minimum element in each row of <c>A</c>
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = min(min(A))</c></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is a <m>1 \times 1</m> matrix (number) that contains the minimum of all elements in <c>A</c>
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = max(v)</c> or <c>result = max(A,1)</c></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is a <m>1 \times n</m> matrix (row vector) that contains the maximum element in each column of <c>A</c>
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = max(A,2)</c></cell>
+						</row>
+						<row valign="top" bottom="minor">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is a <m>m \times 1</m> matrix (column vector) that contains the maximum element in each row of <c>A</c>
+								</p>
+							</cell>
+						</row>
+						<row>
+							<cell><p>Command</p></cell>
+							<cell><c>result = max(max(A))</c></cell>
+						</row>
+						<row valign="top">
+							<cell><p>Output</p></cell>
+							<cell>
+								<p>
+									<c>result</c> is a <m>1 \times 1</m> matrix (number) that contains the maximum of all elements in <c>A</c>
+								</p>
+							</cell>
+						</row>
+					</tabular>
+					<p/>
+				</sidebyside>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-matrix-min-max"><p/>
+			<p/>
+			
+			<p>
+				Let
+				<me>
+					A = \left[
+					\begin{matrix}
+						1 \amp 0 \amp 3\\
+						8 \amp -1 \amp 3\\
+						1 \amp 7 \amp 3	\\
+						5 \amp 16 \amp 8	
+					\end{matrix}\right].
+				</me>
+			</p>
+
+			<p>
+				Give the command that 
+				<ol label="a">
+					<li>defines <c>c_min</c> as the minimum of the values in each column of <c>A</c>.</li>
+					<li>defines <c>r_min</c> as the minimum of the values in each row of <c>A</c>.</li>
+					<li>defines <c>t_min</c> as the minimum of all the values in <c>A</c>.</li>
+				</ol>
+			</p>
+
+			<p/>
+
+			<solution>
+				<p>
+					Define <c>A</c> first, of course
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								>> A = [1 0 3; 8 -1 3; 1 7 3; 5 16 8];
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					For the column mins, use
+					<sidebyside widths="50% 50%">
+						<p>
+							Command:
+							<program language="matlab">
+								<input>
+									>> c_min = min(A)  % or
+									>> c_min = min(A,[],1)
+								</input>
+							</program>
+						</p>
+						<p>
+							Output:
+							<program language="matlab">
+								<input>
+									c_min =
+							    	1    -1     3
+								</input>
+							</program>
+						</p>
+					</sidebyside>
+					For the row mins, use
+					<sidebyside widths="50% 50%">
+						<p>
+							Command:
+							<program language="matlab">
+								<input>
+									>> r_min = min(A,[],2)
+								</input>
+							</program>
+						</p>
+						<p>
+							Output:
+							<program language="matlab">
+								<input>
+									r_min =
+
+										0
+										-1
+										1
+										5
+								</input>
+							</program>
+						</p>
+					</sidebyside>
+					Finally, we have a few options for the min of all the elements. We can use the
+					<sidebyside widths="50% 50%">
+						<p>
+							Command:
+							<program language="matlab">
+								<input>
+									>> t_min = min(c_min)  % or
+									>> t_min = min(r_min)  % or
+									>> t_min = min(min(A))
+								</input>
+							</program>
+						</p>
+						<p>
+							Output:
+							<program language="matlab">
+								<input>
+									t_min =
+										-1
+								</input>
+							</program>
+						</p>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+</section> 

@@ -1,0 +1,37 @@
+
+<!--********************************************************************-->
+ 
+<section xml:id="sec-matlab_tsp_bruteforce" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Brute Force</title>
+
+	<p>
+		The Traveling Salesman Problem, or TSP for short, is a very well-known and much studied problem.  A salesman wants to start in his home city, visit customers in a certain number of other cities and then return home, but to do so in an efficient way.  This could mean that he wishes to complete the trip in the smallest amount of time, in the least expensive way or with the fewest number of miles on his car (as examples).  The issue overall is that as the number of cities to be visited increases, the number of possible ways to visit all of the cities increases very fast (as a factorial in fact).
+	</p>
+
+	<p>
+		Here, we will consider four methods to deal with the TSP: brute force, nearest neighbor (NN), simulated annealing (SA) and genetic algorithm (GA).  The goal will be to minimize the distance traveled overall in moving from the home base, to each of the cities and then back home.
+	</p>
+
+	<p>
+		It seems clear that one approach to finding the minimum distance traveled is to simply check all of the possible ways to visit all of the cities.  This is the way the brute force method is done.  The problem is that this only works well on about 10 or fewer cities.  Even with 10 cities, there are 10! or 3,628,800 different paths to check, which can take a little while on even a decent PC.
+	</p>
+
+	<p>
+		Here are the details about the brute force function in the assignment:
+	</p>
+
+	<p>
+		The single input variable is an <m>n \times 2</m> matrix where the rows are the <m>(x,y)</m>-coordinates of the cities.  The output is a matrix of two numbers: the length of the shortest path and the length of the longest path, each starting at the home (0,0), passing through each city once, and returning home.
+	</p>
+
+	<p>
+		These two paths are to be plotted separately on a single figure window in subplots.  All information should be included such as labels for the home and the cities, information about the total path length and order that the cities are visited, code run time, titles, and any other useful text.
+	</p>
+
+	<p>
+		The function code is fairly simple as it only needs to calculate the distances of all <m>n!</m> possible paths and then determine the longest and shortest paths.  Note that there will be at least two shortest paths as any path can be reversed with the same length.
+	</p>
+
+</section>
+
+

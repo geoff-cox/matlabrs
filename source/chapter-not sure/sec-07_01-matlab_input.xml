@@ -1,0 +1,445 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_input" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Input Commands</title>
+
+	<p>
+		In this section, we discuss the input/output (I/O) capabilities in Matlab.
+	</p>
+
+	<p>
+		In order to run either script M-files or function M-files, the user needs to provide data, either numerical or text ("strings").
+		The first command we consider is simply called <c>input</c>.  
+	</p>
+
+	<example xml:id="input"><p/>
+	<title><em>Using the input command</em></title><p/>
+
+		<p>
+			Here is a simple section of code to collect a person's first name and their age.  
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; FirstName = input('Enter your first name : ','s'); 
+							&gt;&gt; Age = input('Enter your age : '); 
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			Once executed, the user enters values for each, say
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							Enter your first name : Bob
+							Enter your age : 25
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+	</example>
+
+	<p>
+		In this example, the <c>'s'</c> in the first <c>input</c> indicates that the program expects text input and the second <c>input</c> (without the <c>'s'</c>) indicates that the program expects numeric input.  When executed, the lines collect input one at a time. Note the text <c>Waiting for input</c> on the bottom left of the Matlab window while the user enters the name, <c>Bob</c>, and age, <c>25</c>. Due to the semicolons, there is no output to the screen, but the values have been stored in the variables <c>FirstName</c> and <c>Age</c> (see the Workspace window to confirm).
+	</p>
+
+	<p>
+		So how do we display this information?  There are several ways to output this information.  Here we consider the two commands <c>disp</c> (for "display") and <c>fprintf</c> ("formated print to file").  The help files are useful so look them up!
+	</p>
+
+	<p>
+		We can present this information as follows.
+	</p>
+
+	<example xml:id="ex_disp"><p/>
+	<title><em>Using the disp command</em></title><p/>
+
+		<p>
+			Using the data from the last example:
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; disp('Your first name is'); 
+							&gt;&gt; disp(FirstName)
+							&gt;&gt; disp('Your age is'); 
+							&gt;&gt; disp(Age)
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			which has the output:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					Your first name is 
+					Bob
+					Your age is
+						25
+				</input>
+			</program>
+		</sidebyside>
+	</example>
+
+	<p>
+		This example is ok, but it would be nicer if the data was in one line.  That's where the command <c>fprintf</c> comes in.  Even though it is a formatted print "to file" you can have the output sent to the Command Window instead.
+	</p>
+
+	<example xml:id="ex_fprintf"><p/>
+	<title><em>Using the command fprintf</em></title><p/>
+
+		<p>
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; fprintf('%s is %.0f years old.\n',FirstName,Age)
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			produces
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						Bob is 25 years old.
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+	</example>
+
+	<p>
+		Certainly, there is more involved in the function <c>fprintf</c> in order to produce the output we want.  Let's look at the individual pieces of this example.
+		<ul>
+			<li>
+				<p> 
+					The <c>%</c> signs are NOT for comments this time (note: they aren't green), they are now used as place holders for the data.
+				</p>
+			</li>
+			<li>
+				<p> 
+					The <c>%s</c> indicates that a string is expected as input.
+				</p>
+			</li>
+			<li>
+				<p> 
+					The <c>%.0f</c> indicates that we expect a numeric input, want zero decimal points and the value should be in Fixed-point format.
+				</p>
+				<aside>
+				<p>
+					For more information on specific formats and "conversion characters" (which is what <c>f</c> and <c>s</c> are here), look at the <c>fprintf</c> command in the help files.  
+				</p>
+				</aside>
+			</li>
+			<li>
+				<p>
+					The <c>\n</c> is an "escape character" that creates a New Line.
+				</p>
+			</li>
+			<li>
+				<p>
+						The data <c>FirstName</c> and <c>Age</c> are listed after this, separated by commas.
+				</p>
+			</li>
+			<li>
+				<p>
+					When the <c>fprintf</c> command is run, Matlab places the first data value, <c>FirstName</c> (i.e. <c>Bob</c>), in the <c>%s</c> position and the second data value, <c>Age</c> (i.e. <c>25</c>), in the <c>%.0f</c> position.  Got it?
+				</p>
+			</li>
+		</ul>
+	</p>
+
+	<p>
+		Just for completeness, we can also force the <c>disp</c> command to act like <c>fprintf</c> as follows:
+	</p>
+
+	<example xml:id="ex_dispfprintf"><p/>
+	<title><em>disp using concatenated strings</em></title><p/>
+
+		<p>
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; disp([FirstName, ' is ', num2str(Age), ' years old. '])
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			produces
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						Bob is 25 years old.
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+	</example>
+
+	<p>
+		Basically, we are displaying a string array made up of several strings through concatenation.  We also see the command <c>num2str</c> which does exactly what it says, it converts a number into a string.  This is necessary since numeric data and strings don't play well together in Matlab.  In order to create a string array, all of the parts must be strings.  If we tried to run this without the <c>num2str</c> command, we would get
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; disp([FirstName, ' is ', num2str(Age), ' years old. '])
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+
+	<p>
+		with output
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					Bob is \square years old.
+				</input>
+			</program>
+		</sidebyside>
+	</p>
+
+	<p>
+		where the square indicates that the ASCII code for the value 25 is unprintable - just remember the <c>num2str</c>.
+	</p>
+
+	<p>
+		Let's look at how to read and write larger data files next.
+	</p>
+
+	<example xml:id="ex_steeldata"><p/>
+	<title><em></em></title><p/>
+
+		<p>
+			Create the following table of years and monthly world steel production (in thousand metric tons) in an Excel file and save the file as WorldSteelProduction.xls (or .xlsx).  Make sure to save this file in the directory listed at the top of the Matlab window, the Currect Directory.
+		</p>
+
+		<p>
+			<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+				<row>
+					<cell><term>2005</term></cell><cell><term>2006</term></cell><cell><term>2007</term></cell><cell><term>2008</term></cell><cell><term>2009</term></cell><cell><term>2010</term></cell>
+				</row>
+				<row>
+					<cell>91377</cell><cell>95037</cell><cell>107789</cell><cell>112870</cell><cell>86476</cell><cell>113375</cell>
+				</row>
+				<row>
+					<cell>84980</cell><cell>91183</cell><cell>101465</cell><cell>107465</cell><cell>86610</cell><cell>107119</cell>
+				</row>
+				<row>
+					<cell>93198</cell><cell>102183</cell><cell>112988</cell><cell>119934</cell><cell>92144</cell><cell>122196</cell>
+				</row>
+				<row>
+					<cell>93381</cell><cell>101604</cell><cell>110241</cell><cell>117023</cell><cell>89644</cell><cell>120497</cell>
+				</row>
+				<row>
+					<cell>95290</cell><cell>105501</cell><cell>112933</cell><cell>121062</cell><cell>96177</cell><cell>124567</cell>
+				</row>
+				<row>
+					<cell>92095</cell><cell>104636</cell><cell>112159</cell><cell>118851</cell><cell>100661</cell><cell>118346</cell>
+				</row>
+				<row>
+					<cell>90205</cell><cell>104350</cell><cell>110377</cell><cell>116770</cell><cell>104701</cell><cell>114365</cell>
+				</row>
+				<row>
+					<cell>91536</cell><cell>102630</cell><cell>109024</cell><cell>112726</cell><cell>108351</cell><cell>113141</cell>
+				</row>
+				<row>
+					<cell>93144</cell><cell>103676</cell><cell>111956</cell><cell>107723</cell><cell>110773</cell><cell>112340</cell>
+				</row>
+				<row>
+					<cell>98534</cell><cell>106913</cell><cell>114703</cell><cell>99202</cell><cell>114765</cell><cell>117377</cell>
+				</row>
+				<row>
+					<cell>94340</cell><cell>104817</cell><cell>109936</cell><cell>86513</cell><cell>108596</cell><cell>114637</cell>
+				</row>
+				<row>
+					<cell>95368</cell><cell>105306</cell><cell>111506</cell><cell>81704</cell><cell>107792</cell><cell>116157</cell>
+				</row>
+			</tabular>
+		</p>
+
+		<p>
+			We will now read in this data using <c>xlsread</c>, plot it, and access data from it using the mouse and the graphical input command <c>ginput</c> ("gee-input").
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; Steel = xlsread('WorldSteelProduction.xls'); 
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			Next, we plot the data 
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; plot(1:12,Steel(2:end,:))
+							&gt;&gt; legend('2005','2006','2007','2008','2009','2010', ...
+															' Location',' best')
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			The initial problem is to find the first time in 2009 that steel production is at 100,000 thousand metric tons.  We use the <c>ginput</c> command for the user to collect this data.  
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; disp('Select the time when production is 100,000.'); 
+						&gt;&gt; [T,S] = ginput(1) % mouse click
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			If the user hovers the cursor over the resulting plot, we see cross-hairs appear:
+		</p>
+
+		<p>
+			<sidebyside widths="70%" margins="auto" valign="middle">
+				<image source="figures/matlab_ginput2.png" />
+			</sidebyside>
+		</p>
+			
+		<p>
+			A left-click creates the output to appear in the Command Window:
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						T =
+							5.8756
+						S =
+							9.9934e+004
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			Note that the level is listed in engineering format.  If we want to finish this example with a formatted output, we could use the following:
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; fprintf('Level %6.1f occurs at %3.1f months.\n',S,T)
+						  Level 99934.2 occurs at 5.9 months.
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			which is in mid-June 2009.  Note that the accuracy of the level and time are dependent on the user's mouse click so the output may not look exactly the same.
+
+			(Data from <url ref="http://www.worldsteel.org/">www.worldsteel.org</url>)
+		</p>
+	</example>
+
+	<p>
+		<note xml:id="idea-matrixfprintf">
+			If there are not enough place holders, fprintf will cycle through the values in the given data matrix, USING COLUMN PRECEDENCE, until all of the values are exhausted.
+		</note>
+	</p>
+
+	<example xml:id="ex_fprintfmatrix"><p/>
+	<title><em>Title</em></title><p/>
+
+		<p>
+			Here we use <c>fprintf</c> and <xref ref="idea-matrixfprintf"/> to display a matrix of values. Find the sine, cosine and tangent of theta from 0 to <m>2\pi</m> by steps of <m>\pi/10</m>.
+		</p>
+
+		<p>
+			Here we use <c>fprintf</c> to display a matrix of values. Find the sine, cosine and tangent of theta from 0 to <m>2\pi</m> by steps of <m>\pi/10</m>.
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; theta=[0:pi/10:2*pi]; 
+							&gt;&gt; values=[theta; sin(theta); cos(theta); tan(theta)]; 
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			To display these, we can use a simple <c>fprintf</c>. 
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; disp('Theta   Sine   Cosine   Tangent '); 
+							&gt;&gt; fprintf('%5.2f %6.2f %7.2f %9.2f \n ',values)
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			gives output:
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						Theta   Sine   Cosine    Tangent
+							0.00   0.00    1.00      0.00 
+							0.31   0.31    0.95      0.32 
+							0.63   0.59    0.81      0.73
+							0.94   0.81    0.59      1.38
+							1.26   0.95    0.31      3.08
+							1.57   1.00    0.00 16331239353195370.00 
+							1.88   0.95   -0.31     -3.08
+							2.20   0.81   -0.59     -1.38
+							2.51   0.59   -0.81     -0.73
+							2.83   0.31   -0.95     -0.32
+							3.14   0.00   -1.00     -0.00
+							3.46  -0.31   -0.95      0.32
+							3.77  -0.59   -0.81      0.73
+							4.08  -0.81   -0.59      1.38
+							4.40  -0.95   -0.31      3.08
+							4.71  -1.00   -0.00 5443746451065123.00
+							5.03  -0.95    0.31     -3.08
+							5.34  -0.81    0.59     -1.38
+							5.65  -0.59    0.81     -0.73
+							5.97  -0.31    0.95     -0.32
+							6.28  -0.00    1.00     -0.00
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+	</example>
+
+		<p>
+			In this example, the reason for the large values in the last column are because the tangent function tends to infinity as the angle tends to <m>\pi/2</m> (and 1.5708 is close to <m>\pi/2</m>).  Actually, the value <m>\tan(\pi/2)</m> returns <c>1.6331e+016</c>.  Why isn't "infinity" the returned value?  Well, it has to do with how values are stored in Matlab, namely using double-precision.  The value <c>1.6331e+016</c> is the reciprocal of the value <c>eps = 10 ^(-52)</c>.  If you want to know more, head to the help files or Google, of course.
+		</p>
+
+		<p>
+			\printexercises{exercises/InputOutput_exercises}
+		</p>
+
+</section>
+
+

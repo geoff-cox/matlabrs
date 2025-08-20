@@ -1,0 +1,162 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_BuiltInFunctions_HW" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Exercises</title>
+
+	<ol>
+		<li>
+			<p>
+				Consider a triangle <m>ABC</m>.  Suppose the length of the sides <m>AB</m> and <m>AC</m> are 3 and 4, resp.  Let <m>\theta</m> denote the angle at the vertex <m>A</m>.  Use the law of cosines to create a table with two columns: the first column containing <m>\theta</m> in increments of 10 degrees from 0 to 180 degrees and the second column containing the length of the side <m>BC</m>.  First define the variables <m>AB, AC</m> and <m>\theta</m> and then define <m>BC</m> in terms of them.
+				What is the average length of <m>BC</m> for <m>\theta</m> between 20 and 150 degrees?
+			</p>
+		</li>
+		<li>
+			<p>
+				Two blocks of masses <m>m_1</m> and <m>m_2</m> are connected by a string over a smooth pulley as shown.  Assume that <m>m_2&gt;m_1</m>.  If the coefficient of friction is <m>\mu</m> and <m>r=m_1/m_2</m>, then the masses will move at a constant speed (<m>m_2</m> slides down the slope) if the angle <m>\theta</m> is given by
+
+				<me>
+					\cos(\theta) = \frac{-\mu r + \sqrt{1-r^2+\mu^2}}{1+\mu^2}
+				</me>
+			</p>
+
+			<p>
+				<image xml:id="pully-ramp-tikz-image" width="30%">
+					<latex-image>
+						\begin{tikzpicture}
+							\draw (0,0) node [shift={(.8,.2)},scale=1] {$\theta$} -- (2,0) -- (2,1.5) -- cycle;  % angle is 36.86989765 degrees
+							\draw (.4,0) arc (0:36.9:.4); 
+							\draw (2,1.5) -- ++(.3,.3) circle (.2); 
+							\draw [rotate=36.9](1,0) -- (1.5,0) -- (1.5,.5) -- node [pos=.5,rotate=36.9,scale=.7,above] {$m_2$} (1,.5)--cycle (1.5,.26) -- (2.9,.26); 
+							\draw (2.5,1.8) -- (2.5,.8); 
+							\draw (2.3,.8) -- (2.7,.8) -- node [pos=.5,scale=.7,right] {$m_1$} (2.7,.5) -- (2.3,.5) -- cycle; 
+						\end{tikzpicture}
+					</latex-image>
+				</image>
+			</p>
+
+			<p>
+				<ol>
+					<li>
+						<p>
+							Compute the values of the angle <m>\theta</m> if <m>m_2</m> is twice the value of <m>m_1</m> and <m>\mu</m> ranges from 0 to 1 in increments of 0.1.
+						</p>
+					</li>
+					<li>
+						<p>
+							Compute the values of the angle <m>\theta</m> if <m>m_2</m> is ten times the value of <m>m_1</m> and <m>\mu</m> ranges from 0 to 1 in increments of 0.1.
+						</p>
+					</li>
+					<li>
+						<p>
+							What can you say if <m>m_1=m_2</m>?
+						</p>
+					</li>
+				</ol>
+			</p>
+		</li>
+		<li>
+			<p>
+				Write a file that will convert a given number of seconds into years, days, hours, minutes and seconds. Use this file to give the conversion for 1,000 seconds, 1,000,000 seconds and 1,000,000,000 seconds. These commands may help <c>fix</c>, <c>floor</c>, <c>mod</c>, and <c>rem</c>.
+			</p>
+		</li>
+		<li>
+			<p>
+				For a continuous money stream, we have the equation <m>F=P e^{rt}</m> where <m>F</m> is final value, <m>r</m> is the interest rate, <m>P</m> is the principal, and <m>t</m> is time.  Use the <c>meshgrid</c> and the <c>exp</c> commands to find possible values of <m>F</m> for <m>P</m> ranging from <m>10,000</m> to <m>50,000</m> (in increments of <m>10,000</m>) and <m>t</m> ranging from 0 to 10 (in increments of 1).  You can select the value of <m>r</m>, but use a reasonable, real-world interest rate (explain how you chose your value of <m>r</m> too).
+			</p>
+		</li>
+		<li>
+			<p>
+				A uniform beam is freely hinged at its ends <m>x = 0</m> and <m>x = L</m>, so that the ends are at the same level.  It carries a uniformly distributed load of <m>W</m> per unit length and there is a tension <m>T</m> along the <m>x</m>-axis.  The deflection <m>y</m> of the beam a distance <m>x</m> from on end is given by
+				<me>
+					y = \frac{W \cdot EI}{T^2}
+					\left[ 
+					\frac{\cosh\left[ a (L/2 - x)\right]}{\cosh(a\, L/2)} - 1 
+					\right] + \frac{W x(L-x)}{2T}
+				</me>
+				where <m>a^2= T/EI</m> , <m>E</m> is Young's Modulus of the beam and <m>I</m> is the moment of inertia of a cross-section of a beam.  If the beam is <m>10 m</m> long, the tension is <m>1000N</m>, the load <m>100 N/m</m> and <m>EI</m> is <m>10^4</m>, make a table of <m>x</m> versus <m>y</m> where <m>x</m> ranges from 0 to 10 in increments of <m>1 m</m>.  Make sure to define the variables <m>a, W, EI, T</m> and <m>x</m> and then define <m>y</m> in terms of them.
+			</p>
+		</li>
+	</ol>
+
+	<p>
+		When you submit this assignment, there should be seven separate files.  Problems 1-6 should be in their own function m-files, properly commented.  Problem 7 should be a separate script m-file that uses the code from the first 6 problems. 
+	</p>
+
+	<ol>
+		<li>
+			<p>
+				The height of a projectile is given by
+				<me>
+					f(t) = -\frac{9.8}{2} t^2 + 147 t + 500, \quad t>0
+				</me> 
+				Create the function <c>ProjMotion</c> that has one input, <c>time</c>, and two outputs <c>height</c> and <c>velocity</c>.
+			</p>
+		</li>
+		<li>
+			<p>
+				Create an appropriately named conversion function that has one input (<c>dollars</c>) and one output (<c>ConversionTable</c>).  The output conversion table should contain four columns, with <c>dollars</c> in the first column and the conversions into Yen, Euros, and British Pounds in the next three columns. Look up the current conversion rates online and cite your source.
+			</p>
+		</li>
+		<li>
+			<p>
+				Create a function called <c>plotlines</c> with two inputs and no outputs with the following details.  The first input should be a <m>1 \times 2</m> matrix (representing the base point, B, in the plane).  The second input should be a <m>2 \times 2</m> matrix (representing two more points in the plane, P and Q).  When the function is run, there should be a plot of two line segments, BP and BQ, with the two distances displayed halfway along each line.
+			</p>
+		</li>
+		<li>
+			<p>
+				Create a function called <c>RemRow</c> with two inputs <c>M</c> and <c>n</c>.  The output should be a matrix <c>NewM</c> that comes from removing the nth row of <c>M</c>.
+			</p>
+		</li>
+		<li>
+			<p>
+				Create a function called <c>RemCol</c> with two inputs <c>M</c> and <c>n</c>.  The output should be a matrix <c>NewM</c> that comes from removing the nth column of <c>M</c>.
+			</p>
+		</li>
+		<li>
+			<p>
+				Create a function that will convert a given number of seconds (the input of the function) into years, days, hours, minutes and seconds (listed in one <m>1 \times 5</m> matrix output).  Some of the following commands may help: <c>fix, floor, mod</c>, and <c>rem</c>.
+			</p>
+		</li>
+		<li>
+			<p>
+				In this problem, you will use your functions from the previous problems, running them with specific numeric input(s).
+				<ol>
+					<li>
+						<p>
+							Run your <c>ProjMotion</c> function for 0 to 30 seconds in increments of 0.5 seconds and use the output to create a plot of the variables <c>time</c> versus <c>height</c>. Then use the output of the function to figure out at what time the object starts to fall back to the ground.
+						</p>
+					</li>
+					<li>
+						<p>
+							Run your currency conversion function to give the output from an input <c>dollars</c> ranging from 0 to 100 in increments of 5.
+						</p>
+					</li>
+					<li>
+						<p>
+							Using inputs <c>[1, 1]</c> and <c>[2, 4; 5, 6]</c>, run your <c>plotlines</c> function. Your output should look lik \includegraphics[scale=.75]{figures/matlab_functionplot1.png}
+						</p>
+					</li>
+					<li>
+						<p>
+							Run your <c>RemRow</c> function with inputs	<c>[1 2 3;  4 5 6;  7 8 9]</c> and <c>2</c>. The output should be the matrix with the 2nd row removed.
+						</p>
+					</li>
+					<li>
+						<p>
+							Run your <c>RemCol</c> function with inputs	<c>[1 2 3;  4 5 6;  7 8 9]</c> and <c>2</c>. The output should be the matrix with the 2nd columns removed.
+						</p>
+					</li>
+					<li>
+						<p>
+							Run your time conversion function to give the conversion for 1,000 seconds, 1,000,000 seconds and 1,000,000,000 seconds.  
+						</p>
+					</li>
+				</ol>
+			</p>
+		</li>
+	</ol>
+
+</section>
+
+

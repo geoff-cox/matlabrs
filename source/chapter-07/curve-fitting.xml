@@ -1,0 +1,269 @@
+
+<!--********************************************************************-->
+
+<chapter xml:id="sec-Matlab_curvefitting" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Curve Fitting</title>
+
+	<p>
+		In this section, we discuss how to fit various types of curves to data.
+	</p>
+
+	<p>
+		The main commands for this section are <c>polyfit</c>, <c>polyval</c> and <c>interp1</c>.
+		Let's begin with linear regression.
+	</p>
+
+	<example xml:id="ex_linearregression"><p/>
+		<title><em>Linear Regression</em></title><p/>
+
+			<p>
+				Plot a set of data:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+							&gt;&gt; x=0:5; y=[12,10,9,6,2,0]; 
+							&gt;&gt; plot(x,y,'o')
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				<sidebyside widths="60%" margins="auto" valign="middle">
+					<image source="figures/matlab_linreg1.png" />
+				</sidebyside>
+			</p>
+			
+			<p>
+				The data certainly seems to have a (downward) linear trend.  We can find the line of best fit as follows: 
+			</p>
+
+			<p>
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								&gt;&gt;coeffs=polyfit(x,y,1); 
+								&gt;&gt;besty=coeffs(1)*x+coeffs(2); 
+						</input>
+					</program>
+				</sidebyside>
+			</p>
+
+			<p>
+				The command <c>polyfit</c> returns the matrix <c>[-2.4857 12.7143]</c> of the slope and <m>y</m>-intercept of the line of best fit.  The <m>y</m> values of this line corresponding to <m>x</m> (from 0 to 5) are stored in the variable <c>besty</c>.  We plot them together using:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt;plot(x,y,'o',x,besty)
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				<sidebyside widths="60%" margins="auto" valign="middle">
+					<image source="figures/matlab_linreg2.png" />
+				</sidebyside>
+			</p>
+
+		</example>
+
+		<p>
+			We often use regression lines to guess <m>y</m> values for <m>x</m> values that are not included in the data set.  For this, we use interpolation.
+		</p>
+
+		<example xml:id="ex_interp1"><p/>
+			<title><em>Interpolation</em></title><p/>
+
+				<p>
+					Using the data from example \ref{ex_linearregression}, we would like to know the <m>y</m> value corresponding to the <m>x</m> value 3.5.  For this, we use the command <c>interp1</c> (that's the number one on the end, not a lowercase for the letter L).
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							&gt;&gt; interp1(x,y,3.5,'linear')
+							ans =
+								4
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					We plot these together with the interpolated point indicated with a red triangle.
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							plot(x,y,'o',x,besty,3.5,4,'r&gt;')
+						</input>
+					</program>
+				</sidebyside>
+
+			<p>
+				<sidebyside widths="60%" margins="auto" valign="middle">
+					<image source="figures/matlab_linreg3.png" />
+				</sidebyside>
+			</p>
+
+			</example>
+
+			<p>
+				Note that if you try to use the <c>interp1</c> function for data that is outside the data set, you will get an error since you are trying to "extrapolate" instead of interpolate.
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; interp1(x,y,10.5,'linear')
+						ans =
+							NaN
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				This indicates that the answer is <c>NaN</c> or "Not a Number" (look it up in the Help files).
+			</p>
+
+			<paragraphs xml:id="Higher-Order-Polynomial-Fitting">
+			<title><c>Higher Order Polynomial Fitting</c></title><p/>
+
+				<p>
+					Let's try fitting a fifth degree polynomial to the data in example <xref ref="ex_linearregression"/>.
+				</p>
+
+				<example xml:id="ex_fifthorder"><p/>
+					<title><em></em></title><p/>
+
+						<sidebyside width="100%">
+							<program language="matlab">
+								<input>
+									&gt;&gt; x=0:5; y=[12,10,9,6,2,0]; 
+									&gt;&gt; coeffs5=polyfit(x,y,5)
+								</input>
+							</program>
+						</sidebyside>
+
+						<p>
+							returns
+						</p>
+
+						<sidebyside width="100%">
+							<program language="matlab">
+								<input>
+									coeffs5 =
+										-0.0167 0.3333 -2.0833 4.6667 -4.9000 12.0000
+								</input>
+							</program>
+						</sidebyside>
+
+						<p>
+							which are the coefficients for the approximating 5th order polynomial, namely 
+							<m>y = -0.0167 x^5 + 0.3333 x^4 - 2.0833 x^3 + 4.6667 x^2 - 4.9 x +  12</m>.
+						</p>
+
+						<p>
+							We could type out the full polynomial, but there is a shortcut.  We can use the function <c>polyval</c> along with <c>linspace</c> to give a smooth approximating curve.
+						</p>
+
+						<sidebyside width="100%">
+							<program language="matlab">
+								<input>
+									&gt;&gt; x5=linspace(0,5); 
+									&gt;&gt; y5=polyval(coeffs5,x5); 
+								</input>
+							</program>
+						</sidebyside>
+
+						<p>
+							We plot the curves
+						</p>
+
+						<sidebyside width="100%">
+							<program language="matlab">
+								<input>
+									&gt;&gt; plot(x,y,'o',x,besty,x5,y5)
+								</input>
+							</program>
+						</sidebyside>
+
+						<p>
+							<sidebyside widths="60%" margins="auto" valign="middle">
+								<image source="figures/matlab_polyreg.png" />
+							</sidebyside>
+						</p>
+
+					</example>
+
+				</paragraphs>
+
+				<paragraphs xml:id="Interactive-Fitting-Tools">
+				<title><c>Interactive Fitting Tools</c></title><p/>
+
+					<p>
+						If you aren't sure about the fit you want, you can use the interactive fitting tools.
+						We start again by closing any figure windows, clearing out the variables and clearing the Command Window.  A short cut to do this could be:
+					</p>
+
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								&gt;&gt; close all, clear, clc
+							</input>
+						</program>
+					</sidebyside>
+
+					<p>
+						Re-enter the data.
+					</p>
+
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								&gt;&gt; x=0:5; 
+								&gt;&gt; y=[12,10,9,6,2,0]; 
+								&gt;&gt; plot(x,y,'o')
+							</input>
+						</program>
+					</sidebyside>
+
+					<p>
+						On the figure screen, go to the menu item Tools <m>&gt;</m> Basic Fitting.  This will launch a new window:
+					</p>
+
+					<p>
+						<sidebyside widths="70%" margins="auto" valign="middle">
+							<image source="figures/matlab_interactivefit.png" />
+						</sidebyside>
+					</p>
+
+					<p>
+						Now you simply have to select the polynomial(s) that you want to fit (try a few!).  You can even see the corresponding equations (and more) using the big arrow button.	
+						<fn>
+							<p>
+								<sidebyside widths="18% 6%" margins="36% 36%" valign="middle">
+									<p>arrow button:</p>
+									<image source="figures/matlab_arrowbutton.png" />
+								</sidebyside>
+							</p>
+						</fn> 
+						If we select the "linear" and "5th degree polynomial" check boxes, and the "Show equations" check box, we will see the equations on the graph itself.
+					</p>
+
+					<p>
+						<sidebyside widths="70%" margins="auto" valign="middle">
+							<image source="figures/matlab_polyreg2.png" />
+						</sidebyside>
+					</p>
+
+				</paragraphs>
+
+<xi:include href="./_curve-fitting-exercises.xml" />
+
+			</chapter>
+
+

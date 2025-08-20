@@ -1,0 +1,197 @@
+<!--********************************************************************-->
+
+<section xml:id="scripts">
+<title>Scripts</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Add some</li>
+		</ol>
+	</objectives>
+
+	<paragraphs xml:id="editor">
+	<title><insert>Editor</insert></title><p/>
+
+		<p>
+			It is tedious to type everything into the command window, not to mention trying to fix any errors.  We now look at the <term>Editor</term>, where you will write your Matlab <term>script files</term> (basic programs) and <term>function files</term> (user-defined functions).  
+		</p>
+
+		<p>
+			As with many aspects of Matlab, there are usually many ways to perform a task.
+			To start the Editor window, you can either type <c>edit</c> in the command window or you can click on the "new script" button.
+		</p>
+
+		<sidebyside widths="100%" margins="auto" valign="middle">
+			<image source="figures/matlab_layout_new_script.png"/>
+		</sidebyside>
+
+		<p>
+			The Editor is shown below.  In the blue bar at the top of this image, you can see that the file is currently Untitled.  The asterisk indicates that the file has not been saved since the last change to the file.  Try entering the text exactly as shown.
+		</p>
+
+		<sidebyside widths="100%" margins="auto" valign="middle">
+
+			<image source="figures/matlab_editor2.png" />
+
+		</sidebyside>
+
+		<p>
+			There are few more key parts to this file.  Any text that follows a percent sign (<c>%</c>) is a <term>comment</term> and is colored green.  These are ignored when the program is actually run, but are an important part of the documentation of the file.  It is crucial that you document your files properly both to remind yourself what parts of the program do and to inform any other users that may work with the program in the future.
+		</p>
+
+		<p>
+			As you type lines into the program (hitting Enter at the end of the lines), either <term>orange or red lines</term> may appear on the right.  You can hover your cursor over these lines to see related messages.  In general, orange lines are suggestions, for example, that you should add semicolons on the end of lines to suppress output, or perhaps that another command would be better.  Red lines indicate errors.  You should pay close attention to these.  The messages related to red lines may indicate missing parentheses, a missing "end" to close a loop, or something worse, like improper syntax.  In this particular file, we are missing a semicolon in the definition of the variable <c>a</c> (the orange line) and haven't completed the line for the definition of <c>c</c> (the red line).
+		</p>
+
+		<p>
+			When you save this program, the file name will have a ".m" extension.  We refer you to the help files for proper naming conventions of files (and variables in general).
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="documenting-your-script">
+	<title><insert>Documenting your Script</insert></title><p/>
+
+		<p>
+			For each assignment for this course, you will be submitting either a script or function M-file.  At the top of each file, you must include a descriptive header (as comments).  They must look like the following, adjusted to fit your name, the date, etc.
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+					<code>
+					% Troy Siemers
+					% Program Name: Assignment1.m
+					% Date: 10 January 2021
+					% Course: MA110
+					% Description:  In this assignment, we focus on how
+					% matrices are entered and referenced in Matlab.
+					% We also use component-wise multiplication and 
+					
+					%  matrix exponentiation.
+				</code>
+			</program>
+		</sidebyside>
+
+		<p>
+			We can not stress enough the importance of proper documentation.  You may be working with other people on coding or may return to a file that you wrote several days ago (or weeks, years, etc.).  Without the comments to explain your work (to others or as reminder to yourself), it is often difficult to understand the code (and fix it when it doesn't function properly).
+		</p>
+	
+	</paragraphs>
+
+	<paragraphs xml:id="editor-tips">
+	<title><insert>Editor Tips</insert></title><p/>
+
+		<p>
+			Here we include some tips and keyboard shortcuts that come up often and can save time.  Note that many of these are accessible by using the right mouse button while in the Editor.
+		</p>
+		
+		<sidebyside widths="30% 70%">
+			<p>Block Commenting</p>
+			<p>
+				Instead of deleting code, it is often adventageous to simply "comment it out" for later editing.  To do this, simply highlight the code that you wish to comment out and use <kbd>Ctrl</kbd> + <kbd>R</kbd>.  Note that if you only want to comment out a single line, just make sure your cursor is on the line and use <kbd>Ctrl</kbd> + <kbd>R</kbd> (you don't have to highlight the whole line).  You can uncomment any of these later by highlighting any comment lines and using <kbd>Ctrl</kbd> + <kbd>T</kbd>.
+			</p>
+		</sidebyside>
+
+		<sidebyside widths="30% 70%">
+			<p>Running Code</p>
+			<p>
+				There are several ways to execute your files, but there are a few short-cuts when running script files.  To run the entire file, you can either use the <kbd>F5</kbd> key or click on the green "run" button. 
+				<fn>
+					<p>
+						<sidebyside widths="34% 8%" margins="29%" valign="middle">
+							<p>"run" button <m>\longrightarrow</m></p>
+							<p><image source="figures/matlab_run_button.png"/></p>
+						</sidebyside>
+					</p>
+				</fn>
+				To see how smaller blocks of code may run, you can highlight sections of the code and use the <kbd>F9</kbd> button.
+			</p>
+		</sidebyside>
+
+		<sidebyside widths="30% 70%">
+			<p>Indenting</p>
+			<p>
+				Inside of several structures, like loops, it is important that you indent the code properly.  This not only for correct syntax, but also makes for easier reading.  To make sure code is indented in the right way, simply highlight the code and type <kbd>Ctrl</kbd> + <kbd>I</kbd>.
+			</p>
+		</sidebyside>
+
+	</paragraphs>
+
+	<paragraphs xml:id="example-script">
+	<title><insert>Example Script</insert></title><p/>
+
+		<example xml:id="ex_introcalculation"><p/>
+		<title><em>Running a Script</em></title><p/>
+			<p>
+				For this example, you could run these commands one at a time at the <c>>></c> in the Command Window, but we will create a script M-file in the Editor, which we open by typing edit and hitting return or you can click on the "new script" button.
+				<fn>
+					<p>
+						<sidebyside widths="33% 5%" margins="31%" valign="middle">
+							<p>"new script" button <m>\longrightarrow</m></p>
+						<p><image source="figures/matlab_editor_button2.png"/></p>
+						</sidebyside>
+					</p>
+				</fn>
+			</p>
+
+			<p>
+				Enter the following commands on separate lines:
+			</p>
+			
+			<sidebyside width="100%">
+				<program language="matlab">
+						<code>
+							SideLength = sqrt(5)
+							Value = cos(pi)
+							DegValue = cosd(180)
+							radius = 5;
+
+							Area = pi * radius 2
+						</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				Now save the file as <c>test.m</c>.  To run the file you have the options listed in this chapter, but another easy way is to go to the Command Window and type test at the command line (<c>>></c>).
+			</p>
+			
+			<sidebyside width="100%">
+				<program language="matlab">
+						<code>
+							>> test
+						</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				which produces the following output.
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+						<code>
+							SideLength =
+								2.2361
+							Value =
+								-1
+							DegValue =
+								-1
+							Area =
+								78.5398
+						</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				Note that there was no output of the value for the variable <c>radius</c> to the Command Window since the semicolon suppresses the output, but the value was stored and can be found in the Workspace window.
+			</p>
+		</example>
+
+	</paragraphs>
+
+</section> 

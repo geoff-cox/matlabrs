@@ -1,0 +1,230 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_game" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Tic Tac Toe</title>
+
+	<p>
+		Tic tac toe is a simple two player game. Each player is assigned either an X's or O's. The players take turns placing their assigned symbol into a <m>3\times 3</m> grid. The first player to successfully draw three of their symbols in a row, column, or diagonal line in the grid, wins. The goal of this project is for you to create a GUI version of the game Tic Tac Toe.
+	</p>
+
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	<paragraphs xml:id="initialize-gui-and-all-variables">
+	<title>Initialize GUI and all variables:</title><p/>
+
+		<p>
+			The first step of the project is to define a function. This function will create the GUI, store all important game information, and implement rules of the game.
+			<ol>
+				<li>
+					<p>
+						Define a function with no inputs or outputs.
+					</p>
+				</li>
+				<li>
+					<p>
+					Add documentation to the top of the function. It should include a description of the function, the date, assignment, and information about the author
+					</p>
+				</li>
+				<li>
+					<p>
+					Create a figure.  You can specify the size and position of the figure using the command
+					
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								&gt;&gt; f = figure( 'Position',[x0,y0,L,H]); 
+							</input>
+						</program>
+					</sidebyside>
+					</p>
+					
+					<p>
+						This create a figure that has width <m>L</m> and height <m>H</m> whose left bottom corner is placed at <m>(x0,y0)</m>.
+					</p>
+				</li>
+			</ol>
+		</p>
+
+		<p>
+			In order to play the game of Tic Tac Toe, some information will need to be stored along the way. Think about how you would play the game in real life, what information would you store?
+		</p>
+
+		<p>
+			At a minimum, you need a variable to store the board. This can be done in many ways. One way is to define a <m>3\times 3</m> matrix where the entries are zero if no symbol has been player, 1 if there is an X there, and 2 if there is an O there. Another way is to create a  <m>3\times 3</m> cell array with entries [ ] in places where no symbols have been placed, 'X' if an X is placed, and  'O' if an O is placed. Also, define a variable with value 0 if it is O's turn and 1 if it is X's turn.  You should assign either 'X'  or 'O' to always go first or assign one randomly. Display a message at the top of the GUI to indicate whose turn it is.  Define variables to store this information near the top of your function.
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="create-a-gui">
+	<title>Create a GUI:</title><p/>
+ 
+		<p>
+			In order to play Tic Tac Toe, there needs to be a <m>3\times 3</m> grid for players to enter their symbols. One way that this can be done, it to create 9 push buttons. The buttons should
+			<ol>
+				<li>
+					be square,
+				</li>
+				<li>
+					be arranged into a <m>3\times 3</m> grid,
+				</li>
+				<li>
+					and have no text label initially.
+				</li>
+			</ol>
+		</p>
+
+		<p>
+			For a full example of defining a GUI with buttons, review the Graphics GUI homework. Here is a quick refresher on defining a push button.
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; b=uicontrol('Style','pushbutton',...
+			                           'String','Button Label',...
+			                           'Position',[x0,y0,L,H],...
+			                           'Callback',@b_Callback);  
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+
+		<p>
+			 The command  <C>b=uicontrol</C> creates a struct that stores all of the information about the button <c>b</c>. The arguments of the unicontrol function change the fields or attributes of the button.
+		</p>
+
+		<p>
+			 The Style field is changed to a pushbutton on the first line. This will create a button that will activate something when pushed.  Next, the String field is changed so that the button initially says 'Button Label'.  Next the position and size of the button are changed using the field Position. This places the bottom left corner of the button at the location <m>(x0,y0)</m>. The size of the button is defined to have length <m>L</m> and height <m>H</m>. Lastly, the Callback field specifies which function should run when the button is pressed. In this case, it will run a function called b<m>\_</m>callback.
+		</p>
+
+		<p>
+			<term>Hint for the future:</term> It may be helpful to note that b is a struct. Therefore these attributed could be changed later using the normal struct syntax. For example, later when player 'O' presses the button, we will want the button now display the players assigned symbol 'O'. We could use the following:
+			 \begin{verbatim}
+			 b.String = 'O'
+			 \end{verbatim}
+			This changes the text on button b to 'O'.
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	</paragraphs>
+
+	<paragraphs xml:id="button-callback-functions">
+	<title>Button Callback Functions:</title><p/>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+		<p>
+			Each button should have its own callback function that does the following:
+			<ol>
+				<li>
+					Place the current player's symbol (either an 'X' or an 'O') on the board. Use an if-else statement to determine the correct symbol for the current player. Update the board state variable and the label on the button to be the correct symbol. For example, the following code
+					 \begin{verbatim}
+					 b.String = 'O'
+					 \end{verbatim}
+					change the text on button b to 'O'.
+				</li>
+				<li>
+					Determine if the game is over or progressing. This will involve calling the function described in the next section.
+					 If the game is over, display a message at the top of the GUI. This message should either say something like: 'Game over: X wins!', 'Game over: O wins!', or 'Game over: Draw' depending on the situation.
+					If the game is still progressing, it is the next player's turn. Update your variables to reflect this fact. Display a message that indicates whose turn it is.
+				</li>
+				<li>
+					This function will also need to prevent rule breaking which is described below.
+				</li>
+			</ol>
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	</paragraphs>
+
+	<paragraphs xml:id="win-conditions">
+	<title>Win Conditions:</title><p/>
+
+		<p>
+			Write a function to determine if the game is over. The input is the board state variable (either a matrix, vector, or cell array). A player wins the game if three of their symbols are in the same row, column, or diagonal. The game could also end in a draw if the board is full and no one has met the condition to win.  At any given point in the game, there are 4 possible states:
+			<ol>
+				<li>
+					X won.
+				</li>
+				<li>
+					O won.
+				</li>
+				<li>
+					Draw. No one won and the board is full.
+				</li>
+				<li>
+					Game in progress. No one won and the board is NOT full.
+				</li>
+			</ol>
+			This function should determine which state the board is in currently using a sequence of if-else statements. This output of this function should indicate which state of the game in some useful way. For example, the output could be a variable that is equal to 0 if the game is in progress, 1 if X won, 2 if O won, and 3 if the game ends in a draw. This function should be called after each successful use of the button.
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	</paragraphs>
+
+	<paragraphs xml:id="prevent-rule-breaking">
+	<title>Prevent Rule Breaking</title><p/>
+
+		<p>
+			 Tic Tac Toe has several rules that should be enforces in this application.  One is that users should not be able to replace a symbol that is already on the board. Another rule is that users cannot continue to add symbols to the board when the game is over.
+		</p>
+
+		<p>
+			One way to enforce these rules is to disable buttons that are not allowed to be pressed. Another way is to add if statements to the board button callback functions. If space is empty and the game is still in progress, the function should work normally. If there is already a symbol in that space, the function should not replace the old symbol with the new symbol or switch turns. Instead display a message that indicates that the user should choose another space. If the game is over, the function should display a message that indicates that the user should start a new game.
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	</paragraphs>
+
+	<paragraphs xml:id="start-a-new-game">
+	<title>Start a New Game</title><p/>
+
+		<p>
+			Add a button to the GUI to start a new game. This button should have its own call back function and be placed nicely in the GUI. The call back function should clear the board and set all variables to their original values.  All display messages should be reset. You should indicate whose turn it is.
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	</paragraphs>
+
+	<paragraphs xml:id="keep-score">
+	<title>Keep Score</title><p/>
+
+		<p>
+			In this portion of the project, you will need to keep score if there are multiple games. Define a variable(s) to count the number of wins for each player and the number of draws. Initially, there should be 0 for each category.  When a game is won, the variables should be updated to indicate this change. This should be done in the callback function for each grid button.  You must also display this information on your GUI in a logical way that does NOT impead the function of the game.  Include a reset button to set the score board back to 0.
+		</p>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	</paragraphs>
+
+	<paragraphs xml:id="computer-adversary">
+	<title>Computer Adversary</title><p/>
+
+		<p>
+			An advanced version of this application could include have a single player mode where the users plays against a computer adversary. This should only be attempted after the two player version is fully functioning. First, add a way for the user to select which mode they would like to play, one player (vs a computer) or two players. This can be done with a toggle switch, pop-up menu, or a button.
+		</p>
+
+		<p>
+			 The one player setting will differ slightly from the two player version. One difference is that instead of switching the player turn, the grid call back functions will add a symbol for the computer. This can be done using a function. Given the state of the board, this function should determine where the computer will place its symbol.
+		</p>
+
+		<p>
+			The computer can be programmed at different levels. A beginner level, the computer can randomly place its symbol in a valid space. At the expert level, the computer should place its symbol in an algorithmic way that allows it to either win or draw every time. The user should be be able to choose the level using a popup menu, toggle switch, or button.
+		</p>
+
+	</paragraphs>
+
+</section>
+
+

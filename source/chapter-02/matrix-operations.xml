@@ -1,0 +1,1065 @@
+<!--********************************************************************-->
+
+<section xml:id="matrix-operations">
+<title>Matrix Operations</title> 
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Perform standard and element-wise operations with matrix variables.</li>
+			<li>Identify when an element-wise operation is appropriate to use.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			Once you have defined one or more matrices, you typically need to perform some operations with them. In MATLAB, matrix operations, generally, fall into the one of the following categories:
+			<ul>
+				<li>
+					<p>Standard Operations: These operations follow the strict mathematical rules of matrices (as in a matrix algebra textbook).</p>
+					<p>examples: <c>+</c> <c>-</c> <c>*</c> <c>^</c><aside><p>The <c>^</c> symbol represents exponent/power.</p></aside></p>
+				</li>
+				<li>
+					<p>Element-Wise Operations: These operations apply to single values (i.e. elements) of a matrix.</p>
+					<p>examples: <c>.*</c> <c>./</c> <c>.^</c></p>
+				</li>
+			</ul>
+		</p>
+
+		<p>
+			Let's see how these operations are used and how they differ from each other.       
+		</p>
+
+	</introduction>
+
+	<paragraphs xml:id="standard-matrix-operations">
+	<title><insert>Standard Matrix Operations</insert></title><p/>
+
+		<p>
+			We assume you have some familiarity with basic matrix algebra, but we will do a quick review in the next example. 
+		</p>
+
+		<example xml:id="example-matrix-algebra-review">
+		<title><em><term>Basic Matrix Algebra Review</term></em></title><p/>
+			<p>
+				Let 
+				<me>
+					A = \left[
+					\begin{matrix}
+						1 \amp 2 \amp 3 \\
+						5 \amp 6 \amp 7 \\ 
+						1 \amp 2 \amp 3 \\
+					\end{matrix}\right] \quad \text{and} \quad 
+					B = \left[
+					\begin{matrix}
+						0 \amp 1 \amp 2 \\
+						1 \amp 0 \amp 1 \\ 
+						2 \amp 1 \amp 0 \\
+					\end{matrix}\right].
+				</me>
+				Compute the resulting matrix from the following operations: 
+				<ol>
+					<li><em>scalar multiplication</em>: <m>3 \cdot A </m></li>
+					<li><em>matrix addition</em>: <m>A+B</m></li>
+					<li><em>matrix multiplication</em>: <m>A*B</m></li>
+					<li><em>squaring a matrix</em>: <m>B^2</m></li>
+				</ol>
+			</p>
+			<p/>
+			<solution>
+				<p>
+					<ol>
+						<li>
+							<p><m>3 \cdot {\color{blue} A}</m>
+								<me>
+									= 3	\cdot \left[{\color{blue}
+											\begin{matrix}
+												1 \amp 2 \amp 3 \\
+												5 \amp 6 \amp 7 \\ 
+												1 \amp 2 \amp 3 \\
+											\end{matrix}}\right]
+									= 	\left[
+											\begin{matrix}
+												3 \cdot {\color{blue} 1} \amp 3 \cdot {\color{blue} 2} \amp 3 \cdot {\color{blue} 3} \\
+												3 \cdot {\color{blue} 5} \amp 3 \cdot {\color{blue} 6} \amp 3 \cdot {\color{blue} 7} \\ 
+												3 \cdot {\color{blue} 1} \amp 3 \cdot {\color{blue} 2} \amp 3 \cdot {\color{blue} 3} \\
+											\end{matrix}\right]
+									= 	\left[
+											\begin{matrix}
+												3 \amp 6 \amp 9 \\
+												15 \amp 18 \amp 21 \\ 
+												3 \amp 6 \amp 9 \\
+											\end{matrix}\right]
+								</me>
+							</p>
+						</li>
+						<li>
+							<p><m>{\color{blue} A} + {\color{green} B}</m>
+								<me>
+									= \left[{\color{blue}
+											\begin{matrix}
+												1 \amp 2 \amp 3 \\
+												5 \amp 6 \amp 7 \\ 
+												1 \amp 2 \amp 3 \\
+											\end{matrix}}\right]
+									+ \left[{\color{green}
+											\begin{matrix}
+												0 \amp 1 \amp 2 \\
+												1 \amp 0 \amp 1 \\ 
+												2 \amp 1 \amp 0 \\
+											\end{matrix}}\right]
+									= 	\left[
+											\begin{matrix}
+												{\color{blue} 1} + {\color{green} 0} \amp {\color{blue} 2} + {\color{green} 1} \amp {\color{blue} 3} + {\color{green} 2} \\
+												{\color{blue} 5} + {\color{green} 1} \amp {\color{blue} 6} + {\color{green} 0} \amp {\color{blue} 7} + {\color{green} 1} \\
+												{\color{blue} 1} + {\color{green} 2} \amp {\color{blue} 2} + {\color{green} 1} \amp {\color{blue} 3} + {\color{green} 0} \\
+											\end{matrix}\right]
+									= 	\left[
+											\begin{matrix}
+												1 \amp 3 \amp 5 \\
+												6 \amp 6 \amp 8 \\ 
+												3 \amp 3 \amp 3 \\
+											\end{matrix}\right]
+								</me>
+							</p>
+						</li>
+						<li>
+							<p><m>{\color{blue} A} * {\color{green} B}</m>
+								<md>
+									<mrow> \amp
+										= \left[{\color{blue}
+												\begin{matrix}
+													1 \amp 2 \amp 3 \\
+													5 \amp 6 \amp 7 \\ 
+													1 \amp 2 \amp 3 \\
+												\end{matrix}}\right]
+										* \left[{\color{green}
+												\begin{matrix}
+													0 \amp 1 \amp 2 \\
+													1 \amp 0 \amp 1 \\ 
+													2 \amp 1 \amp 0 \\
+												\end{matrix}}\right]
+									</mrow>
+									<mrow> \amp
+										= 	\left[
+												\begin{matrix}
+													{\color{blue} 1} \cdot {\color{green} 0} + {\color{blue} 2} \cdot {\color{green} 1} + {\color{blue} 3} \cdot {\color{green} 2} \amp 
+													{\color{blue} 1} \cdot {\color{green} 1} + {\color{blue} 2} \cdot {\color{green} 0} + {\color{blue} 3} \cdot {\color{green} 1} \amp 
+													{\color{blue} 1} \cdot {\color{green} 2} + {\color{blue} 2} \cdot {\color{green} 1} + {\color{blue} 3} \cdot {\color{green} 0} \\
+
+													{\color{blue} 5} \cdot {\color{green} 0} + {\color{blue} 6} \cdot {\color{green} 1} + {\color{blue} 7} \cdot {\color{green} 2} \amp 
+													{\color{blue} 5} \cdot {\color{green} 1} + {\color{blue} 6} \cdot {\color{green} 0} + {\color{blue} 7} \cdot {\color{green} 1} \amp 
+													{\color{blue} 5} \cdot {\color{green} 2} + {\color{blue} 6} \cdot {\color{green} 1} + {\color{blue} 7} \cdot {\color{green} 0} \\
+
+													{\color{blue} 1} \cdot {\color{green} 0} + {\color{blue} 2} \cdot {\color{green} 1} + {\color{blue} 3} \cdot {\color{green} 2} \amp 
+													{\color{blue} 1} \cdot {\color{green} 1} + {\color{blue} 2} \cdot {\color{green} 0} + {\color{blue} 3} \cdot {\color{green} 1} \amp 
+													{\color{blue} 1} \cdot {\color{green} 2} + {\color{blue} 2} \cdot {\color{green} 1} + {\color{blue} 3} \cdot {\color{green} 0} \\
+												\end{matrix}\right]
+									</mrow>
+									<mrow> \amp
+										= 	\left[
+												\begin{matrix}
+													8 \amp 4 \amp 4 \\
+													20 \amp 12 \amp 16 \\ 
+													8 \amp 4 \amp 4 \\
+												\end{matrix}\right]
+									</mrow>
+								</md>
+							</p>
+						</li>
+						<li>
+							<p><m>B^2 = {\color{blue} B} * {\color{green} B}</m>
+								<md>
+									<mrow> \amp
+										= \left[{\color{blue}
+												\begin{matrix}
+													0 \amp 1 \amp 2 \\
+													1 \amp 0 \amp 1 \\ 
+													2 \amp 1 \amp 0 \\
+												\end{matrix}}\right]
+										* \left[{\color{green}
+												\begin{matrix}
+													0 \amp 1 \amp 2 \\
+													1 \amp 0 \amp 1 \\ 
+													2 \amp 1 \amp 0 \\
+												\end{matrix}}\right]
+									</mrow>
+									<mrow> \amp
+										= 	\left[
+												\begin{matrix}
+													{\color{blue} 0} \cdot {\color{green} 0} + {\color{blue} 1} \cdot {\color{green} 1} + {\color{blue} 2} \cdot {\color{green} 2} \amp 
+													{\color{blue} 0} \cdot {\color{green} 1} + {\color{blue} 1} \cdot {\color{green} 0} + {\color{blue} 2} \cdot {\color{green} 1} \amp 
+													{\color{blue} 0} \cdot {\color{green} 2} + {\color{blue} 1} \cdot {\color{green} 1} + {\color{blue} 2} \cdot {\color{green} 0} \\
+
+													{\color{blue} 1} \cdot {\color{green} 0} + {\color{blue} 0} \cdot {\color{green} 1} + {\color{blue} 1} \cdot {\color{green} 2} \amp 
+													{\color{blue} 1} \cdot {\color{green} 1} + {\color{blue} 0} \cdot {\color{green} 0} + {\color{blue} 1} \cdot {\color{green} 1} \amp 
+													{\color{blue} 1} \cdot {\color{green} 2} + {\color{blue} 0} \cdot {\color{green} 1} + {\color{blue} 1} \cdot {\color{green} 0} \\
+
+													{\color{blue} 2} \cdot {\color{green} 0} + {\color{blue} 1} \cdot {\color{green} 1} + {\color{blue} 0} \cdot {\color{green} 2} \amp 
+													{\color{blue} 2} \cdot {\color{green} 1} + {\color{blue} 1} \cdot {\color{green} 0} + {\color{blue} 0} \cdot {\color{green} 1} \amp 
+													{\color{blue} 2} \cdot {\color{green} 2} + {\color{blue} 1} \cdot {\color{green} 1} + {\color{blue} 0} \cdot {\color{green} 0} \\
+												\end{matrix}\right]
+									</mrow>
+									<mrow> \amp
+										= 	\left[
+												\begin{matrix}
+													5 \amp 2 \amp 1 \\
+													2 \amp 2 \amp 2 \\ 
+													1 \amp 2 \amp 5 \\
+												\end{matrix}\right]
+									</mrow>
+								</md>
+							</p>
+						</li>
+					</ol>
+				</p>
+			</solution>
+		</example>
+
+		<p>
+			We will now see how easily the same operations are performed in MATLAB.
+		</p>
+
+		<example xml:id="example-matrix-algebra-review-matlab"><p/>
+		<title><em><term>Basic Matrix Algebra in MATLAB</term></em></title><p/>
+
+			<p>
+				Let 
+				<me>
+					A = \left[
+					\begin{matrix}
+						1 \amp 2 \amp 3 \\
+						5 \amp 6 \amp 7 \\ 
+						1 \amp 2 \amp 3 \\
+					\end{matrix}\right] \quad \text{and} \quad 
+					B = \left[
+					\begin{matrix}
+						0 \amp 1 \amp 2 \\
+						1 \amp 0 \amp 1 \\ 
+						2 \amp 1 \amp 0 \\
+					\end{matrix}\right].
+				</me>
+				Define <c>A</c> and <c>B</c> as MATLAB variables and give the commands that
+				<ol>
+					<li>defines <c>ans_1</c> as <m>3 \cdot A</m>,</li>
+					<li>defines <c>ans_2</c> as <m>A+B</m>,</li>
+					<li>defines <c>ans_3</c> as <m>A*B</m>, and</li>
+					<li>defines <c>ans_4</c> as <m>B^2</m>.</li>
+				</ol>
+			</p>
+			
+			<p/>
+			<solution>
+				<p>
+					The commands for these operations transfer, nicely to MATLAB, as
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								A = [1 2 3; 5 6 7; 1 2 3];
+								B = [0 1 2; 1 0 1; 2 1 0];
+								ans_1 = 3*A
+								ans_2 = A+B
+								ans_3 = A*B
+								ans_4 = B^2
+							</input>
+					</program>
+				</sidebyside>
+				<p>
+					with output
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								ans_1 =
+									3     6     9
+									15    18    21
+									3     6     9
+
+								ans_2 =
+									1     3     5
+									6     6     8
+									3     3     3
+
+								ans_3 =
+									8     4     4
+									20    12    16
+									8     4     4
+
+								ans_4 =
+									5     2     1
+									2     2     2
+									1     2     5
+							</input>
+					</program>
+				</sidebyside>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+	<paragraphs xml:id="element-wise-operations">
+	<title><insert>Element-Wise Matrix Operations</insert></title><p/>
+		
+		<p>
+			By now, you should be comfortable with the idea that matrices are very different from numbers. Properties that work with numbers do not necessarily work with matrices. The operations, <c>+</c> <c>-</c> <c>*</c> <c>^</c>, are consistent with the special rules of matrices. However, there are times when you want to think of a matrix as just an object to store numbers, and all you really care about is working with the numbers inside. Element-wise operations help you do this and are denoted with a <c>.</c> to the left of the operation (e.g. <c>.*</c>).
+		</p>
+
+		<lemma>
+		<title><c>.^</c> Operator</title><p/>
+			<statement>
+				<p/>
+				Let <c>A</c> denote the variable of a matrix, of any size, defined in MATLAB. The element-wise exponential (power) operation is given below.
+				<p/>
+
+				<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+					<row>
+						<cell>Command</cell><cell colspan="3">Effect</cell>
+					</row>
+					<row bottom="none">
+						<cell/>
+						<cell right="none"><m>{\color{blue} A} \hspace{3.2cm} {\color{red} B}</m></cell>
+						<cell right="none"/>
+						<cell><m>{\color{blue} A} \texttt{.}^{\wedge} {\color{red} B}</m></cell>
+					</row>
+					<row>
+						<cell><c>A.^n</c></cell>
+						<cell halign="right" right="none">
+							<image width="100%" xml:id="element-wise-power-fig1">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{-2.2}{-0.2}
+										\node [circle node 0] (1) at (-1.7, 3.5) {\color{blue}{$_{A_{11}}$}};
+										\node [circle node 0] (2) at (1.3, 3.5) {\color{red}{$_{B_{11}}$}};
+										\node [circle node 0] (3) at (-0.7, 3.5) {\color{blue}{$_{A_{12}}$}};
+										\node [circle node 0] (4) at (2.3, 3.5) {\color{red}{$_{B_{12}}$}};
+										\node [circle node 0] (5) at (-1.7, 2.5) {\color{blue}{$_{A_{21}}$}};
+										\node [circle node 0] (6) at (1.3, 2.5) {\color{red}{$_{B_{21}}$}};
+										\node [circle node 0] (7) at (-0.7, 2.5) {\color{blue}{$_{A_{22}}$}};
+										\node [circle node 0] (8) at (2.3, 2.5) {\color{red}{$_{B_{22}}$}};
+										\node [circle node 0] (9) at (-1.7, 1.5) {\color{blue}{$_{A_{31}}$}};
+										\node [circle node 0] (10) at (1.3, 1.5) {\color{red}{$_{B_{31}}$}};
+										\node [circle node 0] (11) at (-0.7, 1.5) {\color{blue}{$_{A_{32}}$}};
+										\node [circle node 0] (12) at (2.3, 1.5) {\color{red}{$_{B_{32}}$}};
+										
+										\node at (0.3, 2.5) {$\texttt{.*}$};
+										
+										\matrixbrackets{4}{0.8}{2.8}
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (1.north east) to (2.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (3.south east) to (4.south west);
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (5.north east) to (6.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (7.south east) to (8.south west);
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (9.north east) to (10.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (11.south east) to (12.south west);
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+						<cell right="none"><m>=</m></cell>
+						<cell halign="left" left="none">
+							<image halign = "left" width="90%" xml:id="element-wise-power-fig2">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{1.9}{5.0}
+										\node at (2.6, 3.5) {${\color{blue}A_{11} }^{\wedge}{\color{red}\texttt{n}}$};
+										\node at (4.2, 3.5) {${\color{blue}A_{12} }^{\wedge}{\color{red}\texttt{n}}$};
+										\node at (2.6, 2.5) {${\color{blue}A_{21} }^{\wedge}{\color{red}\texttt{n}}$};
+										\node at (4.2, 2.5) {${\color{blue}A_{22} }^{\wedge}{\color{red}\texttt{n}}$};
+										\node at (2.6, 1.5) {${\color{blue}A_{31} }^{\wedge}{\color{red}\texttt{n}}$};
+										\node at (4.2, 1.5) {${\color{blue}A_{32} }^{\wedge}{\color{red}\texttt{n}}$};
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+					</row>
+				</tabular>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-dot-power-operation"><p/>
+		<title><em><term><m>\fbox{$\texttt{.}^{\wedge}$}</m> Operator</term></em></title><p/>
+
+			<p>
+				Let 
+				<me>
+					A = \left[
+					\begin{matrix}
+						1 \amp 2 \amp 3 \\
+						5 \amp 6 \amp 7 \\ 
+					\end{matrix}\right] \quad 
+					B = \left[
+					\begin{matrix}
+						0 \amp 1 \amp 2 \\
+						1 \amp 0 \amp 1 \\ 
+					\end{matrix}\right] \quad 
+					C = \left[
+					\begin{matrix}
+						6 \\
+						1 \\ 
+						4 \\
+					\end{matrix}\right] \quad \text{and} \quad 
+					D = \left[
+					\begin{matrix}
+						1 \\
+						0 \\
+						1 \\ 
+					\end{matrix}\right].
+				</me>
+				Define <c>A</c> and <c>B</c> as MATLAB variables and give the command that
+				<ol>
+					<li>defines <c>ans_1</c> as <m>A</m>,</li>
+					<li>defines <c>ans_2</c> as <m>A+B</m>,</li>
+					<li>defines <c>ans_3</c> as <m>A*B</m>, and</li>
+					<li>defines <c>ans_4</c> as <m>B^2</m>.</li>
+				</ol>
+			</p>
+			
+			<p/>
+			<solution>
+				<p>
+					The commands for these operations transfer, nicely to MATLAB, as
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								A = [1 2 3; 5 6 7; 1 2 3];
+								B = [0 1 2; 1 0 1; 2 1 0];
+								ans_1 = 3*A
+								ans_2 = A+B
+								ans_3 = A*B
+								ans_4 = B^2
+							</input>
+					</program>
+				</sidebyside>
+				<p>
+					with output
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								ans_1 =
+									3     6     9
+									15    18    21
+									3     6     9
+
+								ans_2 =
+									1     3     5
+									6     6     8
+									3     3     3
+
+								ans_3 =
+									8     4     4
+									20    12    16
+									8     4     4
+
+								ans_4 =
+									5     2     1
+									2     2     2
+									1     2     5
+							</input>
+					</program>
+				</sidebyside>
+			</solution>
+		</example>
+
+		<lemma>
+		<title><c>.*</c> and <c>./</c> Operators (same size)</title><p/>
+			<statement>
+				<p/>
+				Let <c>A</c> and <c>B</c> denote the variables of two matrices, of the same size, defined in MATLAB. The element-wise operations are summarized below.
+				<p/>
+
+				<aside>
+					<p>
+						You may be wondering why we have not listed the element-wise operations for addition and subtraction.  Since matrix addition and subtraction are already element-wise, by definition, MATLAB did not include a <c>.+</c> or a <c>.-</c> operator.
+					</p>
+				</aside>
+
+				<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+					<row>
+						<cell>Command</cell><cell colspan="3">Effect</cell>
+					</row>
+					<row bottom="none">
+						<cell/>
+						<cell right="none"><m>{\color{blue} A} \hspace{3.2cm} {\color{red} B}</m></cell>
+						<cell right="none"/>
+						<cell><m>{\color{blue} A} \texttt{.* } {\color{red} B}</m></cell>
+					</row>
+					<row>
+						<cell><c>A.*B</c></cell>
+						<cell halign="right" right="none">
+							<image width="100%" xml:id="element-wise-same-size-fig1">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{-2.2}{-0.2}
+										\node [circle node 0] (1) at (-1.7, 3.5) {\color{blue}{$_{A_{11}}$}};
+										\node [circle node 0] (2) at (1.3, 3.5) {\color{red}{$_{B_{11}}$}};
+										\node [circle node 0] (3) at (-0.7, 3.5) {\color{blue}{$_{A_{12}}$}};
+										\node [circle node 0] (4) at (2.3, 3.5) {\color{red}{$_{B_{12}}$}};
+										\node [circle node 0] (5) at (-1.7, 2.5) {\color{blue}{$_{A_{21}}$}};
+										\node [circle node 0] (6) at (1.3, 2.5) {\color{red}{$_{B_{21}}$}};
+										\node [circle node 0] (7) at (-0.7, 2.5) {\color{blue}{$_{A_{22}}$}};
+										\node [circle node 0] (8) at (2.3, 2.5) {\color{red}{$_{B_{22}}$}};
+										\node [circle node 0] (9) at (-1.7, 1.5) {\color{blue}{$_{A_{31}}$}};
+										\node [circle node 0] (10) at (1.3, 1.5) {\color{red}{$_{B_{31}}$}};
+										\node [circle node 0] (11) at (-0.7, 1.5) {\color{blue}{$_{A_{32}}$}};
+										\node [circle node 0] (12) at (2.3, 1.5) {\color{red}{$_{B_{32}}$}};
+										
+										\node at (0.3, 2.5) {$\texttt{.*}$};
+										
+										\matrixbrackets{4}{0.8}{2.8}
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (1.north east) to (2.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (3.south east) to (4.south west);
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (5.north east) to (6.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (7.south east) to (8.south west);
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (9.north east) to (10.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (11.south east) to (12.south west);
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+						<cell right="none"><m>=</m></cell>
+						<cell halign="left" left="none">
+							<image halign = "left" width="90%" xml:id="element-wise-same-size-fig2">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{3.6}{7.4}
+										\node at (4.6, 3.5) {${\color{blue}A_{11}}\texttt{*}{\color{red}{B_{11}}}$};
+										\node at (6.6, 3.5) {${\color{blue}A_{12}}\texttt{*}{\color{red}{B_{12}}}$};
+										\node at (4.6, 2.5) {${\color{blue}A_{21}}\texttt{*}{\color{red}{B_{21}}}$};
+										\node at (6.6, 2.5) {${\color{blue}A_{22}}\texttt{*}{\color{red}{B_{22}}}$};
+										\node at (4.6, 1.5) {${\color{blue}A_{31}}\texttt{*}{\color{red}{B_{31}}}$};
+										\node at (6.6, 1.5) {${\color{blue}A_{32}}\texttt{*}{\color{red}{B_{32}}}$};
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+					</row>
+					<row bottom="none">
+						<cell/>
+						<cell right="none"><m>{\color{blue} A} \hspace{3.2cm} {\color{red} B}</m></cell>
+						<cell right="none"/>
+						<cell><m>{\color{blue} A} \texttt{./ } {\color{red} B}</m></cell>
+					</row>
+					<row>
+						<cell><c>A./B</c></cell>
+						<cell halign="right" right="none">
+							<image width="100%" xml:id="element-wise-same-size-fig3">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{-2.2}{-0.2}
+										\node [circle node 0] (1) at (-1.7, 3.5) {\color{blue}{$_{A_{11}}$}};
+										\node [circle node 0] (2) at (1.3, 3.5) {\color{red}{$_{B_{11}}$}};
+										\node [circle node 0] (3) at (-0.7, 3.5) {\color{blue}{$_{A_{12}}$}};
+										\node [circle node 0] (4) at (2.3, 3.5) {\color{red}{$_{B_{12}}$}};
+										\node [circle node 0] (5) at (-1.7, 2.5) {\color{blue}{$_{A_{21}}$}};
+										\node [circle node 0] (6) at (1.3, 2.5) {\color{red}{$_{B_{21}}$}};
+										\node [circle node 0] (7) at (-0.7, 2.5) {\color{blue}{$_{A_{22}}$}};
+										\node [circle node 0] (8) at (2.3, 2.5) {\color{red}{$_{B_{22}}$}};
+										\node [circle node 0] (9) at (-1.7, 1.5) {\color{blue}{$_{A_{31}}$}};
+										\node [circle node 0] (10) at (1.3, 1.5) {\color{red}{$_{B_{31}}$}};
+										\node [circle node 0] (11) at (-0.7, 1.5) {\color{blue}{$_{A_{32}}$}};
+										\node [circle node 0] (12) at (2.3, 1.5) {\color{red}{$_{B_{32}}$}};
+										
+										\node at (0.3, 2.5) {$\texttt{./}$};
+										
+										\matrixbrackets{4}{0.8}{2.8}
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (1.north east) to (2.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (3.south east) to (4.south west);
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (5.north east) to (6.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (7.south east) to (8.south west);
+										\draw [&lt;-&gt;, bend left=30, looseness=0.6] (9.north east) to (10.north west);
+										\draw [&lt;-&gt;, bend left=-30, looseness=0.6] (11.south east) to (12.south west);
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+						<cell right="none"><m>=</m></cell>
+						<cell halign="left" left="none">
+							<image halign = "left" width="90%" xml:id="element-wise-same-size-fig4">
+								<latex-image>
+									\begin{tikzpicture}
+										\node at (4.6, 3.5) {${\color{blue}A_{11}}\texttt{/}{\color{red}{B_{11}}}$};
+										\node at (6.6, 3.5) {${\color{blue}A_{12}}\texttt{/}{\color{red}{B_{12}}}$};
+										\node at (4.6, 2.5) {${\color{blue}A_{21}}\texttt{/}{\color{red}{B_{21}}}$};
+										\node at (6.6, 2.5) {${\color{blue}A_{22}}\texttt{/}{\color{red}{B_{22}}}$};
+										\node at (4.6, 1.5) {${\color{blue}A_{31}}\texttt{/}{\color{red}{B_{31}}}$};
+										\node at (6.6, 1.5) {${\color{blue}A_{32}}\texttt{/}{\color{red}{B_{32}}}$};
+										
+										\draw (3.6,4) -- (3.8,4);
+										\draw (3.6,1) -- (3.6,4);
+										\draw (3.6,1) -- (3.8,1);
+										
+										\draw (7.6,4) -- (7.4,4);
+										\draw (7.6,1) -- (7.6,4);
+										\draw (7.6,1) -- (7.4,1);
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+					</row>
+				</tabular>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-dot-prod-div-1"><p/>
+		<title><em><term><m>\fbox{$\,\texttt{.*}\,$}</m> and <m>\fbox{$\,\texttt{./}\,$}</m> Operators (same size)</term></em></title><p/>
+
+			<p>
+				Let 
+				<me>
+					A = \left[
+					\begin{matrix}
+						1 \amp 2 \amp 3 \\
+						5 \amp 6 \amp 7 \\ 
+					\end{matrix}\right] \quad 
+					B = \left[
+					\begin{matrix}
+						0 \amp 1 \amp 2 \\
+						1 \amp 0 \amp 1 \\ 
+					\end{matrix}\right] \quad 
+					C = \left[
+					\begin{matrix}
+						6 \\
+						1 \\ 
+						4 \\
+					\end{matrix}\right] \quad \text{and} \quad 
+					D = \left[
+					\begin{matrix}
+						1 \\
+						0 \\
+						1 \\ 
+					\end{matrix}\right].
+				</me>
+				Define <c>A</c> and <c>B</c> as MATLAB variables and give the command that
+				<ol>
+					<li>defines <c>ans_1</c> as <m>A</m>,</li>
+					<li>defines <c>ans_2</c> as <m>A+B</m>,</li>
+					<li>defines <c>ans_3</c> as <m>A*B</m>, and</li>
+					<li>defines <c>ans_4</c> as <m>B^2</m>.</li>
+				</ol>
+			</p>
+			
+			<p/>
+			<solution>
+				<p>
+					The commands for these operations transfer, nicely to MATLAB, as
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								A = [1 2 3; 5 6 7; 1 2 3];
+								B = [0 1 2; 1 0 1; 2 1 0];
+								ans_1 = 3*A
+								ans_2 = A+B
+								ans_3 = A*B
+								ans_4 = B^2
+							</input>
+					</program>
+				</sidebyside>
+				<p>
+					with output
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								ans_1 =
+									3     6     9
+									15    18    21
+									3     6     9
+
+								ans_2 =
+									1     3     5
+									6     6     8
+									3     3     3
+
+								ans_3 =
+									8     4     4
+									20    12    16
+									8     4     4
+
+								ans_4 =
+									5     2     1
+									2     2     2
+									1     2     5
+							</input>
+					</program>
+				</sidebyside>
+			</solution>
+		</example>
+
+		<lemma>
+		<title>Element-Wise Operations (different size)</title><p/>
+			<statement>
+				<p/>
+				Let <c>A</c>, <c>B</c> and <c>C</c> denote the MATLAB variables for the matrices
+				<p/>
+				<me>
+					A = \left[
+					\begin{matrix}
+						A_{11} \amp A_{12}\\
+						A_{21} \amp A_{22}\\
+						A_{31} \amp A_{32}\\
+					\end{matrix}
+					\right], \qquad
+					B = \left[
+					\begin{matrix}
+						B_{11} \amp B_{12}\\
+					\end{matrix}
+					\right], \qquad \text{and} \qquad
+					C = \left[
+					\begin{matrix}
+						C_{11}\\
+						C_{21}\\
+						C_{31}\\
+					\end{matrix}
+					\right].
+				</me>
+				<p/>
+				You can compute <c>A.*B</c> and <c>A.*C</c>, as long as <c>B</c> and <c>C</c> are vectors that have the same size as either a row or column of <c>A</c>.
+				<p/>
+
+				<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+					<row>
+						<cell colspan="3">Computing <c>A.*B</c> when <c>B</c> is the same size as <c>A</c>'s rows.</cell>
+					</row>
+					<row bottom="none">
+						<cell right="none"><m>{\color{blue} A} \hspace{3.2cm} {\color{red} B}</m></cell>
+						<cell right="none"/>
+						<cell><m>{\color{blue} A} \texttt{.* } {\color{red} B}</m></cell>
+					</row>
+					<row bottom="none">
+						<cell halign="right" right="none">
+							<image width="90%" xml:id="element-wise-diff-size-fig1">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{-2.2}{-0.2}
+										\node [hrect node 0] (1) at (-1.2, 3.5) {$\color{blue}{{A_{11} \quad {A_{12}}} }$};
+										\node [hrect node 0] (2) at (-1.2, 2.5) {$\color{blue}{{A_{21} \quad {A_{22}}} }$};
+										\node [hrect node 0] (3) at (-1.2, 1.5) {$\color{blue}{{A_{31} \quad {A_{32}}} }$};
+										
+										\node at (0.25, 2.5) {$\texttt{.*}$};
+										
+										\matrixbrackets[2.1]{2.9}{0.8}{2.8}
+										\node [hidden node 0] (4) at (1.8, 2.5) {$\color{red}{{B_{11} \quad {B_{12}}} }$};
+										
+										\draw [&lt;-, bend left=50, looseness=0.8] (1.east) to (4.west);
+										\draw [&lt;-, bend left=50, looseness=0.9] (2.north) to (4.west);
+										\draw [&lt;-, bend left=-50, looseness=0.8] (3.east) to (4.west);
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+						<cell right="none"><m>=</m></cell>
+						<cell halign="left" left="none">
+							<image width="90%" xml:id="element-wise-diff-size-fig2">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{-2.2}{2.4}
+										\node [hrect node 0] (1) at (-1.1, 3.5) {$\color{blue}{{A_{11} \quad {A_{12}}}}$};
+										\node at (0.1, 3.5) {$\texttt{.*}$};
+										\node [hrect node 0] (4) at (1.3, 3.5) {$\color{red}{{B_{11} \quad {B_{12}}}}$};
+										
+										\node [hrect node 0] (2) at (-1.1, 2.5) {$\color{blue}{{A_{21} \quad {A_{22}}}}$};
+										\node at (0.1, 2.5) {$\texttt{.*}$};
+										\node [hrect node 0] (5) at (1.3, 2.5) {$\color{red}{{B_{11} \quad {B_{12}}}}$};
+										
+										\node [hrect node 0] (3) at (-1.1, 1.5) {$\color{blue}{{A_{31} \quad {A_{32}}}}$};
+										\node at (0.1, 1.5) {$\texttt{.*}$};
+										\node [hrect node 0] (6) at (1.3, 1.5) {$\color{red}{{B_{11} \quad {B_{12}}}}$};
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+					</row>
+					<row>
+						<cell right="none"/>
+						<cell right="none"><m>=</m></cell>
+						<cell halign="left" left="none">
+							<image halign = "left" width="70%" xml:id="element-wise-diff-size-fig3">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{3.6}{7.4}
+										\node at (4.6, 3.5) {${\color{blue}A_{11}}\texttt{*}{\color{red}B_{11}}$};
+										\node at (6.6, 3.5) {${\color{blue}A_{12}}\texttt{*}{\color{red}B_{12}}$};
+										\node at (4.6, 2.5) {${\color{blue}A_{21}}\texttt{*}{\color{red}B_{11}}$};
+										\node at (6.6, 2.5) {${\color{blue}A_{22}}\texttt{*}{\color{red}B_{12}}$};
+										\node at (4.6, 1.5) {${\color{blue}A_{31}}\texttt{*}{\color{red}B_{11}}$};
+										\node at (6.6, 1.5) {${\color{blue}A_{32}}\texttt{*}{\color{red}B_{12}}$};
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="3">Computing <c>A.*C</c> when <c>C</c> is the same size as <c>A</c>'s columns.</cell>
+					</row>
+					<row bottom="none">
+						<cell right="none"><m>{\color{blue} A} \hspace{3.2cm} {\color{red} C}</m></cell>
+						<cell right="none"/>
+						<cell><m>{\color{blue} A} \texttt{.* } {\color{red} C}</m></cell>
+					</row>
+					<row bottom="none">
+						<cell halign="right" right="none">
+							<image width="75%" xml:id="element-wise-diff-size-fig4">
+								<latex-image>
+									\begin{tikzpicture}
+										
+										\matrixbrackets{4}{-2.2}{-0.2}
+										\node [vrect node 0] (1) at (-1.7, 2.5) {
+											\color{blue}{$
+											\begin{array}{c}
+												\!\!A_{11}\!\!\\\\
+												\!\!A_{21}\!\!\\\\
+												\!\!A_{31}\!\!
+											\end{array}
+											$}};
+										\node [vrect node 0] (2) at (-0.7, 2.5) {
+											\color{blue}{$
+											\begin{array}{c}
+												\!\!A_{12}\!\!\\\\
+												\!\!A_{22}\!\!\\\\
+												\!\!A_{32}\!\!
+											\end{array}
+											$}};
+										
+										\node at (0.3, 2.5) {$\texttt{.*}$};
+										
+										\matrixbrackets{4}{0.8}{1.8}
+										\node [hidden node 0] (3) at (1.3, 2.5) {
+											\color{red}{$
+											\begin{array}{c}
+												\!\!C_{11}\!\!\\\\
+												\!\!C_{21}\!\!\\\\
+												\!\!C_{31}\!\!
+											\end{array}
+											$}};
+
+										\draw [&lt;-, bend left=80, looseness=0.8] (1.north) to (3.north);
+										\draw [&lt;-, bend left=80, looseness=0.9] (2.north) to (3.north);
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+						<cell right="none"><m>\phantom{\LARGE|}</m><me>=</me></cell>
+						<cell halign="left" left="none"><m>\phantom{\LARGE|}</m>
+							<image width="90%" xml:id="element-wise-diff-size-fig5">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{-2.2}{2.9}
+										\node [vrect node 0] at (-1.7, 2.5) {
+											\color{blue}{$
+											\begin{array}{c}
+												\!\!A_{11}\!\!\\\\
+												\!\!A_{21}\!\!\\\\
+												\!\!A_{31}\!\!
+											\end{array}
+											$}};
+										\node at (-1, 2.5) {$\texttt{.*}$};
+										\node [vrect node 0] at (-0.3, 2.5) {
+											\color{red}{$
+											\begin{array}{c}
+												\!\!C_{11}\!\!\\\\
+												\!\!C_{21}\!\!\\\\
+												\!\!C_{31}\!\!
+											\end{array}
+											$}};
+
+										\node [vrect node 0] at (1, 2.5) {
+											\color{blue}{$
+											\begin{array}{c}
+												\!\!A_{12}\!\!\\\\
+												\!\!A_{22}\!\!\\\\
+												\!\!A_{32}\!\!
+											\end{array}
+											$}};
+										\node at (1.7, 2.5) {$\texttt{.*}$};
+										\node [vrect node 0] at (2.4, 2.5) {
+											\color{red}{$
+											\begin{array}{c}
+												\!\!C_{11}\!\!\\\\
+												\!\!C_{21}\!\!\\\\
+												\!\!C_{31}\!\!
+											\end{array}
+											$}};
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+					</row>
+					<row>
+						<cell right="none"/>
+						<cell right="none"><m>=</m></cell>
+						<cell halign="left" left="none">
+							<image halign = "left" width="70%" xml:id="element-wise-diff-size-fig6">
+								<latex-image>
+									\begin{tikzpicture}
+										\matrixbrackets{4}{2.6}{6.6}
+										\node at (3.6, 3.5) {${\color{blue}A_{11}}\texttt{*}{\color{red}C_{11}}$};
+										\node at (5.6, 3.5) {${\color{blue}A_{12}}\texttt{*}{\color{red}C_{11}}$};
+										\node at (3.6, 2.5) {${\color{blue}A_{21}}\texttt{*}{\color{red}C_{21}}$};
+										\node at (5.6, 2.5) {${\color{blue}A_{22}}\texttt{*}{\color{red}C_{21}}$};
+										\node at (3.6, 1.5) {${\color{blue}A_{31}}\texttt{*}{\color{red}C_{31}}$};
+										\node at (5.6, 1.5) {${\color{blue}A_{32}}\texttt{*}{\color{red}C_{31}}$};
+									\end{tikzpicture}
+								</latex-image>
+							</image>
+						</cell>
+					</row>
+				</tabular>
+				<p/>
+				Note: <c>./</c> works the same way. 
+			</statement>
+		</lemma>
+
+		<example xml:id="example-dot-prod-div-2"><p/>
+		<title><em><term><m>\fbox{$\,\texttt{.*}\,$}</m> and <m>\fbox{$\,\texttt{./}\,$}</m> Operators (different size)</term></em></title><p/>
+
+			<p>
+				Let 
+				<me>
+					A = \left[
+					\begin{matrix}
+						1 \amp 2 \amp 3 \\
+						5 \amp 6 \amp 7 \\ 
+					\end{matrix}\right] \quad 
+					B = \left[
+					\begin{matrix}
+						0 \amp 1 \amp 2 \\
+						1 \amp 0 \amp 1 \\ 
+					\end{matrix}\right] \quad 
+					C = \left[
+					\begin{matrix}
+						6 \\
+						1 \\ 
+						4 \\
+					\end{matrix}\right] \quad \text{and} \quad 
+					D = \left[
+					\begin{matrix}
+						1 \\
+						0 \\
+						1 \\ 
+					\end{matrix}\right].
+				</me>
+				Define <c>A</c> and <c>B</c> as MATLAB variables and give the command that
+				<ol>
+					<li>defines <c>ans_1</c> as <m>A</m>,</li>
+					<li>defines <c>ans_2</c> as <m>A+B</m>,</li>
+					<li>defines <c>ans_3</c> as <m>A*B</m>, and</li>
+					<li>defines <c>ans_4</c> as <m>B^2</m>.</li>
+				</ol>
+			</p>
+			
+			<p/>
+			<solution>
+				<p>
+					The commands for these operations transfer, nicely to MATLAB, as
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								A = [1 2 3; 5 6 7; 1 2 3];
+								B = [0 1 2; 1 0 1; 2 1 0];
+								ans_1 = 3*A
+								ans_2 = A+B
+								ans_3 = A*B
+								ans_4 = B^2
+							</input>
+					</program>
+				</sidebyside>
+				<p>
+					with output
+				</p>
+				<sidebyside width="100%">
+					<program language="matlab">
+							<input>
+								ans_1 =
+									3     6     9
+									15    18    21
+									3     6     9
+
+								ans_2 =
+									1     3     5
+									6     6     8
+									3     3     3
+
+								ans_3 =
+									8     4     4
+									20    12    16
+									8     4     4
+
+								ans_4 =
+									5     2     1
+									2     2     2
+									1     2     5
+							</input>
+					</program>
+				</sidebyside>
+			</solution>
+		</example>
+
+		<example xml:id="example-shoe-sales"><p/>
+		<title><em><term>Shoe Sales Data</term></em></title><p/>
+
+			<p>
+				Suppose you have sales data for a particular brand of shoe. The retail price is $34.99, but customers can use a coupon or get a bulk discount. Here is a snippet of the data,
+				<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+					<row><cell>Qty</cell><cell>Unit Price ($)	</cell></row>
+					<row><cell>  3</cell><cell>					34.99	</cell></row>
+					<row><cell>  2</cell><cell>					34.99	</cell></row>
+					<row><cell> 17</cell><cell>					29.99	</cell><cell halign="left" bottom="none" right="none"><m>\leftarrow</m> <em>bulk discount applied</em></cell></row>
+					<row><cell>  1</cell><cell>					32.49	</cell><cell halign="left" bottom="none" right="none"><m>\leftarrow</m> <em>coupon applied</em></cell></row>
+					<row><cell>  2</cell><cell>					34.99	</cell></row>
+				</tabular>
+			</p>
+
+			<p>
+				where each row correspond to the quantity and unit price for one customer.
+			</p>
+
+			<p>
+				Give the MATLAB commands that 
+				<ol label="a">
+					<li>defines the variable, <c>shoe_data</c>, as the values provided in the table.</li>
+					<li>defines the variable, <c>qty</c>, as the first column of <c>shoe_data</c>.</li>
+					<li>defines the variable, <c>unit_price</c>, as the second column of <c>shoe_data</c>.</li>
+					<li>defines the variable, <c>customer_cost</c>, as element-wise product of <c>qty</c> and <c>unit_price</c> vectors.</li>
+				</ol> 
+			</p>
+
+			<p>
+			<em>Don't use dollar units,<c>$</c>, in your matrix.</em>
+				<sage language="octave">
+					<input>
+						shoe_data = 
+						qty = 
+						unit_price = 
+						customer_cost = 
+					</input>
+				</sage>
+			</p>
+
+			<p/>
+			<solution>
+				<p>
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								shoe_data = [3 34.99; 2 34.99; 17 29.99; 1 32.49; 2 34.99]
+								qty = shoe_data(:,1)
+								unit_price = shoe_data(:,2)
+								customer_cost = qty.*unit_price
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+
+	</paragraphs>
+
+</section> 

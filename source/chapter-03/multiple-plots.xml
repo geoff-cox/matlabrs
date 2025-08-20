@@ -1,0 +1,127 @@
+<!--********************************************************************-->
+
+<section xml:id="special-plots">
+<title>Multiple Plots</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>place two or more realted plots on the same set of axes.</li>
+			<li>place two or more related plots on different axes using the <c>subplot</c> command.</li>
+		</ol>
+	</objectives>
+
+	<p>
+		If you want to plot more than one set of data in the same figure window, there are different ways to do this. You can put both in the same <c>plot</c> command or by using the <c>hold</c> command with two <c>plot</c> commands, as the next two examples show.
+	</p>
+
+	<example xml:id="ex_twofunctionplot1"><p/>
+	<title><em>Two Functions - one <m>\texttt{plot }</m> command</em></title><p/>
+
+		<p>
+			The commands
+			<program language="matlab">
+				<input>
+					x1 = [1:10];		y1 = [4 15 7 17 8 19:23]; 
+					x2 = [3:3:12];	y2 = [0 5 3 10]; 
+					plot(x1,y1,x2,y2,'+')
+					xlim([0,13]), ylim([-1,25])
+				</input>
+			</program>
+		</p>
+
+		<p>
+			Produce the plot
+		</p>
+		
+		<image source="figures/matlab_plot3.png" />
+
+	</example>
+
+	<p>
+		So, from this example we can see that if you want to use the same <c>plot</c> command, you simply list the pairings, (with any details following each pair) <c>x1,y1,x2,y2,x3,y3,...</c>.  The default colors start with blue followed by green.  The symbol <c>' + '</c> means that the second plot is points (not lines) marked with plus signs.
+	</p>
+
+	<example xml:id="ex_twofunctionplot2"><p/>
+	<title><em>Two Functions - two <m>\texttt{plot }</m> commands</em></title><p/>
+
+		<p>
+			We use data from the last example, but use the <c>hold</c> command.
+		</p>
+
+		<program language="matlab">
+			<input>
+				&gt;&gt; x1 = [1:10]; y1 = [4 15 7 17 8 19:23]; 
+				&gt;&gt; x2 = [3:3:12]; y2 = [0 5 3 10]; 
+				&gt;&gt; hold on
+				&gt;&gt; plot(x1,y1)
+				&gt;&gt; plot(x2,y2,'+')
+				&gt;&gt; xlim([0,13]),ylim([-1,25])
+			</input>
+		</program>
+
+		<p>
+			The plot is now
+		</p>
+
+		<image source="figures/matlab_plot4.png" />
+		
+	</example>
+
+	<p>
+		In the last example, if you didn't include the <c>hold</c> command, the second plot would simply overwrite the first.  Also, since we didn't specify new colors, both plots are blue (the default color of a single plot). 
+	</p>
+
+	<p>
+		Here we look at the <c>subplot</c> command as well as bar graphs and pie charts to create multiple graphs on the same figure.
+	</p>
+
+	<example xml:id="ex_3Dfunctionplot"><p/>
+	<title><em>The subplot command</em></title><p/>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						&gt;&gt; x = [1,2,4,5,8];  y = [x; 1:5]; 
+						&gt;&gt; subplot(2,3,1), bar(x)
+						&gt;&gt; subplot(2,3,2), bar(y)
+						&gt;&gt; subplot(2,3,3), bar3(y)
+				</input>
+			</program>
+		</sidebyside>
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; subplot(2,1,2), pie(x)
+				</input>
+			</program>
+		</sidebyside>
+
+		<image source="figures/matlab_plot5.png" />
+
+		<p>
+			In this example, the <c>subplot</c> on each line does two things.  First, it (invisibly) subdivides the figure into rows and columns and second, it indicates where the plot will be shown (counting across the rows).  That is: 
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					subplot(\# rows,\# columns, location)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			You can see in the example that even though the plot was "broken up" into 2 rows and 3 columns in the first three subplot lines, the fourth line re-subdivides the plot into 2 rows and 1 column so that the final plot can take up the entire bottom of the plot.  Using the subplots does not require the <c>hold</c> command.
+		</p>
+	</example>
+
+	<p>
+		The previous examples give just a beginning of the graphics capabilities of Matlab (including 3D as in the last example).  We will see more graphics in the remainder of the text, but we suggest reading through the help files for (many) more details. 
+	</p>
+
+</section> 

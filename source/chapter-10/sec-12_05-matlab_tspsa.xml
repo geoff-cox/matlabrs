@@ -1,0 +1,64 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-matlab_tspsa" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Simulated Annealing</title>
+
+	<p>
+		Continuing through the methods, this is the third of four methods to deal with the TSP, simulated annealing (SA). This method is a bit trickier than the brute force and NN methods.  The term "annealing" relates to the way certain properties of metals are altered as the metal is heated to a high temperature and then allowed to cool with set conditions and cooling rate determined by the material.  For steel, for example, annealing purifies and strengthens the material.
+	</p>
+
+	<p>
+		Here are the details about the function.
+	</p>
+
+	<p>
+		The user will provide several pieces of information: A list of the cities in an <m>n \times 2</m> matrix containing the <m>(x,y)</m>-coordinates of the cities, the initial temperature, the cooling rate, the number of iterations, and the initial number of pairs of cities to swap.  Note: in the code it is important to add the home at the origin to the matrix of cities as the algorithm may not always use the home as the starting point to the path.
+	</p>
+
+	<p>
+		The algorithm starts with a random route through the cities (i.e. a permutation) and the calculation of the length of the path.  This is the initialization step.
+	</p>
+
+	<p>
+		Next, a second <insert>possible</insert> route is created by taking the first route and swapping cities: pick two cities at random and swap them in the order of the path, repeating as many times as are listed in "initial number of pairs of cities to swap."  Here the algorithm simulates atoms in a metal randomly moving to a new position.
+	</p>
+
+	<p>
+		Here is the key step to simulated annealing: This new route will become the preferred route if either:
+	</p>
+
+	<p>
+		<ol label="a">
+			<li> It is shorter than the previous route, or </li>
+			<li>It is NOT shorter, but a randomly chosen number satisfies a probability condition that is related to the difference between the two path lengths along with the current temperature (see below).</li>
+		</ol>
+	</p>
+
+	<p>
+		Part b might sound weird initially, but the idea comes from "getting trapped" in a local minimum route rather than seeking the global minimum.  You’ll just have to do some runs to see what I mean about the route not changing because the algorithm isn’t allowed to make big changes without part b).  Trust me anyway.
+	</p>
+
+	<p>
+		The probability condition is based on a Boltzmann distribution.  In part b), you pick a uniform random number and if it is less than <c>exp(-diff/Temp)</c> then you accept the new route, where <c>diff</c> is equal to the absolute value of the difference between the original and new path lengths and <c>Temp</c> is the current temperature.  Effectively, if the temperature is high, then the value of <c>exp(-diff/Temp)</c> is closer to 1 and so the change to the new route is more likely to be accepted (even if it is a longer route).  It is possible that a switch to a temporarily longer route may lead to a better global solution.
+	</p>
+
+	<p>
+		This process of selecting and evaluating a candidate route should be run in a loop over the number of selected iterations. After each iteration in the loop, the temperature should cool a little and the number of pairs of cities to swap should decrease.  For example the temperature may decrease by multiplying by the cooling factor (perhaps 0.9 or 0.99) at each step.  The number of pairs of cities to swap should be initialized with the input value that the user provides ("Initial number of pairs of cities to swap") and is altered at each step using the formula:
+	</p>
+
+	<sidebyside width="100%">
+		<program language="matlab">
+			<input>
+				swaps = floor[(swaps)*[1  – (iteration #)/(Total number of iterations)]] + 1
+			</input>
+		</program>
+	</sidebyside>
+
+	<p>
+		For each iteration, a plot should show the route including your home at the origin and should include the usual information about the plot.  Label your home, the cities (in numerical order as given by the user) and provide information about the total path length and iteration number.  Other information (run time, titles, labels, more text, etc.) would be helpful.  In effect you will see a sequence of plots showing how the route changes as the path "cools down."
+	</p>
+
+</section> 
+
+

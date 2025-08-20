@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--********************************************************************-->
+
+<section xml:id="matrix-types" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Matrix Types</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Explain the difference between a matrix, vector, array, and number/scalar as it pertains to MATLAB.</li>
+			<li>Define a matrix in MATLAB.</li>
+		</ol>
+	</objectives>
+
+	<p>
+		In this section, we introduce what a matrix is and how you can manually create one in MATLAB.
+	</p>
+
+	<definition xml:id="matrix-def">
+	<title><em>Matrix/Vector</em></title>
+		<p>
+			A <term>matrix</term> is a rectangular list of numbers arranged in <m>m</m> rows and <m>n</m> columns. The <term>size</term> of such a matrix is said to be <m>m \times n</m>.
+			<fn>
+				<p>
+					<m>m \times n</m> is pronounced <m>m</m> by <m>n</m>
+				</p>
+			</fn>
+		</p>
+		<p>
+			Special types of matrices, depending on the size of the matrix, are described below: 
+			<ul>
+				<li>a matrix of size <m>1 \times n</m> (one row) is called a <term>row vector</term>, similarly,</li>
+				<li>a matrix of size <m>m \times 1</m> (one column) is called a <term>column vector</term>, and</li>
+				<li>a matrix of size <m>1 \times 1</m> is called a <term>number</term>.<fn>a number is also called a scalar</fn></li>
+			</ul>
+		</p>
+	</definition><aside><p>It may be helpful to think of a matrix as a table or excel spreadsheet.</p></aside>
+
+	<assemblage>
+		<p>
+			In MATLAB, all numeric variables are stored as a <term>matrix</term>. A matrix is also commonly known as an <term>array</term>.
+			<fn><p>In fact, many other programming languages prefer to use "array" to describe a matrix.</p></fn>
+		</p>
+	</assemblage>
+	
+	<p>
+		Some examples of matrices are given in the following table:
+		<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+			<col width="40%"/>
+			<col width="20%"/>
+			<col width="40%"/>
+			<row>
+				<cell>Matrix</cell><cell>Size</cell><cell>Other Names</cell>
+			</row>
+			<row>
+				<cell>
+					<me>
+						\left[
+						\begin{matrix}
+							3 \amp 1 \amp 0 \\
+							0 \amp 1 \amp 4 \\
+							2 \amp 2 \amp 5 \\
+						\end{matrix}
+						\right]
+					</me>
+				</cell>
+				<cell><m>\qquad 3 \times 3 \qquad</m></cell><cell>2d array</cell>
+			</row>
+			<row>
+				<cell>
+					<me>
+						\left[
+						\begin{matrix}
+							1 \amp 1 \\
+							9 \amp 9 \\
+							0 \amp 2 \\
+							0 \amp 0 \\
+						\end{matrix}
+						\right]
+					</me>
+				</cell>
+				<cell><m>4 \times 2</m></cell><cell>2d array</cell>
+			</row>
+			<row>
+				<cell>
+					<me>
+						\quad\left[
+						\begin{matrix}
+							-3 \amp 7 \amp 0 \amp 4\\
+						\end{matrix}
+						\right]\quad
+					</me>
+				</cell>
+				<cell><m>1 \times 4</m></cell><cell>1d array or row vector</cell>
+			</row>
+			<row>
+				<cell>
+					<me>
+						\left[
+						\begin{matrix}
+							-1.0 \\
+							2.2 \\
+							0.02 \\
+						\end{matrix}
+						\right]
+					</me>
+				</cell>
+				<cell>
+					<m>3 \times 1</m>
+				</cell>
+				<cell>
+					<m>\quad</m> 1d array or
+					column vector <m>\quad</m>
+				</cell>
+			</row>
+			<row>
+				<cell>
+					<me>
+						\left[
+						\begin{matrix}
+							5 \\
+						\end{matrix}
+						\right]
+					</me>
+				</cell>
+				<cell>
+					<m>1 \times 1</m>
+				</cell>
+				<cell>
+					number
+				</cell>
+			</row>
+		</tabular>
+	</p>
+
+	<lemma>
+		<title><em>Defining a row vector</em></title><p/>
+		<statement>
+			<p/>
+			A row vector is defined by enclosing a list of values inside brackets, <c>[</c> <c>]</c>.  
+			<p/>
+			The list of values should be separated by commas or spaces.
+			<cd>
+	row_vector = [ value 1, value 2, value 3, ... ]
+			</cd>
+		</statement>
+	</lemma>
+
+	<example xml:id="example-row_vector">
+	<p/>
+	<p>
+		Give the MATLAB command that defines the variable, <c>x</c>, as the row vector,
+		<me>
+			{\bf x} = [1,0,3,1,5].
+		</me>
+	</p>
+
+	<p>
+		<sage language="octave">
+			<input/>
+		</sage>
+		<em> Type the commands in the box above and click the <c>Run MATLAB</c> button or press <kbd>Shift</kbd> + <kbd>Enter</kbd> on your keyboard to see the output. </em>
+	</p>
+
+	<p/>
+	<solution>
+		<p>
+			There are two options, with commas, or with spaces.
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						>> x = [1,0,3,1,5]
+						>> x = [1 0 3 1 5]
+					</input>
+				</program>
+			</sidebyside>
+		</p>
+	</solution>
+
+	</example>
+
+	<lemma>
+		<title><em>Defining a matrix</em></title><p/>
+		<statement>
+			<p/>
+			A matrix is defined by enclosing a list of rows inside brackets, <c>[</c> <c>]</c>.  
+			<p/>
+			The list of rows must be separated by semicolons.
+			<cd>
+		matrix = [ row 1; row 2; row 3; ... ]
+			</cd>
+			where each <c>row</c> is a row vector whose values are separated by commas or spaces.
+		</statement>
+	</lemma>
+
+	<p>
+		<em>To summarize:</em>
+		<ul>
+			<li>matrices and vectors are enclosed in square brackets, <c>[</c> and <c>]</c>,</li>
+			<li>each comma (or space) separates entries on the same row, and</li>
+			<li>each semicolon indicates a new row.</li>
+		</ul>
+	</p>
+
+	<example xml:id="example-define_basic_matrix_1">
+		<p/>
+		<p>
+			Give the MATLAB command that defines the variable, <c>A</c>, as the matrix,
+			<me>
+				A = \left[
+				\begin{matrix}
+					1 \amp 2 \amp 3 \amp 4 \\
+					5 \amp 6 \amp 7 \amp 8 
+				\end{matrix}\right].
+			</me>
+		</p>
+
+		<sage language="octave"><input/></sage>
+
+		<solution>
+			<p>
+				As before, we have the option to use commas or spaces.
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						>> A = [1,2,3,4;5,6,7,8]
+						>> A = [1 2 3 4;5 6 7 8]
+					</input>
+				</program>
+			</sidebyside>
+		</solution>
+	</example>
+
+	<example xml:id="example-define_basic_matrix_2">
+		<p/>
+		<p>
+			Give the MATLAB command that defines the variable, <c>B</c>, as the column vector,
+			<me>
+				B = \left[
+				\begin{matrix}
+					1 \\
+					6 \\ 
+					0 \\ 
+					9 
+				\end{matrix}\right].
+			</me>
+		</p>
+
+		<sage language="octave"><input/></sage>
+
+		<solution>
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						>> B = [1; 6; 0; 9]
+					</input>
+				</program>
+			</sidebyside>
+		</solution>
+	</example>
+
+	<p>
+		You may have noticed, in the last two examples, that the semicolon is used in a new way. It is perhaps unfortunate, but there are symbols including the semicolon, colon and comma that are reused throughout Matlab code and the meaning of a particular symbol will depend on context. Semicolons are used <em>inside</em> matrix definitions to indicate a new row while semicolons are also used at the end of a line to suppress output.
+	</p>
+
+	<example xml:id="example-define_basic_matrix_3">
+		<p/>
+		<p>
+			Give the MATLAB command that defines the variable, <c>C</c>, as the number 3.
+		</p>
+
+		<sage language="octave"><input/></sage>
+
+		<solution>
+			<p>
+				In this case, we have the option to use brackets, or not, like so
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> C = [3]
+							>> C = 3
+						</input>
+					</program>
+				</sidebyside>
+			</p>
+			<p>
+				however, while MATLAB does view numbers as <m>1 \times 1</m> matrices, the brackets are unnecessary and you are encouraged not to use them with numbers. 
+			</p>
+		</solution>
+
+	</example>
+
+<!--
+	<assemblage>
+	<title>Try it!</title>
+		<p>
+			Give the MATLAB command that defines <c>A</c> as the matrix
+			<me>
+				\begin{bmatrix}
+					0 &amp; 3 	\\
+					6 &amp; 1		\\
+					4 &amp; 4
+				\end{bmatrix}
+			</me>
+			<em>Enter your answer below and click "Evaluate" to check the MATLAB output.</em>
+
+			<sage language="octave">
+				<input>
+					% Type code below
+
+					%
+				</input>
+			</sage>
+
+			<solution>
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							A = [0,3;6,1;4,4] % with commas or
+							A = [0 3;6 1;4 4] % without commas
+						</input>
+					</program>
+				</sidebyside>
+
+				<p>
+					<em>Feel free to copy and paste one of these to the code area above.</em>
+				</p>
+			</solution>
+		</p>
+	</assemblage>
+-->
+<investigation>
+	<xi:include href="./conceptual-questions/chkpt-02.xml" />
+	<xi:include href="./conceptual-questions/chkpt-03.xml" />
+</investigation>
+
+</section>

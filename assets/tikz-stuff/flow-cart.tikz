@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 5) {input};
+		\node [style=flow rect] (1) at (0, 4) {task 1};
+		\node [style=flow rect] (2) at (0, 2) {task 3};
+		\node [style=flow rect] (3) at (0, 3) {task 2};
+		\node [style=flow rect] (4) at (0, 1) {task 4};
+		\node [style=none] (6) at (0, 0) {output};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=new edge style 0] (0.center) to (1);
+		\draw [style=new edge style 0] (1) to (3);
+		\draw [style=new edge style 0] (3) to (2);
+		\draw [style=new edge style 0] (2) to (4);
+		\draw [style=new edge style 0] (4) to (6.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,71 @@
+
+<!--********************************************************************-->
+ 
+<section xml:id="sec-matlab_tspga" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Genetic Algorithm</title>
+
+	<p>
+		Continuing from the previous sections, we look at the last of four methods to deal with the TSP, a genetic algorithm (GA).  This method is a bit trickier than the brute force and NN methods.  It is "genetic" in the sense that there are populations of "parents" and "children" and that desired properties are passed from the parents to the children.
+	</p>
+
+	<p>
+		Here are the details about the function you will be writing:
+	</p>
+
+	<p>
+		The user will provide several pieces of information: A list of the cities in an <m>n \times 2</m> matrix containing the <m>(x,y)</m>-coordinates of the cities, the initial temperature, the cooling rate, the number of iterations, and the initial number of pairs of cities to swap.  
+		<note>
+			In the code it is important to add the home at the origin to the matrix of cities as the algorithm may not always use the home as the starting point to the path.
+		</note>
+	</p>
+
+	<p>
+		Initially, there will be a starting set, or population, of 100 random routes to check (each one is just a permutation of the cities – the Matlab function randperm might help).
+	</p>
+
+	<p>
+		The next step is to build up the next population, the children, by selecting the best parts of the parent generation.  To do this, select four random members of the parent population and determine which has the shortest route (the other three will not move on to be part of the child population – they "die off" perhaps). From this remaining population member, let’s call it "parent 1", or <c>P1</c>, create three new members (<c>P1</c>’s "children"), called <c>C1</c>, <c>C2</c>, and <c>C3</c>, by tweaking <c>P1</c> as follows:
+	</p>
+
+	<p>
+		Select a two random integers, <c>r1</c> and <c>r2</c>, between 1 and the number of cities (with <c>r1</c> &lt; <c>r2</c>).
+
+		Create <c>C1</c> from <c>P1</c> by reversing the order of the cities in positions <c>r1</c> through <c>r2</c>.
+
+		Create <c>C2</c> from <c>P1</c> by simply switching the cities in positions <c>r1</c> and <c>r2</c>.
+		Create <c>C3</c> from <c>P1</c> by "shifting the cities down one position and wrapping around." This means for the city in position <c>r1</c> of <c>P1</c> is now in position <c>r1</c>+1 of P4, the city in position <c>r1</c>+1 of <c>P1</c> is now in position <c>r1</c>+2 of <c>C3</c>, etc. until you reach the end where the city in position <c>r2</c> of <c>P1</c> wraps around and become the city in position <c>r1</c> of <c>C3</c>.
+	</p>
+
+	<p>
+		For example, if <c>P1</c> = [5   6   2   3   10   9   1   7   8   4], <c>r1</c> = 4, <c>r2</c> =9, then:
+
+		<c>C1</c> = [5   6   2   8   7   1   9   10   3   4]  
+ (positions 4 through 9 of <c>P1</c> reversed)
+
+		<c>C2</c> = [5   6   2   8   10   9   1   7   3   4]
+  (positions 4 and 9 of <c>P1</c> switched)
+
+		<c>C3</c> = [5   6   2   8   3   10   9   1   7   4]  
+
+		(positions 4 through 8 of <c>P1</c> shifted down, position 9 wrapped to position 4)
+	</p>
+
+	<p>
+		Now add <c>P1</c>, <c>C1</c>, <c>C2</c>, and <c>C3</c> to the new population, the child population.
+	</p>
+
+	<p>
+		So what we have done?  We have taken four members of the parent population, removed three of them, and used the remaining member to create four members of the child population: that is, itself and three of its "kids."
+	</p>
+
+	<p>
+		Repeat the process with another four randomly chosen members of the parent population, making sure not to repeat any previously used members of the parent population.  In the end, twenty-five sets of four parents are evaluated, 25 move along to the next generation along with 75 new children, creating a set of 100 members of the child population, or the 2nd "generation."
+	</p>
+
+	<p>
+		Now, run this for about 1000 "generations."  At each generation, the plot should show the best of the 100 i.e. the shortest route from the current population. Label the home, the cities (in numerical order) and provide information about the total path length and iteration number.  Other information that might be helpful (run time, titles, labels, more text, etc.) would be helpful.
+	</p>
+
+</section>
+
+

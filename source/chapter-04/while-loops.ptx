@@ -1,0 +1,82 @@
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab-while-loops" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title><c>while</c> loop</title> 
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Explain the differences between while loops and for loops.</li>
+			<li>Properly write a while loop statement in MATLAB.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			We discuss <c>while</c> loops in this section.
+		</p>
+	</introduction>
+
+	<p>
+		Now, suppose want to have part of our program run until a certain condition is met, even though we may not know how many times the loop will need to run until that happens.  For this, we use a while loop.
+	</p>
+
+	<p>
+		The basic format of this structure is:
+	</p>
+
+	<sidebyside width="100%">
+		<program language="matlab">
+			<input>
+				while conditions to keep loop running
+					calculations here
+				end
+			</input>
+		</program>
+	</sidebyside>
+
+	<p>
+		Let's rewrite the last example with a slight twist.  Let's find the Fibonacci numbers until they exceed 1000.
+	</p>
+
+	<example xml:id="ex_whileexample"><p/>
+	<title><em>Using while</em></title><p/>
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					A(1) = 0;  % Initialize the matrix 
+					A(2) = 1; 
+					j = 2;     % initialize a counter
+					while A(j) &lt; 1000
+						j = j + 1;  % increase counter by one
+						A(j) = A(j-1) + A(j-2); 
+					end
+					disp(A)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			The output for this would be
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					A =
+						0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			The loop concludes when we pass 1000.  
+		</p>
+	</example>
+
+</section>
+
+

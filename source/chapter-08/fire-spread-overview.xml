@@ -1,0 +1,162 @@
+<!--********************************************************************-->
+
+<section xml:id="sec-model_overview" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Model Overview</title>
+ 
+	<p>
+		Fire has had a dramatic effect on both shaped human history and the natural world. For example, fire in area like the western United States is natural and beneficial to plant communities there. Periodic fired help clear the forest floor of debris and promote the growth of sturdy, fire resistance trees. Unfortunately expanding human populations have intruded on previously uninhabited zones and developed communities in fire-prone areas. Other human activities, such as fire suppression, livestock grazing, and logging have increased the probability of hotter and more destructive fires.
+	</p>
+
+	<p>
+		Additionally, human activity has caused many unintentional fires over the years. For example, during the 2020 Labor Day weekend, a botched gender reveal party started the El Dorado Fire, which burned more than 22,000 acres and claimed the life of one firefighter.
+	</p>
+
+	<p>
+		Fighting fires is a very dangerous job, where the loss of life is a real possibility. In order to enhance the ability of fire and emergency services to effectively deal with fire and related emergencies, mathematical modeling can be employed to test different fire fighting strategies. In this chapter, you will create a particle model of fire spreading using Matlab.
+	</p>
+
+	<p>
+		(This project is adapted from a fire spreading simulator found in the second edition of <em>Introduction to Computational Science</em> by Shiftlet and Shiftlet.)
+	</p>
+
+	<p>
+		You are going to create a program that simulates the spread of a fire in a forest.
+	</p>
+
+	<p>
+		Particle models are examples of a cellular autonoma model. Typically in this model, there is a set of individuals called agents that operate according to a set of rules.  For this project, each agent represents a square area in a forest and models how it interacts with it's surroundings.
+	</p>
+
+	<p>
+		Each square of the forest is either empty, contains trees, or is burning. Patches of burning forest will spread to neighboring spaces that contain trees. Eventually, burning patches will become empty when all flammable objects have burnt.   Empty patches of forest will not burn or spread the fire.
+	</p>
+
+	<p>
+		Initially, each patch in the forest is randomly assigned to be either empty, contains trees, or is burning with some probability.   The simulation consists of time steps that are run and rerun until there are no more burning trees. Each time step consists of 4 steps:
+	</p>
+
+	<ol>
+		<li>
+			Empty spaces grow trees randomly with some probability.
+		</li>
+		<li>
+			Tree filled spaces will catch on fire with some probability if any of the adjacent trees are burning.
+		</li>
+		<li>
+			Each burning space will burn for a set amount or time steps, then become empty.
+		</li>
+		<li>
+			Gender reveal parties (or lightening) will randomly cause patches of trees to start burning.
+		</li>
+	</ol>
+
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<paragraphs xml:id="parameters">
+	<title>Parameters</title><p/>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+		<p>
+			At the top of the script is a list of parameters. These parameters are constant values that control different factors in the simulation.  Each parameter has an initial value, but these can be adjusted. You will need to use the parameters as input values for your functions. That way if you choose to change the values of some parameters, you only need to change its value in one line of the script. Table <xref ref="param"/> summarizes the parameters.
+		</p>
+
+		<table xml:id="param">
+			<title>Parameters for the fire spreading simulation.</title>
+			<tabular halign="center">
+				<row bottom="minor">
+					<cell>Parameter</cell>
+					<cell left="minor">Description</cell>
+				</row>
+				<row>
+					<cell><c>T</c></cell>
+					<cell left="minor" halign="left">Max number of time steps in simulation</cell>
+				</row>
+				<row>
+					<cell><c>N</c></cell>
+					<cell left="minor" halign="left">Number of grid spaces in each direction of the forest</cell>
+				</row>
+				<row>
+					<cell><c>probTree</c></cell>
+					<cell left="minor" halign="left">Probability that a tree is in a space initially</cell>
+				</row>
+				<row>
+					<cell><c>probBurn</c></cell>
+					<cell left="minor" halign="left">Probability that a tree is initially burning</cell>
+				</row>
+				<row>
+					<cell><c>probGrowth</c></cell>
+					<cell left="minor" halign="left">Probability that a tree grows in an empty space</cell>
+				</row>
+				<row>
+					<cell><c>probParty</c></cell>
+					<cell left="minor" halign="left">Probability that a party starts another fire</cell>
+				</row>
+				<row>
+					<cell><c>probCatch</c></cell>
+					<cell left="minor" halign="left">Probability that tree catches fire from its neighbor</cell>
+				</row>
+				<row>
+					<cell><c>burnTime</c></cell>
+					<cell left="minor" halign="left">Timesteps until a burning space becomes empty</cell>
+
+				</row>
+			</tabular>
+		</table>
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	</paragraphs>
+
+	<paragraphs xml:id="model-variables">
+	<title>Variables</title><p/>
+
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		  Information about the <c>N</c><m>\times</m><c>N</c> forest is stored in a variable called Forest. Forest is an <c>N</c><m>\times</m><c>N</c> matrix of the
+		 form where each space is classified as Empty (stored as a 0), Tree (stored as a 1), or Burning (stored as an integer larger or equal to 2). We want to track how long a space has been burning. We will use 2 to represent a space that just started burning, 3 to represent a space that has been burning for 2 timesteps, and in general <c>j</c>+1 to represent a space that has been burning for <c>j</c>  timesteps.
+
+		<p>
+			We also want to track the number of spaces that are empty, trees and burning at each time step. Empty, Tree, and Burning are each a vector of length <c>T</c>. Lastly, the counter variable just counts the number of time steps taken in the simulation. Table <xref ref="var"/> summarizes the variables.
+		</p>
+
+
+		<table xml:id="var">
+			<title>Variables for the fire spreading simulation.</title>
+			<tabular halign="center">
+				<row bottom="minor">
+					<cell>Variable</cell>
+					<cell left="minor">Description</cell>
+					<cell>Size</cell>
+				</row>
+				<row>
+					<cell><c>Forest</c></cell>
+					<cell left="minor" halign="left">Current status of each space in the forest</cell>
+					<cell><c>N</c><m>\times</m><c>N</c></cell>
+				</row>
+				<row>
+					<cell><c>Empty</c></cell>
+					<cell left="minor" halign="left">Number of empty spaces at each time step</cell>
+					<cell><c>T</c><m>\times</m><c>1</c></cell>
+				</row>
+				<row>
+					<cell><c>Tree</c></cell>
+					<cell left="minor" halign="left">Number of tree spaces at each time step</cell>
+					<cell><c>T</c><m>\times</m><c>1</c></cell>
+				</row>
+				<row>
+					<cell><c>Burning</c></cell>
+					<cell left="minor" halign="left">Number of burning spaces at each time step</cell>
+					<cell><c>T</c><m>\times</m><c>1</c></cell>
+				</row>
+				<row>
+					<cell><c>counter</c></cell>
+					<cell left="minor" halign="left">Number of time steps taken in the simulation</cell>
+					<cell><c>1</c><m>\times</m><c>1</c></cell>
+				</row>
+			</tabular>
+		</table>
+	</paragraphs>
+
+
+</section>

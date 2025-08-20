@@ -1,0 +1,473 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-logical-values-operators" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Logical Values &amp; Operators</title> 
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Explain the difference between logical values and numeric values, and</li>
+			<li>Use logical operators to compare two values and interpret the logical output.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			In the previous section, we discussed the different types of code flow. When you control this flow, you have to navigate the code down some desired path. The desired path usually depends on the values of the variables that your program is working with. Therefore, you need a way to get information about these variables. In this section, we will explore some of ways to communicate with MATLAB in order to make decisions about how to direct your code down the right path. 
+		</p>
+	</introduction>
+
+	<paragraphs xml:id="logical-values">
+	<title><insert>Logical Values &amp; Logical Variables</insert></title><p/>
+
+		<p>
+			Making decisions about the flow of code will require you to ask MATLAB "yes" or "no" type of questions. For example, you may want to ask MATLAB if a variable is positive. If you know how to ask MATLAB this question then MATLAB will reply either "yes" or "no". It actually, replies "true" or "false", but you get the idea.  The "true" and "false" responses you receive from MATLAB are call logical values.<fn><p>logical values are also commonly referred to as <em>boolean values</em>.</p></fn> 
+		</p>
+
+		<lemma xml:id="logical-value-def">
+		<title>Logical Values &amp; Logical Variables</title><p/>
+			<statement>
+				<p/>
+				In MATLAB, a <term>logical value</term> is either <c>1</c> (true) or <c>0</c> (false). Any variable that is assigned to a logical value (<c>1</c> or <c>0</c>) is called a <term>logical variable</term>.
+			</statement>
+		</lemma>
+		
+		<p>	 
+			We get a bit more insight into these values when we type them into MATLAB, as follows
+		</p>
+
+		<sidebyside widths="20% 20% 20%" margins="10%">
+
+			<program language="matlab">
+				<input>
+					A = true
+				</input>
+			</program>
+
+			<p>
+				produces
+			</p>
+
+			<program language="matlab">
+				<input>
+					A =
+						logical
+						1
+				</input>
+			</program>
+
+		</sidebyside>
+
+		<sidebyside widths="20% 20% 20%" margins="10%">
+
+			<program language="matlab">
+				<input>
+					B = false
+				</input>
+			</program>
+
+			<p>
+				produces
+			</p>
+
+			<program language="matlab">
+				<input>
+					B =
+						logical
+						0
+				</input>
+			</program>
+
+		</sidebyside>
+
+		<p>
+			There are a few things to note here:
+			<aside>
+				<p>
+					Know that there is a subtle difference between the logical and numeric values for <c>0</c> and <c>1</c>, but, for now, you can think of them as equivalent.
+				</p>
+			</aside>
+			<ul>
+				<li>The word <c>logical</c> (in both outputs), tells you that MATLAB views <c>A</c> and <c>B</c> as logical variables.</li>
+				<li>The <c>1</c> (output for <c>A</c>), indicates that <c>true</c> equals the logical value <c>1</c>.</li>
+				<li>The <c>0</c> (output for <c>B</c>), indicates that <c>false</c> equals the logical value <c>0</c>.</li>
+			</ul>
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="relational-operators">
+	<title><insert>Relational Operators</insert></title><p/>
+		
+		<p>
+			While logical values represent the way MATLAB says "yes" or "no", <em>relational operators</em> represent the way you can ask questions in MATLAB. For example, if <c>x</c> and <c>y</c> are variables containing two numeric values, you could ask questions like	"Is <c>x</c> greater than <c>y</c>?" or "Is <c>x</c> equal to <c>y</c>?". The "greater than" and "equal to" are examples of relational operators that generate a <c>1</c> ("yes") or <c>0</c> ("no") response.
+		</p>
+
+		<lemma xml:id="relational-operators-def">
+		<title>Relational Operators</title><p/>
+			<statement>
+				<p/>
+				Let <c>x</c> and <c>y</c> variables containing numeric values. The <term>relational operators</term> in MATLAB are listed below.
+				<p/>
+				<tabular>
+					<row>
+						<cell>Command</cell><cell/><cell>Translation</cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>x &lt; y</cd></cell>
+						<cell/>
+						<cell><m>\texttt{x }</m> less than <m>\texttt{y}</m></cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>x &lt;= y</cd></cell>
+						<cell/>
+						<cell><m>\texttt{x }</m> less than or equal to <m>\texttt{y}</m></cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>x &gt; y</cd></cell>
+						<cell/>
+						<cell><m>\texttt{x }</m> greater than <m>\texttt{y}</m></cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>x &gt;= y</cd></cell>
+						<cell/>
+						<cell><m>\texttt{x }</m> greater than or equal to <m>\texttt{y}</m></cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>x == y</cd></cell>
+						<cell/>
+						<cell><m>\texttt{x }</m> equal to <m>\texttt{y}</m></cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>x ~= y</cd></cell>
+						<cell/>
+						<cell><m>\texttt{x }</m> not equal to <m>\texttt{y}</m></cell>
+					</row>
+				</tabular>
+				<p/>
+				The commands in the left column return a logical value (<c>1</c> or <c>0</c>) indicating the truth of the corresponding relation between <c>x</c> and <c>y</c>.
+			</statement>
+		</lemma>
+
+		<p>
+			The table below provides some simple examples of how relational operators are used to ask "yes" or "no" questions.
+		</p>
+		
+		<table>
+		<title>Sample English and MATLAB translation of relational operators.</title>
+			<tabular top="minor" left="minor" right="minor">
+				<col halign="right"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<row>
+					<cell halign="center" colspan="2">English</cell>
+					<cell halign="center" colspan="2">MATLAB</cell>
+				</row>
+				<row top="minor" bottom="minor">
+					<cell halign="center" right="none">Question</cell>
+					<cell>Answer</cell>
+					<cell right="none">Question</cell>
+					<cell>Answer</cell>
+				</row>
+				<row>
+					<cell>Is <m>\texttt{4 }</m> less than <m>\texttt{4 }</m>?</cell>
+					<cell>no</cell>
+					<cell><cd>4 &lt; 4</cd></cell>
+					<cell><cd>0</cd></cell>
+				</row>
+				<row>
+					<cell>Is <m>\texttt{4 }</m> less than or equal to <m>\texttt{4 }</m>?</cell>
+					<cell>yes</cell>
+					<cell><cd>4 &lt;= 4</cd></cell>
+					<cell><cd>1</cd></cell>
+				</row>
+				<row>
+					<cell>Is <m>\texttt{3 }</m> greater than <m>\texttt{-4 }</m>?</cell>
+					<cell>no</cell>
+					<cell><cd>3 &gt; -4</cd></cell>
+					<cell><cd>0</cd></cell>
+				</row>
+				<row>
+					<cell>Is <m>\texttt{3 }</m> greater than or equal to <m>\texttt{-4 }</m>?</cell>
+					<cell>no</cell>
+					<cell><cd>3 &gt;= -4</cd></cell>
+					<cell><cd>0</cd></cell>
+				</row>
+				<row>
+					<cell>Is <m>\texttt{4 }</m> equal to <m>\texttt{-4 }</m>?</cell>
+					<cell>no</cell>
+					<cell><cd>4 == -4</cd></cell>
+					<cell><cd>0</cd></cell>
+				</row>
+				<row bottom="minor">
+					<cell>Is <m>\texttt{4 }</m> not equal to <m>\texttt{-4 }</m>?</cell>
+					<cell>yes</cell>
+					<cell><cd>4 ~= -4</cd></cell>
+					<cell><cd>1</cd></cell>
+				</row>
+			</tabular>
+		</table>
+
+		<example xml:id="example-basic-relations"><p/>
+		<title><em>Basic Relations</em></title><p/>
+			<p>
+				Using <c>p = 3</c> and <c>q = 4</c>, give the MATLAB commands that defines:
+				<ol label="a">
+					<li><c>ans1</c> as the answer to the question "is <c>p</c> equal to <c>q</c>?".</li>
+					<li><c>ans2</c> as the answer to the question "is <c>q</c> less than or equal to <c>p</c>?".</li>
+				</ol>  
+			</p>
+
+			<sage language="octave">
+				<input>
+					p = 3; q = 4;
+					?
+					?
+				</input>
+			</sage>
+
+			<solution>
+			<p>
+				Following the table, you would ask these questions using the commands
+			</p>
+
+			<program language="matlab">
+				<input>
+					p = 3; q = 4;
+					ans1 = p == q
+					ans2 = p &lt;= q
+				</input>
+			</program>
+
+			<p>
+				returns
+			</p>
+
+			<program language="matlab">
+				<input>
+					ans1 = 0
+					ans2 = 1
+				</input>
+			</program>
+
+			</solution>
+		</example>
+
+	</paragraphs>
+	
+	<paragraphs xml:id="logical-operators">
+	<title><insert>Logical Operators</insert></title><p/>
+
+		<p>
+			Sometimes you need to combine multiple questions in order to make a decision on which task(s) to perform. For example, consider the following similar statements:
+			<sidebyside widths="20% 70%" margins="5%">
+				<p>Statement 1:</p>
+				<p>
+					"Is <c>5</c> less than <c>10</c> <term>and</term> <c>3</c> equal to <c>-6</c> ?",
+				</p>
+			</sidebyside>
+			<sidebyside widths="20% 70%" margins="5%">
+				<p>Statement 2:</p>
+					<p>
+					"Is <c>5</c> less than <c>10</c> <term>or</term> <c>3</c> equal to <c>-6</c> ?".
+				</p>
+			</sidebyside>
+		</p>
+
+		<p>
+			In both statements, you are asking the same two questions, but they are joined by either an "and" or an "or".  In Statement 1, the "and" indicates that BOTH questions need be true in order for Statement 1 to be true. In contrast, the "or", in Statement 2, indicates that ONLY ONE of the questions need be true in order for Statement 2 to be true. 
+		</p>
+
+		<p>	
+			The keywords, "and" and "or", are examples of <em>logical operators</em> and they are needed to make decision that contain multiple parts. 
+		</p>
+
+		<lemma xml:id="logical-operators-def">
+		<title>Logical Operators</title><p/>
+			<statement>
+				<p/>
+				Let <c>part_1</c> and <c>part_2</c> be variables containing <xref ref="logical-values" text="custom">logical values</xref>. In MATLAB, <c>&amp;</c> (and), <c>|</c> (or), and <c>~</c> (not) are known as <term>logical operators</term>, described below. 
+				<aside><p><c>xor</c> is another logical operator available in MATLAB that tends to be used less than the operators listed here. If you are curious about it, see MATLAB's documentation.</p></aside> 
+				<p/>
+				<tabular halign="center">
+					<row>
+						<cell><insert>Command</insert></cell><cell/><cell><insert>Result</insert></cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>part_1 &amp; part_2</cd></cell>
+						<cell/>
+						<cell><c>1</c> (true) only if both <c>part_1</c> and <c>part_2</c> are <c>1</c> (true)</cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>part_1 | part_2</cd></cell>
+						<cell/>
+						<cell><c>1</c> (true) if at least one of <c>part_1</c>,<c>part_2</c> are <c>1</c> (true)</cell>
+					</row>
+					<row>
+						<cell halign="center"><cd>~part_1</cd></cell>
+						<cell/>
+						<cell><c>1</c> (true) only if <c>part_1</c> is <c>0</c> (false)</cell>
+					</row>
+
+				</tabular>
+				<p/>
+				All logical operator commands return a logical value (<c>1</c> or <c>0</c>).
+			</statement>
+		</lemma>
+
+		<p>
+			The following table summarizes every possible outcome for each of the logical operators above.
+		</p>
+
+		<table>
+		<title>Logical Operators. Truth Tables. </title>
+			<tabular top="minor" bottom="minor" left="minor" right="minor" >
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<row>
+					<cell colspan="2">Logical Variables</cell>
+					<cell colspan="3">Logical Operator Results</cell>
+				</row>
+				<row>
+					<cell><cd>part_1</cd></cell>
+					<cell><cd>part_2</cd></cell>
+					<cell><cd>part_1 &amp; part_2</cd></cell>
+					<cell><cd>part_1 | part_2</cd></cell>
+					<cell><cd>~part_1</cd></cell>
+				</row>
+				<row>
+					<cell><cd>1</cd></cell>
+					<cell><cd>1</cd></cell>
+					<cell><cd>1</cd></cell>
+					<cell><cd>1</cd></cell>
+					<cell><cd>0</cd></cell>
+				</row>
+				<row>
+					<cell><cd>1</cd></cell>
+					<cell><cd>0</cd></cell>
+					<cell><cd>0</cd></cell>
+					<cell><cd>1</cd></cell>
+					<cell><cd>0</cd></cell>
+				</row>
+				<row>
+					<cell><cd>0</cd></cell>
+					<cell><cd>1</cd></cell>
+					<cell><cd>0</cd></cell>
+					<cell><cd>1</cd></cell>
+					<cell><cd>1</cd></cell>
+				</row>
+				<row>
+					<cell><cd>0</cd></cell>
+					<cell><cd>0</cd></cell>
+					<cell><cd>0</cd></cell>
+					<cell><cd>0</cd></cell>
+					<cell><cd>1</cd></cell>
+				</row>
+			</tabular>
+		</table>
+
+		<note>
+			<p>
+				In MATLAB, you can also use the "short-circuited" operators, <c>&amp;&amp;</c> and <c>||</c> for "and" and "or", respectively. When you do, the left value, <c>part_2</c>, is ignored when the result can be determined from just <c>part_1</c>.  For example, when evaluating <c>part_1 &amp; part_2</c>, if <c>part_1</c> is <c>0</c>, then <c>part_2</c> doesn't matter since the result must be <c>0</c> (see the last two rows of the table above). On the other hand, if <c>part_1</c> is <c>1</c>, then <c>part_2</c> is needed to determine if result is <c>1</c> or <c>0</c>.
+			</p>
+		</note>
+
+		<example xml:id="example-basic-logical-operators">
+		<title><em>Basic Logical Operators</em></title>
+			
+			<p>
+				Give the command to ask the question "is 3 greater than or equal to 2 AND 3 plus 4 equal to 6?".
+				<program language="matlab">
+				<input>
+					(3 &gt;= 2) &amp; (3+4 == 6)
+				</input>
+				</program>
+			</p>
+
+			<p>
+				Running this yields			
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+								ans=
+									0
+						</input>
+					</program>
+				</sidebyside>
+			</p>
+
+			<p>
+				The answer is false (or a zero) since even though 3 is greater than 2, it is not true that 3 plus 4 is 6.
+			</p>
+
+		</example>
+
+		<example xml:id="example-logical-operators"><p/>
+		<title><em>Logical Operators</em></title><p/>
+			<p>
+				Using <c>p = -3</c>, give the MATLAB commands that defines:
+				<ol label="a">
+					<li><c>ans1</c> as the answer to "is <c>p</c> positive?".</li>
+					<li><c>ans2</c> as the answer to "is <c>p</c> equal to <c>4</c>".</li>
+					<li><line><c>ans3</c> as the answer "is <c>p</c> positive and equal to <c>4</c>?".</line><line><em>Use</em> <c>ans1</c> <em>and</em> <c>ans2</c>.</line></li>
+					<li><c>ans4</c> as the answer to "is <c>p</c> not positive?". <em>Use</em> <c>ans1</c>.</li>
+					<li><c>ans5</c> as the answer to "is <c>p</c> not equal to <c>5</c> or greater than 7?".</li>
+				</ol>  
+			</p>
+
+			<sage language="octave">
+				<input>
+					p = -3;
+					?
+					?
+					?
+				</input>
+			</sage>
+
+			<solution>
+			<p>
+				Following the table, you would ask these questions using the commands
+			</p>
+
+			<program language="matlab">
+				<input>
+					p = -3;
+					ans1 = p > 0
+					ans2 = p == 4 
+					ans3 = ans1 &amp; ans2
+					ans4 = ~ans1
+					ans5 = (p ~= 5) | (p &gt; 7)
+				</input>
+			</program>
+
+			<p>
+				returns
+			</p>
+
+			<program language="matlab">
+				<input>
+					ans1 = 0
+					ans2 = 0
+					ans3 = 0
+					ans4 = 1
+					ans5 = 1
+				</input>
+			</program>
+
+			</solution>
+		</example>
+
+	</paragraphs>
+
+</section>
+
+

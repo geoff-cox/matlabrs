@@ -1,0 +1,317 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-if-statements" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title><c>if</c> statement</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Use an if-statement to control which tasks your code should run.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			Now that we know how to ask "yes" or "no" questions in code, we are ready to discuss how to control which tasks we want to perform.  We have been referring to this as <em>Flow 2</em>, where our code splits toward one flow path or another.  This "splitting" of the flow is accomplished with an <c>if</c>-statement.
+			<aside>
+				<p>
+					<image source="images/flow-control-chart-subimage2.svg"/>
+				</p>
+			</aside>
+		</p>
+	</introduction>
+
+	<paragraphs xml:id="if_else">
+	<title><c>if</c>-statements</title><p/>
+
+		<lemma xml:id="if-statement-def">
+		<title><c>if</c>-statement</title><p/>
+			<statement>
+				<p/>
+				Suppose you want your code to perform only one of the following tasks:
+				<sidebyside widths="65% 25%" valign="middle">
+					<tabular>
+					<col  width="100%"></col>
+						<row><cell>task A if <c>condition_1</c> is <c>true</c></cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+						<row><cell>task B if <c>condition_2</c> is <c>true</c></cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+						<row><cell>task C if <c>condition_3</c> is <c>true</c></cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+						<row><cell>task D if none of the above are <c>true</c></cell></row>
+						<row><cell></cell></row>
+						<row><cell></cell></row>
+					</tabular>
+					
+					<image xml:id="if-statement-fig1">
+						<latex-image>
+							\begin{tikzpicture}
+								\definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+
+								\node [rect node 2]                 (00) at (0, 4.5) {};
+								\node [rect node 2]                 (10) at (0, 4) {};
+								\node                               (100) at (1.5, 4.2) {$\texttt{\color{blue}condition\_1}$};
+								\node [rect node 2, draw=blue]      (11) at (3.7, 4) {\color{blue}task A};
+								\node [rect node 2]                 (20) at (0, 3) {};
+								\node                               (200) at (1.5, 3.2) {$\texttt{\color{red}condition\_2}$};
+								\node [rect node 2, draw=red]       (21) at (3.7, 3) {\color{red}task B};
+								\node [rect node 2]                 (30) at (0, 2) {};
+								\node                               (300) at (1.5, 2.2) {$\texttt{\color{darkgreen}condition\_3}$};
+								\node [rect node 2, draw=darkgreen] (31) at (3.7, 2) {\color{darkgreen}task C};
+								\node [rect node 2]                 (40) at (0, 1) {};
+								\node                               (400) at (1.5, 1.2) {$\texttt{\color{orange}otherwise}$};
+								\node [rect node 2, draw=orange]    (41) at (3.7, 1) {\color{orange}task D};
+								\node [rect node 2]                 (50) at (0, 0.5) {};
+								
+								\draw [draw=black, line width=0.3mm]          (00.south) to (10.north);
+								\draw [->,draw=blue, line width=0.3mm]        (10.east) to  (11.west);
+								\draw [draw=black, line width=0.3mm]          (10.south) to (20.north);
+								\draw [->,draw=red, line width=0.3mm]         (20.east) to  (21.west);
+								\draw [draw=black, line width=0.3mm]          (20.south) to (30.north);
+								\draw [->,draw=darkgreen, line width=0.3mm]   (30.east) to  (31.west);
+								\draw [draw=black, line width=0.3mm]          (30.south) to (40.north);
+								\draw [->,draw=orange, line width=0.3mm]      (40.east) to  (41.west);
+								\draw [->,draw=black, line width=0.3mm]       (40.south) to (50.north);
+							\end{tikzpicture}
+						</latex-image>
+					</image>
+				</sidebyside>
+				<p/>
+				with <xref ref="logical-values" text="custom">logical variables</xref>: <c>condition_1</c>, <c>condition_2</c>, and <c>condition_3</c>.
+				<p/>
+				Then the MATLAB commands needed for this flow are
+				<aside>
+					<p>
+						This if-statement shows four branches, but there can be as many as you like. You would just add additional <c>elseif</c> statements between the <c>if</c> and <c>else</c> statements.
+					</p>
+				</aside>
+				<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						if condition_1
+
+							task A commands
+
+						elseif condition_2
+
+							task B commands
+
+						elseif condition_3
+
+							task C commands
+
+						else
+
+							task D commands
+
+						end
+					</input>
+				</program>
+				</sidebyside>
+				<p/>
+				<p>
+					MATLAB performs ONLY the task where the FIRST condition is true. The rest of the tasks are ignored. That is, even if both <c>condition_2</c> and <c>condition_3</c> are true, only the <c>task B</c> commands are run. The code picks up right after the if-statement's <c>end</c> line.
+				</p>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-if-else"><p/>
+		<title><em><m>\texttt{if-else}\quad</m></em></title><p/>
+
+			<p>
+				Suppose <c>x</c> contains a numeric value. Write a script that increases <c>x</c> by 5 if it is greater than 10 and decreases it by 5 otherwise.
+			</p>
+
+			<p>
+				<em>Notes:
+					<ul>
+						<li>Complete lines 2-5 first, then, choose a value for <c>x</c>, on line 1.</li>
+						<li><c>disp(x)</c> on line 7 just displays the value of <c>x</c>.</li>
+					</ul>
+				</em>
+			</p>
+
+			<sage language="octave">
+				<input>
+					x = ?;       % choose a value for x (do this last!)
+					if ?         % give the condition to increase x
+					    x = ?;   % increase x by 5
+					else
+					    x = ?;   % decrease x by 5
+					end
+					disp(x)
+				</input>
+			</sage>
+
+			<solution>
+
+				<p> 
+					Lines 2-7 should look something like 
+					<program language="matlab">
+						<input>
+							if x > 10
+								x = x + 5;
+							else
+								x = x - 5;
+							end
+							disp(x)
+						</input>
+					</program>
+				</p>
+
+				<p>
+					then, setting <c>x = 4</c> on line 1 and running the commands, outputs
+					<program language="matlab">
+						<input>
+							-1
+						</input>
+					</program>
+				</p>
+
+				<p>
+					Using <c>x = 50</c> instead, yields
+					<program language="matlab">
+						<input>
+							55
+						</input>
+					</program>
+				</p>
+
+			</solution>
+
+		</example>
+
+		<example xml:id="example-if-elseif-else"><p/>
+		<title><em><m>\texttt{if-elseif-else}\quad\,\,\,\,</m></em></title><p/>
+
+			<p>
+				Suppose <c>v</c> is a vector containing 3 numeric values. Write a script that defines, <c>k</c> as the index of the first positive number in <c>v</c>. If there are no positive numbers then set <c>k</c> to <c>-1</c>.
+			</p>
+			
+			<p>
+			<sage type="full" language="octave">
+				<input>
+					v = [?,?,?];  % choose 3 numbers to put in v (do this last!)
+					if ?          % 1st condition
+					    k = ?;    % do this if the 1st condition is true
+					elseif ?      % 2nd condition
+					    k = ?;    % do this if the 2nd condition is true
+					elseif ?      % 3rd condition
+					    k = ?;    % do this if the 3rd condition is true
+					else
+					    k = ?;    % do this if the none of the above are true
+					end
+					disp(k)
+				</input>
+			</sage>
+			</p>
+
+			<solution>
+
+				<p> 
+					In this example, we are trying to guide you into using the logic 
+					<ul>
+						<li>"if the 1st value positive, then set k = 1",</li>
+						<li>"if the 2nd value positive, then set k = 2",</li>
+						<li>"is the 3rd value positive, then set k = 3",</li>
+						<li>"otherwise, set k = -1"</li>
+					</ul>
+				</p>
+
+				<p>
+					in this order. In MATLAB, this translate to the commands
+					<program language="matlab">
+						<input>
+							if v(1) > 0
+								k = 1;
+							elseif v(2) > 0
+								k = 2;
+							elseif v(3) > 0
+								k = 3;
+							else
+								k = -1;
+							end
+						</input>
+					</program>
+				</p>
+
+				<p>
+					Finally, setting <c>v = [3, 6, -3]</c> on line 1 and clicking run, outputs
+					<program language="matlab">
+						<input>
+							3
+						</input>
+					</program>
+				</p>
+
+				<p>
+					whereas, using <c>v = [3, 6, 3]</c> instead, yields
+					<program language="matlab">
+						<input>
+							-1
+						</input>
+					</program>
+				</p>
+
+			</solution>
+
+			<p>
+				How does the code change if you set <c>k</c> to be the index of the last positive number in <c>v</c> instead of the first?
+			</p> 
+			
+			<p/>
+			<solution>
+
+				<p> 
+					Recall that MATLAB only runs the commands of the FIRST TRUE branch of the if-statement and ignores all rest. Therefore, the order of the logic must be reversed, like so
+					<ul>
+						<li>"if the 3rd value positive, then set k = 3",</li>
+						<li>"if the 2nd value positive, then set k = 2",</li>
+						<li>"is the 1st value positive, then set k = 1".</li>
+						<li>"otherwise, set k = -1".</li>
+					</ul>
+				</p>
+
+			</solution>
+		</example>
+
+		<p>
+			We end this section with one more example to shows that the <c>else</c> part of an if-statement is optional if there is "nothing else" to do.
+		</p>
+
+		<example xml:id="example-else-optional"><p/>
+		<title><em>Optional <m>\texttt{else}\quad</m></em></title><p/>
+
+			<p>
+				Suppose <c>x</c> contains a numeric value. Write a script that increases <c>x</c> by 5 if it is greater than 10, decreases <c>x</c> by 5 if it is less than 10, and does nothing if <c>x</c> is zero.
+			</p>
+
+			<p>
+				If <c>x = 0</c>, the below script runs the commands <c>x = x - 5</c> and <c>disp(x)</c>, outputting <c>-5</c>. However, if <c>x = 10</c>, only the <c>disp(x)</c> command is run, producing an output of <c>10</c>.
+				<program language="matlab">
+					<input>
+						if x &gt; 10
+							x = x + 5;
+						elseif x &lt; 10
+							x = x - 5;
+						end
+						disp(x)
+					</input>
+				</program>
+			</p>
+
+		</example>
+
+	</paragraphs>
+
+</section>
+
+

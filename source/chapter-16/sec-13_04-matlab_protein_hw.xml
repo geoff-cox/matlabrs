@@ -1,0 +1,145 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_Protein_HW" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Protein Struct Homework Problems</title>
+
+	<ol>
+		<li>
+			<p>
+				Retrieving Data from the PDB
+			</p>
+
+			<p>
+				Use <c>getpdb</c> to download the PDB file with identifier 1AKO and store it in a properly named variable.
+			</p>
+		</li>
+		<li>
+			<p>
+				Parts of the PDB entry’s structure array
+			</p>
+
+			<p>
+				From the previous roblem, you should have the variable with all of the details about the protein in a structure array.  Using this structure array, access the following:
+				<ol>
+					<li>
+						<p>
+							The name of the protein.
+						</p>
+					</li>
+					<li>
+						<p>
+							The name(s) of the authors.
+						</p>
+					</li>
+					<li>
+						<p>
+							The dates it was deposited and revised in the PDB.
+						</p>
+					</li>
+				</ol>
+			</p>
+		</li>
+		<li>
+			<p><em>Structure of the Protein</em></p>
+
+			<p>
+				Find the (x,y,z) locations of the nitrogen, main-chain carbon, oxygen and alpha carbon atoms and store them in four appropriately named matrices.  These are the main-chain (backbone) atoms.
+			</p>
+		</li>
+		<li>
+			<p><em>Residue Names</em></p>
+		
+			<p>
+				Create an <m>n \times 3</m> <c>char</c> array that contains the three letter codes of the residues, where n is the number of residues. Note, the list is by residue, not repeated for every atom.
+			</p>
+		</li>
+		<li>
+			<p><em>Backbone atoms</em></p>
+			
+			<p>
+				Create a structure array that contains just the part of the pdb structure array that contains just the backbone atoms and look in the Matlab help files to find out how to display the 3D structure of the protein and the backbone you’ve created.  Hint: start with the original and delete the unwanted parts.
+			</p>
+		</li>
+		<li>
+			<p><em>Exporting to Excel</em></p>
+			
+			<p>
+				Now, using xlswrite, and information from the other problems above to create an Excel file that contains the backbone information for all residues like:
+			</p>
+
+			<tabular>
+				<row>
+					<cell>N</cell>
+					<cell>MET</cell>
+					<cell>1</cell>
+					<cell>21.182</cell>
+					<cell>23.095</cell>
+					<cell>19.731</cell>
+				</row>
+				<row>
+					<cell>CA</cell>
+					<cell>MET</cell>
+					<cell>1</cell>
+					<cell>21.175</cell>
+					<cell>22.975</cell>
+					<cell>18.256</cell>
+				</row>
+				<row>
+					<cell>C</cell>
+					<cell>MET</cell>
+					<cell>1</cell>
+					<cell>22.352</cell>
+					<cell>22.067</cell>
+					<cell>17.886</cell>
+				</row>
+				<row>
+					<cell>O</cell>
+					<cell>MET</cell>
+					<cell>1</cell>
+					<cell>23.494</cell>
+					<cell>22.373</cell>
+					<cell>18.208</cell>
+				</row>
+				<row>
+					<cell>N</cell>
+					<cell>LYS</cell>
+					<cell>2</cell>
+					<cell>22.055</cell>
+					<cell>20.919</cell>
+					<cell>17.294</cell>
+				</row>
+				<row>
+					<cell>CA</cell>
+					<cell>LYS</cell>
+					<cell>2</cell>
+					<cell>23.083</cell>
+					<cell>19.965</cell>
+					<cell>16.910</cell>
+				</row>
+				<row>
+					<cell>C</cell>
+					<cell>LYS</cell>
+					<cell>2</cell>
+					<cell>23.323</cell>
+					<cell>19.998</cell>
+					<cell>15.412</cell>
+				</row>
+				<row>
+					<cell>O</cell>
+					<cell>LYS</cell>
+					<cell>2</cell>
+					<cell>22.370</cell>
+					<cell>19.975</cell>
+					<cell>14.621</cell>
+				</row>
+				<row>
+					<cell>etc.</cell>
+				</row>
+			</tabular>
+		</li>
+	</ol>
+
+</section> 
+
+

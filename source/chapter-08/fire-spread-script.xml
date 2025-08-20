@@ -1,0 +1,46 @@
+
+<!--********************************************************************-->
+
+<subsection xml:id="sec-script" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Script</title>
+ 
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+	<p>
+		This simulation will be run from main script where all parameters are defined and functions are called to accomplish tasks. Start the project by creating a script and saving it using proper naming conventions, adding comments about what the script is supposed to do, how to run it, and some information about the author.
+		Define all simulation parameters and write comments about what each does. No not hard code parameter values or define parameter values in multiple places. This can cause troublesome and difficult to find errors later when you vary the parameters. Next you will use the initialize function (described below) to define all variables for this simulation.
+	</p>
+
+	<p>
+		After you define all variables and parameters, you will move on to the main components of the simulation. Each time step, you will determine the evolution of the fire by calling the fireSpread function, display the current forest state, using the displayForest function,  and update all of the counter variables using the updateCounter function. These will be called repeatedly, until either the max number of timesteps is exceeded or until there are no more burning spaces. This indicates that a while loop should be used.
+	</p>
+
+	<p>
+		Here is some psuedocode that describes the general format of your script.
+		<sidebyside width="100%">
+			<algorithm>
+			<program language="matlab">
+				<input>
+					% Define Parameters
+					% Define Variables using Initialize function
+					% Create counter variable initialize to 1.
+					% Use a while loop to run time steps
+					% Loop while there are burning spaces OR  
+					%            the counter is under the max number of iterations
+						% SpreadFire
+						% DisplayForest
+						% UpdateCounters
+					% end while loop
+					% Display Results
+			</input>
+			</program>
+			</algorithm>
+		</sidebyside>
+	</p>
+
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+</subsection>
+
+

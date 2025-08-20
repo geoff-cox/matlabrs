@@ -1,0 +1,129 @@
+<!--********************************************************************-->
+<exercises>
+
+	<exercise>
+		<statement>
+			<p>
+				Write a Matlab <term>function</term> with the following details.
+				<ul>
+					<li>Name the function appropriately</li>
+					<li>Comment the function appropriately including a description of the usage.</li>
+					<li>The function should have three inputs <m>{\bf a, b, n}</m></li>
+					<li>The function should have three outputs <term>Rsum, Tsum, Ssum</term></li>
+					<li>Once the function is run, a <term>menu</term> should appear with three choices of functions to choose from:</li>
+					<me>
+						x^2, \quad \sin x, \quad \sqrt{\frac{1}{2\pi}} e^{-x^2/2}
+					</me>
+					<li>Once the user clicks on a function from the menu, the function should compute the three approximations and output the values in a nice format (Hint: use <c>fprintf</c>).</li>
+					<li>If <m>n</m> is not even, then only the Rsum and Tsum should be displayed with a message saying the Ssum could not be calculated.</li>
+				</ul>
+			</p>
+
+			<p>
+				Here is a sample run.  Suppose I typed this :
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						&gt;&gt; [Rsum,Tsum,Ssum]=siemerstjMethods(0,1,6)
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				and then clicked on the <m>x^2</m> button in the menu. Then the output should be:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						Rsum=.25463, Tsum=.3380, Ssum=0.33333
+					</input>
+				</program>
+			</sidebyside>
+
+		</statement>
+	</exercise>
+
+	<exercise>
+		<statement>
+			<p>
+				A famous problem in mathematics is the Traveling Salesman Problem where the minimum distance of traveling from a home city, through n cities and back to the home city.  In this program, you will simulate part of this problem.
+			</p>
+
+			<p>
+				You will write a Matlab <c>function</c> with the following details:
+			</p>
+
+			<p>
+				<ul>
+					<li> Name the function appropriately (like siemerstjTravelingSalesman)</li>
+
+					<li> Comment the function appropriately including a description of the usage.</li>
+
+					<li> The function has <term>one input</term> (a matrix of locations of the cities) and <term>no outputs</term>.</li>
+
+					<li> Once the function is run, a figure will appear with the cities indicated with one type of symbol and the home city (at the <term>origin</term>) with another.</li>
+
+					<li> The user will select cities one at a time with the mouse.</li>
+
+					<li> Each time a city is selected, a line is drawn from the previous city with a message of the city selected.</li>
+
+					<li> Repeat until all cities are selected.</li>
+
+					<li> Once the last remaining city is selected, a line is drawn back to the home city and the total distance of the trip is displayed.</li>
+				</ul>
+			</p>
+
+			<p>
+				Code execution:
+			</p>
+
+			<p>
+				Suppose I enter <c>siemerstjTravelingSalesman([1 1; 2 2; 3 10])</c>.  Then the following picture chould appear.  The "home base" plotted as a green asterisk at the origin and the three cities are plotted at the coordinates <m>(1,1), (2,2), (3,10)</m>.  Note that the screen is a little larger so that the cities do not fall on the edge of the plot.  You can adjust the size with <c>xlim, ylim</c> or <c>axes</c>.
+			</p>
+
+			<sidebyside widths="70%" margins="auto" valign="middle">
+				<image source="figures/matlab_ts1.png" />
+			</sidebyside>
+			
+			<p>
+				When I click on the closest city (at <m>(1,1)</m>), I now have
+			</p>
+
+			<sidebyside widths="70%" margins="auto" valign="middle">
+				<image source="figures/matlab_ts2.png" />
+			</sidebyside>
+			
+			<p>
+				Click the next city...
+			</p>
+
+			<sidebyside widths="70%" margins="auto" valign="middle">
+				<image source="figures/matlab_ts3.png" />
+			</sidebyside>
+
+			<p>
+				Finish with the last city...
+			</p>
+
+			<sidebyside widths="70%" margins="auto" valign="middle">
+				<image source="figures/matlab_ts4.png" />
+			</sidebyside>
+
+			<p>
+				A few issues arise as you work through the code for this project:
+			</p>
+
+			<p>
+				<ul>
+					<li>Does the user have to click exactly on top of a city, or just close?</li>
+					<li>How do you keep the user from selecting the same city twice?</li>
+					<li>How do you make the text for one city "disappear" when the next city is clicked? (see <c>set</c> command for one possibility).</li>
+				</ul>
+			</p>
+		</statement>
+	</exercise>
+
+</exercises>

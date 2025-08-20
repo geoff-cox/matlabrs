@@ -1,0 +1,523 @@
+<!--********************************************************************-->
+
+<section xml:id="accessing-matrix-values">
+<title>Accessing Multiple Values</title> 
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Access an entire row and/or column of a matrix.</li>
+			<li>Access a partial row and/or column of a matrix.</li>
+			<li>Access a values from multiple row and columns.</li>
+		</ol>
+	</objectives>
+
+	<p>
+		Additional Resources:
+	</p>
+	<url href="https://www.mathworks.com/company/newsletters/articles/matrix-indexing-in-matlab.html">Matrix Indexing in MATLAB</url>
+	
+	<p>
+		In the previous section, we introduced two ways to access a single value inside of a matrix using either row/column or absolute indexing. In this section, we will explore how you can access multiple values inside of a matrix using the <xref ref="colon-operator-def" text="custom"><em>colon</em> operator</xref> ,<c>:</c>, that we introduced in the "Evenly-Spaced Matrices" section.
+	</p>
+
+	<warning>
+		<p>
+			It is important to understand that the colon-operator can be used to either <em>create a new matrix</em> or <em>index an already defined matrix</em>. In the "Evenly-Spaced Matrices" section we used the colon operator to create a vector. In this section, <insert>we will be using the colon-operator to index an already defined matrix</insert>. We will address some of the subtle differences.
+		</p>
+	</warning>
+
+	<p>
+		For the following discussion, we will be using <xref ref="row-column-indexing-def" text="custom">row/column indexing</xref>. Also, recall that rows are always listed first when using this type of indexing.
+	</p>
+
+	<paragraphs xml:id="access-entire-row-column">
+	<title><insert>Accessing an entire row or column</insert></title><p/>
+
+		<p>
+			Suppose we want the <m>i</m>-th row of some matrix. Visually, we want
+			<tabular halign="center">
+				<row>
+					<cell/>
+					<cell colspan="5">all columns</cell>
+					<cell/>
+				</row>
+				<row>
+					<cell/><cell><m>\downarrow</m></cell><cell><m>\downarrow</m></cell><cell/><cell><m>\downarrow</m></cell><cell><m>\downarrow</m></cell><cell/>
+				</row>
+				<row>
+					<cell>
+						one row <m>\texttt{i}</m> 
+						<m>	
+							\rightarrow \left[
+							\begin{matrix} 	\phantom{\vdots}\\ \\	\phantom{\vdots}\end{matrix}
+							\right.
+						</m>
+					</cell>
+					<cell><m>	\begin{matrix} \vdots \\ \boxed{*}\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ \boxed{*}\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}				\\	\dots		\\				\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ \boxed{*}\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ \boxed{*}\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell>
+						<m> 
+							\left.
+							\begin{matrix}	\phantom{\vdots}\\ \\	\phantom{\vdots}\end{matrix}
+							\right]
+						</m>
+					</cell>
+				</row>
+			</tabular>
+		</p>
+
+		<p>
+			If <c>A</c> is the matrix, then we access the <c>i</c>-th row of <c>A</c>, using either,
+			<sidebyside align="center" widths="20% 10% 20%" margins="25%">
+				<p><c>A(i,1:end)</c></p>
+				<p>or</p>
+				<p><c>A(i,:)</c></p>
+			</sidebyside>
+		</p>
+
+		<p>
+			This command warrants a few important comments:
+			<ul>
+				<li><c>i</c> must be between <c>1</c> and the number of rows of <c>A</c>,</li>
+				<li><c>1:end</c> means start at <c>1</c> and go as far as possible. Since <c>1:end</c> is located where the columns should go, MATLAB interprets <c>end</c> as the last column index of <c>A</c>, and</li>
+				<li>when accessing values in a matrix, <c>A(i,:)</c> is short hand for <c>A(:,1:end)</c>.</li>
+			</ul>
+		</p> 
+		
+		<p>
+			Similarly, if we want the <m>j</m>-th column of some matrix, <c>A</c>, visualized as
+			<tabular halign="center">
+				<row>
+					<cell colspan="3"/><cell colspan="3">one column <m>\texttt{j}</m></cell><cell/>
+				</row>
+				<row>
+					<cell colspan="4"/><cell><m>\downarrow</m></cell><cell colspan="2"/>
+				</row>				
+				<row>
+					<cell>all rows</cell>
+					<cell><m>\begin{matrix} \rightarrow\\ \rightarrow\\ \\	\rightarrow\\ \rightarrow\\ \end{matrix}</m>
+					</cell>
+					<cell><m>\left[\begin{matrix}	\\	\\	\\	\\	\\	\end{matrix}\right.</m></cell>
+					<cell><m>\begin{matrix}	\dots\\	\dots\\	\\	\dots\\	\dots\\	\end{matrix}</m></cell>
+					<cell><m>\begin{matrix}	\boxed{*}\\	\boxed{*}\\	\vdots\\	\boxed{*}\\	\boxed{*}\\	\end{matrix}</m></cell>
+					<cell><m>\begin{matrix}	\dots\\	\dots\\	\\	\dots\\	\dots\\	\end{matrix}</m></cell>
+					<cell><m>\left.\begin{matrix}	\\	\\	\\	\\	\\	\end{matrix}\right]</m></cell>
+				</row>
+			</tabular>
+		</p>
+
+		<p>
+			we would use the command <c>A(1:end,j)</c> or <c>A(:,j)</c>.
+		</p>
+
+		<example xml:id="example-access_row_01">
+			<p/>
+			<p>
+				Consider the matrix 
+				<me>
+					\left[
+						\begin{matrix}
+							5 \amp 0 \amp 6 \amp 3\\
+							8 \amp 1 \amp 3 \amp 0\\
+							2 \amp 9 \amp 7 \amp 4
+						\end{matrix} \right].
+				</me>
+				Give the MATLAB commands that 
+				<ol label="a">
+					<li>defines the variable, <c>firstrow</c>, as the 1st row of <c>A</c>.</li>
+					<li>defines the variable, <c>thirdcol</c>, as the 3rd column of <c>A</c>.</li>
+				</ol> 
+			</p>
+
+			<p>
+				<em>In the box, below, replace the '?' with the appropriate commands.</em>
+				<sage language="octave">
+					<input>
+						A = [5 0 6 3; 8 1 3 0; 2 9 7 4];
+						firstrow = ?
+						thirdcol = ?
+					</input>
+				</sage>
+			</p>
+			
+			<p/>
+			<solution>
+				<p>
+					There a few correct answers. 
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								firstrow = A(1,:)
+								thirdcol = A(:,3)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					or
+					<aside>
+						<p>
+							Technically,
+							<sidebyside width="100%">
+								<program language="matlab">
+									<input>
+										firstrow = A([1],[1:end])
+										thirdcol = A([1:end],[3])
+									</input>
+								</program>
+							</sidebyside>
+							<p/>
+							is also correct, but
+							<sidebyside width="100%">
+								<program language="matlab">
+									<input>
+										firstrow = A([1],[:])
+										thirdcol = A([:],[3])
+									</input>
+								</program>
+							</sidebyside>
+							<p/>
+							is not.
+						</p>
+					</aside>
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								firstrow = A(1,1:end)
+								thirdcol = A(1:end,3)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					In either case, you should receive the output
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								firstrow =
+
+								 5 0 6 3
+
+								thirdcol =
+
+								6
+								3
+								7
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+	
+	</paragraphs>
+
+	<paragraphs xml:id="access-partial-row-column">
+	<title><insert>Accessing a partial row or column</insert></title><p/>
+
+		<p>
+			Our goal, now, is to discuss how to get a part of a row or column of some matrix, <c>A</c>. That is, suppose we want the boxed values
+			<tabular halign="center">
+				<row>
+					<cell/>
+					<cell colspan="7">some columns</cell>
+					<cell/>
+				</row>
+				<row>
+					<cell/><cell><m>\texttt{j}</m></cell><cell/><cell><m>\texttt{k}</m></cell><cell/><cell/><cell><m>\texttt{l}</m></cell><cell/>
+				</row>
+				<row>
+					<cell/><cell><m>\downarrow</m></cell><cell/><cell><m>\downarrow</m></cell><cell/><cell/><cell><m>\downarrow</m></cell><cell/>
+				</row>
+				<row>
+					<cell>
+						one row <m>\texttt{i}</m>
+						<m>	
+							\rightarrow \left[
+							\begin{matrix} 	\phantom{\vdots}\\ \\	\phantom{\vdots}\end{matrix}
+							\right.
+						</m>
+					</cell>
+					<cell><m>	\begin{matrix} \vdots \\ \boxed{*}\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ *				\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ \boxed{*}\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}				\\	\dots		\\				\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ *				\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ \boxed{*}\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix} \vdots \\ *				\\ \vdots	\\	\end{matrix}</m></cell>
+					<cell>
+						<m> 
+							\left.
+							\begin{matrix}	\phantom{\vdots}\\ \\	\phantom{\vdots}\end{matrix}
+							\right].
+						</m>
+					</cell>
+				</row>
+			</tabular>
+		</p>
+		
+		<p>
+			Informally, you index the rows and columns using the idea, 
+			<sidebyside widths="60%" margins="20%">
+			<p><em>A( specific row , [vector of columns you want] )</em>,</p>
+			</sidebyside>
+		</p>
+
+		<p>
+			and the actual MATLAB command is 
+			<sidebyside widths="30%" margins="35%">
+			<p><c>A(i,[j,k,l])</c></p>
+			</sidebyside>
+		</p> 
+		
+		<p>
+			The same idea extends to accessing a partial column of <c>A</c>.
+		</p>
+
+		<example xml:id="example-access_row_02">
+			<p/>
+			<p>
+				Consider the matrix 
+				<me>
+					\left[
+						\begin{matrix}
+							5 \amp 0 \amp 6 \amp 3\\
+							\color{blue}{\boxed{8}} \amp \color{blue}{\boxed{3}} \amp \color{red}{\boxed{3}} \amp \color{blue}{\boxed{0}}\\
+							2 \amp 9 \amp \color{red}{\boxed{7}} \amp 4
+						\end{matrix} \right].
+				</me>
+				Give the MATLAB commands that 
+				<ol label="a">
+					<li>defines the variable, <c>blue_boxed</c>, as the blue-boxed values of <c>A</c>.</li>
+					<li>defines the variable, <c>red_boxed</c>, as the red-boxed values of <c>A</c>.</li>
+				</ol> 
+			</p>
+
+			<p>
+				<em>In the box, below, replace the '?' with the appropriate commands.</em>
+				<sage language="octave">
+					<input>
+						A = [5 0 6 3; 8 1 3 0; 2 9 7 4];
+						blue_boxed = ?
+						red_boxed = ?
+					</input>
+				</sage>
+			</p>
+
+			<p/>
+			<solution>
+				<p>
+					Since
+					<ul>
+						<li>the blue-boxed values are in row 2 and columns 1, 2 , 4, and </li>
+						<li>the red-boxed values are in column 3 and rows 2, 3, </li>
+					</ul>
+					the following commands get the job done:
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								A = [5 0 6 3; 8 1 3 0; 2 9 7 4];
+								blue_boxed = A(2,[1 2 4])
+								red_boxed = A([2 3],3)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+				<p>
+					and the output you should receive is
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								blue_boxed =
+
+								 8 1 0
+
+								red_boxed =
+
+								 3
+								 7
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+			</solution>
+		</example>
+	
+	</paragraphs>
+
+	<paragraphs xml:id="access-multiple-rows-columns">
+	<title><insert>Accessing Values from Multiple Rows and Columns</insert></title><p/>
+	
+		<p>
+			So far, we have discussed how to get values from a single row or column of a matrix, however, there is nothing stopping us from getting values from multiple rows or columns.  For example, suppose we wanted the folowing boxed values:
+			<tabular halign="center">
+				<row>
+					<cell/>
+					<cell colspan="7">some columns</cell>
+					<cell/>
+				</row>
+				<row>
+					<cell/><cell/><cell><m>\texttt{p}</m></cell><cell><m>\texttt{q}</m></cell><cell><m>\texttt{r}</m></cell><cell/><cell><m>\texttt{s}</m></cell><cell/>
+				</row>
+				<row>
+					<cell/><cell/><cell><m>\downarrow</m></cell><cell><m>\downarrow</m></cell><cell><m>\downarrow</m></cell><cell/><cell><m>\downarrow</m></cell><cell/>
+				</row>
+				<row>
+					<cell>
+						some rows
+						<m>	\,\,
+							\begin{matrix}	\\	\texttt{i}\rightarrow	\\	\texttt{j}\rightarrow	\\	\\	\texttt{k}\rightarrow	\\	\end{matrix} 
+							\left[
+							\begin{matrix}	\\												\\												\\	\\												\\	\end{matrix}
+							\right.
+						</m>
+					</cell>
+					<cell><m>	\begin{matrix}	*	\\					*		\\					*		\\	*	\\					*	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}	*	\\	\boxed{	*}	\\	\boxed{	*}	\\	*	\\	\boxed{	*}	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}	*	\\	\boxed{	*}	\\	\boxed{	*}	\\	*	\\	\boxed{	*}	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}	*	\\	\boxed{	*}	\\	\boxed{	*}	\\	*	\\	\boxed{	*}	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}	*	\\ 					*		\\					*		\\	*	\\					*	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}	*	\\	\boxed{	*}	\\	\boxed{	*}	\\	*	\\	\boxed{	*}	\\	\end{matrix}</m></cell>
+					<cell><m>	\begin{matrix}	*	\\ 					*		\\					*		\\	*	\\					*	\\	\end{matrix}</m></cell>
+					<cell>
+						<m> 
+							\left.
+							\begin{matrix}	\\	\\	\\	\\	\\\end{matrix}
+							\right].
+						</m>
+					</cell>
+				</row>
+			</tabular>
+		</p>
+		
+		<p>
+			As before, the idea is 
+			<sidebyside widths="80%" margins="10%">
+			<p><em>A( [vector of rows you want] , [vector of columns you want] )</em>,</p>
+			</sidebyside>
+		</p>
+
+		<p>
+			and the actual MATLAB command is 
+			<sidebyside widths="30%" margins="35%">
+			<p><c>A([i,j,k],[p,q,r,s])</c></p>
+			</sidebyside>
+		</p> 
+
+		<note>NEED AN EXAMPLE OR TWO</note>
+	</paragraphs>
+
+	<!-- TROY STUFF
+		<p>
+			If we wanted to store the entire first row of <c>A</c> in the variable, <c>firstrow</c>, we would say that we want "all four columns of the first row."  This suggests that we can use the colon operator to shorten our work.  Namely,
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; firstrow = A(1,1:4)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			which gives
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						firstrow =
+							1 2 3 4
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			But, there's an even shorter way to do this! If the colon doesn't have a start and end value, it simply lists all possible values!  Namely,
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; firstrow = A(1,:)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			also gives
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						firstrow =
+							1 2 3 4
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			Ok, now what if we wanted the first row, but not the element in the first column?  There are two ways to do this.
+			First, we can use the colon as:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; mostoffirstrow = A(1,2:4)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			which gives
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						mostoffirstrow =
+							2 3 4
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			But, what if the matrix changes and we don't the size of <c>A</c>? Those sneaky programmers at Mathworks have a work around:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; mostoffirstrow = A(1,2:end)
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			also gives
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						mostoffirstrow =
+							2 3 4
+				</input>
+			</program>
+		</sidebyside>
+	-->
+
+</section>

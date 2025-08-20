@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+********************************************************************
+Add any notes
+*********************************************************************
+-->
+
+<docinfo>
+
+	<document-id>matlabrs</document-id>
+
+	<blurb shelf="Mathematics">
+		This interactive online text is intended to be used to learn the introductory concepts of MATLAB programming. The book is designed for students who have completed single-variable calculus and is suitable for a one semester course in MATLAB programming. The book is written in a straightforward, readable style and has a large number of worked examples and exercises.
+	</blurb>
+
+	<!-- the other option is "long" which will produce an -->
+	<!-- entire front matter section with more headings   -->
+	<author-biographies length="short" />
+
+	<brandlogo url="https://www.vmi.edu/" source="figures/de-book-icon.png" />
+
+	<rename element="fact"><e component="emoji">🤔💭</e> Check Your Understanding </rename>
+	<rename element="exploration"><e component="emoji">✍🏻</e> Method </rename>
+	<rename element="outcomes"><e component="emoji">🎯</e> After this section, you will be able to... </rename>
+	<rename element="theorem"><e component="emoji">🧠</e> Derivation </rename>
+	<rename element="lemma"><e component="emoji">👀</e> Quick Review </rename>
+	<rename element="corollary"><e component="emoji">🎮</e> Interactive </rename>
+	<rename element="identity"><e component="emoji">🗺️</e> Summary </rename>
+	<rename element="example"><e component="emoji">🌌</e> Example </rename>
+	<rename element="objectives"><e component="emoji">🗝️</e> Key Takeaways... </rename>
+	<rename element="definition"><e component="emoji">📙</e> Definition </rename>
+	<rename element="warning"><e component="emoji">⚠️</e> </rename>
+	<rename element="note"> <e component="emoji">📝</e> </rename>
+	<rename element="proposition"><e component="emoji">🎮❓</e> Interactive Question </rename>
+	<rename element="aside"><e component="emoji">📝</e></rename>
+	<!--
+		Other symbols that may be used:
+		🖋️ Notation
+		🗡️
+		🎛️ 🎯
+	 -->
+	
+	<!-- <covers
+		front="../source/figures/some.png"
+		back="../figures/some.pdf"
+	/> -->
+
+	<!-- Prefix to enhance Sage notebook contents -->
+	<initialism> DE-BOOK </initialism>
+
+	<!-- Math-related macros from "macros.tex" in previous LaTeX version -->
+	<macros>
+		% ===== Good Dark/Light Mode Colors =====
+		\newcommand\DLGray{\color{Gray}}
+		\newcommand\DLO{\color{BurntOrange}}
+		\newcommand\DLRa{\color{WildStrawberry}}
+		\newcommand\DLGa{\color{Green}}
+		\newcommand\DLGb{\color{PineGreen}}
+		\newcommand\DLBa{\color{RoyalBlue}}
+		\newcommand\DLBb{\color{Cerulean}}
+		\newcommand\ds{\displaystyle}
+		\newcommand\ddx{\frac{d}{dx}}
+		\newcommand\os{\overset}
+		\newcommand\us{\underset}
+		\newcommand\ob{\overbrace}
+		\newcommand\obt{\overbracket}
+		\newcommand\ub{\underbrace}
+		\newcommand\ubt{\underbracket}
+		\newcommand\ul{\underline}
+		\newcommand\tikznode[3][]%
+			{\tikz[remember picture,baseline=(#2.base)]
+				\node[minimum size=0pt,inner sep=0pt,#1](#2){#3};%
+			}
+		\newcommand\del{\nabla}
+		\newcommand\R{\mathbb{R}}
+		\newcommand\C{\mathcal{C}}
+		\newcommand\N{\mathcal{N}}
+		\newcommand\eps{\varepsilon}
+		\renewcommand\epsilon{\varepsilon}
+		\renewcommand\subset{\subseteq}
+		\newcommand\norm[1]{\|{#1}\|}
+		\newcommand\matrixbrackets[4][1]{
+			\draw (#3,#2) -- (\fpeval{#3+0.2},#2); 
+			\draw (#3,#1) -- (#3 ,#2); 
+			\draw (#3,#1) -- (\fpeval{#3+0.2},#1);
+			\draw (#4,#2) -- (\fpeval{#4-0.2},#2); 
+			\draw (#4,#1) -- (#4 ,#2); 
+			\draw (#4,#1) -- (\fpeval{#4-0.2},#1);
+		}
+		% Node styles
+		\tikzstyle{circle node 0}=[fill=white, draw=black, shape=circle, inner sep=0pt]
+		\tikzstyle{hrect node 0}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+		\tikzstyle{vrect node 0}=[fill=white, draw=black, inner sep=0pt, outer sep=0pt]
+		\tikzstyle{hidden node 0}=[inner sep=0pt, outer sep=0pt] 
+		\tikzstyle{circle node 2}=[fill=white, draw=black, shape=circle, inner sep=2pt]
+		\tikzstyle{hrect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+		\tikzstyle{hidden node 2}=[fill=white, inner sep=2pt, outer sep=2pt]
+		\tikzstyle{rect node 1}=[fill=white, inner sep=2pt, outer sep=0pt]
+		\tikzstyle{rect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=0pt]
+	</macros>
+
+	<!-- this is the default, but supresses a warning -->
+	<cross-references text="type-global" />
+
+	<!-- tikz package and libraries for images -->
+	<latex-image-preamble>
+		\usepackage{tikz}
+		\usetikzlibrary{backgrounds}
+		\usetikzlibrary{arrows,arrows.meta,matrix}
+		\usetikzlibrary{decorations}
+		\usetikzlibrary{animations}
+		\usetikzlibrary{tikzmark,calc}
+	   	\usetikzlibrary{snakes}
+		\usetikzlibrary{bending, positioning}
+	    \usepackage{circuitikz}             % for Virgil P's worksheet
+		\usetikzlibrary{3d}
+		\usepackage{pgfplots, pgfplotstable}
+		\pgfplotsset{compat=1.18}
+		\usepgfmodule {nonlineartransformations}
+		\usetikzlibrary {curvilinear}
+		\usepackage{graphicx} % For scalebox
+		\usepackage{xfrac}
+		\usepackage{mathtools}
+		\usepackage{ulem}
+		\usepackage{transparent}
+%		\usepackage{ifthen}
+	</latex-image-preamble>
+
+
+
+	<!-- <latex-preamble>
+		\usepackage[makeroom]{cancel}
+		\usepackage[normalem]{ulem}
+	</latex-preamble>	-->
+
+	<!-- other latex packages -->
+	\usepackage{soul}
+	\usepackage{enumitem}
+	\usepackage{amssymb}
+	\usepackage{mathtools}
+	\usepackage{xcolor}
+	\usepackage{amsmath}
+	\usepackage{mathrsfs}
+	\usepackage{multicol}
+	\usepackage{tabu,multirow}
+	\usepackage{array, latexsym}
+	\usepackage{times}
+	\usepackage{time}
+	\usepackage{subfigure}
+	\usepackage{graphics}
+	\usepackage{epstopdf}
+	\usepackage[T1]{fontenc}
+
+</docinfo>

@@ -1,0 +1,277 @@
+<!--********************************************************************-->
+
+<section xml:id="evenly-spaced-matrices">
+<title>Evenly-Spaced Matrices</title>
+
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Use the "colon operator" and <c>linspace</c> command to create a row vector of equally spaced values.</li>
+			<li>Explain the difference between the "colon operator" and <c>linspace</c> command.</li>
+		</ol>
+	</objectives>
+
+	<p>
+		It is common to work with lists (i.e. arrays or row vectors) of values that have some sort of pattern. When your values are equally spaced, you will typically create your list using one of the following two options:
+		<ul>
+			<li>colon operator, or</li>
+			<li><c>linspace</c> command.</li>
+		</ul>
+		In this section, we will explore both of these options.
+	</p>
+
+	<paragraphs xml:id="colon-operator">
+	<title><insert>Colon Operator</insert></title><p/>
+
+		<lemma xml:id="colon-operator-def">
+		<title>Colon Operator</title><p/>
+			<statement>
+			<aside><p>Note: when you use the colon operator, the enclosing brackets <c>[</c> <c>]</c> are optional.</p></aside>
+			<p/>
+			To define an equally spaced row vector with a specific start value, step size, and end value, use the command:
+			<p/>
+			<cd>
+		[ start value : step size : end value ]
+			</cd>
+			or when the step size is 1, the step size term is optional, like so
+			<p/>
+			<cd>
+		     [ start value : end value ]
+			</cd>
+			<url href="https://www.mathworks.com/help/matlab/ref/colon.html">Click here for the MATLAB documentation.</url>
+			</statement>
+		</lemma>
+		
+		<example xml:id="example-colon_operator_1">
+			<p/>
+			<p>
+				Suppose we wanted a matrix with the values 1 through 19 in a single (row) vector.  We could enter this as
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<input>
+						>> M = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19]
+					</input>
+				</program>
+			</sidebyside>
+
+			<p>
+				Redefine <c>M</c> using the colon operator.
+			</p>
+
+			<sage language="octave"/>
+
+			<solution>
+				<p>
+					For this list, we have: 
+					<sidebyside widths="74%" margins="13%">
+						<p>start value = 1, step size = 1, and end value = 19.</p>
+					</sidebyside>
+				</p>
+			
+				<p>
+					So we use either of the commands
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> M = [1:19]
+							>> M = [1:1:19]
+						</input>
+					</program>
+				</sidebyside>
+
+			</solution>
+		</example>
+
+		<p>
+			In the last example, we can think of the colon as a "range operator."  Note that Matlab also accepts the slightly shorter <c>M = 1:19</c> as well, which will be useful when we come to loops. In fact, the colon is more flexible (pun intended?) as we see in the next example.
+		</p>
+
+		<example xml:id="example-colon_operator_2">
+			<p/>
+			<p>
+				Use the colon operator to define the variable, <c>N</c>, as the row vector
+				<me>
+				{\bf N} = [7, 9, 11, 13, 15, 17, 19, 21].
+				</me>
+			</p>
+
+			<sage language="octave"/>
+
+			<solution>
+				<p>
+					In this case, we have: 
+					<sidebyside widths="74%" margins="13%">
+						<p>start value = 7, step size = 2, and end value = 21.</p>
+					</sidebyside>
+				</p>
+			
+				<p>
+					So we use the command
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> N = [7:2:21]
+						</input>
+					</program>
+				</sidebyside>
+
+			</solution>
+		</example>
+
+		<p>
+			<em>What is going on in this last example?</em>
+		</p>
+
+		<p>
+			In <c>N</c>, the 2 means to simply count "by twos" starting at 7 and ending at 21.
+		</p>
+
+		<example xml:id="example-colon_operator_3">
+			<p/>
+			<p>
+				What happens if our step size does not get us to the exact end value?
+			</p>
+			<p>
+				That is, what would the following command produce?
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							>> P = [1:3:5]
+						</input>
+					</program>
+				</sidebyside>
+			</p>
+		
+			<p>
+				Think about it in your head first, then try it out in the box below.
+			</p>
+
+			<sage language="octave"/>
+
+			<solution>
+				<p>
+					If you ran the command you see that you get
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								P =
+									1 4
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+			
+				<p>
+					The <c>5</c> was not included even though it was the specified <c>end</c> value. So where's the <c>5</c>?
+				</p>
+
+				<p>
+					Well, the syntax of <c>start:step:end</c> actually means to begin at <c>start</c>, add the <c>step</c> one at a time and then stop at the point where adding one more <c>step</c> size would take us past the <c>end</c> value.  So, in the matrix <c>P</c>, we have to stop at <c>4</c> since adding <c>3</c> more would take us to <c>7</c> (past the <c>end</c> value of <c>5</c>).
+				</p>
+
+			</solution>
+		</example>
+
+	</paragraphs>
+
+	<p>
+		This example illustrates how our <c>end</c> value may not actually be present in our matrix depending on the <c>step</c> size. But, what if we wanted to guarantee the <c>end</c> value is included?  That's where the <c>linspace</c> command is used instead.
+	</p>
+
+	<paragraphs xml:id="linspace">
+	<title><insert><c>linspace</c> command</insert></title><p/>
+
+		<lemma>
+		<title><c>linspace</c> command</title><p/>
+			<statement>
+			<p/>
+			To define an equally spaced row vector, <c>v</c>, with a specific <c>start</c> value, <c>end</c> value, and <c>number_of_values</c> use the command:
+			<p/>
+			<cd>
+		v = linspace( start, end, number_of_values )
+			</cd>
+			<url href="https://www.mathworks.com/help/matlab/ref/linspace.html">Click here for the MATLAB documentation.</url>
+			</statement>
+		</lemma>
+
+		<example xml:id="example-linspace_1">
+			<p/>
+			<p>
+				Give the command that defines the variable, <c>Q</c>, as the equally spaced vector with 4 values starting at 1 and ending at 6.
+			</p>
+
+			<sage language="octave"/>
+
+			<solution>
+				<p>
+					The fact that we are not given a step size tells us that we cannot use the "colon operator". Instead, we are given the number of values the vector should have. This information almost always indicates the use of <c>linspace</c>. So the command we use is
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								>> Q = linspace(1,6,4)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					and the output you should get is
+				</p>
+
+				<sidebyside width="100%">
+					<program language="matlab">
+						<input>
+							Q =
+								1.0000    2.6667    4.3333    6.0000
+						</input>
+					</program>
+				</sidebyside>
+
+			</solution>
+		</example>
+
+		<example xml:id="example-linspace_2">
+			<p/>
+			<p>
+				The <c>linspace</c> requires a <c>start</c> and <c>end</c> value, but the last input, <c>number_of_values</c>, is optional.
+				Re-run the command from the previous example without the 4 to see what you get.
+			</p>
+
+			<sage language="octave"/>
+
+			<solution>
+				<p>
+					Running the command
+					<sidebyside width="100%">
+						<program language="matlab">
+							<input>
+								>> Q = linspace(1,6)
+							</input>
+						</program>
+					</sidebyside>
+				</p>
+
+				<p>
+					gives a long nasty output, but it makes sense. When you leave off the <c>number_of_values</c>, MATLAB chooses this value to be 100 by default.
+				</p>
+
+				<p>
+					In fact, all MATLAB commands will have both required values, as well as default values for the ones you do not specify. The only way to know the exact behavior of a command is to look it up on MATLAB's documentation page.   
+				</p>
+
+			</solution>
+		</example>
+
+	</paragraphs>
+
+</section> 

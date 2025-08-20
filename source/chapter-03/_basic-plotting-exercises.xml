@@ -1,0 +1,148 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_Graphics_HW" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Exercises</title>
+
+	<p>
+			For each problem, include appropriate titles and labels.  Make sure to use <c>xlim</c> and <c>ylim</c> so that the plots fit well in their figure windows.
+	</p>
+
+	<ol>
+		<li>
+			<p>
+				The double logistic curve is defined by 
+				<me>
+					y=\textrm{sign}(x-5)\cdot
+					\left(
+						1-\exp\left[-\left(\frac{x-5}{50}\right)^2\right]
+					\right)
+				</me>
+				Use the command <c>linspace</c> to get <m>x</m> values from <m>-100</m> to <m>100</m> and plot <m>y</m> for these <m>x</m> values.  Add appropriate labels (something simple) to the axes and a title.
+			</p>
+		</li>
+		<li>
+			<p>
+				For the functions 
+				<m>y = e^{x/5}</m>, 
+				<m>y = \sin(x)</m>,			
+				<m>y = \sqrt{x}</m> for <m>x</m> between 0 and 10:
+				<ol>
+					<li>
+						<p>
+							Plot all three on the same plot, but with different colors and using <c>linspace</c> with enough points so that the curves look smooth.  Put in a descriptive title and add text inside the window to label the individual graphs.
+						</p>
+					</li>
+					<li>
+						<p>
+							Plot all three in the same figure window, but with each in their own subplot and each with its own descriptive title.
+						</p>
+					</li>
+				</ol>
+			</p>
+		</li>
+		<li>
+			<p>
+				Plot the following curves, either on separate plot windows or as subplots in the same figure window.
+			</p>
+
+			<p>			
+				First define <c>t=linspace(0,6*pi)</c> and then define <m>x</m> and <m>y</m> in terms of <m>t</m>.  Use the standard <c>plot</c> command to plot them and add appropriate titles.  For each, adjust <m>t</m> for a smoother curve as necessary.
+				<ol>
+					<li>
+						<p>
+							Cardioid: <m>x = 2 \cos t - \cos 2t, y = 2\sin t - \sin 2t</m>.
+						</p>
+					</li>
+					<li>
+						<p>
+							Astroid: <m>x = \cos^3 t, y = \sin^3 t</m>.
+						</p>
+					</li>
+					<li>
+						<p>
+							Hypotrochoid: <m>x = 2 \cos t + 5\cos\left(\frac{2}{3}t\right), y = 2\sin t - 5\sin\left(\frac{2}{3}t\right)</m>.
+						</p>
+					</li>
+					<li>
+						<p>
+							Epicycloid: <m>x=6.5 \cos(t)-\cos(6.5 t), y=6.5 \sin(t)-\sin(6.5 t)</m>
+						</p>
+					</li>
+				</ol>
+			</p>
+		</li>
+		<li>
+			<p>
+				In the same figure window, plot <m>y=\sin(t+\phi)</m> for each of <m>\phi = 0, \pi/4</m> and  <m>\pi/2</m>, on the range for <m>t</m> from <m>0</m> to <m>2\pi</m>.  Using the <c>text</c> command, label the plots inside the figure window.  
+			</p>
+		</li>
+		<li>
+			<p>
+				The following data are coordinates of an analemma.  Look up the definition of an analemma and give a short description here.  Make sure to cite your source.
+			</p>
+
+			<sidebyside widths="25% 25%" margins="25% 25%">
+				<tabular halign="center" top='minor' bottom='minor' left='minor' right='minor'>
+					<row><cell><term><m>y</m></term></cell><cell><term><m>x</m></term></cell></row>
+					<row><cell>	89.814	</cell><cell>	-4.67		</cell></row>
+					<row><cell>	83.222	</cell><cell>	-6.824	</cell></row>
+					<row><cell>	71.282	</cell><cell>	-7.7697	</cell></row>
+					<row><cell>	60.581	</cell><cell>	-7.33		</cell></row>
+					<row><cell>	50.572	</cell><cell>	-6.22		</cell></row>
+					<row><cell>	41.748	</cell><cell>	-4.759	</cell></row>
+					<row><cell>	38.36		</cell><cell>	-4.105	</cell></row>
+					<row><cell>	32.748	</cell><cell>	-3.045	</cell></row>
+					<row><cell>	26.664	</cell><cell>	-1.957	</cell></row>
+					<row><cell>	21.141	</cell><cell>	-1.146	</cell></row>
+					<row><cell>	17.445	</cell><cell>	-0.946	</cell></row>
+					<row><cell>	14.548	</cell><cell>	-1.193	</cell></row>
+					<row><cell>	13.38		</cell><cell>	-1.713	</cell></row>
+					<row><cell>	13.1497	</cell><cell>	-1.946	</cell></row>
+				</tabular>
+				<tabular halign="center" top='minor' bottom='minor' left='minor' right='minor'>
+					<row><cell><term><m>y</m></term></cell><cell><term><m>x</m></term></cell></row>
+					<row><cell>	13.569	</cell><cell>	-2.388	</cell></row>
+					<row><cell>	14.942	</cell><cell>	-2.854	</cell></row>
+					<row><cell>	18.269	</cell><cell>	-3.087	</cell></row>
+					<row><cell>	22.189	</cell><cell>	-2.84		</cell></row>
+					<row><cell>	28.455	</cell><cell>	-1.992	</cell></row>
+					<row><cell>	34.742	</cell><cell>	-0.834	</cell></row>
+					<row><cell>	38.876	</cell><cell>	-0.117	</cell></row>
+					<row><cell>	43.349	</cell><cell>	 0.607	</cell></row>
+					<row><cell>	52.124	</cell><cell>	 1.824	</cell></row>
+					<row><cell>	64.591	</cell><cell>	 2.842	</cell></row>
+					<row><cell>	74.997	</cell><cell>	 2.775	</cell></row>
+					<row><cell>	85.45		</cell><cell>	 1.196	</cell></row>
+					<row><cell>	90.649	</cell><cell>	-1.265	</cell></row>
+					<row><cell>	91.403	</cell><cell>	-2.559	</cell></row>
+				</tabular>
+			</sidebyside>
+			
+			<p>
+				As you can see, the data was unfortunately entered backwards so that the second column gives the <m>x</m> coordinate and the first column gives the <m>y</m> coordinate.  
+				First enter the data into a 2-column matrix in a variable of your choice.  Use <c>fliplr</c> to redefine the columns and define the variable <m>x</m> by referencing the first column and <m>y</m> by referencing the second column. 
+				Plot the data with an appropriate title.  Note that you may have to adjust the data so that the analemma is a closed figure.
+			</p>
+		</li>
+	</ol>
+
+	<!--  -->
+	<!-- Exercises:
+ -->
+	<!-- For the functions y = exp(x/5), y = sin(x), y = sqrt(x) for x between 0 and 10:
+ -->
+	<!-- 1) Plot all three on the same plot, but with different colors (use linspace with enough points so that the curves look smooth).  Put in a descriptive title and add text inside the window to label the individual graphs.
+ -->
+	<!-- 2)Plot all three in the same figure window, but with each in their own subplot and each with its own descriptive title.
+ -->
+
+	<!-- \definition{def:lineintegral}{<term>TITLE</term>} -->
+	<!--  -->
+	<!-- \keyidea{idea:lineintprops}{<term>TITLE</term>} -->
+	<!--  -->
+	<!-- \printexercises{exercises/mathcad_introduction_exercises} -->
+
+</section>
+
+

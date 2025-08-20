@@ -1,0 +1,171 @@
+
+<!--********************************************************************-->
+
+<section xml:id="sec-Matlab_systems_equations" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Systems of Equations</title> 
+	
+	<objectives>
+		<introduction>
+			<p>
+				By the end of this section, you will be able to ...
+			</p>
+		</introduction>
+		<ol>
+			<li>Define a system of linear equations in terms of matrix variables.</li>
+			<li>Solve a system of linear equations in MATLAB in three different ways.</li>
+		</ol>
+	</objectives>
+
+	<introduction>
+		<p>
+			We can use matrices to solve systems of linear equations.  Here it is a good idea to read up a bit on some matrix algebra.
+		</p>
+
+		<p>
+			Suppose we have the following system of equations:
+		</p>
+
+		<md>
+			<mrow>3x +  2y - z &amp;=&amp; 10</mrow>
+			<mrow>-x + 3y + 2z &amp;=&amp; 5</mrow>
+			<mrow>x - y - z &amp;=&amp; -1</mrow>
+		</md>
+
+		<p>
+			We will solve this system, i.e. find the values of the variables that satisfy all of the equations simultaneously, in three ways: using reduced row echelon form, using matrix inverses, and using "left division."
+		</p>
+
+	</introduction>
+
+	<paragraphs xml:id="Reduced-Row-Echelon-Form">
+	<title>Method 1: Reduced Row Echelon Form</title><p/>
+
+		<p>
+			Here we create the "augmented matrix" of the coefficients of the variables with the constants to the right of the equals signs.
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						&gt;&gt; AugmentedMatrix = [3 2 -1 10; -1 3 2 5; 1 -1 -1 -1|; 
+						&gt;&gt; rref(AugmentedMatrix)
+				</input>
+			</program>
+		</sidebyside>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						ans =
+						 	1     0     0    -2
+						 	0     1     0     5
+						 	0     0     1    -6
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			This tells us that there is only one way to solve this system,  i.e. only one solution, namely <c>x = -2, y = 5, z = -6</c>.  You can check that is correct by substituting these values back into the system of equations:
+		</p>
+
+		<md>
+			<mrow>3(-2) +  2(5) - (-6) &amp;=&amp; 10</mrow>
+			<mrow>-(-2) + 3(5) + 2(-6) &amp;=&amp; 5</mrow>
+			<mrow>(-2) - (5) - (-6) &amp;=&amp; -1</mrow>
+		</md>
+		and verifying that they are all correct.
+
+	</paragraphs>
+
+	<paragraphs xml:id="Using-the-matrix-inverse-">
+	<title>Method 2: Using the matrix inverse </title><p/>
+
+		<p>
+			Here we create two matrices, one for the coefficients of the variables and one for the constants to the right of the equals signs.  Note that we can define these on the same line to save space:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; Coeffs = [3 2 -1; -1 3 2; 1 -1 -1];  Constants=[10;  5;  -1]; 
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			Since the determinant of <c>Coeffs</c> is non-zero (check!) we can solve the system with the inverse:
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; inv(Coeffs)*Constants
+				</input>
+			</program>
+		</sidebyside>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						ans =
+						 	-2
+						 	 5
+						 	-6
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			This also tells us that the only solution is <c>x = -2, y = 5, z = -6</c>.
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="Using-left-division-">
+	<title>Method 3: Using left division </title><p/>
+
+		<p>
+			The motivation for this method is complicated.  We suggest that you read the Matlab documentation on left (and right) division of matrices.
+			Again we create the two matrices, <c>Coeffs</c> and <c>Constants</c>
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; Coeffs = [3 2 -1; -1 3 2; 1 -1 -1];  Constants=[10;  5;  -1]; 
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			and use the backslash (be careful to use the correct slash):
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+					&gt;&gt; Coeffs\Constants
+				</input>
+			</program>
+		</sidebyside>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<input>
+						ans =
+						 	-2
+						 	 5
+						 	-6
+				</input>
+			</program>
+		</sidebyside>
+
+		<p>
+			This also tells us that the only solution is <c>x = -2, y = 5, z = -6</c>.
+		</p>
+
+	</paragraphs>
+
+</section>
+
+
