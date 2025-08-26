@@ -1,0 +1,139 @@
+<section label="matlab-gui-intro">
+  <title>Exploring the MATLAB Environment</title>
+
+  <introduction>
+    <p>
+      MATLAB is more than just a calculator—it is a full environment designed to help you experiment, explore, and automate mathematics. To use it effectively, it helps to understand the main parts of the interface. In this section, we’ll take a guided tour of the MATLAB environment and practice a few simple commands that keep our workspace clean and organized.
+    </p>
+    <p>
+      Along the way, you’ll also learn how to create shortcut buttons, so that common tasks can be automated with a single click.
+    </p>
+  </introduction>
+
+  <subsection label="matlab-gui-overview">
+    <title>The MATLAB Interface</title>
+
+    <p>
+      When you first open MATLAB, the screen is divided into panels. Each has its own purpose. Let’s walk through the three most important areas:
+    </p>
+
+    <figure xml:id="fig-matlab-gui-overview">
+      <caption>The default MATLAB interface. Panels may look slightly different depending on your version and layout.</caption>
+      <image width="80%">PLACEHOLDER_FOR_SCREENSHOT</image>
+    </figure>
+
+    <ul marker="circle">
+      <li>
+        <p>
+          <em>Current Folder:</em> This panel shows the folder on your computer that MATLAB is currently using as its working directory. Files you create, load, or save will, by default, be placed here.
+        </p>
+      </li>
+      <li>
+        <p>
+          <em>Command Window:</em> This is the main interactive panel where you type commands and see their output. If MATLAB is a calculator, the Command Window is the keypad and screen rolled into one.
+        </p>
+      </li>
+      <li>
+        <p>
+          <em>Workspace:</em> This panel keeps track of the variables that MATLAB currently has stored in memory. You’ll see names, sizes, and values listed here as you work.
+        </p>
+      </li>
+    </ul>
+  </subsection>
+
+  <subsection label="matlab-basic-commands">
+    <title>Basic Commands: Clearing and Resetting</title>
+
+    <p>
+      As you experiment in MATLAB, both the Command Window and Workspace can quickly fill up with old information. MATLAB provides commands that let you “reset” different parts of the environment without restarting the program.
+    </p>
+
+    <dl>
+      <li>
+        <title>Clearing the Command Window</title>
+        <p>
+          Use the command <c>clc</c>. This wipes the screen clean, giving you a blank slate to work on.
+        </p>
+        <aside><title>📌 Note</title><p>
+          <c>clc</c> only clears what you see on screen—it does not remove variables from memory.
+        </p></aside>
+      </li>
+
+      <li>
+        <title>Clearing the Workspace</title>
+        <p>
+          Use the command <c>clear</c>. This removes all variables currently stored in memory.
+        </p>
+        <aside><title>📌 Note</title><p>
+          <c>clear</c> does not affect the Command Window display, it only resets the Workspace.
+        </p></aside>
+      </li>
+    </dl>
+  </subsection>
+
+  <subsection label="matlab-shortcuts">
+    <title>Adding Shortcuts</title>
+
+    <p>
+      Suppose you find yourself running the same few commands again and again. Instead of typing them every time, you can add shortcuts to the MATLAB toolbar. Shortcuts are custom buttons that execute your chosen commands with a single click.
+    </p>
+
+    <example>
+      <title>Task 1: A Refresh Button</title>
+      <statement>
+        <p>
+          Let’s make a shortcut that clears the Command Window, closes all figures, and clears the Workspace—essentially giving MATLAB a fresh start.
+        </p>
+      </statement>
+      <solution>
+        <ol marker="1.">
+          <li>On the MATLAB Home tab, find the <q>Favorites</q> dropdown menu.</li>
+          <li>Select <q>New Favorite</q> at the bottom.</li>
+          <li>In the <q>Label</q> field, give your shortcut a name (for example, <q>Refresh</q>).</li>
+          <li>In the <q>Code</q> field, enter:
+            <me>
+              clear; <br/>
+              close all; <br/>
+              clc;
+            </me>
+          </li>
+          <li>Pick the <q>Upper Case C</q> icon and select <q>Add to quick access toolbar</q>.</li>
+          <li>Click <q>Save</q>, then test your button by pressing it from the toolbar.</li>
+        </ol>
+      </solution>
+    </example>
+
+    <example>
+      <title>Task 2: Jump to Your Class Folder</title>
+      <statement>
+        <p>
+          If you’re using MATLAB for coursework, it’s handy to have a button that instantly moves MATLAB into your class folder.
+        </p>
+      </statement>
+      <solution>
+        <ol marker="1.">
+          <li>Create a new folder in MATLAB called <c>MA110</c> by typing:
+            <me>mkdir MA110</me>
+          </li>
+          <li>Double-click the folder in the Current Folder panel to move into it.</li>
+          <li>Type <c>pwd</c> to display the full file path of this folder.</li>
+          <li>Copy the file path that MATLAB displays.</li>
+          <li>Create another shortcut with the code:
+            <me>cd "paste the copied file path"</me>
+          </li>
+          <li>Navigate away from the folder, then test your button to jump back instantly.</li>
+        </ol>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection label="matlab-gui-wrapup">
+    <title>📤 Wrap-Up</title>
+    <p>
+      Understanding the MATLAB environment makes your work smoother. The Command Window is your calculator, the Workspace is your memory, and the Current Folder is your file cabinet. By learning to clear, reset, and create shortcuts, you are setting yourself up for more productive work sessions.
+    </p>
+    <p>
+      In the next section, we’ll begin creating and working with variables, the essential building blocks of MATLAB computation.
+    </p>
+  </subsection>
+</section>
