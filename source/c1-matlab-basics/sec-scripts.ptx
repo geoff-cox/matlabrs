@@ -1,0 +1,444 @@
+<section xml:id="matlab-scripts-and-functions">
+	<title>Scripts and Functions</title>
+
+	<introduction>
+		<p>
+			Programming is a set of instructions for instructing a computer to perform a task.
+			A <term>programming language</term>, like MATLAB, provides a way to communicate your instructions to your computer.
+			MATLAB scripts and functions are files containing the instructions that you want MATLAB to perform to complete some task.
+			When you “run” this file, you tell MATLAB to execute these instructions.
+		</p>
+	</introduction>
+
+	<subsection xml:id="msf-scripts-vs-functions">
+		<title>Scripts vs Functions</title>
+
+		<p>
+			A MATLAB <term>script</term> is a <pf>.m</pf> file containing a sequence of MATLAB commands (read one by one from top to bottom)
+			that perform a specific task.
+		</p>
+
+		<p>
+			A MATLAB <term>function</term> is also a <pf>.m</pf> file that contains a sequence of MATLAB commands (read one-by-one from top to bottom)
+			that perform a specific task. The difference is that a function can include inputs (known information) and produce one or more outputs
+			(desired information).
+		</p>
+
+		<p>
+			Scripts and functions are similar in many ways, but they do have the following significant differences:
+		</p>
+
+		<ul>
+			<li>
+				<p>
+					Scripts have general goals, whereas functions tend to have smaller, more specific, and repeatable goals.
+				</p>
+			</li>
+			<li>
+				<p>
+					We can call functions inside scripts, but we cannot call scripts inside functions.
+				</p>
+			</li>
+			<li>
+				<p>
+					We can also call functions inside other functions. This practice is an excellent way to break a complex task into smaller sub-tasks
+					that work toward a common goal.
+				</p>
+			</li>
+		</ul>
+
+		<p>
+			MATLAB has many built-in functions that you can use to do various things. The functions you write in this class will be no different than
+			these built-in functions, except you can decide how they work and what they output.
+		</p>
+
+		<p>For example,</p>
+		<ul>
+			<li><p>the cosine function <pf>cos(4.4)</pf> returns <pf>-0.3073</pf>.</p></li>
+			<li><p>the absolute value function, <pf>abs(-17.3)</pf>, returns <pf>17.3</pf>.</p></li>
+		</ul>
+	</subsection>
+
+	<subsection xml:id="msf-creating-a-script">
+		<title>Creating a Script</title>
+
+		<p>
+			In the MATLAB menu, click the “plus” (new) icon and select “Script”. The file that opens is completely blank, but you can start typing
+			commands in this file.
+		</p>
+
+		<program language="matlab">
+			<code>
+				first_command
+				second_command
+				third_command
+
+				...
+			</code>
+		</program>
+
+		<p>
+			When done, you need to save your script. You can run it by pressing the “Run” button in the MATLAB menu.
+		</p>
+	</subsection>
+
+	<subsection xml:id="msf-creating-a-function">
+		<title>Creating a Function</title>
+
+		<p>
+			In the MATLAB menu, click the “plus” (new) icon and select “Function”. The file that opens includes the following template:
+		</p>
+
+		<program language="matlab">
+			<code>
+function [outputArg1,outputArg2] = untitled(inputArg1,inputArg2)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+end
+			</code>
+		</program>
+
+		<p>Before you start writing the function, update the template by</p>
+
+		<ol>
+			<li>
+				<p>
+					Giving the function a name by replacing <pf>untitled</pf> with the desired name. The name should be related to the purpose of the function.
+				</p>
+			</li>
+			<li>
+				<p>
+					Rename the input variables. The template lists them as <pf>inputArg1</pf> and <pf>inputArg2</pf> by default. Your function can have any number of inputs.
+				</p>
+			</li>
+			<li>
+				<p>
+					Rename the output variables. The template lists them as <pf>outputArg1</pf> and <pf>outputArg2</pf> by default. Your function can have any number of outputs.
+				</p>
+			</li>
+			<li>
+				<p>Delete the lines</p>
+				<program language="matlab">
+					<code>
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+					</code>
+				</program>
+			</li>
+		</ol>
+
+		<p>
+			<em>Note:</em> The lines in green that start with <pf>%</pf> are called <term>comments</term>. We use comments to make notes in our code.
+			MATLAB does not process these lines; you can sprinkle them around your code as much as you like.
+		</p>
+
+		<p>
+			The tasks you want your function to perform will go on the lines you deleted in step 4 above. Here is what it would look like:
+		</p>
+
+		<program language="matlab">
+			<code>
+function [outputArg1,outputArg2] = untitled(inputArg1,inputArg2)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+
+first_command
+second_command
+third_command
+
+...
+
+end
+			</code>
+		</program>
+
+		<p>Here is an example of a generic function with one input and one output.</p>
+
+		<program language="matlab">
+			<code>
+function output_1 = function_name(input_1)
+
+	% Use input_1 in some way to compute output_1
+
+end
+			</code>
+		</program>
+
+		<p>Here is an example of a generic function with two inputs and three outputs.</p>
+
+		<program language="matlab">
+			<code>
+function [output_1, output_2, output_3] = function_name(input_1,input_2)
+
+	% Use input_1 and input_2 in some way to compute output_1, output_2, &amp; output_3
+
+end
+			</code>
+		</program>
+
+		<p>
+			<em>Note 1:</em> When there is more than one output, you must surround them in <pf>[square brackets]</pf>.
+		</p>
+
+		<p>
+			<em>Note 2:</em> You can create a function with no inputs or outputs. In this case, you don’t list any input and output variables.
+		</p>
+
+		<p>
+			<em>Note 3:</em> Since a function expects inputs, you cannot run the function by simply pressing the “Run” button.
+			Instead, call your function in the command window with some inputs specified.
+		</p>
+
+		<activity>
+			<statement>
+				<p><em>Step 1:</em> In the command window, define the variables with the specified values.</p>
+				<ul>
+					<li><p><pf>pennies</pf> with a value of <pf>7</pf>.</p></li>
+					<li><p><pf>nickels</pf> with a value of <pf>17</pf>.</p></li>
+					<li><p><pf>dimes</pf> with a value of <pf>13</pf>.</p></li>
+					<li><p><pf>quarters</pf> with a value of <pf>217</pf>.</p></li>
+				</ul>
+
+				<p><em>Step 2:</em> In the command window, use the variables above to calculate the following.</p>
+				<ul>
+					<li>
+						<p>
+							How much your pennies are worth (in cents). Save the answer in the variable <pf>penny_total</pf>.
+						</p>
+					</li>
+					<li>
+						<p>
+							How much your nickels are worth (in cents). Save the answer in the variable <pf>nickle_total</pf>.
+						</p>
+					</li>
+					<li>
+						<p>
+							How much your dimes are worth (in cents). Save the answer in the variable <pf>dime_total</pf>.
+						</p>
+					</li>
+					<li>
+						<p>
+							How much your quarters are worth (in cents). Save the answer in the variable <pf>quarter_total</pf>.
+						</p>
+					</li>
+					<li>
+						<p>
+							The total value of all these coins (in cents). Save the answer in the variable <pf>total_value</pf>.
+						</p>
+					</li>
+				</ul>
+
+				<p>
+					<em>Step 3:</em> Transfer all Steps 1 and 2 commands into a script. Save it as <pf>coin_script.m</pf>.
+					Run the script to execute these commands all at once.
+				</p>
+
+				<p>
+					<em>Step 4:</em> Convert your script in Step 3 into a function where the inputs are the number of coins of each denomination, and the output is the
+					total value of all the coins in cents. Save it as <pf>coin_total.m</pf>. Run the following command in the command window to test and run the function.
+				</p>
+
+				<program language="matlab">
+					<code>
+value = coin_total(7, 17, 13, 217)
+					</code>
+				</program>
+			</statement>
+		</activity>
+
+		<example xml:id="msf-example-hello">
+			<title>Function with no inputs and no outputs</title>
+			
+			<statement>
+				<p/>
+				<p>
+					Create a function named <pf>hello</pf> with no inputs and outputs that displays <pf>'Hello World!'</pf> using the <pf>fprintf</pf> command.
+				</p>
+				<p>Test your function by typing <pf>hello</pf> in the command window.</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						function [] = hello()
+
+							fprintf('Hello World!')
+
+						end
+					</code>
+				</program>
+			</solution>
+		</example>
+
+		<example xml:id="msf-example-greet">
+			<title>Function with 1 input and no outputs</title>
+			
+			<statement>
+				<p/>
+				<p>
+					Create a function named <pf>greet</pf> with one input variable, <pf>name</pf>, that is the name of a person and no outputs that display a greeting to the person
+					using the <pf>fprintf</pf> command.
+				</p>
+				<p>Test your function by typing <pf>greet</pf> in the command window.</p>
+				<p>Now, test your function with an input: <pf>greet('name')</pf>.</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						function [] = greet(name)
+							fprintf('Hello ')
+							fprintf(name)
+							fprintf(', nice to meet you!')
+						end
+					</code>
+				</program>
+			</solution>
+		</example>
+
+		<example xml:id="msf-example-quadratic-script">
+			<title>Solving a Quadratic Equation Script</title>
+
+			<statement>
+				<p/>
+				
+				<p>
+					Suppose we want to compute the solution to the quadratic equation of the form:
+					<me>a x^2 + b x + c = 0</me>
+				</p>
+
+				<p>
+					As you know, the two solutions are given by the quadratic formula:
+					<me>x = \frac{-b \pm \sqrt{b^2 - 4 a c}}{2 a}</me>				
+				</p>
+
+				<p>
+					<em>Step 1:</em> Factor and solve the equation below by hand.
+					<me>x^2 + x - 6 = 0</me>
+				</p>
+
+				<p>
+					<em>Step 2:</em> Create a script that solves this equation using the quadratic formula. Display your answers using <pf>fprintf</pf>.
+				</p>
+
+				<p>
+					Once completed, run your script to see if your answers from Steps 1 and 2 match.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						% This script uses the quadratic formula to solve an equation of the form:
+						%
+						%    ax^2 + bx + c = 0
+						%
+						% where a, b , and c are given.
+
+						% Set a, b, and c
+						a = 1; 
+						b = 7; 
+						c = -19;
+
+						% Compute the two solutions using the quadratic formula 
+						x1 = (-b + sqrt(b^2 - 4*a*c))/(2*a);
+						x2 = (-b - sqrt(b^2 - 4*a*c))/(2*a);
+
+						% Output x1 and x2
+						fprintf('\n')
+						fprintf('The solutions to the equation: \n\n')
+						fprintf('    %g x^2 + %g x + %g = 0 \n\n', a, b, c)
+						fprintf('are:  x1 = %g and x2 = %g \n', x1, x2)
+
+						% Notes about the fprintf command:
+						%  1. Allows you to send text to the command window
+						%  2. The symbol '\n' makes a new line
+						%  3. The symbol '%g' indicates that a variables value should go here.
+						%     There are different options for this command, but for now this is all
+						%     you need to know.
+					</code>
+				</program>
+			</solution>
+		</example>
+
+		<example xml:id="msf-example-quadratic-function">
+			<title>Solving a Quadratic Equation Function</title>
+			<statement>
+				<p/>
+
+				<p>
+					Create a function named <pf>quadratic</pf> that computes the solution to
+					<m>a x^2 + b x + c = 0</m>, given <m>a</m>, <m>b</m>, and <m>c</m>.
+				</p>
+
+				<p>
+					Input variables:
+					<ul>
+						<li><p><pf>a</pf>: coefficient of the <m>x^2</m> term.</p></li>
+						<li><p><pf>b</pf>: coefficient of the <m>x</m> term.</p></li>
+						<li><p><pf>c</pf>: coefficient of the constant term.</p></li>
+					</ul>
+				</p>
+
+				<p>Output variables:
+					<ul>
+						<li><p><pf>x1</pf>: first solution to the quadratic equation.</p></li>
+						<li><p><pf>x2</pf>: second solution to the quadratic equation.</p></li>
+					</ul>
+				</p>
+
+				<p>
+					Use your code to solve the following quadratic equations:
+					<ol>
+						<li><p><m>2x^2 - 7x + 5 = 0</m></p></li>
+						<li><p><m>15x^2 - 135x + 300 = 0</m></p></li>
+						<li><p><m>x^2 + 36 = 0</m></p></li>
+						<li><p><m>2x\left(x - 3.7\right) + 0.05 = 0</m></p></li>
+					</ol>
+				</p>
+
+				<p>
+					To see both output variables, you must explicitly write two output variables to collect the outputs.
+					Initially, try running your function without output variables. What was displayed?
+				</p>
+
+				<program language="matlab">
+					<code>
+						[sol1_1, sol1_2] = quadratic(2,-7,5)
+						[sol2_1, sol2_2] = quadratic(15,-135,300)
+						[sol3_1, sol3_2] = quadratic(1,0,36)
+						[sol4_1, sol4_2] = quadratic(2,2*3.7,0.05)
+					</code>
+				</program>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						% This function uses the quadratic formula to solve a quadratic equation
+						% of the form:
+						%
+						%    ax^2 + bx + c = 0
+						%
+						% where a, b , and c are given.
+						% 
+						% Inputs:
+						%  1. a (number): x^2 coefficient
+						%  2. b (number): x coefficient
+						%  3. c (number): constant coefficient
+						% Outputs:
+						%  1. x1 (number): first solution from the quadratic eqn (using +)
+						%  2. x2 (number): second solution from the quadratic eqn (using -)
+
+						function [x1, x2] = quadratic(a, b, c)
+
+							% Compute the two solutions using the quadratic formula 
+							x1 = (-b + sqrt(b^2 - 4*a*c))/(2*a);
+							x2 = (-b - sqrt(b^2 - 4*a*c))/(2*a);
+
+						end
+					</code>
+				</program>
+			</solution>
+		</example>
+	</subsection>
+	
+</section>

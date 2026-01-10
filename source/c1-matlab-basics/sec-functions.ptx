@@ -1,0 +1,359 @@
+<section xml:id="matlab-scripts-and-functions">
+  <title>MATLAB Scripts and Functions</title>
+
+  <subsection xml:id="msf-overview">
+    <title>Overview</title>
+    <p>
+      Programming is a set of instructions for instructing a computer to perform a task.
+      A <term>programming language</term>, like MATLAB, provides a way to communicate your instructions to your computer.
+      MATLAB scripts and functions are files containing the instructions that you want MATLAB to perform to complete some task.
+      When you “run” this file, you tell MATLAB to execute these instructions.
+    </p>
+  </subsection>
+
+  <subsection xml:id="msf-scripts">
+    <title>Scripts</title>
+    <p>
+      A MATLAB <term>script</term> is a <c>.m</c> file containing a sequence of MATLAB commands (read one by one from top to bottom)
+      that perform a specific task.
+    </p>
+  </subsection>
+
+  <subsection xml:id="msf-functions">
+    <title>Functions</title>
+    <p>
+      A MATLAB <term>function</term> is also a <c>.m</c> file that contains a sequence of MATLAB commands (read one-by-one from top to bottom)
+      that perform a specific task. The difference is that a function can include inputs (known information) and produce one or more outputs
+      (desired information).
+    </p>
+  </subsection>
+
+  <subsection xml:id="msf-scripts-vs-functions">
+    <title>Scripts vs Functions</title>
+
+    <p>
+      Scripts and functions are similar in many ways, but they do have the following significant differences:
+    </p>
+
+    <ul>
+      <li>
+        <p>
+          Scripts have general goals, whereas functions tend to have smaller, more specific, and repeatable goals.
+        </p>
+      </li>
+      <li>
+        <p>
+          We can call functions inside scripts, but we cannot call scripts inside functions.
+        </p>
+      </li>
+      <li>
+        <p>
+          We can also call functions inside other functions. This practice is an excellent way to break a complex task into smaller sub-tasks
+          that work toward a common goal.
+        </p>
+      </li>
+    </ul>
+
+    <p>
+      MATLAB has many built-in functions that you can use to do various things. The functions you write in this class will be no different than
+      these built-in functions, except you can decide how they work and what they output.
+    </p>
+
+    <p>For example,</p>
+    <ul>
+      <li><p>the cosine function <c>cos(4.4)</c> returns <c>-0.3073</c>.</p></li>
+      <li><p>the absolute value function, <c>abs(-17.3)</c>, returns <c>17.3</c>.</p></li>
+    </ul>
+  </subsection>
+
+  <subsection xml:id="msf-creating-a-script">
+    <title>Creating a Script</title>
+
+    <p>
+      In the MATLAB menu, click the “plus” (new) icon and select “Script”. The file that opens is completely blank, but you can start typing
+      commands in this file.
+    </p>
+
+    <program>
+      <code>
+first_command
+second_command
+third_command
+
+...
+      </code>
+    </program>
+
+    <p>
+      When done, you need to save your script. You can run it by pressing the “Run” button in the MATLAB menu.
+    </p>
+  </subsection>
+
+  <subsection xml:id="msf-creating-a-function">
+    <title>Creating a Function</title>
+
+    <p>
+      In the MATLAB menu, click the “plus” (new) icon and select “Function”. The file that opens includes the following template:
+    </p>
+
+    <program>
+      <code>
+function [outputArg1,outputArg2] = untitled(inputArg1,inputArg2)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+end
+      </code>
+    </program>
+
+    <p>Before you start writing the function, update the template by</p>
+
+    <ol>
+      <li>
+        <p>
+          Giving the function a name by replacing <c>untitled</c> with the desired name. The name should be related to the purpose of the function.
+        </p>
+      </li>
+      <li>
+        <p>
+          Rename the input variables. The template lists them as <c>inputArg1</c> and <c>inputArg2</c> by default. Your function can have any number of inputs.
+        </p>
+      </li>
+      <li>
+        <p>
+          Rename the output variables. The template lists them as <c>outputArg1</c> and <c>outputArg2</c> by default. Your function can have any number of outputs.
+        </p>
+      </li>
+      <li>
+        <p>Delete the lines</p>
+        <program>
+          <code>
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+          </code>
+        </program>
+      </li>
+    </ol>
+
+    <p>
+      <em>Note:</em> The lines in green that start with <c>%</c> are called <term>comments</term>. We use comments to make notes in our code.
+      MATLAB does not process these lines; you can sprinkle them around your code as much as you like.
+    </p>
+
+    <p>
+      The tasks you want your function to perform will go on the lines you deleted in step 4 above. Here is what it would look like:
+    </p>
+
+    <program>
+      <code>
+function [outputArg1,outputArg2] = untitled(inputArg1,inputArg2)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+
+first_command
+second_command
+third_command
+
+...
+
+end
+      </code>
+    </program>
+
+    <p>Here is an example of a generic function with one input and one output.</p>
+
+    <program>
+      <code>
+function output_1 = function_name(input_1)
+
+   % Use input_1 in some way to compute output_1
+
+end
+      </code>
+    </program>
+
+    <p>Here is an example of a generic function with two inputs and three outputs.</p>
+
+    <program>
+      <code>
+function [output_1, output_2, output_3] = function_name(input_1,input_2)
+
+   % Use input_1 and input_2 in some way to compute output_1, output_2, &amp; output_3
+
+end
+      </code>
+    </program>
+
+    <p>
+      <em>Note 1:</em> When there is more than one output, you must surround them in <c>[square brackets]</c>.
+    </p>
+    <p>
+      <em>Note 2:</em> You can create a function with no inputs or outputs. In this case, you don’t list any input and output variables.
+    </p>
+    <p>
+      <em>Note 3:</em> Since a function expects inputs, you cannot run the function by simply pressing the “Run” button.
+      Instead, call your function in the command window with some inputs specified.
+    </p>
+  </subsection>
+
+  <subsection xml:id="msf-in-class-activity">
+    <title>In-Class Activity</title>
+
+    <exercise xml:id="msf-coins-activity">
+      <statement>
+        <p><em>Step 1:</em> In the command window, define the variables with the specified values.</p>
+        <ul>
+          <li><p><c>pennies</c> with a value of <c>7</c>.</p></li>
+          <li><p><c>nickels</c> with a value of <c>17</c>.</p></li>
+          <li><p><c>dimes</c> with a value of <c>13</c>.</p></li>
+          <li><p><c>quarters</c> with a value of <c>217</c>.</p></li>
+        </ul>
+
+        <p><em>Step 2:</em> In the command window, use the variables above to calculate the following.</p>
+        <ul>
+          <li>
+            <p>
+              How much your pennies are worth (in cents). Save the answer in the variable <c>penny_total</c>.
+            </p>
+          </li>
+          <li>
+            <p>
+              How much your nickels are worth (in cents). Save the answer in the variable <c>nickle_total</c>.
+            </p>
+          </li>
+          <li>
+            <p>
+              How much your dimes are worth (in cents). Save the answer in the variable <c>dime_total</c>.
+            </p>
+          </li>
+          <li>
+            <p>
+              How much your quarters are worth (in cents). Save the answer in the variable <c>quarter_total</c>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The total value of all these coins (in cents). Save the answer in the variable <c>total_value</c>.
+            </p>
+          </li>
+        </ul>
+
+        <p>
+          <em>Step 3:</em> Transfer all Steps 1 and 2 commands into a script. Save it as <c>coin_script.m</c>.
+          Run the script to execute these commands all at once.
+        </p>
+
+        <p>
+          <em>Step 4:</em> Convert your script in Step 3 into a function where the inputs are the number of coins of each denomination, and the output is the
+          total value of all the coins in cents. Save it as <c>coin_total.m</c>. Run the following command in the command window to test and run the function.
+        </p>
+
+        <program>
+          <code>
+value = coin_total(7, 17, 13, 217)
+          </code>
+        </program>
+      </statement>
+    </exercise>
+  </subsection>
+
+  <subsection xml:id="msf-examples">
+    <title>Examples</title>
+
+    <exercise xml:id="msf-example-hello">
+      <statement>
+        <p>
+          <em>Example 1: Function with no inputs and no outputs.</em>
+          Create a function named <c>hello</c> with no inputs and outputs that displays <c>"Hello World"</c> using the <c>fprintf</c> command.
+        </p>
+        <p>Test your function by typing <c>hello</c> in the command window.</p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="msf-example-greet">
+      <statement>
+        <p>
+          <em>Example 2: Function with 1 input and no outputs.</em>
+          Create a function named <c>greet</c> with one input variable, <c>name</c>, that is the name of a person and no outputs that display a greeting to the person
+          using the <c>fprintf</c> command.
+        </p>
+        <p>Test your function by typing <c>greet</c> in the command window.</p>
+        <p>Now, test your function with an input: <c>greet('name')</c>.</p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="msf-example-quadratic-script">
+      <statement>
+        <p>
+          <em>Example 3: Script (Solving a Quadratic Equation).</em>
+          Suppose we want to compute the solution to the quadratic equation of the form:
+        </p>
+
+        <me>a x^2 + b x + c = 0</me>
+
+        <p>As you know, the two solutions are given by the quadratic formula.</p>
+
+        <me>x = \frac{-b \pm \sqrt{b^2 - 4 a c}}{2 a}</me>
+
+        <p><em>Step 1:</em> Factor and solve the equation below by hand.</p>
+
+        <me>x^2 + x - 6 = 0</me>
+
+        <p>
+          <em>Step 2:</em> Create a script that solves this equation using the quadratic formula. Display your answers using <c>fprintf</c>.
+        </p>
+
+        <p>
+          Once completed, run your script to see if your answers from Steps 1 and 2 match.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="msf-example-quadratic-function">
+      <statement>
+        <p>
+          <em>Example 4: Function (Solving a Quadratic Equation).</em>
+          Create a function named <c>quadratic</c> that computes the solution to
+          <m>a x^2 + b x + c = 0</m>, given <m>a</m>, <m>b</m>, and <m>c</m>.
+        </p>
+
+        <p>Input variables:</p>
+        <ul>
+          <li><p><c>a</c>: coefficient of the <m>x^2</m> term.</p></li>
+          <li><p><c>b</c>: coefficient of the <m>x</m> term.</p></li>
+          <li><p><c>c</c>: coefficient of the constant term.</p></li>
+        </ul>
+
+        <p>Output variables:</p>
+        <ul>
+          <li><p><c>x1</c>: first solution to the quadratic equation.</p></li>
+          <li><p><c>x2</c>: second solution to the quadratic equation.</p></li>
+        </ul>
+
+        <p>Use your code to solve the following quadratic equations:</p>
+        <ol>
+          <li><p><m>2x^2 - 7x + 5 = 0</m></p></li>
+          <li><p><m>15x^2 - 135x + 300 = 0</m></p></li>
+          <li><p><m>x^2 + 36 = 0</m></p></li>
+          <li><p><m>2x\left(x - 3.7\right) + 0.05 = 0</m></p></li>
+        </ol>
+
+        <p>
+          To see both output variables, you must explicitly write two output variables to collect the outputs.
+          Initially, try running your function without output variables. What was displayed?
+        </p>
+
+        <program>
+          <code>
+[sol1_1, sol1_2] = quadratic(2,-7,5)
+[sol2_1, sol2_2] = quadratic(15,-135,300)
+[sol3_1, sol3_2] = quadratic(1,0,36)
+[sol4_1, sol4_2] = quadratic(2,2*3.7,0.05)
+          </code>
+        </program>
+      </statement>
+    </exercise>
+
+  </subsection>
+</section>

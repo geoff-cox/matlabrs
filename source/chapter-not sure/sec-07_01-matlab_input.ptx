@@ -1,11 +1,11 @@
 
 <!--********************************************************************-->
 
-<section xml:id="sec-Matlab_input" xmlns:xi="http://www.w3.org/2001/XInclude">
+<section xml:id="sec-matlab_input" xmlns:xi="http://www.w3.org/2001/XInclude">
 <title>Input Commands</title>
 
 	<p>
-		In this section, we discuss the input/output (I/O) capabilities in Matlab.
+		In this section, we discuss the input/output (I/O) capabilities in MATLAB.
 	</p>
 
 	<p>
@@ -44,7 +44,7 @@
 	</example>
 
 	<p>
-		In this example, the <c>'s'</c> in the first <c>input</c> indicates that the program expects text input and the second <c>input</c> (without the <c>'s'</c>) indicates that the program expects numeric input.  When executed, the lines collect input one at a time. Note the text <c>Waiting for input</c> on the bottom left of the Matlab window while the user enters the name, <c>Bob</c>, and age, <c>25</c>. Due to the semicolons, there is no output to the screen, but the values have been stored in the variables <c>FirstName</c> and <c>Age</c> (see the Workspace window to confirm).
+		In this example, the <c>'s'</c> in the first <c>input</c> indicates that the program expects text input and the second <c>input</c> (without the <c>'s'</c>) indicates that the program expects numeric input.  When executed, the lines collect input one at a time. Note the text <c>Waiting for input</c> on the bottom left of the MATLAB window while the user enters the name, <c>Bob</c>, and age, <c>25</c>. Due to the semicolons, there is no output to the screen, but the values have been stored in the variables <c>FirstName</c> and <c>Age</c> (see the Workspace window to confirm).
 	</p>
 
 	<p>
@@ -155,7 +155,7 @@
 			</li>
 			<li>
 				<p>
-					When the <c>fprintf</c> command is run, Matlab places the first data value, <c>FirstName</c> (i.e. <c>Bob</c>), in the <c>%s</c> position and the second data value, <c>Age</c> (i.e. <c>25</c>), in the <c>%.0f</c> position.  Got it?
+					When the <c>fprintf</c> command is run, MATLAB places the first data value, <c>FirstName</c> (i.e. <c>Bob</c>), in the <c>%s</c> position and the second data value, <c>Age</c> (i.e. <c>25</c>), in the <c>%.0f</c> position.  Got it?
 				</p>
 			</li>
 		</ul>
@@ -193,7 +193,7 @@
 	</example>
 
 	<p>
-		Basically, we are displaying a string array made up of several strings through concatenation.  We also see the command <c>num2str</c> which does exactly what it says, it converts a number into a string.  This is necessary since numeric data and strings don't play well together in Matlab.  In order to create a string array, all of the parts must be strings.  If we tried to run this without the <c>num2str</c> command, we would get
+		Basically, we are displaying a string array made up of several strings through concatenation.  We also see the command <c>num2str</c> which does exactly what it says, it converts a number into a string.  This is necessary since numeric data and strings don't play well together in MATLAB.  In order to create a string array, all of the parts must be strings.  If we tried to run this without the <c>num2str</c> command, we would get
 
 		<sidebyside width="100%">
 			<program language="matlab">
@@ -228,7 +228,7 @@
 	<title><em></em></title><p/>
 
 		<p>
-			Create the following table of years and monthly world steel production (in thousand metric tons) in an Excel file and save the file as WorldSteelProduction.xls (or .xlsx).  Make sure to save this file in the directory listed at the top of the Matlab window, the Currect Directory.
+			Create the following table of years and monthly world steel production (in thousand metric tons) in an Excel file and save the file as WorldSteelProduction.xls (or .xlsx).  Make sure to save this file in the directory listed at the top of the MATLAB window, the Currect Directory.
 		</p>
 
 		<p>
@@ -433,7 +433,7 @@
 	</example>
 
 		<p>
-			In this example, the reason for the large values in the last column are because the tangent function tends to infinity as the angle tends to <m>\pi/2</m> (and 1.5708 is close to <m>\pi/2</m>).  Actually, the value <m>\tan(\pi/2)</m> returns <c>1.6331e+016</c>.  Why isn't "infinity" the returned value?  Well, it has to do with how values are stored in Matlab, namely using double-precision.  The value <c>1.6331e+016</c> is the reciprocal of the value <c>eps = 10 ^(-52)</c>.  If you want to know more, head to the help files or Google, of course.
+			In this example, the reason for the large values in the last column are because the tangent function tends to infinity as the angle tends to <m>\pi/2</m> (and 1.5708 is close to <m>\pi/2</m>).  Actually, the value <m>\tan(\pi/2)</m> returns <c>1.6331e+016</c>.  Why isn't "infinity" the returned value?  Well, it has to do with how values are stored in MATLAB, namely using double-precision.  The value <c>1.6331e+016</c> is the reciprocal of the value <c>eps = 10 ^(-52)</c>.  If you want to know more, head to the help files or Google, of course.
 		</p>
 
 		<p>

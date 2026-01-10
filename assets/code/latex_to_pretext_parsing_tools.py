@@ -333,7 +333,7 @@ def parse_verbs(lines):
             #converted_lines.append('<c>\n')
             
             converted_lines.append('<sidebyside width="100%">\n')
-            converted_lines.append('<program language="matlab">\n')
+            converted_lines.append('<program language="MATLAB">\n')
             converted_lines.append('<input>\n')
             converted_lines.append(convert_verb_line(this_line, 'single_verb'))
             converted_lines.append('</input>\n')
@@ -348,7 +348,7 @@ def parse_verbs(lines):
             #converted_lines.append('<pre>\n')
             
             converted_lines.append('<sidebyside width="100%">\n')
-            converted_lines.append('<program language="matlab">\n')
+            converted_lines.append('<program language="MATLAB">\n')
             converted_lines.append('<input>\n')
             converted_lines.append(convert_verb_line(this_line[:-1])) 
         elif this_line_type == 'single_verb_w_text' and next_line_type in ['other','single_verb_w_text']:
@@ -875,7 +875,7 @@ def switch_html_button_labels(html_root, current_label, new_label):
     import re # regular expressions
     from os import walk # directory listings
     
-    html_root = 'C:/Users/gcox/Google Drive/1--MATLAB_textbook/4--master_copy/matlab-ebook/BOOK-OUTPUT/'
+    html_root = 'C:/Users/gcox/Google Drive/1--MATLAB_textbook/4--master_copy/MATLAB-ebook/BOOK-OUTPUT/'
 
     # get files from html_root
     filenames = next(walk(html_root), (None, None, []))[2]  # [] if no file

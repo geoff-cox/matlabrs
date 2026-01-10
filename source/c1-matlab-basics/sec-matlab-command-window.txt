@@ -1,0 +1,205 @@
+<section xml:id="matlab-command-window">
+  <title>Command Window</title>
+
+	<introduction>
+		<p>
+			Software applications require a way for users to interact with them.
+			This interaction occurs through a <term>User Interface</term> (UI).
+		</p>
+
+		<p>
+			Most applications use one or both of the following interface styles:
+			<dl>
+				<li>
+					<title>Command Line Interface (CLI)</title>
+					<p>
+						Users type commands at a prompt to control the application.
+					</p>
+				</li>
+				<li>
+					<title>Graphical User Interface (GUI)</title>
+					<p>
+						Users interact through visual elements such as buttons, menus, and windows.
+					</p>
+				</li>
+			</dl>
+		</p>
+
+		<p>
+			Let's pratice using MATLAB's CLI with some simple examples.
+		</p>
+
+		<p>
+			MATLAB is unusual in that it provides a CLI directly inside its GUI.
+			This embedded CLI is called the <xref ref="command-window" text="custom">Command Window</xref>.
+		</p>
+	</introduction>
+
+  <subsection xml:id="basic-calculations">
+    <title>Basic Calculations</title>
+
+    <p>
+      You can use the Command Window as a calculator by entering expressions
+      and pressing <kbd>Enter</kbd>.
+    </p>
+
+    <program language="matlab">
+      <code>
+        2 + 3
+      </code>
+    </program>
+
+    <p>
+      MATLAB displays the result using the default variable name <pf>ans</pf>.
+    </p>
+
+    <pre>
+ans =
+     5
+    </pre>
+
+    <p>
+      MATLAB also includes built-in mathematical constants and functions.
+    </p>
+
+    <program language="matlab">
+      <code>
+        pi
+        sin(pi/2)
+      </code>
+    </program>
+
+    <pre>
+ans =
+    3.1416
+
+ans =
+    1
+    </pre>
+
+    <exercise>
+      <statement>
+        <p>
+          When you enter an expression without assigning it to a variable,
+          how does MATLAB store the result?
+        </p>
+      </statement>
+      <choices randomize="yes">
+        <choice correct="yes">
+          <statement><p>It stores the result in the variable <pf>ans</pf>.</p></statement>
+        </choice>
+        <choice correct="no">
+          <statement><p>It permanently saves the result to a file.</p></statement>
+        </choice>
+        <choice correct="no">
+          <statement><p>It discards the result immediately.</p></statement>
+        </choice>
+        <choice correct="no">
+          <statement><p>It replaces the contents of the workspace.</p></statement>
+        </choice>
+      </choices>
+    </exercise>
+
+		<assemblage>
+			<title>Common Beginner Mistakes</title>
+
+			<p>
+				When first using MATLAB, it is common to encounter confusing results due to a few
+				predictable mistakes.
+				<ul>
+					<li>
+						Forgetting that MATLAB executes commands in the order they are run, not the order
+						they appear on the screen.
+					</li>
+					<li>
+						Assuming MATLAB automatically updates previously computed values when a variable changes.
+					</li>
+					<li>
+						Leaving old variables in the workspace and unintentionally reusing them.
+					</li>
+					<li>
+						Interpreting the symbol <c>=</c> as a mathematical equation rather than an assignment.
+					</li>
+				</ul>
+			</p>
+
+			<p>
+				Nearly all of these issues can be resolved by clearing the workspace and re-running
+				commands in a logical order.
+			</p>
+		</assemblage>
+
+  </subsection>
+
+	<subsection xml:id="command-window-utility">
+		<title>Keeping the Command Window Organized</title>
+
+		<p>
+			As you work in the Command Window, MATLAB keeps a history of commands, output,
+			and variables. Several built-in commands help you keep your workspace organized.
+		</p>
+
+		<program language="matlab">
+			<code>
+				clear
+				clc
+				format short
+			</code>
+		</program>
+
+		<ul>
+			<li>
+				<pf>clear</pf> removes all variables from the workspace.
+			</li>
+			<li>
+				<pf>clc</pf> clears the Command Window display.
+			</li>
+			<li>
+				<pf>format</pf> controls how numerical output is displayed (but not how it is stored).
+			</li>
+		</ul>
+
+		<p>
+			These commands do not undo work permanently, but they do reset your current session.
+			When results seem confusing, using <pf>clear</pf> and starting fresh is often helpful.
+		</p>
+
+		<exercise>
+			<statement>
+				<p>
+					Which command clears variables from memory without closing MATLAB?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes"><statement><p><pf>clear</pf></p></statement></choice>
+				<choice correct="no"><statement><p><pf>clc</pf></p></statement></choice>
+				<choice correct="no"><statement><p><pf>format</pf></p></statement></choice>
+				<choice correct="no"><statement><p>exit</p></statement></choice>
+			</choices>
+		</exercise>
+
+		<!-- <exercise>
+			<statement>
+				<p>
+					Why is clearing the workspace often a good first step when debugging unexpected results?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>It removes old variables that may be affecting current computations.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>It permanently deletes MATLAB functions.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>It speeds up MATLAB by increasing available memory.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>It automatically corrects syntax errors.</p></statement>
+				</choice>
+			</choices>
+		</exercise> -->
+	</subsection>
+
+</section>

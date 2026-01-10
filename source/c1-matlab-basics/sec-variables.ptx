@@ -1,0 +1,368 @@
+<section xml:id="matlab-variables">
+  <title>Variables</title>
+
+  <introduction>
+    <p>
+      A <term>variable</term> in MATLAB is a named location in memory that stores a value.
+      Variables allow you to save data so that it can be reused, modified, and combined with
+      other data as a program runs. Every calculation you perform in the Command Window 
+			produces values, and variables allow you to store those values for later use.
+    </p>
+
+    <p>
+      At any moment, MATLAB keeps track of all defined variables in an internal memory area
+      called the <term>workspace</term>. 
+    </p>
+  </introduction>
+
+  <subsection xml:id="matlab-variables-defining">
+    <title>Creating Variables</title>
+
+    <p>
+      You create a variable using the <term>assignment operator</term>, written as
+      <c>=</c>. The general form is
+    </p>
+
+    <p>
+      <pf>variableName = value</pf>
+    </p>
+
+    <p>
+      When MATLAB executes an assignment:
+      <ul>
+        <li>The expression on the right-hand side is evaluated first.</li>
+        <li>The resulting value is stored under the name on the left-hand side.</li>
+      </ul>
+    </p>
+
+    <example>
+      <statement>
+        <p>
+          Define the variables <pf>a</pf> and <pf>b</pf> with values <pf>1</pf> and <pf>7.8</pf>.
+        </p>
+
+        <program language="matlab">
+          <code>
+            a = 1
+            b = 7.8
+          </code>
+        </program>
+
+        <p>
+          After running these commands:
+          <ul>
+            <li>The variables <pf>a</pf> and <pf>b</pf> exist in the workspace.</li>
+            <li>Their values are displayed in the Command Window.</li>
+          </ul>
+        </p>
+      </statement>
+    </example>
+
+    <p>
+      Ending a command with a semicolon suppresses output in the Command Window but still
+      creates the variable.
+    </p>
+
+    <program language="matlab">
+      <code>
+        c = -0.101
+        d = 88;
+      </code>
+    </program>
+
+    <p>
+      Both variables are stored in the workspace, but only <pf>c</pf> is displayed.
+    </p>
+
+		<exercise>
+			<statement>
+				<p>
+					What effect does ending a MATLAB assignment with a semicolon have?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="no">
+					<statement><p>The variable is not created in the workspace.</p></statement>
+				</choice>
+				<choice correct="yes">
+					<statement><p>The variable is created, but its value is not displayed in the Command Window.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>The variable is created with no value.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>The assignment only applies for the current line of code.</p></statement>
+				</choice>
+			</choices>
+		</exercise>
+
+  </subsection>
+
+  <subsection xml:id="matlab-variables-using">
+    <title>Using and Reassigning Variables</title>
+
+    <p>
+      Variables are typically used to build expressions that depend on previously defined
+      values.
+    </p>
+
+    <example>
+      <statement>
+        <p>
+          Suppose a triangle has base length <pf>4</pf> and height <pf>10</pf>.
+          Define variables for the base and height, and then compute the area.
+        </p>
+
+        <program language="matlab">
+          <code>
+            base = 4;
+            height = 10;
+            area = 0.5 * base * height;
+          </code>
+        </program>
+
+        <p>
+          The variable <pf>area</pf> is created with value <pf>20</pf>.
+        </p>
+      </statement>
+    </example>
+
+    <p>
+      Variables can be reassigned at any time. When this happens, the previous value is
+      overwritten.
+    </p>
+
+    <program language="matlab">
+      <code>
+        base = height;
+      </code>
+    </program>
+
+    <p>
+      This command copies the current value of <pf>height</pf> into <pf>base</pf>.
+      The value of <pf>height</pf> itself is unchanged.
+    </p>
+
+    <p>
+      In MATLAB, the symbol <c>=</c> does <em>not</em> represent a mathematical equation.
+      It represents an instruction:
+    </p>
+
+    <p>
+      <pf>VARIABLE_NAME = EXPRESSION</pf>
+    </p>
+
+		<exercise>
+			<statement>
+				<p>
+					After computing a variable using other variables, why does changing one of those
+					original variables not automatically update the result?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>MATLAB stores the computed value, not the formula used to compute it.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>MATLAB only updates variables when semicolons are omitted.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>MATLAB prevents dependent variables from changing.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>MATLAB assumes variables represent algebraic equations.</p></statement>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise>
+			<statement>
+				<p>
+					Suppose you run the following commands in MATLAB:
+				</p>
+
+				<program language="matlab">
+					<code>
+						base = 4;
+						height = 10;
+						area = 0.5 * base * height;
+					</code>
+				</program>
+
+				<p>
+					Next, you run the commands:
+				</p>
+
+				<program language="matlab">
+					<code>
+						height = base;
+						height = 6;
+					</code>
+				</program>
+
+				<p>
+					Give the resulting value of each variable:
+				</p>
+
+				<p>
+					<ul>
+						<li><pf>base = </pf> <fillin mode="number" answer="4"/></li>
+						<li><pf>height = </pf> <fillin mode="number" answer="6"/></li>
+						<li><pf>area = </pf> <fillin mode="number" answer="20"/></li>
+					</ul>
+				</p>
+			</statement>
+
+			<evaluation>
+				<evaluate>
+					<test><numcmp use-answer="yes"/></test>
+					<test><strcmp>.*</strcmp><feedback><p>Incorrect</p></feedback></test>
+				</evaluate>
+				<evaluate>
+					<test><numcmp use-answer="yes"/></test>
+					<test><strcmp>.*</strcmp><feedback><p>Incorrect</p></feedback></test>
+				</evaluate>
+				<evaluate>
+					<test><numcmp use-answer="yes"/></test>
+					<test><strcmp>.*</strcmp><feedback><p>Incorrect</p></feedback></test>
+				</evaluate>
+			</evaluation>
+		</exercise>
+
+  </subsection>
+
+  <subsection xml:id="naming-variables">
+    <title>Naming Variables</title>
+
+    <paragraphs>
+      <title><insert>Valid Names</insert></title>
+
+      <p>
+        MATLAB imposes specific rules on variable names:
+      </p>
+
+      <ol>
+        <li><p>The name must start with a letter.</p></li>
+        <li><p>It may contain letters, digits, and underscores.</p></li>
+        <li><p>It cannot be a MATLAB keyword.</p></li>
+        <li><p>It cannot exceed 2048 characters.</p></li>
+      </ol>
+
+			<p>
+				Things to note about MATLAB variables:
+				<ul marker="square">
+					<li>Variable names are case sensitive, so <pf>A</pf> and <pf>a</pf> are different variables.</li>
+					<li>There are <xref ref="matlab-keywords" text="custom">20 keywords</xref> that can be listed with the <pf>iskeyword</pf> command.</li>
+				</ul>
+			</p>
+
+			<table xml:id="matlab-keywords">
+				<title>MATLAB keywords listed from <pf>iskeyword</pf></title>
+				<tabular>
+					<row>
+						<cell><pf>function</pf></cell>
+						<cell><pf>if</pf></cell>
+						<cell><pf>else</pf></cell>
+						<cell><pf>elseif</pf></cell>
+						<cell><pf>end</pf></cell>
+					</row>
+					<row>
+						<cell><pf>try</pf></cell>
+						<cell><pf>switch</pf></cell>
+						<cell><pf>case</pf></cell>
+						<cell><pf>otherwise</pf></cell>
+						<cell><pf>catch</pf></cell>
+					</row>
+					<row>
+						<cell><pf>for</pf></cell>
+						<cell><pf>while</pf></cell>
+						<cell><pf>break</pf></cell>
+						<cell><pf>continue</pf></cell>
+						<cell><pf>return</pf></cell>
+					</row>
+					<row>
+						<cell><pf>classdef</pf></cell>
+						<cell><pf>parfor</pf></cell>
+						<cell><pf>persistent</pf></cell>
+						<cell><pf>spmd</pf></cell>
+						<cell><pf>global</pf></cell>
+					</row>
+				</tabular>
+			</table>
+
+			<exercise xml:id="matlab-variables-valid-name-check">
+				<statement>
+					<p>Select all the <em>valid</em> variable names.</p>
+				</statement>
+				
+				<areas>
+					<tabular>
+						<row>
+							<cell><area correct="yes"><pf>x6</pf></area></cell><cell/>
+							<cell><area correct="no"> <pf>6x</pf></area></cell><cell/>
+							<cell><area correct="yes"><pf>x_6</pf></area></cell><cell/>
+							<cell><area correct="no"> <pf>x.6</pf></area></cell>
+						</row>
+						<row>
+							<cell><area correct="no"> <pf>_lastValue</pf></area></cell><cell/>
+							<cell><area correct="yes"><pf>lastValue_</pf></area></cell><cell/>
+							<cell><area correct="yes"><pf>n_factorial</pf></area></cell><cell/>
+							<cell><area correct="no"> <pf>n!</pf></area></cell>
+						</row>
+						<row>
+							<cell><area correct="yes"><pf>iskeyword</pf></area></cell><cell/>
+							<cell><area correct="yes"><pf>pi</pf></area></cell><cell/>
+							<cell><area correct="no"> <pf>end</pf></area></cell>
+						</row>
+						<row><cell><m/></cell></row>
+					</tabular>
+				</areas>
+			</exercise>
+    </paragraphs>
+
+    <paragraphs>
+      <title><insert>Choosing Good Names</insert></title>
+
+      <p>
+        In practice, variable names should clearly describe the data they store.
+        Descriptive names improve readability and reduce errors.
+      </p>
+
+      <program language="matlab">
+        <code>
+          price = 3.11;
+          tankCapacity = 15;
+          fullTankCost = price * tankCapacity;
+        </code>
+      </program>
+
+			<exercise>
+				<statement>
+					<p>
+						What is the primary advantage of using descriptive variable names in MATLAB code?
+					</p>
+				</statement>
+
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p>They make code easier to read, understand, and debug.</p></statement>
+					</choice>
+					<choice correct="no">
+						<statement><p>They make MATLAB run faster.</p></statement>
+					</choice>
+					<choice correct="no">
+						<statement><p>They prevent variables from being overwritten.</p></statement>
+					</choice>
+					<choice correct="no">
+						<statement><p>They allow MATLAB to automatically document the code.</p></statement>
+					</choice>
+				</choices>
+			</exercise>
+
+    </paragraphs>
+
+  </subsection>
+
+</section>

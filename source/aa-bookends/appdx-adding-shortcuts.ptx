@@ -1,0 +1,57 @@
+<section label="matlab-shortcuts">
+	<title>Adding Shortcuts</title>
+
+	<p>
+		Suppose you find yourself running the same few commands again and again. Instead of typing them every time, you can add shortcuts to the MATLAB toolbar. Shortcuts are custom buttons that execute your chosen commands with a single click.
+	</p>
+
+	<assemblage>
+		<title>A Refresh Button</title>
+			<p>
+				Let's make a shortcut that clears the Command Window, closes all figures, and clears the Workspace—essentially giving MATLAB a fresh start.
+				<ol marker="1.">
+					<li>On the MATLAB Home tab, find the <q>Favorites</q> dropdown menu.</li>
+					<li>Select <q>New Favorite</q> at the bottom.</li>
+					<li>In the <q>Label</q> field, give your shortcut a name (for example, <q>Refresh</q>).</li>
+					<li><p>In the <q>Code</q> field, enter:</p>
+							<program>
+								<code>
+									clear;
+									close all;
+									clc;
+								</code>
+							</program>
+					</li>
+					<li>Pick the <q>Upper Case C</q> icon and select <q>Add to quick access toolbar</q>.</li>
+					<li>Click <q>Save</q>, then test your button by pressing it from the toolbar.</li>
+				</ol>
+			</p>
+	</assemblage>
+
+	<assemblage>
+		<title>Jump to Your Class Folder</title>
+			<p>
+				If you're using MATLAB for coursework, it's handy to have a button that instantly moves MATLAB into your class folder.
+				<ol marker="1.">
+					<li><p>In the command window, create a new folder called <pf>MA110</pf> by typing:</p>
+							<program>
+								<code>
+									mkdir MA110
+								</code>
+							</program>
+					</li>
+					<li>Double-click the folder in the Current Folder panel to move into it.</li>
+					<li>Type <pf>pwd</pf> to display the full file path of this folder.</li>
+					<li>Copy the file path that MATLAB displays.</li>
+					<li><p>Create another shortcut with the code:</p>
+							<program>
+								<code>
+									cd "the/copied/file/path"
+								</code>
+							</program>
+					</li>
+					<li>Navigate away from the folder and test your shortcut. It should place your files panel in this new folder.</li>
+				</ol>
+			</p>
+	</assemblage>
+</section>

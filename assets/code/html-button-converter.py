@@ -5,7 +5,7 @@ def switch_html_button_labels(html_root, current_label, new_label):
     import re # regular expressions
     from os import walk # directory listings
     
-    html_root = 'C:/Users/gcox/Google Drive/1--MATLAB_textbook/4--master_copy/matlab-ebook/BOOK-OUTPUT/'
+    html_root = 'C:/Users/gcox/Google Drive/1--MATLAB_textbook/4--master_copy/MATLAB-ebook/BOOK-OUTPUT/'
 
     # get files from html_root
     filenames = next(walk(html_root), (None, None, []))[2]  # [] if no file
