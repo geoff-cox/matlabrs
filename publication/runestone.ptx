@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!-- This is the publication file for a newly generated PreTeXt book.		-->
+	<!-- By changing the values of attributes here, you can change how			-->
+	<!-- the output looks and functions.  For the complete documentation		-->
+	<!-- of publication-file options, see										-->
+	<!-- https://pretextbook.org/doc/guide/html/publisher-file-reference.html	-->
+
+<publication>
+
+	<source webwork-problems="ww-extraction/webwork-representations.ptx">
+		<directories external="../assets" generated="../generated-assets" />
+		<version include="web readings emoji" />
+	</source>
+
+	<common>
+		<chunking level="2" />
+		<tableofcontents level="2" />
+		<exercise-inline			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
+		<exercise-divisional	statement="yes"		hint="yes"		answer="no"		solution="no"	/>
+		<exercise-worksheet		statement="yes"		hint="yes"		answer="no"		solution="no"	/>
+		<exercise-reading			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
+		<exercise-project			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
+		<fillin textstyle="underline" mathstyle="shade" />
+	</common>
+
+	<numbering>
+		<divisions	chapter-start="1" level="2" />
+		<blocks			level="0" />
+		<projects		level="0" />
+		<equations	level="0" />
+		<footnotes	level="0" />
+	</numbering>
+
+	<latex print="no" sides="one" font-size="9" draft="no">
+		<page right-alignment="flush" bottom-alignment="ragged" />
+		<asymptote links="no" />
+		<worksheets formatted="yes" />
+	</latex>
+
+	<html>
+		<platform host="runestone"/>
+		<index-page ref="main"/>
+		<audio privacy="yes"/>
+		<knowl
+			theorem="no"
+			proof="yes"
+			note="yes"
+			definition="no"
+			example="no"
+			example-solution="yes"
+			project="no"
+			task="no"
+			remark="yes"
+			objectives="no"
+			outcomes="no"
+			figure="no"
+			table="no"
+			listing="no"
+			list="no"
+			exercise-inline="yes"
+			exercise-divisional="no"
+			exercise-divisional-answer="no"
+			exercise-worksheet="no"
+			exercise-readingquestion="yes"
+		/>
+		<search variant="default" />
+		<calculator model="geogebra-classic" activecode="none" />
+		<webwork
+			inline="dynamic"
+			divisional="dynamic"
+			reading="dynamic"
+			worksheet="dynamic"
+			project="dynamic"
+		/>
+		<exercises tabbed-tasks="project reading inline divisional" task-reveal="solution"/>
+    <toc focused="yes" preexpanded-levels="3" />
+		<navigation logic="tree" upbutton="no"/>
+	</html>
+
+</publication>

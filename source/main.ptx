@@ -5,199 +5,67 @@
 	<xi:include href="./aa-bookends/book-info.ptx" />
 
 	<book xml:id="matlabrs">
-		<title>MATLAB BOOK</title>
+		<title>MATLAB Notes</title>
 
 		<xi:include href="./aa-bookends/front-matter.ptx" />
 
-		<chapter xml:id="using-matlab">
-			<title>Getting Started</title>
+		<chapter xml:id="matlab-basics">
+			<title>MATLAB Basics</title>
 
 			<introduction xml:id="chpt-01-intro">
 				<p>
-					In this chapter, we discuss the basics of MATLAB.
+					This chapter introduces the MATLAB computing environment and the basic skills needed to work with it interactively.
 				</p>
 
 				<p>
-					There are many different software packages available.  It's important to understand the different capabilities of each as one software package may be the best tool depending on the task.
-					Here, we introduce MATLAB, which stands for MATrix LABoratory.  MATLAB is cost-effective, easy to learn and blends powerful number crunching capabilities with graphical display.  It is an excellent tool for working with large data sets.
+					You will begin by installing MATLAB and becoming familiar with the MATLAB Desktop, including the Command Window, Workspace, and Editor. You will then learn how to use the Command Window as a calculator, how MATLAB evaluates commands, and how results are stored in memory.			
 				</p>
 
 				<p>
-					Other packages that you may wish to consider, include Mathematica, Maple, Fortran, C, C++, or Java.  In some cases, even a basic TI calculator or Excel is the appropriate tool.
+					The chapter concludes with an introduction to variables—how they are created, named, and reused. Understanding how MATLAB stores values and executes assignments is essential before moving on to writing scripts and programs, which will be the focus of the next chapter.
 				</p>
-
-				<p>
-					MATLAB has become the industry standard for use in many fields including Mathematics, Bioinformatics, Finance, and Engineering.  The basic MATLAB package includes the core package and Simulink, a platform for modeling dynamic systems.  MATLAB can also be enhanced through the addition of "toolboxes" (available from Mathworks) including such topics as Control Systems, Image Processing, Splines and SimBiology. 
-				</p>
-				
 			</introduction>
 
-			<xi:include href="c1-getting-started/c1-1-getting-matlab.ptx" />
-			<xi:include href="c1-getting-started/c1-2-matlab-desktop.ptx" />
-			<xi:include href="c1-getting-started/c1-3-command-window.ptx" />
-			<xi:include href="c1-getting-started/c1-4-matlab-ide.ptx" />
-			<xi:include href="c1-getting-started/c1-exercises.ptx" />
-		</chapter>
+			<xi:include href="c1-matlab-basics/sec-installing-matlab.ptx" />
+			<xi:include href="c1-matlab-basics/sec-matlab-desktop.ptx" />
+			<xi:include href="c1-matlab-basics/sec-matlab-command-window.ptx" />
+			<xi:include href="c1-matlab-basics/sec-variables.ptx" />
+			<xi:include href="c1-matlab-basics/sec-scripts.ptx" />
 
-		<chapter xml:id="variables-datatypes">
-			<title>Data Types &amp; Variables</title>
+			<conclusion>
+				<objectives>
+					<ol>
+						<li>The Command Window functions as a command-line interface embedded within MATLAB's graphical environment.</li>
+						<li>MATLAB stores all defined variables in memory in a location called the workspace.</li>
+						<li>The assignment operator <c>=</c> tells MATLAB to evaluate an expression and store its value under a variable name; it does not represent a mathematical equation.</li>
+						<li>Variables store numerical values, not formulas, and changing one variable does not automatically update values that were computed earlier.</li>
+						<li>Ending a command with a semicolon suppresses output but does not affect how values are stored.</li>
+						<li>Commands such as <pf>clear</pf>, <pf>clc</pf>, and <pf>format</pf> help manage the workspace and Command Window during an interactive session.</li>
+						<li>MATLAB imposes specific rules on variable names, and clear, descriptive names make code easier to read and debug.</li>
+					</ol>
+				</objectives>
+			</conclusion>
 
-			
 		</chapter>
 
 		<chapter xml:id="functions">
 			<title>Scripts &amp; Functions</title>
 
 			<xi:include href="./chapter-05/scripts.ptx" />
-			<xi:include href="./chapter-05/_functions-intro.ptx" />
-			<xi:include href="./chapter-05/builtin-functions.ptx" />
-			<xi:include href="./chapter-05/pseudo-code.ptx" />
-			<xi:include href="./chapter-05/user-defined-functions.ptx" />
-			<xi:include href="./chapter-05/_functions-exercises.ptx" />
+			<!-- <xi:include href="./chapter-05/_functions-intro.ptx" /> -->
+			<!-- <xi:include href="./chapter-05/builtin-functions.ptx" /> -->
+			<!-- <xi:include href="./chapter-05/pseudo-code.ptx" /> -->
+			<!-- <xi:include href="./chapter-05/user-defined-functions.ptx" /> -->
+			<!-- <xi:include href="./chapter-05/_functions-exercises.ptx" /> -->
 
 		</chapter>
-
-		<chapter xml:id="logical">
-			<title>Code Flow</title>
-
-			<xi:include href="./chapter-04/_flow-control-intro.ptx" />
-			<xi:include href="./chapter-04/flow-contol-intro.ptx" />
-			<xi:include href="./chapter-04/logical-values-operators.ptx" />
-			<xi:include href="./chapter-04/if-statements.ptx" />
-			<xi:include href="./chapter-04/switch-statements.ptx" />
-			<xi:include href="./chapter-04/for-loops.ptx" />
-			<xi:include href="./chapter-04/while-loops.ptx" />
-			<xi:include href="./chapter-04/_flow-control-exercises.ptx" />
-			
-		</chapter>
-
-		<chapter xml:id="arrays">
-			<title>Arrays</title>
-
-			<xi:include href="./chapter-02/_matrices-intro.ptx" />
-			<xi:include href="./chapter-02/matrix-types.ptx" />
-			<xi:include href="./chapter-02/evenly-spaced-matrices.ptx" />
-			<xi:include href="./chapter-02/special-matrices.ptx" />
-			<xi:include href="./chapter-02/matrix-indexing.ptx" />
-			<xi:include href="./chapter-02/accessing-matrix-values.ptx" />
-			<xi:include href="./chapter-02/matrix-operations.ptx" />
-			<xi:include href="./chapter-02/matrix-size.ptx" />
-			<xi:include href="./chapter-02/common-matrix-functions.ptx" />
-			<xi:include href="./chapter-02/manipulating-matrices.ptx" />
-			<xi:include href="./chapter-02/systems_equations.ptx" />
-			<xi:include href="./chapter-02/_matrices-exercises.ptx" />
-		</chapter>
-
-		<!-- <chapter xml:id="plotting">
-			<title>Basic Plotting</title>
-		
-			<xi:include href="./chapter-03/_basic-plotting-intro.ptx" />
-			<xi:include href="./chapter-03/xy-plots.ptx" />
-			<xi:include href="./chapter-03/multiple-plots.ptx" />
-			<xi:include href="./chapter-03/_basic-plotting-exercises.ptx" />
-		</chapter>
-
-		<chapter xml:id="numerical-methods">
-			<title>Numerical Methods</title>
-
-			<xi:include href="./chapter-06/numerical-integration.ptx" />
-			<xi:include href="./chapter-07/curve-fitting.ptx" />
-		</chapter>
-
-		<chapter xml:id="fire-spread">
-			<title>Fire Spread</title>
-			<xi:include href="./chapter-08/fire-spread-overview.ptx" />
-			<xi:include href="./chapter-08/fire-spread-script.ptx" />
-			<xi:include href="./chapter-08/fire-spread-functions.ptx" />
-			<xi:include href="./chapter-08/fire-spread-tips_and_hints.ptx" />
-		</chapter>
-		
-		<chapter xml:id="monte-carlo-sim">
-			<title>Monte Carlo Simulation</title>
-
-			<xi:include href="./chapter-09/monte-carlo-sim.ptx" />
-			<xi:include href="./chapter-09/sec-11_04-matlab_montecarlo_hw.ptx" />
-			<xi:include href="./chapter-09/sec-11_02-random_walks.ptx" />
-			<xi:include href="./chapter-09/sec-11_03-matlab_randomwalk_hw.ptx" />
-		
-		</chapter>
-
-		<chapter xml:id="traveling-salesman">
-			<title>Traveling Saleman</title>
-			
-			<xi:include href="./chapter-10/traveling-salesman.ptx" />
-			<xi:include href="./chapter-10/sec-12_02-matlab_tspbf_hw.ptx" />
-			<xi:include href="./chapter-10/sec-12_03-matlab_tspnn.ptx" />
-			<xi:include href="./chapter-10/sec-12_04-matlab_tspnn_hw.ptx" />
-			<xi:include href="./chapter-10/sec-12_05-matlab_tspsa.ptx" />
-			<xi:include href="./chapter-10/sec-12_06-matlab_tspsa_hw.ptx" />
-			<xi:include href="./chapter-10/sec-12_07-matlab_tspga.ptx" />
-			<xi:include href="./chapter-10/sec-12_08-matlab_tspa_hw.ptx" />
-
-		</chapter>
-
-		<chapter xml:id="debugging">
-			<title>Debugging</title>
-			<p>INCLUDE THIS?</p>
-		</chapter>
-
-		<chapter xml:id="importing-data">
-			<title>Importing Data</title>
-			<p>INCLUDE THIS?</p>
-		</chapter>
-
-		<chapter xml:id="arrays">
-			<title>Advanced Arrays</title>
-
-			<xi:include href="./chapter-12/sec-13_01-matlab_high_dimension_arrays.ptx" />
-			<xi:include href="./chapter-12/sec-13_02-matlab_logical_arrays.ptx" />
-			<xi:include href="./chapter-12/sec-13_03-matlab_character_arrays.ptx" />
-			<xi:include href="./chapter-12/sec-13_04-matlab_cell_arrays.ptx" />
-		
-		</chapter>
-
-		<chapter xml:id="special-matlab-objects">
-			<title>Advanced MATLAB Objects</title>
-
-			<xi:include href="./chapter-13/sec-13_03-matlab_structured_arrays.ptx" />
-		
-			<section><title><c>table</c></title>
-				<p>INCLUDE THIS?</p>
-			</section>
-
-		</chapter>
-
-		<chapter xml:id="app-designer">
-			<title>App Designer</title>
-
-			<xi:include href="./chapter-14/sec-14_01-matlab_app_designer.ptx" />
-			<xi:include href="./chapter-15/sec-14_02-matlab_callback_functions.ptx" />
-			<xi:include href="./chapter-15/sec-14_03-matlab_image_editor.ptx" />
-			
-			<section><title>Front-End: Interface</title>
-				<p>INCLUDE THIS?</p>
-			</section>
-
-			<section><title>Back-End: Code</title>
-				<p>INCLUDE THIS?</p>
-			</section>
-
-		</chapter>
-
-		<chapter><title>Protein Analysis</title>
-			<xi:include href="./chapter-16/sec-13_04-matlab_protein_hw.ptx" />
-		</chapter>
-
-		<chapter><title>Tic-Tac-Toe</title>
-			<xi:include href="./chapter-17/sec-14_04-matlab_game.ptx" />
-		</chapter> -->
 
 		<appendix>
+			<title>Appendix</title>
 		
-			<chapter xml:id="topic-summary">
-			    <title>Summary of Topics</title>	
-				<xi:include href="./chapter-topics/topic-index.ptx" />
-			</chapter>
+			<!-- <xi:include href="./aa-bookends/appdx-adding-shortcuts.ptx" /> -->
+			<!-- <xi:include href="./aa-bookends/appdx-useful-cmds-keybd-shortcuts.ptx" /> -->
+			<!-- <xi:include href="./aa-bookends/topic-index.ptx" /> -->
 
 		</appendix>
 

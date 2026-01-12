@@ -1,0 +1,8 @@
+/* Note: I like this green color: hsl(123.47deg 25% 68.71%) */
+
+/* Override the responsive mixin behavior just for Runestone */
+.ptx-runestone-container {
+  /* Never wider than its parent, and also respect the global hard cap */
+  --max-width: min(100%, 900px) !important;
+  max-width: var(--max-width) !important;
+}
