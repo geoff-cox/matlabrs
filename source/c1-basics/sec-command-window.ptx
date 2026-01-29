@@ -5,22 +5,21 @@
 		<p>
 			Software applications require a way for users to interact with them.
 			This interaction occurs through a <term>User Interface</term> (UI), typically a command-line or graphical interface.
+			<dl>
+				<li>
+					<title>Command Line Interface (CLI)</title>
+					<p>
+						Users type commands at a prompt to control the application.
+					</p>
+				</li>
+				<li>
+					<title>Graphical User Interface (GUI)</title>
+					<p>
+						Users interact through visual elements such as buttons, menus, and windows.
+					</p>
+				</li>
+			</dl>
 		</p>
-
-		<dl>
-			<li>
-				<title>Command Line Interface (CLI)</title>
-				<p>
-					Users type commands at a prompt to control the application.
-				</p>
-			</li>
-			<li>
-				<title>Graphical User Interface (GUI)</title>
-				<p>
-					Users interact through visual elements such as buttons, menus, and windows.
-				</p>
-			</li>
-		</dl>
 
 		<p>
 			Let's practice using MATLAB's CLI with some simple examples.
@@ -76,7 +75,7 @@ ans =
     1
     </pre>
 
-    <exercise>
+    <exercise label="cmdwin-chkpt-1">
       <statement>
         <p>
           When you enter an expression without assigning it to a variable, how does MATLAB store the result?
@@ -116,17 +115,19 @@ ans =
 			</code>
 		</program>
 
-		<ul>
-			<li>
-				<pf>clear</pf> removes all variables from the workspace.
-			</li>
-			<li>
-				<pf>clc</pf> clears the Command Window display.
-			</li>
-			<li>
-				<pf>format</pf> controls how numerical output is displayed (but not how it is stored).
-			</li>
-		</ul>
+		<p>
+			<ul>
+				<li>
+					<pf>clear</pf> removes all variables from the workspace.
+				</li>
+				<li>
+					<pf>clc</pf> clears the Command Window display.
+				</li>
+				<li>
+					<pf>format</pf> controls how numerical output is displayed (but not how it is stored).
+				</li>
+			</ul>
+		</p>
 
 		<p>
 			These commands do not permanently undo work, but they do reset your current session.
@@ -134,7 +135,7 @@ ans =
 			As your work grows, you'll move repeated command sequences into scripts for easy reuse.
 		</p>
 
-		<exercise>
+		<exercise label="cmdwin-chkpt-2">
 			<statement>
 				<p>
 					Which command clears variables from memory without closing MATLAB?
@@ -148,7 +149,7 @@ ans =
 			</choices>
 		</exercise>
 
-		<!-- <exercise>
+		<!-- <exercise label="cmdwin-chkpt-3">
 			<statement>
 				<p>
 					Why is clearing the workspace often a good first step when debugging unexpected results?
