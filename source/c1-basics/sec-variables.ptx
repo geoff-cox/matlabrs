@@ -76,7 +76,7 @@
       Both variables are stored in the workspace, but only <pf>c</pf> is displayed.
     </p>
 
-		<exercise>
+		<exercise label="vars-chkpt-1">
 			<statement>
 				<p>
 					What effect does ending a MATLAB assignment with a semicolon have?
@@ -155,7 +155,7 @@
       <pf>VARIABLE_NAME = EXPRESSION</pf>
     </p>
 
-		<exercise>
+		<exercise label="vars-chkpt-2">
 			<statement>
 				<p>
 					After computing a variable using other variables, why does changing one of those original variables not automatically update the result?
@@ -178,7 +178,7 @@
 			</choices>
 		</exercise>
 
-		<exercise>
+		<exercise label="vars-chkpt-3">
 			<statement>
 				<p>
 					Suppose you run the following commands in MATLAB:
@@ -292,7 +292,7 @@
 				</tabular>
 			</table>
 
-			<exercise xml:id="matlab-variables-valid-name-check">
+			<exercise label="vars-chkpt-4">
 				<statement>
 					<p>Select all the <em>valid</em> variable names.</p>
 				</statement>
@@ -322,13 +322,13 @@
 			</exercise>
     </paragraphs>
 
-     <paragraphs>
-       <title><insert>Choosing Good Names</insert></title>
+    <paragraphs>
+			<title><insert>Choosing Good Names</insert></title>
 
-       <p>
-         In practice, variable names should clearly describe the data they store.
-         Descriptive names improve readability and reduce errors.
-       </p>
+			<p>
+				In practice, variable names should clearly describe the data they store.
+				Descriptive names improve readability and reduce errors.
+			</p>
 
 			<p>
 				Once you begin writing scripts, good names make your code easier to read later and share with others.
@@ -342,7 +342,7 @@
         </code>
       </program>
 
-			<exercise>
+			<exercise label="vars-chkpt-5">
 				<statement>
 					<p>
 						What is the primary advantage of using descriptive variable names in MATLAB code?
@@ -375,21 +375,21 @@
 		<p>
 			When first using MATLAB, it is common to encounter confusing results due to a few
 			predictable mistakes.
+			<ul>
+				<li>
+					Forgetting that MATLAB executes commands in the order they are run, not the order they appear on the screen.
+				</li>
+				<li>
+					Assuming MATLAB automatically updates previously computed values when a variable changes.
+				</li>
+				<li>
+					Leaving old variables in the workspace and unintentionally reusing them.
+				</li>
+				<li>
+					Interpreting the symbol <c>=</c> as a mathematical equation rather than an assignment.
+				</li>
+			</ul>
 		</p>
-		<ul>
-			<li>
-				Forgetting that MATLAB executes commands in the order they are run, not the order they appear on the screen.
-			</li>
-			<li>
-				Assuming MATLAB automatically updates previously computed values when a variable changes.
-			</li>
-			<li>
-				Leaving old variables in the workspace and unintentionally reusing them.
-			</li>
-			<li>
-				Interpreting the symbol <c>=</c> as a mathematical equation rather than an assignment.
-			</li>
-		</ul>
 
 		<p>
 			Nearly all of these issues can be resolved by clearing the workspace and re-running
@@ -399,6 +399,3 @@
 	</subsection>
 
 </section>
-
-
-
