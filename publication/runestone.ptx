@@ -14,13 +14,13 @@
 	</source>
 
 	<common>
-		<chunking level="2" />
-		<tableofcontents level="2" />
-		<exercise-inline			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
-		<exercise-divisional	statement="yes"		hint="yes"		answer="no"		solution="no"	/>
-		<exercise-worksheet		statement="yes"		hint="yes"		answer="no"		solution="no"	/>
-		<exercise-reading			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
-		<exercise-project			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
+		<chunking level="3" />
+		<tableofcontents level="4" />
+		<exercise-inline			statement="yes"		hint="yes"		answer="no"		solution="yes"	/>
+		<exercise-divisional	statement="yes"		hint="yes"		answer="no"		solution="yes"	/>
+		<exercise-worksheet		statement="yes"		hint="yes"		answer="no"		solution="yes"	/>
+		<exercise-reading			statement="yes"		hint="yes"		answer="no"		solution="yes"	/>
+		<exercise-project			statement="yes"		hint="yes"		answer="no"		solution="yes"	/>
 		<fillin textstyle="underline" mathstyle="shade" />
 	</common>
 
@@ -28,12 +28,23 @@
 		<divisions	chapter-start="1" level="2" />
 		<blocks			level="0" />
 		<projects		level="0" />
-		<equations	level="0" />
+		<equations	level="1" />
 		<footnotes	level="0" />
 	</numbering>
 
-	<latex print="no" sides="one" font-size="9" draft="no">
-		<page right-alignment="flush" bottom-alignment="ragged" />
+	<latex 
+		print="no" 
+		sides="one"
+		font-size="9"
+		draft="no"
+		open-odd="no"
+		pageref="no"
+	>
+		<page 
+			right-alignment="flush" 
+			bottom-alignment="ragged"
+			crop-marks="letter"
+		/>
 		<asymptote links="no" />
 		<worksheets formatted="yes" />
 	</latex>
@@ -67,15 +78,16 @@
 		<search variant="default" />
 		<calculator model="geogebra-classic" activecode="none" />
 		<webwork
-			inline="dynamic"
-			divisional="dynamic"
-			reading="dynamic"
-			worksheet="dynamic"
-			project="dynamic"
+			inline			=	"dynamic"
+			divisional	=	"dynamic"
+			reading			=	"dynamic"
+			worksheet		=	"dynamic"
+			project			=	"dynamic"
 		/>
 		<exercises tabbed-tasks="project reading inline divisional" task-reveal="solution"/>
     <toc focused="yes" preexpanded-levels="3" />
 		<navigation logic="tree" upbutton="no"/>
+		<feedback href="mailto:coxgeoff@vmi.edu"/>
 	</html>
 
 </publication>
