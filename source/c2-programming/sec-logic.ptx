@@ -1,0 +1,863 @@
+<section xml:id="sec-logical-values-statements2">
+	<title>Logical Values &amp; Statements</title>
+
+	<introduction>
+		
+		<p>
+			Writing good code often means making decisions based on the values you are working with.
+			For example, suppose <pf>gift_card_balance</pf> stores the amount of money on an Amazon gift card and
+			<pf>total_due</pf> stores the price of a purchase. Before completing the purchase, your program needs to ask a
+			yes-or-no question:
+			<q>Is <pf>gift_card_balance</pf> greater than or equal to <pf>total_due</pf>?</q>
+		</p>
+
+		<p>
+			Questions like this are called <term>logical statements</term>, and their answers are called
+			<term>logical values</term>. In MATLAB, logical values are the two special values <pf>true</pf> and <pf>false</pf>.
+			In this section, we will learn how MATLAB represents these answers, how to build questions using relational
+			operators, and how to combine and negate questions to express more complicated conditions.
+		</p>
+
+	</introduction>
+
+	<subsection xml:id="subsec-logical-values">
+		<title>Logical Values</title>
+
+		<p>
+			MATLAB has two logical values:
+			<pf>true</pf> and <pf>false</pf>. When displayed, they often appear as <pf>logical 1</pf> and <pf>logical 0</pf>.
+			Although they behave similarly to the numeric values <pf>1</pf> and <pf>0</pf>, they are different data types.
+			Just as numbers can be stored in variables, logical values can be stored in variables as well.
+		</p>
+
+		<program language="matlab">
+			a = 1
+			b = true
+			c = 0
+			d = false
+		</program>
+
+		<p>
+			Even though <pf>a</pf> and <pf>b</pf> (and <pf>c</pf> and <pf>d</pf>) look similar at first glance, MATLAB treats them differently:
+			<pf>a</pf> is a number (a double), while <pf>b</pf> is a logical value. You can get more information using the <pf>whos</pf> command.
+			Here is the output you should see:
+		</p>
+
+		<pre>
+			Name        Size            Bytes  Class      Attributes
+			a           1x1                 8  double
+			b           1x1                 1  logical
+			c           1x1                 8  double
+			d           1x1                 1  logical
+		</pre>
+
+		<p>
+			Notice that logical variables take fewer bytes than double-precision numbers. 
+			That memory difference is not the main reason we use logicals, but it is a 
+			helpful reminder that a logical value represents an answer, not a measurement.
+		</p>
+	</subsection>
+
+	<subsection xml:id="subsec-logical-statements">
+		<title>Logical Statements</title>
+
+		<p>
+			A <term>logical statement</term> is any MATLAB expression that evaluates to <pf>true</pf> or <pf>false</pf>.
+			The most common logical statements come from comparing two values. These comparisons use
+			<term>relational operators</term>.
+		</p>
+
+		<table xml:id="tab-relational-operators">
+			<title>Relational operators in MATLAB</title>
+
+			<tabular>
+				<col width="25%" halign="center"/>
+				<col width="25%" halign="center"/>
+				<col width="50%" halign="left"/>
+				<row header="yes">
+					<cell>Relational operator</cell>
+					<cell>Logical statement</cell>
+					<cell>Question being asked</cell>
+				</row>
+				<row>
+					<cell><pf>==</pf></cell>
+					<cell><pf>x == y</pf></cell>
+					<cell>Is <m>\texttt{x}</m> equal to <m>\texttt{y}</m>?</cell>
+				</row>
+				<row>
+					<cell><pf>~=</pf></cell>
+					<cell><pf>x ~= y</pf></cell>
+					<cell>Is <m>\texttt{x}</m> not equal to <m>\texttt{y}</m>?</cell>
+				</row>
+				<row>
+					<cell><pf>&lt;</pf></cell>
+					<cell><pf>x &lt; y</pf></cell>
+					<cell>Is <m>\texttt{x}</m> less than <m>\texttt{y}</m>?</cell>
+				</row>
+				<row>
+					<cell><pf>&lt;=</pf></cell>
+					<cell><pf>x &lt;= y</pf></cell>
+					<cell>Is <m>\texttt{x}</m> less than or equal to <m>\texttt{y}</m>?</cell>
+				</row>
+				<row>
+					<cell><pf>&gt;</pf></cell>
+					<cell><pf>x &gt; y</pf></cell>
+					<cell>Is <m>\texttt{x}</m> greater than <m>\texttt{y}</m>?</cell>
+				</row>
+				<row>
+					<cell><pf>&gt;=</pf></cell>
+					<cell><pf>x &gt;= y</pf></cell>
+					<cell><p><m>\text{Is}\ \texttt{x}\ \text{greater than or equal to}\ \texttt{y} \text{?}</m></p></cell>
+				</row>
+			</tabular>
+		</table>
+
+		<p>
+			A beginner mistake is confusing <pf>=</pf> with <pf>==</pf>.
+			The single equal sign assigns a value to a variable (telling MATLAB what to store),
+			while the double equal sign compares two values (asking MATLAB a question).
+		</p>
+
+		<program language="matlab">
+			cost = 7.1;     % Telling: assign a value
+			cost == 7.1     % Asking: compare a value
+		</program>
+
+		<p>
+			Here are a few comparison examples. The parentheses are optional, but they help clarify
+			which parts of the expression are being compared.
+		</p>
+
+		<program language="matlab">
+			a = 4; b = -4;
+
+			a_eq_4 = (a == 4);
+			a_eq_b = (a == b);
+			b_lt_a = (b &lt; a);
+			r = (pi ~= 3.14);
+		</program>
+
+		<p>
+			This code defines two numeric variables, <pf>a</pf> and <pf>b</pf>, then asks four questions, storing the answers in four logical variables. 
+			Typing the <pf>whos</pf> command displays information about all the variables currently in memory (workspace). Here is the output you should see:
+		</p>
+
+		<pre>
+			Name        Size            Bytes  Class      Attributes
+			a           1x1                 8  double               
+			b           1x1                 8  double               
+			a_eq_4      1x1                 1  logical              
+			a_eq_b      1x1                 1  logical              
+			b_lt_a      1x1                 1  logical              
+			r           1x1                 1  logical              
+		</pre>
+
+		<p>
+			In the <pf>whos</pf> output, notice that the variables <pf>a</pf> and <pf>b</pf> are doubles, while the others are logicals. This is because the comparison operations produce logical values.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-negating-logical-statements">
+		<title>Negating Logical Statements</title>
+
+		<p>
+			To ask the opposite of a logical statement, use the NOT operator <pf>~</pf>.
+			If an expression is true, its negation is false, and vice versa.
+		</p>
+
+		<program language="matlab">
+			~true
+			~false
+		</program>
+
+		<p>
+			There are often multiple ways to express the same question. For example,
+			<q>Is 8 not equal to 9?</q> can be asked directly with <pf>~=</pf> or by negating an equality test.
+		</p>
+
+		<program language="matlab">
+			8 ~= 9
+			~(8 == 9)
+		</program>
+
+		<p>
+			When negating longer expressions, parentheses make your intent clear and prevent precedence surprises.
+		</p>
+	</subsection>
+
+	<subsection xml:id="subsec-combining-two-statements">
+		<title>Combining Two Logical Statements</title>
+
+		<p>
+			Many code questions involve multiple conditions. For example, asking
+			<q>Is <pf>x</pf> a prime number bigger than 100?</q> really contains two statements:
+			<q>Is <pf>x</pf> prime?</q> and <q>Is <pf>x</pf> greater than 100?</q> Because both must be true,
+			we join them using <q>and</q>.
+		</p>
+
+		<p>
+			In other situations, either condition is enough. For example,
+			<q>Is <pf>y</pf> outside the range -4 to 19?</q> can be phrased as:
+			<q>Is <pf>y</pf> less than -4 or greater than 19?</q>
+		</p>
+
+		<p>
+			MATLAB supports the logical operators AND and OR. 
+			(Later, when we write <pf>if</pf> statements, these operators will become a daily tool.)
+		</p>
+
+		<table xml:id="tab-logical-operators">
+			<title>Logical operators for combining statements</title>
+
+			<tabular>
+				<col width="15%" halign="center"/>
+				<col width="40%" halign="center"/>
+				<col width="45%" halign="left"/>
+				<row>
+					<cell><p><m>\textbf{Logical}</m> <m>\textbf{operator}</m></p></cell>
+					<cell><p><m>\textbf{Logical statement}</m></p></cell>
+					<cell><p><m>\textbf{Question being asked}</m></p></cell>
+				</row>
+				<row>
+					<cell><pf>&amp;</pf></cell>
+					<cell><p><pf>ques1 &amp; ques2</pf></p></cell>
+					<cell>Are both <m>\texttt{ques1}</m> and <m>\texttt{ques2}</m> true?</cell>
+				</row>
+				<row>
+					<cell><pf>|</pf></cell>
+					<cell><pf>ques1 | ques2</pf></cell>
+					<cell><m>\text{Is at least one of}\ \texttt{ques1}\ \text{or}\ \texttt{ques2}\ \text{true?}</m></cell>
+				</row>
+			</tabular>
+		</table>
+
+		<p>
+			The truth rules are exactly what you would expect from everyday language:
+			AND is true only when both sides are true, while OR is true when at least one side is true.
+		</p>
+
+		<program language="matlab">
+			% Quick checks
+			true  &amp; true
+			true  &amp; false
+			false &amp; true
+			false &amp; false
+
+			true  | true
+			true  | false
+			false | true
+			false | false
+		</program>
+
+		<p>
+			Now try these operators in context.
+		</p>
+
+		<program language="matlab">
+			P = 1;
+			Q = 10;
+			R = -4;
+
+			P &lt;= R &amp; P &gt; Q
+			R &lt; 0 &amp; R &lt; Q
+			Q == R | Q == P
+			P &lt; Q &amp; P &lt; R
+
+			~(P &lt; Q &amp; P &lt; R)
+			P &gt; Q | P &gt; R
+		</program>
+
+		<p>
+			These examples are intentionally written in a style that reads like an English sentence.
+			That habit pays off later: readable conditions produce readable <pf>if</pf>-statements.
+		</p>
+
+	<aside>
+		<title><pf>xor</pf></title>
+		<p><pf>xor</pf> is another logical operator available in MATLAB that tends to be used less than the operators listed here. If you are curious about it, see MATLAB's documentation.</p>
+	</aside>
+
+	<p>
+		The following table summarizes every possible outcome for each of the logical operators above.
+	</p>
+
+	<table>
+		<title>Logical Operators. Truth Tables. </title>
+
+		<tabular top="minor" bottom="minor" left="minor" right="minor" >
+			<col halign="center"/>
+			<col halign="center"/>
+			<col halign="center"/>
+			<col halign="center"/>
+			<col halign="center"/>
+			<row>
+				<cell colspan="2">Logical Variables</cell>
+				<cell colspan="3">Logical Operator Results</cell>
+			</row>
+			<row>
+				<cell><pf>ques1</pf></cell>
+				<cell><pf>ques2</pf></cell>
+				<cell><pf>ques1 &amp; ques2</pf></cell>
+				<cell><pf>ques1 | ques2</pf></cell>
+				<cell><pf>~ques1</pf></cell>
+			</row>
+			<row>
+				<cell><pf>1</pf></cell>
+				<cell><pf>1</pf></cell>
+				<cell><pf>1</pf></cell>
+				<cell><pf>1</pf></cell>
+				<cell><pf>0</pf></cell>
+			</row>
+			<row>
+				<cell><pf>1</pf></cell>
+				<cell><pf>0</pf></cell>
+				<cell><pf>0</pf></cell>
+				<cell><pf>1</pf></cell>
+				<cell><pf>0</pf></cell>
+			</row>
+			<row>
+				<cell><pf>0</pf></cell>
+				<cell><pf>1</pf></cell>
+				<cell><pf>0</pf></cell>
+				<cell><pf>1</pf></cell>
+				<cell><pf>1</pf></cell>
+			</row>
+			<row>
+				<cell><pf>0</pf></cell>
+				<cell><pf>0</pf></cell>
+				<cell><pf>0</pf></cell>
+				<cell><pf>0</pf></cell>
+				<cell><pf>1</pf></cell>
+			</row>
+		</tabular>
+	</table>
+
+	</subsection>
+
+	<subsection xml:id="subsec-combining-many-statements">
+		<title>Combining Many Logical Statements</title>
+
+		<p>
+			You can combine more than two logical statements, and you can mix <pf>~</pf>, <pf>&amp;</pf>, and <pf>|</pf>
+			in the same expression. When you do, MATLAB evaluates operators in a fixed precedence order.
+			Parentheses override everything, so you can always force the grouping you intend.
+		</p>
+
+		<p>
+			MATLAB evaluates logical operators in the following order:
+			first <pf>~</pf>, then <pf>&amp;</pf>, then <pf>|</pf>.
+		</p>
+
+		<p>
+			Here are some equivalent rewrites that illustrate that precedence:
+			<ul>
+				<li><pf>~A &amp; B</pf> is interpreted as <pf>(~A) &amp; B</pf>.</li>
+				<li><pf>~A | B</pf> is interpreted as <pf>(~A) | B</pf>.</li>
+				<li><pf>A &amp; B | C</pf> is interpreted as <pf>(A &amp; B) | C</pf>.</li>
+				<li><pf>A | B &amp; C</pf> is interpreted as <pf>A | (B &amp; C)</pf>.</li>
+			</ul>
+		</p>
+
+		<p>
+			When in doubt, use parentheses. They make your code clearer to readers and reduce errors caused by
+			misinterpreting precedence.
+		</p>
+
+		<aside>
+			<title>Short-Circuit Operators: <pf>&amp;&amp;</pf> and <pf>||</pf></title>
+
+			<p>
+				MATLAB also provides <term>short-circuit</term> logical operators: <pf>&amp;&amp;</pf> (AND) and <pf>||</pf> (OR).
+				These work only with scalar logical values (true/false), not arrays.
+				When the left side of the expression already determines the outcome, MATLAB skips evaluating the right side.
+			</p>
+
+			<p>
+				Use <pf>&amp;&amp;</pf> and <pf>||</pf> in conditional statements (like <pf>if</pf>-statements) where you need a single true/false answer.
+				Use <pf>&amp;</pf> and <pf>|</pf> when working with arrays of logical values.
+			</p>
+
+			<program language="matlab">
+				x = 4;
+
+				% Scalar logic (typical in conditionals)
+				(x &gt; 0) &amp;&amp; (x &lt; 10)
+
+				% Array logic (elementwise)
+				A = [-2 0 5 7];
+				(A &gt; 0) &amp; (A &lt; 6)     % true where A is between 1 and 5
+			</program>
+
+			<p>
+				Short-circuit evaluation can prevent errors. For example, checking if an array is non-empty before indexing:
+			</p>
+
+			<program language="matlab">
+				% This prevents indexing errors when A is empty
+				if ~isempty(A) &amp;&amp; A(1) &lt; 0
+					disp("First entry is negative.")
+				end
+			</program>
+		</aside>
+	</subsection>
+
+	<exercises>
+
+		<exercise label="logic-ckpts">
+			<title>Reading Questions</title>
+
+			<task label="logic-ckpt-data-types">
+				<title>Logical Data Types</title>
+				<statement correct="no">
+					<p>
+						In MATLAB, the values <pf>true</pf> and <pf>1</pf> are exactly the same and can always be used interchangeably.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						While <pf>true</pf> and <pf>1</pf> appear similar and behave similarly in many contexts, they are different data types. 
+						<pf>true</pf> is a logical value, while <pf>1</pf> is a numeric (double) value. 
+						You can see this difference using the <pf>whos</pf> command.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="logic-ckpt-relational-equal">
+				<title>Relational Operators: Equality</title>
+				<statement>
+					<p>
+						Which operator tests if <pf>x</pf> is equal to <pf>y</pf>?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p><pf>==</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>=</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>~=</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>!=</pf></p></statement>
+					</choice>
+				</choices>
+				<feedback>
+					<p>
+						The double equal sign <pf>==</pf> compares two values for equality. 
+						The single equal sign <pf>=</pf> is used for assignment, not comparison.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="logic-ckpt-relational-not-equal">
+				<title>Relational Operators: Inequality</title>
+				<statement>
+					<p>
+						Which operator tests if <pf>x</pf> is not equal to <pf>y</pf>?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p><pf>~=</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>!=</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>==</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>&lt;&gt;</pf></p></statement>
+					</choice>
+				</choices>
+				<feedback>
+					<p>
+						In MATLAB, the tilde-equals <pf>~=</pf> operator tests for inequality. 
+						Note that many other languages use <pf>!=</pf>, but MATLAB uses <pf>~=</pf>.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="logic-ckpt-translation-intro">
+				<title>Translating Relational Operators</title>
+				<statement>
+					<p>
+						For each English question below, provide the corresponding MATLAB logical statement.
+						The table below shows some examples to help you understand the pattern.
+					</p>
+
+					<table>
+						<title>Sample English and MATLAB translation of relational operators</title>
+						<tabular top="minor" left="minor" right="minor">
+							<col halign="right"/>
+							<col halign="center"/>
+							<col halign="center"/>
+							<col halign="center"/>
+							<row>
+								<cell halign="center" colspan="2">English</cell>
+								<cell halign="center" colspan="2">MATLAB</cell>
+							</row>
+							<row top="minor" bottom="minor">
+								<cell halign="center" right="none">Question</cell>
+								<cell>Answer</cell>
+								<cell right="none">Question</cell>
+								<cell>Answer</cell>
+							</row>
+							<row>
+								<cell>Is <m>\texttt{4}</m> less than <m>\texttt{4}</m>?</cell>
+								<cell>no</cell>
+								<cell><pf>4 &lt; 4</pf></cell>
+								<cell><pf>0</pf></cell>
+							</row>
+							<row>
+								<cell>Is <m>\texttt{4}</m> less than or equal to <m>\texttt{4}</m>?</cell>
+								<cell>yes</cell>
+								<cell><pf>4 &lt;= 4</pf></cell>
+								<cell><pf>1</pf></cell>
+							</row>
+							<row>
+								<cell>Is <m>\texttt{3}</m> greater than <m>\texttt{-4}</m>?</cell>
+								<cell>yes</cell>
+								<cell><pf>3 &gt; -4</pf></cell>
+								<cell><pf>1</pf></cell>
+							</row>
+							<row>
+								<cell>Is <m>\texttt{3}</m> greater than or equal to <m>\texttt{-4}</m>?</cell>
+								<cell>yes</cell>
+								<cell><pf>3 &gt;= -4</pf></cell>
+								<cell><pf>1</pf></cell>
+							</row>
+							<row>
+								<cell>Is <m>\texttt{4}</m> equal to <m>\texttt{-4}</m>?</cell>
+								<cell>no</cell>
+								<cell><pf>4 == -4</pf></cell>
+								<cell><pf>0</pf></cell>
+							</row>
+							<row bottom="minor">
+								<cell>Is <m>\texttt{4}</m> not equal to <m>\texttt{-4}</m>?</cell>
+								<cell>yes</cell>
+								<cell><pf>4 ~= -4</pf></cell>
+								<cell><pf>1</pf></cell>
+							</row>
+						</tabular>
+					</table>
+
+					<p>
+						What MATLAB command would you use to ask: <q>Is <m>7</m> greater than <m>3</m>?</q>
+					</p>
+					<p>
+						<fillin mode="string" answer="7 &gt; 3" width="10"/>
+					</p>
+				</statement>
+				<evaluation>
+					<evaluate>
+						<test correct="yes">
+							<strcmp>(7\s*&gt;\s*3|3\s*&lt;\s*7)</strcmp>
+							<feedback><p>Correct!</p></feedback>
+						</test>
+						<test>
+							<strcmp>.*</strcmp>
+							<feedback><p>Incorrect. Use the <pf>&gt;</pf> operator to test if one value is greater than another.</p></feedback>
+						</test>
+					</evaluate>
+				</evaluation>
+				<solution>
+					<p>
+						The MATLAB command is <pf>7 &gt; 3</pf>, which evaluates to <pf>1</pf> (true).
+					</p>
+				</solution>
+			</task>
+
+			<task label="logic-ckpt-basic-ops-result">
+				<title>Basic Logical Operators</title>
+				<statement>
+					<p>
+						Evaluate the following logical expression in MATLAB:
+					</p>
+					<program language="matlab">
+						<code>
+							(3 &gt;= 2) &amp; (3+4 == 6)
+						</code>
+					</program>
+					<p>
+						What is the result of this expression?
+					</p>
+				</statement>
+				<choices>
+					<choice correct="yes">
+						<statement><p><pf>0</pf> (false)</p></statement>
+						<feedback>
+							<p>
+								Correct! Even though <pf>3 &gt;= 2</pf> is true, the expression <pf>3+4 == 6</pf> is false (since <m>3+4=7</m>). 
+								For an AND operation to be true, both sides must be true.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>1</pf> (true)</p></statement>
+						<feedback>
+							<p>
+								Incorrect. While <pf>3 &gt;= 2</pf> is true, check the second part: is <m>3+4</m> really equal to <m>6</m>?
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="logic-ckpt-basic-ops-explanation">
+				<title>Understanding AND</title>
+				<statement correct="no">
+					<p>
+						An AND operation (<pf>&amp;</pf>) returns true if at least one of the conditions is true.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Incorrect. An AND operation requires <em>both</em> conditions to be true. 
+						You're thinking of OR (<pf>|</pf>), which returns true if <em>at least one</em> condition is true.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="logic-ckpt-combined-1">
+				<title>Is p positive?</title>
+				<statement>
+					<p>
+						Using <pf>p = -3</pf>, what command asks: <q>Is <pf>p</pf> positive?</q>
+					</p>
+					<p>
+						<fillin mode="string" answer="p &gt; 0" width="10"/>
+					</p>
+				</statement>
+					<evaluation>
+						<evaluate>
+							<test correct="yes">
+								<strcmp>(p\s*&gt;\s*0|0\s*&lt;\s*p)</strcmp>
+								<feedback><p>Correct!</p></feedback>
+							</test>
+							<test>
+								<strcmp>.*</strcmp>
+								<feedback><p>Incorrect. Use the <pf>&gt;</pf> operator to test if <pf>p</pf> is greater than 0.</p></feedback>
+							</test>
+						</evaluate>
+					</evaluation>
+					<solution>
+						<p>
+							<pf>ans1 = p &gt; 0</pf> evaluates to <pf>0</pf> (false) since <m>-3</m> is not positive.
+						</p>
+					</solution>
+			</task>
+
+			<task label="logic-ckpt-combined-2">
+				<title>Is p equal to 4?</title>
+				<statement>
+					<p>
+						Using <pf>p = -3</pf>, what command asks: <q>Is <pf>p</pf> equal to <pf>4</pf>?</q>
+					</p>
+					<p>
+						<fillin mode="string" answer="p == 4" width="10"/>
+					</p>
+				</statement>
+				<evaluation>
+					<evaluate>
+						<test correct="yes">
+							<strcmp>(p\s*==\s*4|4\s*==\s*p)</strcmp>
+							<feedback><p>Correct!</p></feedback>
+						</test>
+						<test>
+							<strcmp>.*</strcmp>
+							<feedback><p>Incorrect. Use the <pf>==</pf> operator to test equality.</p></feedback>
+						</test>
+					</evaluate>
+				</evaluation>
+				<solution>
+					<p>
+						<pf>ans2 = p == 4</pf> evaluates to <pf>0</pf> (false) since <m>-3 \neq 4</m>.
+					</p>
+				</solution>
+			</task>
+
+			<task label="logic-ckpt-combined-3">
+				<title>Combining with AND</title>
+				<statement>
+					<p>
+						Using the variables <pf>ans1</pf> and <pf>ans2</pf> defined above, write a command that asks: <q>Is <pf>p</pf> positive AND equal to <pf>4</pf>?</q>
+					</p>
+					<p>
+						Use the element-wise AND operator to combine <pf>ans1</pf> and <pf>ans2</pf>.
+					</p>
+				</statement>
+				<choices>
+					<choice correct="yes">
+						<statement><p><pf>ans3 = ans1 &amp; ans2</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>ans3 = ans1 | ans2</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>ans3 = ~ans1</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>ans3 = ans1 == ans2</pf></p></statement>
+					</choice>
+				</choices>
+				<feedback>
+					<p>
+						The element-wise AND operator <pf>&amp;</pf> combines two conditions, returning true only if both are true.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="logic-ckpt-combined-4">
+				<title>Negating with NOT</title>
+				<statement>
+					<p>
+						Using the variable <pf>ans1</pf> defined above, write a command that asks: <q>Is <pf>p</pf> NOT positive?</q>
+					</p>
+					<p>
+						Use the NOT operator to negate <pf>ans1</pf>.
+					</p>
+				</statement>
+				<choices>
+					<choice correct="yes">
+						<statement><p><pf>ans4 = ~ans1</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>ans4 = ans1 &amp; 0</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>ans4 = !ans1</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>ans4 = ans1 &lt;= 0</pf></p></statement>
+					</choice>
+				</choices>
+				<feedback>
+					<p>
+						The NOT operator <pf>~</pf> negates a logical value, turning true into false and false into true.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="logic-ckpt-combined-5">
+				<title>Combining with OR</title>
+				<statement>
+					<p>
+						Using <pf>p = -3</pf>, what command asks: <q>Is <pf>p</pf> not equal to <pf>5</pf> OR greater than <pf>7</pf>?</q>
+					</p>
+					<p>
+						<fillin mode="string" answer="(p ~= 5) | (p &gt; 7)" width="20"/>
+					</p>
+				</statement>
+				<evaluation>
+					<evaluate>
+						<test correct="yes">
+							<strcmp>\(?\s*p\s*~=\s*5\s*\)?\s*\|\s*\(?\s*p\s*&gt;\s*7\s*\)?</strcmp>
+							<feedback><p>Correct!</p></feedback>
+						</test>
+						<test>
+							<strcmp>.*</strcmp>
+							<feedback><p>Incorrect. Use <pf>~=</pf> for "not equal" and <pf>|</pf> for OR.</p></feedback>
+						</test>
+					</evaluate>
+				</evaluation>
+				<solution>
+					<p>
+						<pf>ans5 = (p ~= 5) | (p &gt; 7)</pf> evaluates to <pf>1</pf> (true) since <m>-3 \neq 5</m> is true.
+					</p>
+				</solution>
+			</task>
+
+			<task label="logic-ckpt-precedence">
+				<title>Operator Precedence</title>
+
+				<statement>
+					<p>
+						Which of the following expressions is equivalent to <pf>~A &amp; B | C</pf> according to MATLAB's operator precedence rules?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p><pf>((~A) &amp; B) | C</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>~(A &amp; B | C)</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>~A &amp; (B | C)</pf></p></statement>
+					</choice>
+					<choice>
+						<statement><p><pf>~(A &amp; B) | C</pf></p></statement>
+					</choice>
+				</choices>
+				<feedback>
+					<p>
+						MATLAB evaluates logical operators in this order: first <pf>~</pf> (NOT), then <pf>&amp;</pf> (AND), then <pf>|</pf> (OR).
+						So <pf>~A &amp; B | C</pf> is evaluated as <pf>((~A) &amp; B) | C</pf>.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="logic-ckpt-short-circuit">
+				<title>Short-Circuit Operators</title>
+
+				<statement>
+					<p>
+						When should you use <pf>&amp;&amp;</pf> and <pf>||</pf> instead of <pf>&amp;</pf> and <pf>|</pf>?
+					</p>
+				</statement>
+				<choices>
+					<choice correct="yes">
+						<statement>
+							<p>When working with scalar logical values in conditional statements (like <pf>if</pf>)</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! The short-circuit operators <pf>&amp;&amp;</pf> and <pf>||</pf> are designed for scalar logical values 
+								and are commonly used in conditional statements. They also provide short-circuit evaluation, which can prevent errors.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>When performing element-wise operations on arrays</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Use <pf>&amp;</pf> and <pf>|</pf> for element-wise operations on arrays. 
+								The short-circuit operators <pf>&amp;&amp;</pf> and <pf>||</pf> work only with scalar values.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>They are completely interchangeable and can be used in any situation</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. While they behave similarly for scalar values, <pf>&amp;&amp;</pf> and <pf>||</pf> do not work on arrays, 
+								and <pf>&amp;</pf> and <pf>|</pf> do not provide short-circuit evaluation.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>When you want the computation to run faster</p>
+						</statement>
+						<feedback>
+							<p>
+								Partially correct. Short-circuit operators can be faster because they skip unnecessary evaluations, 
+								but the main reason to use them is for scalar logical expressions and to prevent potential errors in conditionals.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+	</exercises>
+
+</section>

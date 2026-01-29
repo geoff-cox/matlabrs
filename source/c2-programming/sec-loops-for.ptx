@@ -1,0 +1,1044 @@
+<section xml:id="sec-for-loops2">
+  <title><pf>for</pf> Loops</title>
+<introduction>
+	<p>
+		Loops are programming constructs that allow you to repeat a block of code multiple times. Loops let you repeat tasks a specified number of times or until a stopping condition is met. In this section, we will explore two primary types of loops in MATLAB: the <pf>for</pf> loop and the <pf>while</pf> loop.
+	</p>
+</introduction>
+
+	<subsection xml:id="subsec-aqsda">
+		<title>Controlling the Flow of Code by Repeating a Block a Fixed Number of Times</title>
+  <p>
+    In the previous section, <c>if</c>-statements allowed our code to choose between different code blocks based on a
+    true/false question. In this section, we shift to a different kind of flow control: repeating code.
+    Repetition is so common in programming that most languages provide dedicated structures for it, called
+    <term>loops</term>.
+  </p>
+
+  <p>
+    There are two main looping patterns:
+    repeating a block a fixed number of times, and repeating a block as long as some condition remains true.
+    MATLAB supports both.
+  </p>
+
+  <ul>
+    <li>Repeat a fixed number of times: <c>for</c>-loops</li>
+    <li>Repeat while a condition is true: <c>while</c>-loops</li>
+  </ul>
+
+  <p>
+    Here we focus on the first case: <c>for</c>-loops.
+  </p>
+	</subsection>
+
+<subsection xml:id="subsec-dropinA">
+	<title>Drop-in A</title>
+<!-- Drop-in replacement block A: Use a fixed loop vector, but avoid “vector/array” language -->
+<p>
+  In MATLAB, the values that the loop variable takes on can be provided as a list.
+  For now, you can think of this as simply writing down the values you want <c>k</c> to use, in order.
+  MATLAB will run the loop once for each listed value.
+</p>
+
+<program language="matlab">
+loop = 0;
+x = 0;
+
+for k = [1 3 6]
+    loop = loop + 1;
+    x = x + k;
+end
+
+disp(loop)
+disp(x)
+</program>
+
+<p>
+  Read this as: set <c>k = 1</c> and run the block; then set <c>k = 3</c>; then set <c>k = 6</c>.
+  After the last listed value, MATLAB exits the loop and continues with the next line after <c>end</c>.
+</p>
+
+
+</subsection>
+
+  <subsection xml:id="subsec-for-structure">
+    <title>The for Loop Structure</title>
+
+    <p>
+      A <c>for</c>-loop repeats a block of code once for each value in a specified list of values.
+      The basic structure is:
+    </p>
+
+    <program language="matlab">
+for k = vector_of_k_values
+    code_block_for_each_k
+end
+    </program>
+
+    <p>
+      The variable <c>k</c> is called the <term>loop variable</term> (or <term>loop index</term>),
+      and <c>vector_of_k_values</c> is called the <term>loop vector</term>.
+      MATLAB sets <c>k</c> to the first value in the loop vector, runs the code block, then sets <c>k</c> to the next
+      value, runs the code block again, and continues until it runs out of values.
+    </p>
+
+    <p>
+      A loop vector can be any vector, not just something like <c>1:n</c>. This is worth emphasizing, because it
+      explains what a <c>for</c>-loop really does: it iterates over a list of values.
+      In the example below, the loop vector is <c>[1 3 6]</c>.
+    </p>
+
+    <program language="matlab">
+loop = 0;
+x = 0;
+
+for k = [1 3 6]
+    loop = loop + 1;
+    x = x + k;
+end
+
+disp(loop)
+disp(x)
+    </program>
+
+    <p>
+      Here is how to read this loop like a machine:
+      first MATLAB sets <c>k = 1</c> and runs the block; then MATLAB sets <c>k = 3</c> and runs the block; then MATLAB
+      sets <c>k = 6</c> and runs the block; then the loop ends and MATLAB continues to the lines after <c>end</c>.
+      So <c>loop</c> counts the number of iterations (three), and <c>x</c> becomes the sum <m>1+3+6</m>.
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-for-rules-notes">
+    <title>Rules and Notes</title>
+
+    <ul>
+      <li>The loop variable can be named anything (though short names like <c>k</c>, <c>i</c>, <c>j</c> are common).</li>
+      <li>The code inside the loop runs once for every value in the loop vector.</li>
+      <li>When MATLAB reaches <c>end</c>, it automatically updates the loop variable to the next value.</li>
+      <li>You may place any code inside a <c>for</c>-loop, including <c>if</c>-statements and other loops.</li>
+      <li>The most common way to define the loop vector is the colon operator, like <c>1:10</c>.</li>
+      <li>A <c>for</c>-loop must be terminated with <c>end</c>.</li>
+    </ul>
+
+    <p>
+      One best practice to adopt early is: before writing the loop, identify what changes each iteration (often an index
+      or loop variable), and what you want to update as the loop runs (for example, a running total, a counter,
+      or an output vector).
+    </p>
+  </subsection>
+
+<subsection xml:id="subsec-dropinB">
+	<title>Drop-in B</title>
+<!-- Drop-in replacement block B: Replace “looping over a vector v” with “repeat N times” -->
+<p>
+  Often, you want to repeat a block of code a fixed number of times. In that case, the loop variable
+  is usually an iteration counter (like <c>k</c>) and the loop runs from 1 up to some chosen number <c>N</c>.
+</p>
+
+<program language="matlab">
+N = 6;
+
+for k = 1:N
+    % code that should run N times
+end
+</program>
+
+<p>
+  At this stage, it’s enough to interpret <c>k</c> as “which repetition am I on right now?”
+  We will later use <c>k</c> for indexing when we introduce MATLAB’s array types.
+</p>
+
+</subsection>
+
+<subsection xml:id="subsec-dropinC">
+	<title>Drop-in C</title>
+<!-- Drop-in replacement block C: Replace “elementwise operations on vectors” with a numeric table (still index-based) -->
+<p>
+  Another common use of a <c>for</c>-loop is to compute a sequence of values and store them in a named list of results.
+  Without discussing MATLAB arrays yet, you can interpret this as building a table with numbered entries:
+  entry 1, entry 2, entry 3, and so on.
+</p>
+
+<program language="matlab">
+N = 5;
+results = zeros(1,N);   % placeholder for N stored values
+
+for k = 1:N
+    results(k) = k^2;   % store the k-th computed value
+end
+
+results
+</program>
+
+<p>
+  For now, focus on the loop logic: compute something using <c>k</c> and store it.
+  The details of how MATLAB stores collections of values will be formalized in the arrays section.
+</p>
+
+</subsection>
+
+  <subsection xml:id="subsec-for-patterns">
+    <title>Seeing Patterns in Repeated Code</title>
+
+    <p>
+      A major reason loops feel natural after some practice is that you start recognizing repeated patterns.
+      The next examples focus on translating between repeated code and a <c>for</c>-loop.
+    </p>
+
+    <subsubsection xml:id="ssub-for-repeated-to-loop">
+      <title>Converting Repeated Code into a for Loop</title>
+
+      <p>
+        When you see the same line repeated with only a small change each time, there is usually a loop hiding in it.
+      </p>
+
+      <p>
+        Example: the same expression <c>cos(x) + ...</c> is repeated, but the added value changes each time.
+        We can capture those changing values in a loop vector.
+      </p>
+
+      <program language="matlab">
+x = 0;
+
+for k = [5 3 17 -3 5 1 5]
+    z = cos(x) + k;
+end
+      </program>
+
+      <p>
+        Example: adding 1 repeatedly is naturally expressed as looping over an index set.
+      </p>
+
+      <program language="matlab">
+x = 0;
+
+for k = 1:7
+    x = x + 1;
+end
+      </program>
+
+      <p>
+        Example: repeatedly multiplying by increasing factors suggests a loop vector like <c>3:709</c>.
+      </p>
+
+      <program language="matlab">
+x = 10;
+
+for k = 3:709
+    x = k*x;
+end
+      </program>
+
+      <p>
+        Example: repeating an <c>if</c>-statement across entries of a vector is a classic loop use-case.
+        Here is the intended structure: compare entry <c>k</c> of each vector, and possibly set <c>v(k)</c> to zero.
+      </p>
+
+      <program language="matlab">
+v = [3 4 1 9];
+w = [7 -1 4 4];
+
+for k = 1:length(v)
+    if v(k) &lt; w(k)
+        v(k) = 0;
+    end
+end
+      </program>
+
+      <p>
+        Another classic pattern: computing “differences between neighbors.”
+        Once you recognize the shift from <c>k</c> to <c>k-1</c>, the loop structure becomes clear.
+      </p>
+
+      <program language="matlab">
+w = [3 -7 -9 1 3 -5];
+v = zeros(1,6);
+
+v(1) = w(1);
+for k = 2:6
+    v(k) = w(k) - w(k-1);
+end
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-for-loop-to-expanded">
+      <title>Expanding a for Loop into Individual Lines</title>
+
+      <p>
+        Going in the other direction—expanding a loop—helps you verify what the loop does.
+        A good habit is to write down a few iterations explicitly and check that the pattern matches your intention.
+      </p>
+
+      <p>
+        Example:
+      </p>
+
+      <program language="matlab">
+z = [0 0 0 0 0];
+
+for k = 2:5
+    z(k) = abs(k*(k-1));
+end
+
+z
+      </program>
+
+      <p>
+        This is equivalent to the four assignments below (since <c>k</c> takes the values 2, 3, 4, 5):
+      </p>
+
+      <program language="matlab">
+z = [0 0 0 0 0];
+
+z(2) = abs(2*(1));
+z(3) = abs(3*(2));
+z(4) = abs(4*(3));
+z(5) = abs(5*(4));
+
+z
+      </program>
+
+      <p>
+        Example: elementwise multiplication across two vectors.
+      </p>
+
+      <program language="matlab">
+u = [1 2 3 4];
+v = [2 5 1 0];
+w = zeros(1,4);
+
+for k = 1:length(w)
+    w(k) = u(k)*v(k);
+end
+
+w
+      </program>
+
+      <p>
+        Example: building an output vector on a grid.
+      </p>
+
+      <program language="matlab">
+h = 0.5;
+x = 0:h:2;
+y = zeros(1,length(x));
+
+for k = 1:length(x)
+    y(k) = x(k)^2;
+end
+
+y
+      </program>
+
+      <p>
+        Example: first differences of a vector.
+      </p>
+
+      <program language="matlab">
+y = [0, 0.2, 1.4, 3.3, 4.0];
+dy = zeros(1,4);
+
+for k = 1:4
+    dy(k) = y(k+1) - y(k);
+end
+
+dy
+      </program>
+    </subsubsection>
+  </subsection>
+
+<subsection xml:id="subsec-dropinD">
+	<title>Drop-in D</title>
+<!-- Drop-in replacement block D: Replace “u(k)*v(k)” style examples with scalar accumulations -->
+<p>
+  If you are not ready to work with collections of numbers, you can still practice loop thinking through
+  <em>accumulation</em> problems, where one variable gets updated each iteration.
+  These are valuable because they train the same habits you need later for arrays: initialization, update, and stopping.
+</p>
+
+<program language="matlab">
+N = 10;
+
+sum_total = 0;
+prod_total = 1;
+
+for k = 1:N
+    sum_total = sum_total + k;
+    prod_total = prod_total * k;
+end
+
+sum_total
+prod_total
+</program>
+
+<p>
+  This example shows two standard patterns:
+  a running sum (initialize at 0) and a running product (initialize at 1).
+</p>
+
+</subsection>
+
+  <subsection xml:id="subsec-for-coding-examples">
+    <title>Coding for Loops</title>
+
+    <p>
+      The examples below show three common loop roles:
+      updating entries of a vector, accumulating a running value, and searching for a target.
+    </p>
+
+    <subsubsection xml:id="ssub-for-ex1-double-negatives">
+      <title>Example 1: Doubling Negative Entries</title>
+
+      <p>
+        Write a <c>for</c>-loop that doubles all negative values in a vector <c>v</c>.
+      </p>
+
+      <program language="matlab">
+v = [3 -7 -9 1 3 -5];
+
+for k = 1:length(v)
+    if v(k) &lt; 0
+        v(k) = 2*v(k);
+    end
+end
+
+v
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-for-ex2-flip-sign">
+      <title>Example 2: Flipping Signs</title>
+
+      <p>
+        Write a <c>for</c>-loop that flips the sign of every entry in a vector.
+      </p>
+
+      <program language="matlab">
+v = [3 5 6 -5 4 4 -8 -9 0 11 -4];
+n = length(v);
+
+for k = 1:n
+    v(k) = -v(k);
+end
+
+v
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-for-ex3-sum-average">
+      <title>Example 3: Sum and Average</title>
+
+      <p>
+        Write a <c>for</c>-loop that computes the sum of all values in <c>v</c>, then use that sum to compute the average.
+      </p>
+
+      <program language="matlab">
+v = [3 5 6 -5 4 4 -8 -9 0 11 -4];
+
+sum_total = 0;
+
+for k = 1:length(v)
+    sum_total = sum_total + v(k);
+end
+
+avg = sum_total/length(v);
+
+sum_total
+avg
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-for-ex4-search-first-occurrence">
+      <title>Example 4: Searching for a Value</title>
+
+      <p>
+        Given a vector of integers <c>list</c> and an integer <c>num</c>, write code that:
+        sets <c>num_found</c> to true if <c>list</c> contains <c>num</c>;
+        stores the index of the first occurrence in <c>location</c> (or -1 if not found);
+        and prints a message describing the result.
+      </p>
+
+      <p>
+        The key design idea is: as you scan the vector from left to right, the first time you see <c>num</c>
+        is the first occurrence. That means you either (1) record it once and ignore later matches, or (2) break
+        immediately once you find it. The second approach is usually cleaner.
+      </p>
+
+      <program language="matlab">
+list = randi([-20 20], 50, 1);
+num = 10;
+
+N = length(list);
+
+num_found = false;
+location = -1;
+
+for k = 1:N
+    if list(k) == num
+        num_found = true;
+        location = k;
+        break
+    end
+end
+
+if num_found
+    fprintf('The number %i was found in the %i-th index of list\n', num, location)
+else
+    fprintf('The number %i was not found in list\n', num)
+end
+      </program>
+    </subsubsection>
+  </subsection>
+<subsection xml:id="subsec-dropinE">
+	<title>Drop-in E</title>
+<!-- Drop-in replacement block E: Replace “search a list for num” with “search a sequence of generated values” -->
+<p>
+  A loop can also be used as a search: repeat a check until you find what you want.
+  Without introducing arrays yet, you can practice this idea by searching through a sequence of generated values.
+</p>
+
+<program language="matlab">
+target = 10;
+
+found = false;
+location = -1;   % which iteration found the target (or -1 if never found)
+
+for k = 1:50
+    value = randi([-20 20]);   % generate one random integer each iteration
+
+    if value == target
+        found = true;
+        location = k;
+        break
+    end
+end
+
+if found
+    fprintf('The number %i was found on iteration %i\n', target, location)
+else
+    fprintf('The number %i was not found in 50 trials\n', target)
+end
+</program>
+
+<p>
+  Later, once we have arrays, the same idea becomes “scan through stored values until you find a match.”
+  For now, the key loop concept is unchanged: test, and stop early with <c>break</c> once the goal is met.
+</p>
+
+</subsection>
+
+
+  <subsection xml:id="subsec-for-extra-flow-control">
+    <title>Additional Flow Control: continue, break, return</title>
+
+    <p>
+      MATLAB provides a few commands that modify the normal loop flow. These are most often used inside an
+      <c>if</c>-statement within a loop.
+    </p>
+
+    <table xml:id="tab-loop-flow-control">
+      <title>Flow control commands commonly used with loops</title>
+      <tabular>
+        <row header="yes">
+          <cell>Command</cell>
+          <cell>Effect</cell>
+        </row>
+        <row>
+          <cell><c>continue</c></cell>
+          <cell>Skip the rest of the current iteration and move to the next value of the loop variable.</cell>
+        </row>
+        <row>
+          <cell><c>break</c></cell>
+          <cell>Exit the current loop immediately and continue execution after the loop’s <c>end</c>.</cell>
+        </row>
+        <row>
+          <cell><c>return</c></cell>
+          <cell>Exit the current function immediately (useful inside functions, not typical in scripts).</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>
+      Two practical notes:
+      these commands only matter if MATLAB executes the line where they appear;
+      and using <c>continue</c> or <c>break</c> outside a loop has no effect.
+      (In contrast, <c>return</c> can be used anywhere inside a function.)
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-for-mini-hw-functions">
+    <title>Mini Practice Set: for Loop Functions</title>
+
+    <p>
+      The following short functions are typical “loop practice” problems: counting, comparing corresponding entries,
+      and accumulating products and totals. They are also good opportunities to practice writing clean function headers
+      and returning outputs with predictable types.
+    </p>
+
+    <subsubsection xml:id="ssub-less-than-count">
+      <title>Counting Values Below a Target</title>
+
+      <program language="matlab">
+function count = less_than_count(list, target)
+
+    N = length(list);
+    count = 0;
+
+    for k = 1:N
+        if list(k) &lt; target
+            count = count + 1;
+        end
+    end
+
+end
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-keep-smallest">
+      <title>Keeping the Smaller of Two Lists</title>
+
+      <program language="matlab">
+function smallest = keep_smallest(list1, list2)
+
+    N = length(list1);
+    smallest = zeros(1, N);
+
+    for k = 1:N
+        if list1(k) &lt;= list2(k)
+            smallest(k) = list1(k);
+        else
+            smallest(k) = list2(k);
+        end
+    end
+
+end
+      </program>
+
+      <p>
+        This is the loop-based version of an elementwise minimum. Later, once you learn vectorized tools,
+        you will recognize that many “compare corresponding entries” tasks have built-in alternatives.
+        For now, the loop makes the logic explicit.
+      </p>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-pos-neg-product">
+      <title>Product of Negative and Positive Entries</title>
+
+      <program language="matlab">
+function [neg_prod, pos_prod] = pos_neg_product(list)
+
+    N = length(list);
+    neg_prod = 1;
+    pos_prod = 1;
+
+    for k = 1:N
+        if list(k) &lt; 0
+            neg_prod = neg_prod * list(k);
+        elseif list(k) &gt; 0
+            pos_prod = pos_prod * list(k);
+        end
+    end
+
+end
+      </program>
+
+      <p>
+        This function uses a common accumulation pattern: initialize the product at 1, then multiply as you go.
+        One subtle point is what to do if there are no negative (or no positive) entries.
+        With the initialization above, the product remains 1, which may or may not be what you want.
+        Another common design is to initialize to <c>NaN</c> and update only after the first qualifying entry.
+      </p>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-compute-total">
+      <title>Computing a Total from an Order Matrix</title>
+
+      <p>
+        Suppose <c>order</c> is a matrix where each row represents one line item. The function below computes a total,
+        then applies a tax rate.
+      </p>
+
+      <program language="matlab">
+function total = compute_total(order, tax_rate)
+
+    N = size(order, 1);
+    total = 0;
+
+    for k = 1:N
+        item_total = order(k,1)*order(k,2) - order(k,3);
+        total = total + item_total;
+    end
+
+    total = total + total*tax_rate;
+
+end
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-practice-driver">
+      <title>Testing the Functions</title>
+
+      <program language="matlab">
+list1 = [5 -1 0 1 5 1];
+list2 = [7 -4 2 1 -2 0];
+
+count = less_than_count(list1, 6)
+
+smallest = keep_smallest(list1, list2)
+
+[neg_prod, pos_prod] = pos_neg_product(list2)
+
+order = [2 1 1; 2 2 2; 3 3 3];
+total = compute_total(order, 0.06)
+      </program>
+    </subsubsection>
+  </subsection>
+
+<subsection xml:id="sec-matlab-for-loops">
+	<title><pf>for</pf> loop</title>
+
+	<p>
+		A <pf>for</pf> loop repeats a block for a preset range of values, making it ideal when you know how many times to run the tasks.
+	</p>
+
+	<p>
+		Suppose we want part of our program to be rerun a preset number of times. For this, we use a <pf>for</pf> loop. The loop counter is a variable that takes on each value in the specified range, and the loop body runs once for each value. The basic format of this structure is:
+	</p>
+
+	<sidebyside width="100%">
+		<program language="matlab">
+			<code>
+				for counter conditions here
+					calculations here
+				end
+			</code>
+		</program>
+	</sidebyside>
+
+	<p>
+		In MATLAB, the counter is often written as <pf>i = start:step: stop</pf> (for example, <pf>i = 1:5</pf>), and the loop runs once for each value in that range.
+	</p>
+
+	<example xml:id="ex_forexampleonsums">
+		<title>Comparing for and sum</title>
+
+		<statement>
+
+			<p>
+				Let's compare two methods for adding up the first five integers.  Using the sum command, we can use
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+							&gt;&gt; sum(1:5)
+
+							ans =
+								15
+					</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				Now, using a <pf>for</pf> loop to create a cumulative sum:
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+							totalsum = 0; % initialize
+							for i = 1:5
+								totalsum = totalsum + i;
+							end
+							disp(totalsum)
+					</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				The variable <pf>totalsum</pf> will have a value of 15.
+			</p>
+
+		</statement>
+
+	</example>
+
+	<p>
+		In the above example, the <pf>for</pf> loop was the long way of doing the problem (and therefore stresses the power of the <pf>sum</pf> function), but the following example shows a more in-depth <pf>for</pf> loop with a loop counter that runs over a range.
+	</p>
+
+	<example xml:id="ex_forexample">
+		<title><em>Using for</em></title>
+
+		<statement>
+			<p>
+				Let's find the first 10 Fibonacci numbers using the recursive definition.
+			</p>
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+						A = zeros(1,10); % Initialize the matrix 
+						A(1) = 0; 
+						A(2) = 1; 
+						for i = 3:10
+							A(i) = A(i-1) + A(i-2); 
+						end
+						disp(A)
+					</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				The output for this would be
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+							A =
+								0 1 1 2 3 5 8 13 21 34
+					</code>
+				</program>
+			</sidebyside>
+		</statement>
+		
+	</example>
+
+</subsection>
+<subsection xml:id="subsec-dropinF">
+	<title>Drop-in F</title>
+<!-- Drop-in replacement block F: Replace “order matrix” with “receipt-style totals using separate scalars” -->
+<p>
+  If you want a “realistic” computation without using matrices yet, use a receipt-style total where each line item
+  is represented by a few scalar variables. The loop repeats once per item and updates a running total.
+</p>
+
+<program language="matlab">
+tax_rate = 0.06;
+total = 0;
+
+% Suppose there are 3 items:
+for k = 1:3
+    % In a real program, these might come from user input.
+    % Here we just pick sample numbers based on k.
+    price = 2*k;          % example price
+    quantity = k;         % example quantity
+    discount = 1;         % example discount
+
+    item_total = price*quantity - discount;
+    total = total + item_total;
+end
+
+total = total + total*tax_rate;
+total
+</program>
+
+<p>
+  The loop structure is the point: each repetition processes one item and updates the total.
+  Once arrays are introduced, we will store many items in a single structure instead of separate scalars.
+</p>
+
+</subsection>
+<!-- demo_for_loops.m -->
+<subsection xml:id="sec-for-loopsss">
+  <title>Repeating Work with for Loops</title>
+
+	<introduction>
+  <p>
+    A <code>for</code> loop repeats a block of code a fixed number of times.
+    This is the right tool when you know the set of values you want to iterate over—such as indices,
+    entries of an array, or a prescribed list.
+  </p>
+	</introduction>
+
+  <subsubsection xml:id="subsec-for-syntax">
+    <title>Basic for Loop Syntax</title>
+
+    <program language="matlab">
+for k = 1:5
+    disp("Iteration " + k)
+end
+    </program>
+
+    <p>
+      The loop variable takes on each value in the sequence (here, <code>1:5</code>).
+      Inside the loop, you can use that variable to index arrays or build computations step-by-step.
+    </p>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-for-accumulation">
+    <title>Accumulating a Result</title>
+
+    <p>
+      A common loop pattern is accumulation: start with an initial value, then repeatedly update it.
+      For example, compute a sum.
+    </p>
+
+    <program language="matlab">
+n = 10;
+s = 0;
+
+for k = 1:n
+    s = s + k;
+end
+
+disp("Sum from 1 to " + n + " is " + s)
+    </program>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-for-preallocation">
+    <title>Preallocating Arrays for Speed and Clarity</title>
+
+    <p>
+      When a loop builds an array, it is good practice to preallocate the array to its final size.
+      This avoids repeated resizing and usually improves performance.
+    </p>
+
+    <program language="matlab">
+n = 6;
+fact = zeros(1,n);
+fact(1) = 1;
+
+for k = 2:n
+    fact(k) = k * fact(k-1);
+end
+
+fact
+    </program>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-for-iterating-arrays">
+    <title>Iterating over Arrays</title>
+
+    <p>
+      You can iterate over indices, or iterate over values directly.
+      Index-based loops are often clearer when you need neighboring values.
+    </p>
+
+    <program language="matlab">
+x = [2 4 6 8];
+
+% Index-based
+for k = 1:length(x)
+    disp(x(k)^2)
+end
+
+% Value-based (loop variable takes values in the array)
+for v = x
+    disp(v^2)
+end
+    </program>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-for-transition-to-numerics">
+    <title>Loops in Numerical Approximation</title>
+
+    <p>
+      Many numerical methods are iterative. Even when MATLAB provides vectorized tools, loops help you understand
+      the algorithm: what updates, what stays fixed, and when the computation should stop.
+      This perspective is especially useful when you later write your own numerical methods.
+    </p>
+  </subsubsection>
+</subsection>
+
+<subsection xml:id="subsec-dropinG">
+	<title>Drop-in G</title>
+<!-- Drop-in replacement block G: A short global disclaimer you can paste near the top of the for-loop section -->
+<p>
+  In the examples below, you will occasionally see MATLAB store multiple values together so that we can repeat similar
+  computations efficiently. For now, treat those stored values as a simple list of numbers.
+  We will study MATLAB’s array types (vectors and matrices) formally in the next unit, and then revisit these examples
+  with more precise language.
+</p>
+
+
+</subsection>
+
+<!-- sample_for_loop_problems.m -->
+<subsection xml:id="sec-for-loop-practice">
+  <title>Practice: for Loop Programming Problems</title>
+
+  <p>
+    The best way to learn loops is to write them.
+    In each problem below, focus on three questions: what changes each iteration, what stays the same,
+    and what the loop should produce at the end.
+  </p>
+
+  <exercises xml:id="ex-for-loop-set">
+    <exercise xml:id="ex-for-sum-squares">
+      <statement>
+        <p>
+          Write a script that computes <m>1^2 + 2^2 + \cdots + n^2</m> for a given positive integer <m>n</m>.
+          Your script should store the result in a variable named <code>S</code>.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="ex-for-factorial">
+      <statement>
+        <p>
+          Write a script that computes <m>n!</m> using a <code>for</code> loop.
+          Assume <m>n</m> is a nonnegative integer. Store the result in <code>F</code>.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="ex-for-partial-sum">
+      <statement>
+        <p>
+          Let <m>x</m> be a real number. Use a <code>for</code> loop to compute the partial sum
+          <m>\sum_{k=0}^{N} \frac{x^k}{k!}</m> for a chosen integer <m>N</m>.
+          (This is a truncated series for <m>e^x</m>.) Store the result in <code>P</code>.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="ex-for-max-entry">
+      <statement>
+        <p>
+          Given a vector <code>v</code>, write code that finds the maximum entry using a loop
+          (do not use <code>max</code>). Store the maximum value in <code>m</code>.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="ex-for-running-average">
+      <statement>
+        <p>
+          Given a vector <code>v</code>, create a vector <code>a</code> of the same length where <code>a(k)</code>
+          equals the average of the first <code>k</code> entries of <code>v</code>.
+          Use a <code>for</code> loop and preallocate <code>a</code>.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="ex-for-count-condition">
+      <statement>
+        <p>
+          Given a vector <code>v</code>, write a script that counts how many entries satisfy <code>v(k) &gt; 0</code>.
+          Store the count in a variable named <code>count</code>.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="ex-for-multiplication-table-row">
+      <statement>
+        <p>
+          Create a row vector <code>t</code> of length 10 where <code>t(k)</code> equals <m>7k</m>.
+          Use a <code>for</code> loop and preallocate <code>t</code>.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise xml:id="ex-for-simple-simulation">
+      <statement>
+        <p>
+          Simulate rolling a fair six-sided die <m>N</m> times. Use a <code>for</code> loop to count how many times
+          you roll a 6. Store the count in <code>sixes</code>.
+        </p>
+      </statement>
+    </exercise>
+  </exercises>
+</subsection>
+</section>

@@ -1,0 +1,135 @@
+<section xml:id="sec-gates-switch">
+  <title><pf>switch</pf> Gates</title>
+
+
+<subsection xml:id="sec-switch-gates">
+	<title><pf>switch</pf> statement</title>
+	
+	<p>
+		The switch statement is another option for controlling code in MATLAB. It works similarly to the if-statement by directing your code to go down one of many possible paths.
+
+	</p>
+
+	<p>
+		The switch statement determines which task to perform based on possible values of some variable. The conditions we use with switch statements are in the form of cases. 
+	</p>
+
+	<aside>
+		<p>
+			Like the if-statement, you can have as many branches as you like. You would just add additional <pf>case</pf> statements between the <pf>switch</pf> and <pf>otherwise</pf> statements.
+		</p>
+	</aside>
+
+	<assemblage xml:id="switch-statement-def">
+		<title><pf>switch</pf>-statement</title><p/>
+
+		<p>
+			Suppose you need to perform different tasks based on some possible values of the variable <pf>var</pf>. More specifically, suppose you want your code to perform tasks A, B, C, and D, under the following conditions:
+		</p>
+
+		<sidebyside margins="10%">
+			<tabular>
+				<col	width="100%"></col>
+				<row><cell>perform task A if <pf>var</pf> equals <pf>v1</pf>,</cell></row>
+				<row><cell></cell></row>
+				<row><cell></cell></row>
+				<row><cell>perform task B if <pf>var</pf> equals <pf>v2</pf> or <pf>v3</pf>,</cell></row>
+				<row><cell></cell></row>
+				<row><cell></cell></row>
+				<row><cell>perform task C if <pf>var</pf> equals <pf>v4</pf>, or</cell></row>
+				<row><cell></cell></row>
+				<row><cell></cell></row>
+				<row><cell>perform task D for all other cases.</cell></row>
+				<row><cell></cell></row>
+				<row><cell></cell></row>
+			</tabular>
+		</sidebyside>
+
+		<p>
+			Then the switch commands required to control this flow are given by
+		</p>
+
+		<sidebyside width="100%">
+			<program language="matlab">
+				<code>
+					switch var
+
+						case {v1}
+							
+							Task A commands
+
+						case {v2, v3}
+					
+							Task B commands
+
+						case {v4}
+
+							Task C commands
+
+						otherwise
+
+							Task D commands
+
+					end
+				</code>
+			</program>
+		</sidebyside>
+
+		<p>
+			Notes:
+			<ul>
+				<li>MATLAB performs ONLY the tasks in the FIRST true case. The rest of the tasks are ignored.</li>
+				<li>When there is only one possible value for a case, the curly braces <pf>{ }</pf> are optional.</li>
+			</ul>
+		</p>
+
+	</assemblage>
+
+	<p>
+		The <pf>switch</pf>-<pf>case</pf> structure is similar to the <pf>if</pf> structure, but offers a few advantages.	First, it is easier to read; second, it is better when comparing strings (of possibly different lengths). The basic format is:
+	</p>
+
+	<example xml:id="ex_switchexample">
+		<title><em>Using if</em></title>
+
+		<statement>
+
+			<p>
+				Let's check whether a cadet is in their first two years at VMI.
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+						Year = 'second class'; 
+						switch Year
+							case{'fourth class', 'third class'}
+								'You are in the first two years.'
+							case{'second class', 'first class'}
+								'You are in the last two years.'
+							otherwise
+								'You must be a fifth year.'
+						end
+					</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				The cases are grouped by curly brackets so that a case will be satisfied if the value of Year is any of the values in a specific case. Once this code is executed, the switch command will look at the value of Year, and the output should be
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+						You are in your last two years.
+					</code>
+				</program>
+			</sidebyside>
+
+		</statement>
+
+	</example>
+
+</subsection>
+
+</section>

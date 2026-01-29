@@ -3,14 +3,15 @@
 
   <introduction>
     <p>
-      A <term>variable</term> in MATLAB is a named location in memory that stores a value.
+			A <term>variable</term> in MATLAB is a named location in memory that stores a value.
       Variables allow you to save data so that it can be reused, modified, and combined with
-      other data as a program runs.
+      other data as a program runs. Every calculation you perform in the Command Window 
+			produces values, and variables allow you to store those values for later use.
     </p>
 
     <p>
       At any moment, MATLAB keeps track of all defined variables in an internal memory area
-      called the <term>workspace</term>.
+      called the <term>workspace</term>. You can view these variables in the Workspace panel of the MATLAB Desktop.
     </p>
   </introduction>
 
@@ -32,6 +33,7 @@
         <li>The expression on the right-hand side is evaluated first.</li>
         <li>The resulting value is stored under the name on the left-hand side.</li>
       </ul>
+      The variable name appears in the Workspace after the line runs.
     </p>
 
     <example>
@@ -58,8 +60,9 @@
     </example>
 
     <p>
-      Ending a command with a semicolon suppresses output in the Command Window but still
+      Ending a command with a semicolon suppresses output in the Command Window, but still
       creates the variable.
+      This keeps intermediate calculations from cluttering your screen.
     </p>
 
     <program language="matlab">
@@ -91,7 +94,7 @@
 					<statement><p>The variable is created with no value.</p></statement>
 				</choice>
 				<choice correct="no">
-					<statement><p>The assignment only applies for the current line of code.</p></statement>
+					<statement><p>The assignment only applies to the current line of code.</p></statement>
 				</choice>
 			</choices>
 		</exercise>
@@ -103,7 +106,7 @@
 
     <p>
       Variables are typically used to build expressions that depend on previously defined
-      values.
+      values. This lets you update one input and quickly recompute the output.
     </p>
 
     <example>
@@ -145,7 +148,7 @@
 
     <p>
       In MATLAB, the symbol <c>=</c> does <em>not</em> represent a mathematical equation.
-      It represents an instruction:
+      It represents an instruction to store a computed value:
     </p>
 
     <p>
@@ -155,8 +158,7 @@
 		<exercise>
 			<statement>
 				<p>
-					After computing a variable using other variables, why does changing one of those
-					original variables not automatically update the result?
+					After computing a variable using other variables, why does changing one of those original variables not automatically update the result?
 				</p>
 			</statement>
 
@@ -240,14 +242,13 @@
 
       <p>
         MATLAB imposes specific rules on variable names:
+	      <ol>
+	        <li><p>The name must start with a letter.</p></li>
+	        <li><p>It may contain letters, digits, and underscores.</p></li>
+	        <li><p>It cannot be a MATLAB keyword.</p></li>
+	        <li><p>It cannot exceed 2048 characters.</p></li>
+	      </ol>
       </p>
-
-      <ol>
-        <li><p>The name must start with a letter.</p></li>
-        <li><p>It may contain letters, digits, and underscores.</p></li>
-        <li><p>It cannot be a MATLAB keyword.</p></li>
-        <li><p>It cannot exceed 2048 characters.</p></li>
-      </ol>
 
 			<p>
 				Things to note about MATLAB variables:
@@ -321,13 +322,17 @@
 			</exercise>
     </paragraphs>
 
-    <paragraphs>
-      <title><insert>Choosing Good Names</insert></title>
+     <paragraphs>
+       <title><insert>Choosing Good Names</insert></title>
 
-      <p>
-        In practice, variable names should clearly describe the data they store.
-        Descriptive names improve readability and reduce errors.
-      </p>
+       <p>
+         In practice, variable names should clearly describe the data they store.
+         Descriptive names improve readability and reduce errors.
+       </p>
+
+			<p>
+				Once you begin writing scripts, good names make your code easier to read later and share with others.
+			</p>
 
       <program language="matlab">
         <code>
@@ -364,4 +369,36 @@
 
   </subsection>
 
+	<subsection>
+		<title>Common Beginner Mistakes</title>
+
+		<p>
+			When first using MATLAB, it is common to encounter confusing results due to a few
+			predictable mistakes.
+		</p>
+		<ul>
+			<li>
+				Forgetting that MATLAB executes commands in the order they are run, not the order they appear on the screen.
+			</li>
+			<li>
+				Assuming MATLAB automatically updates previously computed values when a variable changes.
+			</li>
+			<li>
+				Leaving old variables in the workspace and unintentionally reusing them.
+			</li>
+			<li>
+				Interpreting the symbol <c>=</c> as a mathematical equation rather than an assignment.
+			</li>
+		</ul>
+
+		<p>
+			Nearly all of these issues can be resolved by clearing the workspace and re-running
+			commands in a logical order.
+			The next section shows how scripts let you save that logical order as reusable code.
+		</p>
+	</subsection>
+
 </section>
+
+
+

@@ -1,0 +1,718 @@
+<section xml:id="sec-gates-if">
+  <title><pf>if</pf> Gates</title>
+
+  <subtitle>Controlling the Flow of Code with Yes-or-No Questions</subtitle>
+
+	<introduction>
+<p>
+	Up to this point, we have focused on writing code that performs a sequence of tasks in order. However, many programs need to make decisions about which tasks to perform based on certain conditions. This is where the code branches into one of several possible paths based on the answers to "yes" or "no" questions. In this section, we will learn how to implement this type of control in MATLAB using logical gates.
+</p>
+
+  <p>
+    By default, MATLAB executes code line-by-line, starting at the top of a script and moving downward.
+    But many tasks require your program to <em>choose</em> what to do next. That is where flow control comes in.
+    The most fundamental flow-control structure is the <c>if</c>-statement.
+  </p>
+
+  <p>
+    An <c>if</c>-statement lets your code ask a logical question—something that evaluates to <c>true</c> or <c>false</c>.
+    Depending on the answer, MATLAB executes one block of code and skips the others. In other words, an
+    <c>if</c>-statement is a “gate” that directs execution down one path.
+  </p>
+	</introduction>
+
+<subsection xml:id="sec-if-gates">
+	<title><pf>if</pf> statements</title>
+
+	<p>
+		The <pf>if</pf> statement is a fundamental tool for controlling a program based on conditions. It allows your code to make decisions and execute different blocks of code depending on whether certain conditions are met.
+	</p>
+	
+	<assemblage xml:id="if-statement-def">
+		<title><pf>if</pf>-statement</title>
+
+			<p>
+				Suppose you want your code to perform only one of the following tasks:
+			</p>
+			
+			<sidebyside valign="middle">
+				<tabular>
+					<col	width="100%"></col>
+					<row><cell>task A if <pf>condition_1</pf> is <pf>true</pf></cell></row>
+					<row><cell></cell></row>
+					<row><cell></cell></row>
+					<row><cell>task B if <pf>condition_2</pf> is <pf>true</pf></cell></row>
+					<row><cell></cell></row>
+					<row><cell></cell></row>
+					<row><cell>task C if <pf>condition_3</pf> is <pf>true</pf></cell></row>
+					<row><cell></cell></row>
+					<row><cell></cell></row>
+					<row><cell>task D if none of the above are <pf>true</pf></cell></row>
+					<row><cell></cell></row>
+					<row><cell></cell></row>
+				</tabular>
+			</sidebyside>
+
+			<p>
+				Then the MATLAB commands needed for this flow are
+			</p>
+	
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+						if question A
+							%		⤷ true? ➜ do task A, then skip to end
+							%		⤷ false? ➜ go to next question
+							task A
+						elseif question B
+							%		⤷ true? ➜ do task B, then skip to end
+							%		⤷ false? ➜ go to next question
+							task B
+						elseif question C
+							%		⤷ true? ➜ do task C, then skip to end
+							%		⤷ false? ➜ go to next question
+							task C
+						else
+							%		do default task
+							default task
+						end
+					</code>
+				</program>
+			</sidebyside>
+
+	</assemblage>
+
+	<aside>
+		<p>
+			This if-statement shows four branches, but there can be as many as you like. You would just add additional <pf>elseif</pf> statements between the <pf>if</pf> and <pf>else</pf> statements.
+		</p>
+	</aside>
+
+	<p>
+		Using this structure, MATLAB performs ONLY one task. The task that is applied is based on the FIRST question that is true. The rest of the tasks are ignored.
+	</p>
+
+	<p>
+		For example, suppose that <pf>question A</pf> is <pf>false</pf>, but both <pf>question B</pf> and <pf>question C</pf> are <pf>true</pf>. In this case, only <pf>task B</pf> commands are run, and the code jumps directly to the <pf>end</pf> line, skipping past <pf>question C</pf>.
+	</p>
+
+	<example xml:id="example-if-else">
+		<title><pf>if-else</pf></title>
+
+		<statement>
+			<p>
+				Suppose <pf>num</pf> is a <pf>1 x 1 double</pf>. Write a code block that increases <pf>num</pf> by 5 if it is greater than 10 and decreases it by 5 otherwise.
+			</p>
+		</statement>
+
+		<solution>
+			<program language="matlab">
+				<code>
+					num = 68;
+					if num > 10
+						num = num + 5;
+					else
+						num = num - 5;
+					end
+				</code>
+			</program>
+		</solution>
+
+		<solution>
+			<title>With Commentary</title>
+
+			<program language="matlab">
+				<code>
+					num = 68;
+					fprintf("Since num = " + num + ", we ")
+					if num > 10
+						num = num + 5;
+						fprintf("add 5 to get num = " + num + "\n")
+					else
+						num = num - 5;
+						fprintf("subtract 5 to get num = " + num + "\n")
+					end
+				</code>
+			</program>
+
+		</solution>
+	</example>
+
+	<example xml:id="ex-optional-else">
+		<title>Optional <pf>else</pf></title>
+
+		<statement>
+			<p>
+				Suppose <pf>num</pf> is a <pf>1 x 1 double</pf>. Write a code block that increases <pf>num</pf> by 5 if it is greater than 10 and decreases it by 5 otherwise.
+			</p>
+			<p>
+				Suppose <pf>x</pf> contains a numeric value. Write a script that increases <pf>x</pf> by 5 if it is greater than 10, decreases <pf>x</pf> by 5 if it is less than 10, and does nothing if <pf>x</pf> is zero.
+			</p>
+		</statement>
+
+		<solution>
+			<p>
+				If <pf>x = 0</pf>, the below script runs the commands <pf>x = x - 5</pf> and <pf>disp(x)</pf>, outputting <pf>-5</pf>. However, if <pf>x = 10</pf>, only the <pf>disp(x)</pf> command is run, producing an output of <pf>10</pf>.
+			</p>
+
+			<program language="matlab">
+				<code>
+					if x &gt; 10
+						x = x + 5;
+					elseif x &lt; 10
+						x = x - 5;
+					end
+					disp(x)
+				</code>
+			</program>
+		</solution>
+	</example>
+
+	<example xml:id="example-if-elseif-else">
+		<title><pf>if-elseif-else</pf></title>
+
+		<statement>
+			<p>
+				<ol marker="(a)">
+					<li>
+						<p>
+							Suppose <pf>v</pf> is a <pf>1 x 3 double</pf>. Write a code block that sets <pf>k</pf> to the index location of the first positive number inside <pf>v</pf>. If there are no positive numbers, then set <pf>k = -1</pf>.
+						</p>
+					</li>
+					<li>
+						<p>
+							How does the code change if <pf>k</pf> is the index of the last positive number in <pf>v</pf> instead of the first?
+						</p>
+					</li>
+				</ol>
+			</p>
+		</statement>
+
+		<solution>
+
+			<p>
+				The logic is as follows: 
+				<ul>
+					<li>"if the 1st value positive, then set k = 1",</li>
+					<li>"if the 2nd value positive, then set k = 2",</li>
+					<li>"is the 3rd value positive, then set k = 3",</li>
+					<li>"otherwise, set k = -1"</li>
+				</ul>
+			</p>
+
+			<p>
+				In code, this looks like:
+
+			</p>
+
+			<program language="matlab">
+				<code>
+					v = [-3 5 1];
+					if v(1) > 0
+						k = 1;
+					elseif v(2) > 0
+						k = 2;
+					elseif v(3) > 0
+						k = 3;
+					else
+						k = -1;
+					end
+					disp(k)
+				</code>
+			</program>
+
+			<p>
+				Running this code block displays <pf>k = 2</pf>.
+			</p>
+
+		</solution>
+
+		<solution>
+			<p> 
+				Recall that MATLAB only runs the commands of the FIRST TRUE branch of the if-statement and ignores the rest. Here are two reasonable approaches:
+
+				<dl width="narrow">
+					<li>
+						<title>Approach 1</title>
+						<program language="matlab">
+							<code>
+								% Reverse the order
+								v = [-3 5 1];
+
+								if v(3) > 0
+									k = 3;
+								elseif v(2) > 0
+									k = 2;
+								elseif v(1) > 0
+									k = 1;
+								else
+									k = -1;
+								end
+								disp(k)
+							</code>
+						</program>
+					</li>
+					<li>
+						<title>Approach 2</title>
+						<program language="matlab">
+							<code>
+								% Split the ifs
+								v = [-3 5 1];
+								k = -1;		% set the default k
+
+								if v(1) > 0
+									k = 1;	% override k if true
+								end
+
+								if v(2) > 0
+									k = 2;	% override k if true
+								end
+								
+								if v(3) > 0
+									k = 3;	% override k if true
+								end
+								disp(k)
+							</code>
+						</program>
+					</li>
+				</dl>
+			</p>
+		</solution>
+
+	</example>
+
+</subsection>
+  <subsection xml:id="subsec-if-structure">
+    <title>The if Statement Structure</title>
+
+    <p>
+      MATLAB supports three common patterns: <c>if</c>, <c>if-elseif</c>, and <c>if-elseif-else</c>.
+      The general template looks like this:
+    </p>
+
+    <program language="matlab">
+if condition_1
+    task_A
+elseif condition_2
+    task_B
+elseif condition_3
+    task_C
+else
+    default_task   % if none of the above are true
+end
+    </program>
+
+    <p>
+      Here are the core rules to keep in mind.
+    </p>
+
+    <ul>
+      <li>
+        An <c>if</c>-statement begins with exactly one <c>if</c> line and ends with <c>end</c>.
+        The <c>else</c> line is optional.
+      </li>
+      <li>
+        You may include as many <c>elseif</c> branches as you need (including none).
+      </li>
+      <li>
+        Each <c>condition_i</c> must be a logical statement that evaluates to <c>true</c> or <c>false</c>.
+      </li>
+      <li>
+        MATLAB enters <em>at most one</em> branch. Once a true condition is found, MATLAB executes that block and
+        then jumps to the <c>end</c>.
+      </li>
+      <li>
+        If multiple conditions are true, MATLAB chooses the first true condition (top to bottom).
+      </li>
+      <li>
+        The <c>else</c> block runs only when all preceding conditions are false.
+      </li>
+      <li>
+        You can nest <c>if</c>-statements inside other <c>if</c>-statements when needed.
+      </li>
+    </ul>
+  </subsection>
+
+  <subsection xml:id="subsec-if-single-branch">
+    <title>A Single if Gate</title>
+
+    <p>
+      The simplest <c>if</c>-statement has one condition and one block of code. The code runs only when the
+      condition is true.
+    </p>
+
+    <program language="matlab">
+x = 2; 
+y = 0;
+
+if x &lt; 7
+    y = 5;
+end
+    </program>
+
+    <p>
+      If you change the value of <c>x</c>, the gate may or may not open.
+    </p>
+
+    <program language="matlab">
+x = 9; 
+y = 0;
+
+if x &lt; 7
+    y = 5;
+end
+    </program>
+
+    <p>
+      In this second case, the condition is false, so MATLAB skips the assignment and <c>y</c> stays at 0.
+      This is the key idea: the condition determines whether the block executes.
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-if-elseif">
+    <title>Two-Way Decisions with if-elseif</title>
+
+    <p>
+      When you have more than one possibility, you can add an <c>elseif</c> branch. MATLAB checks the first condition;
+      if it is false, MATLAB checks the next one.
+    </p>
+
+    <program language="matlab">
+if x &lt; 7
+    y = 4;
+elseif x &gt;= y
+    y = -3;
+end
+    </program>
+
+    <p>
+      Try running the code above with different starting values, such as:
+      <c>x = 9; y = 0;</c>, <c>x = 2; y = 0;</c>, <c>x = 6; y = 0;</c>, and <c>x = 7; y = 9;</c>.
+      Each pair forces MATLAB to take (or skip) a different branch, and that is the fastest way to build intuition.
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-if-elseif-else2">
+    <title>Adding a Default with if-elseif-else</title>
+
+    <p>
+      An <c>else</c> branch acts as a fallback: it runs only if every earlier condition is false.
+      This is useful when you want to guarantee that some variable gets assigned a value.
+    </p>
+
+    <program language="matlab">
+if y ~= 3
+    z = 4;
+elseif x &lt; y
+    z = 3;
+else
+    z = 0;
+end
+    </program>
+
+    <p>
+      For practice, test this block with different initial values such as
+      <c>x = 0; y = 4;</c>, <c>x = 0; y = 3;</c>, and <c>x = 3; y = 3;</c>.
+      Watch how only one branch executes each time.
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-if-examples">
+    <title>Examples</title>
+
+    <p>
+      The examples below emphasize two goals: translating English conditions into logical statements, and writing
+      conditions that are readable.
+    </p>
+
+    <subsubsection xml:id="ssub-if-ex1">
+      <title>Example 1: Multiple Conditions for w</title>
+
+      <p>
+        Write commands that set <c>w</c> based on these rules:
+      </p>
+
+      <ul>
+        <li>if <c>x</c> is equal to 9, set <c>w</c> to 1</li>
+        <li>if <c>x</c> is between (but not equal to) -4 and 0, set <c>w</c> to 2</li>
+        <li>if <c>x</c> is not less than 3 or greater than 9, set <c>w</c> to 3</li>
+        <li>if none of the above are true, set <c>w</c> to 4</li>
+      </ul>
+
+      <program language="matlab">
+if x == 9
+    w = 1;
+elseif x &gt; -4 &amp;&amp; x &lt; 0
+    w = 2;
+elseif ~(x &lt;= 3) || x &gt; 9
+    w = 3;
+else
+    w = 4;
+end
+      </program>
+
+      <p>
+        Notice how parentheses and spacing make the conditions easier to read.
+        Also notice the shift to <c>&amp;&amp;</c> and <c>||</c> here: those are the short-circuit operators and are
+        the standard choice inside <c>if</c> conditions when each side is a single true/false statement.
+      </p>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-if-ex2">
+      <title>Example 2: Detecting Increasing Order</title>
+
+      <p>
+        Suppose <c>list</c> is a vector of three numbers.
+        Set <c>in_order</c> to <c>true</c> if the entries are in increasing order; otherwise set it to <c>false</c>.
+      </p>
+
+      <program language="matlab">
+a = list(1);
+b = list(2);
+c = list(3);
+
+if a &lt;= b &amp;&amp; b &lt;= c
+    in_order = true;
+else
+    in_order = false;
+end
+      </program>
+
+      <p>
+        This pattern is common: the <c>if</c> block assigns <c>true</c>, and the <c>else</c> block assigns <c>false</c>.
+        When you see this often enough, you start recognizing conditions as “tests” whose job is to set flags.
+      </p>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-if-ex3">
+      <title>Example 3: Minimum of Three Values</title>
+
+      <p>
+        Suppose <c>list</c> is a vector of three numbers. Set <c>min_val</c> to the smallest of the three values
+        (without using <c>min</c>).
+      </p>
+
+      <program language="matlab">
+if list(1) &lt;= list(2) &amp;&amp; list(1) &lt;= list(3)
+    min_val = list(1);
+elseif list(2) &lt;= list(3)
+    min_val = list(2);
+else
+    min_val = list(3);
+end
+      </program>
+
+      <p>
+        This illustrates a useful design principle: order your conditions so that each branch excludes the ones
+        that come after it. After the first test fails, you already know <c>list(1)</c> is not the minimum, so the
+        remaining logic only needs to compare the other two entries.
+      </p>
+    </subsubsection>
+  </subsection>
+
+	
+
+<subsection xml:id="sec-quadratic-equation">
+  <title>Case Study: Solving the Quadratic Equation in MATLAB</title>
+
+	<introduction>
+  <p>
+    A classic programming task is turning a familiar mathematical procedure into a reliable piece of code.
+    The quadratic equation is a great example because it combines algebra, branching logic, and careful handling
+    of special cases.
+  </p>
+
+  <p>
+    Consider the quadratic polynomial <m>a x^2 + b x + c</m>. Its roots satisfy
+    <me>x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.</me>
+    The expression <m>D = b^2 - 4ac</m> is called the <term>discriminant</term>, and its sign determines
+    the type of roots.
+  </p>
+	</introduction>
+
+
+  <subsubsection xml:id="subsec-quadratic-discriminant">
+    <title>The Discriminant and Root Types</title>
+
+    <p>
+      There are three common cases:
+      if <m>D &gt; 0</m> there are two distinct real roots, if <m>D = 0</m> there is one repeated real root,
+      and if <m>D &lt; 0</m> the roots are complex conjugates.
+    </p>
+
+    <program language="matlab">
+a = 1; b = -3; c = 2;        % (x-1)(x-2) = 0
+
+D = b^2 - 4*a*c;
+
+x1 = (-b + sqrt(D)) / (2*a);
+x2 = (-b - sqrt(D)) / (2*a);
+    </program>
+
+    <p>
+      MATLAB’s <code>sqrt</code> can produce complex results automatically when <m>D &lt; 0</m>,
+      so the computation above still works. But it is often useful to detect the case and present results clearly.
+    </p>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-quadratic-function">
+    <title>Packaging the Computation as a Function</title>
+
+    <p>
+      A function is the natural way to turn this idea into reusable code.
+      We also add input checks to catch the invalid case <m>a = 0</m>, which would not be a quadratic.
+    </p>
+
+    <program language="matlab">
+function r = quadraticRoots(a,b,c)
+%QUADRATICROOTS Return the roots of a*x^2 + b*x + c.
+%
+%   r is a 1x2 vector containing the two roots (possibly equal or complex).
+
+    if a == 0
+        error("Input a must be nonzero for a quadratic polynomial.");
+    end
+
+    D = b^2 - 4*a*c;
+    r1 = (-b + sqrt(D)) / (2*a);
+    r2 = (-b - sqrt(D)) / (2*a);
+
+    r = [r1, r2];
+end
+    </program>
+
+    <p>
+      A function like this becomes more valuable when paired with clear documentation and predictable output format.
+      In practice, you might also return the discriminant or a label indicating the root type.
+    </p>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-quadratic-numerics">
+    <title>A Numerical Note</title>
+
+    <p>
+      For some coefficient values, the quadratic formula can suffer from roundoff error.
+      This usually appears when <m>b^2</m> is much larger than <m>4ac</m>, causing subtractive cancellation.
+      For introductory programming, the standard formula is perfectly acceptable, but it is good to know that
+      numerical stability can matter even in “simple” algebra.
+    </p>
+  </subsubsection>
+</subsection>
+
+<!-- demo_if_statements.m -->
+<subsection xml:id="sec-if-statements">
+  <title>Making Decisions with if Statements</title>
+
+	<introduction>
+  <p>
+    An <code>if</code> statement lets your program choose what to do based on a logical condition.
+    This is the core mechanism behind “decision-making” in code: the program tests a condition and follows
+    the branch that matches the result.
+  </p>
+	</introduction>
+
+
+  <subsubsection xml:id="subsec-if-basic-syntax">
+    <title>Basic if Syntax</title>
+
+    <p>
+      The simplest form has one condition and one block of code.
+      If the condition is true, MATLAB executes the block. Otherwise, MATLAB skips it.
+    </p>
+
+    <program language="matlab">
+x = -2;
+
+if x &lt; 0
+    disp("x is negative");
+end
+    </program>
+
+    <p>
+      The condition must evaluate to a single logical value.
+      If you accidentally supply a logical array, MATLAB will error in modern versions.
+      In those cases you typically want <code>any</code> or <code>all</code>.
+    </p>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-if-elseif-else">
+    <title>Multiple Branches with elseif and else</title>
+
+    <p>
+      Use <code>elseif</code> to test additional conditions, and <code>else</code> as a catch-all when none match.
+      MATLAB checks conditions in order and takes the first branch that is true.
+    </p>
+
+    <program language="matlab">
+score = 83;
+
+if score &gt;= 90
+    letter = "A";
+elseif score &gt;= 80
+    letter = "B";
+elseif score &gt;= 70
+    letter = "C";
+elseif score &gt;= 60
+    letter = "D";
+else
+    letter = "F";
+end
+
+disp("Letter grade: " + letter)
+    </program>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-if-logical-operators">
+    <title>Using Logical Operators in Conditions</title>
+
+    <p>
+      Many conditions combine multiple requirements. For scalar logic, prefer <code>&amp;&amp;</code> and <code>||</code>.
+    </p>
+
+    <program language="matlab">
+x = 4;
+
+if (x &gt; 0) &amp;&amp; (x &lt; 10)
+    disp("x is between 0 and 10");
+end
+    </program>
+
+    <p>
+      When you need to test array conditions, compute the logical array first and then summarize it.
+    </p>
+
+    <program language="matlab">
+A = [-2 0 5 7];
+
+if any(A &lt; 0)
+    disp("A contains at least one negative entry.");
+end
+    </program>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-if-best-practices">
+    <title>Common Pitfalls and Best Practices</title>
+
+    <p>
+      Two habits prevent a lot of bugs:
+      first, make your conditions explicit and readable; second, test edge cases (like zeros, empty arrays,
+      or unexpected input types).
+    </p>
+
+    <p>
+      For text comparisons, use functions like <code>strcmp</code> rather than <code>==</code>
+      (especially when working with character arrays).
+    </p>
+
+    <program language="matlab">
+reply = "yes";
+
+if strcmpi(reply, "yes")
+    disp("Continuing...");
+else
+    disp("Stopping...");
+end
+    </program>
+  </subsubsection>
+</subsection>
+</section>

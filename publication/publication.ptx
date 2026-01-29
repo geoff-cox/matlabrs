@@ -15,15 +15,15 @@
 
 	<common>
 		<!-- Level at which are html files generated (chapter/section/etc) -->
-		<chunking level="2" />
+		<chunking level="3" />
 		<!-- Depth for table of contents.  0 means no TOC -->
-		<tableofcontents level="2" />
+		<tableofcontents level="4" />
 		<!-- Visibility of exercise components where they first appear -->
-		<exercise-inline			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
-		<exercise-divisional	statement="yes"		hint="yes"		answer="yes"	solution="no"	/>
-		<exercise-worksheet		statement="yes"		hint="yes"		answer="no"		solution="no"	/>
-		<exercise-reading			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
-		<exercise-project			statement="yes"		hint="yes"		answer="no"		solution="no"	/>
+		<exercise-inline statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-divisional statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-worksheet statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-reading statement="yes" hint="yes" answer="no" solution="yes" />
+		<exercise-project statement="yes" hint="yes" answer="yes" solution="yes" />
 		<!-- Style of fill-in-the-blanks -->
 		<fillin textstyle="underline" mathstyle="shade" />
 		<!-- You can set a watermark -->
@@ -41,10 +41,10 @@
 			respective divisions. Can't be more than the @level on 
 			divisions above.
 		-->
-		<blocks			level="0" />
-		<projects		level="0" />
-		<equations	level="0" />
-		<footnotes	level="0" />
+		<blocks			level="1" />
+		<projects		level="1" />
+		<equations	level="1" />
+		<footnotes	level="1" />
 	</numbering>
 
 	<!--
@@ -89,25 +89,24 @@
 			audio="yes"
 			theorem="yes"
 			proof="yes"
-			definition="no"
+			definition="yes"
 			example="no"
 			example-solution="yes"
-			project="no"
-			investigation="yes"
-			identity="no"
+			project="yes"
 			task="no"
 			remark="yes"
 			objectives="no"
-			outcomes="no"
+			outcomes="yes"
+			assemblage="yes"
 			figure="no"
 			table="no"
 			listing="no"
 			list="no"
-			fact="yes"
-			exercise-inline="yes"
+			activity="no"
+			exercise-inline="no"
 			exercise-divisional="no"
-			exercise-worksheet="yes"
-			exercise-readingquestion="yes"
+			exercise-worksheet="no"
+			exercise-readingquestion="no"
 		/>
 
 		<!--
@@ -144,7 +143,7 @@
 		<!-- Table of Contents -->
 		<!-- @focused={"yes", "no"} (enables expand/collapse functionality) -->
 		<!-- @preexpanded-levels={"0","1","2",...} (how deep to expand toc initially). -->
-		<toc focused="yes" preexpanded-levels="3" />
+		<toc focused="yes" preexpanded-levels="4" />
 
 		<!--
 			@logic={"linear", "tree"}
@@ -173,11 +172,11 @@
 			Control behavior of online WeBWorK
 		-->
 		<webwork
-			inline		=	"dynamic"
+			inline			=	"dynamic"
 			divisional	=	"dynamic"
-			reading		=	"dynamic"
-			worksheet	=	"static"
-			project		=	"dynamic"
+			reading			=	"dynamic"
+			worksheet		=	"static"
+			project			=	"dynamic"
 		/>
 
 		<!--

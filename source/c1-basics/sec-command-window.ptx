@@ -4,34 +4,32 @@
 	<introduction>
 		<p>
 			Software applications require a way for users to interact with them.
-			This interaction occurs through a <term>User Interface</term> (UI).
+			This interaction occurs through a <term>User Interface</term> (UI), typically a command-line or graphical interface.
 		</p>
 
-		<p>
-			Most applications use one or both of the following interface styles:
-			<dl>
-				<li>
-					<title>Command Line Interface (CLI)</title>
-					<p>
-						Users type commands at a prompt to control the application.
-					</p>
-				</li>
-				<li>
-					<title>Graphical User Interface (GUI)</title>
-					<p>
-						Users interact through visual elements such as buttons, menus, and windows.
-					</p>
-				</li>
-			</dl>
-		</p>
+		<dl>
+			<li>
+				<title>Command Line Interface (CLI)</title>
+				<p>
+					Users type commands at a prompt to control the application.
+				</p>
+			</li>
+			<li>
+				<title>Graphical User Interface (GUI)</title>
+				<p>
+					Users interact through visual elements such as buttons, menus, and windows.
+				</p>
+			</li>
+		</dl>
 
 		<p>
-			Let's pratice using MATLAB's CLI with some simple examples.
+			Let's practice using MATLAB's CLI with some simple examples.
 		</p>
 
 		<p>
 			MATLAB is unusual in that it provides a CLI directly inside its GUI.
 			This embedded CLI is called the <xref ref="command-window" text="custom">Command Window</xref>.
+			You type commands at the <pf>&gt;&gt;</pf> prompt and press <kbd>Enter</kbd>.
 		</p>
 	</introduction>
 
@@ -51,6 +49,7 @@
 
     <p>
       MATLAB displays the result using the default variable name <pf>ans</pf>.
+      To keep a result for later, assign it to a variable (introduced next).
     </p>
 
     <pre>
@@ -80,8 +79,7 @@ ans =
     <exercise>
       <statement>
         <p>
-          When you enter an expression without assigning it to a variable,
-          how does MATLAB store the result?
+          When you enter an expression without assigning it to a variable, how does MATLAB store the result?
         </p>
       </statement>
       <choices randomize="yes">
@@ -100,43 +98,14 @@ ans =
       </choices>
     </exercise>
 
-		<assemblage>
-			<title>Common Beginner Mistakes</title>
-
-			<p>
-				When first using MATLAB, it is common to encounter confusing results due to a few
-				predictable mistakes.
-				<ul>
-					<li>
-						Forgetting that MATLAB executes commands in the order they are run, not the order
-						they appear on the screen.
-					</li>
-					<li>
-						Assuming MATLAB automatically updates previously computed values when a variable changes.
-					</li>
-					<li>
-						Leaving old variables in the workspace and unintentionally reusing them.
-					</li>
-					<li>
-						Interpreting the symbol <c>=</c> as a mathematical equation rather than an assignment.
-					</li>
-				</ul>
-			</p>
-
-			<p>
-				Nearly all of these issues can be resolved by clearing the workspace and re-running
-				commands in a logical order.
-			</p>
-		</assemblage>
-
   </subsection>
 
 	<subsection xml:id="command-window-utility">
 		<title>Keeping the Command Window Organized</title>
 
 		<p>
-			As you work in the Command Window, MATLAB keeps a history of commands, output,
-			and variables. Several built-in commands help you keep your workspace organized.
+			As you work in the Command Window, MATLAB keeps a history of commands and output,
+			and it stores variables in the workspace. Several built-in commands help you keep your session organized.
 		</p>
 
 		<program language="matlab">
@@ -160,8 +129,9 @@ ans =
 		</ul>
 
 		<p>
-			These commands do not undo work permanently, but they do reset your current session.
+			These commands do not permanently undo work, but they do reset your current session.
 			When results seem confusing, using <pf>clear</pf> and starting fresh is often helpful.
+			As your work grows, you'll move repeated command sequences into scripts for easy reuse.
 		</p>
 
 		<exercise>
@@ -174,7 +144,7 @@ ans =
 				<choice correct="yes"><statement><p><pf>clear</pf></p></statement></choice>
 				<choice correct="no"><statement><p><pf>clc</pf></p></statement></choice>
 				<choice correct="no"><statement><p><pf>format</pf></p></statement></choice>
-				<choice correct="no"><statement><p>exit</p></statement></choice>
+				<choice correct="no"><statement><p><pf>exit</pf></p></statement></choice>
 			</choices>
 		</exercise>
 
@@ -203,3 +173,4 @@ ans =
 	</subsection>
 
 </section>
+
