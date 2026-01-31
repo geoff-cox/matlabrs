@@ -1,5 +1,5 @@
-<section xml:id="sec-for-loops2">
-  <title><pf>for</pf> Loops</title>
+<section xml:id="sec-looping-flow">
+  <title>Looping Flow</title>
 <introduction>
 	<p>
 		Loops are programming constructs that allow you to repeat a block of code multiple times. Loops let you repeat tasks a specified number of times or until a stopping condition is met. In this section, we will explore two primary types of loops in MATLAB: the <pf>for</pf> loop and the <pf>while</pf> loop.
@@ -181,10 +181,13 @@ results
   <subsection xml:id="subsec-for-patterns">
     <title>Seeing Patterns in Repeated Code</title>
 
+    <introduction>
     <p>
       A major reason loops feel natural after some practice is that you start recognizing repeated patterns.
       The next examples focus on translating between repeated code and a <c>for</c>-loop.
     </p>
+    </introduction>
+
 
     <subsubsection xml:id="ssub-for-repeated-to-loop">
       <title>Converting Repeated Code into a for Loop</title>
@@ -230,122 +233,9 @@ for k = 3:709
 end
       </program>
 
-      <p>
-        Example: repeating an <c>if</c>-statement across entries of a vector is a classic loop use-case.
-        Here is the intended structure: compare entry <c>k</c> of each vector, and possibly set <c>v(k)</c> to zero.
-      </p>
-
-      <program language="matlab">
-v = [3 4 1 9];
-w = [7 -1 4 4];
-
-for k = 1:length(v)
-    if v(k) &lt; w(k)
-        v(k) = 0;
-    end
-end
-      </program>
-
-      <p>
-        Another classic pattern: computing “differences between neighbors.”
-        Once you recognize the shift from <c>k</c> to <c>k-1</c>, the loop structure becomes clear.
-      </p>
-
-      <program language="matlab">
-w = [3 -7 -9 1 3 -5];
-v = zeros(1,6);
-
-v(1) = w(1);
-for k = 2:6
-    v(k) = w(k) - w(k-1);
-end
-      </program>
     </subsubsection>
 
-    <subsubsection xml:id="ssub-for-loop-to-expanded">
-      <title>Expanding a for Loop into Individual Lines</title>
 
-      <p>
-        Going in the other direction—expanding a loop—helps you verify what the loop does.
-        A good habit is to write down a few iterations explicitly and check that the pattern matches your intention.
-      </p>
-
-      <p>
-        Example:
-      </p>
-
-      <program language="matlab">
-z = [0 0 0 0 0];
-
-for k = 2:5
-    z(k) = abs(k*(k-1));
-end
-
-z
-      </program>
-
-      <p>
-        This is equivalent to the four assignments below (since <c>k</c> takes the values 2, 3, 4, 5):
-      </p>
-
-      <program language="matlab">
-z = [0 0 0 0 0];
-
-z(2) = abs(2*(1));
-z(3) = abs(3*(2));
-z(4) = abs(4*(3));
-z(5) = abs(5*(4));
-
-z
-      </program>
-
-      <p>
-        Example: elementwise multiplication across two vectors.
-      </p>
-
-      <program language="matlab">
-u = [1 2 3 4];
-v = [2 5 1 0];
-w = zeros(1,4);
-
-for k = 1:length(w)
-    w(k) = u(k)*v(k);
-end
-
-w
-      </program>
-
-      <p>
-        Example: building an output vector on a grid.
-      </p>
-
-      <program language="matlab">
-h = 0.5;
-x = 0:h:2;
-y = zeros(1,length(x));
-
-for k = 1:length(x)
-    y(k) = x(k)^2;
-end
-
-y
-      </program>
-
-      <p>
-        Example: first differences of a vector.
-      </p>
-
-      <program language="matlab">
-y = [0, 0.2, 1.4, 3.3, 4.0];
-dy = zeros(1,4);
-
-for k = 1:4
-    dy(k) = y(k+1) - y(k);
-end
-
-dy
-      </program>
-    </subsubsection>
   </subsection>
 
 <subsection xml:id="subsec-dropinD">
@@ -379,117 +269,7 @@ prod_total
 
 </subsection>
 
-  <subsection xml:id="subsec-for-coding-examples">
-    <title>Coding for Loops</title>
 
-    <p>
-      The examples below show three common loop roles:
-      updating entries of a vector, accumulating a running value, and searching for a target.
-    </p>
-
-    <subsubsection xml:id="ssub-for-ex1-double-negatives">
-      <title>Example 1: Doubling Negative Entries</title>
-
-      <p>
-        Write a <c>for</c>-loop that doubles all negative values in a vector <c>v</c>.
-      </p>
-
-      <program language="matlab">
-v = [3 -7 -9 1 3 -5];
-
-for k = 1:length(v)
-    if v(k) &lt; 0
-        v(k) = 2*v(k);
-    end
-end
-
-v
-      </program>
-    </subsubsection>
-
-    <subsubsection xml:id="ssub-for-ex2-flip-sign">
-      <title>Example 2: Flipping Signs</title>
-
-      <p>
-        Write a <c>for</c>-loop that flips the sign of every entry in a vector.
-      </p>
-
-      <program language="matlab">
-v = [3 5 6 -5 4 4 -8 -9 0 11 -4];
-n = length(v);
-
-for k = 1:n
-    v(k) = -v(k);
-end
-
-v
-      </program>
-    </subsubsection>
-
-    <subsubsection xml:id="ssub-for-ex3-sum-average">
-      <title>Example 3: Sum and Average</title>
-
-      <p>
-        Write a <c>for</c>-loop that computes the sum of all values in <c>v</c>, then use that sum to compute the average.
-      </p>
-
-      <program language="matlab">
-v = [3 5 6 -5 4 4 -8 -9 0 11 -4];
-
-sum_total = 0;
-
-for k = 1:length(v)
-    sum_total = sum_total + v(k);
-end
-
-avg = sum_total/length(v);
-
-sum_total
-avg
-      </program>
-    </subsubsection>
-
-    <subsubsection xml:id="ssub-for-ex4-search-first-occurrence">
-      <title>Example 4: Searching for a Value</title>
-
-      <p>
-        Given a vector of integers <c>list</c> and an integer <c>num</c>, write code that:
-        sets <c>num_found</c> to true if <c>list</c> contains <c>num</c>;
-        stores the index of the first occurrence in <c>location</c> (or -1 if not found);
-        and prints a message describing the result.
-      </p>
-
-      <p>
-        The key design idea is: as you scan the vector from left to right, the first time you see <c>num</c>
-        is the first occurrence. That means you either (1) record it once and ignore later matches, or (2) break
-        immediately once you find it. The second approach is usually cleaner.
-      </p>
-
-      <program language="matlab">
-list = randi([-20 20], 50, 1);
-num = 10;
-
-N = length(list);
-
-num_found = false;
-location = -1;
-
-for k = 1:N
-    if list(k) == num
-        num_found = true;
-        location = k;
-        break
-    end
-end
-
-if num_found
-    fprintf('The number %i was found in the %i-th index of list\n', num, location)
-else
-    fprintf('The number %i was not found in list\n', num)
-end
-      </program>
-    </subsubsection>
-  </subsection>
 <subsection xml:id="subsec-dropinE">
 	<title>Drop-in E</title>
 <!-- Drop-in replacement block E: Replace “search a list for num” with “search a sequence of generated values” -->
@@ -567,133 +347,7 @@ end
     </p>
   </subsection>
 
-  <subsection xml:id="subsec-for-mini-hw-functions">
-    <title>Mini Practice Set: for Loop Functions</title>
 
-    <p>
-      The following short functions are typical “loop practice” problems: counting, comparing corresponding entries,
-      and accumulating products and totals. They are also good opportunities to practice writing clean function headers
-      and returning outputs with predictable types.
-    </p>
-
-    <subsubsection xml:id="ssub-less-than-count">
-      <title>Counting Values Below a Target</title>
-
-      <program language="matlab">
-function count = less_than_count(list, target)
-
-    N = length(list);
-    count = 0;
-
-    for k = 1:N
-        if list(k) &lt; target
-            count = count + 1;
-        end
-    end
-
-end
-      </program>
-    </subsubsection>
-
-    <subsubsection xml:id="ssub-keep-smallest">
-      <title>Keeping the Smaller of Two Lists</title>
-
-      <program language="matlab">
-function smallest = keep_smallest(list1, list2)
-
-    N = length(list1);
-    smallest = zeros(1, N);
-
-    for k = 1:N
-        if list1(k) &lt;= list2(k)
-            smallest(k) = list1(k);
-        else
-            smallest(k) = list2(k);
-        end
-    end
-
-end
-      </program>
-
-      <p>
-        This is the loop-based version of an elementwise minimum. Later, once you learn vectorized tools,
-        you will recognize that many “compare corresponding entries” tasks have built-in alternatives.
-        For now, the loop makes the logic explicit.
-      </p>
-    </subsubsection>
-
-    <subsubsection xml:id="ssub-pos-neg-product">
-      <title>Product of Negative and Positive Entries</title>
-
-      <program language="matlab">
-function [neg_prod, pos_prod] = pos_neg_product(list)
-
-    N = length(list);
-    neg_prod = 1;
-    pos_prod = 1;
-
-    for k = 1:N
-        if list(k) &lt; 0
-            neg_prod = neg_prod * list(k);
-        elseif list(k) &gt; 0
-            pos_prod = pos_prod * list(k);
-        end
-    end
-
-end
-      </program>
-
-      <p>
-        This function uses a common accumulation pattern: initialize the product at 1, then multiply as you go.
-        One subtle point is what to do if there are no negative (or no positive) entries.
-        With the initialization above, the product remains 1, which may or may not be what you want.
-        Another common design is to initialize to <c>NaN</c> and update only after the first qualifying entry.
-      </p>
-    </subsubsection>
-
-    <subsubsection xml:id="ssub-compute-total">
-      <title>Computing a Total from an Order Matrix</title>
-
-      <p>
-        Suppose <c>order</c> is a matrix where each row represents one line item. The function below computes a total,
-        then applies a tax rate.
-      </p>
-
-      <program language="matlab">
-function total = compute_total(order, tax_rate)
-
-    N = size(order, 1);
-    total = 0;
-
-    for k = 1:N
-        item_total = order(k,1)*order(k,2) - order(k,3);
-        total = total + item_total;
-    end
-
-    total = total + total*tax_rate;
-
-end
-      </program>
-    </subsubsection>
-
-    <subsubsection xml:id="ssub-practice-driver">
-      <title>Testing the Functions</title>
-
-      <program language="matlab">
-list1 = [5 -1 0 1 5 1];
-list2 = [7 -4 2 1 -2 0];
-
-count = less_than_count(list1, 6)
-
-smallest = keep_smallest(list1, list2)
-
-[neg_prod, pos_prod] = pos_neg_product(list2)
-
-order = [2 1 1; 2 2 2; 3 3 3];
-total = compute_total(order, 0.06)
-      </program>
-    </subsubsection>
-  </subsection>
 
 <subsection xml:id="sec-matlab-for-loops">
 	<title><pf>for</pf> loop</title>
@@ -764,46 +418,7 @@ total = compute_total(order, 0.06)
 
 	</example>
 
-	<p>
-		In the above example, the <pf>for</pf> loop was the long way of doing the problem (and therefore stresses the power of the <pf>sum</pf> function), but the following example shows a more in-depth <pf>for</pf> loop with a loop counter that runs over a range.
-	</p>
 
-	<example xml:id="ex_forexample">
-		<title><em>Using for</em></title>
-
-		<statement>
-			<p>
-				Let's find the first 10 Fibonacci numbers using the recursive definition.
-			</p>
-			<sidebyside width="100%">
-				<program language="matlab">
-					<code>
-						A = zeros(1,10); % Initialize the matrix 
-						A(1) = 0; 
-						A(2) = 1; 
-						for i = 3:10
-							A(i) = A(i-1) + A(i-2); 
-						end
-						disp(A)
-					</code>
-				</program>
-			</sidebyside>
-
-			<p>
-				The output for this would be
-			</p>
-
-			<sidebyside width="100%">
-				<program language="matlab">
-					<code>
-							A =
-								0 1 1 2 3 5 8 13 21 34
-					</code>
-				</program>
-			</sidebyside>
-		</statement>
-		
-	</example>
 
 </subsection>
 <subsection xml:id="subsec-dropinF">
@@ -887,59 +502,7 @@ disp("Sum from 1 to " + n + " is " + s)
     </program>
   </subsubsection>
 
-  <subsubsection xml:id="subsec-for-preallocation">
-    <title>Preallocating Arrays for Speed and Clarity</title>
 
-    <p>
-      When a loop builds an array, it is good practice to preallocate the array to its final size.
-      This avoids repeated resizing and usually improves performance.
-    </p>
-
-    <program language="matlab">
-n = 6;
-fact = zeros(1,n);
-fact(1) = 1;
-
-for k = 2:n
-    fact(k) = k * fact(k-1);
-end
-
-fact
-    </program>
-  </subsubsection>
-
-  <subsubsection xml:id="subsec-for-iterating-arrays">
-    <title>Iterating over Arrays</title>
-
-    <p>
-      You can iterate over indices, or iterate over values directly.
-      Index-based loops are often clearer when you need neighboring values.
-    </p>
-
-    <program language="matlab">
-x = [2 4 6 8];
-
-% Index-based
-for k = 1:length(x)
-    disp(x(k)^2)
-end
-
-% Value-based (loop variable takes values in the array)
-for v = x
-    disp(v^2)
-end
-    </program>
-  </subsubsection>
-
-  <subsubsection xml:id="subsec-for-transition-to-numerics">
-    <title>Loops in Numerical Approximation</title>
-
-    <p>
-      Many numerical methods are iterative. Even when MATLAB provides vectorized tools, loops help you understand
-      the algorithm: what updates, what stays fixed, and when the computation should stop.
-      This perspective is especially useful when you later write your own numerical methods.
-    </p>
-  </subsubsection>
 </subsection>
 
 <subsection xml:id="subsec-dropinG">
@@ -1041,4 +604,521 @@ end
     </exercise>
   </exercises>
 </subsection>
+
+
+<subsection xml:id="sec-while-loops2">
+  <title><pf>while</pf> Loops</title>
+<introduction>
+	<p>
+		Loops are programming constructs that allow you to repeat a block of code multiple times. Loops let you repeat tasks a specified number of times or until a stopping condition is met. In this section, we will explore two primary types of loops in MATLAB: the <pf>for</pf> loop and the <pf>while</pf> loop.
+	</p>
+</introduction>
+
+	<subsubsection xml:id="subsec-dasd">
+		<title>Controlling the Flow of Code by Repeating a Block While a Condition Is True</title>
+  <p>
+    There are two basic ways to repeat blocks of code in MATLAB:
+    repeat a fixed number of times (with a <c>for</c>-loop), or repeat as long as a logical condition remains true
+    (with a <c>while</c>-loop). Now that you can write <c>for</c>-loops, it is time to explore their counterpart:
+    the <c>while</c>-loop.
+  </p>
+	</subsubsection>
+
+
+
+  <subsubsection xml:id="subsec-while-structure">
+    <title>The while Loop Structure</title>
+
+    <p>
+      The basic structure of a <c>while</c>-loop is:
+    </p>
+
+    <program language="matlab">
+while loop_condition
+    code_block
+end
+    </program>
+
+    <p>
+      This tells MATLAB to repeatedly execute <c>code_block</c> as long as <c>loop_condition</c> evaluates to <c>true</c>.
+      A helpful way to think about this is: a <c>while</c>-loop behaves like an <c>if</c>-statement that jumps back to
+      the top and asks the same question again.
+    </p>
+
+    <p>
+      When you use a <c>while</c>-loop, two assumptions should be true:
+    </p>
+
+    <ul>
+      <li>
+        The loop condition is initially true, otherwise the loop body never runs.
+      </li>
+      <li>
+        At some point the loop condition becomes false, otherwise you have an <term>infinite loop</term>.
+      </li>
+    </ul>
+
+    <p>
+      Here is a concrete scalar example you can trace by hand.
+    </p>
+
+    <program language="matlab">
+loop = 0;
+x = 10;
+
+while loop &lt; 2
+    loop = loop + 1;
+    x = 2*(x + loop);
+end
+
+ratio = x/loop
+    </program>
+
+    <p>
+      In this example, the loop runs exactly twice because <c>loop</c> increases each time.
+      After the loop, we compute <c>ratio = x/loop</c> using the final values.
+      The key idea is that the loop ends because the condition <c>loop &lt; 2</c> eventually becomes false.
+    </p>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-while-rules-notes">
+    <title>Rules and Notes</title>
+
+    <ul>
+      <li>
+        While-loops are easy to accidentally turn into infinite loops. If MATLAB becomes unresponsive,
+        you can stop execution with <c>Ctrl+C</c> (Windows) or <c>Command+C</c> (Mac).
+      </li>
+      <li>Any code can be placed inside a <c>while</c>-loop.</li>
+      <li>A <c>while</c>-loop must be terminated with <c>end</c>.</li>
+    </ul>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-for-vs-while">
+    <title>for vs while Loops</title>
+
+    <p>
+      Both <c>for</c>-loops and <c>while</c>-loops repeat code, but they are driven by different ideas:
+      a <c>for</c>-loop repeats according to a predetermined plan, while a <c>while</c>-loop repeats until a condition changes.
+    </p>
+
+    <table xml:id="tab-for-vs-while">
+      <title>Comparing for-loops and while-loops</title>
+      <tabular>
+        <row header="yes">
+          <cell>Feature</cell>
+          <cell><c>for</c>-loops</cell>
+          <cell><c>while</c>-loops</cell>
+        </row>
+        <row>
+          <cell>Requires</cell>
+          <cell>a fixed range of loop values (often <c>1:N</c>)</cell>
+          <cell>a loop condition (a logical statement)</cell>
+        </row>
+        <row>
+          <cell>Behavior</cell>
+          <cell>repeats the code block once per loop value</cell>
+          <cell>repeats the code block while the condition is true</cell>
+        </row>
+        <row>
+          <cell>Terminates</cell>
+          <cell>after the last loop value is used</cell>
+          <cell>when the loop condition becomes false</cell>
+        </row>
+        <row>
+          <cell>Best to use when</cell>
+          <cell>you know exactly how many iterations you need</cell>
+          <cell>you do not know how many iterations you will need</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>
+      Any code written with a <c>for</c>-loop can also be written with a <c>while</c>-loop (and vice versa),
+      but choosing the loop that matches the situation usually makes your code easier to read.
+    </p>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-while-expanding-patterns">
+    <title>Expanding Patterns from a while Loop</title>
+
+    <p>
+      Expanding a loop into individual steps is a great way to understand exactly what it does.
+      In each example below, focus on three things:
+      the starting values, the loop condition, and the update that changes the condition.
+    </p>
+
+    <paragraphs xml:id="ssub-while-expand-1">
+      <title>Example: Counting Up by Ones</title>
+
+      <program language="matlab">
+x = 0;
+
+while x &lt;= 4
+    x = x + 1;
+end
+      </program>
+
+      <p>
+        This loop keeps adding 1 to <c>x</c> as long as <c>x &lt;= 4</c>.
+        The assignments executed are:
+        <c>x = 1</c>, <c>x = 2</c>, <c>x = 3</c>, <c>x = 4</c>, and <c>x = 5</c>.
+        When <c>x</c> reaches 5, the condition becomes false and the loop ends.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="ssub-while-expand-2">
+      <title>Example: Two Updates per Iteration</title>
+
+      <program language="matlab">
+y = 7;
+k = 1;
+
+while y &gt; 0
+    y = y - k;
+    k = k + 1;
+end
+      </program>
+
+      <p>
+        Here, each iteration subtracts the current <c>k</c> from <c>y</c>, then increases <c>k</c>.
+        The loop ends once <c>y</c> is no longer positive.
+      </p>
+    </paragraphs>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-while-flow-control">
+    <title>Using continue, break, and return with while Loops</title>
+
+    <p>
+      Like with <c>for</c>-loops, MATLAB provides commands that can modify how a <c>while</c>-loop proceeds.
+      These are typically placed inside an <c>if</c>-statement.
+    </p>
+
+    <table xml:id="tab-while-flow-control">
+      <title>Flow control commands with while-loops</title>
+      <tabular>
+        <row header="yes">
+          <cell>Command</cell>
+          <cell>Effect</cell>
+        </row>
+        <row>
+          <cell><c>continue</c></cell>
+          <cell>Skip the rest of the current iteration and jump back to the top of the loop.</cell>
+        </row>
+        <row>
+          <cell><c>break</c></cell>
+          <cell>Exit the loop immediately and continue after the loop’s <c>end</c>.</cell>
+        </row>
+        <row>
+          <cell><c>return</c></cell>
+          <cell>Exit the current function immediately (jump to the function’s end).</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <ul>
+      <li>The command only has an effect if MATLAB executes that line.</li>
+      <li>These commands are most common when triggered by a condition inside the loop.</li>
+      <li><c>continue</c> and <c>break</c> have no effect outside a loop; <c>return</c> is used inside functions.</li>
+    </ul>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-while-coding-examples">
+    <title>Coding while Loops</title>
+
+    <p>
+      The examples below are designed to stay entirely in the scalar setting: each loop updates one or more scalar
+      variables until a condition becomes false.
+    </p>
+
+    <paragraphs xml:id="ssub-while-fib-threshold">
+      <title>Example 1: Growing a Sequence Until It Passes a Threshold</title>
+
+      <p>
+        The code below repeatedly updates two numbers until the newer value exceeds 21.
+        (This is the same update rule that generates Fibonacci-like growth.)
+      </p>
+
+      <program language="matlab">
+f_old = 0;
+f_new = 1;
+
+while f_new &lt;= 21
+    f_new = f_old + f_new;
+    f_old = f_new;
+end
+      </program>
+
+      <p>
+        A good habit with loops like this is to pause and ask:
+        which variable is responsible for eventually stopping the loop?
+        Here, <c>f_new</c> grows, so eventually <c>f_new &gt; 21</c> becomes true and the loop stops.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="ssub-while-alternating-formula">
+      <title>Example 2: Repeating a Computation with Alternating Behavior</title>
+
+      <p>
+        Your original demo applied an alternating formula across many stored inputs.
+        Without introducing arrays yet, we can practice the same idea by generating one input each iteration
+        and printing the corresponding output.
+      </p>
+
+      <program language="matlab">
+k = 1;
+
+while k &lt;= 8
+    x = randi([-5 7]);                 % one integer input per iteration
+    y = x^2 + (-1)^k*x + k^2;          % alternating sign on the linear term
+
+    fprintf('k=%i, x=%i, y=%i\n', k, x, y)
+
+    k = k + 1;
+end
+      </program>
+
+      <p>
+        The point of this example is not the randomness; it is the loop structure:
+        use <c>k</c> to control how many times you repeat, and use <c>(-1)^k</c> to alternate behavior.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="ssub-while-sum-odd-squares">
+      <title>Example 3: Summing Odd Squares</title>
+
+      <p>
+        Compute the sum
+        <me>S = 5^2 + 7^2 + 9^2 + 11^2 + \cdots + 70953^2.</me>
+        Notice that the exponent is always 2, and the base increases by 2 each time.
+      </p>
+
+      <program language="matlab">
+the_sum = 0;
+
+k = 5;
+while k &lt;= 70953
+    the_sum = the_sum + k^2;
+    k = k + 2;
+end
+
+the_sum
+      </program>
+    </paragraphs>
+
+    <paragraphs xml:id="ssub-while-harmonic-threshold">
+      <title>Example 4: Finding the First N Where a Sum Exceeds 10</title>
+
+      <p>
+        Find the first integer <m>N</m> such that
+        <me>\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{N} \ge 10.</me>
+        The loop keeps adding terms until the running sum crosses the threshold.
+      </p>
+
+      <program language="matlab">
+the_sum = 0;
+k = 1;
+
+while the_sum &lt; 10
+    the_sum = the_sum + 1/k;
+    k = k + 1;
+end
+
+N = k - 1
+the_sum
+      </program>
+
+      <p>
+        Notice the small bookkeeping detail at the end: <c>k</c> is incremented after adding the term, so the first
+        <q>successful</q> value is <c>N = k - 1</c>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="ssub-while-primality-test">
+      <title>Example 5: Determining Whether a Number Is Prime</title>
+
+      <p>
+        A positive integer is prime if it has no divisors other than 1 and itself.
+        The loop below tries potential divisors one by one and stops early if it finds a divisor.
+      </p>
+
+      <p>
+        Two small corrections from the outline:
+        the loop variable is named <c>divider</c>, so the <c>mod</c> call should use <c>divider</c>
+        (not <c>divide_by</c>), and we typically only need to test up to <c>sqrt(number)</c>.
+        That makes the loop dramatically faster for large inputs.
+      </p>
+
+      <program language="matlab">
+number = 75913;
+
+divider = 2;
+is_prime = true;
+
+while divider &lt;= sqrt(number)
+    if mod(number, divider) == 0
+        is_prime = false;
+        break
+    end
+    divider = divider + 1;
+end
+
+if is_prime
+    fprintf('The number %0.10g is prime!\n', number)
+else
+    fprintf('The number %0.10g is not prime!\n', number)
+end
+      </program>
+
+      <p>
+        To test additional values, just change <c>number</c> (for example, 75913 and 350909323).
+      </p>
+    </paragraphs>
+
+  </subsubsection>
+
+
+<subsubsection xml:id="sec-matlab-while-loops">
+	<title><pf>while</pf> loop</title>
+
+	<p>
+		A <pf>while</pf> loop repeats as long as a logical condition remains true, so it is useful when you do not know in advance how many iterations are needed.
+	</p>
+
+	<p>
+		Now, suppose we want part of our program to run until a certain condition is met, even though we may not know how many times the loop will need to run before that happens. For this, we use a while loop. The loop condition is checked before each pass through the loop, so the body runs only while the condition remains true.
+	</p>
+
+	<p>
+		The basic format of this structure is:
+	</p>
+
+	<sidebyside width="100%">
+		<program language="matlab">
+			<code>
+				while conditions to keep loop running
+					calculations here
+				end
+			</code>
+		</program>
+	</sidebyside>
+
+
+
+</subsubsection>
+
+
+<subsubsection xml:id="sec-while-loopsss">
+  <title>Repeating Until a Condition Changes with while Loops</title>
+
+	<introduction>
+  <p>
+    A <code>while</code> loop repeats a block of code as long as a condition remains true.
+    This is the right tool when you do not know in advance how many iterations you will need—
+    for example, when iterating until you reach a tolerance, find a valid input, or satisfy a stopping rule.
+  </p>
+	</introduction>
+
+
+  <paragraphs xml:id="subsec-while-syntax">
+    <title>Basic while Loop Syntax</title>
+
+    <program language="matlab">
+k = 1;
+
+while k &lt;= 5
+    disp("Iteration " + k)
+    k = k + 1;
+end
+    </program>
+
+    <p>
+      Every <code>while</code> loop needs an update that eventually makes the condition false.
+      If the condition never becomes false, the loop will run forever.
+    </p>
+  </paragraphs>
+
+  <paragraphs xml:id="subsec-while-convergence">
+    <title>Stopping When You Reach a Tolerance</title>
+
+    <p>
+      Many numerical methods stop when successive approximations change by less than a chosen tolerance.
+      Here is a simple example: approximate <m>\sqrt{A}</m> using Newton’s method.
+    </p>
+
+    <program language="matlab">
+A = 10;
+x = 1;                 % initial guess
+tol = 1e-8;
+
+err = inf;
+
+while err &gt; tol
+    x_new = 0.5*(x + A/x);
+    err = abs(x_new - x);
+    x = x_new;
+end
+
+x
+    </program>
+
+    <p>
+      In real applications, it is also wise to include a maximum iteration count as a safety check.
+    </p>
+
+    <program language="matlab">
+A = 10;
+x = 1;
+tol = 1e-8;
+maxIter = 1000;
+
+err = inf;
+iter = 0;
+
+while (err &gt; tol) &amp;&amp; (iter &lt; maxIter)
+    x_new = 0.5*(x + A/x);
+    err = abs(x_new - x);
+    x = x_new;
+    iter = iter + 1;
+end
+    </program>
+  </paragraphs>
+
+  <paragraphs xml:id="subsec-while-break-continue">
+    <title>break and continue</title>
+
+    <p>
+      MATLAB provides <code>break</code> to exit a loop early and <code>continue</code> to skip to the next iteration.
+      These can make control flow clearer when used sparingly, especially in search-style loops.
+    </p>
+  </paragraphs>
+</subsubsection>
+</subsection>
+
+	<reading-questions>
+NEED SOME QUESTIONS HERE
+		<introduction>
+			<p>
+
+			</p>
+		</introduction>
+
+		<exercise xml:id="looping-flow-activity-1">
+			<title></title>
+
+		</exercise>
+
+	</reading-questions>
+
+	<exercises xml:id="looping-flow-cqs">
+		<title>🤔💭 Conceptual Questions</title>
+
+		<exercise label="looping-flow-ckpts">
+      NEED SOME QUESTIONS HERE
+
+		</exercise>
+
+	</exercises>
+
 </section>

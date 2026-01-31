@@ -1,0 +1,516 @@
+IS THERE ANYTHING USEFUL HERE?
+
+
+<p>
+        Example: repeating an <c>if</c>-statement across entries of a vector is a classic loop use-case.
+        Here is the intended structure: compare entry <c>k</c> of each vector, and possibly set <c>v(k)</c> to zero.
+      </p>
+
+      <program language="matlab">
+v = [3 4 1 9];
+w = [7 -1 4 4];
+
+for k = 1:length(v)
+    if v(k) &lt; w(k)
+        v(k) = 0;
+    end
+end
+      </program>
+
+      <p>
+        Another classic pattern: computing “differences between neighbors.”
+        Once you recognize the shift from <c>k</c> to <c>k-1</c>, the loop structure becomes clear.
+      </p>
+
+      <program language="matlab">
+w = [3 -7 -9 1 3 -5];
+v = zeros(1,6);
+
+v(1) = w(1);
+for k = 2:6
+    v(k) = w(k) - w(k-1);
+end
+      </program>
+
+
+    <subsubsection xml:id="ssub-for-loop-to-expanded">
+      <title>Expanding a for Loop into Individual Lines</title>
+
+      <p>
+        Going in the other direction—expanding a loop—helps you verify what the loop does.
+        A good habit is to write down a few iterations explicitly and check that the pattern matches your intention.
+      </p>
+
+      <p>
+        Example:
+      </p>
+
+      <program language="matlab">
+z = [0 0 0 0 0];
+
+for k = 2:5
+    z(k) = abs(k*(k-1));
+end
+
+z
+      </program>
+
+      <p>
+        This is equivalent to the four assignments below (since <c>k</c> takes the values 2, 3, 4, 5):
+      </p>
+
+      <program language="matlab">
+z = [0 0 0 0 0];
+
+z(2) = abs(2*(1));
+z(3) = abs(3*(2));
+z(4) = abs(4*(3));
+z(5) = abs(5*(4));
+
+z
+      </program>
+
+      <p>
+        Example: elementwise multiplication across two vectors.
+      </p>
+
+      <program language="matlab">
+u = [1 2 3 4];
+v = [2 5 1 0];
+w = zeros(1,4);
+
+for k = 1:length(w)
+    w(k) = u(k)*v(k);
+end
+
+w
+      </program>
+
+      <p>
+        Example: building an output vector on a grid.
+      </p>
+
+      <program language="matlab">
+h = 0.5;
+x = 0:h:2;
+y = zeros(1,length(x));
+
+for k = 1:length(x)
+    y(k) = x(k)^2;
+end
+
+y
+      </program>
+
+      <p>
+        Example: first differences of a vector.
+      </p>
+
+      <program language="matlab">
+y = [0, 0.2, 1.4, 3.3, 4.0];
+dy = zeros(1,4);
+
+for k = 1:4
+    dy(k) = y(k+1) - y(k);
+end
+
+dy
+      </program>
+    </subsubsection>
+
+
+
+      <subsection xml:id="subsec-for-coding-examples">
+    <title>Coding for Loops</title>
+
+    <introduction>
+    <p>
+      The examples below show three common loop roles:
+      updating entries of a vector, accumulating a running value, and searching for a target.
+    </p>
+
+    </introduction>
+
+    <subsubsection xml:id="ssub-for-ex1-double-negatives">
+      <title>Example 1: Doubling Negative Entries</title>
+
+      <p>
+        Write a <c>for</c>-loop that doubles all negative values in a vector <c>v</c>.
+      </p>
+
+      <program language="matlab">
+v = [3 -7 -9 1 3 -5];
+
+for k = 1:length(v)
+    if v(k) &lt; 0
+        v(k) = 2*v(k);
+    end
+end
+
+v
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-for-ex2-flip-sign">
+      <title>Example 2: Flipping Signs</title>
+
+      <p>
+        Write a <c>for</c>-loop that flips the sign of every entry in a vector.
+      </p>
+
+      <program language="matlab">
+v = [3 5 6 -5 4 4 -8 -9 0 11 -4];
+n = length(v);
+
+for k = 1:n
+    v(k) = -v(k);
+end
+
+v
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-for-ex3-sum-average">
+      <title>Example 3: Sum and Average</title>
+
+      <p>
+        Write a <c>for</c>-loop that computes the sum of all values in <c>v</c>, then use that sum to compute the average.
+      </p>
+
+      <program language="matlab">
+v = [3 5 6 -5 4 4 -8 -9 0 11 -4];
+
+sum_total = 0;
+
+for k = 1:length(v)
+    sum_total = sum_total + v(k);
+end
+
+avg = sum_total/length(v);
+
+sum_total
+avg
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-for-ex4-search-first-occurrence">
+      <title>Example 4: Searching for a Value</title>
+
+      <p>
+        Given a vector of integers <c>list</c> and an integer <c>num</c>, write code that:
+        sets <c>num_found</c> to true if <c>list</c> contains <c>num</c>;
+        stores the index of the first occurrence in <c>location</c> (or -1 if not found);
+        and prints a message describing the result.
+      </p>
+
+      <p>
+        The key design idea is: as you scan the vector from left to right, the first time you see <c>num</c>
+        is the first occurrence. That means you either (1) record it once and ignore later matches, or (2) break
+        immediately once you find it. The second approach is usually cleaner.
+      </p>
+
+      <program language="matlab">
+list = randi([-20 20], 50, 1);
+num = 10;
+
+N = length(list);
+
+num_found = false;
+location = -1;
+
+for k = 1:N
+    if list(k) == num
+        num_found = true;
+        location = k;
+        break
+    end
+end
+
+if num_found
+    fprintf('The number %i was found in the %i-th index of list\n', num, location)
+else
+    fprintf('The number %i was not found in list\n', num)
+end
+      </program>
+    </subsubsection>
+  </subsection>
+
+
+  <subsection xml:id="subsec-for-mini-hw-functions">
+    <title>Mini Practice Set: for Loop Functions</title>
+
+    <introduction>
+    <p>
+      The following short functions are typical “loop practice” problems: counting, comparing corresponding entries,
+      and accumulating products and totals. They are also good opportunities to practice writing clean function headers
+      and returning outputs with predictable types.
+    </p>
+    </introduction>
+
+
+    <subsubsection xml:id="ssub-less-than-count">
+      <title>Counting Values Below a Target</title>
+
+      <program language="matlab">
+function count = less_than_count(list, target)
+
+    N = length(list);
+    count = 0;
+
+    for k = 1:N
+        if list(k) &lt; target
+            count = count + 1;
+        end
+    end
+
+end
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-keep-smallest">
+      <title>Keeping the Smaller of Two Lists</title>
+
+      <program language="matlab">
+function smallest = keep_smallest(list1, list2)
+
+    N = length(list1);
+    smallest = zeros(1, N);
+
+    for k = 1:N
+        if list1(k) &lt;= list2(k)
+            smallest(k) = list1(k);
+        else
+            smallest(k) = list2(k);
+        end
+    end
+
+end
+      </program>
+
+      <p>
+        This is the loop-based version of an elementwise minimum. Later, once you learn vectorized tools,
+        you will recognize that many “compare corresponding entries” tasks have built-in alternatives.
+        For now, the loop makes the logic explicit.
+      </p>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-pos-neg-product">
+      <title>Product of Negative and Positive Entries</title>
+
+      <program language="matlab">
+function [neg_prod, pos_prod] = pos_neg_product(list)
+
+    N = length(list);
+    neg_prod = 1;
+    pos_prod = 1;
+
+    for k = 1:N
+        if list(k) &lt; 0
+            neg_prod = neg_prod * list(k);
+        elseif list(k) &gt; 0
+            pos_prod = pos_prod * list(k);
+        end
+    end
+
+end
+      </program>
+
+      <p>
+        This function uses a common accumulation pattern: initialize the product at 1, then multiply as you go.
+        One subtle point is what to do if there are no negative (or no positive) entries.
+        With the initialization above, the product remains 1, which may or may not be what you want.
+        Another common design is to initialize to <c>NaN</c> and update only after the first qualifying entry.
+      </p>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-compute-total">
+      <title>Computing a Total from an Order Matrix</title>
+
+      <p>
+        Suppose <c>order</c> is a matrix where each row represents one line item. The function below computes a total,
+        then applies a tax rate.
+      </p>
+
+      <program language="matlab">
+function total = compute_total(order, tax_rate)
+
+    N = size(order, 1);
+    total = 0;
+
+    for k = 1:N
+        item_total = order(k,1)*order(k,2) - order(k,3);
+        total = total + item_total;
+    end
+
+    total = total + total*tax_rate;
+
+end
+      </program>
+    </subsubsection>
+
+    <subsubsection xml:id="ssub-practice-driver">
+      <title>Testing the Functions</title>
+
+      <program language="matlab">
+list1 = [5 -1 0 1 5 1];
+list2 = [7 -4 2 1 -2 0];
+
+count = less_than_count(list1, 6)
+
+smallest = keep_smallest(list1, list2)
+
+[neg_prod, pos_prod] = pos_neg_product(list2)
+
+order = [2 1 1; 2 2 2; 3 3 3];
+total = compute_total(order, 0.06)
+      </program>
+    </subsubsection>
+  </subsection>
+
+
+
+  	<p>
+		In the above example, the <pf>for</pf> loop was the long way of doing the problem (and therefore stresses the power of the <pf>sum</pf> function), but the following example shows a more in-depth <pf>for</pf> loop with a loop counter that runs over a range.
+	</p>
+
+	<example xml:id="ex_forexample">
+		<title><em>Using for</em></title>
+
+		<statement>
+			<p>
+				Let's find the first 10 Fibonacci numbers using the recursive definition.
+			</p>
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+						A = zeros(1,10); % Initialize the matrix 
+						A(1) = 0; 
+						A(2) = 1; 
+						for i = 3:10
+							A(i) = A(i-1) + A(i-2); 
+						end
+						disp(A)
+					</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				The output for this would be
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+							A =
+								0 1 1 2 3 5 8 13 21 34
+					</code>
+				</program>
+			</sidebyside>
+		</statement>
+		
+	</example>
+
+
+
+    <subsubsection xml:id="subsec-for-preallocation">
+    <title>Preallocating Arrays for Speed and Clarity</title>
+
+    <p>
+      When a loop builds an array, it is good practice to preallocate the array to its final size.
+      This avoids repeated resizing and usually improves performance.
+    </p>
+
+    <program language="matlab">
+n = 6;
+fact = zeros(1,n);
+fact(1) = 1;
+
+for k = 2:n
+    fact(k) = k * fact(k-1);
+end
+
+fact
+    </program>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-for-iterating-arrays">
+    <title>Iterating over Arrays</title>
+
+    <p>
+      You can iterate over indices, or iterate over values directly.
+      Index-based loops are often clearer when you need neighboring values.
+    </p>
+
+    <program language="matlab">
+x = [2 4 6 8];
+
+% Index-based
+for k = 1:length(x)
+    disp(x(k)^2)
+end
+
+% Value-based (loop variable takes values in the array)
+for v = x
+    disp(v^2)
+end
+    </program>
+  </subsubsection>
+
+  <subsubsection xml:id="subsec-for-transition-to-numerics">
+    <title>Loops in Numerical Approximation</title>
+
+    <p>
+      Many numerical methods are iterative. Even when MATLAB provides vectorized tools, loops help you understand
+      the algorithm: what updates, what stays fixed, and when the computation should stop.
+      This perspective is especially useful when you later write your own numerical methods.
+    </p>
+  </subsubsection>
+
+
+
+  WHILE LOOPS
+
+  	<p>
+		Let's rewrite the last example with a slight twist.  Let's find the Fibonacci numbers until they exceed 1000.
+	</p>
+
+	<example xml:id="ex_whileexample">
+		<title><em>Using while</em></title>
+
+		<statement>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+						A(1) = 0;  % Initialize the matrix 
+						A(2) = 1; 
+						j = 2;     % initialize a counter
+						while A(j) &lt; 1000
+							j = j + 1;  % increase counter by one
+							A(j) = A(j-1) + A(j-2); 
+						end
+						disp(A)
+					</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				The output for this would be
+			</p>
+
+			<sidebyside width="100%">
+				<program language="matlab">
+					<code>
+						A =
+							0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+					</code>
+				</program>
+			</sidebyside>
+
+			<p>
+				The loop concludes when we pass 1000.  
+			</p>
+
+		</statement>
+
+	</example>

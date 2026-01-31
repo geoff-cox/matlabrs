@@ -349,225 +349,209 @@
 		</p>
 	</subsection>
 
-	<subsection xml:id="subsec-combining-two-statements">
-		<title>Combining Two Logical Statements</title>
+	<subsection xml:id="subsec-joining-two-statements">
+		<title>Joining Two Statements</title>
+
+			<p>
+				Many questions involve multiple conditions. For example, to determine if a number is an even number greater than 100,
+				then you need to check two things at once:
+				<ul>
+					<li>Is the number even?</li>
+					<li>Is the number greater than 100?</li>
+				</ul>
+				Because both must be true, we join these statements with <q>and</q>. 
+				If either of these conditions could be true, then we would join them with <q>or</q>. 
+			</p>
+
+			<p>
+				MATLAB joins logical statements with AND and OR using the operators <pf>&amp;</pf> (AND) and <pf>|</pf> (OR). 
+			</p>
+
+			<table xml:id="tab-logical-operators">
+				<title>Logical operators for combining statements</title>
+
+				<tabular>
+					<col width="15%" halign="center"/>
+					<col width="40%" halign="center"/>
+					<col width="45%" halign="left"/>
+					<row>
+						<cell><p><m>\textbf{Logical}</m> <m>\textbf{operator}</m></p></cell>
+						<cell><p><m>\textbf{Logical statement}</m></p></cell>
+						<cell><p><m>\textbf{Question being asked}</m></p></cell>
+					</row>
+					<row>
+						<cell><pf>&amp;</pf></cell>
+						<cell><p><pf>ans1 &amp; ans2</pf></p></cell>
+						<cell>Are both <m>\texttt{ans1}</m> and <m>\texttt{ans2}</m> true?</cell>
+					</row>
+					<row>
+						<cell><pf>|</pf></cell>
+						<cell><pf>ans1 | ans2</pf></cell>
+						<cell><m>\text{Is at least one of}\ \texttt{ans1}\ \text{or}\ \texttt{ans2}\ \text{true?}</m></cell>
+					</row>
+				</tabular>
+			</table>
+
+			<p>
+				The result of joining logical statements are exactly what you would expect from everyday language:
+				AND is true only when both sides are true, while OR is true when at least one side is true.
+			</p>
+
+			<program language="matlab">
+				% Quick checks
+				true  &amp; true	% → true:  1 (logical)
+				true  &amp; false	% → false: 0 (logical)
+				false &amp; true	% → false: 0 (logical)
+				false &amp; false	% → false: 0 (logical)
+
+				true  | true	% → true:  1 (logical)
+				true  | false	% → true:  1 (logical)
+				false | true	% → true:  1 (logical)
+				false | false	% → false: 0 (logical)
+			</program>
+
+			<p>
+				Now try these operators in context.
+			</p>
+
+			<program language="matlab">
+				<code>
+					P = 1;
+					Q = 10;
+					R = -4;
+
+					P &lt;= R &amp; P &gt; Q	  % → false	&amp; false: 0 (logical)
+					R &lt; 0 &amp; R &lt; Q	  % → true	&amp; true:  1 (logical)
+					Q == R | Q == P	  % → false	| false: 0 (logical)
+					P &lt; Q | P &lt; R	  % → true	| false: 1 (logical)
+
+					~(P &lt; Q &amp; P &lt; R)  % → NOT (true &amp; false): 1 (logical)
+					P &gt; Q | P &gt; R	  % → false | true:		  1 (logical)
+				</code>
+			</program>
+
+			<!-- <p>
+				These examples are intentionally written in a style that reads like an English sentence.
+				That habit pays off later: readable conditions produce readable <pf>if</pf>-statements.
+			</p> -->
+
+		<!-- <aside>
+			<title><pf>xor</pf></title>
+			<p><pf>xor</pf> is another logical operator available in MATLAB that tends to be used less than the operators listed here. If you are curious about it, see MATLAB's documentation.</p>
+		</aside>
 
 		<p>
-			Many questions involve multiple conditions. For example, to determine if a number is an even number greater than 100,
-			then you need to check two things at once:
-			<ul>
-				<li>Is the number even?</li>
-				<li>Is the number greater than 100?</li>
-			</ul>
-			Because both must be true, we join these statements with <q>and</q>. 
-			If either of these conditions could be true, then we would join them with <q>or</q>. 
+			The following table summarizes every possible outcome for each of the logical operators above.
 		</p>
 
-		<p>
-			MATLAB joins logical statements with AND and OR using the operators <pf>&amp;</pf> (AND) and <pf>|</pf> (OR). 
-		</p>
+		<table>
+			<title>Logical Operators. Truth Tables. </title>
 
-		<table xml:id="tab-logical-operators">
-			<title>Logical operators for combining statements</title>
-
-			<tabular>
-				<col width="15%" halign="center"/>
-				<col width="40%" halign="center"/>
-				<col width="45%" halign="left"/>
+			<tabular top="minor" bottom="minor" left="minor" right="minor" >
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
 				<row>
-					<cell><p><m>\textbf{Logical}</m> <m>\textbf{operator}</m></p></cell>
-					<cell><p><m>\textbf{Logical statement}</m></p></cell>
-					<cell><p><m>\textbf{Question being asked}</m></p></cell>
+					<cell colspan="2">Logical Variables</cell>
+					<cell colspan="3">Logical Operator Results</cell>
 				</row>
 				<row>
-					<cell><pf>&amp;</pf></cell>
-					<cell><p><pf>ans1 &amp; ans2</pf></p></cell>
-					<cell>Are both <m>\texttt{ans1}</m> and <m>\texttt{ans2}</m> true?</cell>
-				</row>
-				<row>
-					<cell><pf>|</pf></cell>
+					<cell><pf>ans1</pf></cell>
+					<cell><pf>ans2</pf></cell>
+					<cell><pf>ans1 &amp; ans2</pf></cell>
 					<cell><pf>ans1 | ans2</pf></cell>
-					<cell><m>\text{Is at least one of}\ \texttt{ans1}\ \text{or}\ \texttt{ans2}\ \text{true?}</m></cell>
+					<cell><pf>~ans1</pf></cell>
+				</row>
+				<row>
+					<cell><pf>1</pf></cell>
+					<cell><pf>1</pf></cell>
+					<cell><pf>1</pf></cell>
+					<cell><pf>1</pf></cell>
+					<cell><pf>0</pf></cell>
+				</row>
+				<row>
+					<cell><pf>1</pf></cell>
+					<cell><pf>0</pf></cell>
+					<cell><pf>0</pf></cell>
+					<cell><pf>1</pf></cell>
+					<cell><pf>0</pf></cell>
+				</row>
+				<row>
+					<cell><pf>0</pf></cell>
+					<cell><pf>1</pf></cell>
+					<cell><pf>0</pf></cell>
+					<cell><pf>1</pf></cell>
+					<cell><pf>1</pf></cell>
+				</row>
+				<row>
+					<cell><pf>0</pf></cell>
+					<cell><pf>0</pf></cell>
+					<cell><pf>0</pf></cell>
+					<cell><pf>0</pf></cell>
+					<cell><pf>1</pf></cell>
 				</row>
 			</tabular>
-		</table>
-
-		<p>
-			The result of joining logical statements are exactly what you would expect from everyday language:
-			AND is true only when both sides are true, while OR is true when at least one side is true.
-		</p>
-
-		<program language="matlab">
-			% Quick checks
-			true  &amp; true	% → true:  1 (logical)
-			true  &amp; false	% → false: 0 (logical)
-			false &amp; true	% → false: 0 (logical)
-			false &amp; false	% → false: 0 (logical)
-
-			true  | true	% → true:  1 (logical)
-			true  | false	% → true:  1 (logical)
-			false | true	% → true:  1 (logical)
-			false | false	% → false: 0 (logical)
-		</program>
-
-		<p>
-			Now try these operators in context.
-		</p>
-
-		<program language="matlab">
-			<code>
-				P = 1;
-				Q = 10;
-				R = -4;
-
-				P &lt;= R &amp; P &gt; Q	  % → false	&amp; false: 0 (logical)
-				R &lt; 0 &amp; R &lt; Q	  % → true	&amp; true:  1 (logical)
-				Q == R | Q == P	  % → false	| false: 0 (logical)
-				P &lt; Q | P &lt; R	  % → true	| false: 1 (logical)
-
-				~(P &lt; Q &amp; P &lt; R)  % → NOT (true &amp; false): 1 (logical)
-				P &gt; Q | P &gt; R	  % → false | true:		  1 (logical)
-			</code>
-		</program>
-
-		<!-- <p>
-			These examples are intentionally written in a style that reads like an English sentence.
-			That habit pays off later: readable conditions produce readable <pf>if</pf>-statements.
-		</p> -->
-
-	<!-- <aside>
-		<title><pf>xor</pf></title>
-		<p><pf>xor</pf> is another logical operator available in MATLAB that tends to be used less than the operators listed here. If you are curious about it, see MATLAB's documentation.</p>
-	</aside>
-
-	<p>
-		The following table summarizes every possible outcome for each of the logical operators above.
-	</p>
-
-	<table>
-		<title>Logical Operators. Truth Tables. </title>
-
-		<tabular top="minor" bottom="minor" left="minor" right="minor" >
-			<col halign="center"/>
-			<col halign="center"/>
-			<col halign="center"/>
-			<col halign="center"/>
-			<col halign="center"/>
-			<row>
-				<cell colspan="2">Logical Variables</cell>
-				<cell colspan="3">Logical Operator Results</cell>
-			</row>
-			<row>
-				<cell><pf>ans1</pf></cell>
-				<cell><pf>ans2</pf></cell>
-				<cell><pf>ans1 &amp; ans2</pf></cell>
-				<cell><pf>ans1 | ans2</pf></cell>
-				<cell><pf>~ans1</pf></cell>
-			</row>
-			<row>
-				<cell><pf>1</pf></cell>
-				<cell><pf>1</pf></cell>
-				<cell><pf>1</pf></cell>
-				<cell><pf>1</pf></cell>
-				<cell><pf>0</pf></cell>
-			</row>
-			<row>
-				<cell><pf>1</pf></cell>
-				<cell><pf>0</pf></cell>
-				<cell><pf>0</pf></cell>
-				<cell><pf>1</pf></cell>
-				<cell><pf>0</pf></cell>
-			</row>
-			<row>
-				<cell><pf>0</pf></cell>
-				<cell><pf>1</pf></cell>
-				<cell><pf>0</pf></cell>
-				<cell><pf>1</pf></cell>
-				<cell><pf>1</pf></cell>
-			</row>
-			<row>
-				<cell><pf>0</pf></cell>
-				<cell><pf>0</pf></cell>
-				<cell><pf>0</pf></cell>
-				<cell><pf>0</pf></cell>
-				<cell><pf>1</pf></cell>
-			</row>
-		</tabular>
-	</table> -->
+		</table> -->
 
 	</subsection>
 
-	<subsection xml:id="subsec-combining-many-statements">
-		<title>Combining Many Logical Statements</title>
-
-		<p>
-			You can combine more than two logical statements, and you can mix <pf>~</pf>, <pf>&amp;</pf>, and <pf>|</pf>
-			in the same expression. When you do, MATLAB evaluates operators in a fixed precedence order.
-			Parentheses override everything, so you can always force the grouping you intend.
-		</p>
-
-		<p>
-			MATLAB evaluates logical operators in the following order:
-			first <pf>~</pf>, then <pf>&amp;</pf>, then <pf>|</pf>.
-		</p>
-
-		<p>
-			Here are some equivalent rewrites that illustrate that precedence:
-			<ul>
-				<li><pf>~A &amp; B</pf> is interpreted as <pf>(~A) &amp; B</pf>.</li>
-				<li><pf>~A | B</pf> is interpreted as <pf>(~A) | B</pf>.</li>
-				<li><pf>A &amp; B | C</pf> is interpreted as <pf>(A &amp; B) | C</pf>.</li>
-				<li><pf>A | B &amp; C</pf> is interpreted as <pf>A | (B &amp; C)</pf>.</li>
-			</ul>
-		</p>
-
-		<p>
-			When in doubt, use parentheses. They make your code clearer to readers and reduce errors caused by
-			misinterpreting precedence.
-		</p>
-
-		<aside>
-			<title>Short-Circuit Operators: <pf>&amp;&amp;</pf> and <pf>||</pf></title>
+	<subsection xml:id="subsec-joining-many-statements">
+		<title>Joining Many Statements</title>
 
 			<p>
-				MATLAB also provides <term>short-circuit</term> logical operators: <pf>&amp;&amp;</pf> (AND) and <pf>||</pf> (OR).
-				These work only with scalar logical values (true/false), not arrays.
-				When the left side of the expression already determines the outcome, MATLAB skips evaluating the right side.
+				You can combine more than two logical statements, and you can mix <pf>~</pf>, <pf>&amp;</pf>, and <pf>|</pf>
+				in the same expression. When you do, MATLAB evaluates operators in a fixed order.
+				Parentheses override everything, so you can always force the grouping you intend.
 			</p>
 
 			<p>
-				Use <pf>&amp;&amp;</pf> and <pf>||</pf> in conditional statements (like <pf>if</pf>-statements) where you need a single true/false answer.
-				Use <pf>&amp;</pf> and <pf>|</pf> when working with arrays of logical values.
+				In general, the logical operator precedence chain is as follows:
 			</p>
 
-			<program language="matlab">
-				x = 4;
+			<tabular halign="center">
+				<row>
+					<cell>1st</cell><cell/><cell>2nd</cell><cell/><cell>3rd</cell><cell/><cell>4th</cell>
+				</row>
+				<row>
+					<cell><pf>()</pf></cell><cell>❯</cell><cell><pf>~</pf></cell><cell>❯</cell><cell><pf>&amp;</pf></cell><cell>❯</cell><cell><pf>|</pf></cell>
+				</row>
+			</tabular>
 
-				% Scalar logic (typical in conditionals)
-				(x &gt; 0) &amp;&amp; (x &lt; 10)
+			<table>
+				<title>Sample Logical Operator Precedence Interpretations</title>
 
-				% Array logic (elementwise)
-				A = [-2 0 5 7];
-				(A &gt; 0) &amp; (A &lt; 6)     % true where A is between 1 and 5
-			</program>
+				<tabular halign="center">
+					<row bottom="minor">
+						<cell>MATLAB Command</cell><cell/><cell>Interpretation</cell>
+					</row>
+					<row>
+						<cell><pf>~A &amp; B</pf></cell><cell>➜</cell><cell><pf>(~A) &amp; B</pf></cell>
+					</row>
+					<row>
+						<cell><pf>~A | B</pf></cell><cell>➜</cell><cell><pf>(~A) | B</pf></cell>
+					</row>
+					<row>
+						<cell><pf>A &amp; B | C</pf></cell><cell>➜</cell><cell><pf>(A &amp; B) | C</pf></cell>
+					</row>
+					<row>
+						<cell><pf>A | B &amp; C</pf></cell><cell>➜</cell><cell><pf>A | (B &amp; C)</pf></cell>
+					</row>
+				</tabular>
+			</table>
 
 			<p>
-				Short-circuit evaluation can prevent errors. For example, checking if an array is non-empty before indexing:
+				When in doubt, use parentheses. They make your code clearer to readers and reduce errors caused by
+				misinterpreting precedence.
 			</p>
 
-			<program language="matlab">
-				% This prevents indexing errors when A is empty
-				if ~isempty(A) &amp;&amp; A(1) &lt; 0
-					disp("First entry is negative.")
-				end
-			</program>
-		</aside>
 	</subsection>
 
-	<exercises>
+	<exercises xml:id="logic-cqs">
+		<title>🤔💭 Conceptual Questions</title>
 
 		<exercise label="logic-ckpts">
-			<title>Reading Questions</title>
 
 			<task label="logic-ckpt-data-types">
 				<title>Logical Data Types</title>
@@ -1020,6 +1004,7 @@
 			</task>
 
 		</exercise>
+
 	</exercises>
 
 </section>
