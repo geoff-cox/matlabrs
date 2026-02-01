@@ -437,10 +437,10 @@
 				<statement>
 					<p>
 						Which of the following expressions correctly asks "Is <pf>x</pf> NOT greater than 10?"
-						(Select all that apply.)
+						Select all that apply.
 					</p>
 				</statement>
-				<choices randomize="yes">
+				<choices randomize="yes" multiple-correct="yes">
 					<choice correct="yes">
 						<statement>
 							<p><pf>~(x &gt; 10)</pf></p>
@@ -570,8 +570,8 @@
 				<title>Combining Logical Statements</title>
 				<statement>
 					<p>
-						Given <pf>age = 25</pf> and <pf>hasLicense = true</pf>, which expression correctly 
-						asks "Is the person at least 18 years old AND has a driver's license?"
+						Given <pf>age = 25</pf> and <pf>hasLicense = true</pf>, which expression is the 
+						<em>most readable way</em> to ask "Is the person at least 18 years old AND has a driver's license?"
 					</p>
 				</statement>
 				<choices randomize="yes">
@@ -580,7 +580,7 @@
 							<p><pf>(age &gt;= 18) &amp; hasLicense</pf></p>
 						</statement>
 						<feedback>
-							<p>Correct! This uses the AND operator to ensure both conditions must be true.</p>
+							<p>Correct! This is clear and readable, using the AND operator directly with meaningful variable names.</p>
 						</feedback>
 					</choice>
 					<choice>
@@ -597,8 +597,8 @@
 							<p><pf>age &gt;= 18 &amp; hasLicense == true</pf></p>
 						</statement>
 						<feedback>
-							<p>While this works, comparing <pf>hasLicense == true</pf> is redundant. 
-							Just use <pf>hasLicense</pf> directly since it's already a logical value.</p>
+							<p>While logically correct, comparing <pf>hasLicense == true</pf> is redundant and less readable. 
+							Use <pf>hasLicense</pf> directly since it's already a logical value.</p>
 						</feedback>
 					</choice>
 					<choice>
@@ -606,8 +606,8 @@
 							<p><pf>~(age &lt; 18 | ~hasLicense)</pf></p>
 						</statement>
 						<feedback>
-							<p>While logically equivalent (using De Morgan's Law), this is harder to read. 
-							Prefer the straightforward AND version.</p>
+							<p>While logically equivalent (using De Morgan's Law), this is much harder to read. 
+							Prefer the straightforward AND version for clarity.</p>
 						</feedback>
 					</choice>
 				</choices>
