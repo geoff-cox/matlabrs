@@ -52,10 +52,52 @@
 		</pre>
 
 		<p>
-			Notice that logical variables take fewer bytes than double-precision numbers. 
-			That memory difference is not the main reason we use logicals, but it is a 
-			helpful reminder that a logical value represents an answer, not a measurement.
+			Logical variables use fewer bytes than doubles. However, the primary benefit of 
+			logical values isn't memory efficiency—it's that they clearly represent answers 
+			to yes/no questions, not numeric measurements.
 		</p>
+
+		<reading-questions>
+			<exercise label="logic-reading-ckpt-1">
+				<title>Understanding Logical Values</title>
+				<statement>
+					<p>
+						Why is <pf>true</pf> (logical) different from <pf>1</pf> (double) in MATLAB, 
+						even though they display similarly?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>They are different data types: <pf>true</pf> represents a logical answer, 
+							while <pf>1</pf> is a numeric value</p>
+						</statement>
+						<feedback>
+							<p>Correct! Logical values are designed to represent yes/no answers to questions, 
+							while numeric values represent measurements or counts.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>They are exactly the same and can always be used interchangeably</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. While they behave similarly in many contexts, they are different 
+							data types with different purposes.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Logical values are faster than numeric values</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. While logical values do use less memory, the key difference is 
+							their purpose: answering yes/no questions versus storing numeric data.</p>
+						</feedback>
+					</choice>
+				</choices>
+			</exercise>
+		</reading-questions>
 	</subsection>
 
 	<subsection xml:id="subsec-logical-statements">
@@ -113,15 +155,54 @@
 		</table>
 
 		<p>
-			A beginner mistake is confusing <pf>=</pf> with <pf>==</pf>.
-			The single equal sign assigns a value to a variable (telling MATLAB what to store),
-			while the double equal sign compares two values (asking MATLAB a question).
+			A common beginner mistake is confusing the assignment operator <pf>=</pf> with the 
+			comparison operator <pf>==</pf>. The single equal sign assigns a value to a variable 
+			(telling MATLAB what to store), while the double equal sign compares two values 
+			(asking MATLAB a question).
 		</p>
 
 		<program language="matlab">
 			cost = 7.1;     % Telling: assign a value
 			cost == 7.1     % Asking: compare a value
 		</program>
+
+		<reading-questions>
+			<exercise label="logic-reading-ckpt-2">
+				<title>Assignment vs. Comparison</title>
+				<statement>
+					<p>
+						Which of the following statements is correct?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>x = 5</pf> assigns the value 5 to variable x, while <pf>x == 5</pf> tests if x equals 5</p>
+						</statement>
+						<feedback>
+							<p>Correct! The single equal sign is for assignment, and the double equal sign is for comparison.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x = 5</pf> and <pf>x == 5</pf> both do the same thing</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. These operators have completely different purposes: one assigns a value, 
+							the other asks a question.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x == 5</pf> assigns 5 to x only if x doesn't already have a value</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. The <pf>==</pf> operator never assigns values; it only compares them.</p>
+						</feedback>
+					</choice>
+				</choices>
+			</exercise>
+		</reading-questions>
 
 		<p>
 			Here are a few comparison examples. The parentheses are optional, but they help clarify
@@ -268,7 +349,8 @@
 						<statement><p><pf>0</pf> (logical)</p></statement>
 						<feedback>
 							<p>
-								Incorrect.
+								Incorrect. Since 3.14 is only an approximation of pi, it is not exactly equal to the 
+								value of pi in MATLAB, so the expression evaluates to true.
 							</p>
 						</feedback>
 					</choice>
@@ -284,7 +366,8 @@
 						<statement><p><pf>0</pf> (double)</p></statement>
 						<feedback>
 							<p>
-								Incorrect.
+								Incorrect. The expression evaluates to true (logical 1), not false, since pi and 3.14 
+								are not exactly equal.
 							</p>
 						</feedback>
 					</choice>
@@ -347,6 +430,53 @@
 		<p>
 			When negating expressions, use parentheses to make your intent clear and improve the readability of your code.
 		</p>
+
+		<reading-questions>
+			<exercise label="logic-reading-ckpt-3">
+				<title>Negating Logical Statements</title>
+				<statement>
+					<p>
+						Which of the following expressions correctly asks "Is <pf>x</pf> NOT greater than 10?"
+						Select all that apply.
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>~(x &gt; 10)</pf></p>
+						</statement>
+						<feedback>
+							<p>Correct! This uses the NOT operator to negate the comparison.</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p><pf>x &lt;= 10</pf></p>
+						</statement>
+						<feedback>
+							<p>Correct! This is the equivalent relational operator form without negation.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>~x &gt; 10</pf></p>
+						</statement>
+						<feedback>
+							<p>Incorrect. Without parentheses, this negates x first, then compares the result to 10, 
+							which is not the intended meaning.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x &lt; 10</pf></p>
+						</statement>
+						<feedback>
+							<p>Incorrect. This asks if x is strictly less than 10, which excludes the case where x equals 10.</p>
+						</feedback>
+					</choice>
+				</choices>
+			</exercise>
+		</reading-questions>
 	</subsection>
 
 	<subsection xml:id="subsec-joining-two-statements">
@@ -434,6 +564,55 @@
 				These examples are intentionally written in a style that reads like an English sentence.
 				That habit pays off later: readable conditions produce readable <pf>if</pf>-statements.
 			</p> -->
+
+		<reading-questions>
+			<exercise label="logic-reading-ckpt-4">
+				<title>Combining Logical Statements</title>
+				<statement>
+					<p>
+						Given <pf>age = 25</pf> and <pf>hasLicense = true</pf>, which expression is the 
+						<em>most readable way</em> to ask "Is the person at least 18 years old AND has a driver's license?"
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>(age &gt;= 18) &amp; hasLicense</pf></p>
+						</statement>
+						<feedback>
+							<p>Correct! This is clear and readable, using the AND operator directly with meaningful variable names.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>(age &gt;= 18) | hasLicense</pf></p>
+						</statement>
+						<feedback>
+							<p>Incorrect. The OR operator returns true if either condition is true, but we need 
+							both conditions to be true.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>age &gt;= 18 &amp; hasLicense == true</pf></p>
+						</statement>
+						<feedback>
+							<p>While logically correct, comparing <pf>hasLicense == true</pf> is redundant and less readable. 
+							Use <pf>hasLicense</pf> directly since it's already a logical value.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>~(age &lt; 18 | ~hasLicense)</pf></p>
+						</statement>
+						<feedback>
+							<p>While logically equivalent (using De Morgan's Law), this is much harder to read. 
+							Prefer the straightforward AND version for clarity.</p>
+						</feedback>
+					</choice>
+				</choices>
+			</exercise>
+		</reading-questions>
 
 		<!-- <aside>
 			<title><pf>xor</pf></title>
@@ -545,6 +724,55 @@
 				When in doubt, use parentheses. They make your code clearer to readers and reduce errors caused by
 				misinterpreting precedence.
 			</p>
+
+		<reading-questions>
+			<exercise label="logic-reading-ckpt-5">
+				<title>Operator Precedence</title>
+				<statement>
+					<p>
+						According to MATLAB's operator precedence rules, how is the expression 
+						<pf>A | B &amp; C</pf> evaluated?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>A | (B &amp; C)</pf></p>
+						</statement>
+						<feedback>
+							<p>Correct! The AND operator <pf>&amp;</pf> has higher precedence than OR <pf>|</pf>, 
+							so <pf>B &amp; C</pf> is evaluated first.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>(A | B) &amp; C</pf></p>
+						</statement>
+						<feedback>
+							<p>Incorrect. Remember that AND has higher precedence than OR, so the AND operation 
+							is performed before the OR.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Left to right: <pf>((A | B) &amp; C)</pf></p>
+						</statement>
+						<feedback>
+							<p>Incorrect. MATLAB doesn't simply evaluate left to right—it follows operator precedence rules.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>The expression is invalid without parentheses</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. The expression is valid; MATLAB will evaluate it according to precedence rules, 
+							though adding parentheses improves readability.</p>
+						</feedback>
+					</choice>
+				</choices>
+			</exercise>
+		</reading-questions>
 
 	</subsection>
 

@@ -437,5 +437,528 @@
       </statement>
     </task>
 
+    <task xml:id="hw-check-range">
+      <title>Number in Range</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>is_in_range</pf> that determines whether a number falls within a specified range (inclusive).
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>value</pf> (1x1) double — the number to check</p>
+            </cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>
+              <p><pf>lower_bound</pf> (1x1) double — minimum value of the range</p>
+            </cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>
+              <p><pf>upper_bound</pf> (1x1) double — maximum value of the range</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>result</pf> (1x1) logical — true if value is in range [lower_bound, upper_bound], false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Value in range
+            r1 = is_in_range(5, 1, 10);
+            % Expected: r1 = 1 (true)
+
+            % Test 2: Value at lower boundary
+            r2 = is_in_range(1, 1, 10);
+            % Expected: r2 = 1 (true)
+
+            % Test 3: Value at upper boundary
+            r3 = is_in_range(10, 1, 10);
+            % Expected: r3 = 1 (true)
+
+            % Test 4: Value below range
+            r4 = is_in_range(0, 1, 10);
+            % Expected: r4 = 0 (false)
+
+            % Test 5: Value above range
+            r5 = is_in_range(11, 1, 10);
+            % Expected: r5 = 0 (false)
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-check-even-positive">
+      <title>Even and Positive</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>is_even_and_positive</pf> that determines whether a number is both even and positive.
+        </p>
+
+        <p>
+          A number is even if dividing it by 2 produces no remainder. You can use the <pf>mod</pf> function to find remainders.
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>num</pf> (1x1) double — the number to check</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>result</pf> (1x1) logical — true if num is both even and positive, false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Even and positive
+            r1 = is_even_and_positive(4);
+            % Expected: r1 = 1 (true)
+
+            % Test 2: Odd and positive
+            r2 = is_even_and_positive(7);
+            % Expected: r2 = 0 (false)
+
+            % Test 3: Even and negative
+            r3 = is_even_and_positive(-6);
+            % Expected: r3 = 0 (false)
+
+            % Test 4: Zero (even but not positive)
+            r4 = is_even_and_positive(0);
+            % Expected: r4 = 0 (false)
+
+            % Test 5: Large even positive
+            r5 = is_even_and_positive(100);
+            % Expected: r5 = 1 (true)
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-valid-grade">
+      <title>Valid Grade Checker</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>is_valid_grade</pf> that checks if a grade value is valid (between 0 and 100, inclusive) 
+          and returns both the validity status and a message.
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>grade</pf> (1x1) double — the grade value to check</p>
+            </cell>
+          </row>
+          <row>
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>is_valid</pf> (1x1) logical — true if grade is valid, false otherwise</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell/>
+            <cell>
+              <p><pf>message</pf> (1x1) string — "Valid" if valid, "Too low" if below 0, "Too high" if above 100</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Valid grade
+            [v1, m1] = is_valid_grade(85);
+            % Expected: v1 = 1 (true), m1 = "Valid"
+
+            % Test 2: Grade below range
+            [v2, m2] = is_valid_grade(-5);
+            % Expected: v2 = 0 (false), m2 = "Too low"
+
+            % Test 3: Grade above range
+            [v3, m3] = is_valid_grade(105);
+            % Expected: v3 = 0 (false), m3 = "Too high"
+
+            % Test 4: Boundary value (0)
+            [v4, m4] = is_valid_grade(0);
+            % Expected: v4 = 1 (true), m4 = "Valid"
+
+            % Test 5: Boundary value (100)
+            [v5, m5] = is_valid_grade(100);
+            % Expected: v5 = 1 (true), m5 = "Valid"
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-xor-function">
+      <title>Exclusive OR (XOR)</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>my_xor</pf> that implements the exclusive OR operation without using MATLAB's built-in <pf>xor</pf> function.
+        </p>
+
+        <p>
+          XOR returns true when exactly one (but not both) of the inputs is true. 
+          Think about how you can combine AND, OR, and NOT operators to achieve this behavior.
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>a</pf> (1x1) logical — first logical value</p>
+            </cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>
+              <p><pf>b</pf> (1x1) logical — second logical value</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>result</pf> (1x1) logical — true if exactly one input is true, false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Both false
+            r1 = my_xor(false, false);
+            % Expected: r1 = 0 (false)
+
+            % Test 2: First true, second false
+            r2 = my_xor(true, false);
+            % Expected: r2 = 1 (true)
+
+            % Test 3: First false, second true
+            r3 = my_xor(false, true);
+            % Expected: r3 = 1 (true)
+
+            % Test 4: Both true
+            r4 = my_xor(true, true);
+            % Expected: r4 = 0 (false)
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-leap-year">
+      <title>Leap Year Checker</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>is_leap_year</pf> that determines whether a given year is a leap year.
+        </p>
+
+        <p>
+          The rules for leap years are:
+          <ul>
+            <li><p>A year is a leap year if it is divisible by 4</p></li>
+            <li><p>EXCEPT years divisible by 100 are NOT leap years</p></li>
+            <li><p>EXCEPT years divisible by 400 ARE leap years</p></li>
+          </ul>
+          For example: 2000 is a leap year (divisible by 400), 1900 is not (divisible by 100 but not 400), 
+          2004 is a leap year (divisible by 4 but not 100).
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>year</pf> (1x1) double — the year to check</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>is_leap</pf> (1x1) logical — true if the year is a leap year, false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Divisible by 400 (leap year)
+            r1 = is_leap_year(2000);
+            % Expected: r1 = 1 (true)
+
+            % Test 2: Divisible by 100 but not 400 (not a leap year)
+            r2 = is_leap_year(1900);
+            % Expected: r2 = 0 (false)
+
+            % Test 3: Divisible by 4 but not 100 (leap year)
+            r3 = is_leap_year(2024);
+            % Expected: r3 = 1 (true)
+
+            % Test 4: Not divisible by 4 (not a leap year)
+            r4 = is_leap_year(2023);
+            % Expected: r4 = 0 (false)
+
+            % Test 5: Another divisible by 100 case
+            r5 = is_leap_year(2100);
+            % Expected: r5 = 0 (false)
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-triangle-type">
+      <title>Triangle Type Classifier</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>classify_triangle</pf> that determines whether three side lengths form 
+          a valid triangle and, if so, classifies it as equilateral, isosceles, or scalene.
+        </p>
+
+        <p>
+          Rules:
+          <ul>
+            <li><p>A valid triangle requires: a + b &gt; c, b + c &gt; a, and a + c &gt; b</p></li>
+            <li><p>Equilateral: all three sides are equal</p></li>
+            <li><p>Isosceles: exactly two sides are equal</p></li>
+            <li><p>Scalene: all three sides are different</p></li>
+          </ul>
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+            </cell>
+          </row>
+          <row>
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>is_valid</pf> (1x1) logical — true if sides form a valid triangle, false otherwise</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell/>
+            <cell>
+              <p><pf>type</pf> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Equilateral triangle
+            [v1, t1] = classify_triangle(5, 5, 5);
+            % Expected: v1 = 1 (true), t1 = "Equilateral"
+
+            % Test 2: Isosceles triangle
+            [v2, t2] = classify_triangle(5, 5, 8);
+            % Expected: v2 = 1 (true), t2 = "Isosceles"
+
+            % Test 3: Scalene triangle
+            [v3, t3] = classify_triangle(3, 4, 5);
+            % Expected: v3 = 1 (true), t3 = "Scalene"
+
+            % Test 4: Invalid triangle (violates triangle inequality)
+            [v4, t4] = classify_triangle(1, 2, 10);
+            % Expected: v4 = 0 (false), t4 = "Invalid"
+
+            % Test 5: Another isosceles case
+            [v5, t5] = classify_triangle(7, 10, 7);
+            % Expected: v5 = 1 (true), t5 = "Isosceles"
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-password-strength">
+      <title>Password Strength Checker</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>check_password_strength</pf> that evaluates password strength based on length 
+          and character type requirements.
+        </p>
+
+        <p>
+          A password is:
+          <ul>
+            <li><p>"Strong" if it has at least 12 characters AND contains both letters and numbers</p></li>
+            <li><p>"Medium" if it has at least 8 characters AND (contains letters OR numbers)</p></li>
+            <li><p>"Weak" otherwise</p></li>
+          </ul>
+          You can use <pf>strlength</pf> to get the length, <pf>isletter</pf> to check for letters, 
+          and <pf>isstrprop(password, 'digit')</pf> to check for digits. 
+          Use <pf>any</pf> to check if any element in a logical array is true.
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>password</pf> (1x1) string — the password to check</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>strength</pf> (1x1) string — "Strong", "Medium", or "Weak"</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Strong password
+            s1 = check_password_strength("MyPass123456");
+            % Expected: s1 = "Strong"
+
+            % Test 2: Medium password (long enough, has letters)
+            s2 = check_password_strength("password");
+            % Expected: s2 = "Medium"
+
+            % Test 3: Medium password (long enough, has numbers)
+            s3 = check_password_strength("12345678");
+            % Expected: s3 = "Medium"
+
+            % Test 4: Weak password (too short)
+            s4 = check_password_strength("Pass1");
+            % Expected: s4 = "Weak"
+
+            % Test 5: Strong password with more characters
+            s5 = check_password_strength("SecurePassword2024");
+            % Expected: s5 = "Strong"
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-quadrant-checker">
+      <title>Coordinate Quadrant Checker</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>find_quadrant</pf> that determines which quadrant or axis a point (x, y) is located in 
+          on a 2D coordinate system.
+        </p>
+
+        <p>
+          Rules:
+          <ul>
+            <li><p>Quadrant I: x &gt; 0 and y &gt; 0</p></li>
+            <li><p>Quadrant II: x &lt; 0 and y &gt; 0</p></li>
+            <li><p>Quadrant III: x &lt; 0 and y &lt; 0</p></li>
+            <li><p>Quadrant IV: x &gt; 0 and y &lt; 0</p></li>
+            <li><p>Origin: x = 0 and y = 0</p></li>
+            <li><p>X-axis: y = 0 (but x ≠ 0)</p></li>
+            <li><p>Y-axis: x = 0 (but y ≠ 0)</p></li>
+          </ul>
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>x</pf> (1x1) double — x-coordinate</p>
+            </cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>
+              <p><pf>y</pf> (1x1) double — y-coordinate</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>location</pf> (1x1) string — "Quadrant I", "Quadrant II", "Quadrant III", "Quadrant IV", "Origin", "X-axis", or "Y-axis"</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          <code>
+            % Test 1: Quadrant I
+            loc1 = find_quadrant(3, 4);
+            % Expected: loc1 = "Quadrant I"
+
+            % Test 2: Quadrant II
+            loc2 = find_quadrant(-2, 5);
+            % Expected: loc2 = "Quadrant II"
+
+            % Test 3: Origin
+            loc3 = find_quadrant(0, 0);
+            % Expected: loc3 = "Origin"
+
+            % Test 4: X-axis
+            loc4 = find_quadrant(7, 0);
+            % Expected: loc4 = "X-axis"
+
+            % Test 5: Quadrant III
+            loc5 = find_quadrant(-3, -8);
+            % Expected: loc5 = "Quadrant III"
+          </code>
+        </program>
+
+      </statement>
+    </task>
+
   </exercise>
 </exercises>
