@@ -34,7 +34,7 @@ This repository contains an interactive textbook teaching MATLAB programming fun
 - `publication/runestone.ptx` - Runestone platform-specific settings
 
 ### Assets
-- `assets/figures/` - Images and GIFs for MATLAB desktop, UI elements (15 files, ~5.4MB total)
+- `assets/figures/` - Images and GIFs for MATLAB desktop, UI elements (14 files, ~5.4MB total)
 - `generated-assets/dynamic_subs/` - Auto-generated exercise substitutions
 
 ### Build Outputs (Git-ignored)
