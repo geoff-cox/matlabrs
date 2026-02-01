@@ -25,7 +25,7 @@ This repository contains an interactive textbook teaching MATLAB programming fun
 - `main-dev.ptx` - Development version with commented-out sections
 - `aa-bookends/` - Front/back matter (book-info.ptx, front-matter.ptx)
 - `c1-basics/` - Chapter 1: MATLAB basics (4 sections, exercises) - 36KB
-- `c2-programming/` - Chapter 2: Programming fundamentals (7 sections, exercises) - 204KB (largest)
+- `c2-programming/` - Chapter 2: Programming fundamentals (6 sections, exercises) - 204KB (largest)
 - `c3-arrays/` - Chapter 3: Array operations (incomplete)
 - `c9-advanced-programming/` - Chapter 9: Advanced topics (nested loops)
 
