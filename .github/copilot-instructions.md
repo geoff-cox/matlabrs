@@ -208,7 +208,7 @@ pretext view web
 ### Working with Chapters
 
 - Chapter 1 (c1-basics): 4 sections on MATLAB environment and variables
-- Chapter 2 (c2-programming): 7 sections on scripts, functions, logic, and control flow
+- Chapter 2 (c2-programming): 6 sections on scripts, functions, logic, and control flow
 - Chapter 3 (c3-arrays): Single file, incomplete
 - Chapter 9 (c9-advanced-programming): Nested loops content
 
