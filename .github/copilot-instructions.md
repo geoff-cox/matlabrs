@@ -18,7 +18,7 @@ This repository contains an interactive textbook teaching MATLAB programming fun
 - `requirements.txt` - Python dependencies (pretext==2.36.0)
 - `README.md` - Basic PreTeXt project documentation
 - `codechat_config.yaml` - CodeChat previewer configuration (auto-generated)
-- `.gitignore` - Excludes output/, published/, generated-assets/, node_modules/, logs/, .cache/, .github/, etc.
+- `.gitignore` - Excludes output/, published/, generated-assets/, node_modules/, logs/, .cache/, and most `.github/` files, while explicitly including `.github/copilot-instructions.md`.
 
 ### Source Structure (`source/`)
 - `main.ptx` - Primary book source (full version)
