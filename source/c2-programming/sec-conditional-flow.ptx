@@ -225,34 +225,36 @@
 			<p>
 				Use Case: 
 				<ul>
-					<li>Perform <pf>taskA</pf> if <pf>variableName</pf> is equal to <pf>value1</pf>,</li>
-					<li>Perform <pf>taskB</pf> if <pf>variableName</pf> is equal to <pf>value2</pf> or <pf>value3</pf>,</li>
-					<li>Perform <pf>taskC</pf> if <pf>variableName</pf> is equal to <pf>value4</pf>,</li>
+					<li>Perform <pf>taskA</pf> if <pf>varName</pf> is equal to <pf>val1</pf>,</li>
+					<li>Perform <pf>taskB</pf> if <pf>varName</pf> is equal to <pf>val2</pf> or <pf>val3</pf>,</li>
+					<li>Perform <pf>taskC</pf> if <pf>varName</pf> is equal to <pf>val4</pf>,</li>
 					<li>otherwise perform <pf>taskD</pf> (default).</li>
 				</ul>
 			</p>
 
-			<sidebyside width="100%">
-				<program language="matlab">
-					<code>
-						switch variableName
+			<program language="matlab">
+				switch varName
 
-							case value1
-								taskA
+					case val1
+						%  ⤷ varName == val1?  YES ➜ do taskA ➜ end
+						%                       NO ➜ next case
+						taskA
 
-							case {value2, value3}
-								taskB
+					case {val2, val3}
+						%   ⤷     ⤷ varName == val2 OR val3?  YES ➜ do taskB ➜ end
+						%                                      NO ➜ next case
+						taskB
 
-							case value4
-								taskC
+					case val4
+						%  ⤷ varName == val4?  YES ➜ do taskC ➜ end
+						%                       NO ➜ do taskD ➜ end
+						taskC
 
-							otherwise
-								taskD
+					otherwise
+						taskD
 
-						end
-					</code>
-				</program>
-			</sidebyside>
+				end
+			</program>
 
 			<p>
 				Rules:
@@ -326,34 +328,139 @@
 		<exercise xml:id="if-activity-1">
 			<title>Multiple Conditions for w</title>
 
-			<p>
-				Write commands that set <pf>w</pf> based on these rules:
-			</p>
+			<introduction>
+				<p>
+					Suppose we define a variable <pf>x</pf> as a random integer between -5 and 15:
+				</p>
+				<program>
+					x = randi([-5, 15]);
+				</program>
+				<p>
+					Complete the following tasks.
+				</p>
+			</introduction>
 
-			<ul>
-				<li>if <pf>x</pf> is equal to 9, set <pf>w</pf> to 1</li>
-				<li>if <pf>x</pf> is between (but not equal to) -4 and 0, set <pf>w</pf> to 2</li>
-				<li>if <pf>x</pf> is not less than 3 or greater than 9, set <pf>w</pf> to 3</li>
-				<li>if none of the above are true, set <pf>w</pf> to 4</li>
-			</ul>
+			<task>
+				<statement>
+					<p>
+						Write a code block that defines <pf>x</pf> as <pf>6</pf> and sets <pf>y</pf> according to the following rule:
+						<ul marker="">
+							<li>if <pf>x</pf> is less than or equal to 9, set <pf>y</pf> to 1, otherwise set <pf>y</pf> to 4.</li>
+						</ul>
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						x = 6;
 
-			<program language="matlab">
-if x == 9
-		w = 1;
-elseif x &gt; -4 &amp;&amp; x &lt; 0
-		w = 2;
-elseif ~(x &lt;= 3) || x &gt; 9
-		w = 3;
-else
-		w = 4;
-end
-			</program>
+						if x &lt;= 9
+							y = 1;
+						else
+							y = 4;
+						end
+					</program>
+				</solution>
+				<solution>
+					<title>(with commentary)</title>
 
-			<p>
-				Notice how parentheses and spacing make the conditions easier to read.
-				Also notice the shift to <pf>&amp;&amp;</pf> and <pf>||</pf> here: those are the short-circuit operators and are
-				the standard choice inside <pf>if</pf> conditions when each side is a single true/false statement.
-			</p>
+					<program language="matlab">
+						x = 6;
+
+						if x &lt;= 9
+							fprintf('x = %d ≤ 9 is true\n', x);
+							y = 1;
+						else
+							fprintf('x = %d ≤ 9 is false\n', x);
+							y = 4;
+						end
+
+						fprintf('so we set y to %d\n', y);
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Change <pf>x</pf> to <pf>16</pf> and rerun your code block.
+					</p>
+				</statement>
+				<solution>
+					<p>Just change the value of <pf>x</pf> to <pf>16</pf> in the previous code block.</p>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Now, suppose we define a variable <pf>x</pf> as a random integer between -5 and 15:
+					</p>
+					<program>
+						x = randi([-5, 15]);
+					</program>
+					<p>
+						Rerun your code block multiple times to see how the value of <pf>y</pf> changes based on the random value of <pf>x</pf>.
+					</p>
+				</statement>
+				<solution>
+					<p>Just change the value of <pf>x</pf> to <pf>randi([-5, 15])</pf> in the previous code block.</p>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Write a code block that sets <pf>w</pf> according to the following rules:
+						<ul>
+							<li>if <pf>x</pf> is equal to 9, set <pf>w</pf> to 1</li>
+							<li>if <pf>x</pf> is between (but not equal to) -4 and 0, set <pf>w</pf> to 2</li>
+							<li>if <pf>x</pf> is not less than 3 or greater than 9, set <pf>w</pf> to 3</li>
+							<li>if none of the above are true, set <pf>w</pf> to 4</li>
+						</ul>
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						x = randi([-5, 15]);
+
+						if x == 9
+							w = 1;
+						elseif x &gt; -4 &amp;&amp; x &lt; 0
+							w = 2;
+						elseif ~(x &lt;= 3) || x &gt; 9
+							w = 3;
+						else
+							w = 4;
+						end
+					</program>
+				</solution>
+				<solution>
+					<title>
+						(with commentary)
+					</title>
+					
+					<program language="matlab">
+						x = randi([-5, 15]);
+						fprintf('x = %d\n', x);
+
+						if x == 9
+							fprintf('x == 9 is true\n');
+							w = 1;
+						elseif x &gt; -4 &amp;&amp; x &lt; 0
+							fprintf('-4 &lt; x &lt; 0 is true\n');
+							w = 2;
+						elseif ~(x &lt;= 3) || x &gt; 9
+							fprintf('x is not less than or equal to 3 or greater than 9 is true\n');
+							w = 3;
+						else
+							fprintf('none of the above conditions are true\n');
+							w = 4;
+						end
+
+						fprintf('so we set w to %d\n', w);
+					</program>
+				</solution>
+			</task>
 		</exercise>
 
 		<exercise xml:id="if-activity-2">
