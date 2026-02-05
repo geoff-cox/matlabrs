@@ -584,10 +584,10 @@ x2 = (-b - sqrt(D)) / (2*a);
 		</p>
 
 		<program language="matlab">
-function r = quadraticRoots(a,b,c)
+function [r1, r2] = quadraticRoots(a,b,c)
 %QUADRATICROOTS Return the roots of a*x^2 + b*x + c.
 %
-%   r is a 1x2 vector containing the two roots (possibly equal or complex).
+%   r1, r2 are the two roots (possibly equal or complex).
 
 		if a == 0
 				error("Input a must be nonzero for a quadratic polynomial.");
@@ -596,8 +596,6 @@ function r = quadraticRoots(a,b,c)
 		D = b^2 - 4*a*c;
 		r1 = (-b + sqrt(D)) / (2*a);
 		r2 = (-b - sqrt(D)) / (2*a);
-
-		r = [r1, r2];
 end
 		</program>
 
