@@ -1,0 +1,277 @@
+<exercises xml:id="exercises-arrays">
+	<title>Chapter Exercises</title>
+
+	<introduction>
+		<p>
+			These exercises integrate concepts from throughout the chapter. They require you to combine array creation, indexing, operations, and built-in functions to solve problems.
+		</p>
+	</introduction>
+
+	<exercise>
+		<title>Temperature Data Analysis</title>
+		<statement>
+			<p>
+				A weather station records daily high temperatures for a week: <c>[72 75 78 74 80 82 79]</c>.
+			</p>
+			<ol>
+				<li>Calculate the average temperature for the week.</li>
+				<li>Find the hottest day's temperature.</li>
+				<li>Determine how many days had temperatures above 75 degrees.</li>
+				<li>Create a new array showing the difference from the average for each day.</li>
+			</ol>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					temps = [72 75 78 74 80 82 79];
+					
+					% 1. Average temperature
+					avg_temp = mean(temps);              % 77.1429
+					
+					% 2. Hottest temperature
+					hottest = max(temps);                % 82
+					
+					% 3. Days above 75
+					days_above_75 = sum(temps > 75);     % 4
+					
+					% 4. Difference from average
+					diff_from_avg = temps - avg_temp;    
+					% [-5.14 -2.14 0.86 -3.14 2.86 4.86 1.86]
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Grading Multiple Students</title>
+		<statement>
+			<p>
+				A class has three students with test scores stored in a matrix where each row represents a student and each column represents a test:
+			</p>
+			<program language="matlab">
+				<code>
+					scores = [85 92 88; 78 84 90; 92 95 89];
+				</code>
+			</program>
+			<ol>
+				<li>Calculate each student's average score (hint: use row sums).</li>
+				<li>Calculate the class average for each test (hint: use column means).</li>
+				<li>Find the highest score in the entire class.</li>
+			</ol>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					scores = [85 92 88; 78 84 90; 92 95 89];
+					
+					% 1. Each student's average
+					student_avgs = mean(scores, 2);  % [88.33; 84; 92]
+					
+					% 2. Class average for each test
+					test_avgs = mean(scores);        % [85 90.33 89]
+					
+					% 3. Highest score overall
+					highest = max(max(scores));      % 95
+					% Or: highest = max(scores(:));
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Vector Operations</title>
+		<statement>
+			<p>
+				Given two vectors <c>x = 1:10</c> and <c>y = linspace(0,1,10)</c>:
+			</p>
+			<ol>
+				<li>Compute <c>z = x.^2 + 5*y</c></li>
+				<li>Find the indices where <c>z</c> is greater than 20</li>
+				<li>Calculate the sum of all elements in <c>z</c> that are greater than 20</li>
+			</ol>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					x = 1:10;
+					y = linspace(0, 1, 10);
+					
+					% 1. Compute z
+					z = x.^2 + 5*y;
+					
+					% 2. Indices where z > 20
+					indices = find(z > 20);          % [5 6 7 8 9 10]
+					
+					% 3. Sum of elements > 20
+					sum_large = sum(z(z > 20));      % 298.1481
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Matrix Construction</title>
+		<statement>
+			<p>
+				Create a 5-by-5 matrix where:
+			</p>
+			<ul>
+				<li>The first column contains the numbers 1 through 5</li>
+				<li>The second column contains the squares of those numbers</li>
+				<li>The third column contains the cubes</li>
+				<li>The fourth and fifth columns contain zeros</li>
+			</ul>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					% Create the base vector
+					n = (1:5)';                  % Column vector [1; 2; 3; 4; 5]
+					
+					% Build the matrix column by column
+					M = [n, n.^2, n.^3, zeros(5,2)];
+					
+					% Result:
+					% 1   1    1   0  0
+					% 2   4    8   0  0
+					% 3   9   27   0  0
+					% 4  16   64   0  0
+					% 5  25  125   0  0
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Data Filtering</title>
+		<statement>
+			<p>
+				Given a vector of measurements <c>data = [12 -5 18 -3 25 -8 30 15]</c>:
+			</p>
+			<ol>
+				<li>Create a new vector containing only the positive values</li>
+				<li>Replace all negative values with zero (in the original vector)</li>
+				<li>Count how many values are greater than 15</li>
+			</ol>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					data = [12 -5 18 -3 25 -8 30 15];
+					
+					% 1. Extract positive values
+					positive_only = data(data > 0);      % [12 18 25 30 15]
+					
+					% 2. Replace negatives with zero
+					data(data &lt; 0) = 0;                  % [12 0 18 0 25 0 30 15]
+					
+					% 3. Count values > 15
+					count = sum(data > 15);              % 3
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Array Reshaping Challenge</title>
+		<statement>
+			<p>
+				Create a row vector <c>v = 1:12</c>. Then:
+			</p>
+			<ol>
+				<li>Reshape it into a 3-by-4 matrix</li>
+				<li>Extract the second row of that matrix</li>
+				<li>Compute the sum of the last column</li>
+			</ol>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					v = 1:12;
+					
+					% 1. Reshape to 3-by-4
+					A = reshape(v, 3, 4);
+					% Result:
+					% 1  4  7  10
+					% 2  5  8  11
+					% 3  6  9  12
+					
+					% 2. Extract second row
+					row2 = A(2,:);                       % [2 5 8 11]
+					
+					% 3. Sum of last column
+					col_sum = sum(A(:,end));             % 33
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Function Evaluation</title>
+		<statement>
+			<p>
+				Create a vector <c>t</c> of 50 evenly spaced values from 0 to <m>2\pi</m>. Then compute <c>y = sin(t) + 0.5*cos(2*t)</c>. Find:
+			</p>
+			<ol>
+				<li>The maximum value of <c>y</c></li>
+				<li>The index at which this maximum occurs</li>
+				<li>The corresponding value of <c>t</c> at that index</li>
+			</ol>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					t = linspace(0, 2*pi, 50);
+					y = sin(t) + 0.5*cos(2*t);
+					
+					% 1 and 2. Maximum value and its index
+					[max_y, max_idx] = max(y);           
+					
+					% 3. Corresponding t value
+					t_at_max = t(max_idx);
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Comparing Arrays</title>
+		<statement>
+			<p>
+				Two sensors measure the same quantity and produce slightly different readings:
+			</p>
+			<program language="matlab">
+				<code>
+					sensor1 = [10.2 10.5 10.1 10.4 10.3];
+					sensor2 = [10.1 10.6 10.0 10.5 10.2];
+				</code>
+			</program>
+			<p>
+				Calculate:
+			</p>
+			<ol>
+				<li>The element-wise difference between the sensors</li>
+				<li>The absolute value of these differences</li>
+				<li>The average absolute difference</li>
+			</ol>
+		</statement>
+		<solution>
+			<program language="matlab">
+				<code>
+					sensor1 = [10.2 10.5 10.1 10.4 10.3];
+					sensor2 = [10.1 10.6 10.0 10.5 10.2];
+					
+					% 1. Element-wise difference
+					diff = sensor1 - sensor2;            % [0.1 -0.1 0.1 -0.1 0.1]
+					
+					% 2. Absolute differences
+					abs_diff = abs(diff);                % [0.1 0.1 0.1 0.1 0.1]
+					
+					% 3. Average absolute difference
+					avg_abs_diff = mean(abs_diff);       % 0.1
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+</exercises>

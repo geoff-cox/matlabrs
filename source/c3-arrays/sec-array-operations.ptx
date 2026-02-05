@@ -1,0 +1,249 @@
+<section xml:id="array-operations">
+	<title>Array Operations</title>
+
+	<introduction>
+		<p>
+			One of MATLAB's most powerful features is its ability to perform operations on entire arrays at once. Rather than writing loops to process each element individually, you can often write a single expression that operates on all elements simultaneously. This approach, called <term>vectorization</term>, leads to code that is shorter, clearer, and often faster.
+		</p>
+
+		<p>
+			Understanding the difference between element-wise operations and matrix operations is crucial for writing correct MATLAB code. This section explains both types of operations and when to use each.
+		</p>
+	</introduction>
+
+	<subsection xml:id="array-operations-elementwise">
+		<title>Element-wise Operations</title>
+
+		<p>
+			<term>Element-wise operations</term> apply an operation to corresponding elements of arrays. For this to work, the arrays must have the same dimensions (or one must be a scalar).
+		</p>
+
+		<p>
+			The element-wise operators in MATLAB use a dot before the operator:
+			<ul>
+				<li><c>.*</c> for element-wise multiplication</li>
+				<li><c>./</c> for element-wise division</li>
+				<li><c>.^</c> for element-wise exponentiation</li>
+			</ul>
+		</p>
+
+		<example>
+			<title>Element-wise Operations</title>
+			<statement>
+				<program language="matlab">
+					<code>
+						v1 = [1 2 3 4];
+						v2 = [10 20 30 40];
+						
+						% Element-wise multiplication
+						result1 = v1 .* v2;    % [10 40 90 160]
+						
+						% Element-wise division
+						result2 = v2 ./ v1;    % [10 10 10 10]
+						
+						% Element-wise exponentiation
+						result3 = v1 .^ 2;     % [1 4 9 16]
+					</code>
+				</program>
+			</statement>
+		</example>
+
+		<aside>
+			<title>When to Use the Dot</title>
+			<p>
+				Addition and subtraction work element-wise by default, so <c>+</c> and <c>-</c> do not need a dot. Only multiplication, division, and exponentiation require the dot for element-wise behavior.
+			</p>
+		</aside>
+	</subsection>
+
+	<subsection xml:id="array-operations-arithmetic">
+		<title>Arithmetic with Scalars</title>
+
+		<p>
+			When you perform an operation between an array and a scalar, the scalar is applied to every element of the array:
+		</p>
+
+		<program language="matlab">
+			<code>
+				v = [1 2 3 4 5];
+				
+				% Add 10 to every element
+				w = v + 10;        % [11 12 13 14 15]
+				
+				% Multiply every element by 2
+				x = v * 2;         % [2 4 6 8 10]
+				
+				% Square every element
+				y = v .^ 2;        % [1 4 9 16 25]
+			</code>
+		</program>
+
+		<p>
+			This scalar expansion happens automatically and is called <term>broadcasting</term> in some other programming languages.
+		</p>
+	</subsection>
+
+	<subsection xml:id="array-operations-matrix">
+		<title>Matrix Operations</title>
+
+		<p>
+			Without the dot, the operators <c>*</c>, <c>/</c>, and <c>^</c> perform <term>matrix operations</term> according to the rules of linear algebra. These operations have different dimension requirements than element-wise operations.
+		</p>
+
+		<p>
+			Matrix multiplication requires the number of columns in the first matrix to equal the number of rows in the second:
+		</p>
+
+		<program language="matlab">
+			<code>
+				A = [1 2; 3 4];      % 2-by-2 matrix
+				B = [5; 6];          % 2-by-1 column vector
+				
+				% Matrix multiplication
+				C = A * B;           % Result: [17; 39] (2-by-1 vector)
+			</code>
+		</program>
+
+		<p>
+			For most programming tasks involving element-by-element calculations, you will use element-wise operators. Matrix operations are important when working with linear algebra problems.
+		</p>
+
+		<exercise label="array-operations-chkpt-1">
+			<statement>
+				<p>
+					What is the difference between <c>v .* w</c> and <c>v * w</c> when <c>v</c> and <c>w</c> are vectors?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="no">
+					<statement><p>There is no difference; they produce the same result.</p></statement>
+				</choice>
+				<choice correct="yes">
+					<statement><p><c>v .* w</c> multiplies corresponding elements, while <c>v * w</c> attempts matrix multiplication and may produce an error depending on dimensions.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p><c>v .* w</c> is slower but more accurate.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p><c>v * w</c> only works with column vectors.</p></statement>
+				</choice>
+			</choices>
+		</exercise>
+	</subsection>
+
+	<subsection xml:id="array-operations-functions">
+		<title>Applying Functions to Arrays</title>
+
+		<p>
+			Most MATLAB mathematical functions operate element-wise when applied to arrays:
+		</p>
+
+		<program language="matlab">
+			<code>
+				v = [0 pi/4 pi/2 pi];
+				
+				% Sin of each element
+				s = sin(v);          % [0  0.7071  1  0]
+				
+				% Square root of each element
+				x = [1 4 9 16];
+				sqrts = sqrt(x);     % [1 2 3 4]
+			</code>
+		</program>
+
+		<p>
+			This means you can apply trigonometric functions, exponentials, logarithms, and other mathematical operations to entire arrays at once.
+		</p>
+	</subsection>
+
+	<reading-questions>
+		<introduction>
+			<p>
+				These questions check your understanding of array operations.
+			</p>
+		</introduction>
+
+		<exercise xml:id="array-operations-rq-1">
+			<title>Choosing Operations</title>
+			<statement>
+				<p>
+					When should you use <c>.*</c> instead of <c>*</c>?
+				</p>
+			</statement>
+			<!-- Placeholder for response question -->
+		</exercise>
+	</reading-questions>
+
+	<exercises xml:id="array-operations-exercises">
+		<title>Practice Problems</title>
+
+		<introduction>
+			<p>
+				Practice performing operations on arrays.
+			</p>
+		</introduction>
+
+		<exercise>
+			<title>Element-wise Calculations</title>
+			<statement>
+				<p>
+					Given <c>x = [1 2 3 4 5]</c> and <c>y = [2 4 6 8 10]</c>, compute:
+				</p>
+				<ol>
+					<li><c>z1 = x + y</c></li>
+					<li><c>z2 = y ./ x</c></li>
+					<li><c>z3 = x .^ 3</c></li>
+				</ol>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						x = [1 2 3 4 5];
+						y = [2 4 6 8 10];
+						
+						z1 = x + y;         % [3 6 9 12 15]
+						z2 = y ./ x;        % [2 2 2 2 2]
+						z3 = x .^ 3;        % [1 8 27 64 125]
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Temperature Conversion</title>
+			<statement>
+				<p>
+					Write a MATLAB command to convert the temperatures <c>[32 68 86 104 212]</c> from Fahrenheit to Celsius using the formula <m>C = \frac{5}{9}(F - 32)</m>.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						F = [32 68 86 104 212];
+						C = (5/9) * (F - 32);    % [0 20 30 40 100]
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Computing Multiple Function Values</title>
+			<statement>
+				<p>
+					Create a vector <c>theta</c> containing 100 evenly spaced angles from 0 to <m>2\pi</m>, then compute <c>y = sin(theta)</c>. What is the size and shape of the result?
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						theta = linspace(0, 2*pi, 100);
+						y = sin(theta);
+						% Result: y is a 1-by-100 row vector
+					</code>
+				</program>
+			</solution>
+		</exercise>
+	</exercises>
+
+</section>
