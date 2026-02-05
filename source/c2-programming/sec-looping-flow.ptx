@@ -83,9 +83,9 @@ end
     </p>
 
     <p>
-      A loop vector can be any vector, not just something like <c>1:n</c>. This is worth emphasizing, because it
+      A list of values can be any collection, not just something like <c>1:n</c>. This is worth emphasizing, because it
       explains what a <c>for</c>-loop really does: it iterates over a list of values.
-      In the example below, the loop vector is <c>[1 3 6]</c>.
+      In the example below, the list of values is <c>[1 3 6]</c>.
     </p>
 
     <program language="matlab">
@@ -114,10 +114,10 @@ disp(x)
 
     <ul>
       <li>The loop variable can be named anything (though short names like <c>k</c>, <c>i</c>, <c>j</c> are common).</li>
-      <li>The code inside the loop runs once for every value in the loop vector.</li>
+      <li>The code inside the loop runs once for every value in the list.</li>
       <li>When MATLAB reaches <c>end</c>, it automatically updates the loop variable to the next value.</li>
       <li>You may place any code inside a <c>for</c>-loop, including <c>if</c>-statements and other loops.</li>
-      <li>The most common way to define the loop vector is the colon operator, like <c>1:10</c>.</li>
+      <li>The most common way to define the list of values is the colon operator, like <c>1:10</c>.</li>
       <li>A <c>for</c>-loop must be terminated with <c>end</c>.</li>
     </ul>
 
@@ -198,7 +198,7 @@ results
 
       <p>
         Example: the same expression <c>cos(x) + ...</c> is repeated, but the added value changes each time.
-        We can capture those changing values in a loop vector.
+        We can capture those changing values in a list.
       </p>
 
       <program language="matlab">
@@ -222,7 +222,7 @@ end
       </program>
 
       <p>
-        Example: repeatedly multiplying by increasing factors suggests a loop vector like <c>3:709</c>.
+        Example: repeatedly multiplying by increasing factors suggests a list like <c>3:709</c>.
       </p>
 
       <program language="matlab">
@@ -557,42 +557,9 @@ disp("Sum from 1 to " + n + " is " + s)
       </statement>
     </exercise>
 
-    <exercise xml:id="ex-for-max-entry">
-      <statement>
-        <p>
-          Given a vector <code>v</code>, write code that finds the maximum entry using a loop
-          (do not use <code>max</code>). Store the maximum value in <code>m</code>.
-        </p>
-      </statement>
-    </exercise>
 
-    <exercise xml:id="ex-for-running-average">
-      <statement>
-        <p>
-          Given a vector <code>v</code>, create a vector <code>a</code> of the same length where <code>a(k)</code>
-          equals the average of the first <code>k</code> entries of <code>v</code>.
-          Use a <code>for</code> loop and preallocate <code>a</code>.
-        </p>
-      </statement>
-    </exercise>
 
-    <exercise xml:id="ex-for-count-condition">
-      <statement>
-        <p>
-          Given a vector <code>v</code>, write a script that counts how many entries satisfy <code>v(k) &gt; 0</code>.
-          Store the count in a variable named <code>count</code>.
-        </p>
-      </statement>
-    </exercise>
 
-    <exercise xml:id="ex-for-multiplication-table-row">
-      <statement>
-        <p>
-          Create a row vector <code>t</code> of length 10 where <code>t(k)</code> equals <m>7k</m>.
-          Use a <code>for</code> loop and preallocate <code>t</code>.
-        </p>
-      </statement>
-    </exercise>
 
     <exercise xml:id="ex-for-simple-simulation">
       <statement>
