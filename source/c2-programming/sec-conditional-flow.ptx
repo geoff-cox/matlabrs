@@ -30,8 +30,8 @@
 
 				<program language="matlab">
 					if logicalStatementA
-						%		⤷ if true  ➜ do taskA
-						%		⤷ if false ➜ jump to end
+						%		⤷ if true  ➜ do taskA ➜ end
+						%		⤷ if false ➜ end
 						taskA
 					end
 				</program>
@@ -83,8 +83,8 @@
 
 				<program language="matlab">
 					if logicalStatementA
-						%		⤷ if true  ➜ do taskA ➜ jump to end
-						%		⤷ if false ➜ do taskB
+						%		⤷ if true  ➜ do taskA ➜ end
+						%		⤷ if false ➜ do taskB ➜ end
 						taskA
 					else
 						taskB
@@ -138,16 +138,16 @@
 
 				<program language="matlab">
 					if logicalStatementA
-						%		⤷ if true  ➜ do taskA ➜ jump to end
+						%		⤷ if true  ➜ do taskA ➜ end
 						%		⤷ if false ➜ check logicalStatementB
 						taskA
 					elseif logicalStatementB
-						%		⤷ if true  ➜ do taskB ➜ jump to end
+						%		⤷ if true  ➜ do taskB ➜ end
 						%		⤷ if false ➜ check logicalStatementC
 						taskB
 					elseif logicalStatementC
-						%		⤷ if true  ➜ do taskC ➜ jump to end
-						%		⤷ if false ➜ do default taskD
+						%		⤷ if true  ➜ do taskC ➜ end
+						%		⤷ if false ➜ do default taskD ➜ end
 						taskC
 					else
 						taskD
@@ -326,15 +326,9 @@
 		</introduction>
 
 		<exercise xml:id="if-activity-1">
-			<title>Multiple Conditions for w</title>
+			<title>Example 1: Simple <pf>if</pf>-gate</title>
 
 			<introduction>
-				<p>
-					Suppose we define a variable <pf>x</pf> as a random integer between -5 and 15:
-				</p>
-				<program>
-					x = randi([-5, 15]);
-				</program>
 				<p>
 					Complete the following tasks.
 				</p>

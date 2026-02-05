@@ -21,7 +21,7 @@
 	</introduction>
 
 	<subsection xml:id="subsec-logical-values">
-		<title>Logical Values</title>
+		<title>Logical Values (Answers)</title>
 
 		<p>
 			MATLAB has two logical values:
@@ -31,14 +31,24 @@
 		</p>
 
 		<program language="matlab">
-			a = 1
-			b = true
-			c = 0
-			d = false
+			a = 1;
+			b = true;
+			c = 0;
+			d = false;
+
+			fprintf("a = %g,  b = %g,  c = %g,  d = %g\n", a, b, c, d)
 		</program>
 
 		<p>
-			Even though <pf>a</pf> and <pf>b</pf> (and <pf>c</pf> and <pf>d</pf>) look similar at first glance, MATLAB treats them differently:
+			Running the above code, <pf>fprintf</pf> produces the following output:
+		</p>
+
+		<pre>
+			a = 1,  b = 1,  c = 0,  d = 0
+		</pre>
+
+		<p>
+			Even though <pf>a</pf> and <pf>b</pf> (and <pf>c</pf> and <pf>d</pf>) look the same, MATLAB treats them differently:
 			<pf>a</pf> is a number (a double), while <pf>b</pf> is a logical value. You can get more information using the <pf>whos</pf> command.
 			Here is the output you should see:
 		</p>
@@ -52,12 +62,19 @@
 		</pre>
 
 		<p>
-			Logical variables use fewer bytes than doubles. However, the primary benefit of 
-			logical values isn't memory efficiency—it's that they clearly represent answers 
-			to yes/no questions, not numeric measurements.
+			This shows us two differences: 
+			<dl width="wide">
+				<li><title>Class (data type)</title>
+					<p><pf>a</pf> is a <pf>double</pf>, while <pf>b</pf> is a <pf>logical</pf>.</p>
+				</li>
+				<li><title>Bytes (memory usage)</title>
+					<p><pf>a</pf> uses 8 bytes, while <pf>b</pf> uses 1 byte.</p>
+				</li>
+			</dl>
+			At the end of the day, the <pf>double</pf> data type is meant to store numeric quantities, while the <pf>logical</pf> data type stores yes/no answers to questions.
 		</p>
 
-		<exercise label="logic-reading-ckpt-1">
+		<!-- <exercise label="logic-reading-ckpt-1">
 			<title>Understanding Logical Values</title>
 
 			<statement>
@@ -95,14 +112,15 @@
 					</feedback>
 				</choice>
 			</choices>
-		</exercise>
+		</exercise> -->
 	</subsection>
 
 	<subsection xml:id="subsec-logical-statements">
-		<title>Logical Statements</title>
+		<title>Logical Statements (Questions)</title>
 
 		<p>
-			A <term>logical statement</term> is any MATLAB expression that evaluates to <pf>true</pf> or <pf>false</pf>.
+			A <term>logical statement</term> is any MATLAB expression that produces a <pf>logical</pf> value, 
+			either <pf>true</pf> or <pf>false</pf>.
 			The most common logical statements come from comparing two values. These comparisons use
 			<term>relational operators</term>.
 		</p>
@@ -210,18 +228,18 @@
 			a = 4; 
 			b = -4;
 
-			a_eq_4 = (a == 4);	% ← Is a equal to 4?	Yes.
-			a_eq_b = (a == b);	% ← Is a equal to b?	No.
-			b_lt_a = (b &lt; a);	% ← Is b less than a?	Yes.
+			ans1 = (a == 4);	% ← Is a equal to 4?	Yes.
+			ans2 = (a == b);	% ← Is a equal to b?	No.
+			ans3 = (b &lt; a);		% ← Is b less than a?	Yes.
 		</program>
 
 		<p>
-			This code defines two numeric variables, <pf>a</pf> and <pf>b</pf>, and three logical variables:
+			This code defines two <pf>double</pf> variables, <pf>a</pf> and <pf>b</pf>, and three <pf>logical</pf> variables:
 
 			<ul>
-				<li><pf>a_eq_4 = 1 (logical)</pf> since <pf>a == 4</pf> is true.</li>
-				<li><pf>a_eq_b = 0 (logical)</pf> since <pf>a == b</pf> is false.</li>
-				<li><pf>b_lt_a = 1 (logical)</pf> since <pf>b &lt; a</pf> is true.</li>
+				<li><pf>ans1 = 1</pf> since the logical statement <pf>a == 4</pf> is true.</li>
+				<li><pf>ans2 = 0</pf> since the logical statement <pf>a == b</pf> is false.</li>
+				<li><pf>ans3 = 1</pf> since the logical statement <pf>b &lt; a</pf> is true.</li>
 			</ul>
 		</p>
 
@@ -376,9 +394,9 @@
 			Name        Size            Bytes  Class      Attributes
 			a           1x1                 8  double               
 			b           1x1                 8  double               
-			a_eq_4      1x1                 1  logical              
-			a_eq_b      1x1                 1  logical              
-			b_lt_a      1x1                 1  logical              
+			ans1      1x1                 1  logical              
+			ans2      1x1                 1  logical              
+			ans3      1x1                 1  logical              
 			r           1x1                 1  logical              
 		</pre> -->
 
