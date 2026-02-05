@@ -1,0 +1,215 @@
+<section xml:id="array-basics">
+	<title>What Are Arrays?</title>
+
+	<introduction>
+		<p>
+			An <term>array</term> in MATLAB is a collection of numbers arranged in a rectangular grid. Arrays are the fundamental data structure in MATLAB—in fact, every number in MATLAB is technically a 1-by-1 array. Understanding arrays is essential because most of MATLAB's power comes from its ability to perform operations on entire collections of numbers at once.
+		</p>
+
+		<p>
+			Arrays come in two main forms: <term>vectors</term> (one-dimensional arrays) and <term>matrices</term> (two-dimensional arrays). A vector can be either a row vector (one row, multiple columns) or a column vector (multiple rows, one column). A matrix has multiple rows and multiple columns, forming a rectangular table of numbers.
+		</p>
+	</introduction>
+
+	<subsection xml:id="array-basics-scalars">
+		<title>Scalars, Vectors, and Matrices</title>
+
+		<p>
+			MATLAB distinguishes between different types of arrays based on their dimensions:
+		</p>
+
+		<ul>
+			<li>
+				<p>
+					<term>Scalar</term>: A single number (technically a 1-by-1 array).
+				</p>
+				<program language="matlab">
+					<code>
+						a = 5;  % A scalar value
+					</code>
+				</program>
+			</li>
+			<li>
+				<p>
+					<term>Row vector</term>: A 1-by-n array (one row, n columns).
+				</p>
+				<program language="matlab">
+					<code>
+						v = [1 2 3 4 5];  % A row vector with 5 elements
+					</code>
+				</program>
+			</li>
+			<li>
+				<p>
+					<term>Column vector</term>: An n-by-1 array (n rows, one column).
+				</p>
+				<program language="matlab">
+					<code>
+						w = [1; 2; 3; 4; 5];  % A column vector with 5 elements
+					</code>
+				</program>
+			</li>
+			<li>
+				<p>
+					<term>Matrix</term>: An m-by-n array (m rows, n columns).
+				</p>
+				<program language="matlab">
+					<code>
+						A = [1 2 3; 4 5 6; 7 8 9];  % A 3-by-3 matrix
+					</code>
+				</program>
+			</li>
+		</ul>
+
+		<p>
+			Notice that semicolons separate rows in an array, while spaces (or commas) separate elements within a row.
+		</p>
+	</subsection>
+
+	<subsection xml:id="array-basics-dimensions">
+		<title>Array Dimensions and Size</title>
+
+		<p>
+			Every array in MATLAB has a <term>size</term>, which describes how many rows and columns it contains. You can check an array's size using the <pf>size</pf> function:
+		</p>
+
+		<program language="matlab">
+			<code>
+				A = [1 2 3; 4 5 6];  % Create a 2-by-3 matrix
+				size(A)              % Returns [2 3]
+			</code>
+		</program>
+
+		<p>
+			For vectors, you might also use the <pf>length</pf> function, which returns the number of elements in the longest dimension:
+		</p>
+
+		<program language="matlab">
+			<code>
+				v = [1 2 3 4 5];
+				length(v)  % Returns 5
+			</code>
+		</program>
+
+		<aside>
+			<title>Why Dimensions Matter</title>
+			<p>
+				Many MATLAB operations require arrays to have compatible dimensions. Understanding an array's size helps you avoid dimension mismatch errors and write correct code.
+			</p>
+		</aside>
+	</subsection>
+
+	<subsection xml:id="array-basics-why">
+		<title>Why Use Arrays?</title>
+
+		<p>
+			Arrays enable you to:
+			<ul>
+				<li>Store related data together (e.g., a list of temperatures, test scores, or coordinates)</li>
+				<li>Perform operations on many values simultaneously</li>
+				<li>Write more concise and efficient code</li>
+				<li>Take advantage of MATLAB's optimized array processing capabilities</li>
+			</ul>
+		</p>
+
+		<p>
+			Instead of creating separate variables <c>temp1</c>, <c>temp2</c>, <c>temp3</c>, etc., you can store all temperatures in a single array and process them together. This approach is not only more organized but also much more powerful when working with large datasets.
+		</p>
+
+		<exercise label="array-basics-chkpt-1">
+			<statement>
+				<p>
+					What is the difference between a row vector and a column vector in MATLAB?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="no">
+					<statement><p>A row vector uses commas to separate elements, while a column vector uses spaces.</p></statement>
+				</choice>
+				<choice correct="yes">
+					<statement><p>A row vector has one row and multiple columns, while a column vector has multiple rows and one column.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>A row vector is stored horizontally in memory, while a column vector is stored vertically.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>There is no difference; they are interchangeable in all MATLAB operations.</p></statement>
+				</choice>
+			</choices>
+		</exercise>
+	</subsection>
+
+	<reading-questions>
+		<introduction>
+			<p>
+				These questions check your understanding of basic array concepts.
+			</p>
+		</introduction>
+
+		<exercise xml:id="array-basics-rq-1">
+			<title>Array Terminology</title>
+			<statement>
+				<p>
+					Match each MATLAB array type with its correct description.
+				</p>
+			</statement>
+			<!-- Placeholder for matching exercise or additional questions -->
+		</exercise>
+	</reading-questions>
+
+	<exercises xml:id="array-basics-exercises">
+		<title>Practice Problems</title>
+
+		<introduction>
+			<p>
+				These exercises help you practice identifying and working with different array types.
+			</p>
+		</introduction>
+
+		<exercise>
+			<title>Identifying Array Types</title>
+			<statement>
+				<p>
+					For each of the following MATLAB expressions, determine whether the result is a scalar, row vector, column vector, or matrix:
+				</p>
+				<ol>
+					<li><c>x = 7;</c></li>
+					<li><c>y = [1 2 3 4];</c></li>
+					<li><c>z = [1; 2; 3; 4];</c></li>
+					<li><c>A = [1 2; 3 4; 5 6];</c></li>
+				</ol>
+			</statement>
+			<solution>
+				<p>
+					<ol>
+						<li>Scalar (1-by-1 array)</li>
+						<li>Row vector (1-by-4 array)</li>
+						<li>Column vector (4-by-1 array)</li>
+						<li>Matrix (3-by-2 array)</li>
+					</ol>
+				</p>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Determining Array Size</title>
+			<statement>
+				<p>
+					What will <c>size(B)</c> return for the following matrix?
+				</p>
+				<program language="matlab">
+					<code>
+						B = [10 20 30; 40 50 60];
+					</code>
+				</program>
+			</statement>
+			<solution>
+				<p>
+					<c>size(B)</c> returns <c>[2 3]</c>, indicating 2 rows and 3 columns.
+				</p>
+			</solution>
+		</exercise>
+	</exercises>
+
+</section>

@@ -1,0 +1,256 @@
+<section xml:id="creating-arrays">
+	<title>Creating Arrays</title>
+
+	<introduction>
+		<p>
+			There are several ways to create arrays in MATLAB, each suited to different situations. You might type values explicitly when you know exactly what numbers you need, use built-in functions to generate arrays with specific patterns, or use the colon operator to create sequences. Understanding these different approaches helps you choose the most efficient method for your task.
+		</p>
+	</introduction>
+
+	<subsection xml:id="creating-arrays-explicit">
+		<title>Explicit Construction with Square Brackets</title>
+
+		<p>
+			The most direct way to create an array is to list its elements inside square brackets <c>[ ]</c>. Spaces (or commas) separate elements in a row, and semicolons separate rows.
+		</p>
+
+		<example>
+			<title>Creating Arrays Explicitly</title>
+			<statement>
+				<program language="matlab">
+					<code>
+						% Row vector
+						v = [1 2 3 4 5];
+						
+						% Column vector
+						w = [1; 2; 3; 4; 5];
+						
+						% Matrix
+						A = [1 2 3; 4 5 6; 7 8 9];
+					</code>
+				</program>
+			</statement>
+		</example>
+
+		<p>
+			You can also include expressions inside the brackets:
+		</p>
+
+		<program language="matlab">
+			<code>
+				x = [1+2  3*4  5/2];  % Result: [3  12  2.5]
+			</code>
+		</program>
+	</subsection>
+
+	<subsection xml:id="creating-arrays-colon">
+		<title>Using the Colon Operator</title>
+
+		<p>
+			The <term>colon operator</term> <c>:</c> creates row vectors containing regularly spaced values. The basic syntax is:
+		</p>
+
+		<p>
+			<c>start:increment:end</c>
+		</p>
+
+		<p>
+			If you omit the increment, MATLAB assumes an increment of 1.
+		</p>
+
+		<example>
+			<title>Creating Sequences with the Colon Operator</title>
+			<statement>
+				<program language="matlab">
+					<code>
+						% Create 1 through 10
+						v1 = 1:10;          % [1 2 3 4 5 6 7 8 9 10]
+						
+						% Create 0 through 1 in steps of 0.1
+						v2 = 0:0.1:1;       % [0 0.1 0.2 ... 0.9 1.0]
+						
+						% Create decreasing sequence
+						v3 = 10:-1:1;       % [10 9 8 7 6 5 4 3 2 1]
+					</code>
+				</program>
+			</statement>
+		</example>
+
+		<p>
+			The colon operator is particularly useful for creating index ranges, which you will use frequently when accessing array elements.
+		</p>
+	</subsection>
+
+	<subsection xml:id="creating-arrays-functions">
+		<title>Using Built-in Functions</title>
+
+		<p>
+			MATLAB provides several functions for creating arrays with specific patterns:
+		</p>
+
+		<ul>
+			<li><pf>zeros(m,n)</pf> creates an m-by-n array of zeros</li>
+			<li><pf>ones(m,n)</pf> creates an m-by-n array of ones</li>
+			<li><pf>eye(n)</pf> creates an n-by-n identity matrix</li>
+			<li><pf>linspace(start,end,n)</pf> creates n evenly spaced values between start and end</li>
+			<li><pf>rand(m,n)</pf> creates an m-by-n array of random numbers between 0 and 1</li>
+		</ul>
+
+		<example>
+			<title>Creating Arrays with Functions</title>
+			<statement>
+				<program language="matlab">
+					<code>
+						% 3-by-4 matrix of zeros
+						Z = zeros(3,4);
+						
+						% 2-by-2 matrix of ones
+						O = ones(2,2);
+						
+						% 3-by-3 identity matrix
+						I = eye(3);
+						
+						% 5 evenly spaced values from 0 to 10
+						x = linspace(0,10,5);  % [0  2.5  5  7.5  10]
+					</code>
+				</program>
+			</statement>
+		</example>
+
+		<aside>
+			<title><pf>linspace</pf> vs. Colon Operator</title>
+			<p>
+				Use <pf>linspace</pf> when you know how many points you need. Use the colon operator when you know the spacing between points.
+			</p>
+		</aside>
+	</subsection>
+
+	<subsection xml:id="creating-arrays-concatenation">
+		<title>Combining Arrays</title>
+
+		<p>
+			You can create larger arrays by combining smaller ones, a process called <term>concatenation</term>. The same bracket notation works:
+		</p>
+
+		<program language="matlab">
+			<code>
+				% Horizontal concatenation
+				v1 = [1 2 3];
+				v2 = [4 5 6];
+				v = [v1 v2];        % [1 2 3 4 5 6]
+				
+				% Vertical concatenation
+				A = [1 2; 3 4];
+				B = [5 6; 7 8];
+				C = [A; B];         % 4-by-2 matrix
+			</code>
+		</program>
+
+		<p>
+			For concatenation to work, the arrays must have compatible dimensions: matching number of columns for vertical concatenation, and matching number of rows for horizontal concatenation.
+		</p>
+
+		<exercise label="creating-arrays-chkpt-1">
+			<statement>
+				<p>
+					What does the MATLAB expression <c>1:3:10</c> create?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="no">
+					<statement><p>The numbers 1, 3, and 10</p></statement>
+				</choice>
+				<choice correct="yes">
+					<statement><p>The numbers 1, 4, 7, and 10</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>All integers from 1 to 10</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>An error because the increment must be 1</p></statement>
+				</choice>
+			</choices>
+		</exercise>
+	</subsection>
+
+	<reading-questions>
+		<introduction>
+			<p>
+				These questions check your understanding of array creation methods.
+			</p>
+		</introduction>
+
+		<exercise xml:id="creating-arrays-rq-1">
+			<title>Array Creation Methods</title>
+			<statement>
+				<p>
+					When would you use <pf>linspace</pf> instead of the colon operator?
+				</p>
+			</statement>
+			<!-- Placeholder for open-response or multiple-choice question -->
+		</exercise>
+	</reading-questions>
+
+	<exercises xml:id="creating-arrays-exercises">
+		<title>Practice Problems</title>
+
+		<introduction>
+			<p>
+				Practice creating arrays using different methods.
+			</p>
+		</introduction>
+
+		<exercise>
+			<title>Creating Specific Arrays</title>
+			<statement>
+				<p>
+					Write MATLAB commands to create the following arrays:
+				</p>
+				<ol>
+					<li>A row vector containing the integers from 5 to 15</li>
+					<li>A column vector containing the values 2, 4, 6, 8, 10</li>
+					<li>A 4-by-3 matrix of zeros</li>
+					<li>A row vector of 100 evenly spaced values between 0 and 2π</li>
+				</ol>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						% 1. Row vector from 5 to 15
+						v1 = 5:15;
+						
+						% 2. Column vector with even numbers
+						v2 = [2; 4; 6; 8; 10];
+						% or: v2 = (2:2:10)';
+						
+						% 3. 4-by-3 matrix of zeros
+						Z = zeros(4,3);
+						
+						% 4. 100 points from 0 to 2*pi
+						x = linspace(0, 2*pi, 100);
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Array Concatenation</title>
+			<statement>
+				<p>
+					Given <c>A = [1 2; 3 4]</c> and <c>B = [5; 6]</c>, create a 2-by-3 matrix <c>C</c> by concatenating <c>A</c> and <c>B</c> horizontally.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						A = [1 2; 3 4];
+						B = [5; 6];
+						C = [A B];  % Results in [1 2 5; 3 4 6]
+					</code>
+				</program>
+			</solution>
+		</exercise>
+	</exercises>
+
+</section>

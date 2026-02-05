@@ -1,0 +1,276 @@
+<section xml:id="array-indexing">
+	<title>Accessing Array Elements</title>
+
+	<introduction>
+		<p>
+			Once you have created an array, you need to be able to access and modify its individual elements or groups of elements. This process is called <term>indexing</term> or <term>subscripting</term>. MATLAB's indexing system is powerful and flexible, allowing you to extract single values, entire rows or columns, or arbitrary subsets of an array.
+		</p>
+	</introduction>
+
+	<subsection xml:id="indexing-single">
+		<title>Single Element Indexing</title>
+
+		<p>
+			To access a single element of a vector, use parentheses with the element's position:
+		</p>
+
+		<program language="matlab">
+			<code>
+				v = [10 20 30 40 50];
+				x = v(3);     % x is 30 (the third element)
+			</code>
+		</program>
+
+		<aside>
+			<title>MATLAB Uses 1-Based Indexing</title>
+			<p>
+				Unlike many programming languages (such as Python or C), MATLAB starts counting at 1, not 0. The first element of an array is accessed with index 1.
+			</p>
+		</aside>
+
+		<p>
+			For matrices, you need two indices: one for the row and one for the column. The syntax is <c>A(row,column)</c>:
+		</p>
+
+		<program language="matlab">
+			<code>
+				A = [1 2 3; 4 5 6; 7 8 9];
+				x = A(2,3);   % x is 6 (row 2, column 3)
+			</code>
+		</program>
+
+		<p>
+			You can also modify array elements using indexing:
+		</p>
+
+		<program language="matlab">
+			<code>
+				v(3) = 100;      % Changes the third element to 100
+				A(1,2) = -5;     % Changes element at row 1, column 2 to -5
+			</code>
+		</program>
+	</subsection>
+
+	<subsection xml:id="indexing-ranges">
+		<title>Indexing Multiple Elements</title>
+
+		<p>
+			You can access multiple elements at once by providing a vector of indices or using the colon operator:
+		</p>
+
+		<program language="matlab">
+			<code>
+				v = [10 20 30 40 50 60 70 80 90 100];
+				
+				% Access elements 2, 4, and 6
+				subset1 = v([2 4 6]);        % [20 40 60]
+				
+				% Access elements 3 through 7
+				subset2 = v(3:7);            % [30 40 50 60 70]
+				
+				% Access every other element
+				subset3 = v(1:2:end);        % [10 30 50 70 90]
+			</code>
+		</program>
+
+		<p>
+			The keyword <c>end</c> represents the last index in that dimension, making it easy to access elements relative to the end of an array.
+		</p>
+	</subsection>
+
+	<subsection xml:id="indexing-matrices">
+		<title>Indexing Rows and Columns</title>
+
+		<p>
+			For matrices, you can extract entire rows or columns by using a colon in place of an index:
+		</p>
+
+		<program language="matlab">
+			<code>
+				A = [1 2 3; 4 5 6; 7 8 9];
+				
+				% Extract the second row
+				row2 = A(2,:);        % [4 5 6]
+				
+				% Extract the third column
+				col3 = A(:,3);        % [3; 6; 9] (column vector)
+				
+				% Extract a submatrix (rows 1-2, columns 2-3)
+				B = A(1:2, 2:3);      % [2 3; 5 6]
+			</code>
+		</program>
+
+		<p>
+			The colon by itself means <q>all indices in this dimension</q>.
+		</p>
+
+		<exercise label="indexing-chkpt-1">
+			<statement>
+				<p>
+					Given <c>v = [5 10 15 20 25]</c>, what does <c>v(end-1)</c> return?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="no">
+					<statement><p>15</p></statement>
+				</choice>
+				<choice correct="yes">
+					<statement><p>20</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>25</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>An error because <c>end-1</c> is not a valid index</p></statement>
+				</choice>
+			</choices>
+		</exercise>
+	</subsection>
+
+	<subsection xml:id="indexing-logical">
+		<title>Logical Indexing</title>
+
+		<p>
+			A powerful feature of MATLAB is <term>logical indexing</term>, where you use a logical array (containing <c>true</c> and <c>false</c> values) to select elements that meet a condition:
+		</p>
+
+		<program language="matlab">
+			<code>
+				v = [10 -5 30 -15 20];
+				
+				% Find positive values
+				positive_values = v(v > 0);     % [10 30 20]
+				
+				% Set all negative values to zero
+				v(v &lt; 0) = 0;                   % v becomes [10 0 30 0 20]
+			</code>
+		</program>
+
+		<p>
+			This technique is extremely useful for filtering data and performing conditional operations on arrays without explicit loops.
+		</p>
+	</subsection>
+
+	<reading-questions>
+		<introduction>
+			<p>
+				These questions check your understanding of array indexing.
+			</p>
+		</introduction>
+
+		<exercise xml:id="indexing-rq-1">
+			<title>Matrix Indexing</title>
+			<statement>
+				<p>
+					Given a matrix <c>M</c>, explain what <c>M(:,1)</c> returns.
+				</p>
+			</statement>
+			<!-- Placeholder for open-response question -->
+		</exercise>
+	</reading-questions>
+
+	<exercises xml:id="indexing-exercises">
+		<title>Practice Problems</title>
+
+		<introduction>
+			<p>
+				Practice accessing and modifying array elements.
+			</p>
+		</introduction>
+
+		<exercise>
+			<title>Vector Indexing Practice</title>
+			<statement>
+				<p>
+					Given <c>v = [3 6 9 12 15 18 21 24]</c>, write MATLAB expressions to:
+				</p>
+				<ol>
+					<li>Access the fourth element</li>
+					<li>Access the last element</li>
+					<li>Access elements 2 through 5</li>
+					<li>Access every third element</li>
+				</ol>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						v = [3 6 9 12 15 18 21 24];
+						
+						% 1. Fourth element
+						x1 = v(4);           % 12
+						
+						% 2. Last element
+						x2 = v(end);         % 24
+						
+						% 3. Elements 2 through 5
+						x3 = v(2:5);         % [6 9 12 15]
+						
+						% 4. Every third element
+						x4 = v(1:3:end);     % [3 12 21]
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Matrix Indexing Practice</title>
+			<statement>
+				<p>
+					Given the matrix:
+				</p>
+				<program language="matlab">
+					<code>
+						A = [10 20 30; 40 50 60; 70 80 90];
+					</code>
+				</program>
+				<p>
+					Write MATLAB expressions to:
+				</p>
+				<ol>
+					<li>Access the element in row 2, column 3</li>
+					<li>Extract the first row</li>
+					<li>Extract the last column</li>
+					<li>Create a 2-by-2 submatrix from the bottom-right corner</li>
+				</ol>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						A = [10 20 30; 40 50 60; 70 80 90];
+						
+						% 1. Element at row 2, column 3
+						x1 = A(2,3);              % 60
+						
+						% 2. First row
+						x2 = A(1,:);              % [10 20 30]
+						
+						% 3. Last column
+						x3 = A(:,end);            % [30; 60; 90]
+						
+						% 4. Bottom-right 2-by-2 submatrix
+						x4 = A(2:3, 2:3);         % [50 60; 80 90]
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Logical Indexing</title>
+			<statement>
+				<p>
+					Given <c>temps = [72 85 68 91 77 88 65]</c>, write a MATLAB command to find all temperatures greater than 80.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					<code>
+						temps = [72 85 68 91 77 88 65];
+						hot_temps = temps(temps > 80);  % [85 91 88]
+					</code>
+				</program>
+			</solution>
+		</exercise>
+	</exercises>
+
+</section>
