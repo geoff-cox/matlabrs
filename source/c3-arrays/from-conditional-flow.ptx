@@ -1,0 +1,217 @@
+ARRAY-SPECIFIC CONTENT REMOVED FROM sec-conditional-flow.ptx
+This content was removed to ensure arrays are not used before being formally introduced in Chapter 3.
+
+<!-- Exercise: Detecting Increasing Order (uses vector indexing) -->
+<exercise xml:id="if-activity-2">
+	<title>Example 2: Detecting Increasing Order</title>
+
+	<p>
+		Suppose <pf>list</pf> is a vector of three numbers.
+		Set <pf>in_order</pf> to <pf>true</pf> if the entries are in increasing order; otherwise set it to <pf>false</pf>.
+	</p>
+
+	<program language="matlab">
+a = list(1);
+b = list(2);
+c = list(3);
+
+if a &lt;= b &amp;&amp; b &lt;= c
+		in_order = true;
+else
+		in_order = false;
+end
+	</program>
+
+	<p>
+		This pattern is common: the <pf>if</pf> block assigns <pf>true</pf>, and the <pf>else</pf> block assigns <pf>false</pf>.
+		When you see this often enough, you start recognizing conditions as "tests" whose job is to set flags.
+	</p>
+</exercise>
+
+<!-- Exercise: Minimum of Three Values (uses vector indexing) -->
+<exercise xml:id="if-activity-3">
+	<title>Minimum of Three Values</title>
+
+	<p>
+		Suppose <pf>list</pf> is a vector of three numbers. Set <pf>min_val</pf> to the smallest of the three values
+		(without using <pf>min</pf>).
+	</p>
+
+	<program language="matlab">
+if list(1) &lt;= list(2) &amp;&amp; list(1) &lt;= list(3)
+		min_val = list(1);
+elseif list(2) &lt;= list(3)
+		min_val = list(2);
+else
+		min_val = list(3);
+end
+	</program>
+
+	<p>
+		This illustrates a useful design principle: order your conditions so that each branch excludes the ones
+		that come after it. After the first test fails, you already know <pf>list(1)</pf> is not the minimum, so the
+		remaining logic only needs to compare the other two entries.
+	</p>
+</exercise>
+
+<!-- Exercise f-activity-6: if-elseif-else with vector indexing -->
+<exercise xml:id="f-activity-6">
+	<title><pf>if-elseif-else</pf></title>
+
+	<statement>
+		<p>
+			<ol marker="(a)">
+				<li>
+					<p>
+						Suppose <pf>v</pf> is a <pf>1 x 3 double</pf>. Write a code block that sets <pf>k</pf> to the index location of the first positive number inside <pf>v</pf>. If there are no positive numbers, then set <pf>k = -1</pf>.
+					</p>
+				</li>
+				<li>
+					<p>
+						How does the code change if <pf>k</pf> is the index of the last positive number in <pf>v</pf> instead of the first?
+					</p>
+				</li>
+			</ol>
+		</p>
+	</statement>
+
+	<solution>
+
+		<p>
+			The logic is as follows: 
+			<ul>
+				<li>"if the 1st value positive, then set k = 1",</li>
+				<li>"if the 2nd value positive, then set k = 2",</li>
+				<li>"is the 3rd value positive, then set k = 3",</li>
+				<li>"otherwise, set k = -1"</li>
+			</ul>
+		</p>
+
+		<p>
+			In code, this looks like:
+
+		</p>
+
+		<program language="matlab">
+			<code>
+				v = [-3 5 1];
+				if v(1) > 0
+					k = 1;
+				elseif v(2) > 0
+					k = 2;
+				elseif v(3) > 0
+					k = 3;
+				else
+					k = -1;
+				end
+				disp(k)
+			</code>
+		</program>
+
+		<p>
+			Running this code block displays <pf>k = 2</pf>.
+		</p>
+
+	</solution>
+
+	<solution>
+		<p> 
+			Recall that MATLAB only runs the commands of the FIRST TRUE branch of the if-statement and ignores the rest. Here are two reasonable approaches:
+
+			<dl width="narrow">
+				<li>
+					<title>Approach 1</title>
+					<program language="matlab">
+						<code>
+							% Reverse the order
+							v = [-3 5 1];
+
+							if v(3) > 0
+								k = 3;
+							elseif v(2) > 0
+								k = 2;
+							elseif v(1) > 0
+								k = 1;
+							else
+								k = -1;
+							end
+							disp(k)
+						</code>
+					</program>
+				</li>
+				<li>
+					<title>Approach 2</title>
+					<program language="matlab">
+						<code>
+							% Split the ifs
+							v = [-3 5 1];
+							k = -1;		% set the default k
+
+							if v(1) > 0
+								k = 1;	% override k if true
+							end
+
+							if v(2) > 0
+								k = 2;	% override k if true
+							end
+							
+							if v(3) > 0
+								k = 3;	% override k if true
+							end
+							disp(k)
+						</code>
+					</program>
+				</li>
+			</dl>
+		</p>
+	</solution>
+
+</exercise>
+
+<!-- Array-specific content from subsec-if-logical-operators -->
+<p>
+	When you need to test array conditions, compute the logical array first and then summarize it.
+</p>
+
+<program language="matlab">
+A = [-2 0 5 7];
+
+if any(A &lt; 0)
+		disp("A contains at least one negative entry.");
+end
+</program>
+
+<!-- Array-specific content from subsubsec-short-circuit-operators -->
+<p>
+	Use <pf>&amp;&amp;</pf> and <pf>||</pf> in conditional statements (like <pf>if</pf>-statements) where you need a single true/false answer.
+	Use <pf>&amp;</pf> and <pf>|</pf> when working with arrays of logical values.
+</p>
+
+<program language="matlab">
+	x = 4;
+
+	% Scalar logic (typical in conditionals)
+	(x &gt; 0) &amp;&amp; (x &lt; 10)
+
+	% Array logic (elementwise)
+	A = [-2 0 5 7];
+	(A &gt; 0) &amp; (A &lt; 6)     % true where A is between 1 and 5
+</program>
+
+<p>
+	Short-circuit evaluation can prevent errors. For example, checking if an array is non-empty before indexing:
+</p>
+
+<program language="matlab">
+	% This prevents indexing errors when A is empty
+	if ~isempty(A) &amp;&amp; A(1) &lt; 0
+		disp("First entry is negative.")
+	end
+</program>
+
+<!-- From subsec-if-best-practices -->
+<p>
+	Two habits prevent a lot of bugs:
+	first, make your conditions explicit and readable; second, test edge cases (like zeros, empty arrays,
+	or unexpected input types).
+</p>
