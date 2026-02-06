@@ -807,67 +807,32 @@
 				<title>Logical Data Types</title>
 				<statement correct="no">
 					<p>
-						In MATLAB, the values <pf>true</pf> and <pf>1</pf> are exactly the same and can always be used interchangeably.
+						In MATLAB, <pf>true</pf> and <pf>1</pf> are the same.
 					</p>
 				</statement>
 				<feedback>
 					<p>
-						While <pf>true</pf> and <pf>1</pf> appear similar and behave similarly in many contexts, they are different data types. 
-						<pf>true</pf> is a logical value, while <pf>1</pf> is a numeric (double) value. 
-						You can see this difference using the <pf>whos</pf> command.
-					</p>
-				</feedback>
-			</task>
-
-			<task label="logic-ckpt-relational-equal">
-				<title>Relational Operators: Equality</title>
-				<statement>
-					<p>
-						Which operator tests if <pf>x</pf> is equal to <pf>y</pf>?
-					</p>
-				</statement>
-				<choices randomize="yes">
-					<choice correct="yes">
-						<statement><p><pf>==</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>=</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>~=</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>!=</pf></p></statement>
-					</choice>
-				</choices>
-				<feedback>
-					<p>
-						The double equal sign <pf>==</pf> compares two values for equality. 
-						The single equal sign <pf>=</pf> is used for assignment, not comparison.
+						Incorrect. While <pf>true</pf> and <pf>1</pf> are represented by the same numeric value, 
+						they have different data types: <pf>true</pf> is of type <pf>logical</pf>, 
+						while <pf>1</pf> is of type <pf>double</pf>.
 					</p>
 				</feedback>
 			</task>
 
 			<task label="logic-ckpt-relational-not-equal">
 				<title>Relational Operators: Inequality</title>
+
 				<statement>
 					<p>
-						Which operator tests if <pf>x</pf> is not equal to <pf>y</pf>?
+						Which of the following commands test that <pf>x</pf> is not equal to <pf>y</pf>?
 					</p>
 				</statement>
-				<choices randomize="yes">
-					<choice correct="yes">
-						<statement><p><pf>~=</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>!=</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>==</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>&lt;&gt;</pf></p></statement>
-					</choice>
+				<choices randomize="no">
+					<choice correct="no"><statement><p><pf>~(x = y)</pf></p></statement></choice>
+					<choice correct="yes"><statement><p><pf>~(x == y)</pf></p></statement></choice>
+					<choice correct="no"><statement><p><pf>~x == y</pf></p></statement></choice>
+					<choice correct="yes"><statement><p><pf>x ~= y</pf></p></statement></choice>
+					<choice correct="no"><statement><pf>x ~== y</pf></statement></choice>
 				</choices>
 				<feedback>
 					<p>
@@ -881,71 +846,10 @@
 				<title>Translating Relational Operators</title>
 				<statement>
 					<p>
-						For each English question below, provide the corresponding MATLAB logical statement.
-						The table below shows some examples to help you understand the pattern.
-					</p>
-
-					<table>
-						<title>Sample English and MATLAB translation of relational operators</title>
-						<tabular top="minor" left="minor" right="minor">
-							<col halign="right"/>
-							<col halign="center"/>
-							<col halign="center"/>
-							<col halign="center"/>
-							<row>
-								<cell halign="center" colspan="2">English</cell>
-								<cell halign="center" colspan="2">MATLAB</cell>
-							</row>
-							<row top="minor" bottom="minor">
-								<cell halign="center" right="none">Question</cell>
-								<cell>Answer</cell>
-								<cell right="none">Question</cell>
-								<cell>Answer</cell>
-							</row>
-							<row>
-								<cell>Is <m>\texttt{4}</m> less than <m>\texttt{4}</m>?</cell>
-								<cell>no</cell>
-								<cell><pf>4 &lt; 4</pf></cell>
-								<cell><pf>0</pf></cell>
-							</row>
-							<row>
-								<cell>Is <m>\texttt{4}</m> less than or equal to <m>\texttt{4}</m>?</cell>
-								<cell>yes</cell>
-								<cell><pf>4 &lt;= 4</pf></cell>
-								<cell><pf>1</pf></cell>
-							</row>
-							<row>
-								<cell>Is <m>\texttt{3}</m> greater than <m>\texttt{-4}</m>?</cell>
-								<cell>yes</cell>
-								<cell><pf>3 &gt; -4</pf></cell>
-								<cell><pf>1</pf></cell>
-							</row>
-							<row>
-								<cell>Is <m>\texttt{3}</m> greater than or equal to <m>\texttt{-4}</m>?</cell>
-								<cell>yes</cell>
-								<cell><pf>3 &gt;= -4</pf></cell>
-								<cell><pf>1</pf></cell>
-							</row>
-							<row>
-								<cell>Is <m>\texttt{4}</m> equal to <m>\texttt{-4}</m>?</cell>
-								<cell>no</cell>
-								<cell><pf>4 == -4</pf></cell>
-								<cell><pf>0</pf></cell>
-							</row>
-							<row bottom="minor">
-								<cell>Is <m>\texttt{4}</m> not equal to <m>\texttt{-4}</m>?</cell>
-								<cell>yes</cell>
-								<cell><pf>4 ~= -4</pf></cell>
-								<cell><pf>1</pf></cell>
-							</row>
-						</tabular>
-					</table>
-
-					<p>
-						What MATLAB command would you use to ask: <q>Is <m>7</m> greater than <m>3</m>?</q>
+						Give the logical statement that is equivalent to the question:
 					</p>
 					<p>
-						<fillin mode="string" answer="7 &gt; 3" width="10"/>
+						Is <m>7</m> greater than <m>3</m>? ➜ <fillin mode="string" answer="7 &gt; 3" width="10"/>
 					</p>
 				</statement>
 				<evaluation>
@@ -971,20 +875,25 @@
 				<title>Basic Logical Operators</title>
 				<statement>
 					<p>
-						Evaluate the following logical expression in MATLAB:
+						Select the value contained in <pf>ans</pf> after evaluating the following expression:
 					</p>
 					<program language="matlab">
 						<code>
-							(3 &gt;= 2) &amp; (3+4 == 6)
+							ans = (3 &gt;= 2) &amp; (3+4 == 6)
 						</code>
 					</program>
-					<p>
-						What is the result of this expression?
-					</p>
 				</statement>
 				<choices>
+					<choice>
+						<statement><p><pf>ans = 1</pf> (logical)</p></statement>
+						<feedback>
+							<p>
+								Incorrect. While <pf>3 &gt;= 2</pf> is true, check the second part: is <m>3+4</m> really equal to <m>6</m>?
+							</p>
+						</feedback>
+					</choice>
 					<choice correct="yes">
-						<statement><p><pf>0</pf> (false)</p></statement>
+						<statement><p><pf>ans = 0</pf> (logical)</p></statement>
 						<feedback>
 							<p>
 								Correct! Even though <pf>3 &gt;= 2</pf> is true, the expression <pf>3+4 == 6</pf> is false (since <m>3+4=7</m>). 
@@ -993,18 +902,38 @@
 						</feedback>
 					</choice>
 					<choice>
-						<statement><p><pf>1</pf> (true)</p></statement>
+						<statement><p><pf>ans = 1</pf></p></statement>
 						<feedback>
 							<p>
-								Incorrect. While <pf>3 &gt;= 2</pf> is true, check the second part: is <m>3+4</m> really equal to <m>6</m>?
+								Incorrect. The result of a logical operation is always of type <pf>logical</pf>, not <pf>double</pf>.
 							</p>
 						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								<pf>ans = 0</pf>
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. The result of a logical operation is always of type <pf>logical</pf>, not <pf>double</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								None of the above. This expression will produce an error.
+							</p>
+						</statement>
 					</choice>
 				</choices>
 			</task>
 
 			<task label="logic-ckpt-basic-ops-explanation">
 				<title>Understanding AND</title>
+
 				<statement correct="no">
 					<p>
 						An AND operation (<pf>&amp;</pf>) returns true if at least one of the conditions is true.
@@ -1022,10 +951,10 @@
 				<title>Is p positive?</title>
 				<statement>
 					<p>
-						Using <pf>p = -3</pf>, what command asks: <q>Is <pf>p</pf> positive?</q>
+						Give the command that is equivalent to asking the question:
 					</p>
 					<p>
-						<fillin mode="string" answer="p &gt; 0" width="10"/>
+						Is <pf>p</pf> positive? ➜ <fillin mode="string" answer="p &gt; 0" width="10"/>
 					</p>
 				</statement>
 					<evaluation>
@@ -1049,12 +978,13 @@
 
 			<task label="logic-ckpt-combined-2">
 				<title>Is p equal to 4?</title>
+
 				<statement>
 					<p>
-						Using <pf>p = -3</pf>, what command asks: <q>Is <pf>p</pf> equal to <pf>4</pf>?</q>
+						Give the command that is equivalent to asking the question:
 					</p>
 					<p>
-						<fillin mode="string" answer="p == 4" width="10"/>
+						Is <pf>p</pf> equal to <pf>4</pf>? ➜ <fillin mode="string" answer="p == 4" width="10"/>
 					</p>
 				</statement>
 				<evaluation>
@@ -1080,30 +1010,21 @@
 				<title>Combining with AND</title>
 				<statement>
 					<p>
-						Using the variables <pf>ans1</pf> and <pf>ans2</pf> defined above, write a command that asks: <q>Is <pf>p</pf> positive AND equal to <pf>4</pf>?</q>
+						Select the command that is equivalent to asking the question:
 					</p>
 					<p>
-						Use the element-wise AND operator to combine <pf>ans1</pf> and <pf>ans2</pf>.
+						Is <pf>p</pf> a negative number greater than <pf>-4</pf>?
 					</p>
 				</statement>
 				<choices>
-					<choice correct="yes">
-						<statement><p><pf>ans3 = ans1 &amp; ans2</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>ans3 = ans1 | ans2</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>ans3 = ~ans1</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>ans3 = ans1 == ans2</pf></p></statement>
-					</choice>
+					<choice><statement><p><pf> p &lt; 0 &amp; p &gt;= -4 </pf></p></statement></choice>
+					<choice><statement><p><pf> p &lt;= 0 | p &gt; -4 </pf></p></statement></choice>
+					<choice><statement><p><pf> -4 &lt; p &lt; 0 </pf></p></statement></choice>
+					<choice><statement><p><pf> p &lt; 0 | p &gt; -4 </pf></p></statement></choice>
+					<choice correct="yes"><statement><p><pf>p &lt; 0 &amp; p &gt; -4</pf></p></statement></choice>
 				</choices>
 				<feedback>
-					<p>
-						The element-wise AND operator <pf>&amp;</pf> combines two conditions, returning true only if both are true.
-					</p>
+					<p></p>
 				</feedback>
 			</task>
 
@@ -1111,25 +1032,18 @@
 				<title>Negating with NOT</title>
 				<statement>
 					<p>
-						Using the variable <pf>ans1</pf> defined above, write a command that asks: <q>Is <pf>p</pf> NOT positive?</q>
+						Which logical statements are equivalent to asking the question:
 					</p>
 					<p>
-						Use the NOT operator to negate <pf>ans1</pf>.
+						Is <pf>p</pf> NOT positive?
 					</p>
 				</statement>
 				<choices>
-					<choice correct="yes">
-						<statement><p><pf>ans4 = ~ans1</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>ans4 = ans1 &amp; 0</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>ans4 = !ans1</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>ans4 = ans1 &lt;= 0</pf></p></statement>
-					</choice>
+					<choice correct="yes"><statement><p><pf>~(p &gt; 0)</pf></p></statement></choice>
+					<choice correct="yes"><statement><p><pf>p &lt;= 0</pf></p></statement></choice>
+					<choice><statement><p><pf>~p &gt; 0</pf></p></statement></choice>
+					<choice><statement><p><pf>p ~&gt; 0</pf></p></statement></choice>
+					<choice><statement><p><pf>p &lt; 0</pf></p></statement></choice>
 				</choices>
 				<feedback>
 					<p>
@@ -1140,12 +1054,13 @@
 
 			<task label="logic-ckpt-combined-5">
 				<title>Combining with OR</title>
+
 				<statement>
 					<p>
-						Using <pf>p = -3</pf>, what command asks: <q>Is <pf>p</pf> not equal to <pf>5</pf> OR greater than <pf>7</pf>?</q>
+						Give the command that is equivalent to asking the question:
 					</p>
 					<p>
-						<fillin mode="string" answer="(p ~= 5) | (p &gt; 7)" width="20"/>
+						Is <pf>p</pf> not equal to 5 OR greater than 7? ➜ <fillin mode="string" answer="(p ~= 5) | (p &gt; 7)" width="15"/>
 					</p>
 				</statement>
 				<evaluation>
@@ -1172,8 +1087,11 @@
 
 				<statement>
 					<p>
-						Which of the following expressions is equivalent to <pf>~A &amp; B | C</pf> according to MATLAB's operator precedence rules?
+						Select the logical statement that is equivalent to the following:
 					</p>
+					<program>
+						~A &amp; B | C
+					</program>
 				</statement>
 				<choices randomize="yes">
 					<choice correct="yes">
@@ -1195,62 +1113,6 @@
 						So <pf>~A &amp; B | C</pf> is evaluated as <pf>((~A) &amp; B) | C</pf>.
 					</p>
 				</feedback>
-			</task>
-
-			<task label="logic-ckpt-short-circuit">
-				<title>Short-Circuit Operators</title>
-
-				<statement>
-					<p>
-						When should you use <pf>&amp;&amp;</pf> and <pf>||</pf> instead of <pf>&amp;</pf> and <pf>|</pf>?
-					</p>
-				</statement>
-				<choices>
-					<choice correct="yes">
-						<statement>
-							<p>When working with scalar logical values in conditional statements (like <pf>if</pf>)</p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! The short-circuit operators <pf>&amp;&amp;</pf> and <pf>||</pf> are designed for scalar logical values 
-								and are commonly used in conditional statements. They also provide short-circuit evaluation, which can prevent errors.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>When performing element-wise operations on arrays</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. Use <pf>&amp;</pf> and <pf>|</pf> for element-wise operations on arrays. 
-								The short-circuit operators <pf>&amp;&amp;</pf> and <pf>||</pf> work only with scalar values.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>They are completely interchangeable and can be used in any situation</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. While they behave similarly for scalar values, <pf>&amp;&amp;</pf> and <pf>||</pf> do not work on arrays, 
-								and <pf>&amp;</pf> and <pf>|</pf> do not provide short-circuit evaluation.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>When you want the computation to run faster</p>
-						</statement>
-						<feedback>
-							<p>
-								Partially correct. Short-circuit operators can be faster because they skip unnecessary evaluations, 
-								but the main reason to use them is for scalar logical expressions and to prevent potential errors in conditionals.
-							</p>
-						</feedback>
-					</choice>
-				</choices>
 			</task>
 
 		</exercise>
