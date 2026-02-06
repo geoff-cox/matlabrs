@@ -1,0 +1,364 @@
+<!-- Multiple-Choice Question Template -->
+<exercise label="chkpt-multiple-choice"><title>QUESTION TITLE</title>
+	<statement>
+		<p>
+		QUESTION STATEMENT
+		</p>
+	</statement>
+	<choices randomize="yes">
+		<choice>
+		<statement>
+			<p>
+			INCORRECT CHOICE 1
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CHOICE 1
+			</p>
+		</feedback>
+		</choice>
+		<choice>
+		<statement>
+			<p>
+			INCORRECT CHOICE 2
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CHOICE 2
+			</p>
+		</feedback>
+		</choice>
+		<choice correct="yes">
+		<statement>
+			<p>
+			CORRECT CHOICE
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CORRECT CHOICE
+			</p>
+		</feedback>
+		</choice>
+		<choice>
+		<statement>
+			<p>
+			INCORRECT CHOICE 3
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CHOICE 3
+			</p>
+		</feedback>
+		</choice>
+	</choices>
+</exercise>
+
+<!-- Multiple-Answer Question Template -->
+<exercise label="chkpt-multiple-answer"><title>QUESTION TITLE</title>
+	<statement>
+		<p>
+		QUESTION STATEMENT
+		</p>
+	</statement>
+	<choices randomize="yes">
+		<choice correct="yes">
+		<statement>
+			<p>
+			CORRECT CHOICE 1
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CORRECT CHOICE 1
+			</p>
+		</feedback>
+		</choice>
+		<choice>
+		<statement>
+			<p>
+			INCORRECT CHOICE 1
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CHOICE 1
+			</p>
+		</feedback>
+		</choice>
+		<choice correct="yes">
+		<statement>
+			<p>
+			CORRECT CHOICE 2
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CORRECT CHOICE 2
+			</p>
+		</feedback>
+		</choice>
+		<choice>
+		<statement>
+			<p>
+			INCORRECT CHOICE 2
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CHOICE 2
+			</p>
+		</feedback>
+		</choice>
+		<choice correct="yes">
+		<statement>
+			<p>
+			CORRECT CHOICE 3
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CORRECT CHOICE 3
+			</p>
+		</feedback>
+		</choice>
+		<choice>
+		<statement>
+			<p>
+			INCORRECT CHOICE 3
+			</p>
+		</statement>
+		<feedback>
+			<p>
+			FEEDBACK FOR CHOICE 3
+			</p>
+		</feedback>
+		</choice>
+	</choices>
+</exercise>
+
+<!-- True/False Question Templates -->
+<!-- True Statement: -->
+<exercise label="chkpt-true-false-true"><title>QUESTION TITLE</title>
+	<statement correct="yes">
+		<p>
+		TRUE STATEMENT
+		</p>
+	</statement>
+	<feedback>
+		<p>
+		GENERAL FEEDBACK
+		</p>
+	</feedback>
+</exercise>
+
+<!-- False Statement: -->
+<exercise label="chkpt-true-false-false"><title>QUESTION TITLE</title>
+	<statement correct="no">
+		<p>
+		FALSE STATEMENT
+		</p>
+	</statement>
+	<feedback>
+		<p>
+		GENERAL FEEDBACK
+		</p>
+	</feedback>
+</exercise>
+
+<!-- Cardsort Question Template -->
+<exercise label="chkpt-matching"><title>QUESTION TITLE</title>
+	<statement>
+		<p>
+		QUESTION STATEMENT
+		</p>
+	</statement>
+	<feedback>
+		<p>
+		GENERAL FEEDBACK
+		</p>
+	</feedback>
+	<cardsort>
+		<match>
+		<premise>ITEM 1</premise>
+		<response>TARGET 1</response>
+		</match>
+		<match>
+		<premise>ITEM 2</premise>
+		<response>TARGET 2</response>
+		</match>
+		<match>
+		<premise>ITEM 3</premise>
+		<response>TARGET 3</response>
+		</match>
+		<match>
+		<premise>ITEM 4</premise>
+		<response>TARGET 4</response>
+		</match>
+		<match>
+		<premise>ITEM 5</premise>
+		<response>TARGET 5</response>
+		</match>
+	</cardsort>
+</exercise>
+
+<!-- Clickable-Area Question Template -->
+<exercise label="chkpt-fill-in-the-blank"><title>QUESTION TITLE</title>
+	<statement>
+		<p>
+		Click on all the items below that satisfy SOME PROPERTY.
+		</p>
+	</statement>
+	<areas>
+		<p>
+		THERE CAN BE NON_CLICKABLE TEXT ANYWHERE AROUND THE <area> TAGS
+		<area>CORRECT ITEM 1</area>
+		<area>CORRECT ITEM 2</area>
+		<area correct="no">INCORRECT ITEM 1</area>
+		<area>CORRECT ITEM 3</area>
+		<area correct="no">INCORRECT ITEM 2</area>
+		</p>
+	</areas>
+	<feedback>
+		<p>
+		GENERAL FEEDBACK
+		</p>
+	</feedback>
+</exercise>
+
+<!-- STATIC Fill-In Question Template -->
+<exercise label="fillin-template">
+	<title>Fill-In, String and Number Answers</title>
+	<statement>
+		<p>
+			Complete the following line of a Python program so that it will declare an integer variable <c>age</c> with an initial value of <c>5</c>.
+		</p>
+		<p>
+			<fillin mode="string" answer="int"/> <c>age = </c> <fillin mode="number" answer="5"/><c>;</c>
+		</p>
+	</statement>
+	<evaluation>
+		<evaluate>
+			<test>
+				<strcmp use-answer="yes"/>
+				<feedback>A variable of type <c>int</c> is appropriate for whole number ages.</feedback>
+			</test>
+			<test>
+				<strcmp>.*</strcmp>
+				<feedback>
+					<p>
+						Remember that Java uses just the first three letters of the word <q>integer</q>	to define an integral type.
+					</p>
+				</feedback>
+			</test>
+		</evaluate>
+		<evaluate>
+			<test>
+				<numcmp use-answer="yes"/>
+				<feedback>An integer variable may be initialized to a value.</feedback>
+			</test>
+			<test>
+				<strcmp>.*</strcmp>
+				<feedback>Use <c>5</c> as the initial value of the variable.</feedback>
+			</test>
+		</evaluate>
+	</evaluation>
+</exercise>
+
+<!-- DYNAMIC Fill-In Question Template -->
+<exercise label="dynamic-simple-formula">
+	<title>Fill-In Formula (Dynamic)</title>
+	<statement>
+		<p>
+			Find a formula for a cubic function <m>f(x)</m> that has roots at <m>x=<eval obj="x1"/></m>,
+			<m>x=<eval obj="x2"/></m>,
+			and <m>x=<eval obj="x3"/></m> and so that <m>f(0)=<eval obj="y0"/></m>.
+		</p>
+		<p>
+			<m>f(x)=</m> <fillin name="st_cubic" mode="math" ansobj="cubic"/>
+		</p>
+	</statement>
+	<solution>
+		<p>
+			Knowing the roots of a polynomial allows us to write down the formula of <m>f(x)</m> in factored form,
+			<me>
+				f(x) = A <eval obj="base_cubic"/>
+			</me>
+			with an unknown scaling multiple <m>A</m>.
+		</p>
+		<p>
+			When we evaluate <m>f(x)</m> at <m>x=0</m> using this formula, we find
+			<me>
+				f(0) = <eval obj="base_yint"/>A
+			</me>.
+			Since we also know <m>f(0)=<eval obj="y0"/></m>,
+			we can write down the equation
+			<me>
+				A <eval obj="base_cubic"/> = <eval obj="y0"/>
+			</me>
+			and find that <m>A=<eval obj="A"/></m>.
+		</p>
+		<p>
+			Consequently, we can write our function in the form
+			<me>
+				f(x)=<eval obj="cubic"/>
+			</me>.
+		</p>
+	</solution>
+	<setup seed="314159">
+		<de-object name="y0" context="number">
+			<de-random distribution="discrete" min="-8" max="8" by="1" nonzero="yes"/>
+		</de-object>
+		<de-object name="x1" context="number">
+			<de-random distribution="discrete" min="-8" max="-4" by="1"/>
+		</de-object>
+		<de-object name="d1" context="number">
+			<de-random distribution="discrete" min="1" max="4" by="1"/>
+		</de-object>
+		<de-object name="d2" context="number">
+			<de-random distribution="discrete" min="1" max="4" by="1"/>
+		</de-object>
+		<de-object name="x2" context="number">
+			<de-number>x1+d1</de-number>
+		</de-object>
+		<de-object name="x3" context="number">
+			<de-number>x2+d2</de-number>
+		</de-object>
+		<de-object name="base_cubic" context="formula">
+			<de-expression reduce="yes">(x-x1)*(x-x2)*(x-x3)</de-expression>
+		</de-object>
+		<de-object name="base_yint" context="number">
+			<de-evaluate>
+				<formula><eval obj="base_cubic"/></formula>
+				<variable name="x">0</variable>
+			</de-evaluate>
+		</de-object>
+		<de-object name="A" context="number">
+			<de-number reduce="yes">y0/base_yint</de-number>
+		</de-object>
+		<de-object name="cubic" context="formula">
+			<de-expression reduce="yes">A*(x-x1)*(x-x2)*(x-x3)</de-expression>
+		</de-object>
+	</setup>
+	<evaluation>
+		<evaluate name="st_cubic">
+			<test correct="yes">
+				<mathcmp obj="cubic"/>
+			</test>
+		</evaluate>
+	</evaluation>
+</exercise>
+
+<!-- Short-Answer Question Template -->
+<exercise label="short-answer-question">
+	<title>Short Answer</title>
+	<statement>
+		<p>
+			Question Statement
+		</p>
+	</statement>
+	<response/> <!-- Adding an empty response tag will create a text field that students can type in.
+</exercise>
