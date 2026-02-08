@@ -327,23 +327,34 @@
 		</introduction>
 
 		<exercise xml:id="if-activity-1">
-			<title>Example 1: Simple <pf>if</pf>-statement</title>
+			<title>Activity 1: Simple <pf>if</pf>-statement</title>
 
 			<introduction>
 				<p>
-					Complete the following tasks.
+					Use the coding area, below, to complete the following tasks. Each task builds on the previous one, so you can modify your code block as you go.
 				</p>
+
+				<sage language="octave">
+					<input>
+						% ---- Type your code here ----
+						
+
+						% -----------------------------
+						fprintf('for x = %d, we set y to %d\n', x, y);
+					</input>
+				</sage>
 			</introduction>
 
 			<task>
 				<statement>
 					<p>
-						Write a code block that defines <pf>x</pf> as <pf>6</pf> and sets <pf>y</pf> according to the following rule:
+						Define the variable <pf>x</pf> as <pf>6</pf>, if use an <pf>if</pf>-statement to define the variable <pf>y</pf> according to the following rule:
 						<ul marker="">
 							<li>if <pf>x</pf> is less than or equal to 9, set <pf>y</pf> to 1, otherwise set <pf>y</pf> to 4.</li>
 						</ul>
 					</p>
 				</statement>
+
 				<solution>
 					<program language="matlab">
 						x = 6;
@@ -353,23 +364,8 @@
 						else
 							y = 4;
 						end
-					</program>
-				</solution>
-				<solution>
-					<title>(with commentary)</title>
 
-					<program language="matlab">
-						x = 6;
-
-						if x &lt;= 9
-							fprintf('x = %d ≤ 9 is true\n', x);
-							y = 1;
-						else
-							fprintf('x = %d ≤ 9 is false\n', x);
-							y = 4;
-						end
-
-						fprintf('so we set y to %d\n', y);
+						fprintf('for x = %d, we set y to %d\n', x, y);
 					</program>
 				</solution>
 			</task>
@@ -388,13 +384,10 @@
 			<task>
 				<statement>
 					<p>
-						Now, suppose we define a variable <pf>x</pf> as a random integer between -5 and 15:
+						Next, define <pf>x</pf> as a random integer between -5 and 15, using the command <pf>randi([-5, 15])</pf>.
 					</p>
-					<program>
-						x = randi([-5, 15]);
-					</program>
 					<p>
-						Rerun your code block multiple times to see how the value of <pf>y</pf> changes based on the random value of <pf>x</pf>.
+						Rerun your code multiple times to see how the value of <pf>y</pf> changes based on the random value of <pf>x</pf>.
 					</p>
 				</statement>
 				<solution>
@@ -405,347 +398,239 @@
 			<task>
 				<statement>
 					<p>
-						Write a code block that sets <pf>w</pf> according to the following rules:
-						<ul>
-							<li>if <pf>x</pf> is equal to 9, set <pf>w</pf> to 1</li>
-							<li>if <pf>x</pf> is between (but not equal to) -4 and 0, set <pf>w</pf> to 2</li>
-							<li>if <pf>x</pf> is not less than 3 or greater than 9, set <pf>w</pf> to 3</li>
-							<li>if none of the above are true, set <pf>w</pf> to 4</li>
+						Update your code to set <pf>y</pf> according to the following new rule:
+						<ul marker="">
+							<li>if <pf>x</pf> is between 1 and 9 (inclusive), set <pf>y</pf> to 1, otherwise set <pf>y</pf> to 4.</li>
 						</ul>
 					</p>
 				</statement>
+
 				<solution>
 					<program language="matlab">
 						x = randi([-5, 15]);
 
-						if x == 9
-							w = 1;
-						elseif x &gt; -4 &amp;&amp; x &lt; 0
-							w = 2;
-						elseif ~(x &lt;= 3) || x &gt; 9
-							w = 3;
+						if x &gt;= 1 &amp; x &lt;= 9
+							y = 1;
 						else
-							w = 4;
-						end
-					</program>
-				</solution>
-				<solution>
-					<title>
-						(with commentary)
-					</title>
-					
-					<program language="matlab">
-						x = randi([-5, 15]);
-						fprintf('x = %d\n', x);
-
-						if x == 9
-							fprintf('x == 9 is true\n');
-							w = 1;
-						elseif x &gt; -4 &amp;&amp; x &lt; 0
-							fprintf('-4 &lt; x &lt; 0 is true\n');
-							w = 2;
-						elseif ~(x &lt;= 3) || x &gt; 9
-							fprintf('x is not less than or equal to 3 or greater than 9 is true\n');
-							w = 3;
-						else
-							fprintf('none of the above conditions are true\n');
-							w = 4;
+							y = 4;
 						end
 
-						fprintf('so we set w to %d\n', w);
+						fprintf('for x = %d, we set y to %d\n', x, y);
 					</program>
 				</solution>
 			</task>
 		</exercise>
 
-
-
-	<exercise xml:id="f-activity-4">
-		<title><pf>if-else</pf></title>
-
-		<statement>
+		<assemblage>
 			<p>
-				Suppose <pf>num</pf> is a <pf>1 x 1 double</pf>. Write a code block that increases <pf>num</pf> by 5 if it is greater than 10 and decreases it by 5 otherwise.
+				<exercise xml:id="if-activity-2">
+					<title>Activity 2: Simple <pf>if</pf>-statement</title>
+
+					<statement>
+						<p>
+							Use the coding area, below, to set <pf>w</pf> according to the following rules:
+							<ul>
+								<li>if <pf>x</pf> is equal to 9, set <pf>w</pf> to 1</li>
+								<li>if <pf>x</pf> is between (but not equal to) -4 and 0, set <pf>w</pf> to 2</li>
+								<li>if <pf>x</pf> is not less than 3 or greater than 9, set <pf>w</pf> to 3</li>
+								<li>if none of the above are true, set <pf>w</pf> to 4</li>
+							</ul>
+						</p>
+
+						<sage language="octave">
+							<input>
+								x = randi([-5, 15]);
+								% ---- Type your code here ----
+								
+
+								% -----------------------------
+								fprintf('for x = %d, we set w to %d\n', x, w);
+							</input>
+						</sage>
+
+					</statement>
+
+					<solution>
+						
+						<program language="matlab">
+							x = randi([-5, 15]);
+
+							if x == 9
+								w = 1;
+							elseif x &gt; -4 &amp;&amp; x &lt; 0
+								w = 2;
+							elseif ~(x &lt;= 3) || x &gt; 9
+								w = 3;
+							else
+								w = 4;
+							end
+
+							fprintf('for x = %d, we set w to %d\n', x, w);
+						</program>
+					</solution>
+
+				</exercise>
 			</p>
-		</statement>
+		</assemblage>
 
-		<solution>
-			<program language="matlab">
-				<code>
-					num = 68;
-					if num > 10
-						num = num + 5;
-					else
-						num = num - 5;
-					end
-				</code>
-			</program>
-		</solution>
+		<exercise xml:id="if-activity-3">
+			<title>Activity 3</title>
+			
+			<introduction>
+				<p>
+					Use the coding area, below, to complete the following tasks.
+				</p>
 
-		<solution>
-			<title>With Commentary</title>
+				<sage language="octave">
+					<input>
+						num = randi([0, 20]);
+						fprintf('Starting num = %d\n', num);
+						% ---- Type your code here ----
+						
 
-			<program language="matlab">
-				<code>
-					num = 68;
-					fprintf("Since num = " + num + ", we ")
-					if num > 10
-						num = num + 5;
-						fprintf("add 5 to get num = " + num + "\n")
-					else
-						num = num - 5;
-						fprintf("subtract 5 to get num = " + num + "\n")
-					end
-				</code>
-			</program>
+						% -----------------------------
+						fprintf('Updated num = %d\n', num);
+					</input>
+				</sage>
+			</introduction>
 
-		</solution>
-	</exercise>
+			<task xml:id="f-activity-4">
 
-	<exercise xml:id="f-activity-5">
-		<title>Optional <pf>else</pf></title>
+				<statement>
+					<p>
+						Suppose <pf>num</pf> is a random integer between 0 and 20. Give the code that increases <pf>num</pf> by 5 if it is greater than 10 and decreases it by 5 otherwise.
+					</p>
+				</statement>
 
-		<statement>
+				<solution>
+					<program language="matlab">
+						<code>
+							nnum = randi([0, 20]);
+							fprintf('Starting num = %d\n', num);
+
+							if num &gt; 10
+								num = num + 5;
+							else
+								num = num - 5;
+							end
+
+							fprintf('Updated num = %d\n', num);
+						</code>
+					</program>
+				</solution>
+
+			</task>
+
+			<task xml:id="f-activity-5">
+
+				<statement>
+					<p>
+						Suppose <pf>num</pf> is a <pf>1 x 1 double</pf>. Give the code that increases <pf>num</pf> by 5 if it is greater than 10, decreases <pf>num</pf> by 5 if it is less than 10, and does nothing if <pf>num</pf> is zero.
+					</p>
+				</statement>
+
+				<solution>
+					<p>
+						If <pf>x = 0</pf>, the below script runs the commands <pf>x = x - 5</pf> and <pf>disp(x)</pf>, outputting <pf>-5</pf>. However, if <pf>x = 10</pf>, only the <pf>disp(x)</pf> command is run, producing an output of <pf>10</pf>.
+					</p>
+
+					<program language="matlab">
+						<code>
+							if x &gt; 10
+								x = x + 5;
+							elseif x &lt; 10
+								x = x - 5;
+							end
+							disp(x)
+						</code>
+					</program>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise xml:id="sec-quadratic-equation">
+			<title>Activity 4: Solving the Quadratic Equation in MATLAB</title>
+
+			<introduction>
 			<p>
-				Suppose <pf>num</pf> is a <pf>1 x 1 double</pf>. Write a code block that increases <pf>num</pf> by 5 if it is greater than 10 and decreases it by 5 otherwise.
+				A classic programming task is turning a familiar mathematical procedure into a reliable piece of code.
+				The quadratic equation is a great example because it combines algebra, branching logic, and careful handling
+				of special cases.
 			</p>
+
 			<p>
-				Suppose <pf>x</pf> contains a numeric value. Write a script that increases <pf>x</pf> by 5 if it is greater than 10, decreases <pf>x</pf> by 5 if it is less than 10, and does nothing if <pf>x</pf> is zero.
+				Consider the quadratic polynomial <m>a x^2 + b x + c</m>. Its roots satisfy
+				<me>x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.</me>
+				The expression <m>D = b^2 - 4ac</m> is called the <term>discriminant</term>, and its sign determines
+				the type of roots.
 			</p>
-		</statement>
+			</introduction>
 
-		<solution>
-			<p>
-				If <pf>x = 0</pf>, the below script runs the commands <pf>x = x - 5</pf> and <pf>disp(x)</pf>, outputting <pf>-5</pf>. However, if <pf>x = 10</pf>, only the <pf>disp(x)</pf> command is run, producing an output of <pf>10</pf>.
-			</p>
+			<task xml:id="subsec-quadratic-discriminant">
+				<title>The Discriminant and Root Types</title>
 
-			<program language="matlab">
-				<code>
-					if x &gt; 10
-						x = x + 5;
-					elseif x &lt; 10
-						x = x - 5;
-					end
-					disp(x)
-				</code>
-			</program>
-		</solution>
-	</exercise>
+				<p>
+					There are three common cases:
+					if <m>D &gt; 0</m> there are two distinct real roots, if <m>D = 0</m> there is one repeated real root,
+					and if <m>D &lt; 0</m> the roots are complex conjugates.
+				</p>
 
-
-<exercise xml:id="sec-quadratic-equation">
-	<title>Case Study: Solving the Quadratic Equation in MATLAB</title>
-
-	<introduction>
-	<p>
-		A classic programming task is turning a familiar mathematical procedure into a reliable piece of code.
-		The quadratic equation is a great example because it combines algebra, branching logic, and careful handling
-		of special cases.
-	</p>
-
-	<p>
-		Consider the quadratic polynomial <m>a x^2 + b x + c</m>. Its roots satisfy
-		<me>x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.</me>
-		The expression <m>D = b^2 - 4ac</m> is called the <term>discriminant</term>, and its sign determines
-		the type of roots.
-	</p>
-	</introduction>
-
-
-	<task xml:id="subsec-quadratic-discriminant">
-		<title>The Discriminant and Root Types</title>
-
-		<p>
-			There are three common cases:
-			if <m>D &gt; 0</m> there are two distinct real roots, if <m>D = 0</m> there is one repeated real root,
-			and if <m>D &lt; 0</m> the roots are complex conjugates.
-		</p>
-
-		<program language="matlab">
-a = 1; b = -3; c = 2;        % (x-1)(x-2) = 0
-
-D = b^2 - 4*a*c;
-
-x1 = (-b + sqrt(D)) / (2*a);
-x2 = (-b - sqrt(D)) / (2*a);
-		</program>
-
-		<p>
-			MATLAB’s <code>sqrt</code> can produce complex results automatically when <m>D &lt; 0</m>,
-			so the computation above still works. But it is often useful to detect the case and present results clearly.
-		</p>
-	</task>
-
-	<task xml:id="subsec-quadratic-function">
-		<title>Packaging the Computation as a Function</title>
-
-		<p>
-			A function is the natural way to turn this idea into reusable code.
-			We also add input checks to catch the invalid case <m>a = 0</m>, which would not be a quadratic.
-		</p>
-
-		<program language="matlab">
-function [r1, r2] = quadraticRoots(a,b,c)
-%QUADRATICROOTS Return the roots of a*x^2 + b*x + c.
-%
-%   r1, r2 are the two roots (possibly equal or complex).
-
-		if a == 0
-				error("Input a must be nonzero for a quadratic polynomial.");
-		end
+				<program language="matlab">
+		a = 1; b = -3; c = 2;        % (x-1)(x-2) = 0
 
 		D = b^2 - 4*a*c;
-		r1 = (-b + sqrt(D)) / (2*a);
-		r2 = (-b - sqrt(D)) / (2*a);
-end
-		</program>
 
-		<p>
-			A function like this becomes more valuable when paired with clear documentation and predictable output format.
-			In practice, you might also return the discriminant or a label indicating the root type.
-		</p>
-	</task>
+		x1 = (-b + sqrt(D)) / (2*a);
+		x2 = (-b - sqrt(D)) / (2*a);
+				</program>
 
-	<task xml:id="subsec-quadratic-numerics">
-		<title>A Numerical Note</title>
+				<p>
+					MATLAB’s <code>sqrt</code> can produce complex results automatically when <m>D &lt; 0</m>,
+					so the computation above still works. But it is often useful to detect the case and present results clearly.
+				</p>
+			</task>
 
-		<p>
-			For some coefficient values, the quadratic formula can suffer from roundoff error.
-			This usually appears when <m>b^2</m> is much larger than <m>4ac</m>, causing subtractive cancellation.
-			For introductory programming, the standard formula is perfectly acceptable, but it is good to know that
-			numerical stability can matter even in “simple” algebra.
-		</p>
-	</task>
-</exercise>
+			<task xml:id="subsec-quadratic-function">
+				<title>Packaging the Computation as a Function</title>
 
-<!-- demo_if_statements.m -->
-<exercise xml:id="sec-if-statements">
-	<title>Making Decisions with if Statements</title>
+				<p>
+					A function is the natural way to turn this idea into reusable code.
+					We also add input checks to catch the invalid case <m>a = 0</m>, which would not be a quadratic.
+				</p>
 
-	<introduction>
-	<p>
-		An <code>if</code> statement lets your program choose what to do based on a logical condition.
-		This is the core mechanism behind “decision-making” in code: the program tests a condition and follows
-		the branch that matches the result.
-	</p>
-	</introduction>
+				<program language="matlab">
+		function [r1, r2] = quadraticRoots(a,b,c)
+		%QUADRATICROOTS Return the roots of a*x^2 + b*x + c.
+		%
+		%   r1, r2 are the two roots (possibly equal or complex).
 
+				if a == 0
+						error("Input a must be nonzero for a quadratic polynomial.");
+				end
 
-	<task xml:id="subsec-if-basic-syntax">
-		<title>Basic if Syntax</title>
+				D = b^2 - 4*a*c;
+				r1 = (-b + sqrt(D)) / (2*a);
+				r2 = (-b - sqrt(D)) / (2*a);
+		end
+				</program>
 
-		<p>
-			The simplest form has one condition and one block of code.
-			If the condition is true, MATLAB executes the block. Otherwise, MATLAB skips it.
-		</p>
+				<p>
+					A function like this becomes more valuable when paired with clear documentation and predictable output format.
+					In practice, you might also return the discriminant or a label indicating the root type.
+				</p>
+			</task>
 
-		<program language="matlab">
-x = -2;
+			<task xml:id="subsec-quadratic-numerics">
+				<title>A Numerical Note</title>
 
-if x &lt; 0
-		disp("x is negative");
-end
-		</program>
-
-		<p>
-			The condition must evaluate to a single logical value.
-			If you accidentally supply a logical array, MATLAB will error in modern versions.
-			In those cases you typically want <code>any</code> or <code>all</code>.
-		</p>
-	</task>
-
-	<task xml:id="subsec-if-elseif-else">
-		<title>Multiple Branches with elseif and else</title>
-
-		<p>
-			Use <code>elseif</code> to test additional conditions, and <code>else</code> as a catch-all when none match.
-			MATLAB checks conditions in order and takes the first branch that is true.
-		</p>
-
-		<program language="matlab">
-score = 83;
-
-if score &gt;= 90
-		letter = "A";
-elseif score &gt;= 80
-		letter = "B";
-elseif score &gt;= 70
-		letter = "C";
-elseif score &gt;= 60
-		letter = "D";
-else
-		letter = "F";
-end
-
-disp("Letter grade: " + letter)
-		</program>
-	</task>
-
-	<task xml:id="subsec-if-logical-operators">
-		<title>Using Logical Operators in Conditions</title>
-
-		<p>
-			Many conditions combine multiple requirements. For scalar logic, prefer <code>&amp;&amp;</code> and <code>||</code>.
-		</p>
-
-		<program language="matlab">
-x = 4;
-
-if (x &gt; 0) &amp;&amp; (x &lt; 10)
-		disp("x is between 0 and 10");
-end
-		</program>
-
-	</task>
-
-	<task xml:id="subsec-if-best-practices">
-		<title>Common Pitfalls and Best Practices</title>
-
-		<p>
-			Two habits prevent a lot of bugs:
-			first, make your conditions explicit and readable; second, test edge cases (like zeros, empty arrays,
-			or unexpected input types).
-		</p>
-
-		<p>
-			For text comparisons, use functions like <code>strcmp</code> rather than <code>==</code>
-			(especially when working with character arrays).
-		</p>
-
-		<program language="matlab">
-reply = "yes";
-
-if strcmpi(reply, "yes")
-		disp("Continuing...");
-else
-		disp("Stopping...");
-end
-		</program>
-
-<paragraphs xml:id="subsubsec-short-circuit-operators">
-	<title>Short-Circuit Operators: <pf>&amp;&amp;</pf> and <pf>||</pf></title>
-
-	<p>
-		MATLAB also provides <term>short-circuit</term> logical operators: <pf>&amp;&amp;</pf> (AND) and <pf>||</pf> (OR).
-		These work only with scalar logical values (true/false), not arrays.
-		When the left side of the expression already determines the outcome, MATLAB skips evaluating the right side.
-	</p>
-
-
-	<program language="matlab">
-		x = 4;
-
-		% Scalar logic (typical in conditionals)
-		(x &gt; 0) &amp;&amp; (x &lt; 10)
-
-	</program>
-
-</paragraphs>
-
-	</task>
-
-
-</exercise>
+				<p>
+					For some coefficient values, the quadratic formula can suffer from roundoff error.
+					This usually appears when <m>b^2</m> is much larger than <m>4ac</m>, causing subtractive cancellation.
+					For introductory programming, the standard formula is perfectly acceptable, but it is good to know that
+					numerical stability can matter even in “simple” algebra.
+				</p>
+			</task>
+		</exercise>
 
 	</reading-questions>
 
