@@ -1,4 +1,4 @@
-<section xml:id="sec-conditional-gates">
+<section xml:id="sec-conditional-statements">
 	<title>Conditional Gates</title>
 
 	<introduction>
@@ -10,36 +10,41 @@
 		</p>
 	</introduction>
 
-	<subsection xml:id="subsec-if-single-gate">
-		<title><pf>if</pf> Gate</title>
+	<subsection xml:id="sec-if-statement">
+		<title>If Statement</title>
 
 		<p>
 			The simplest <pf>if</pf>-statement has one condition and one block of code. The code runs only when the
 			condition is true.
 		</p>
 
-		<assemblage xml:id="single-if-gate-structure">
-			<title><pf>if</pf> Gate Structure</title>
+		<assemblage xml:id="single-if-statement-structure">
+			<title>The if Statement Structure</title>
 
-				<p>
-					Use Case: 
-					<ul>
-						<li>Perform <pf>taskA</pf> if <pf>logicalStatementA</pf> is <pf>true</pf>.</li>
-					</ul>
-				</p>
+			<sidebyside widths="15% 85%">
+				<p>Use Case: </p>
+				<p>if <pf>condition</pf> is true, run <pf>codeBlock</pf>.</p>
+			</sidebyside>
 
-				<program language="matlab">
-					if logicalStatementA
-						%		⤷ if true  ➜ do taskA ➜ end
-						%		⤷ if false ➜ end
-						taskA
-					end
-				</program>
+			<program language="matlab" line-numbers="no">
+				if condition     % true? ➜ run codeBlock
+					codeBlock
+				end
+			</program>
+
+			<p>
+				Notes &amp; Rules:
+				<ul>
+					<li>Every <pf>if</pf>-statement must end with <pf>end</pf>.</li>
+					<li><pf>condition</pf> must be a logical statement that returns <pf>true</pf> or <pf>false</pf>.</li>
+					<li>If <pf>condition</pf> is false, MATLAB does nothing and skips to <pf>end</pf>.</li>
+				</ul>
+			</p>
 
 		</assemblage>
 
 		<p>
-			To see how this works, run the following code block in the MATLAB <m>\texttt{cwd}</m>:
+			To see how this works, run the following code block:
 		</p>
 
 		<sage language="octave">
@@ -62,34 +67,38 @@
 
 	</subsection>
 
-	<subsection xml:id="subsec-if-else-gate">
-		<title><pf>if-else</pf> Gate</title>
+	<subsection xml:id="sec-if-else-statement">
+		<title>If-else Statement</title>
 
 		<p>
 			When you have more than one possibility, you can add an <pf>else</pf> branch. MATLAB checks the <pf>if</pf> condition;
 			if it is true, it executes the <pf>if</pf> branch; if it is false, it moves directly into the <pf>else</pf> branch.
 		</p>
 
-		<assemblage xml:id="if-else-gate-structure">
-			<title><pf>if-else</pf> Gate Structure</title>
+		<assemblage xml:id="if-else-structure">
+			<title>The if-else Statement Structure</title>
 
-				<p>
-					Use Case: 
-					<ul>
-						<li>Perform <pf>taskA</pf> if <pf>logicalStatementA</pf> is <pf>true</pf>,</li>
-						<li>otherwise perform <pf>taskB</pf>.</li>
-					</ul>
-				</p>
+			<sidebyside widths="15% 85%">
+				<p>Use Case: </p>
+				<p>if <pf>conditionA</pf> is true, run <pf>blockA</pf>. Otherwise, run <pf>blockB</pf>. </p>
+			</sidebyside>
 
-				<program language="matlab">
-					if logicalStatementA
-						%		⤷ if true  ➜ do taskA ➜ end
-						%		⤷ if false ➜ do taskB ➜ end
-						taskA
-					else
-						taskB
-					end
-				</program>
+			<program language="matlab" line-numbers="no">
+				if conditionA     % true? ➜ run blockA -- false? ➜ run blockB
+					blockA			
+				else
+					blockB
+				end
+			</program>
+
+			<p>
+				Notes &amp; Rules:
+				<ul>
+					<li>Every <pf>if</pf>-statement must end with <pf>end</pf>.</li>
+					<li><pf>conditionA</pf> must be a logical statement that returns <pf>true</pf> or <pf>false</pf>.</li>
+					<li>Exactly one of <pf>blockA</pf> OR <pf>blockB</pf> must run when the code executes.</li>
+				</ul>
+			</p>
 
 		</assemblage>
 
@@ -115,42 +124,38 @@
 
 	</subsection>
 
-	<subsection xml:id="subsec-if-elseif-else-gate">
-		<title><pf>if-elseif-else</pf> Gate</title>
+	<subsection xml:id="sec-if-elseif-else-statement">
+		<title>If-elseif-else Statement</title>
 
 		<p>
 			An <pf>else</pf> branch acts as a fallback: it runs only if every earlier condition is false.
 			This is useful when you want to guarantee that some variable gets assigned a value.
 		</p>
 
-		<assemblage xml:id="if-elseif-else-gate-structure">
-			<title><pf>if-elseif-else</pf> Gate Structure</title>
+		<assemblage xml:id="if-elseif-else-statement-structure">
+			<title>The if-elseif-else Statement Structure</title>
 
+			<sidebyside widths="15% 85%">
+				<p>Use Case: </p>
 				<p>
-					Use Case: 
 					<ul>
-						<li>Perform <pf>taskA</pf> if <pf>logicalStatementA</pf> is <pf>true</pf>,</li>
-						<li>Perform <pf>taskB</pf> if <pf>logicalStatementB</pf> is <pf>true</pf>,</li>
-						<li>Perform <pf>taskC</pf> if <pf>logicalStatementC</pf> is <pf>true</pf>,</li>
-						<li>otherwise perform <pf>taskD</pf> (default).</li>
+						<li>if <pf>conditionA</pf> is true, run <pf>blockA</pf>,</li>
+						<li>if <pf>conditionB</pf> is true, run <pf>blockB</pf>,</li>
+						<li>if <pf>conditionC</pf> is true, run <pf>blockC</pf>,</li>
+						<li>if all of the above are false, run <pf>blockD</pf> (default).</li>
 					</ul>
 				</p>
+			</sidebyside>
 
-				<program language="matlab">
-					if logicalStatementA
-						%		⤷ if true  ➜ do taskA ➜ end
-						%		⤷ if false ➜ check logicalStatementB
-						taskA
-					elseif logicalStatementB
-						%		⤷ if true  ➜ do taskB ➜ end
-						%		⤷ if false ➜ check logicalStatementC
-						taskB
-					elseif logicalStatementC
-						%		⤷ if true  ➜ do taskC ➜ end
-						%		⤷ if false ➜ do default taskD ➜ end
-						taskC
+				<program language="matlab" line-numbers="no">
+					if conditionA     % true? ➜ run blockA -- false? ➜ check conditionB
+						blockA			
+					elseif conditionB % true? ➜ run blockB -- false? ➜ check conditionC
+						blockB
+					elseif conditionC % true? ➜ run blockC -- false? ➜ run blockD
+						blockC
 					else
-						taskD
+						blockD
 					end
 				</program>
 
@@ -160,7 +165,7 @@
 						<li>You can add as many <pf>elseif</pf> branches as needed.</li>
 						<li>The <pf>else</pf> (default) branch is optional.</li>
 						<li>The conditions are checked in order from top to bottom.</li>
-						<li>Only one of the tasks will be performed when the code runs.</li>
+						<li>Exactly one of the blocks will run when the code executes.</li>
 						<li>
 							Every <pf>if</pf>-statement must end with <pf>end</pf>.
 						</li>
@@ -202,15 +207,15 @@
 		</p>
 	</subsection>
 
-	<subsection xml:id="subsec-switch-gates">
-		<title><pf>switch</pf> Gate</title>
+	<subsection xml:id="sec-switch-statement">
+		<title>Switch Statement</title>
 		
 		<p>
 			The switch statement is another option for controlling code in MATLAB. It works similarly to the if-statement by directing your code to go down one of many possible paths.
 		</p>
 
 		<p>
-			The switch statement determines which task to perform based on possible values of some variable. The conditions we use with switch statements are in the form of cases. 
+			The switch statement determines what code to execute based on possible values of some variable. The conditions we use with switch statements are in the form of cases. 
 		</p>
 
 		<aside>
@@ -220,39 +225,35 @@
 		</aside>
 
 		<assemblage xml:id="switch-statement-def">
-			<title><pf>switch</pf> Gate Structure</title>
+			<title>The switch Statement Structure</title>
 
-			<p>
-				Use Case: 
-				<ul>
-					<li>Perform <pf>taskA</pf> if <pf>varName</pf> is equal to <pf>val1</pf>,</li>
-					<li>Perform <pf>taskB</pf> if <pf>varName</pf> is equal to <pf>val2</pf> or <pf>val3</pf>,</li>
-					<li>Perform <pf>taskC</pf> if <pf>varName</pf> is equal to <pf>val4</pf>,</li>
-					<li>otherwise perform <pf>taskD</pf> (default).</li>
-				</ul>
-			</p>
+			<sidebyside widths="15% 85%">
+				<p>Use Case: </p>
+				<p>
+					<ul>
+						<li>if <pf>var</pf> is equal to <pf>val1</pf>, run <pf>blockA</pf>,</li>
+						<li>if <pf>var</pf> is equal to <pf>val2</pf> or <pf>val3</pf>, run <pf>blockB</pf>,</li>
+						<li>if <pf>var</pf> is equal to <pf>val4</pf>, run <pf>blockC</pf>,</li>
+						<li>if <pf>var</pf> was not matched, run <pf>blockD</pf> (default).</li>
+					</ul>
+				</p>
+			</sidebyside>
 
 			<program language="matlab">
-				switch varName
+				switch var
 
-					case val1
-						%  ⤷ varName == val1?  YES ➜ do taskA ➜ end
-						%                       NO ➜ next case
-						taskA
-
-					case {val2, val3}
-						%   ⤷     ⤷ varName == val2 OR val3?  YES ➜ do taskB ➜ end
-						%                                      NO ➜ next case
-						taskB
-
-					case val4
-						%  ⤷ varName == val4?  YES ➜ do taskC ➜ end
-						%                       NO ➜ do taskD ➜ end
-						taskC
-
-					otherwise
-						taskD
-
+					case val1          % var == val1? YES ➜ run blockA 
+						               %              NO  ➜ check next case
+						blockA
+					case {val2, val3}  % var == val2 OR val3? Yes ➜ run blockB
+						               %                      NO  ➜ check next case
+						blockB
+					case val4          % var == val4? Yes ➜ run blockC
+						               %              NO  ➜ check next case
+						blockC
+					otherwise          % no matches? YES ➜ run blockD
+						               %             NO  ➜ check next case
+						blockD
 				end
 			</program>
 
@@ -326,7 +327,7 @@
 		</introduction>
 
 		<exercise xml:id="if-activity-1">
-			<title>Example 1: Simple <pf>if</pf>-gate</title>
+			<title>Example 1: Simple <pf>if</pf>-statement</title>
 
 			<introduction>
 				<p>
@@ -751,9 +752,10 @@ end
 	<exercises xml:id="conditional-flow-cqs">
 		<title>🤔💭 Conceptual Questions</title>
 
-		<exercise label="conditional-flow-ckpts">
+		<exercise label="conditional-flow-concepts">
 			NEED SOME QUESTIONS HERE
 		</exercise>
 
 	</exercises>
+
 </section>
