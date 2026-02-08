@@ -3,10 +3,10 @@
 
 	<introduction>
 		<p>
-			So far, we've written code that runs steps in sequence. But real programs 
-			often need to make decisions, choosing different actions based on conditions. 
-			This is called flow control. In MATLAB, you use things like <pf>if</pf>-statements or 
-			<pf>switch</pf>-statements to guide your code down the right path.
+			So far, we've written code that runs step by step in a straight line. Real programs
+			need to react to data or user input, choosing different actions when conditions change.
+			This kind of decision-making is called flow control. In MATLAB, <pf>if</pf>-statements
+			and <pf>switch</pf>-statements let you test conditions and choose the path your code follows.
 		</p>
 	</introduction>
 
@@ -14,8 +14,9 @@
 		<title>If Statement</title>
 
 		<p>
-			The simplest <pf>if</pf>-statement has one condition and one block of code. The code runs only when the
-			condition is true.
+			The simplest <pf>if</pf>-statement tests a single logical condition. MATLAB evaluates the condition;
+			if it is <pf>true</pf>, the indented block runs. If it is <pf>false</pf>, MATLAB skips the block and
+			continues after <pf>end</pf>.
 		</p>
 
 		<assemblage xml:id="single-if-statement-structure">
@@ -65,14 +66,74 @@
 			and nothing is printed.
 		</p>
 
+		<exercise label="conditional-gates-chkpt-1">
+			<title>When does the block run?</title>
+			<statement>
+				<p>
+					In a basic <pf>if</pf> statement, what happens when the condition is false?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice>
+					<statement>
+						<p>
+							MATLAB runs the block once and then stops the script.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>if</pf> statement never stops execution by itself.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							MATLAB skips the block and continues with the line after <pf>end</pf>.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							When the condition is false, MATLAB simply moves past the block.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							MATLAB runs both the block and the next line after <pf>end</pf>.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Only one path executes: either the block runs or it is skipped.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							MATLAB reports an error because the condition is false.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							False conditions are expected, so no error is raised.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</exercise>
+
 	</subsection>
 
 	<subsection xml:id="sec-if-else-statement">
 		<title>If-else Statement</title>
 
 		<p>
-			When you have more than one possibility, you can add an <pf>else</pf> branch. MATLAB checks the <pf>if</pf> condition;
-			if it is true, it executes the <pf>if</pf> branch; if it is false, it moves directly into the <pf>else</pf> branch.
+			When there are two mutually exclusive options, add an <pf>else</pf> branch. MATLAB checks the <pf>if</pf> condition once;
+			if it is true, it executes the <pf>if</pf> branch, and if it is false, it runs the <pf>else</pf> branch. Exactly one
+			branch runs each time the code executes.
 		</p>
 
 		<assemblage xml:id="if-else-structure">
@@ -122,14 +183,29 @@
 			Since <pf>age</pf> is <pf>23</pf>, the logical statement <pf>age &gt;= 21</pf> is true, so MATLAB prints the first message. Now try changing <pf>age</pf> to <pf>16</pf> and running it again. This time, the logical statement is false, so MATLAB tells you to move along.
 		</p>
 
+		<exercise label="conditional-gates-chkpt-2">
+			<title>Exactly one branch</title>
+			<statement correct="yes">
+				<p>
+					In an <pf>if-else</pf> statement, MATLAB executes exactly one of the two branches.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Because the condition is either true or false, MATLAB runs the matching branch and skips the other.
+				</p>
+			</feedback>
+		</exercise>
+
 	</subsection>
 
 	<subsection xml:id="sec-if-elseif-else-statement">
 		<title>If-elseif-else Statement</title>
 
 		<p>
-			An <pf>else</pf> branch acts as a fallback: it runs only if every earlier condition is false.
-			This is useful when you want to guarantee that some variable gets assigned a value.
+			Use <pf>elseif</pf> when you need to test several conditions in order. MATLAB checks each condition from
+			top to bottom and executes the first block whose condition is true. An optional <pf>else</pf> branch acts as
+			a fallback so you can guarantee that a variable gets assigned a value.
 		</p>
 
 		<assemblage xml:id="if-elseif-else-statement-structure">
@@ -205,17 +281,90 @@
 			<pf>x = 0; y = 4;</pf>, <pf>x = 0; y = 3;</pf>, and <pf>x = 3; y = 3;</pf>.
 			Watch how only one branch executes each time.
 		</p>
+
+		<exercise label="conditional-gates-chkpt-3">
+			<title>How elseif chains work</title>
+			<statement>
+				<p>
+					Which statements about an <pf>if-elseif-else</pf> chain are true? Select all that apply.
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement>
+						<p>
+							Conditions are checked from top to bottom.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							MATLAB evaluates conditions in order and stops at the first true one.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							The <pf>else</pf> block runs even if a previous condition is true.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>else</pf> block is a fallback and only runs when all conditions are false.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							Only the first true condition's block executes.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Once MATLAB finds a true condition, it skips the remaining branches.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							You must include an <pf>else</pf> branch in every chain.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>else</pf> branch is optional, though it can be helpful as a default.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							You can include multiple <pf>elseif</pf> branches.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Add as many <pf>elseif</pf> tests as you need to cover different cases.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</exercise>
 	</subsection>
 
 	<subsection xml:id="sec-switch-statement">
 		<title>Switch Statement</title>
 		
 		<p>
-			The switch statement is another option for controlling code in MATLAB. It works similarly to the if-statement by directing your code to go down one of many possible paths.
+			The <pf>switch</pf> statement is another option for controlling flow in MATLAB. It is best when you are
+			comparing one value to a list of discrete, exact matches.
 		</p>
 
 		<p>
-			The switch statement determines what code to execute based on possible values of some variable. The conditions we use with switch statements are in the form of cases. 
+			A <pf>switch</pf> statement compares a variable to the values listed in each <pf>case</pf>. The first match
+			runs, and MATLAB skips the rest.
 		</p>
 
 		<aside>
@@ -314,6 +463,39 @@
 				You are in your last two years.
 			</code>
 		</program>
+
+		<exercise label="conditional-gates-chkpt-4">
+			<title>Switch keywords and roles</title>
+			<statement>
+				<p>
+					Match each <pf>switch</pf> keyword to its role.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					A <pf>switch</pf> block tests one expression, each <pf>case</pf> provides a value to match, and
+					<pf>otherwise</pf> provides the default path before <pf>end</pf> closes the block.
+				</p>
+			</feedback>
+			<cardsort>
+				<match>
+					<premise><pf>switch</pf></premise>
+					<response>Starts the block and names the expression to compare.</response>
+				</match>
+				<match>
+					<premise><pf>case</pf></premise>
+					<response>Runs when the expression matches a listed value.</response>
+				</match>
+				<match>
+					<premise><pf>otherwise</pf></premise>
+					<response>Runs when no <pf>case</pf> matches.</response>
+				</match>
+				<match>
+					<premise><pf>end</pf></premise>
+					<response>Closes the <pf>switch</pf> statement.</response>
+				</match>
+			</cardsort>
+		</exercise>
 
 	</subsection>
 
