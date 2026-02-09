@@ -321,51 +321,38 @@
 
 		<introduction>
 			<p>
-				The examples below emphasize two goals: translating English conditions into logical statements, and writing
-				conditions that are readable.
+				These in-class activities focus on writing small MATLAB functions that use <pf>if</pf> and <pf>switch</pf>
+				statements. Each activity includes multiple parts and asks you to reason about which branch executes.
 			</p>
 		</introduction>
 
-		<exercise xml:id="if-activity-1">
-			<title>Activity 1: Simple <pf>if</pf>-statement</title>
+		<exercise xml:id="conditional-activity-1">
+			<title>Activity 1: Sign Label Function</title>
 
 			<introduction>
 				<p>
-					Use the coding area, below, to complete the following tasks. Each task builds on the previous one, so you can modify your code block as you go.
+					Write a function that classifies a single number as positive, negative, or zero.
 				</p>
-
-				<sage language="octave">
-					<input>
-						% ---- Type your code here ----
-						
-
-						% -----------------------------
-						fprintf('for x = %d, we set y to %d\n', x, y);
-					</input>
-				</sage>
 			</introduction>
 
 			<task>
 				<statement>
 					<p>
-						Define the variable <pf>x</pf> as <pf>6</pf>, if use an <pf>if</pf>-statement to define the variable <pf>y</pf> according to the following rule:
-						<ul marker="">
-							<li>if <pf>x</pf> is less than or equal to 9, set <pf>y</pf> to 1, otherwise set <pf>y</pf> to 4.</li>
-						</ul>
+						Create a function named <pf>sign_label</pf> that takes one input <pf>x</pf> and returns one output
+						<pf>label</pf> with the value <pf>'positive'</pf>, <pf>'negative'</pf>, or <pf>'zero'</pf>.
 					</p>
 				</statement>
-
 				<solution>
 					<program language="matlab">
-						x = 6;
-
-						if x &lt;= 9
-							y = 1;
-						else
-							y = 4;
+						function label = sign_label(x)
+							if x &gt; 0
+								label = 'positive';
+							elseif x &lt; 0
+								label = 'negative';
+							else
+								label = 'zero';
+							end
 						end
-
-						fprintf('for x = %d, we set y to %d\n', x, y);
 					</program>
 				</solution>
 			</task>
@@ -373,262 +360,570 @@
 			<task>
 				<statement>
 					<p>
-						Change <pf>x</pf> to <pf>16</pf> and rerun your code block.
+						Modify the function so it returns a second output named <pf>code</pf> with values <pf>1</pf>, <pf>-1</pf>,
+						or <pf>0</pf> that match the sign.
 					</p>
 				</statement>
-				<solution>
-					<p>Just change the value of <pf>x</pf> to <pf>16</pf> in the previous code block.</p>
-				</solution>
-			</task>
-
-			<task>
-				<statement>
-					<p>
-						Next, define <pf>x</pf> as a random integer between -5 and 15, using the command <pf>randi([-5, 15])</pf>.
-					</p>
-					<p>
-						Rerun your code multiple times to see how the value of <pf>y</pf> changes based on the random value of <pf>x</pf>.
-					</p>
-				</statement>
-				<solution>
-					<p>Just change the value of <pf>x</pf> to <pf>randi([-5, 15])</pf> in the previous code block.</p>
-				</solution>
-			</task>
-
-			<task>
-				<statement>
-					<p>
-						Update your code to set <pf>y</pf> according to the following new rule:
-						<ul marker="">
-							<li>if <pf>x</pf> is between 1 and 9 (inclusive), set <pf>y</pf> to 1, otherwise set <pf>y</pf> to 4.</li>
-						</ul>
-					</p>
-				</statement>
-
 				<solution>
 					<program language="matlab">
-						x = randi([-5, 15]);
-
-						if x &gt;= 1 &amp; x &lt;= 9
-							y = 1;
-						else
-							y = 4;
+						function [label, code] = sign_label(x)
+							if x &gt; 0
+								label = 'positive';
+								code = 1;
+							elseif x &lt; 0
+								label = 'negative';
+								code = -1;
+							else
+								label = 'zero';
+								code = 0;
+							end
 						end
-
-						fprintf('for x = %d, we set y to %d\n', x, y);
 					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Concept check: what are <pf>label</pf> and <pf>code</pf> when <pf>x = 0</pf>, and why?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						When <pf>x = 0</pf>, the first two conditions are false, so the <pf>else</pf> branch runs and returns
+						<pf>label = 'zero'</pf> and <pf>code = 0</pf>.
+					</p>
 				</solution>
 			</task>
 		</exercise>
 
-		<assemblage>
-			<p>
-				<exercise xml:id="if-activity-2">
-					<title>Activity 2: Simple <pf>if</pf>-statement</title>
+		<exercise xml:id="conditional-activity-2">
+			<title>Activity 2: Freeze Alert Function</title>
 
-					<statement>
-						<p>
-							Use the coding area, below, to set <pf>w</pf> according to the following rules:
-							<ul>
-								<li>if <pf>x</pf> is equal to 9, set <pf>w</pf> to 1</li>
-								<li>if <pf>x</pf> is between (but not equal to) -4 and 0, set <pf>w</pf> to 2</li>
-								<li>if <pf>x</pf> is not less than 3 or greater than 9, set <pf>w</pf> to 3</li>
-								<li>if none of the above are true, set <pf>w</pf> to 4</li>
-							</ul>
-						</p>
-
-						<sage language="octave">
-							<input>
-								x = randi([-5, 15]);
-								% ---- Type your code here ----
-								
-
-								% -----------------------------
-								fprintf('for x = %d, we set w to %d\n', x, w);
-							</input>
-						</sage>
-
-					</statement>
-
-					<solution>
-						
-						<program language="matlab">
-							x = randi([-5, 15]);
-
-							if x == 9
-								w = 1;
-							elseif x &gt; -4 &amp;&amp; x &lt; 0
-								w = 2;
-							elseif ~(x &lt;= 3) || x &gt; 9
-								w = 3;
-							else
-								w = 4;
-							end
-
-							fprintf('for x = %d, we set w to %d\n', x, w);
-						</program>
-					</solution>
-
-				</exercise>
-			</p>
-		</assemblage>
-
-		<exercise xml:id="if-activity-3">
-			<title>Activity 3</title>
-			
 			<introduction>
 				<p>
-					Use the coding area, below, to complete the following tasks.
+					Use a simple <pf>if</pf>-statement to return a warning message from a temperature input.
 				</p>
-
-				<sage language="octave">
-					<input>
-						num = randi([0, 20]);
-						fprintf('Starting num = %d\n', num);
-						% ---- Type your code here ----
-						
-
-						% -----------------------------
-						fprintf('Updated num = %d\n', num);
-					</input>
-				</sage>
 			</introduction>
 
-			<task xml:id="f-activity-4">
-
+			<task>
 				<statement>
 					<p>
-						Suppose <pf>num</pf> is a random integer between 0 and 20. Give the code that increases <pf>num</pf> by 5 if it is greater than 10 and decreases it by 5 otherwise.
+						Write a function named <pf>freeze_alert</pf> that takes <pf>tempC</pf> (a scalar temperature in
+						Celsius) and returns <pf>message</pf>. If <pf>tempC</pf> is at or below <pf>0</pf>, return
+						<pf>'Freeze warning'</pf>; otherwise return <pf>'No warning'</pf>.
 					</p>
 				</statement>
-
 				<solution>
 					<program language="matlab">
-						<code>
-							nnum = randi([0, 20]);
-							fprintf('Starting num = %d\n', num);
-
-							if num &gt; 10
-								num = num + 5;
+						function message = freeze_alert(tempC)
+							if tempC &lt;= 0
+								message = 'Freeze warning';
 							else
-								num = num - 5;
+								message = 'No warning';
 							end
-
-							fprintf('Updated num = %d\n', num);
-						</code>
+						end
 					</program>
 				</solution>
-
 			</task>
 
-			<task xml:id="f-activity-5">
-
+			<task>
 				<statement>
 					<p>
-						Suppose <pf>num</pf> is a <pf>1 x 1 double</pf>. Give the code that increases <pf>num</pf> by 5 if it is greater than 10, decreases <pf>num</pf> by 5 if it is less than 10, and does nothing if <pf>num</pf> is zero.
+						Update the function to return a second output <pf>isFreezing</pf> that is <pf>true</pf> or <pf>false</pf>
+						along with the message.
 					</p>
 				</statement>
+				<solution>
+					<program language="matlab">
+						function [message, isFreezing] = freeze_alert(tempC)
+							if tempC &lt;= 0
+								message = 'Freeze warning';
+								isFreezing = true;
+							else
+								message = 'No warning';
+								isFreezing = false;
+							end
+						end
+					</program>
+				</solution>
+			</task>
 
+			<task>
+				<statement>
+					<p>
+						Concept check: what message should be returned at exactly <pf>0</pf> degrees, and why?
+					</p>
+				</statement>
 				<solution>
 					<p>
-						If <pf>x = 0</pf>, the below script runs the commands <pf>x = x - 5</pf> and <pf>disp(x)</pf>, outputting <pf>-5</pf>. However, if <pf>x = 10</pf>, only the <pf>disp(x)</pf> command is run, producing an output of <pf>10</pf>.
+						The message should be <pf>'Freeze warning'</pf> because the condition uses <pf>tempC &lt;= 0</pf>,
+						so the <pf>if</pf> branch includes the boundary value.
 					</p>
-
-					<program language="matlab">
-						<code>
-							if x &gt; 10
-								x = x + 5;
-							elseif x &lt; 10
-								x = x - 5;
-							end
-							disp(x)
-						</code>
-					</program>
 				</solution>
 			</task>
 		</exercise>
 
-		<exercise xml:id="sec-quadratic-equation">
-			<title>Activity 4: Solving the Quadratic Equation in MATLAB</title>
+		<exercise xml:id="conditional-activity-3">
+			<title>Activity 3: Ticket Price Function</title>
 
 			<introduction>
-			<p>
-				A classic programming task is turning a familiar mathematical procedure into a reliable piece of code.
-				The quadratic equation is a great example because it combines algebra, branching logic, and careful handling
-				of special cases.
-			</p>
-
-			<p>
-				Consider the quadratic polynomial <m>a x^2 + b x + c</m>. Its roots satisfy
-				<me>x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.</me>
-				The expression <m>D = b^2 - 4ac</m> is called the <term>discriminant</term>, and its sign determines
-				the type of roots.
-			</p>
+				<p>
+					Write a function that uses <pf>if-elseif-else</pf> to choose among several price brackets.
+				</p>
 			</introduction>
 
-			<task xml:id="subsec-quadratic-discriminant">
-				<title>The Discriminant and Root Types</title>
-
-				<p>
-					There are three common cases:
-					if <m>D &gt; 0</m> there are two distinct real roots, if <m>D = 0</m> there is one repeated real root,
-					and if <m>D &lt; 0</m> the roots are complex conjugates.
-				</p>
-
-				<program language="matlab">
-		a = 1; b = -3; c = 2;        % (x-1)(x-2) = 0
-
-		D = b^2 - 4*a*c;
-
-		x1 = (-b + sqrt(D)) / (2*a);
-		x2 = (-b - sqrt(D)) / (2*a);
-				</program>
-
-				<p>
-					MATLAB’s <code>sqrt</code> can produce complex results automatically when <m>D &lt; 0</m>,
-					so the computation above still works. But it is often useful to detect the case and present results clearly.
-				</p>
+			<task>
+				<statement>
+					<p>
+						Create a function named <pf>ticket_price</pf> that takes an input <pf>age</pf> and returns
+						<pf>price</pf> using the rules below:
+					</p>
+					<ul>
+						<li>Age less than 13: <pf>price = 6</pf></li>
+						<li>Age from 13 to 64: <pf>price = 12</pf></li>
+						<li>Age 65 or older: <pf>price = 8</pf></li>
+					</ul>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function price = ticket_price(age)
+							if age &lt; 13
+								price = 6;
+							elseif age &lt; 65
+								price = 12;
+							else
+								price = 8;
+							end
+						end
+					</program>
+				</solution>
 			</task>
 
-			<task xml:id="subsec-quadratic-function">
-				<title>Packaging the Computation as a Function</title>
-
-				<p>
-					A function is the natural way to turn this idea into reusable code.
-					We also add input checks to catch the invalid case <m>a = 0</m>, which would not be a quadratic.
-				</p>
-
-				<program language="matlab">
-		function [r1, r2] = quadraticRoots(a,b,c)
-		%QUADRATICROOTS Return the roots of a*x^2 + b*x + c.
-		%
-		%   r1, r2 are the two roots (possibly equal or complex).
-
-				if a == 0
-						error("Input a must be nonzero for a quadratic polynomial.");
-				end
-
-				D = b^2 - 4*a*c;
-				r1 = (-b + sqrt(D)) / (2*a);
-				r2 = (-b - sqrt(D)) / (2*a);
-		end
-				</program>
-
-				<p>
-					A function like this becomes more valuable when paired with clear documentation and predictable output format.
-					In practice, you might also return the discriminant or a label indicating the root type.
-				</p>
+			<task>
+				<statement>
+					<p>
+						Modify the function so it returns a second output <pf>group</pf> and handles invalid ages.
+						If <pf>age &lt; 0</pf>, return <pf>price = NaN</pf> and <pf>group = 'invalid'</pf>.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [price, group] = ticket_price(age)
+							if age &lt; 0
+								price = NaN;
+								group = 'invalid';
+							elseif age &lt; 13
+								price = 6;
+								group = 'child';
+							elseif age &lt; 65
+								price = 12;
+								group = 'adult';
+							else
+								price = 8;
+								group = 'senior';
+							end
+						end
+					</program>
+				</solution>
 			</task>
 
-			<task xml:id="subsec-quadratic-numerics">
-				<title>A Numerical Note</title>
+			<task>
+				<statement>
+					<p>
+						Concept check: which group is used for <pf>age = 13</pf>, and why does the ordering matter?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Age 13 falls in the adult group because the first test is <pf>age &lt; 13</pf>. The conditions are checked
+						top to bottom, so the first true condition assigns the group.
+					</p>
+				</solution>
+			</task>
+		</exercise>
 
+		<exercise xml:id="conditional-activity-4">
+			<title>Activity 4: Letter Grade Function</title>
+
+			<introduction>
 				<p>
-					For some coefficient values, the quadratic formula can suffer from roundoff error.
-					This usually appears when <m>b^2</m> is much larger than <m>4ac</m>, causing subtractive cancellation.
-					For introductory programming, the standard formula is perfectly acceptable, but it is good to know that
-					numerical stability can matter even in “simple” algebra.
+					Convert a numeric score to a letter grade using range-based conditions.
 				</p>
+			</introduction>
+
+			<task>
+				<statement>
+					<p>
+						Write a function named <pf>letter_grade</pf> that returns <pf>'A'</pf>, <pf>'B'</pf>, <pf>'C'</pf>,
+						<pf>'D'</pf>, or <pf>'F'</pf> for a scalar <pf>score</pf> using the standard 90/80/70/60 cutoffs.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function letter = letter_grade(score)
+							if score &gt;= 90
+								letter = 'A';
+							elseif score &gt;= 80
+								letter = 'B';
+							elseif score &gt;= 70
+								letter = 'C';
+							elseif score &gt;= 60
+								letter = 'D';
+							else
+								letter = 'F';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Add an input check so that scores outside <pf>0</pf> to <pf>100</pf> return <pf>'invalid'</pf>.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function letter = letter_grade(score)
+							if score &lt; 0 || score &gt; 100
+								letter = 'invalid';
+							elseif score &gt;= 90
+								letter = 'A';
+							elseif score &gt;= 80
+								letter = 'B';
+							elseif score &gt;= 70
+								letter = 'C';
+							elseif score &gt;= 60
+								letter = 'D';
+							else
+								letter = 'F';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Concept check: why must the <pf>score &gt;= 90</pf> test appear before the <pf>score &gt;= 80</pf> test?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Conditions are checked in order. If the <pf>score &gt;= 80</pf> test came first, scores of 90 or above
+						would already satisfy it and never reach the <pf>A</pf> branch.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise xml:id="conditional-activity-5">
+			<title>Activity 5: Shipping Mode Switch</title>
+
+			<introduction>
+				<p>
+					Use a <pf>switch</pf> statement to choose among discrete shipping options.
+				</p>
+			</introduction>
+
+			<task>
+				<statement>
+					<p>
+						Create a function named <pf>shipping_cost</pf> that takes a <pf>mode</pf> input (<pf>'S'</pf>,
+						<pf>'E'</pf>, or <pf>'O'</pf>) and returns a scalar <pf>cost</pf> of 5, 12, or 20.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function cost = shipping_cost(mode)
+							switch mode
+								case 'S'
+									cost = 5;
+								case 'E'
+									cost = 12;
+								case 'O'
+									cost = 20;
+								otherwise
+									cost = NaN;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Extend the function so it also accepts full words (<pf>'standard'</pf>, <pf>'express'</pf>,
+						and <pf>'overnight'</pf>) in addition to the single-letter codes.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function cost = shipping_cost(mode)
+							switch mode
+								case {'S', 'standard'}
+									cost = 5;
+								case {'E', 'express'}
+									cost = 12;
+								case {'O', 'overnight'}
+									cost = 20;
+								otherwise
+									cost = NaN;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Concept check: what happens when <pf>mode = 'e'</pf> (lowercase), and why?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						The <pf>otherwise</pf> branch runs and returns <pf>NaN</pf> because <pf>switch</pf> comparisons are
+						case-sensitive, so <pf>'e'</pf> does not match <pf>'E'</pf>.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise xml:id="conditional-activity-6">
+			<title>Activity 6: Day Type Switch</title>
+
+			<introduction>
+				<p>
+					Map a day number to weekday or weekend status using a <pf>switch</pf>-statement.
+				</p>
+			</introduction>
+
+			<task>
+				<statement>
+					<p>
+						Write a function named <pf>day_type</pf> that takes an integer <pf>dayNum</pf>
+						(1 = Monday, 7 = Sunday). Return <pf>'weekday'</pf> for 1--5 and <pf>'weekend'</pf> for 6--7.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function label = day_type(dayNum)
+							switch dayNum
+								case {1, 2, 3, 4, 5}
+									label = 'weekday';
+								case {6, 7}
+									label = 'weekend';
+								otherwise
+									label = 'invalid';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Update the function to return a second output named <pf>isWeekend</pf> that is <pf>true</pf> or
+						<pf>false</pf> for valid days.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [label, isWeekend] = day_type(dayNum)
+							switch dayNum
+								case {1, 2, 3, 4, 5}
+									label = 'weekday';
+									isWeekend = false;
+								case {6, 7}
+									label = 'weekend';
+									isWeekend = true;
+								otherwise
+									label = 'invalid';
+									isWeekend = false;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Concept check: what should the function return for <pf>dayNum = 0</pf>, and which branch handles it?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						It should return <pf>'invalid'</pf> (and <pf>isWeekend = false</pf>) because the <pf>otherwise</pf>
+						branch handles values outside 1 through 7.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise xml:id="conditional-activity-7">
+			<title>Activity 7: Thermostat Mode Switch</title>
+
+			<introduction>
+				<p>
+					Use a discrete numeric code to select a thermostat mode.
+				</p>
+			</introduction>
+
+			<task>
+				<statement>
+					<p>
+						Create a function named <pf>thermostat_mode</pf> that takes a numeric code:
+						<pf>0</pf> for off, <pf>1</pf> for heat, and <pf>2</pf> for cool.
+						Return the string <pf>'off'</pf>, <pf>'heat'</pf>, or <pf>'cool'</pf>.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function mode = thermostat_mode(code)
+							switch code
+								case 0
+									mode = 'off';
+								case 1
+									mode = 'heat';
+								case 2
+									mode = 'cool';
+								otherwise
+									mode = 'invalid';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Extend the function to return a second output <pf>setPoint</pf>.
+						Use <pf>68</pf> for heat, <pf>74</pf> for cool, and <pf>NaN</pf> for off or invalid codes.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [mode, setPoint] = thermostat_mode(code)
+							switch code
+								case 0
+									mode = 'off';
+									setPoint = NaN;
+								case 1
+									mode = 'heat';
+									setPoint = 68;
+								case 2
+									mode = 'cool';
+									setPoint = 74;
+								otherwise
+									mode = 'invalid';
+									setPoint = NaN;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Concept check: why is <pf>switch</pf> a good choice for this function instead of range-based <pf>if</pf> tests?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						The input is a small set of discrete codes, so a <pf>switch</pf> statement keeps each exact case clear
+						and avoids unnecessary range checks.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise xml:id="conditional-activity-8">
+			<title>Activity 8: Late Fee Function</title>
+
+			<introduction>
+				<p>
+					Use an <pf>if-elseif-else</pf> chain to assign a fee based on how late something is.
+				</p>
+			</introduction>
+
+			<task>
+				<statement>
+					<p>
+						Write a function named <pf>late_fee</pf> that takes <pf>daysLate</pf> and returns <pf>fee</pf>:
+					</p>
+					<ul>
+						<li><pf>daysLate &lt;= 0</pf>: fee is 0</li>
+						<li><pf>daysLate &lt;= 3</pf>: fee is 5</li>
+						<li><pf>daysLate &lt;= 7</pf>: fee is 15</li>
+						<li>Otherwise: fee is 30</li>
+					</ul>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function fee = late_fee(daysLate)
+							if daysLate &lt;= 0
+								fee = 0;
+							elseif daysLate &lt;= 3
+								fee = 5;
+							elseif daysLate &lt;= 7
+								fee = 15;
+							else
+								fee = 30;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Modify the function to return a second output <pf>status</pf> with values
+						<pf>'on time'</pf>, <pf>'minor late'</pf>, <pf>'late'</pf>, or <pf>'very late'</pf>.
+					</p>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [fee, status] = late_fee(daysLate)
+							if daysLate &lt;= 0
+								fee = 0;
+								status = 'on time';
+							elseif daysLate &lt;= 3
+								fee = 5;
+								status = 'minor late';
+							elseif daysLate &lt;= 7
+								fee = 15;
+								status = 'late';
+							else
+								fee = 30;
+								status = 'very late';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task>
+				<statement>
+					<p>
+						Concept check: what fee should the function return for <pf>daysLate = 3</pf> and <pf>daysLate = 7</pf>?
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Because the comparisons are <pf>&lt;=</pf>, a value of 3 returns a fee of 5, and a value of 7 returns
+						a fee of 15.
+					</p>
+				</solution>
 			</task>
 		</exercise>
 
