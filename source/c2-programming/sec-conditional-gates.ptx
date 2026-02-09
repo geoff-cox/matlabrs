@@ -125,6 +125,79 @@
 			</choices>
 		</exercise>
 
+		<exercise label="conditional-gates-chkpt-1b">
+			<title>Required keyword to close an if statement</title>
+			<statement>
+				<p>
+					What keyword must appear at the end of every <pf>if</pf> statement?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice>
+					<statement>
+						<p>
+							<pf>stop</pf>
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							MATLAB does not use <pf>stop</pf> to close an <pf>if</pf> statement.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							<pf>end</pf>
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Every <pf>if</pf> statement must be closed with <pf>end</pf>.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							<pf>endif</pf>
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							MATLAB uses <pf>end</pf> instead of <pf>endif</pf>.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							<pf>done</pf>
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							MATLAB does not use <pf>done</pf> to close an <pf>if</pf> statement.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="conditional-gates-chkpt-1c">
+			<title>If statement requires true or false condition</title>
+			<statement correct="yes">
+				<p>
+					The condition in an <pf>if</pf> statement must evaluate to either <pf>true</pf> or <pf>false</pf>.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					A logical condition is a statement that MATLAB evaluates to either <pf>true</pf> or <pf>false</pf>, which determines whether the code block executes.
+				</p>
+			</feedback>
+		</exercise>
+
 	</subsection>
 
 	<subsection xml:id="sec-if-else-statement">
@@ -197,6 +270,79 @@
 					</p>
 				</feedback>
 			</task>
+		</exercise>
+
+		<exercise label="conditional-gates-chkpt-2b">
+			<title>When does the else branch run?</title>
+			<statement>
+				<p>
+					When does the <pf>else</pf> branch in an <pf>if-else</pf> statement execute?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice>
+					<statement>
+						<p>
+							The <pf>else</pf> branch runs before the <pf>if</pf> branch.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							MATLAB checks the <pf>if</pf> condition first, then decides which branch to run.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							The <pf>else</pf> branch runs when the condition is false.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>else</pf> branch is the alternative path that executes when the condition evaluates to false.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							The <pf>else</pf> branch runs after the <pf>if</pf> branch completes.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Only one branch runs; they never both execute in the same pass through the code.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							The <pf>else</pf> branch never runs.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>else</pf> branch runs whenever the condition is false.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="conditional-gates-chkpt-2c">
+			<title>If-else provides two mutually exclusive paths</title>
+			<statement correct="yes">
+				<p>
+					An <pf>if-else</pf> statement is useful when you need to choose between two mutually exclusive actions.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					The <pf>if-else</pf> structure guarantees that exactly one of two code paths executes based on whether the condition is true or false.
+				</p>
+			</feedback>
 		</exercise>
 
 	</subsection>
@@ -354,6 +500,80 @@
 				</choice>
 			</choices>
 		</exercise>
+
+		<exercise label="conditional-gates-chkpt-3b">
+			<title>Order matters in elseif chains</title>
+			<statement correct="yes">
+				<p>
+					In an <pf>if-elseif-else</pf> chain, changing the order of conditions can change which block executes.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Because MATLAB checks conditions from top to bottom and stops at the first true one, the order of conditions matters. If multiple conditions could be true, only the first true condition's block will execute.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="conditional-gates-chkpt-3c">
+			<title>Purpose of the else branch</title>
+			<statement>
+				<p>
+					What is the purpose of the <pf>else</pf> branch in an <pf>if-elseif-else</pf> chain?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice>
+					<statement>
+						<p>
+							To check one more condition before ending.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>else</pf> branch does not check a condition; use <pf>elseif</pf> to check additional conditions.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							To provide a default action when no conditions are true.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>else</pf> branch serves as a fallback that runs when all previous conditions evaluate to false.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							To close the <pf>if</pf> statement.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>end</pf> keyword closes the <pf>if</pf> statement, not <pf>else</pf>.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							To run code after all other branches have executed.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Only one branch executes; the <pf>else</pf> runs instead of the others, not after them.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</exercise>
+
 	</subsection>
 
 	<subsection xml:id="sec-switch-statement">
@@ -499,6 +719,79 @@
 					</p>
 				</feedback>
 			</task>
+		</exercise>
+
+		<exercise label="conditional-gates-chkpt-4b">
+			<title>Switch vs if-elseif for exact matches</title>
+			<statement>
+				<p>
+					When is a <pf>switch</pf> statement more suitable than an <pf>if-elseif-else</pf> chain? Select all that apply.
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement>
+						<p>
+							When comparing a single variable to multiple exact values.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>switch</pf> statement is designed for testing one variable against a list of specific values.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							When you need to test ranges like <pf>x &gt; 10</pf>.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Switch statements cannot use logical operators or ranges; use <pf>if-elseif</pf> for range-based conditions.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							When comparing string values of different lengths.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Switch statements handle string comparisons cleanly, especially when strings have different lengths.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							When the case values need to be computed at runtime.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Case values must be hard-coded constants, not variables or expressions.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="conditional-gates-chkpt-4c">
+			<title>Otherwise branch is optional in switch</title>
+			<statement correct="yes">
+				<p>
+					The <pf>otherwise</pf> branch in a <pf>switch</pf> statement is optional.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					While the <pf>otherwise</pf> branch is optional, including it provides a default action when no cases match, which can help prevent unintended behavior.
+				</p>
+			</feedback>
 		</exercise>
 
 	</subsection>
