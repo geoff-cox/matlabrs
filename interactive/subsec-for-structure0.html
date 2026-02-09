@@ -164,7 +164,7 @@ var ggbApp = new GGBApplet({"appName": "classic",
     "autoHeight": true,
     "disableAutoScale": false},
 true);
-</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="up-button button" href="sec-looping-structures.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-while-loops.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="subsec-for-structure.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="sec-looping-structures.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-while-loops0.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand\DLGray{\color{Gray}}
 \newcommand\DLO{\color{BurntOrange}}
 \newcommand\DLRa{\color{WildStrawberry}}
@@ -297,8 +297,9 @@ true);
 <li class="toc-item toc-section contains-active">
 <div class="toc-title-box"><a href="sec-looping-structures.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Looping Structures</span></a></div>
 <ul class="structural toc-item-list contains-active">
-<li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="subsec-for-structure.html" class="internal"><span class="title">The for Loop</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-while-loops.html" class="internal"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">while</code> Loops</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-structure.html" class="internal"><span class="title">The for Loop</span></a></div></li>
+<li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="subsec-for-structure0.html" class="internal"><span class="title">The for Loop</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-while-loops0.html" class="internal"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">while</code> Loops</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">Choosing Between for and while Loops</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-flow-control.html" class="internal"><span class="title">Additional Flow Control: continue, break, return</span></a></div></li>
 </ul>
@@ -309,88 +310,30 @@ true);
 <li class="toc-item toc-chapter"><div class="toc-title-box"><a href="ch-arrays.html" class="internal"><span class="codenumber">3</span> <span class="title">Arrays</span></a></div></li>
 <li class="toc-item toc-appendix"><div class="toc-title-box"><a href="matlabrs-7.html" class="internal"><span class="codenumber">A</span> <span class="title">Appendix</span></a></div></li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-for-structure"><h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-for-structure0"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The for Loop</span>
 </h2>
-<div class="para" id="subsec-for-structure-2">A <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop repeats a block of code once for each value in a specified list. This is the right tool when you know in advance what values you want to iterate over.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-for-structure0-2">A <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop repeats a block of code once for each value in a specified list of values. The basic structure is:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<article class="assemblage assemblage-like" id="for-loop-structure"><h3 class="heading"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop Structure.</span></h3>
-<div class="para" id="for-loop-structure-2">There are two basic options for defining a <code class="code-inline tex2jax_ignore language-matlab">for</code> loop in MATLAB:<div class="autopermalink" data-description="Paragraph"><a href="#for-loop-structure-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-for-structure0-3">A <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop repeats a block of code once for each value in a specified list of values. The basic structure is:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:50% 50%;column-gap:0%;">
-<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% Fixed range with step size
-for k = start:step:stop
-  blockToRepeat
-end
-</code></pre></div>
-<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% Explicit list of values
-for k = [v1, v2, v3, ... vn]
-  blockToRepeat
-end
-</code></pre></div>
-</div></div>
-<div class="para logical" id="for-loop-structure-4">
-<div class="para">Key rules:</div>
-<ul class="disc" id="for-loop-structure-4-1">
-<li id="for-loop-structure-4-1-1">
-<div class="para" id="p-derived-for-loop-structure-4-1-1">The variable <code class="code-inline tex2jax_ignore language-matlab">k</code> is called the <dfn class="terminology">loop variable</dfn> or <dfn class="terminology">loop index</dfn> and can be named anything.</div>
-<div class="autopermalink" data-description="Item"><a href="#for-loop-structure-4-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="for-loop-structure-4-1-2">
-<div class="para" id="p-derived-for-loop-structure-4-1-2">The loop automatically updates <code class="code-inline tex2jax_ignore language-matlab">k</code> to the next value after each iteration.</div>
-<div class="autopermalink" data-description="Item"><a href="#for-loop-structure-4-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="for-loop-structure-4-1-3">
-<div class="para" id="p-derived-for-loop-structure-4-1-3">Every <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop must end with <code class="code-inline tex2jax_ignore language-matlab">end</code>.</div>
-<div class="autopermalink" data-description="Item"><a href="#for-loop-structure-4-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="for-loop-structure-4-1-4">
-<div class="para" id="p-derived-for-loop-structure-4-1-4">You can place any code inside a loop, including other loops.</div>
-<div class="autopermalink" data-description="Item"><a href="#for-loop-structure-4-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-</ul>
-<div class="autopermalink" data-description="Paragraph"><a href="#for-loop-structure-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Assemblage: for-Loop Structure"><a href="#for-loop-structure" title="Copy heading and permalink for Assemblage: for-Loop Structure" aria-label="Copy heading and permalink for Assemblage: for-Loop Structure">🔗</a></div></article><figure class="table table-like" id="subsec-for-structure-4"><figcaption><span class="type">Table</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.18<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Sample Usage of the <code class="code-inline tex2jax_ignore language-matlab">start:step:stop</code> Notation<div class="autopermalink" data-description="Table 2.18: Sample Usage of the start:step:stop Notation"><a href="#subsec-for-structure-4" title="Copy heading and permalink for Table 2.18: Sample Usage of the start:step:stop Notation" aria-label="Copy heading and permalink for Table 2.18: Sample Usage of the start:step:stop Notation">🔗</a></div></figcaption><div class="tabular-box natural-width"><table class="tabular">
-<tr class="header-horizontal">
-<th scope="col" class="c m b1 r1 l1 t1 lines">Expression</th>
-<th scope="col" class="c m b1 r1 l0 t1 lines">Resulting List</th>
-</tr>
-<tr>
-<td class="c m b1 r1 l1 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">1:10</code></td>
-<td class="c m b1 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">[1, 2, 3, ..., 10]</code></td>
-</tr>
-<tr>
-<td class="c m b1 r1 l1 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">1:2:10</code></td>
-<td class="c m b1 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">[1, 3, 5, 7, 9]</code></td>
-</tr>
-<tr>
-<td class="c m b1 r1 l1 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">1:n</code></td>
-<td class="c m b1 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">[1, 2, 3, ..., n]</code></td>
-</tr>
-<tr>
-<td class="c m b1 r1 l1 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">n:-1:1</code></td>
-<td class="c m b1 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">[n, n-1, n-2, ..., 1]</code></td>
-</tr>
-<tr>
-<td class="c m b1 r1 l1 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">0:0.5:2</code></td>
-<td class="c m b1 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">[0, 0.5, 1.0, 1.5, 2.0]</code></td>
-</tr>
-</table></div></figure><article class="assemblage assemblage-like" id="for-loop-structure0"><h3 class="heading"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop Structure.</span></h3>
+<article class="assemblage assemblage-like" id="for-loop-structure0"><h3 class="heading"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop Structure.</span></h3>
 <div class="para" id="for-loop-structure0-2">There are two common ways define a <code class="code-inline tex2jax_ignore language-matlab">for</code> loop in MATLAB:<div class="autopermalink" data-description="Paragraph"><a href="#for-loop-structure0-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="for-loop-structure0-3">1. To repeat a block of code <code class="code-inline tex2jax_ignore language-matlab">n</code> times, use:<div class="autopermalink" data-description="Paragraph"><a href="#for-loop-structure0-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:50% 50%;column-gap:0%;">
-<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% Fixed-step range
-for k = 1:step:n
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:45% 55%;column-gap:0%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">for k = 1:n
+
   blockToRepeat
+
 end
 </code></pre></div>
-<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% Explicit list of values
-for k = [v1, v2, v3, ... vn]
-  blockToRepeat
-end
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% k = 1 ➜ blockToRepeat ➜ next k
+% k = 2 ➜ blockToRepeat ➜ next k
+% k = 3 ➜ blockToRepeat ➜ next k
+%   	...
+% k = n ➜ blockToRepeat ➜ end
 </code></pre></div>
 </div></div>
 <div class="para" id="for-loop-structure0-5">2. To repeat a block of code once for each value in a list, use:<div class="autopermalink" data-description="Paragraph"><a href="#for-loop-structure0-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -439,7 +382,13 @@ end
 </ul>
 <div class="autopermalink" data-description="Paragraph"><a href="#for-loop-structure0-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Assemblage: for-Loop Structure"><a href="#for-loop-structure0" title="Copy heading and permalink for Assemblage: for-Loop Structure" aria-label="Copy heading and permalink for Assemblage: for-Loop Structure">🔗</a></div></article><div class="para" id="subsec-for-structure-6">Here is a simple example that demonstrates how the loop variable changes:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Assemblage: for-Loop Structure"><a href="#for-loop-structure0" title="Copy heading and permalink for Assemblage: for-Loop Structure" aria-label="Copy heading and permalink for Assemblage: for-Loop Structure">🔗</a></div></article><div class="para" id="subsec-for-structure0-5">One best practice to adopt early is: before writing the loop, identify what changes each iteration (often an index or loop variable), and what you want to update as the loop runs (for example, a running total, a counter, or an output variable).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-for-structure0-6">The variable <code class="code-inline tex2jax_ignore language-matlab">k</code> is called the <dfn class="terminology">loop variable</dfn> (or <dfn class="terminology">loop index</dfn>), and <code class="code-inline tex2jax_ignore language-matlab">list_of_k_values</code> is called the <dfn class="terminology">loop vector</dfn>. MATLAB sets <code class="code-inline tex2jax_ignore language-matlab">k</code> to the first value in the loop vector, runs the code block, then sets <code class="code-inline tex2jax_ignore language-matlab">k</code> to the next value, runs the code block again, and continues until it runs out of values.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-for-structure0-7">A list of values can be any collection, not just something like <code class="code-inline tex2jax_ignore language-matlab">1:n</code>. This is worth emphasizing, because it explains what a <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop really does: it iterates over a list of values. In the example below, the list of values is <code class="code-inline tex2jax_ignore language-matlab">[1 3 6]</code>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-for-structure0-8">In MATLAB, the values that the loop variable takes on can be provided as a list. For now, you can think of this as simply writing down the values you want <code class="code-inline tex2jax_ignore language-matlab">k</code> to use, in order. MATLAB will run the loop once for each listed value.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:50% 50%;column-gap:0%;">
 <div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">loop = 0;
@@ -474,25 +423,38 @@ fprintf('loop = %i\n', loop)
 fprintf('x = %i\n', x)
 </code></pre></div>
 </div></div>
-<div class="para" id="subsec-for-structure-8">MATLAB sets <code class="code-inline tex2jax_ignore language-matlab">k = 1</code> and runs the block, then sets <code class="code-inline tex2jax_ignore language-matlab">k = 3</code> and runs the block, then sets <code class="code-inline tex2jax_ignore language-matlab">k = 6</code> and runs the block. After all values are used, the loop ends. So <code class="code-inline tex2jax_ignore language-matlab">loop</code> counts the iterations (three), and <code class="code-inline tex2jax_ignore language-matlab">x</code> becomes the sum <span class="process-math">\(1+3+6=10\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-for-structure0-10">Here is how to read this loop like a machine: first MATLAB sets <code class="code-inline tex2jax_ignore language-matlab">k = 1</code> and runs the block; then MATLAB sets <code class="code-inline tex2jax_ignore language-matlab">k = 3</code> and runs the block; then MATLAB sets <code class="code-inline tex2jax_ignore language-matlab">k = 6</code> and runs the block; then the loop ends and MATLAB continues to the lines after <code class="code-inline tex2jax_ignore language-matlab">end</code>. So <code class="code-inline tex2jax_ignore language-matlab">loop</code> counts the number of iterations (three), and <code class="code-inline tex2jax_ignore language-matlab">x</code> becomes the sum <span class="process-math">\(1+3+6\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="subsec-for-structure-9">Before writing a loop, identify: (1) what changes each iteration (the loop variable), and (2) what you want to update as the loop runs (for example, a running total or an output variable).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-for-structure0-11">At this stage, it’s enough to interpret <code class="code-inline tex2jax_ignore language-matlab">k</code> as “which repetition am I on right now?” We will later use <code class="code-inline tex2jax_ignore language-matlab">k</code> for indexing when we introduce MATLAB’s array types.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<article class="example example-like" id="ex_forexampleonsums"><h3 class="heading">
-<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.19</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Accumulating a Sum.</span>
+<article class="example example-like" id="subsec-for-patterns0"><h3 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.21</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Seeing Patterns in Repeated Code.</span>
 </h3>
-<div class="para" id="ex_forexampleonsums-2-1">A common loop pattern is <dfn class="terminology">accumulation</dfn>: start with an initial value, then repeatedly update it. Here we compute the sum <span class="process-math">\(1+2+3+4+5\text{:}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ex_forexampleonsums-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:100%;column-gap:0%;"><div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">totalsum = 0; % initialize
-for i = 1:5
-  totalsum = totalsum + i;
+<div class="para" id="subsec-for-patterns0-2-1">A major reason loops feel natural after some practice is that you start recognizing repeated patterns. The next examples focus on translating between repeated code and a <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-patterns0-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="subsec-for-patterns0-2-2">When you see the same line repeated with only a small change each time, there is usually a loop hiding in it.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-patterns0-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="subsec-for-patterns0-2-3">Example: the same expression <code class="code-inline tex2jax_ignore language-matlab">cos(x) + ...</code> is repeated, but the added value changes each time. We can capture those changing values in a list.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-patterns0-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">x = 0;
+
+for k = [5 3 17 -3 5 1 5]
+    z = cos(x) + k;
 end
-disp(totalsum)
-</code></pre></div></div></div> <div class="para" id="ex_forexampleonsums-2-3">The variable <code class="code-inline tex2jax_ignore language-matlab">totalsum</code> starts at 0, then adds 1, then 2, and so on, reaching 15. Compare this to MATLAB’s built-in <code class="code-inline tex2jax_ignore language-matlab">sum(1:5)</code>, which gives the same result. The loop version shows you the logic step by step.<div class="autopermalink" data-description="Paragraph"><a href="#ex_forexampleonsums-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="🌌 Example 2.19: Accumulating a Sum"><a href="#ex_forexampleonsums" title="Copy heading and permalink for 🌌 Example 2.19: Accumulating a Sum" aria-label="Copy heading and permalink for 🌌 Example 2.19: Accumulating a Sum">🔗</a></div></article><article class="example example-like" id="subsec-for-structure-11"><h3 class="heading">
-<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.20</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Running Sum and Product.</span>
+</code></pre></div> <div class="para" id="subsec-for-patterns0-2-5">Example: adding 1 repeatedly is naturally expressed as looping over an index set.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-patterns0-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">x = 0;
+
+for k = 1:7
+    x = x + 1;
+end
+</code></pre></div> <div class="para" id="subsec-for-patterns0-2-7">Example: repeatedly multiplying by increasing factors suggests a list like <code class="code-inline tex2jax_ignore language-matlab">3:709</code>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-patterns0-2-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">x = 10;
+
+for k = 3:709
+    x = k*x;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="🌌 Example 2.21: Seeing Patterns in Repeated Code"><a href="#subsec-for-patterns0" title="Copy heading and permalink for 🌌 Example 2.21: Seeing Patterns in Repeated Code" aria-label="Copy heading and permalink for 🌌 Example 2.21: Seeing Patterns in Repeated Code">🔗</a></div></article><article class="example example-like" id="subsec-for-structure0-13"><h3 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.22</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Drop-in D.</span>
 </h3>
-<div class="para" id="subsec-for-structure-11-2-1">This example shows two standard accumulation patterns: a running sum (initialize at 0) and a running product (initialize at 1).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure-11-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-for-structure0-13-2-1">If you are not ready to work with collections of numbers, you can still practice loop thinking through <em class="emphasis">accumulation</em> problems, where one variable gets updated each iteration. These are valuable because they train the same habits you need later for arrays: initialization, update, and stopping.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-13-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">N = 10;
 
 sum_total = 0;
@@ -505,19 +467,20 @@ end
 
 sum_total
 prod_total
-</code></pre></div> <div class="para" id="subsec-for-structure-11-2-3">After the loop completes, <code class="code-inline tex2jax_ignore language-matlab">sum_total</code> holds <span class="process-math">\(1+2+\cdots+10=55\text{,}\)</span> and <code class="code-inline tex2jax_ignore language-matlab">prod_total</code> holds <span class="process-math">\(1\cdot 2\cdot\cdots\cdot 10=3628800\)</span> (which is <span class="process-math">\(10!\)</span>).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure-11-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div> <div class="para" id="subsec-for-structure0-13-2-3">This example shows two standard patterns: a running sum (initialize at 0) and a running product (initialize at 1).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-13-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="🌌 Example 2.20: Running Sum and Product"><a href="#subsec-for-structure-11" title="Copy heading and permalink for 🌌 Example 2.20: Running Sum and Product" aria-label="Copy heading and permalink for 🌌 Example 2.20: Running Sum and Product">🔗</a></div></article><article class="example example-like" id="subsec-dropinE"><h3 class="heading">
-<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.21</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Searching with break.</span>
+<div class="autopermalink" data-description="🌌 Example 2.22: Drop-in D"><a href="#subsec-for-structure0-13" title="Copy heading and permalink for 🌌 Example 2.22: Drop-in D" aria-label="Copy heading and permalink for 🌌 Example 2.22: Drop-in D">🔗</a></div></article><article class="example example-like" id="subsec-dropinE0"><h3 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.23</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Drop-in E.</span>
 </h3>
-<div class="para" id="subsec-dropinE-2-1">A loop can search for a target value and stop early when found. The <code class="code-inline tex2jax_ignore language-matlab">break</code> command exits the loop immediately.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-dropinE-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">target = 10;
+<div class="para" id="subsec-dropinE0-2">A loop can also be used as a search: repeat a check until you find what you want. Without introducing arrays yet, you can practice this idea by searching through a sequence of generated values.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-dropinE0-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">target = 10;
 
 found = false;
-location = -1;
+location = -1;   % which iteration found the target (or -1 if never found)
 
 for k = 1:50
-    value = randi([-20 20]);   % generate one random integer
+    value = randi([-20 20]);   % generate one random integer each iteration
 
     if value == target
         found = true;
@@ -531,11 +494,55 @@ if found
 else
     fprintf('The number %i was not found in 50 trials\n', target)
 end
-</code></pre></div> <div class="para" id="subsec-dropinE-2-3">This pattern—test a condition, then exit early with <code class="code-inline tex2jax_ignore language-matlab">break</code>—is useful whenever you want to stop searching once you find what you need.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-dropinE-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div>
+<div class="para" id="subsec-dropinE0-4">Later, once we have arrays, the same idea becomes “scan through stored values until you find a match.” For now, the key loop concept is unchanged: test, and stop early with <code class="code-inline tex2jax_ignore language-matlab">break</code> once the goal is met.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-dropinE0-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="🌌 Example 2.21: Searching with break"><a href="#subsec-dropinE" title="Copy heading and permalink for 🌌 Example 2.21: Searching with break" aria-label="Copy heading and permalink for 🌌 Example 2.21: Searching with break">🔗</a></div></article><div class="autopermalink" data-description="Subsection: The for Loop"><a href="#subsec-for-structure" title="Copy heading and permalink for Subsection: The for Loop" aria-label="Copy heading and permalink for Subsection: The for Loop">🔗</a></div></section></div>
+<div class="autopermalink" data-description="🌌 Example 2.23: Drop-in E"><a href="#subsec-dropinE0" title="Copy heading and permalink for 🌌 Example 2.23: Drop-in E" aria-label="Copy heading and permalink for 🌌 Example 2.23: Drop-in E">🔗</a></div></article><div class="para" id="subsec-for-structure0-15">In MATLAB, the counter is often written as <code class="code-inline tex2jax_ignore language-matlab">i = start:step: stop</code> (for example, <code class="code-inline tex2jax_ignore language-matlab">i = 1:5</code>), and the loop runs once for each value in that range.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-structure0-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="ex_forexampleonsums0"><h3 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.24</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Comparing for and sum.</span>
+</h3>
+<div class="para" id="ex_forexampleonsums0-2-1">Let’s compare two methods for adding up the first five integers.  Using the sum command, we can use<div class="autopermalink" data-description="Paragraph"><a href="#ex_forexampleonsums0-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:100%;column-gap:0%;"><div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">&gt;&gt; sum(1:5)
+
+ans =
+  15
+</code></pre></div></div></div> <div class="para" id="ex_forexampleonsums0-2-3">Now, using a <code class="code-inline tex2jax_ignore language-matlab">for</code> loop to create a cumulative sum:<div class="autopermalink" data-description="Paragraph"><a href="#ex_forexampleonsums0-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:100%;column-gap:0%;"><div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">totalsum = 0; % initialize
+for i = 1:5
+  totalsum = totalsum + i;
+end
+disp(totalsum)
+</code></pre></div></div></div> <div class="para" id="ex_forexampleonsums0-2-5">The variable <code class="code-inline tex2jax_ignore language-matlab">totalsum</code> will have a value of 15.<div class="autopermalink" data-description="Paragraph"><a href="#ex_forexampleonsums0-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="🌌 Example 2.24: Comparing for and sum"><a href="#ex_forexampleonsums0" title="Copy heading and permalink for 🌌 Example 2.24: Comparing for and sum" aria-label="Copy heading and permalink for 🌌 Example 2.24: Comparing for and sum">🔗</a></div></article><article class="example example-like" id="subsec-dropinF0"><h3 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.25</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Drop-in F.</span>
+</h3>
+<div class="para" id="subsec-dropinF0-2">If you want a “realistic” computation without using matrices yet, use a receipt-style total where each line item is represented by a few scalar variables. The loop repeats once per item and updates a running total.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-dropinF0-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">tax_rate = 0.06;
+total = 0;
+
+% Suppose there are 3 items:
+for k = 1:3
+    % In a real program, these might come from user input.
+    % Here we just pick sample numbers based on k.
+    price = 2*k;          % example price
+    quantity = k;         % example quantity
+    discount = 1;         % example discount
+
+    item_total = price*quantity - discount;
+    total = total + item_total;
+end
+
+total = total + total*tax_rate;
+total
+</code></pre></div>
+<div class="para" id="subsec-dropinF0-4">The loop structure is the point: each repetition processes one item and updates the total. Once arrays are introduced, we will store many items in a single structure instead of separate scalars.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-dropinF0-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="🌌 Example 2.25: Drop-in F"><a href="#subsec-dropinF0" title="Copy heading and permalink for 🌌 Example 2.25: Drop-in F" aria-label="Copy heading and permalink for 🌌 Example 2.25: Drop-in F">🔗</a></div></article><div class="autopermalink" data-description="Subsection: The for Loop"><a href="#subsec-for-structure0" title="Copy heading and permalink for Subsection: The for Loop" aria-label="Copy heading and permalink for Subsection: The for Loop">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-while-loops.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="subsec-for-structure.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-while-loops0.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
