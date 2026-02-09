@@ -1,0 +1,276 @@
+<exercise>
+
+  <task xml:id="hw-password-strength">
+    <title>Password Strength Checker</title>
+
+    <statement>
+      <p>
+        Write a function named <pf>check_password_strength</pf> that evaluates password strength based on length 
+        and character type requirements.
+      </p>
+
+      <p>
+        A password is:
+        <ul>
+          <li><p>"Strong" if it has at least 12 characters AND contains both letters and numbers</p></li>
+          <li><p>"Medium" if it has at least 8 characters AND (contains letters OR numbers)</p></li>
+          <li><p>"Weak" otherwise</p></li>
+        </ul>
+        You can use <pf>strlength</pf> to get the length, <pf>isletter</pf> to check for letters, 
+        and <pf>isstrprop(password, 'digit')</pf> to check for digits. 
+        Use <pf>any</pf> to check if any element in a logical array is true.
+      </p>
+
+      <tabular valign="top" halign="right" top="minor">
+        <col width="12%"/>
+        <col width="88%" halign="left"/>
+        <row>
+          <cell>Inputs:</cell>
+          <cell>
+            <p><pf>password</pf> (1x1) string — the password to check</p>
+          </cell>
+        </row>
+        <row bottom="minor">
+          <cell>Outputs:</cell>
+          <cell>
+            <p><pf>strength</pf> (1x1) string — "Strong", "Medium", or "Weak"</p>
+          </cell>
+        </row>
+      </tabular>
+
+      <p>Test cases:</p>
+
+      <program language="matlab">
+        % Test 1: Strong password
+        s1 = check_password_strength("MyPass123456")
+        % Expected: s1 = "Strong"
+
+        % Test 2: Medium password (long enough, has letters)
+        s2 = check_password_strength("password")
+        % Expected: s2 = "Medium"
+
+        % Test 3: Medium password (long enough, has numbers)
+        s3 = check_password_strength("12345678")
+        % Expected: s3 = "Medium"
+
+        % Test 4: Weak password (too short)
+        s4 = check_password_strength("Pass1")
+        % Expected: s4 = "Weak"
+
+        % Test 5: Strong password with more characters
+        s5 = check_password_strength("SecurePassword2024")
+        % Expected: s5 = "Strong"
+      </program>
+
+    </statement>
+  </task>
+
+  <task xml:id="hw-traffic-light-duration">
+    <title>Traffic Light Duration</title>
+
+    <statement>
+      <p>
+        Write a function named <pf>light_duration</pf> that uses a <pf>switch</pf> statement to return the duration 
+        (in seconds) that a traffic light stays on each color at an intersection.
+      </p>
+
+      <p>
+        Durations:
+        <ul>
+          <li><p>Green: 45 seconds</p></li>
+          <li><p>Yellow: 5 seconds</p></li>
+          <li><p>Red: 60 seconds</p></li>
+        </ul>
+      </p>
+
+      <p>
+        The function should handle both full color names ('green', 'yellow', 'red') and single-letter codes 
+        ('G', 'Y', 'R'). Return <pf>NaN</pf> for invalid inputs.
+      </p>
+
+      <tabular valign="top" halign="right" top="minor">
+        <col width="12%"/>
+        <col width="88%" halign="left"/>
+        <row>
+          <cell>Inputs:</cell>
+          <cell>
+            <p><pf>color</pf> string scalar or character vector — traffic light color (e.g., 'green', 'Y')</p>
+          </cell>
+        </row>
+        <row bottom="minor">
+          <cell>Outputs:</cell>
+          <cell>
+            <p><pf>seconds</pf> (1x1) double — duration in seconds, or NaN if invalid</p>
+          </cell>
+        </row>
+      </tabular>
+
+      <p>Test cases:</p>
+
+      <program language="matlab">
+        % Test 1: Full color name
+        s1 = light_duration('green')
+        % Expected: s1 = 45
+
+        % Test 2: Single letter code
+        s2 = light_duration('Y')
+        % Expected: s2 = 5
+
+        % Test 3: Red light
+        s3 = light_duration('red')
+        % Expected: s3 = 60
+
+        % Test 4: Invalid input
+        s4 = light_duration('blue')
+        % Expected: s4 = NaN
+
+        % Test 5: Another code
+        s5 = light_duration('R')
+        % Expected: s5 = 60
+      </program>
+
+    </statement>
+  </task>
+
+  <task xml:id="hw-safe-temperature">
+    <title>Food Safety Temperature Checker</title>
+
+    <statement>
+      <p>
+        Write a function named <pf>food_safety</pf> that determines if food is at a safe storage temperature.
+        Use the concept of the "danger zone" where bacteria grow rapidly.
+      </p>
+
+      <p>
+        Temperature safety zones (in Fahrenheit):
+        <ul>
+          <li><p>&lt; 40°F: "Safe - Cold storage"</p></li>
+          <li><p>40-140°F: "Danger zone"</p></li>
+          <li><p>&gt; 140°F: "Safe - Hot holding"</p></li>
+        </ul>
+      </p>
+
+      <tabular valign="top" halign="right" top="minor">
+        <col width="12%"/>
+        <col width="88%" halign="left"/>
+        <row>
+          <cell>Inputs:</cell>
+          <cell>
+            <p><pf>temp_f</pf> (1x1) double — temperature in Fahrenheit</p>
+          </cell>
+        </row>
+        <row bottom="minor">
+          <cell>Outputs:</cell>
+          <cell>
+            <p><pf>status</pf> (1x1) string — safety status message</p>
+          </cell>
+        </row>
+      </tabular>
+
+      <p>Test cases:</p>
+
+      <program language="matlab">
+        % Test 1: Refrigerator temperature
+        s1 = food_safety(35)
+        % Expected: s1 = "Safe - Cold storage"
+
+        % Test 2: Room temperature (danger)
+        s2 = food_safety(70)
+        % Expected: s2 = "Danger zone"
+
+        % Test 3: Hot food holding
+        s3 = food_safety(165)
+        % Expected: s3 = "Safe - Hot holding"
+
+        % Test 4: Boundary case (lower)
+        s4 = food_safety(40)
+        % Expected: s4 = "Danger zone"
+
+        % Test 5: Boundary case (upper)
+        s5 = food_safety(140)
+        % Expected: s5 = "Danger zone"
+      </program>
+
+    </statement>
+  </task>
+
+  <task xml:id="hw-exam-grade-advice">
+    <title>Exam Grade with Study Advice (Springboard)</title>
+
+    <statement>
+      <p>
+        Write a function named <pf>grade_with_advice</pf> that converts a numeric exam score to a letter grade 
+        and provides study advice. This exercise introduces the concept of returning multiple related outputs 
+        and demonstrates how conditional logic can control parallel information flows.
+      </p>
+
+      <p>
+        Grade scale and advice:
+        <ul>
+          <li><p>90-100: 'A' — "Excellent work!"</p></li>
+          <li><p>80-89: 'B' — "Good job!"</p></li>
+          <li><p>70-79: 'C' — "Consider office hours"</p></li>
+          <li><p>60-69: 'D' — "Schedule tutoring"</p></li>
+          <li><p>Below 60: 'F' — "See instructor immediately"</p></li>
+          <li><p>Outside 0-100: 'X' — "Invalid score"</p></li>
+        </ul>
+      </p>
+
+      <tabular valign="top" halign="right" top="minor">
+        <col width="12%"/>
+        <col width="88%" halign="left"/>
+        <row>
+          <cell>Inputs:</cell>
+          <cell>
+            <p><pf>score</pf> (1x1) double — exam score</p>
+          </cell>
+        </row>
+        <row>
+          <cell>Outputs:</cell>
+          <cell>
+            <p><pf>grade</pf> (1x1) char — letter grade</p>
+          </cell>
+        </row>
+        <row bottom="minor">
+          <cell/>
+          <cell>
+            <p><pf>advice</pf> (1x1) string — study advice message</p>
+          </cell>
+        </row>
+      </tabular>
+
+      <p>Test cases:</p>
+
+      <program language="matlab">
+        % Test 1: Excellent score
+        [g1, a1] = grade_with_advice(95)
+        % Expected: g1 = 'A', a1 = "Excellent work!"
+
+        % Test 2: Borderline passing
+        [g2, a2] = grade_with_advice(72)
+        % Expected: g2 = 'C', a2 = "Consider office hours"
+
+        % Test 3: Failing score
+        [g3, a3] = grade_with_advice(55)
+        % Expected: g3 = 'F', a3 = "See instructor immediately"
+
+        % Test 4: Invalid score
+        [g4, a4] = grade_with_advice(105)
+        % Expected: g4 = 'X', a4 = "Invalid score"
+
+        % Test 5: Boundary case
+        [g5, a5] = grade_with_advice(90)
+        % Expected: g5 = 'A', a5 = "Excellent work!"
+      </program>
+
+      <p>
+        <em>Springboard to advanced topics:</em> This function returns two coordinated outputs that are determined 
+        by the same conditional structure. This pattern is common when processing data records where multiple 
+        fields must be set consistently. As you progress, you'll learn to handle arrays of scores where each 
+        element needs its own grade and advice—this motivates the study of vectorization and element-wise operations.
+      </p>
+
+    </statement>
+  </task>
+
+</exercise>
