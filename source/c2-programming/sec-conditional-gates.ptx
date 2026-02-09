@@ -1119,7 +1119,533 @@
 		<title>🤔💭 Conceptual Questions</title>
 
 		<exercise label="conditional-flow-concepts">
-			NEED SOME QUESTIONS HERE
+
+			<task label="conditional-concepts-if-end">
+				<title>If Statement Requirements</title>
+				<statement correct="yes">
+					<p>
+						Every <pf>if</pf> statement in MATLAB must end with the keyword <pf>end</pf>.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Correct! The <pf>end</pf> keyword is required to close every <pf>if</pf> statement, 
+						whether it contains just an <pf>if</pf> block, an <pf>if-else</pf>, or an <pf>if-elseif-else</pf> chain.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="conditional-concepts-else-optional">
+				<title>Else Branch Requirement</title>
+				<statement correct="no">
+					<p>
+						An <pf>else</pf> branch is required in every <pf>if</pf> statement.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Incorrect. The <pf>else</pf> branch is optional. If you only need to run code when a condition 
+						is true, you can use just an <pf>if</pf> block without an <pf>else</pf>.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="conditional-concepts-condition-order">
+				<title>Elseif Chain Evaluation Order</title>
+				<statement>
+					<p>
+						In an <pf>if-elseif-else</pf> chain, how does MATLAB determine which block to execute?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>MATLAB checks all conditions and runs the block with the highest priority.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB evaluates conditions in order from top to bottom and stops 
+								at the first true condition.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>MATLAB checks conditions from top to bottom and runs the first true block.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Once MATLAB finds a true condition, it executes that block and skips all remaining branches.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB checks all conditions and runs all blocks whose conditions are true.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Only one block executes in an <pf>if-elseif-else</pf> chain, 
+								even if multiple conditions are true.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB evaluates conditions randomly.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Conditions are always evaluated in the order they appear in the code.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="conditional-concepts-switch-values">
+				<title>Switch Case Values</title>
+				<statement>
+					<p>
+						Which of the following statements about <pf>switch</pf> case values are true? Select all that apply.
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>Case values can be variables.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Case values must be hard-coded literal values, not variables.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Case values can be numbers.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Switch cases can match numeric values.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Case values can be strings.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Switch cases work well with string comparisons.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Case values can use relational operators like <pf>&gt;</pf> or <pf>&lt;</pf>.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Switch statements only test for equality. Use <pf>if-elseif</pf> 
+								for range-based conditions.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Multiple case values can be grouped using curly braces <pf>{ }</pf>.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! You can use <pf>case {val1, val2, val3}</pf> to match multiple values.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="conditional-concepts-otherwise">
+				<title>Otherwise Branch Behavior</title>
+				<statement correct="yes">
+					<p>
+						In a <pf>switch</pf> statement, the <pf>otherwise</pf> block only runs when none 
+						of the <pf>case</pf> values match.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Correct! The <pf>otherwise</pf> branch is similar to the <pf>else</pf> in an 
+						<pf>if</pf> statement—it provides a default action when no cases match.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="conditional-concepts-case-sensitive">
+				<title>Switch Case Sensitivity</title>
+				<statement>
+					<p>
+						Consider this code:
+					</p>
+					<program language="matlab">
+						status = 'active';
+						switch status
+							case 'Active'
+								disp('User is active')
+							case 'active'
+								disp('User is online')
+							otherwise
+								disp('Unknown status')
+						end
+					</program>
+					<p>
+						What will be displayed?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p><pf>User is active</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Case values are case-sensitive, so <pf>'Active'</pf> does not match <pf>'active'</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p><pf>User is online</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! The string <pf>'active'</pf> exactly matches the second case. 
+								Switch comparisons are case-sensitive.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>Unknown status</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. There is a case that matches: the second case <pf>'active'</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>An error will occur.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. This is valid code; the second case matches and executes.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="conditional-concepts-when-to-use-switch">
+				<title>When to Use Switch vs If</title>
+				<statement>
+					<p>
+						Which scenario is best suited for a <pf>switch</pf> statement rather than an <pf>if-elseif</pf> chain?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>Comparing a variable to a list of specific string values.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Switch statements are ideal for testing exact matches against 
+								discrete values, especially strings.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Checking if a number falls within different ranges (e.g., 0-10, 10-20).</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Range-based conditions require relational operators like <pf>&gt;</pf> 
+								or <pf>&lt;=</pf>, which switch statements cannot handle. Use <pf>if-elseif</pf> instead.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Testing multiple logical conditions that use AND (<pf>&amp;</pf>) or OR (<pf>|</pf>).</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Switch statements only test for equality. Use <pf>if-elseif</pf> 
+								for complex logical conditions.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Checking if a value is greater than a threshold.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. This requires a relational operator (<pf>&gt;</pf>), which 
+								switch statements cannot use. Use an <pf>if</pf> statement.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="conditional-concepts-multiple-branches">
+				<title>How Many Blocks Execute?</title>
+				<statement>
+					<p>
+						Given this code:
+					</p>
+					<program language="matlab">
+						x = 10;
+						if x &gt; 5
+							y = 1;
+						elseif x &gt; 8
+							y = 2;
+						elseif x &gt; 3
+							y = 3;
+						else
+							y = 0;
+						end
+					</program>
+					<p>
+						What is the value of <pf>y</pf> after this code executes?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>y = 1</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Even though <pf>x &gt; 8</pf> and <pf>x &gt; 3</pf> are also true, 
+								MATLAB stops at the first true condition (<pf>x &gt; 5</pf>) and assigns <pf>y = 1</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>y = 2</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. The first condition (<pf>x &gt; 5</pf>) is true, so MATLAB 
+								never checks the second condition.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>y = 3</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. The first condition (<pf>x &gt; 5</pf>) is true, so MATLAB 
+								never checks the third condition.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>y = 6</pf> (sum of 1+2+3)</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Only one block executes in an <pf>if-elseif-else</pf> chain. 
+								The blocks don't accumulate.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="conditional-concepts-nested-vs-chain">
+				<title>Nested If vs Elseif Chain</title>
+				<statement>
+					<p>
+						What is the main difference between using nested <pf>if</pf> statements and using an <pf>if-elseif</pf> chain?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>There is no difference; they are equivalent in all cases.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Nested <pf>if</pf> statements can check multiple conditions independently, 
+								while <pf>elseif</pf> chains are mutually exclusive.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Nested <pf>if</pf> statements can allow multiple blocks to execute; 
+							<pf>elseif</pf> chains execute only one block.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! In an <pf>if-elseif-else</pf> chain, only one block runs. 
+								With nested <pf>if</pf> statements, multiple independent conditions can be true.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Nested <pf>if</pf> statements run faster than <pf>elseif</pf> chains.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Performance is not the key difference; the distinction is in the logic structure 
+								and whether branches are mutually exclusive.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Elseif chains require more <pf>end</pf> keywords than nested <pf>if</pf> statements.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Actually, nested <pf>if</pf> statements require more <pf>end</pf> keywords 
+								(one for each <pf>if</pf>), while an <pf>elseif</pf> chain needs only one.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="conditional-concepts-switch-duplicate">
+				<title>Duplicate Case Values</title>
+				<statement>
+					<p>
+						What happens if a <pf>switch</pf> statement contains duplicate case values?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>MATLAB runs both matching cases.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB will actually report an error if you try to use duplicate case values.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB runs the first matching case and ignores the duplicate.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB doesn't allow duplicate case values at all.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>MATLAB produces an error.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Duplicate case values are not allowed in MATLAB switch statements 
+								and will cause an error.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB uses the last duplicate case value.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB won't allow duplicate case values at all.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="conditional-concepts-condition-type">
+				<title>If Statement Condition Type</title>
+				<statement>
+					<p>
+						Consider this code:
+					</p>
+					<program language="matlab">
+						x = 5;
+						if x
+							disp('x is true')
+						else
+							disp('x is false')
+						end
+					</program>
+					<p>
+						What will be displayed, and why?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>x is true</pf>, because any non-zero number is treated as true.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! In MATLAB, non-zero values are treated as true in conditional statements, 
+								and zero is treated as false.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x is false</pf>, because <pf>x</pf> is not a logical value.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. While <pf>x</pf> is numeric, MATLAB automatically converts non-zero 
+								numbers to true in conditional statements.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>An error occurs because <pf>x</pf> is not a logical value.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB allows numeric values in <pf>if</pf> conditions and treats 
+								non-zero as true and zero as false.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x is false</pf>, because <pf>5</pf> is not equal to <pf>true</pf>.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB doesn't compare <pf>x</pf> to <pf>true</pf>; it converts 
+								non-zero values to true.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
 		</exercise>
 
 	</exercises>
