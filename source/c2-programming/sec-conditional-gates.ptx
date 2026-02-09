@@ -838,7 +838,7 @@
 					</p>
 				</statement>
 
-				<!-- <solution>
+				<solution>
 					<program language="matlab">
 						x = 6;
 
@@ -850,7 +850,7 @@
 
 						fprintf('for x = %d, we set y to %d\n', x, y);
 					</program>
-				</solution> -->
+				</solution>
 			</task>
 
 			<task label="conditional-activity-1b">
@@ -859,9 +859,9 @@
 						Change <pf>x</pf> to <pf>16</pf> and rerun your code block.
 					</p>
 				</statement>
-				<!-- <solution>
+				<solution>
 					<p>Just change the value of <pf>x</pf> to <pf>16</pf> in the previous code block.</p>
-				</solution> -->
+				</solution>
 			</task>
 
 			<task label="conditional-activity-1c">
@@ -873,9 +873,9 @@
 						Rerun your code multiple times to see how the value of <pf>y</pf> changes based on the random value of <pf>x</pf>.
 					</p>
 				</statement>
-				<!-- <solution>
+				<solution>
 					<p>Just change the value of <pf>x</pf> to <pf>randi([-5, 15])</pf> in the previous code block.</p>
-				</solution> -->
+				</solution>
 			</task>
 
 			<task label="conditional-activity-1d">
@@ -888,7 +888,7 @@
 					</p>
 				</statement>
 
-				<!-- <solution>
+				<solution>
 					<program language="matlab">
 						x = randi([-5, 15]);
 
@@ -900,7 +900,7 @@
 
 						fprintf('for x = %d, we set y to %d\n', x, y);
 					</program>
-				</solution> -->
+				</solution>
 			</task>
 		</exercise>
 
@@ -933,7 +933,7 @@
 					</p>
 				</statement>
 
-				<!-- <solution>
+				<solution>
 					<program language="matlab">
 						<code>
 							nnum = randi([0, 20]);
@@ -948,7 +948,7 @@
 							fprintf('Updated num = %d\n', num);
 						</code>
 					</program>
-				</solution> -->
+				</solution>
 
 			</task>
 
@@ -960,7 +960,7 @@
 					</p>
 				</statement>
 
-				<!-- <solution>
+				<solution>
 					<p>
 						If <pf>x = 0</pf>, the below script runs the commands <pf>x = x - 5</pf> and <pf>disp(x)</pf>, outputting <pf>-5</pf>. However, if <pf>x = 10</pf>, only the <pf>disp(x)</pf> command is run, producing an output of <pf>10</pf>.
 					</p>
@@ -975,7 +975,7 @@
 							disp(x)
 						</code>
 					</program>
-				</solution> -->
+				</solution>
 			</task>
 		</exercise>
 
@@ -1726,7 +1726,7 @@
 						In an <pf>if-elseif-else</pf> chain, how does MATLAB determine which block to execute?
 					</p>
 				</statement>
-				<choices randomize="yes">
+				<choices randomize="no">
 					<choice>
 						<statement>
 							<p>MATLAB checks all conditions and runs the block with the highest priority.</p>
@@ -1779,14 +1779,14 @@
 						Which of the following statements about <pf>switch</pf> case values are true? Select all that apply.
 					</p>
 				</statement>
-				<choices randomize="yes">
-					<choice>
+				<choices randomize="no">
+					<choice correct="yes">
 						<statement>
-							<p>Case values can be variables.</p>
+							<p>The <pf>otherwise</pf> block is optional.</p>
 						</statement>
 						<feedback>
 							<p>
-								Incorrect. Case values must be hard-coded literal values, not variables.
+								In a <pf>switch</pf> statement the <pf>otherwise</pf> block is optional.
 							</p>
 						</feedback>
 					</choice>
@@ -1871,7 +1871,7 @@
 						What will be displayed?
 					</p>
 				</statement>
-				<choices randomize="yes">
+				<choices randomize="no">
 					<choice>
 						<statement>
 							<p><pf>User is active</pf></p>
@@ -1923,7 +1923,7 @@
 						Which scenario is best suited for a <pf>switch</pf> statement rather than an <pf>if-elseif</pf> chain?
 					</p>
 				</statement>
-				<choices randomize="yes">
+				<choices randomize="no">
 					<choice correct="yes">
 						<statement>
 							<p>Comparing a variable to a list of specific string values.</p>
@@ -1993,18 +1993,7 @@
 						What is the value of <pf>y</pf> after this code executes?
 					</p>
 				</statement>
-				<choices randomize="yes">
-					<choice correct="yes">
-						<statement>
-							<p><pf>y = 1</pf></p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! Even though <pf>x &gt; 8</pf> and <pf>x &gt; 3</pf> are also true, 
-								MATLAB stops at the first true condition (<pf>x &gt; 5</pf>) and assigns <pf>y = 1</pf>.
-							</p>
-						</feedback>
-					</choice>
+				<choices randomize="no">
 					<choice>
 						<statement>
 							<p><pf>y = 2</pf></p>
@@ -2038,6 +2027,17 @@
 							</p>
 						</feedback>
 					</choice>
+					<choice correct="yes">
+						<statement>
+							<p><pf>y = 1</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Even though <pf>x &gt; 8</pf> and <pf>x &gt; 3</pf> are also true, 
+								MATLAB stops at the first true condition (<pf>x &gt; 5</pf>) and assigns <pf>y = 1</pf>.
+							</p>
+						</feedback>
+					</choice>
 				</choices>
 			</task>
 
@@ -2048,7 +2048,7 @@
 						What is the main difference between using nested <pf>if</pf> statements and using an <pf>if-elseif</pf> chain?
 					</p>
 				</statement>
-				<choices randomize="yes">
+				<choices randomize="no">
 					<choice>
 						<statement>
 							<p>There is no difference; they are equivalent in all cases.</p>
@@ -2057,6 +2057,17 @@
 							<p>
 								Incorrect. Nested <pf>if</pf> statements can check multiple conditions independently, 
 								while <pf>elseif</pf> chains are mutually exclusive.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Nested <pf>if</pf> statements run faster than <pf>elseif</pf> chains.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Performance is not the key difference; the distinction is in the logic structure 
+								and whether branches are mutually exclusive.
 							</p>
 						</feedback>
 					</choice>
@@ -2069,17 +2080,6 @@
 							<p>
 								Correct! In an <pf>if-elseif-else</pf> chain, only one block runs. 
 								With nested <pf>if</pf> statements, multiple independent conditions can be true.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>Nested <pf>if</pf> statements run faster than <pf>elseif</pf> chains.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. Performance is not the key difference; the distinction is in the logic structure 
-								and whether branches are mutually exclusive.
 							</p>
 						</feedback>
 					</choice>
@@ -2104,7 +2104,7 @@
 						What happens if a <pf>switch</pf> statement contains duplicate case values?
 					</p>
 				</statement>
-				<choices randomize="yes">
+				<choices randomize="no">
 					<choice>
 						<statement>
 							<p>MATLAB runs both matching cases.</p>
@@ -2125,6 +2125,16 @@
 							</p>
 						</feedback>
 					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB uses the last duplicate case value.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB won't allow duplicate case values at all.
+							</p>
+						</feedback>
+					</choice>
 					<choice correct="yes">
 						<statement>
 							<p>MATLAB produces an error.</p>
@@ -2133,16 +2143,6 @@
 							<p>
 								Correct! Duplicate case values are not allowed in MATLAB switch statements 
 								and will cause an error.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>MATLAB uses the last duplicate case value.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. MATLAB won't allow duplicate case values at all.
 							</p>
 						</feedback>
 					</choice>
@@ -2167,7 +2167,7 @@
 						What will be displayed, and why?
 					</p>
 				</statement>
-				<choices randomize="yes">
+				<choices randomize="no">
 					<choice correct="yes">
 						<statement>
 							<p><pf>x is true</pf>, because any non-zero number is treated as true.</p>
