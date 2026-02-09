@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MATLAB-BOOK 💻 Coding Problems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="og:image" content="vmi.instructure.com/external/figures/matlabrs-icon.png">
+<meta property="book:title" content="Introduction to Programming with MATLAB">
+<meta property="book:author" content="Geoffrey W. Cox, Ph.D.">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = true;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.11.13';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.0d5f811896ddeac1.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.e2abc79debce15fd.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.6ec5960970d8b364.css">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="matlabrs" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href="https://www.vmi.edu/"><img src="external/figures/matlabrs-icon.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="matlabrs.html"><span class="title">Introduction to Programming with MATLAB</span> <span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span></a></h1>
+<p class="byline">Geoffrey W. Cox, Ph.D.</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "classic",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-conditional-statements.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-programming.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand\DLGray{\color{Gray}}
+\newcommand\DLO{\color{BurntOrange}}
+\newcommand\DLRa{\color{WildStrawberry}}
+\newcommand\DLGa{\color{Green}}
+\newcommand\DLGb{\color{PineGreen}}
+\newcommand\DLBa{\color{RoyalBlue}}
+\newcommand\DLBb{\color{Cerulean}}
+\newcommand\ds{\displaystyle}
+\newcommand\ddx{\frac{d}{dx}}
+\newcommand\os{\overset}
+\newcommand\us{\underset}
+\newcommand\ob{\overbrace}
+\newcommand\obt{\overbracket}
+\newcommand\ub{\underbrace}
+\newcommand\ubt{\underbracket}
+\newcommand\ul{\underline}
+\newcommand\tikznode[3][]
+	{\tikz[remember picture,baseline=(#2.base)]
+		\node[minimum size=0pt,inner sep=0pt,#1](#2){#3};
+	}
+\newcommand\del{\nabla}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathcal{C}}
+\newcommand\N{\mathcal{N}}
+\newcommand\eps{\varepsilon}
+\renewcommand\epsilon{\varepsilon}
+\renewcommand\subset{\subseteq}
+\newcommand\norm[1]{\|{#1}\|}
+\newcommand\matrixbrackets[4][1]{
+	\draw (#3,#2) -- (\fpeval{#3+0.2},#2); 
+	\draw (#3,#1) -- (#3 ,#2); 
+	\draw (#3,#1) -- (\fpeval{#3+0.2},#1);
+	\draw (#4,#2) -- (\fpeval{#4-0.2},#2); 
+	\draw (#4,#1) -- (#4 ,#2); 
+	\draw (#4,#1) -- (\fpeval{#4-0.2},#1);
+}
+\tikzstyle{circle node 0}=[fill=white, draw=black, shape=circle, inner sep=0pt]
+\tikzstyle{circle node 2}=[fill=white, draw=black, shape=circle, inner sep=2pt]
+\tikzstyle{hrect node}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+\tikzstyle{vrect node}=[fill=white, draw=black, inner sep=0pt, outer sep=0pt]
+\tikzstyle{hidden node 0}=[inner sep=0pt, outer sep=0pt] 
+\tikzstyle{hidden node 2}=[fill=white, inner sep=2pt, outer sep=2pt]
+\tikzstyle{rect node 1}=[fill=white, inner sep=2pt, outer sep=0pt]
+\tikzstyle{rect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=0pt]
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth4 focused" data-preexpanded-levels="0" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-basics.html" class="internal"><span class="codenumber">1</span> <span class="title">Basics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="getting-matlab.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Installing MATLAB</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="matlab-desktop.html" class="internal"><span class="codenumber">1.2</span> <span class="title">MATLAB Desktop</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="desktop.html" class="internal"><span class="title">Main Components</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toggling-components.html" class="internal"><span class="title">Modifying the Layout</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="matlab-command-window.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Command Window (<span class="process-math">\(\texttt{cwd}\)</span>)</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="basic-calculations.html" class="internal"><span class="title">Basic Calculations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="command-window-utility.html" class="internal"><span class="title">Keeping the Command Window Organized</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="matlab-variables.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-defining.html" class="internal"><span class="title">Creating Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-using.html" class="internal"><span class="title">Using and Reassigning Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="naming-variables.html" class="internal"><span class="title">Naming Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-6.html" class="internal"><span class="title">Common Beginner Mistakes</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch-programming.html" class="internal"><span class="codenumber">2</span> <span class="title">Programming</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="matlab-scripts.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Scripts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="programming-with-scripts.html" class="internal"><span class="title">Programming with Scripts</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-fprintf.html" class="internal"><span class="title">Printing Results with <code class="code-inline tex2jax_ignore language-matlab">fprintf</code></span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="matlab-scripts-5.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="scripts-cqs.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="fn-functions.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="programming-with-functions.html" class="internal"><span class="title">Programming with Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="writing-functions.html" class="internal"><span class="title">Writing Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="multiple-outputs.html" class="internal"><span class="title">Multiple Outputs</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="fn-functions-6.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="fn-cqs.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-logic.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Logical Values &amp; Statements</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-logical-values.html" class="internal"><span class="title">Logical Values (Answers)</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-logical-statements.html" class="internal"><span class="title">Logical Statements (Questions)</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-negating-statements.html" class="internal"><span class="title">Negating Logical Statements</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-joining-two-statements.html" class="internal"><span class="title">Joining Two Statements</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-joining-many-statements.html" class="internal"><span class="title">Joining Many Statements</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="logic-cqs.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-conditional-statements.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Conditional Gates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-if-statement.html" class="internal"><span class="title">If Statement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-if-else-statement.html" class="internal"><span class="title">If-else Statement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-if-elseif-else-statement.html" class="internal"><span class="title">If-elseif-else Statement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-switch-statement.html" class="internal"><span class="title">Switch Statement</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="sec-conditional-statements-7.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conditional-flow-cqs.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises active"><div class="toc-title-box"><a href="fn-exercises.html" class="internal"><span class="codenumber">2.5</span> <span class="title">💻 Coding Problems</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="ch-arrays.html" class="internal"><span class="codenumber">3</span> <span class="title">Arrays</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="matlabrs-7.html" class="internal"><span class="codenumber">A</span> <span class="title">Appendix</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="exercises" id="fn-exercises"><h2 class="heading hide-type">
+<span class="type">Exercises</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">💻 Coding Problems</span>
+</h2>
+<article class="exercise exercise-like" id="fn-coding-problems"><h2 class="heading">
+<span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Functions.</span>
+</h2>
+<div class="ptx-runestone-container"><div class="runestone tabbed_section">
+<div class="tabs-introduction exercise-leadin"><div class="introduction" id="fn-coding-problems-2"><div class="para" id="fn-coding-problems-2-1">Answer the following questions to check your understanding of functions.<div class="autopermalink" data-description="Paragraph"><a href="#fn-coding-problems-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></div>
+<div data-component="tabbedStuff" id="rs-fn-coding-problems">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="hw-celsius-to-fahrenheit"><h3 class="heading">
+<span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Temperature Conversion.</span>
+</h3>
+<div class="para" id="hw-celsius-to-fahrenheit-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">celsius_to_fahrenheit</code> that converts a temperature from Celsius to Fahrenheit.<div class="autopermalink" data-description="Paragraph"><a href="#hw-celsius-to-fahrenheit-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-celsius-to-fahrenheit-2-2">The conversion formula is: <span class="process-math">\(F = \frac{9}{5}C + 32\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-celsius-to-fahrenheit-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-celsius-to-fahrenheit-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">celsius</code> (1x1) double — temperature in degrees Celsius<div class="autopermalink" data-description="Paragraph"><a href="#hw-celsius-to-fahrenheit-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-celsius-to-fahrenheit-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">fahrenheit</code> (1x1) double — temperature in degrees Fahrenheit<div class="autopermalink" data-description="Paragraph"><a href="#hw-celsius-to-fahrenheit-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-celsius-to-fahrenheit-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-celsius-to-fahrenheit-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Freezing point of water
+f1 = celsius_to_fahrenheit(0)
+% Expected: f1 = 32
+
+% Test 2: Boiling point of water
+f2 = celsius_to_fahrenheit(100)
+% Expected: f2 = 212
+
+% Test 3: Room temperature
+f3 = celsius_to_fahrenheit(20)
+% Expected: f3 = 68
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.1.a: Temperature Conversion"><a href="#hw-celsius-to-fahrenheit" title="Copy heading and permalink for Task 2.5.1.a: Temperature Conversion" aria-label="Copy heading and permalink for Task 2.5.1.a: Temperature Conversion">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="hw-triangle-area"><h3 class="heading">
+<span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Triangle Area.</span>
+</h3>
+<div class="para" id="hw-triangle-area-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">triangle_area</code> that computes the area of a triangle given its base and height.<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-area-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-triangle-area-2-2">The area formula is: <span class="process-math">\(A = \frac{1}{2} \times \text{base} \times \text{height}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-area-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-triangle-area-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">base</code> (1x1) double — length of the triangle’s base<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-area-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-area-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">height</code> (1x1) double — height of the triangle<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-area-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-area-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">area</code> (1x1) double — area of the triangle<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-area-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-triangle-area-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-area-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Simple triangle
+a1 = triangle_area(6, 4)
+% Expected: a1 = 12
+
+% Test 2: Right triangle
+a2 = triangle_area(5, 12)
+% Expected: a2 = 30
+
+% Test 3: Decimal values
+a3 = triangle_area(7.5, 3.2)
+% Expected: a3 = 12
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.1.b: Triangle Area"><a href="#hw-triangle-area" title="Copy heading and permalink for Task 2.5.1.b: Triangle Area" aria-label="Copy heading and permalink for Task 2.5.1.b: Triangle Area">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="hw-sphere-properties"><h3 class="heading">
+<span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sphere Properties.</span>
+</h3>
+<div class="para" id="hw-sphere-properties-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">sphere_properties</code> that computes both the surface area and volume of a sphere given its radius.<div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-sphere-properties-2-2">
+<div class="para">The formulas are:</div>
+<ul class="disc" id="hw-sphere-properties-2-2-1">
+<li id="hw-sphere-properties-2-2-1-1">
+<div class="para" id="hw-sphere-properties-2-2-1-1-1">Surface area: <span class="process-math">\(A = 4\pi r^2\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-sphere-properties-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-sphere-properties-2-2-1-2">
+<div class="para" id="hw-sphere-properties-2-2-1-2-1">Volume: <span class="process-math">\(V = \frac{4}{3}\pi r^3\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-sphere-properties-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-sphere-properties-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">radius</code> (1x1) double — radius of the sphere<div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-sphere-properties-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">surface_area</code> (1x1) double — surface area of the sphere<div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-sphere-properties-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">volume</code> (1x1) double — volume of the sphere<div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-sphere-properties-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-sphere-properties-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Unit sphere
+[A1, V1] = sphere_properties(1)
+% Expected: A1 ≈ 12.5664, V1 ≈ 4.1888
+
+% Test 2: Radius of 2
+[A2, V2] = sphere_properties(2)
+% Expected: A2 ≈ 50.2655, V2 ≈ 33.5103
+
+% Test 3: Radius of 5
+[A3, V3] = sphere_properties(5)
+% Expected: A3 ≈ 314.1593, V3 ≈ 523.5988
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.1.c: Sphere Properties"><a href="#hw-sphere-properties" title="Copy heading and permalink for Task 2.5.1.c: Sphere Properties" aria-label="Copy heading and permalink for Task 2.5.1.c: Sphere Properties">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="hw-cylinder-properties"><h3 class="heading">
+<span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cylinder Properties.</span>
+</h3>
+<div class="para" id="hw-cylinder-properties-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">cylinder_properties</code> that computes the surface area, volume, and diagonal of a cylinder given its radius and height.<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-cylinder-properties-2-2">
+<div class="para">The formulas are:</div>
+<ul class="disc" id="hw-cylinder-properties-2-2-1">
+<li id="hw-cylinder-properties-2-2-1-1">
+<div class="para" id="hw-cylinder-properties-2-2-1-1-1">Surface area: <span class="process-math">\(A = 2\pi r^2 + 2\pi r h\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-cylinder-properties-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-cylinder-properties-2-2-1-2">
+<div class="para" id="hw-cylinder-properties-2-2-1-2-1">Volume: <span class="process-math">\(V = \pi r^2 h\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-cylinder-properties-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-cylinder-properties-2-2-1-3">
+<div class="para" id="hw-cylinder-properties-2-2-1-3-1">Diagonal: ?<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-cylinder-properties-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">Part of this problem is determining the correct formula for the diagonal of a cylinder. <em class="emphasis">Hint: take out a piece of paper and sketch the cylinder, then draw the diagonal line from one edge of the base to the opposite edge of the top.</em>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-cylinder-properties-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">radius</code> (1x1) double — radius of the cylinder<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-cylinder-properties-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">height</code> (1x1) double — height of the cylinder<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-cylinder-properties-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">surface_area</code> (1x1) double — total surface area of the cylinder<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-cylinder-properties-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">volume</code> (1x1) double — volume of the cylinder<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-cylinder-properties-2-3-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">diagonal</code> (1x1) double — diagonal length<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-3-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-cylinder-properties-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-cylinder-properties-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Unit cylinder (radius = 1, height = 1)
+[A1, V1, d1] = cylinder_properties(1, 1)
+% Expected: A1 ≈ 12.5664, V1 ≈ 3.1416, d1 ≈ 2.2361
+
+% Test 2: Radius = 3, height = 5
+[A2, V2, d2] = cylinder_properties(3, 5)
+% Expected: A2 ≈ 150.7964, V2 ≈ 141.3717, d2 ≈ 7.8102
+
+% Test 3: Radius = 2.5, height = 8
+[A3, V3, d3] = cylinder_properties(2.5, 8)
+% Expected: A3 ≈ 164.9336, V3 ≈ 157.0796, d3 ≈ 9.4340
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.1.d: Cylinder Properties"><a href="#hw-cylinder-properties" title="Copy heading and permalink for Task 2.5.1.d: Cylinder Properties" aria-label="Copy heading and permalink for Task 2.5.1.d: Cylinder Properties">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="hw-compound-interest"><h3 class="heading">
+<span class="codenumber">(e)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Compound Interest Calculator.</span>
+</h3>
+<div class="para" id="hw-compound-interest-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">compound_interest</code> that calculates the future value of an investment with compound interest, and also returns the total interest earned and the effective annual rate.<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-compound-interest-2-2">The compound interest formula is: <span class="process-math">\(A = P\left(1 + \frac{r}{n}\right)^{nt}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-compound-interest-2-3">
+<div class="para">where:</div>
+<ul class="disc" id="hw-compound-interest-2-3-1">
+<li id="hw-compound-interest-2-3-1-1">
+<div class="para" id="hw-compound-interest-2-3-1-1-1">
+<span class="process-math">\(P\)</span> = principal (initial investment)<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-compound-interest-2-3-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-compound-interest-2-3-1-2">
+<div class="para" id="hw-compound-interest-2-3-1-2-1">
+<span class="process-math">\(r\)</span> = annual interest rate (as a decimal, e.g., 0.05 for 5%)<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-3-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-compound-interest-2-3-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-compound-interest-2-3-1-3">
+<div class="para" id="hw-compound-interest-2-3-1-3-1">
+<span class="process-math">\(n\)</span> = number of times interest is compounded per year<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-3-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-compound-interest-2-3-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-compound-interest-2-3-1-4">
+<div class="para" id="hw-compound-interest-2-3-1-4-1">
+<span class="process-math">\(t\)</span> = time in years<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-3-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-compound-interest-2-3-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-compound-interest-2-3-1-5">
+<div class="para" id="hw-compound-interest-2-3-1-5-1">
+<span class="process-math">\(A\)</span> = final amount<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-3-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-compound-interest-2-3-1-5" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-compound-interest-2-4">The effective annual rate (EAR) is: <span class="process-math">\(\text{EAR} = \left(1 + \frac{r}{n}\right)^n - 1\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-compound-interest-2-5-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">principal</code> (1x1) double — initial investment amount<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-5-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-compound-interest-2-5-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">rate</code> (1x1) double — annual interest rate (as decimal)<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-5-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-compound-interest-2-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">compounds_per_year</code> (1x1) double — compounding frequency (e.g., 12 for monthly)<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-compound-interest-2-5-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">years</code> (1x1) double — time period in years<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-compound-interest-2-5-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">final_amount</code> (1x1) double — total amount after compound interest<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-5-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-compound-interest-2-5-8-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">interest_earned</code> (1x1) double — total interest earned (final_amount - principal)<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-5-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-compound-interest-2-5-9-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">effective_rate</code> (1x1) double — effective annual rate<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-5-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-compound-interest-2-6">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-compound-interest-2-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: $1000 at 5% annual rate, compounded monthly for 10 years
+[final1, int1, effRate1] = compound_interest(1000, 0.05, 12, 10)
+% Expected: final1 ≈ 1647.01, int1 ≈ 647.01, effRate1 ≈ 0.0512
+
+% Test 2: $5000 at 3% annual rate, compounded quarterly for 5 years
+[final2, int2, effRate2] = compound_interest(5000, 0.03, 4, 5)
+% Expected: final2 ≈ 5805.92, int2 ≈ 805.92, effRate2 ≈ 0.03034
+
+% Test 3: $10000 at 6% annual rate, compounded daily for 20 years
+[final3, int3, effRate3] = compound_interest(10000, 0.06, 365, 20)
+% Expected: final3 ≈ 33197.90, int3 ≈ 23197.90, effRate3 ≈ 0.0618
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.1.e: Compound Interest Calculator"><a href="#hw-compound-interest" title="Copy heading and permalink for Task 2.5.1.e: Compound Interest Calculator" aria-label="Copy heading and permalink for Task 2.5.1.e: Compound Interest Calculator">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(f)"><article class="task exercise-like" id="hw-triangle-3d"><h3 class="heading">
+<span class="codenumber">(f)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Triangle Perimeter and Area in 3D Space.</span>
+</h3>
+<div class="para" id="hw-triangle-3d-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">triangle_3d</code> that computes the perimeter and area of a triangle in 3D space given the coordinates of its three vertices. You may assume the three points do not lie on the same straight line. This ensures a valid triangle.<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-triangle-3d-2-2">
+<div class="para">Hints:</div>
+<ol class="lower-alpha lower-alpha-level-1" id="hw-triangle-3d-2-2-1">
+<li id="hw-triangle-3d-2-2-1-1">
+<div class="para logical" id="hw-triangle-3d-2-2-1-1-1">
+<div class="para">The distance formula between two points <span class="process-math">\((x_1, y_1, z_1)\)</span> and <span class="process-math">\((x_2, y_2, z_2)\)</span> is:</div>
+<div class="displaymath process-math" id="hw-triangle-3d-2-2-1-1-1-3">
+\begin{equation*}
+d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.5.1.a"><a href="#hw-triangle-3d-2-2-1-1" title="Copy heading and permalink for Item 2.5.1.a" aria-label="Copy heading and permalink for Item 2.5.1.a">🔗</a></div>
+</li>
+<li id="hw-triangle-3d-2-2-1-2">
+<div class="para logical" id="hw-triangle-3d-2-2-1-2-1">
+<div class="para">If the side lengths of the triangle are <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> and <span class="process-math">\(c\text{,}\)</span> then the area is given by Heron’s formula:</div>
+<div class="displaymath process-math" id="hw-triangle-3d-2-2-1-2-1-4">
+\begin{equation*}
+A = \sqrt{s(s-a)(s-b)(s-c)}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(s = 0.5\left(a+b+c\right)\)</span> (known as the semi-perimeter).</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.5.1.b"><a href="#hw-triangle-3d-2-2-1-2" title="Copy heading and permalink for Item 2.5.1.b" aria-label="Copy heading and permalink for Item 2.5.1.b">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-triangle-3d-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x1, y1, z1</code> (1x1) double — coordinates of first vertex<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-3d-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x2, y2, z2</code> (1x1) double — coordinates of second vertex<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-3d-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x3, y3, z3</code> (1x1) double — coordinates of third vertex<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-3d-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">perimeter</code> (1x1) double — perimeter of the triangle<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-3d-2-3-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">area</code> (1x1) double — area of the triangle<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-3-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-triangle-3d-2-4">
+<em class="emphasis">Note: Typically you would pass coordinates as vectors or matrices, but we will save that for later exercises.</em><div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-triangle-3d-2-5">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-3d-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Triangle in xy-plane (vertices at (0,0,0), (4,0,0), (0,3,0))
+[p1, a1] = triangle_3d(0, 0, 0, 4, 0, 0, 0, 3, 0)
+% Expected: p1 = 12, a1 = 6 (3-4-5 right triangle)
+
+% Test 2: Equilateral triangle in space
+[p2, a2] = triangle_3d(0, 0, 0, 1, 0, 0, 0.5, sqrt(3)/2, 0)
+% Expected: p2 = 3, a2 ≈ 0.4330
+
+% Test 3: Triangle with vertices at (1,2,3), (4,5,6), (2,3,5)
+[p3, a3] = triangle_3d(1, 2, 3, 4, 5, 6, 2, 3, 5)
+% Expected: p3 ≈ 10.6456, a3 ≈ 2.1213
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.1.f: Triangle Perimeter and Area in 3D Space"><a href="#hw-triangle-3d" title="Copy heading and permalink for Task 2.5.1.f: Triangle Perimeter and Area in 3D Space" aria-label="Copy heading and permalink for Task 2.5.1.f: Triangle Perimeter and Area in 3D Space">🔗</a></div></article></div>
+</div>
+</div></div>
+<div class="autopermalink" data-description="Exercise 2.5.1: Functions"><a href="#fn-coding-problems" title="Copy heading and permalink for Exercise 2.5.1: Functions" aria-label="Copy heading and permalink for Exercise 2.5.1: Functions">🔗</a></div></article><article class="exercise exercise-like" id="cf-coding-problems"><h2 class="heading">
+<span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Conditional Flow.</span>
+</h2>
+<div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-cf-coding-problems">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="hw-check-range"><h3 class="heading">
+<span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Number in Range.</span>
+</h3>
+<div class="para" id="hw-check-range-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">is_in_range</code> that determines whether a number falls within a specified range (inclusive).<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-range-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-check-range-2-2-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">value</code> (1x1) double — the number to check<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-range-2-2-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-check-range-2-2-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">lower_bound</code> (1x1) double — minimum value of the range<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-range-2-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-check-range-2-2-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">upper_bound</code> (1x1) double — maximum value of the range<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-range-2-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-check-range-2-2-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code> (1x1) logical — true if value is in range [lower_bound, upper_bound], false otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-range-2-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-check-range-2-3">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-range-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Value in range
+r1 = is_in_range(5, 1, 10)
+% Expected: r1 = 1 (true)
+
+% Test 2: Value at lower boundary
+r2 = is_in_range(1, 1, 10)
+% Expected: r2 = 1 (true)
+
+% Test 3: Value at upper boundary
+r3 = is_in_range(10, 1, 10)
+% Expected: r3 = 1 (true)
+
+% Test 4: Value below range
+r4 = is_in_range(0, 1, 10)
+% Expected: r4 = 0 (false)
+
+% Test 5: Value above range
+r5 = is_in_range(11, 1, 10)
+% Expected: r5 = 0 (false)
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.a: Number in Range"><a href="#hw-check-range" title="Copy heading and permalink for Task 2.5.2.a: Number in Range" aria-label="Copy heading and permalink for Task 2.5.2.a: Number in Range">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="hw-check-even-positive"><h3 class="heading">
+<span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Even and Positive.</span>
+</h3>
+<div class="para" id="hw-check-even-positive-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">is_even_and_positive</code> that determines whether a number is both even and positive.<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-even-positive-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-check-even-positive-2-2">A number is even if dividing it by 2 produces no remainder. You can use the <code class="code-inline tex2jax_ignore language-matlab">mod</code> function to find remainders.<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-even-positive-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-check-even-positive-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">num</code> (1x1) double — the number to check<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-even-positive-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-check-even-positive-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code> (1x1) logical — true if num is both even and positive, false otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-even-positive-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-check-even-positive-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-check-even-positive-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Even and positive
+r1 = is_even_and_positive(4)
+% Expected: r1 = 1 (true)
+
+% Test 2: Odd and positive
+r2 = is_even_and_positive(7)
+% Expected: r2 = 0 (false)
+
+% Test 3: Even and negative
+r3 = is_even_and_positive(-6)
+% Expected: r3 = 0 (false)
+
+% Test 4: Zero (even but not positive)
+r4 = is_even_and_positive(0)
+% Expected: r4 = 0 (false)
+
+% Test 5: Large even positive
+r5 = is_even_and_positive(100)
+% Expected: r5 = 1 (true)
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.b: Even and Positive"><a href="#hw-check-even-positive" title="Copy heading and permalink for Task 2.5.2.b: Even and Positive" aria-label="Copy heading and permalink for Task 2.5.2.b: Even and Positive">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="hw-valid-grade"><h3 class="heading">
+<span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Valid Grade Checker.</span>
+</h3>
+<div class="para" id="hw-valid-grade-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">is_valid_grade</code> that checks if a grade value is valid (between 0 and 100, inclusive) and returns both the validity status and a message.<div class="autopermalink" data-description="Paragraph"><a href="#hw-valid-grade-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-valid-grade-2-2-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">grade</code> (1x1) double — the grade value to check<div class="autopermalink" data-description="Paragraph"><a href="#hw-valid-grade-2-2-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-valid-grade-2-2-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">is_valid</code> (1x1) logical — true if grade is valid, false otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-valid-grade-2-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-valid-grade-2-2-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">message</code> (1x1) string — "Valid" if valid, "Too low" if below 0, "Too high" if above 100<div class="autopermalink" data-description="Paragraph"><a href="#hw-valid-grade-2-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-valid-grade-2-3">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-valid-grade-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Valid grade
+[v1, m1] = is_valid_grade(85)
+% Expected: v1 = 1 (true), m1 = "Valid"
+
+% Test 2: Grade below range
+[v2, m2] = is_valid_grade(-5)
+% Expected: v2 = 0 (false), m2 = "Too low"
+
+% Test 3: Grade above range
+[v3, m3] = is_valid_grade(105)
+% Expected: v3 = 0 (false), m3 = "Too high"
+
+% Test 4: Boundary value (0)
+[v4, m4] = is_valid_grade(0)
+% Expected: v4 = 1 (true), m4 = "Valid"
+
+% Test 5: Boundary value (100)
+[v5, m5] = is_valid_grade(100)
+% Expected: v5 = 1 (true), m5 = "Valid"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.c: Valid Grade Checker"><a href="#hw-valid-grade" title="Copy heading and permalink for Task 2.5.2.c: Valid Grade Checker" aria-label="Copy heading and permalink for Task 2.5.2.c: Valid Grade Checker">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="hw-xor-function"><h3 class="heading">
+<span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Exclusive OR (XOR).</span>
+</h3>
+<div class="para" id="hw-xor-function-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">my_xor</code> that implements the exclusive OR operation without using MATLAB’s built-in <code class="code-inline tex2jax_ignore language-matlab">xor</code> function.<div class="autopermalink" data-description="Paragraph"><a href="#hw-xor-function-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-xor-function-2-2">XOR returns true when exactly one (but not both) of the inputs is true. Think about how you can combine AND, OR, and NOT operators to achieve this behavior.<div class="autopermalink" data-description="Paragraph"><a href="#hw-xor-function-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-xor-function-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">a</code> (1x1) logical — first logical value<div class="autopermalink" data-description="Paragraph"><a href="#hw-xor-function-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-xor-function-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">b</code> (1x1) logical — second logical value<div class="autopermalink" data-description="Paragraph"><a href="#hw-xor-function-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-xor-function-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code> (1x1) logical — true if exactly one input is true, false otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-xor-function-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-xor-function-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-xor-function-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Both false
+r1 = my_xor(false, false)
+% Expected: r1 = 0 (false)
+
+% Test 2: First true, second false
+r2 = my_xor(true, false)
+% Expected: r2 = 1 (true)
+
+% Test 3: First false, second true
+r3 = my_xor(false, true)
+% Expected: r3 = 1 (true)
+
+% Test 4: Both true
+r4 = my_xor(true, true)
+% Expected: r4 = 0 (false)
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.d: Exclusive OR (XOR)"><a href="#hw-xor-function" title="Copy heading and permalink for Task 2.5.2.d: Exclusive OR (XOR)" aria-label="Copy heading and permalink for Task 2.5.2.d: Exclusive OR (XOR)">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="hw-leap-year"><h3 class="heading">
+<span class="codenumber">(e)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Leap Year Checker.</span>
+</h3>
+<div class="para" id="hw-leap-year-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">is_leap_year</code> that determines whether a given year is a leap year.<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-leap-year-2-2">
+<div class="para">The rules for leap years are:</div>
+<ul class="disc" id="hw-leap-year-2-2-1">
+<li id="hw-leap-year-2-2-1-1">
+<div class="para" id="hw-leap-year-2-2-1-1-1">A year is a leap year if it is divisible by 4<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-leap-year-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-leap-year-2-2-1-2">
+<div class="para" id="hw-leap-year-2-2-1-2-1">EXCEPT years divisible by 100 are NOT leap years<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-leap-year-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-leap-year-2-2-1-3">
+<div class="para" id="hw-leap-year-2-2-1-3-1">EXCEPT years divisible by 400 ARE leap years<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-leap-year-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">For example: 2000 is a leap year (divisible by 400), 1900 is not (divisible by 100 but not 400), 2004 is a leap year (divisible by 4 but not 100).</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-leap-year-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">year</code> (1x1) double — the year to check<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-leap-year-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">is_leap</code> (1x1) logical — true if the year is a leap year, false otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-leap-year-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-leap-year-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Divisible by 400 (leap year)
+r1 = is_leap_year(2000)
+% Expected: r1 = 1 (true)
+
+% Test 2: Divisible by 100 but not 400 (not a leap year)
+r2 = is_leap_year(1900)
+% Expected: r2 = 0 (false)
+
+% Test 3: Divisible by 4 but not 100 (leap year)
+r3 = is_leap_year(2024)
+% Expected: r3 = 1 (true)
+
+% Test 4: Not divisible by 4 (not a leap year)
+r4 = is_leap_year(2023)
+% Expected: r4 = 0 (false)
+
+% Test 5: Another divisible by 100 case
+r5 = is_leap_year(2100)
+% Expected: r5 = 0 (false)
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.e: Leap Year Checker"><a href="#hw-leap-year" title="Copy heading and permalink for Task 2.5.2.e: Leap Year Checker" aria-label="Copy heading and permalink for Task 2.5.2.e: Leap Year Checker">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(f)"><article class="task exercise-like" id="hw-triangle-type"><h3 class="heading">
+<span class="codenumber">(f)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Triangle Type Classifier.</span>
+</h3>
+<div class="para" id="hw-triangle-type-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">classify_triangle</code> that determines whether three side lengths form a valid triangle and, if so, classifies it as equilateral, isosceles, or scalene.<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-triangle-type-2-2">
+<div class="para">Rules:</div>
+<ul class="disc" id="hw-triangle-type-2-2-1">
+<li id="hw-triangle-type-2-2-1-1">
+<div class="para" id="hw-triangle-type-2-2-1-1-1">A valid triangle requires: a + b &gt; c, b + c &gt; a, and a + c &gt; b<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-triangle-type-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-triangle-type-2-2-1-2">
+<div class="para" id="hw-triangle-type-2-2-1-2-1">Equilateral: all three sides are equal<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-triangle-type-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-triangle-type-2-2-1-3">
+<div class="para" id="hw-triangle-type-2-2-1-3-1">Isosceles: exactly two sides are equal<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-triangle-type-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-triangle-type-2-2-1-4">
+<div class="para" id="hw-triangle-type-2-2-1-4-1">Scalene: all three sides are different<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-triangle-type-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-triangle-type-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">a, b, c</code> (1x1) double — side lengths of the triangle<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-type-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">is_valid</code> (1x1) logical — true if sides form a valid triangle, false otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-triangle-type-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">type</code> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-triangle-type-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-triangle-type-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Equilateral triangle
+[v1, t1] = classify_triangle(5, 5, 5)
+% Expected: v1 = 1 (true), t1 = "Equilateral"
+
+% Test 2: Isosceles triangle
+[v2, t2] = classify_triangle(5, 5, 8)
+% Expected: v2 = 1 (true), t2 = "Isosceles"
+
+% Test 3: Scalene triangle
+[v3, t3] = classify_triangle(3, 4, 5)
+% Expected: v3 = 1 (true), t3 = "Scalene"
+
+% Test 4: Invalid triangle (violates triangle inequality)
+[v4, t4] = classify_triangle(1, 2, 10)
+% Expected: v4 = 0 (false), t4 = "Invalid"
+
+% Test 5: Another isosceles case
+[v5, t5] = classify_triangle(7, 10, 7)
+% Expected: v5 = 1 (true), t5 = "Isosceles"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.f: Triangle Type Classifier"><a href="#hw-triangle-type" title="Copy heading and permalink for Task 2.5.2.f: Triangle Type Classifier" aria-label="Copy heading and permalink for Task 2.5.2.f: Triangle Type Classifier">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(g)"><article class="task exercise-like" id="hw-password-strength"><h3 class="heading">
+<span class="codenumber">(g)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Password Strength Checker.</span>
+</h3>
+<div class="para" id="hw-password-strength-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">check_password_strength</code> that evaluates password strength based on length and character type requirements.<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-password-strength-2-2">
+<div class="para">A password is:</div>
+<ul class="disc" id="hw-password-strength-2-2-1">
+<li id="hw-password-strength-2-2-1-1">
+<div class="para" id="hw-password-strength-2-2-1-1-1">"Strong" if it has at least 12 characters AND contains both letters and numbers<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-password-strength-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-password-strength-2-2-1-2">
+<div class="para" id="hw-password-strength-2-2-1-2-1">"Medium" if it has at least 8 characters AND (contains letters OR numbers)<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-password-strength-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-password-strength-2-2-1-3">
+<div class="para" id="hw-password-strength-2-2-1-3-1">"Weak" otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-password-strength-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">You can use <code class="code-inline tex2jax_ignore language-matlab">strlength</code> to get the length, <code class="code-inline tex2jax_ignore language-matlab">isletter</code> to check for letters, and <code class="code-inline tex2jax_ignore language-matlab">isstrprop(password, 'digit')</code> to check for digits. Use <code class="code-inline tex2jax_ignore language-matlab">any</code> to check if any element in a logical array is true.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-password-strength-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">password</code> (1x1) string — the password to check<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-password-strength-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">strength</code> (1x1) string — "Strong", "Medium", or "Weak"<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-password-strength-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-password-strength-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Strong password
+s1 = check_password_strength("MyPass123456")
+% Expected: s1 = "Strong"
+
+% Test 2: Medium password (long enough, has letters)
+s2 = check_password_strength("password")
+% Expected: s2 = "Medium"
+
+% Test 3: Medium password (long enough, has numbers)
+s3 = check_password_strength("12345678")
+% Expected: s3 = "Medium"
+
+% Test 4: Weak password (too short)
+s4 = check_password_strength("Pass1")
+% Expected: s4 = "Weak"
+
+% Test 5: Strong password with more characters
+s5 = check_password_strength("SecurePassword2024")
+% Expected: s5 = "Strong"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.g: Password Strength Checker"><a href="#hw-password-strength" title="Copy heading and permalink for Task 2.5.2.g: Password Strength Checker" aria-label="Copy heading and permalink for Task 2.5.2.g: Password Strength Checker">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(h)"><article class="task exercise-like" id="hw-quadrant-checker"><h3 class="heading">
+<span class="codenumber">(h)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Coordinate Quadrant Checker.</span>
+</h3>
+<div class="para" id="hw-quadrant-checker-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">find_quadrant</code> that determines which quadrant or axis a point (x, y) is located in on a 2D coordinate system.<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-quadrant-checker-2-2">
+<div class="para">Rules:</div>
+<ul class="disc" id="hw-quadrant-checker-2-2-1">
+<li id="hw-quadrant-checker-2-2-1-1">
+<div class="para" id="hw-quadrant-checker-2-2-1-1-1">Quadrant I: x &gt; 0 and y &gt; 0<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-quadrant-checker-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-quadrant-checker-2-2-1-2">
+<div class="para" id="hw-quadrant-checker-2-2-1-2-1">Quadrant II: x &lt; 0 and y &gt; 0<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-quadrant-checker-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-quadrant-checker-2-2-1-3">
+<div class="para" id="hw-quadrant-checker-2-2-1-3-1">Quadrant III: x &lt; 0 and y &lt; 0<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-quadrant-checker-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-quadrant-checker-2-2-1-4">
+<div class="para" id="hw-quadrant-checker-2-2-1-4-1">Quadrant IV: x &gt; 0 and y &lt; 0<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-quadrant-checker-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-quadrant-checker-2-2-1-5">
+<div class="para" id="hw-quadrant-checker-2-2-1-5-1">Origin: x = 0 and y = 0<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-quadrant-checker-2-2-1-5" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-quadrant-checker-2-2-1-6">
+<div class="para" id="hw-quadrant-checker-2-2-1-6-1">X-axis: y = 0 (but x ≠ 0)<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2-1-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-quadrant-checker-2-2-1-6" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-quadrant-checker-2-2-1-7">
+<div class="para" id="hw-quadrant-checker-2-2-1-7-1">Y-axis: x = 0 (but y ≠ 0)<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2-1-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-quadrant-checker-2-2-1-7" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-quadrant-checker-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x</code> (1x1) double — x-coordinate<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-quadrant-checker-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">y</code> (1x1) double — y-coordinate<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-quadrant-checker-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">location</code> (1x1) string — "Quadrant I", "Quadrant II", "Quadrant III", "Quadrant IV", "Origin", "X-axis", or "Y-axis"<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-quadrant-checker-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-quadrant-checker-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Quadrant I
+loc1 = find_quadrant(3, 4)
+% Expected: loc1 = "Quadrant I"
+
+% Test 2: Quadrant II
+loc2 = find_quadrant(-2, 5)
+% Expected: loc2 = "Quadrant II"
+
+% Test 3: Origin
+loc3 = find_quadrant(0, 0)
+% Expected: loc3 = "Origin"
+
+% Test 4: X-axis
+loc4 = find_quadrant(7, 0)
+% Expected: loc4 = "X-axis"
+
+% Test 5: Quadrant III
+loc5 = find_quadrant(-3, -8)
+% Expected: loc5 = "Quadrant III"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.h: Coordinate Quadrant Checker"><a href="#hw-quadrant-checker" title="Copy heading and permalink for Task 2.5.2.h: Coordinate Quadrant Checker" aria-label="Copy heading and permalink for Task 2.5.2.h: Coordinate Quadrant Checker">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(i)"><article class="task exercise-like" id="hw-tax-bracket"><h3 class="heading">
+<span class="codenumber">(i)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tax Bracket Rate Finder.</span>
+</h3>
+<div class="para" id="hw-tax-bracket-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">find_tax_rate</code> that determines the marginal tax rate for a given income based on progressive tax brackets.<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-tax-bracket-2-2">
+<div class="para">Tax bracket rates:</div>
+<ul class="disc" id="hw-tax-bracket-2-2-1">
+<li id="hw-tax-bracket-2-2-1-1">
+<div class="para" id="hw-tax-bracket-2-2-1-1-1">Income up to $10,000: 0% tax rate<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-tax-bracket-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-tax-bracket-2-2-1-2">
+<div class="para" id="hw-tax-bracket-2-2-1-2-1">Income from $10,001 to $40,000: 10% tax rate<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-tax-bracket-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-tax-bracket-2-2-1-3">
+<div class="para" id="hw-tax-bracket-2-2-1-3-1">Income from $40,001 to $85,000: 15% tax rate<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-tax-bracket-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-tax-bracket-2-2-1-4">
+<div class="para" id="hw-tax-bracket-2-2-1-4-1">Income above $85,000: 20% tax rate<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-tax-bracket-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-tax-bracket-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">income</code> (1x1) double — annual income in dollars<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-tax-bracket-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">tax_rate</code> (1x1) double — the marginal tax rate (as a decimal, e.g., 0.10 for 10%)<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-tax-bracket-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-tax-bracket-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: No tax bracket
+t1 = find_tax_rate(8000)
+% Expected: t1 = 0
+
+% Test 2: 10% bracket
+t2 = find_tax_rate(25000)
+% Expected: t2 = 0.10
+
+% Test 3: 15% bracket
+t3 = find_tax_rate(60000)
+% Expected: t3 = 0.15
+
+% Test 4: 20% bracket
+t4 = find_tax_rate(100000)
+% Expected: t4 = 0.20
+
+% Test 5: Boundary case
+t5 = find_tax_rate(40000)
+% Expected: t5 = 0.10
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.i: Tax Bracket Rate Finder"><a href="#hw-tax-bracket" title="Copy heading and permalink for Task 2.5.2.i: Tax Bracket Rate Finder" aria-label="Copy heading and permalink for Task 2.5.2.i: Tax Bracket Rate Finder">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(j)"><article class="task exercise-like" id="hw-water-state"><h3 class="heading">
+<span class="codenumber">(j)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Water Phase Identifier.</span>
+</h3>
+<div class="para" id="hw-water-state-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">water_phase</code> that determines the physical state of water (ice, liquid, or steam) based on temperature in Celsius at standard atmospheric pressure.<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-water-state-2-2">
+<div class="para">Phase rules:</div>
+<ul class="disc" id="hw-water-state-2-2-1">
+<li id="hw-water-state-2-2-1-1">
+<div class="para" id="hw-water-state-2-2-1-1-1">Below 0°C: ice<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-water-state-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-water-state-2-2-1-2">
+<div class="para" id="hw-water-state-2-2-1-2-1">From 0°C to 100°C (inclusive): liquid<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-water-state-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-water-state-2-2-1-3">
+<div class="para" id="hw-water-state-2-2-1-3-1">Above 100°C: steam<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-water-state-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-water-state-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">temp_celsius</code> (1x1) double — temperature in Celsius<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-water-state-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">phase</code> (1x1) string — "ice", "liquid", or "steam"<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-water-state-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-water-state-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Below freezing
+p1 = water_phase(-10)
+% Expected: p1 = "ice"
+
+% Test 2: Freezing point
+p2 = water_phase(0)
+% Expected: p2 = "liquid"
+
+% Test 3: Room temperature
+p3 = water_phase(25)
+% Expected: p3 = "liquid"
+
+% Test 4: Boiling point
+p4 = water_phase(100)
+% Expected: p4 = "liquid"
+
+% Test 5: Above boiling
+p5 = water_phase(120)
+% Expected: p5 = "steam"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.j: Water Phase Identifier"><a href="#hw-water-state" title="Copy heading and permalink for Task 2.5.2.j: Water Phase Identifier" aria-label="Copy heading and permalink for Task 2.5.2.j: Water Phase Identifier">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(k)"><article class="task exercise-like" id="hw-bmi-category"><h3 class="heading">
+<span class="codenumber">(k)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">BMI Category Classifier.</span>
+</h3>
+<div class="para" id="hw-bmi-category-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">bmi_category</code> that calculates Body Mass Index (BMI) and classifies it into standard health categories.<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-bmi-category-2-2">BMI is calculated as: <span class="process-math">\(\text{BMI} = \frac{\text{weight (kg)}}{\text{height (m)}^2}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-bmi-category-2-3">
+<div class="para">Categories:</div>
+<ul class="disc" id="hw-bmi-category-2-3-1">
+<li id="hw-bmi-category-2-3-1-1">
+<div class="para" id="hw-bmi-category-2-3-1-1-1">BMI &lt; 18.5: "Underweight"<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-bmi-category-2-3-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-bmi-category-2-3-1-2">
+<div class="para" id="hw-bmi-category-2-3-1-2-1">BMI 18.5 to 24.9: "Normal weight"<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-3-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-bmi-category-2-3-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-bmi-category-2-3-1-3">
+<div class="para" id="hw-bmi-category-2-3-1-3-1">BMI 25 to 29.9: "Overweight"<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-3-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-bmi-category-2-3-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-bmi-category-2-3-1-4">
+<div class="para" id="hw-bmi-category-2-3-1-4-1">BMI ≥ 30: "Obese"<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-3-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-bmi-category-2-3-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-bmi-category-2-4-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">weight_kg</code> (1x1) double — weight in kilograms<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-4-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-bmi-category-2-4-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">height_m</code> (1x1) double — height in meters<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-4-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-bmi-category-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">category</code> (1x1) string — the BMI category<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-bmi-category-2-5">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-bmi-category-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Underweight
+c1 = bmi_category(50, 1.75)
+% Expected: c1 = "Underweight"
+
+% Test 2: Normal weight
+c2 = bmi_category(70, 1.75)
+% Expected: c2 = "Normal weight"
+
+% Test 3: Overweight
+c3 = bmi_category(85, 1.75)
+% Expected: c3 = "Overweight"
+
+% Test 4: Obese
+c4 = bmi_category(100, 1.75)
+% Expected: c4 = "Obese"
+
+% Test 5: Boundary case
+c5 = bmi_category(75.5, 1.75)
+% Expected: c5 = "Normal weight"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.k: BMI Category Classifier"><a href="#hw-bmi-category" title="Copy heading and permalink for Task 2.5.2.k: BMI Category Classifier" aria-label="Copy heading and permalink for Task 2.5.2.k: BMI Category Classifier">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(l)"><article class="task exercise-like" id="hw-parking-fee"><h3 class="heading">
+<span class="codenumber">(l)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Parking Fee Calculator.</span>
+</h3>
+<div class="para" id="hw-parking-fee-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">parking_fee</code> that calculates the parking fee based on the number of hours parked.<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-parking-fee-2-2">
+<div class="para">Fee structure:</div>
+<ul class="disc" id="hw-parking-fee-2-2-1">
+<li id="hw-parking-fee-2-2-1-1">
+<div class="para" id="hw-parking-fee-2-2-1-1-1">First hour: $3<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-parking-fee-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-parking-fee-2-2-1-2">
+<div class="para" id="hw-parking-fee-2-2-1-2-1">Hours 2-4: $2 per hour<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-parking-fee-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-parking-fee-2-2-1-3">
+<div class="para" id="hw-parking-fee-2-2-1-3-1">Hours 5+: $1.50 per hour<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-parking-fee-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-parking-fee-2-2-1-4">
+<div class="para" id="hw-parking-fee-2-2-1-4-1">Maximum daily fee: $15<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-parking-fee-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-parking-fee-2-3">Note: Use the <code class="code-inline tex2jax_ignore language-matlab">ceil</code> function to round up partial hours. For example, <code class="code-inline tex2jax_ignore language-matlab">ceil(2.3)</code> returns <code class="code-inline tex2jax_ignore language-matlab">3</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-parking-fee-2-4-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">hours</code> (1x1) double — number of hours parked (may include fractions)<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-4-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-parking-fee-2-4-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">fee</code> (1x1) double — total parking fee in dollars<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-4-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-parking-fee-2-5">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-parking-fee-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: First hour
+f1 = parking_fee(0.5)
+% Expected: f1 = 3
+
+% Test 2: Two hours
+f2 = parking_fee(2)
+% Expected: f2 = 5 (3 + 2)
+
+% Test 3: Four hours
+f3 = parking_fee(4)
+% Expected: f3 = 9 (3 + 2 + 2 + 2)
+
+% Test 4: Six hours
+f4 = parking_fee(6)
+% Expected: f4 = 12 (3 + 2 + 2 + 2 + 1.5 + 1.5)
+
+% Test 5: Exceeds maximum
+f5 = parking_fee(12)
+% Expected: f5 = 15
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.l: Parking Fee Calculator"><a href="#hw-parking-fee" title="Copy heading and permalink for Task 2.5.2.l: Parking Fee Calculator" aria-label="Copy heading and permalink for Task 2.5.2.l: Parking Fee Calculator">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(m)"><article class="task exercise-like" id="hw-rock-paper-scissors"><h3 class="heading">
+<span class="codenumber">(m)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Rock-Paper-Scissors Judge.</span>
+</h3>
+<div class="para" id="hw-rock-paper-scissors-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">rps_winner</code> that determines the winner of a rock-paper-scissors game. Use a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement to handle the different move combinations.<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-rock-paper-scissors-2-2">
+<div class="para">Rules:</div>
+<ul class="disc" id="hw-rock-paper-scissors-2-2-1">
+<li id="hw-rock-paper-scissors-2-2-1-1">
+<div class="para" id="hw-rock-paper-scissors-2-2-1-1-1">Rock beats Scissors<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-rock-paper-scissors-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-rock-paper-scissors-2-2-1-2">
+<div class="para" id="hw-rock-paper-scissors-2-2-1-2-1">Scissors beats Paper<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-rock-paper-scissors-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-rock-paper-scissors-2-2-1-3">
+<div class="para" id="hw-rock-paper-scissors-2-2-1-3-1">Paper beats Rock<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-rock-paper-scissors-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-rock-paper-scissors-2-2-1-4">
+<div class="para" id="hw-rock-paper-scissors-2-2-1-4-1">Same moves result in a tie<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-rock-paper-scissors-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-rock-paper-scissors-2-3">Moves are represented as: ’R’ for rock, ’P’ for paper, ’S’ for scissors.<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-rock-paper-scissors-2-4-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">player1</code> (1x1) char — player 1’s move (’R’, ’P’, or ’S’)<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-4-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-rock-paper-scissors-2-4-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">player2</code> (1x1) char — player 2’s move (’R’, ’P’, or ’S’)<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-4-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-rock-paper-scissors-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code> (1x1) string — "Player 1", "Player 2", or "Tie"<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-rock-paper-scissors-2-5">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-rock-paper-scissors-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Rock beats Scissors
+r1 = rps_winner('R', 'S')
+% Expected: r1 = "Player 1"
+
+% Test 2: Paper beats Rock
+r2 = rps_winner('R', 'P')
+% Expected: r2 = "Player 2"
+
+% Test 3: Scissors beats Paper
+r3 = rps_winner('S', 'P')
+% Expected: r3 = "Player 1"
+
+% Test 4: Tie
+r4 = rps_winner('R', 'R')
+% Expected: r4 = "Tie"
+
+% Test 5: Another scenario
+r5 = rps_winner('P', 'S')
+% Expected: r5 = "Player 2"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.m: Rock-Paper-Scissors Judge"><a href="#hw-rock-paper-scissors" title="Copy heading and permalink for Task 2.5.2.m: Rock-Paper-Scissors Judge" aria-label="Copy heading and permalink for Task 2.5.2.m: Rock-Paper-Scissors Judge">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(n)"><article class="task exercise-like" id="hw-hurricane-category"><h3 class="heading">
+<span class="codenumber">(n)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Hurricane Category Classifier.</span>
+</h3>
+<div class="para" id="hw-hurricane-category-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">hurricane_category</code> that classifies a hurricane based on its wind speed using the Saffir-Simpson scale.<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-hurricane-category-2-2">
+<div class="para">Categories (based on sustained wind speed in mph):</div>
+<ul class="disc" id="hw-hurricane-category-2-2-1">
+<li id="hw-hurricane-category-2-2-1-1">
+<div class="para" id="hw-hurricane-category-2-2-1-1-1">&lt; 74: "Tropical Storm"<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-hurricane-category-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-hurricane-category-2-2-1-2">
+<div class="para" id="hw-hurricane-category-2-2-1-2-1">74-95: "Category 1"<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-hurricane-category-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-hurricane-category-2-2-1-3">
+<div class="para" id="hw-hurricane-category-2-2-1-3-1">96-110: "Category 2"<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-hurricane-category-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-hurricane-category-2-2-1-4">
+<div class="para" id="hw-hurricane-category-2-2-1-4-1">111-129: "Category 3"<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-hurricane-category-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-hurricane-category-2-2-1-5">
+<div class="para" id="hw-hurricane-category-2-2-1-5-1">130-156: "Category 4"<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-2-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-hurricane-category-2-2-1-5" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-hurricane-category-2-2-1-6">
+<div class="para" id="hw-hurricane-category-2-2-1-6-1">≥ 157: "Category 5"<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-2-1-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-hurricane-category-2-2-1-6" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-hurricane-category-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">wind_speed</code> (1x1) double — sustained wind speed in mph<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-hurricane-category-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">category</code> (1x1) string — the hurricane category<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-hurricane-category-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-hurricane-category-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Tropical Storm
+c1 = hurricane_category(60)
+% Expected: c1 = "Tropical Storm"
+
+% Test 2: Category 1
+c2 = hurricane_category(85)
+% Expected: c2 = "Category 1"
+
+% Test 3: Category 3
+c3 = hurricane_category(120)
+% Expected: c3 = "Category 3"
+
+% Test 4: Category 5
+c4 = hurricane_category(160)
+% Expected: c4 = "Category 5"
+
+% Test 5: Boundary case
+c5 = hurricane_category(74)
+% Expected: c5 = "Category 1"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.n: Hurricane Category Classifier"><a href="#hw-hurricane-category" title="Copy heading and permalink for Task 2.5.2.n: Hurricane Category Classifier" aria-label="Copy heading and permalink for Task 2.5.2.n: Hurricane Category Classifier">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(o)"><article class="task exercise-like" id="hw-traffic-light-duration"><h3 class="heading">
+<span class="codenumber">(o)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Traffic Light Duration.</span>
+</h3>
+<div class="para" id="hw-traffic-light-duration-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">light_duration</code> that uses a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement to return the duration (in seconds) that a traffic light stays on each color at an intersection.<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-traffic-light-duration-2-2">
+<div class="para">Durations:</div>
+<ul class="disc" id="hw-traffic-light-duration-2-2-1">
+<li id="hw-traffic-light-duration-2-2-1-1">
+<div class="para" id="hw-traffic-light-duration-2-2-1-1-1">Green: 45 seconds<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-traffic-light-duration-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-traffic-light-duration-2-2-1-2">
+<div class="para" id="hw-traffic-light-duration-2-2-1-2-1">Yellow: 5 seconds<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-traffic-light-duration-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-traffic-light-duration-2-2-1-3">
+<div class="para" id="hw-traffic-light-duration-2-2-1-3-1">Red: 60 seconds<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-traffic-light-duration-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-traffic-light-duration-2-3">The function should handle both full color names (’green’, ’yellow’, ’red’) and single-letter codes (’G’, ’Y’, ’R’). Return <code class="code-inline tex2jax_ignore language-matlab">NaN</code> for invalid inputs.<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-traffic-light-duration-2-4-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">color</code> string scalar or character vector — traffic light color (e.g., ’green’, ’Y’)<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-4-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-traffic-light-duration-2-4-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">seconds</code> (1x1) double — duration in seconds, or NaN if invalid<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-4-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-traffic-light-duration-2-5">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-traffic-light-duration-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Full color name
+s1 = light_duration('green')
+% Expected: s1 = 45
+
+% Test 2: Single letter code
+s2 = light_duration('Y')
+% Expected: s2 = 5
+
+% Test 3: Red light
+s3 = light_duration('red')
+% Expected: s3 = 60
+
+% Test 4: Invalid input
+s4 = light_duration('blue')
+% Expected: s4 = NaN
+
+% Test 5: Another code
+s5 = light_duration('R')
+% Expected: s5 = 60
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.o: Traffic Light Duration"><a href="#hw-traffic-light-duration" title="Copy heading and permalink for Task 2.5.2.o: Traffic Light Duration" aria-label="Copy heading and permalink for Task 2.5.2.o: Traffic Light Duration">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(p)"><article class="task exercise-like" id="hw-zodiac-sign"><h3 class="heading">
+<span class="codenumber">(p)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Zodiac Sign Finder.</span>
+</h3>
+<div class="para" id="hw-zodiac-sign-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">zodiac_sign</code> that determines a person’s Western zodiac sign based on their birth month and day. Use a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement for the month, then <code class="code-inline tex2jax_ignore language-matlab">if</code> statements for the day ranges.<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-zodiac-sign-2-2">
+<div class="para">Zodiac date ranges (using format: month number, day range):</div>
+<ul class="disc" id="hw-zodiac-sign-2-2-1">
+<li id="hw-zodiac-sign-2-2-1-1">
+<div class="para" id="hw-zodiac-sign-2-2-1-1-1">Capricorn: 12/22-1/19<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-2">
+<div class="para" id="hw-zodiac-sign-2-2-1-2-1">Aquarius: 1/20-2/18<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-3">
+<div class="para" id="hw-zodiac-sign-2-2-1-3-1">Pisces: 2/19-3/20<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-4">
+<div class="para" id="hw-zodiac-sign-2-2-1-4-1">Aries: 3/21-4/19<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-5">
+<div class="para" id="hw-zodiac-sign-2-2-1-5-1">Taurus: 4/20-5/20<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-5" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-6">
+<div class="para" id="hw-zodiac-sign-2-2-1-6-1">Gemini: 5/21-6/20<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-6" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-7">
+<div class="para" id="hw-zodiac-sign-2-2-1-7-1">Cancer: 6/21-7/22<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-7" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-8">
+<div class="para" id="hw-zodiac-sign-2-2-1-8-1">Leo: 7/23-8/22<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-8-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-8" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-9">
+<div class="para" id="hw-zodiac-sign-2-2-1-9-1">Virgo: 8/23-9/22<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-9-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-9" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-10">
+<div class="para" id="hw-zodiac-sign-2-2-1-10-1">Libra: 9/23-10/22<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-10-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-10" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-11">
+<div class="para" id="hw-zodiac-sign-2-2-1-11-1">Scorpio: 10/23-11/21<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-11-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-11" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-zodiac-sign-2-2-1-12">
+<div class="para" id="hw-zodiac-sign-2-2-1-12-1">Sagittarius: 11/22-12/21<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2-1-12-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-zodiac-sign-2-2-1-12" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-zodiac-sign-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">month</code> (1x1) double — birth month (1-12)<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-zodiac-sign-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">day</code> (1x1) double — birth day (1-31)<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-zodiac-sign-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">sign</code> (1x1) string — zodiac sign name<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-zodiac-sign-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-zodiac-sign-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Early January (Capricorn)
+z1 = zodiac_sign(1, 10)
+% Expected: z1 = "Capricorn"
+
+% Test 2: Late January (Aquarius)
+z2 = zodiac_sign(1, 25)
+% Expected: z2 = "Aquarius"
+
+% Test 3: Mid-year (Leo)
+z3 = zodiac_sign(8, 5)
+% Expected: z3 = "Leo"
+
+% Test 4: Boundary case (Taurus/Gemini)
+z4 = zodiac_sign(5, 20)
+% Expected: z4 = "Taurus"
+
+% Test 5: Late December (Capricorn - year boundary)
+z5 = zodiac_sign(12, 25)
+% Expected: z5 = "Capricorn"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.p: Zodiac Sign Finder"><a href="#hw-zodiac-sign" title="Copy heading and permalink for Task 2.5.2.p: Zodiac Sign Finder" aria-label="Copy heading and permalink for Task 2.5.2.p: Zodiac Sign Finder">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(q)"><article class="task exercise-like" id="hw-safe-temperature"><h3 class="heading">
+<span class="codenumber">(q)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Food Safety Temperature Checker.</span>
+</h3>
+<div class="para" id="hw-safe-temperature-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">food_safety</code> that determines if food is at a safe storage temperature. Use the concept of the "danger zone" where bacteria grow rapidly.<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-safe-temperature-2-2">
+<div class="para">Temperature safety zones (in Fahrenheit):</div>
+<ul class="disc" id="hw-safe-temperature-2-2-1">
+<li id="hw-safe-temperature-2-2-1-1">
+<div class="para" id="hw-safe-temperature-2-2-1-1-1">&lt; 40°F: "Safe - Cold storage"<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-safe-temperature-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-safe-temperature-2-2-1-2">
+<div class="para" id="hw-safe-temperature-2-2-1-2-1">40-140°F: "Danger zone"<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-safe-temperature-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-safe-temperature-2-2-1-3">
+<div class="para" id="hw-safe-temperature-2-2-1-3-1">&gt; 140°F: "Safe - Hot holding"<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-safe-temperature-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-safe-temperature-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">temp_f</code> (1x1) double — temperature in Fahrenheit<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-safe-temperature-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">status</code> (1x1) string — safety status message<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-safe-temperature-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-safe-temperature-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Refrigerator temperature
+s1 = food_safety(35)
+% Expected: s1 = "Safe - Cold storage"
+
+% Test 2: Room temperature (danger)
+s2 = food_safety(70)
+% Expected: s2 = "Danger zone"
+
+% Test 3: Hot food holding
+s3 = food_safety(165)
+% Expected: s3 = "Safe - Hot holding"
+
+% Test 4: Boundary case (lower)
+s4 = food_safety(40)
+% Expected: s4 = "Danger zone"
+
+% Test 5: Boundary case (upper)
+s5 = food_safety(140)
+% Expected: s5 = "Danger zone"
+</code></pre></div>
+<div class="autopermalink" data-description="Task 2.5.2.q: Food Safety Temperature Checker"><a href="#hw-safe-temperature" title="Copy heading and permalink for Task 2.5.2.q: Food Safety Temperature Checker" aria-label="Copy heading and permalink for Task 2.5.2.q: Food Safety Temperature Checker">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(r)"><article class="task exercise-like" id="hw-exam-grade-advice"><h3 class="heading">
+<span class="codenumber">(r)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Exam Grade with Study Advice (Springboard).</span>
+</h3>
+<div class="para" id="hw-exam-grade-advice-2-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">grade_with_advice</code> that converts a numeric exam score to a letter grade and provides study advice. This exercise introduces the concept of returning multiple related outputs and demonstrates how conditional logic can control parallel information flows.<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-exam-grade-advice-2-2">
+<div class="para">Grade scale and advice:</div>
+<ul class="disc" id="hw-exam-grade-advice-2-2-1">
+<li id="hw-exam-grade-advice-2-2-1-1">
+<div class="para" id="hw-exam-grade-advice-2-2-1-1-1">90-100: ’A’ — "Excellent work!"<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-exam-grade-advice-2-2-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-exam-grade-advice-2-2-1-2">
+<div class="para" id="hw-exam-grade-advice-2-2-1-2-1">80-89: ’B’ — "Good job!"<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-exam-grade-advice-2-2-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-exam-grade-advice-2-2-1-3">
+<div class="para" id="hw-exam-grade-advice-2-2-1-3-1">70-79: ’C’ — "Consider office hours"<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-exam-grade-advice-2-2-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-exam-grade-advice-2-2-1-4">
+<div class="para" id="hw-exam-grade-advice-2-2-1-4-1">60-69: ’D’ — "Schedule tutoring"<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-exam-grade-advice-2-2-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-exam-grade-advice-2-2-1-5">
+<div class="para" id="hw-exam-grade-advice-2-2-1-5-1">Below 60: ’F’ — "See instructor immediately"<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-2-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-exam-grade-advice-2-2-1-5" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-exam-grade-advice-2-2-1-6">
+<div class="para" id="hw-exam-grade-advice-2-2-1-6-1">Outside 0-100: ’X’ — "Invalid score"<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-2-1-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-exam-grade-advice-2-2-1-6" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:528px;"><div class="para" id="hw-exam-grade-advice-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">score</code> (1x1) double — exam score<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-exam-grade-advice-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">grade</code> (1x1) char — letter grade<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:528px;"><div class="para" id="hw-exam-grade-advice-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">advice</code> (1x1) string — study advice message<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="para" id="hw-exam-grade-advice-2-4">Test cases:<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Test 1: Excellent score
+[g1, a1] = grade_with_advice(95)
+% Expected: g1 = 'A', a1 = "Excellent work!"
+
+% Test 2: Borderline passing
+[g2, a2] = grade_with_advice(72)
+% Expected: g2 = 'C', a2 = "Consider office hours"
+
+% Test 3: Failing score
+[g3, a3] = grade_with_advice(55)
+% Expected: g3 = 'F', a3 = "See instructor immediately"
+
+% Test 4: Invalid score
+[g4, a4] = grade_with_advice(105)
+% Expected: g4 = 'X', a4 = "Invalid score"
+
+% Test 5: Boundary case
+[g5, a5] = grade_with_advice(90)
+% Expected: g5 = 'A', a5 = "Excellent work!"
+</code></pre></div> <div class="para" id="hw-exam-grade-advice-2-6">
+<em class="emphasis">Springboard to advanced topics:</em> This function returns two coordinated outputs that are determined by the same conditional structure. This pattern is common when processing data records where multiple fields must be set consistently. As you progress, you’ll learn to handle arrays of scores where each element needs its own grade and advice—this motivates the study of vectorization and element-wise operations.<div class="autopermalink" data-description="Paragraph"><a href="#hw-exam-grade-advice-2-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Task 2.5.2.r: Exam Grade with Study Advice (Springboard)"><a href="#hw-exam-grade-advice" title="Copy heading and permalink for Task 2.5.2.r: Exam Grade with Study Advice (Springboard)" aria-label="Copy heading and permalink for Task 2.5.2.r: Exam Grade with Study Advice (Springboard)">🔗</a></div></article></div>
+</div></div></div>
+<div class="autopermalink" data-description="Exercise 2.5.2: Conditional Flow"><a href="#cf-coding-problems" title="Copy heading and permalink for Exercise 2.5.2: Conditional Flow" aria-label="Copy heading and permalink for Exercise 2.5.2: Conditional Flow">🔗</a></div></article><article class="exercise exercise-like" id="ex-for-sum-squares"><h2 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2>
+<div class="para" id="ex-for-sum-squares-1-1">Write a script that computes <span class="process-math">\(1^2 + 2^2 + \cdots + n^2\)</span> for a given positive integer <span class="process-math">\(n\text{.}\)</span> Your script should store the result in a variable named S.<div class="autopermalink" data-description="Paragraph"><a href="#ex-for-sum-squares-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Exercise 2.5.3"><a href="#ex-for-sum-squares" title="Copy heading and permalink for Exercise 2.5.3" aria-label="Copy heading and permalink for Exercise 2.5.3">🔗</a></div></article><article class="exercise exercise-like" id="ex-for-factorial"><h2 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2>
+<div class="para" id="ex-for-factorial-1-1">Write a script that computes <span class="process-math">\(n!\)</span> using a for loop. Assume <span class="process-math">\(n\)</span> is a nonnegative integer. Store the result in F.<div class="autopermalink" data-description="Paragraph"><a href="#ex-for-factorial-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Exercise 2.5.4"><a href="#ex-for-factorial" title="Copy heading and permalink for Exercise 2.5.4" aria-label="Copy heading and permalink for Exercise 2.5.4">🔗</a></div></article><article class="exercise exercise-like" id="ex-for-partial-sum"><h2 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2>
+<div class="para" id="ex-for-partial-sum-1-1">Let <span class="process-math">\(x\)</span> be a real number. Use a for loop to compute the partial sum <span class="process-math">\(\sum_{k=0}^{N} \frac{x^k}{k!}\)</span> for a chosen integer <span class="process-math">\(N\text{.}\)</span> (This is a truncated series for <span class="process-math">\(e^x\text{.}\)</span>) Store the result in P.<div class="autopermalink" data-description="Paragraph"><a href="#ex-for-partial-sum-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Exercise 2.5.5"><a href="#ex-for-partial-sum" title="Copy heading and permalink for Exercise 2.5.5" aria-label="Copy heading and permalink for Exercise 2.5.5">🔗</a></div></article><article class="exercise exercise-like" id="ex-for-simple-simulation"><h2 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2>
+<div class="para" id="ex-for-simple-simulation-1-1">Simulate rolling a fair six-sided die <span class="process-math">\(N\)</span> times. Use a for loop to count how many times you roll a 6. Store the count in sixes.<div class="autopermalink" data-description="Paragraph"><a href="#ex-for-simple-simulation-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Exercise 2.5.6"><a href="#ex-for-simple-simulation" title="Copy heading and permalink for Exercise 2.5.6" aria-label="Copy heading and permalink for Exercise 2.5.6">🔗</a></div></article><div class="autopermalink" data-description="Exercises 2.5: 💻 Coding Problems"><a href="#fn-exercises" title="Copy heading and permalink for Exercises 2.5: 💻 Coding Problems" aria-label="Copy heading and permalink for Exercises 2.5: 💻 Coding Problems">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec-conditional-statements.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="feedback-link" href="mailto:coxgeoff@vmi.edu" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>
