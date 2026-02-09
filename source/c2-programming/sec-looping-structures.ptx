@@ -34,34 +34,23 @@
       <title><pf>for</pf>-Loop Structure</title>
 
       <p>
-        The basic syntax is:
+        There are two basic options for defining a <pf>for</pf> loop in MATLAB:
       </p>
 
-      <sidebyside widths="45% 55%">
+      <sidebyside widths="50% 50%">
         <program language="matlab">
-          for k = list_of_values
-
+          % Fixed range with step size
+          for k = start:step:stop
             blockToRepeat
-
           end
         </program>
         <program language="matlab">
-          % k = value1 ➜ blockToRepeat
-          % k = value2 ➜ blockToRepeat
-          % k = value3 ➜ blockToRepeat
-          %   	...
-          % k = lastValue ➜ blockToRepeat
+          % Explicit list of values
+          for k = [v1, v2, v3, ... vn]
+            blockToRepeat
+          end
         </program>
       </sidebyside>
-
-      <p>
-        Common ways to define the list of values:
-        <ul>
-          <li><pf>1:n</pf> — creates <pf>[1, 2, 3, ..., n]</pf></li>
-          <li><pf>[v1, v2, v3]</pf> — uses exactly those values</li>
-          <li><pf>start:step:stop</pf> — creates values from <pf>start</pf> to <pf>stop</pf> incrementing by <pf>step</pf></li>
-        </ul>
-      </p>
 
       <p>
         Key rules:
@@ -75,43 +64,82 @@
 
     </assemblage>
 
+    <table>
+      <title>Sample Usage of the <pf>start:step:stop</pf> Notation</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <row header="yes">
+          <cell>Expression</cell>
+          <cell>Resulting List</cell>
+        </row>
+        <row>
+          <cell><pf>1:10</pf></cell><cell><pf>[1, 2, 3, ..., 10]</pf></cell>
+        </row>
+        <row>
+          <cell><pf>1:2:10</pf></cell><cell><pf>[1, 3, 5, 7, 9]</pf></cell>
+        </row>
+        <row>
+          <cell><pf>1:n</pf></cell><cell><pf>[1, 2, 3, ..., n]</pf></cell>
+        </row>
+        <row>
+          <cell><pf>n:-1:1</pf></cell><cell><pf>[n, n-1, n-2, ..., 1]</pf></cell>
+        </row>
+        <row>
+          <cell><pf>0:0.5:2</pf></cell><cell><pf>[0, 0.5, 1.0, 1.5, 2.0]</pf></cell>
+        </row>
+      </tabular>
+    </table>
+
     <p>
       Here is a simple example that demonstrates how the loop variable changes:
     </p>
 
     <sidebyside widths="50% 50%">
+
       <program language="matlab">
-        loop = 0;
-        x = 0;
+        f0 = 0;  % 0th Fibonacci #
+        f1 = 1;  % 1st Fibonacci #
 
-        for k = [1 3 6]
+        k = 2;
+        fk = f1 + f0;   % 2nd Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
 
-            loop = loop + 1;
-            x = x + k;
+        k = 3;
+        f0 = f1;        % 1st Fibonacci #
+        f1 = fk;        % 2nd Fibonacci #
+        fk = f1 + f0;   % 3rd Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
 
-        end
+        k = 4;
+        f0 = f1;        % 2nd Fibonacci #
+        f1 = fk;        % 3rd Fibonacci #
+        fk = f1 + f0;   % 4th Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
 
-        fprintf('loop = %i\n', loop)
-        fprintf('x = %i\n', x)
+        k = 5;
+        f0 = f1;        % 3rd Fibonacci #
+        f1 = fk;        % 4th Fibonacci #
+        fk = f1 + f0;   % 5th Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
+
+        k = 6;
+        f0 = f1;        % 4th Fibonacci #
+        f1 = fk;        % 5th Fibonacci #
+        fk = f1 + f0;   % 6th Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
       </program>
       <program language="matlab">
-        loop = 0;
-        x = 0;
+        f0 = 0;  % 0th Fibonacci #
+        fk = 1;  % 1st Fibonacci #
 
-        k = 1
-        loop = loop + 1;
-        x = x + k;
+        for k = 1:6
 
-        k = 3
-        loop = loop + 1;
-        x = x + k;
+          f0 = f1;        % (k-2)th Fibonacci #
+          f1 = fk;        % (k-1)th Fibonacci #
+          fk = f1 + f0;   % kth Fibonacci #
+          fprintf('f_%i = %i\n', k, fk)
 
-        k = 6
-        loop = loop + 1;
-        x = x + k;
-
-        fprintf('loop = %i\n', loop)
-        fprintf('x = %i\n', x)
+        end
+        
       </program>
     </sidebyside>
 
@@ -221,8 +249,7 @@
 
   </subsection>
 
-
-  <subsection xml:id="sec-while-loops2">
+  <subsection xml:id="sec-while-loops">
     <title><pf>while</pf> Loops</title>
 
     <p>
