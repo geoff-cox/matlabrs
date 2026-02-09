@@ -966,20 +966,21 @@
     </task>
 
     <task xml:id="hw-tax-bracket">
-      <title>Tax Bracket Calculator</title>
+      <title>Tax Bracket Rate Finder</title>
 
       <statement>
         <p>
-          Write a function named <pf>calculate_tax</pf> that computes income tax based on progressive tax brackets.
+          Write a function named <pf>find_tax_rate</pf> that determines the marginal tax rate for a given income 
+          based on progressive tax brackets.
         </p>
 
         <p>
-          Tax rules:
+          Tax bracket rates:
           <ul>
-            <li><p>Income up to $10,000: 0% tax</p></li>
-            <li><p>Income from $10,001 to $40,000: 10% tax</p></li>
-            <li><p>Income from $40,001 to $85,000: 15% tax</p></li>
-            <li><p>Income above $85,000: 20% tax</p></li>
+            <li><p>Income up to $10,000: 0% tax rate</p></li>
+            <li><p>Income from $10,001 to $40,000: 10% tax rate</p></li>
+            <li><p>Income from $40,001 to $85,000: 15% tax rate</p></li>
+            <li><p>Income above $85,000: 20% tax rate</p></li>
           </ul>
         </p>
 
@@ -995,7 +996,7 @@
           <row bottom="minor">
             <cell>Outputs:</cell>
             <cell>
-              <p><pf>tax_rate</pf> (1x1) double — the tax rate (as a decimal, e.g., 0.10 for 10%)</p>
+              <p><pf>tax_rate</pf> (1x1) double — the marginal tax rate (as a decimal, e.g., 0.10 for 10%)</p>
             </cell>
           </row>
         </tabular>
@@ -1005,23 +1006,23 @@
         <program language="matlab">
           <code>
             % Test 1: No tax bracket
-            t1 = calculate_tax(8000)
+            t1 = find_tax_rate(8000)
             % Expected: t1 = 0
 
             % Test 2: 10% bracket
-            t2 = calculate_tax(25000)
+            t2 = find_tax_rate(25000)
             % Expected: t2 = 0.10
 
             % Test 3: 15% bracket
-            t3 = calculate_tax(60000)
+            t3 = find_tax_rate(60000)
             % Expected: t3 = 0.15
 
             % Test 4: 20% bracket
-            t4 = calculate_tax(100000)
+            t4 = find_tax_rate(100000)
             % Expected: t4 = 0.20
 
             % Test 5: Boundary case
-            t5 = calculate_tax(40000)
+            t5 = find_tax_rate(40000)
             % Expected: t5 = 0.10
           </code>
         </program>
@@ -1407,7 +1408,7 @@
           <row>
             <cell>Inputs:</cell>
             <cell>
-              <p><pf>color</pf> (1x1) string or char — traffic light color</p>
+              <p><pf>color</pf> string scalar or character vector — traffic light color (e.g., 'green', 'Y')</p>
             </cell>
           </row>
           <row bottom="minor">
