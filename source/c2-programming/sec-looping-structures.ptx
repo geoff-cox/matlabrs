@@ -476,19 +476,21 @@
 
   </subsection>
 
-  <subsection xml:id="subsec-loop-class-activities">
+  <reading-questions xml:id="subsec-loop-class-activities">
     <title>Class Activities: Loops in Action</title>
 
-    <p>
-      These activities will help you practice using loops to solve interesting problems. Each activity requires only loops, variables, and basic arithmetic—no arrays needed.
-    </p>
+    <introduction>
+      <p>
+        These activities will help you practice using loops to solve interesting problems. Each activity requires only loops, variables, and basic arithmetic—no arrays needed.
+      </p>
+    </introduction>
 
-    <activity xml:id="activity-collatz-conjecture">
+    <exercise xml:id="activity-collatz-conjecture">
       <title>The Collatz Conjecture</title>
 
       <statement>
         <p>
-          The Collatz conjecture is one of mathematics' most famous unsolved problems. Start with any positive integer. If it is even, divide it by 2. If it is odd, multiply by 3 and add 1. Repeat this process until you reach 1.
+          The Collatz conjecture is one of mathematics' most famous unsolved problems. Start with any positive integer <pf>n</pf>. If it is even, divide it by 2. If it is odd, multiply by 3 and add 1. Repeat this process until you reach 1.
         </p>
 
         <p>
@@ -501,7 +503,7 @@
         <p>
           Write a MATLAB script that:
           <ol>
-            <li>Starts with a user-chosen positive integer.</li>
+            <li>Starts with a user-chosen positive integer <pf>n</pf>.</li>
             <li>Uses a <pf>while</pf>-loop to apply the Collatz rules repeatedly until reaching 1.</li>
             <li>Displays each number in the sequence.</li>
             <li>Reports how many steps it took to reach 1.</li>
@@ -515,12 +517,12 @@
 
       <hint>
         <p>
-          If you store the current Collatz value in a variable <pf>n</pf>, you can use <pf>mod(n, 2) == 0</pf> to check if <pf>n</pf> is even. Keep a counter variable that increments each iteration.
+          Use <pf>mod(n, 2) == 0</pf> to check if <pf>n</pf> is even. Keep a counter variable that increments each iteration.
         </p>
       </hint>
-    </activity>
+    </exercise>
 
-    <activity xml:id="activity-digital-root-calculator">
+    <exercise xml:id="activity-digital-root-calculator">
       <title>Digital Root Calculator</title>
 
       <statement>
@@ -534,15 +536,15 @@
         </p>
 
         <p>
-          Write a MATLAB script that computes the digital root of any positive integer using a <pf>while</pf>-loop. You can extract the rightmost digit of a number <pf>n</pf> using <pf>mod(n, 10)</pf>, and remove it using <pf>floor(n/10)</pf>.
+          Write a MATLAB script that computes the digital root of any positive integer <pf>n</pf> using a <pf>while</pf>-loop. You can extract the rightmost digit of <pf>n</pf> using <pf>mod(n, 10)</pf>, and remove it using <pf>floor(n/10)</pf>.
         </p>
 
         <p>
           Your script should:
           <ol>
             <li>Accept a positive integer as input.</li>
-            <li>Use an outer loop that repeats until the number has only one digit.</li>
-            <li>Use an inner loop to sum the digits of the current number.</li>
+            <li>Use an outer loop that repeats until <pf>n</pf> has only one digit.</li>
+            <li>Use an inner loop to sum the digits of the current value of <pf>n</pf>.</li>
             <li>Display the digital root.</li>
           </ol>
         </p>
@@ -554,12 +556,12 @@
 
       <hint>
         <p>
-          Start with an outer loop: <c>while number >= 10</c>. Inside, use an inner loop to extract and sum digits, then update <pf>number</pf> to this sum.
+          Start with an outer loop: <c>while n >= 10</c>. Inside, use an inner loop to extract and sum digits, then update <pf>n</pf> to this sum.
         </p>
       </hint>
-    </activity>
+    </exercise>
 
-    <activity xml:id="activity-approximating-pi">
+    <exercise xml:id="activity-approximating-pi">
       <title>Approximating Pi with Leibniz's Formula</title>
 
       <statement>
@@ -590,9 +592,9 @@
           <em>Extension:</em> How many terms are needed to get within 0.001 of <pf>pi</pf>? Convert your <pf>for</pf>-loop to a <pf>while</pf>-loop that stops when the error is small enough.
         </p>
       </statement>
-    </activity>
+    </exercise>
 
-    <activity xml:id="activity-fibonacci-threshold">
+    <exercise xml:id="activity-fibonacci-threshold">
       <title>Finding Fibonacci Numbers</title>
 
       <statement>
@@ -626,9 +628,9 @@
           <em>Extension:</em> Modify your script to compute the ratio of consecutive Fibonacci numbers (e.g., <m>F_n / F_{n-1}</m>). What value does this ratio approach as <m>n</m> increases?
         </p>
       </statement>
-    </activity>
+    </exercise>
 
-    <activity xml:id="activity-perfect-numbers">
+    <exercise xml:id="activity-perfect-numbers">
       <title>Perfect Number Detector</title>
 
       <statement>
@@ -655,9 +657,9 @@
           <em>Extension:</em> The first four perfect numbers are 6, 28, 496, and 8128. Write a script using nested loops to search for all perfect numbers less than 10,000.
         </p>
       </statement>
-    </activity>
+    </exercise>
 
-  </subsection>
+  </reading-questions>
 
   <subsection xml:id="subsec-for-vs-while">
     <title>Choosing Between for and while Loops</title>
