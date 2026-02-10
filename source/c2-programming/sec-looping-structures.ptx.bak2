@@ -27,35 +27,6 @@
     <title>The for Loop</title>
 
     <p>
-      Imagine you need to display the message <q>Hello!</q> five times. Without loops, you would write the same command repeatedly:
-    </p>
-
-    <sidebyside widths="48% 48%">
-      <stack>
-        <title>Without Loops</title>
-        <program language="matlab">
-          disp('Hello!')
-          disp('Hello!')
-          disp('Hello!')
-          disp('Hello!')
-          disp('Hello!')
-        </program>
-      </stack>
-      <stack>
-        <title>With a for-Loop</title>
-        <program language="matlab">
-          for i = 1:5
-              disp('Hello!')
-          end
-        </program>
-      </stack>
-    </sidebyside>
-
-    <p>
-      The <pf>for</pf>-loop version is shorter, clearer, and easier to modify. If you later need 100 repetitions instead of 5, you only change one number rather than copying and pasting 95 more lines.
-    </p>
-
-    <p>
       A <pf>for</pf>-loop repeats a block of code once for each value in a specified list. This is the right tool when you know in advance what values you want to iterate over.
     </p>
 
@@ -66,7 +37,7 @@
         There are two basic options for defining a <pf>for</pf> loop in MATLAB:
       </p>
 
-      <sidebyside widths="48% 48%">
+      <sidebyside widths="50% 50%">
         <program language="matlab">
           % Fixed range with step size
           for k = start:step:stop
@@ -119,47 +90,61 @@
     </table>
 
     <p>
-      Here is a concrete example showing repeated calculations. Suppose you want to compute and display several powers of 2. Without a loop, you must explicitly write each calculation:
+      Here is a simple example that demonstrates how the loop variable changes:
     </p>
 
-    <sidebyside widths="48% 48%">
-      <stack>
-        <p>Without Loops ⤵︎</p>
-        <program language="matlab">
-          n = 1;
-          x = 2^n;
-          fprintf('2^%i = %i\n', n, x)
+    <sidebyside widths="50% 50%">
 
-          n = 2;
-          x = 2^n;
-          fprintf('2^%i = %i\n', n, x)
+      <program language="matlab">
+        f0 = 0;  % 0th Fibonacci #
+        f1 = 1;  % 1st Fibonacci #
 
-          n = 3;
-          x = 2^n;
-          fprintf('2^%i = %i\n', n, x)
+        k = 2;
+        fk = f1 + f0;   % 2nd Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
 
-          n = 4;
-          x = 2^n;
-          fprintf('2^%i = %i\n', n, x)
+        k = 3;
+        f0 = f1;        % 1st Fibonacci #
+        f1 = fk;        % 2nd Fibonacci #
+        fk = f1 + f0;   % 3rd Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
 
-          n = 5;
-          x = 2^n;
-          fprintf('2^%i = %i\n', n, x)
-        </program>
-      </stack>
-      <stack>
-        <p>With a for-Loop ⤵︎</p>
-        <program language="matlab">
-          for n = 1:5
-              x = 2^n;
-              fprintf('2^%i = %i\n', n, x)
-          end
-        </program>
-      </stack>
+        k = 4;
+        f0 = f1;        % 2nd Fibonacci #
+        f1 = fk;        % 3rd Fibonacci #
+        fk = f1 + f0;   % 4th Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
+
+        k = 5;
+        f0 = f1;        % 3rd Fibonacci #
+        f1 = fk;        % 4th Fibonacci #
+        fk = f1 + f0;   % 5th Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
+
+        k = 6;
+        f0 = f1;        % 4th Fibonacci #
+        f1 = fk;        % 5th Fibonacci #
+        fk = f1 + f0;   % 6th Fibonacci #
+        fprintf('f_%i = %i\n', k, fk)
+      </program>
+      <program language="matlab">
+        f0 = 0;  % 0th Fibonacci #
+        fk = 1;  % 1st Fibonacci #
+
+        for k = 1:6
+
+          f0 = f1;        % (k-2)th Fibonacci #
+          f1 = fk;        % (k-1)th Fibonacci #
+          fk = f1 + f0;   % kth Fibonacci #
+          fprintf('f_%i = %i\n', k, fk)
+
+        end
+        
+      </program>
     </sidebyside>
 
     <p>
-      Both versions produce the same output: <c>2^1 = 2</c>, <c>2^2 = 4</c>, <c>2^3 = 8</c>, <c>2^4 = 16</c>, and <c>2^5 = 32</c>. The loop version eliminates redundancy by automatically updating the loop variable <pf>n</pf> from 1 to 5.
+      MATLAB sets <pf>k = 1</pf> and runs the block, then sets <pf>k = 3</pf> and runs the block, then sets <pf>k = 6</pf> and runs the block. After all values are used, the loop ends. So <pf>loop</pf> counts the iterations (three), and <pf>x</pf> becomes the sum <m>1+3+6=10</m>.
     </p>
 
     <p>
@@ -265,49 +250,7 @@
   </subsection>
 
   <subsection xml:id="sec-while-loops">
-    <title>The while Loop</title>
-
-    <p>
-      Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a starting value until it exceeds 1000:
-    </p>
-
-    <sidebyside widths="48% 48%">
-      <stack>
-        <title>Without Loops</title>
-        <program language="matlab">
-          value = 1;
-
-          value = value * 2;  % 2
-          value = value * 2;  % 4
-          value = value * 2;  % 8
-          value = value * 2;  % 16
-          value = value * 2;  % 32
-          value = value * 2;  % 64
-          value = value * 2;  % 128
-          value = value * 2;  % 256
-          value = value * 2;  % 512
-          value = value * 2;  % 1024
-
-          fprintf('Final value: %i\n', value)
-        </program>
-      </stack>
-      <stack>
-        <title>With a while-Loop</title>
-        <program language="matlab">
-          value = 1;
-
-          while value &lt;= 1000
-              value = value * 2;
-          end
-
-          fprintf('Final value: %i\n', value)
-        </program>
-      </stack>
-    </sidebyside>
-
-    <p>
-      The loop version automatically stops when <pf>value</pf> exceeds 1000. Without a loop, you must manually count iterations and hope you wrote enough (or not too many) doubling operations. If you change the starting value or the threshold, the loop still works without modification, but the explicit version would need rewriting.
-    </p>
+    <title><pf>while</pf> Loops</title>
 
     <p>
       A <pf>while</pf>-loop repeats as long as a logical condition remains true. This is the right tool when you do not know in advance how many iterations you will need—for example, when repeating until you reach a tolerance, find a valid input, or satisfy a stopping condition.
@@ -477,7 +420,7 @@
   </subsection>
 
   <subsection xml:id="subsec-for-vs-while">
-    <title>Which to Use: for versus while</title>
+    <title>Choosing Between for and while Loops</title>
 
     <p>
       Both <pf>for</pf>-loops and <pf>while</pf>-loops repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.
@@ -558,189 +501,5 @@
     </p>
 
   </subsection>
-
-  <reading-questions xml:id="subsec-loop-class-activities">
-
-    <introduction>
-      <p>
-        These activities will help you practice using loops to solve interesting problems. Each activity requires only loops, variables, and basic arithmetic—no arrays needed.
-      </p>
-    </introduction>
-
-    <exercise xml:id="activity-collatz-conjecture">
-      <title>The Collatz Conjecture</title>
-
-      <statement>
-        <p>
-          The Collatz conjecture is one of mathematics' most famous unsolved problems. Start with any positive integer <pf>n</pf>. If it is even, divide it by 2. If it is odd, multiply by 3 and add 1. Repeat this process until you reach 1.
-        </p>
-
-        <p>
-          For example, starting with 6:
-          <md>
-            <mrow>6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1</mrow>
-          </md>
-        </p>
-
-        <p>
-          Write a MATLAB script that:
-          <ol>
-            <li>Starts with a user-chosen positive integer <pf>n</pf>.</li>
-            <li>Uses a <pf>while</pf>-loop to apply the Collatz rules repeatedly until reaching 1.</li>
-            <li>Displays each number in the sequence.</li>
-            <li>Reports how many steps it took to reach 1.</li>
-          </ol>
-        </p>
-
-        <p>
-          <em>Challenge:</em> Test your script with different starting values. Can you find a starting number that takes more than 100 steps?
-        </p>
-      </statement>
-
-      <hint>
-        <p>
-          Use <pf>mod(n, 2) == 0</pf> to check if <pf>n</pf> is even. Keep a counter variable that increments each iteration.
-        </p>
-      </hint>
-    </exercise>
-
-    <exercise xml:id="activity-digital-root-calculator">
-      <title>Digital Root Calculator</title>
-
-      <statement>
-        <p>
-          The <term>digital root</term> of a number is found by repeatedly summing its digits until only a single digit remains. For example, the digital root of 9875 is found by:
-          <md>
-            <mrow>9 + 8 + 7 + 5 = 29</mrow>
-            <mrow>2 + 9 = 11</mrow>
-            <mrow>1 + 1 = 2</mrow>
-          </md>
-        </p>
-
-        <p>
-          Write a MATLAB script that computes the digital root of any positive integer <pf>n</pf> using a <pf>while</pf>-loop. You can extract the rightmost digit of <pf>n</pf> using <pf>mod(n, 10)</pf>, and remove it using <pf>floor(n/10)</pf>.
-        </p>
-
-        <p>
-          Your script should:
-          <ol>
-            <li>Accept a positive integer as input.</li>
-            <li>Use an outer loop that repeats until <pf>n</pf> has only one digit.</li>
-            <li>Use an inner loop to sum the digits of the current value of <pf>n</pf>.</li>
-            <li>Display the digital root.</li>
-          </ol>
-        </p>
-
-        <p>
-          <em>Extension:</em> Test your script with numbers like 38, 99, 123456, and 999999. What patterns do you notice?
-        </p>
-      </statement>
-
-      <hint>
-        <p>
-          Start with an outer loop: <c>while n >= 10</c>. Inside, use an inner loop to extract and sum digits, then update <pf>n</pf> to this sum.
-        </p>
-      </hint>
-    </exercise>
-
-    <exercise xml:id="activity-approximating-pi">
-      <title>Approximating Pi with Leibniz's Formula</title>
-
-      <statement>
-        <p>
-          The Leibniz formula for <m>\pi</m> states that:
-          <me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
-        </p>
-
-        <p>
-          This infinite series converges slowly to <m>\pi/4</m>, but we can approximate it by adding many terms.
-        </p>
-
-        <p>
-          Write a MATLAB script that:
-          <ol>
-            <li>Uses a <pf>for</pf>-loop to compute the sum of the first 1000 terms.</li>
-            <li>Multiplies the result by 4 to approximate <m>\pi</m>.</li>
-            <li>Compares your approximation to MATLAB's built-in <pf>pi</pf> value.</li>
-            <li>Reports the error (absolute difference).</li>
-          </ol>
-        </p>
-
-        <p>
-          <em>Hint:</em> The denominators are odd numbers (1, 3, 5, 7, ...) which follow the pattern <m>2k - 1</m> when looping with <pf>k = 1:1000</pf>. Signs alternate, so use <pf>(-1)^(k+1)</pf> to generate the alternating signs.
-        </p>
-
-        <p>
-          <em>Extension:</em> How many terms are needed to get within 0.001 of <pf>pi</pf>? Convert your <pf>for</pf>-loop to a <pf>while</pf>-loop that stops when the error is small enough.
-        </p>
-      </statement>
-    </exercise>
-
-    <exercise xml:id="activity-fibonacci-threshold">
-      <title>Finding Fibonacci Numbers</title>
-
-      <statement>
-        <p>
-          The Fibonacci sequence begins 0, 1, 1, 2, 3, 5, 8, 13, 21, ... where each number is the sum of the two preceding numbers.
-        </p>
-
-        <p>
-          Write a MATLAB script that:
-          <ol>
-            <li>Uses a <pf>while</pf>-loop to generate Fibonacci numbers until one exceeds 10,000.</li>
-            <li>Displays each Fibonacci number as it is computed.</li>
-            <li>Reports which Fibonacci number was the first to exceed 10,000.</li>
-          </ol>
-        </p>
-
-        <p>
-          <em>Hint:</em> You only need three variables: the current Fibonacci number, the previous one, and the one before that. Use a pattern like:
-        </p>
-        <program language="matlab">
-          prev2 = 0;
-          prev1 = 1;
-
-          while prev1 &lt; 10000
-              current = prev2 + prev1;
-              % display and update variables
-          end
-        </program>
-
-        <p>
-          <em>Extension:</em> Modify your script to compute the ratio of consecutive Fibonacci numbers (e.g., <m>F_n / F_{n-1}</m>). What value does this ratio approach as <m>n</m> increases?
-        </p>
-      </statement>
-    </exercise>
-
-    <exercise xml:id="activity-perfect-numbers">
-      <title>Perfect Number Detector</title>
-
-      <statement>
-        <p>
-          A <term>perfect number</term> is a positive integer that equals the sum of its proper divisors (positive divisors excluding itself). For example, 6 is perfect because <m>1 + 2 + 3 = 6</m>.
-        </p>
-
-        <p>
-          Write a MATLAB script that:
-          <ol>
-            <li>Prompts the user for a positive integer.</li>
-            <li>Uses a <pf>for</pf>-loop to find all proper divisors (numbers that divide evenly into the input).</li>
-            <li>Computes the sum of these divisors.</li>
-            <li>Determines whether the number is perfect, abundant (sum exceeds the number), or deficient (sum is less than the number).</li>
-            <li>Displays the classification and the sum of divisors.</li>
-          </ol>
-        </p>
-
-        <p>
-          <em>Hint:</em> Use <pf>mod(n, k) == 0</pf> to test if <pf>k</pf> divides <pf>n</pf> evenly. Loop from 1 to <pf>n-1</pf>.
-        </p>
-
-        <p>
-          <em>Extension:</em> The first four perfect numbers are 6, 28, 496, and 8128. Write a script using nested loops to search for all perfect numbers less than 10,000.
-        </p>
-      </statement>
-    </exercise>
-
-  </reading-questions>
 
 </section>
