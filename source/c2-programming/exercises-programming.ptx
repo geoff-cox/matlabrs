@@ -946,276 +946,6 @@
       </statement>
     </task>
 
-    <task xml:id="hw-leap-year">
-      <title>Leap Year Checker</title>
-
-      <statement>
-        <p>
-          Write a function named <pf>is_leap_year</pf> that determines whether a given year is a leap year.
-        </p>
-
-        <p>
-          The rules for leap years are:
-          <ul>
-            <li><p>A year is a leap year if it is divisible by 4</p></li>
-            <li><p>EXCEPT years divisible by 100 are NOT leap years</p></li>
-            <li><p>EXCEPT years divisible by 400 ARE leap years</p></li>
-          </ul>
-          For example: 2000 is a leap year (divisible by 400), 1900 is not (divisible by 100 but not 400), 
-          2004 is a leap year (divisible by 4 but not 100).
-        </p>
-
-        <tabular valign="top" halign="right" top="minor">
-          <col width="12%"/>
-          <col width="88%" halign="left"/>
-          <row>
-            <cell>Inputs:</cell>
-            <cell>
-              <p><pf>year</pf> (1x1) double — the year to check</p>
-            </cell>
-          </row>
-          <row bottom="minor">
-            <cell>Outputs:</cell>
-            <cell>
-              <p><pf>is_leap</pf> (1x1) logical — true if the year is a leap year, false otherwise</p>
-            </cell>
-          </row>
-        </tabular>
-
-        <p>Test cases:</p>
-
-        <program language="matlab">
-          % Test 1: Divisible by 400 (leap year)
-          r1 = is_leap_year(2000)
-          % Expected: r1 = 1 (true)
-
-          % Test 2: Divisible by 100 but not 400 (not a leap year)
-          r2 = is_leap_year(1900)
-          % Expected: r2 = 0 (false)
-
-          % Test 3: Divisible by 4 but not 100 (leap year)
-          r3 = is_leap_year(2024)
-          % Expected: r3 = 1 (true)
-
-          % Test 4: Not divisible by 4 (not a leap year)
-          r4 = is_leap_year(2023)
-          % Expected: r4 = 0 (false)
-
-          % Test 5: Another divisible by 100 case
-          r5 = is_leap_year(2100)
-          % Expected: r5 = 0 (false)
-        </program>
-
-      </statement>
-    </task>
-
-    <task xml:id="hw-quadratic-solver">
-      <title>Quadratic Equation Solver</title>
-
-      <statement>
-        <p>
-          Write a function named <pf>quadratic_solver</pf> that takes the coefficients <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> as inputs and returns the two solutions, <pf>x1</pf> and <pf>x2</pf> (if they exist), for a quadratic equation of the form 
-          <me>ax^2 + bx + c = 0</me>.
-        </p>
-
-        <p>
-          The function should handle different combinations of <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> being zero. Based on this there could be:
-          <ul>
-            <li><p>Two solutions (repeated, distinct, or complex),</p></li>
-            <li><p>One solution (set <pf>x2 = NaN</pf>),</p></li>
-            <li><p>No solutions (set <pf>x1 = NaN</pf> and <pf>x2 = NaN</pf>), or</p></li>
-            <li><p>Infinitely many solutions (set <pf>x1 = Inf</pf> and <pf>x2 = NaN</pf>).</p></li>
-          </ul>
-          Put on your math hat and think through the different cases to determine how to compute the solutions and what to return when there are no solutions or infinitely many solutions.
-        </p>
-
-        <tabular valign="top" halign="right" top="minor">
-          <col width="12%"/>
-          <col width="88%" halign="left"/>
-          <row>
-            <cell>Inputs:</cell>
-            <cell>
-              <p><pf>a</pf> (1x1) double — coefficient of <m>x^2</m></p>
-              <p><pf>b</pf> (1x1) double — coefficient of <m>x</m></p>
-              <p><pf>c</pf> (1x1) double — constant term</p>
-            </cell>
-          </row>
-          <row>
-            <cell>Outputs:</cell>
-            <cell>
-              <p><pf>x1</pf> (1x1) double — first solution of the quadratic equation</p>
-              <p><pf>x2</pf> (1x1) double — second solution of the quadratic equation</p>
-              <p><pf>message</pf> (1x1) string — message indicating the nature of the solutions</p>
-            </cell>
-          </row>
-          <row bottom="minor">
-            <cell/>
-            <cell>
-              <p><pf>message</pf> (1x1) string — message indicating the nature of the solutions </p>
-            </cell>
-          </row>
-        </tabular>
-
-        <p>Test cases:</p>
-
-        <program language="matlab">
-          % Test 1: Two Real Solutions
-          [x1, x2] = quadratic_solver(1, -3, 2)
-          % Expected: x1 = 2, x2 = 1
-
-          % Test 2: Repeated Solutions
-          [x1, x2] = quadratic_solver(1, 2, 1)
-          % Expected: x1 = -1, x2 = -1
-
-          % Test 3: Complex Solutions
-          [x1, x2] = quadratic_solver(1, 0, 4)
-          % Expected: x1 = 2i, x2 = -2i
-        </program>
-
-      </statement>
-    </task>
-
-    <task xml:id="hw-triangle-type">
-      <title>Triangle Type Classifier</title>
-
-      <statement>
-        <p>
-          Write a function named <pf>classify_triangle</pf> that determines whether three side lengths form 
-          a valid triangle and, if so, classifies it as equilateral, isosceles, or scalene.
-        </p>
-
-        <p>
-          Rules:
-          <ul>
-            <li><p>A valid triangle requires the sum of the two shortest sides be greater than the longest side</p></li>
-            <li><p>Equilateral: all three sides are equal</p></li>
-            <li><p>Isosceles: exactly two sides are equal</p></li>
-            <li><p>Scalene: all three sides are different</p></li>
-          </ul>
-        </p>
-
-        <tabular valign="top" halign="right" top="minor">
-          <col width="12%"/>
-          <col width="88%" halign="left"/>
-          <row>
-            <cell>Inputs:</cell>
-            <cell>
-              <p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
-            </cell>
-          </row>
-          <row>
-            <cell>Outputs:</cell>
-            <cell>
-              <p><pf>is_valid</pf> (1x1) logical — true if sides form a valid triangle, false otherwise</p>
-            </cell>
-          </row>
-          <row bottom="minor">
-            <cell/>
-            <cell>
-              <p><pf>type</pf> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"</p>
-            </cell>
-          </row>
-        </tabular>
-
-        <p>Test cases:</p>
-
-        <program language="matlab">
-          % Test 1: Equilateral triangle
-          [v1, t1] = classify_triangle(5, 5, 5)
-          % Expected: v1 = 1 (true), t1 = "Equilateral"
-
-          % Test 2: Isosceles triangle
-          [v2, t2] = classify_triangle(5, 5, 8)
-          % Expected: v2 = 1 (true), t2 = "Isosceles"
-
-          % Test 3: Scalene triangle
-          [v3, t3] = classify_triangle(3, 4, 5)
-          % Expected: v3 = 1 (true), t3 = "Scalene"
-
-          % Test 4: Invalid triangle (violates triangle inequality)
-          [v4, t4] = classify_triangle(1, 2, 10)
-          % Expected: v4 = 0 (false), t4 = "Invalid"
-
-          % Test 5: Another isosceles case
-          [v5, t5] = classify_triangle(7, 10, 7)
-          % Expected: v5 = 1 (true), t5 = "Isosceles"
-        </program>
-
-      </statement>
-    </task>
-
-    <task xml:id="hw-quadrant-checker">
-      <title>Coordinate Quadrant Checker</title>
-
-      <statement>
-        <p>
-          Write a function named <pf>find_quadrant</pf> that determines which quadrant or axis a point (x, y) is located in 
-          on a 2D coordinate system.
-        </p>
-
-        <p>
-          Rules:
-          <ul>
-            <li><p>Quadrant I: x &gt; 0 and y &gt; 0</p></li>
-            <li><p>Quadrant II: x &lt; 0 and y &gt; 0</p></li>
-            <li><p>Quadrant III: x &lt; 0 and y &lt; 0</p></li>
-            <li><p>Quadrant IV: x &gt; 0 and y &lt; 0</p></li>
-            <li><p>Origin: x = 0 and y = 0</p></li>
-            <li><p>X-axis: y = 0 (but x ≠ 0)</p></li>
-            <li><p>Y-axis: x = 0 (but y ≠ 0)</p></li>
-          </ul>
-        </p>
-
-        <tabular valign="top" halign="right" top="minor">
-          <col width="12%"/>
-          <col width="88%" halign="left"/>
-          <row>
-            <cell>Inputs:</cell>
-            <cell>
-              <p><pf>x</pf> (1x1) double — x-coordinate</p>
-            </cell>
-          </row>
-          <row>
-            <cell/>
-            <cell>
-              <p><pf>y</pf> (1x1) double — y-coordinate</p>
-            </cell>
-          </row>
-          <row bottom="minor">
-            <cell>Outputs:</cell>
-            <cell>
-              <p><pf>location</pf> (1x1) string — "Quadrant I", "Quadrant II", "Quadrant III", "Quadrant IV", "Origin", "X-axis", or "Y-axis"</p>
-            </cell>
-          </row>
-        </tabular>
-
-        <p>Test cases:</p>
-
-        <program language="matlab">
-          % Test 1: Quadrant I
-          loc1 = find_quadrant(3, 4)
-          % Expected: loc1 = "Quadrant I"
-
-          % Test 2: Quadrant II
-          loc2 = find_quadrant(-2, 5)
-          % Expected: loc2 = "Quadrant II"
-
-          % Test 3: Origin
-          loc3 = find_quadrant(0, 0)
-          % Expected: loc3 = "Origin"
-
-          % Test 4: X-axis
-          loc4 = find_quadrant(7, 0)
-          % Expected: loc4 = "X-axis"
-
-          % Test 5: Quadrant III
-          loc5 = find_quadrant(-3, -8)
-          % Expected: loc5 = "Quadrant III"
-        </program>
-
-      </statement>
-    </task>
-
     <task xml:id="hw-hurricane-category">
       <title>Hurricane Category Classifier</title>
 
@@ -1353,6 +1083,334 @@
           % Test 5: Late December (Capricorn - year boundary)
           z5 = zodiac_sign(12, 25)
           % Expected: z5 = "Capricorn"
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-leap-year">
+      <title>Leap Year Checker</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>is_leap_year</pf> that determines whether a given year is a leap year.
+        </p>
+
+        <p>
+          The rules for leap years are:
+          <ul>
+            <li><p>A year is a leap year if it is divisible by 4</p></li>
+            <li><p>EXCEPT years divisible by 100 are NOT leap years</p></li>
+            <li><p>EXCEPT years divisible by 400 ARE leap years</p></li>
+          </ul>
+          For example: 2000 is a leap year (divisible by 400), 1900 is not (divisible by 100 but not 400), 
+          2004 is a leap year (divisible by 4 but not 100).
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>year</pf> (1x1) double — the year to check</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>is_leap</pf> (1x1) logical — true if the year is a leap year, false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Divisible by 400 (leap year)
+          r1 = is_leap_year(2000)
+          % Expected: r1 = 1 (true)
+
+          % Test 2: Divisible by 100 but not 400 (not a leap year)
+          r2 = is_leap_year(1900)
+          % Expected: r2 = 0 (false)
+
+          % Test 3: Divisible by 4 but not 100 (leap year)
+          r3 = is_leap_year(2024)
+          % Expected: r3 = 1 (true)
+
+          % Test 4: Not divisible by 4 (not a leap year)
+          r4 = is_leap_year(2023)
+          % Expected: r4 = 0 (false)
+
+          % Test 5: Another divisible by 100 case
+          r5 = is_leap_year(2100)
+          % Expected: r5 = 0 (false)
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-quadratic-solver">
+      <title>Quadratic Equation Solver</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>quadratic_solver</pf> that takes the coefficients <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> as inputs and returns the two solutions, <pf>x1</pf> and <pf>x2</pf> (if they exist), for a quadratic equation of the form 
+          <me>ax^2 + bx + c = 0</me>.
+        </p>
+
+        <p>
+          The function should handle different combinations of <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> being zero. Based on this there could be:
+          <ul>
+            <li><p>Two solutions (repeated, distinct, or complex),</p></li>
+            <li><p>One solution (set <pf>x2 = NaN</pf>),</p></li>
+            <li><p>No solutions (set <pf>x1 = NaN</pf> and <pf>x2 = NaN</pf>), or</p></li>
+            <li><p>Infinitely many solutions (set <pf>x1 = Inf</pf> and <pf>x2 = NaN</pf>).</p></li>
+          </ul>
+          Put on your math hat and think through the different cases to determine how to compute the solutions and what to return when there are no solutions or infinitely many solutions.
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>a</pf> (1x1) double — coefficient of <m>x^2</m></p>
+              <p><pf>b</pf> (1x1) double — coefficient of <m>x</m></p>
+              <p><pf>c</pf> (1x1) double — constant term</p>
+            </cell>
+          </row>
+          <row>
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>x1</pf> (1x1) double — first solution of the quadratic equation</p>
+              <p><pf>x2</pf> (1x1) double — second solution of the quadratic equation</p>
+              <p><pf>message</pf> (1x1) string — message indicating the nature of the solutions</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell/>
+            <cell>
+              <p><pf>message</pf> (1x1) string — message indicating the nature of the solutions </p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Two Real Solutions
+          [x1, x2] = quadratic_solver(1, -3, 2)
+          % Expected: x1 = 2, x2 = 1
+
+          % Test 2: Repeated Solutions
+          [x1, x2] = quadratic_solver(1, 2, 1)
+          % Expected: x1 = -1, x2 = -1
+
+          % Test 3: Complex Solutions
+          [x1, x2] = quadratic_solver(1, 0, 4)
+          % Expected: x1 = 2i, x2 = -2i
+        </program>
+
+      </statement>
+    </task>
+
+
+
+    <task xml:id="hw-quadrant-checker">
+      <title>Coordinate Quadrant Checker</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>find_quadrant</pf> that determines which quadrant or axis a point (x, y) is located in 
+          on a 2D coordinate system.
+        </p>
+
+        <p>
+          Rules:
+          <ul>
+            <li><p>Quadrant I: x &gt; 0 and y &gt; 0</p></li>
+            <li><p>Quadrant II: x &lt; 0 and y &gt; 0</p></li>
+            <li><p>Quadrant III: x &lt; 0 and y &lt; 0</p></li>
+            <li><p>Quadrant IV: x &gt; 0 and y &lt; 0</p></li>
+            <li><p>Origin: x = 0 and y = 0</p></li>
+            <li><p>X-axis: y = 0 (but x ≠ 0)</p></li>
+            <li><p>Y-axis: x = 0 (but y ≠ 0)</p></li>
+          </ul>
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>x</pf> (1x1) double — x-coordinate</p>
+            </cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>
+              <p><pf>y</pf> (1x1) double — y-coordinate</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>location</pf> (1x1) string — "Quadrant I", "Quadrant II", "Quadrant III", "Quadrant IV", "Origin", "X-axis", or "Y-axis"</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Quadrant I
+          loc1 = find_quadrant(3, 4)
+          % Expected: loc1 = "Quadrant I"
+
+          % Test 2: Quadrant II
+          loc2 = find_quadrant(-2, 5)
+          % Expected: loc2 = "Quadrant II"
+
+          % Test 3: Origin
+          loc3 = find_quadrant(0, 0)
+          % Expected: loc3 = "Origin"
+
+          % Test 4: X-axis
+          loc4 = find_quadrant(7, 0)
+          % Expected: loc4 = "X-axis"
+
+          % Test 5: Quadrant III
+          loc5 = find_quadrant(-3, -8)
+          % Expected: loc5 = "Quadrant III"
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-is-valid-triangle">
+      <title>Valid Triangle Detector</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>is_valid_triangle</pf> that determines whether three side lengths form 
+          a valid triangle.
+        </p>
+
+        <p>
+          A triangle is valid if the sum of the two shortest sides is greater than the longest side and all sides are positive.
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>is_valid</pf> (1x1) logical — true if sides form a valid triangle, false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Equilateral triangle
+          v1 = is_valid_triangle(5, 5, 5)
+          % Expected: v1 = 1 (true)
+
+          % Test 2: Isosceles triangle
+          v2 = is_valid_triangle(5, 5, 8)
+          % Expected: v2 = 1 (true)
+
+          % Test 3: Scalene triangle
+          v3 = is_valid_triangle(3, 4, 5)
+          % Expected: v3 = 1 (true)
+
+          % Test 4: Invalid triangle
+          v4 = is_valid_triangle(1, 2, 10)
+          % Expected: v4 = 0 (false)
+
+          % Test 5: Another isosceles case
+          v5 = is_valid_triangle(7, 10, 7)
+          % Expected: v5 = 1 (true)
+        </program>
+
+      </statement>
+    </task>
+
+    <task xml:id="hw-triangle-type">
+      <title>Triangle Type Classifier</title>
+
+      <statement>
+        <p>
+          Write a function named <pf>classify_triangle</pf> that classifies a triangle as equilateral, isosceles, scalene, or invalid based on the lengths of its sides.
+        </p>
+
+        <p>
+          Rules:
+          <ul>
+            <li><p>Equilateral: all three sides are equal</p></li>
+            <li><p>Isosceles: exactly two sides are equal</p></li>
+            <li><p>Scalene: all three sides are different</p></li>
+            <li><p>Invalid: does not form a valid triangle</p></li>
+          </ul>
+        </p>
+
+        <p>
+          You must use the <pf>is_valid_triangle</pf> function you wrote in the previous exercise as a <q>helper</q> function. 
+          This means that your <pf>classify_triangle</pf> function should (i) contain a call to <pf>is_valid_triangle</pf> and 
+          (ii) have a copy of the <pf>is_valid_triangle</pf> function code below it in the same file.
+        </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>type</pf> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Equilateral triangle
+          t1 = classify_triangle(5, 5, 5)
+          % Expected: t1 = "Equilateral"
+
+          % Test 2: Isosceles triangle
+          t2 = classify_triangle(5, 5, 8)
+          % Expected: t2 = "Isosceles"
+
+          % Test 3: Scalene triangle
+          t3 = classify_triangle(3, 4, 5)
+          % Expected: t3 = "Scalene"
+
+          % Test 4: Invalid triangle
+          t4 = classify_triangle(1, 2, 10)
+          % Expected: t4 = "Invalid"
+
+          % Test 5: Another isosceles case
+          t5 = classify_triangle(7, 10, 7)
+          % Expected: t5 = "Isosceles"
         </program>
 
       </statement>
