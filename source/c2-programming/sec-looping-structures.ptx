@@ -27,25 +27,25 @@
     <title>The for Loop</title>
 
     <p>
-      Imagine you need to display the message <q>Hello!</q> five times. Without loops, you would write the same command repeatedly:
+      Imagine you want to print the message <q>Hello!</q> five times. Without loops, you would write the same command repeatedly. With a loop, it is much cleaner:
     </p>
 
     <sidebyside widths="48% 48%">
       <stack>
         <title>Without Loops</title>
         <program language="matlab">
-          disp('Hello!')
-          disp('Hello!')
-          disp('Hello!')
-          disp('Hello!')
-          disp('Hello!')
+          fprintf('Hello!\n')
+          fprintf('Hello!\n')
+          fprintf('Hello!\n')
+          fprintf('Hello!\n')
+          fprintf('Hello!\n')
         </program>
       </stack>
       <stack>
         <title>With a for-Loop</title>
         <program language="matlab">
           for i = 1:5
-              disp('Hello!')
+              fprintf('Hello!\n')
           end
         </program>
       </stack>
@@ -56,7 +56,7 @@
     </p>
 
     <p>
-      A <pf>for</pf>-loop repeats a block of code once for each value in a specified list. This is the right tool when you know in advance what values you want to iterate over.
+      A <pf>for</pf>-loop repeats a block of code once for each value in a specified list. This is the right tool when you know in advance how many times you want to repeat some code.
     </p>
 
     <assemblage xml:id="for-loop-structure">
@@ -94,7 +94,7 @@
     </assemblage>
 
     <table>
-      <title>Sample Usage of the <pf>start:step:stop</pf> Notation</title>
+      <title>Sample Usage of the <pf>start:step:stop</pf>. When you don't specify a step, it defaults to 1.</title>
       <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
         <row header="yes">
           <cell>Expression</cell>
@@ -113,7 +113,7 @@
           <cell><pf>n:-1:1</pf></cell><cell><pf>[n, n-1, n-2, ..., 1]</pf></cell>
         </row>
         <row>
-          <cell><pf>0:0.5:2</pf></cell><cell><pf>[0, 0.5, 1.0, 1.5, 2.0]</pf></cell>
+          <cell><pf>0.5: 0.5 :2</pf></cell><cell><pf>[0.5, 1.0, 1.5, 2.0]</pf></cell>
         </row>
       </tabular>
     </table>
@@ -181,7 +181,7 @@
               for i = 1:5
                 totalsum = totalsum + i;
               end
-              disp(totalsum)
+              fprintf('Total sum: %i\n', totalsum)
             </code>
           </program>
         </sidebyside>
@@ -224,94 +224,81 @@
 
     </example>
 
-    <example xml:id="subsec-dropinE">
-      <title>Searching with break</title>
-
-      <statement>
-        <p>
-          A loop can search for a target value and stop early when found. The <pf>break</pf> command exits the loop immediately.
-        </p>
-
-        <program language="matlab">
-        target = 10;
-
-        found = false;
-        location = -1;
-
-        for k = 1:50
-            value = randi([-20 20]);   % generate one random integer
-
-            if value == target
-                found = true;
-                location = k;
-                break
-            end
-        end
-
-        if found
-            fprintf('The number %i was found on iteration %i\n', target, location)
-        else
-            fprintf('The number %i was not found in 50 trials\n', target)
-        end
-        </program>
-
-        <p>
-          This pattern—test a condition, then exit early with <pf>break</pf>—is useful whenever you want to stop searching once you find what you need.
-        </p>
-      </statement>
-
-    </example>
-
   </subsection>
 
   <subsection xml:id="sec-while-loops">
     <title>The while Loop</title>
 
     <p>
-      Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a starting value until it exceeds 1000:
+      Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a number until it exceeds 1000:
     </p>
 
     <sidebyside widths="48% 48%">
       <stack>
         <title>Without Loops</title>
         <program language="matlab">
-          value = 1;
+          num = 1;
 
-          value = value * 2;  % 2
-          value = value * 2;  % 4
-          value = value * 2;  % 8
-          value = value * 2;  % 16
-          value = value * 2;  % 32
-          value = value * 2;  % 64
-          value = value * 2;  % 128
-          value = value * 2;  % 256
-          value = value * 2;  % 512
-          value = value * 2;  % 1024
+          num = num * 2;  % 2
+          num = num * 2;  % 4
+          num = num * 2;  % 8
+          num = num * 2;  % 16
+          num = num * 2;  % 32
+          num = num * 2;  % 64
+          num = num * 2;  % 128
+          num = num * 2;  % 256
+          num = num * 2;  % 512
+          num = num * 2;  % 1024
 
-          fprintf('Final value: %i\n', value)
+          fprintf('Final value: %i\n', num)
         </program>
       </stack>
       <stack>
         <title>With a while-Loop</title>
         <program language="matlab">
-          value = 1;
+          num = 1;
 
-          while value &lt;= 1000
-              value = value * 2;
+          while num &lt;= 1000
+              num = num * 2;
           end
 
-          fprintf('Final value: %i\n', value)
+          fprintf('Final value: %i\n', num)
         </program>
       </stack>
     </sidebyside>
 
     <p>
-      The loop version automatically stops when <pf>value</pf> exceeds 1000. Without a loop, you must manually count iterations and hope you wrote enough (or not too many) doubling operations. If you change the starting value or the threshold, the loop still works without modification, but the explicit version would need rewriting.
+      The loop version automatically stops when <pf>num</pf> exceeds 1000. Without a loop, you must manually count iterations and hope you wrote enough (or not too many) doubling operations. If you change the starting value or the threshold, the loop still works without modification, but the explicit version would need rewriting.
     </p>
 
     <p>
-      A <pf>while</pf>-loop repeats as long as a logical condition remains true. This is the right tool when you do not know in advance how many iterations you will need—for example, when repeating until you reach a tolerance, find a valid input, or satisfy a stopping condition.
+      A good way to understand a <pf>while</pf>-loop is to think of it as a repeating <pf>if</pf>-statement. It checks the condition, runs the code if true, then checks again, and so on until the condition becomes false.
     </p>
+
+    <sidebyside widths="48% 48%">
+      <stack>
+        <p>With an if-statement ⤵︎</p>
+        <program language="matlab">
+          num = 5;
+
+          if num &lt;= 50
+              num = num * 2;
+          end
+        </program>
+        <p><pf>num = 5 → 10</pf>.</p>
+      </stack>
+      <stack>
+        <p>With a while-Loop ⤵︎</p>
+        <program language="matlab">
+          num = 5;
+
+          while num &lt;= 50
+              num = num * 2;
+          end
+        </program>
+        <p><pf>num: 5 → 10 → 20 → 40 → 80</pf>.</p>
+      </stack>
+    </sidebyside>
 
     <assemblage xml:id="while-loop-structure">
       <title><pf>while</pf>-Loop Structure</title>
@@ -349,135 +336,73 @@
       Here is a simple example you can trace by hand:
     </p>
 
-    <program language="matlab">
-      loop = 0;
-      x = 10;
+    <sidebyside widths="35% 63%">
+      <stack>
+        <p>While loop ⤵︎</p>
+        <program language="matlab">
+          loop = 0;
+          x = 10;
 
-      while loop &lt; 2
-          loop = loop + 1;
-          x = 2*(x + loop);
-      end
+          while loop &lt; 2
+              loop = loop + 1;
+              x = 2*(x + loop);
+          end
 
-      ratio = x/loop
-    </program>
+          ratio = x/loop
+        </program>
+      </stack>
+      <stack>
+        <p>Written out ⤵︎</p>
+        <program language="matlab">
+					loop = 0
+					x = 10
 
-    <p>
-      The loop runs exactly twice because <pf>loop</pf> increases from 0 to 1 to 2. After two iterations, <pf>loop &lt; 2</pf> becomes false and the loop ends. Then we compute <pf>ratio</pf> using the final values.
-    </p>
+					(is loop &lt; 2? Yes → enter while)
+						loop = 0 + 1 = 1
+						x = 2*(10 + 1) = 22
+					(is loop &lt; 2? Yes → enter while again)	
+						loop = 1 + 1 = 2
+						x = 2*(22 + 2) = 48
+					(is loop &lt; 2? No → exit while)
 
-    <paragraphs xml:id="subsec-while-convergence">
-      <title>Example: Iterating Until Convergence</title>
+					ratio = 48/2 = 24
+        </program>
+      </stack>
+    </sidebyside>
 
-      <p>
-        Many numerical methods stop when successive approximations change by less than a tolerance. Here we approximate <m>\sqrt{10}</m> using Newton's method:
-      </p>
-
-      <program language="matlab">
-        A = 10;
-        x = 1;                 % initial guess
-        tol = 1e-8;
-
-        err = inf;
-
-        while err &gt; tol
-            x_new = 0.5*(x + A/x);
-            err = abs(x_new - x);
-            x = x_new;
-        end
-
-        x
-      </program>
-
-      <p>
-        The loop continues until the change in <pf>x</pf> falls below <pf>tol</pf>. In practice, it is wise to add a maximum iteration count as a safety check:
-      </p>
-
-      <program language="matlab">
-        A = 10;
-        x = 1;
-        tol = 1e-8;
-        maxIter = 1000;
-
-        err = inf;
-        iter = 0;
-
-        while (err &gt; tol) &amp;&amp; (iter &lt; maxIter)
-            x_new = 0.5*(x + A/x);
-            err = abs(x_new - x);
-            x = x_new;
-            iter = iter + 1;
-        end
-
-        x
-      </program>
-    </paragraphs>
-
-    <paragraphs xml:id="ssub-while-harmonic-threshold">
+    <example xml:id="ssub-while-harmonic-threshold">
       <title>Example: Summing Until a Threshold</title>
 
-      <p>
-        Find the first integer <m>N</m> such that <m>\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{N} \ge 10</m>:
-      </p>
+			<statement>
+				<p>
+					Find the first integer <m>N</m> such that 
+					<me>\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{N} \ge 10</me>.
+				</p>
 
-      <program language="matlab">
-        the_sum = 0;
-        k = 1;
+				<program language="matlab">
+					the_sum = 0;
+					k = 1;
 
-        while the_sum &lt; 10
-            the_sum = the_sum + 1/k;
-            k = k + 1;
-        end
+					while the_sum &lt; 10
+						the_sum = the_sum + 1/k;
+						k = k + 1;
+					end
 
-        N = k - 1
-        the_sum
-      </program>
+					N = k - 1
+					the_sum
+				</program>
 
-      <p>
-        The loop adds terms until the sum crosses 10. Since <pf>k</pf> is incremented after adding each term, the first <q>successful</q> value is <pf>N = k - 1</pf>.
-      </p>
-    </paragraphs>
+				<p>
+					The loop adds terms until the sum crosses 10. Since <pf>k</pf> is incremented after adding each term, the first <q>successful</q> value is <pf>N = k - 1</pf>.
+				</p>
+			</statement>
 
-    <paragraphs xml:id="ssub-while-primality-test">
-      <title>Example: Testing for Primality</title>
-
-      <p>
-        An integer greater than 1 is prime if it has no divisors other than 1 and itself. This loop tests potential divisors and stops early if it finds one:
-      </p>
-
-      <program language="matlab">
-        number = 75913;
-
-        if number &lt; 2
-            is_prime = false;
-        else
-            divider = 2;
-            is_prime = true;
-
-            while divider &lt;= sqrt(number)
-                if mod(number, divider) == 0
-                    is_prime = false;
-                    break
-                end
-                divider = divider + 1;
-            end
-        end
-
-        if is_prime
-            fprintf('The number %0.10g is prime!\n', number)
-        else
-            fprintf('The number %0.10g is not prime!\n', number)
-        end
-      </program>
-
-      <p>
-        We only need to test divisors up to <m>\sqrt{\text{number}}</m>, which makes the loop much faster for large inputs. The <pf>break</pf> command exits as soon as a divisor is found.
-      </p>
-    </paragraphs>
+    </example>
 
   </subsection>
 
   <subsection xml:id="subsec-for-vs-while">
-    <title>Which to Use: for versus while</title>
+    <title>Which to Use: for vs. while</title>
 
     <p>
       Both <pf>for</pf>-loops and <pf>while</pf>-loops repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.
@@ -519,7 +444,7 @@
     </p>
   </subsection>
 
-  <subsection xml:id="subsec-flow-control">
+  <subsection xml:id="sec-additional-flow-control">
     <title>Additional Flow Control: continue, break, return</title>
 
     <p>
@@ -556,6 +481,84 @@
         <li><pf>return</pf> can be used anywhere inside a script or function to exit early.</li>
       </ul>
     </p>
+
+    <example>
+      <title>Searching with break</title>
+
+      <statement>
+        <p>
+          A loop can search for a target value and stop early when found. The <pf>break</pf> command exits the loop immediately.
+        </p>
+
+        <program language="matlab">
+        target = 10;
+
+        found = false;
+        location = -1;
+
+        for k = 1:50
+            value = randi([-20 20]);   % generate one random integer
+
+            if value == target
+                found = true;
+                location = k;
+                break
+            end
+        end
+
+        if found
+            fprintf('The number %i was found on iteration %i\n', target, location)
+        else
+            fprintf('The number %i was not found in 50 trials\n', target)
+        end
+        </program>
+
+        <p>
+          This pattern—test a condition, then exit early with <pf>break</pf>—is useful whenever you want to stop searching once you find what you need.
+        </p>
+      </statement>
+
+    </example>
+
+    <example xml:id="while-primality-test">
+      <title>Example: Testing for Primality</title>
+
+			<statement>
+				<p>
+					An integer greater than 1 is prime if it has no divisors other than 1 and itself. This loop tests potential divisors and stops early if it finds one:
+				</p>
+
+				<program language="matlab">
+					number = 75913;
+
+					if number &lt; 2
+						is_prime = false;
+					else
+						divider = 2;
+						is_prime = true;
+
+						while divider &lt;= sqrt(number)
+							if mod(number, divider) == 0
+								is_prime = false;
+								break
+							end
+							divider = divider + 1;
+						end
+					end
+
+					if is_prime
+						fprintf('The number %0.10g is prime!\n', number)
+					else
+						fprintf('The number %0.10g is not prime!\n', number)
+					end
+				</program>
+
+				<p>
+					We only need to test divisors up to <m>\sqrt{\text{number}}</m>, which makes the loop much faster for large inputs. The <pf>break</pf> command exits as soon as a divisor is found.
+				</p>
+			</statement>
+
+    </example>
 
   </subsection>
 

@@ -274,3 +274,54 @@
   </task>
 
 </exercise>
+
+
+    <example xml:id="subsec-while-convergence">
+      <title>Example: Iterating Until Convergence</title>
+
+			<statement>
+				<p>
+					Many numerical methods stop when successive approximations change by less than a tolerance. Here we approximate <m>\sqrt{10}</m> using Newton's method:
+				</p>
+
+				<program language="matlab">
+					A = 10;
+					x = 1;                 % initial guess
+					tol = 1e-8;
+
+					err = inf;
+
+					while err &gt; tol
+							x_new = 0.5*(x + A/x);
+							err = abs(x_new - x);
+							x = x_new;
+					end
+
+					x
+				</program>
+
+				<p>
+					The loop continues until the change in <pf>x</pf> falls below <pf>tol</pf>. In practice, it is wise to add a maximum iteration count as a safety check:
+				</p>
+
+				<program language="matlab">
+					A = 10;
+					x = 1;
+					tol = 1e-8;
+					maxIter = 1000;
+
+					err = inf;
+					iter = 0;
+
+					while (err &gt; tol) &amp;&amp; (iter &lt; maxIter)
+							x_new = 0.5*(x + A/x);
+							err = abs(x_new - x);
+							x = x_new;
+							iter = iter + 1;
+					end
+
+					x
+				</program>
+			</statement>
+
+    </example>
