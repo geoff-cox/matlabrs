@@ -1533,10 +1533,16 @@
       <statement>
         <p>
           Write a script that computes the digital root of a positive integer <pf>n</pf>. The digital root 
-          is found by repeatedly summing the digits until only a single digit remains. Use a <pf>while</pf> loop 
-          that continues as long as <pf>n &gt;= 10</pf>. Inside the loop, extract digits using <pf>mod(n, 10)</pf> 
-          for the rightmost digit and <pf>floor(n/10)</pf> to remove it. Store the final single-digit result 
-          in <pf>digital_root</pf>.
+          is found by repeatedly summing the digits until only a single digit remains.
+        </p>
+        <p>
+          Use an outer <pf>while</pf> loop that continues as long as <pf>n &gt;= 10</pf>. Inside this loop:
+          first set a variable (for example, <pf>sum_digits</pf>) to 0. Then copy <pf>n</pf> into a temporary 
+          variable (for example, <pf>temp</pf>) and use an inner <pf>while</pf> loop that runs while <pf>temp &gt; 0</pf>.
+          In the inner loop, extract the rightmost digit with <pf>mod(temp, 10)</pf>, add it to <pf>sum_digits</pf>, 
+          and then update <pf>temp</pf> using <pf>floor(temp/10)</pf> to remove the rightmost digit. After the inner 
+          loop finishes, assign <pf>n = sum_digits</pf> and repeat the outer loop test. When the outer loop ends, 
+          store the final single-digit value of <pf>n</pf> in <pf>digital_root</pf>.
         </p>
       </statement>
     </task>
