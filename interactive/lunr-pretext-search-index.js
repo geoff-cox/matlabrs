@@ -853,7 +853,7 @@ var ptx_lunr_docs = [
   "type": "Subsection",
   "number": "",
   "title": "The while Loop",
-  "body": " The while Loop  Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a number until it exceeds 1000:    Without Loops  num = 1; num = num * 2; % 2 num = num * 2; % 4 num = num * 2; % 8 num = num * 2; % 16 num = num * 2; % 32 num = num * 2; % 64 num = num * 2; % 128 num = num * 2; % 256 num = num * 2; % 512 num = num * 2; % 1024 fprintf('Final value: %i\\n', num)    With a while-Loop  num = 1; while num <= 1000 num = num * 2; end fprintf('Final value: %i\\n', num)    The loop version automatically stops when num exceeds 1000. Without a loop, you must manually count iterations and hope you wrote enough (or not too many) doubling operations. If you change the starting value or the threshold, the loop still works without modification, but the explicit version would need rewriting.  A while -loop repeats as long as a logical condition remains true. This is the right tool when you do not know in advance how many iterations you will need—for example, when repeating until you reach a tolerance, find a valid input, or satisfy a stopping condition.   while -Loop Structure  The basic syntax is:  while loop_condition code_block end  MATLAB repeatedly executes code_block as long as loop_condition evaluates to true . Think of it like an if -statement that jumps back to the top and checks the condition again.  Key requirements:  The condition must be true initially, or the loop body never runs.  Something inside the loop must eventually make the condition false, or you create an infinite loop .  Every while -loop must end with end .    If MATLAB becomes unresponsive due to an infinite loop, press Ctrl+C (Windows) or Command+C (Mac) to stop execution.   Here is a simple example you can trace by hand:  loop = 0; x = 10; while loop < 2 loop = loop + 1; x = 2*(x + loop); end ratio = x\/loop  The loop runs exactly twice because loop increases from 0 to 1 to 2. After two iterations, loop < 2 becomes false and the loop ends. Then we compute ratio using the final values.   Example: Iterating Until Convergence  Many numerical methods stop when successive approximations change by less than a tolerance. Here we approximate using Newton's method:  A = 10; x = 1; % initial guess tol = 1e-8; err = inf; while err > tol x_new = 0.5*(x + A\/x); err = abs(x_new - x); x = x_new; end x  The loop continues until the change in x falls below tol . In practice, it is wise to add a maximum iteration count as a safety check:  A = 10; x = 1; tol = 1e-8; maxIter = 1000; err = inf; iter = 0; while (err > tol) && (iter < maxIter) x_new = 0.5*(x + A\/x); err = abs(x_new - x); x = x_new; iter = iter + 1; end x    Example: Summing Until a Threshold  Find the first integer such that :  the_sum = 0; k = 1; while the_sum < 10 the_sum = the_sum + 1\/k; k = k + 1; end N = k - 1 the_sum  The loop adds terms until the sum crosses 10. Since k is incremented after adding each term, the first successful value is N = k - 1 .    Example: Testing for Primality  An integer greater than 1 is prime if it has no divisors other than 1 and itself. This loop tests potential divisors and stops early if it finds one:  number = 75913; if number < 2 is_prime = false; else divider = 2; is_prime = true; while divider <= sqrt(number) if mod(number, divider) == 0 is_prime = false; break end divider = divider + 1; end end if is_prime fprintf('The number %0.10g is prime!\\n', number) else fprintf('The number %0.10g is not prime!\\n', number) end  We only need to test divisors up to , which makes the loop much faster for large inputs. The break command exits as soon as a divisor is found.   "
+  "body": " The while Loop  Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a number until it exceeds 1000:    Without Loops  num = 1; num = num * 2; % 2 num = num * 2; % 4 num = num * 2; % 8 num = num * 2; % 16 num = num * 2; % 32 num = num * 2; % 64 num = num * 2; % 128 num = num * 2; % 256 num = num * 2; % 512 num = num * 2; % 1024 fprintf('Final value: %i\\n', num)    With a while-Loop  num = 1; while num <= 1000 num = num * 2; end fprintf('Final value: %i\\n', num)    The loop version automatically stops when num exceeds 1000. Without a loop, you must manually count iterations and hope you wrote enough (or not too many) doubling operations. If you change the starting value or the threshold, the loop still works without modification, but the explicit version would need rewriting.  A good way to understand a while -loop is to think of it as a repeating if -statement. It checks the condition, runs the code if true, then checks again, and so on until the condition becomes false.    With an if-statement ⤵︎  num = 5; if num <= 50 num = num * 2; end  num = 5 → 10 .    With a while-Loop ⤵︎  num = 5; while num <= 50 num = num * 2; end  num: 5 → 10 → 20 → 40 → 80 .     while -Loop Structure  The basic syntax is:  while loop_condition code_block end  MATLAB repeatedly executes code_block as long as loop_condition evaluates to true . Think of it like an if -statement that jumps back to the top and checks the condition again.  Key requirements:  The condition must be true initially, or the loop body never runs.  Something inside the loop must eventually make the condition false, or you create an infinite loop .  Every while -loop must end with end .    If MATLAB becomes unresponsive due to an infinite loop, press Ctrl+C (Windows) or Command+C (Mac) to stop execution.   Here is a simple example you can trace by hand:    While loop ⤵︎  loop = 0; x = 10; while loop < 2 loop = loop + 1; x = 2*(x + loop); end ratio = x\/loop    Written out ⤵︎  loop = 0 x = 10 (is loop < 2? Yes → enter while) loop = 0 + 1 = 1 x = 2*(10 + 1) = 22 (is loop < 2? Yes → enter while again) loop = 1 + 1 = 2 x = 2*(22 + 2) = 48 (is loop < 2? No → exit while) ratio = 48\/2 = 24     Example: Summing Until a Threshold   Find the first integer such that .  the_sum = 0; k = 1; while the_sum < 10 the_sum = the_sum + 1\/k; k = k + 1; end N = k - 1 the_sum  The loop adds terms until the sum crosses 10. Since k is incremented after adding each term, the first successful value is N = k - 1 .    "
 },
 {
   "id": "while-loop-structure-5",
@@ -865,20 +865,29 @@ var ptx_lunr_docs = [
   "body": "infinite loop "
 },
 {
+  "id": "ssub-while-harmonic-threshold",
+  "level": "2",
+  "url": "sec-while-loops.html#ssub-while-harmonic-threshold",
+  "type": "🌌 Example",
+  "number": "2.21",
+  "title": "Example: Summing Until a Threshold.",
+  "body": " Example: Summing Until a Threshold   Find the first integer such that .  the_sum = 0; k = 1; while the_sum < 10 the_sum = the_sum + 1\/k; k = k + 1; end N = k - 1 the_sum  The loop adds terms until the sum crosses 10. Since k is incremented after adding each term, the first successful value is N = k - 1 .   "
+},
+{
   "id": "subsec-for-vs-while",
   "level": "1",
   "url": "subsec-for-vs-while.html",
   "type": "Subsection",
   "number": "",
-  "title": "Which to Use: for versus while",
-  "body": " Which to Use: for versus while  Both for -loops and while -loops repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.   Comparing for-loops and while-loops    Feature  for -loops  while -loops    Requires  a fixed list of values (often 1:N )  a logical condition    Behavior  repeats once per value in the list  repeats while the condition is true    Terminates  after the last value is used  when the condition becomes false    Best when  you know exactly how many iterations you need  you do not know how many iterations you will need     Technically, any for -loop can be rewritten as a while -loop and vice versa. However, using the loop that naturally fits the problem makes your code clearer.  "
+  "title": "Which to Use: for vs. while",
+  "body": " Which to Use: for vs. while  Both for -loops and while -loops repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.   Comparing for-loops and while-loops    Feature  for -loops  while -loops    Requires  a fixed list of values (often 1:N )  a logical condition    Behavior  repeats once per value in the list  repeats while the condition is true    Terminates  after the last value is used  when the condition becomes false    Best when  you know exactly how many iterations you need  you do not know how many iterations you will need     Technically, any for -loop can be rewritten as a while -loop and vice versa. However, using the loop that naturally fits the problem makes your code clearer.  "
 },
 {
   "id": "tab-for-vs-while",
   "level": "2",
   "url": "subsec-for-vs-while.html#tab-for-vs-while",
   "type": "Table",
-  "number": "2.21",
+  "number": "2.22",
   "title": "Comparing for-loops and while-loops",
   "body": " Comparing for-loops and while-loops    Feature  for -loops  while -loops    Requires  a fixed list of values (often 1:N )  a logical condition    Behavior  repeats once per value in the list  repeats while the condition is true    Terminates  after the last value is used  when the condition becomes false    Best when  you know exactly how many iterations you need  you do not know how many iterations you will need    "
 },
@@ -889,25 +898,34 @@ var ptx_lunr_docs = [
   "type": "Subsection",
   "number": "",
   "title": "Additional Flow Control: continue, break, return",
-  "body": " Additional Flow Control: continue, break, return  MATLAB provides commands that modify normal loop flow. These are most often used inside an if -statement within a loop.   Flow control commands for loops    Command  Effect    continue  Skip the rest of the current iteration and move to the next iteration.    break  Exit the loop immediately and continue after end .    return  Exit the current script or function immediately.     Important notes:  These commands only execute if MATLAB reaches the line where they appear.  continue and break may only be used inside a for - or while -loop; using them elsewhere causes an error.  return can be used anywhere inside a script or function to exit early.     Searching with break   A loop can search for a target value and stop early when found. The break command exits the loop immediately.  target = 10; found = false; location = -1; for k = 1:50 value = randi([-20 20]); % generate one random integer if value == target found = true; location = k; break end end if found fprintf('The number %i was found on iteration %i\\n', target, location) else fprintf('The number %i was not found in 50 trials\\n', target) end  This pattern—test a condition, then exit early with break —is useful whenever you want to stop searching once you find what you need.    "
+  "body": " Additional Flow Control: continue, break, return  MATLAB provides commands that modify normal loop flow. These are most often used inside an if -statement within a loop.   Flow control commands for loops    Command  Effect    continue  Skip the rest of the current iteration and move to the next iteration.    break  Exit the loop immediately and continue after end .    return  Exit the current script or function immediately.     Important notes:  These commands only execute if MATLAB reaches the line where they appear.  continue and break may only be used inside a for - or while -loop; using them elsewhere causes an error.  return can be used anywhere inside a script or function to exit early.     Searching with break   A loop can search for a target value and stop early when found. The break command exits the loop immediately.  target = 10; found = false; location = -1; for k = 1:50 value = randi([-20 20]); % generate one random integer if value == target found = true; location = k; break end end if found fprintf('The number %i was found on iteration %i\\n', target, location) else fprintf('The number %i was not found in 50 trials\\n', target) end  This pattern—test a condition, then exit early with break —is useful whenever you want to stop searching once you find what you need.     Example: Testing for Primality   An integer greater than 1 is prime if it has no divisors other than 1 and itself. This loop tests potential divisors and stops early if it finds one:  number = 75913; if number < 2 is_prime = false; else divider = 2; is_prime = true; while divider <= sqrt(number) if mod(number, divider) == 0 is_prime = false; break end divider = divider + 1; end end if is_prime fprintf('The number %0.10g is prime!\\n', number) else fprintf('The number %0.10g is not prime!\\n', number) end  We only need to test divisors up to , which makes the loop much faster for large inputs. The break command exits as soon as a divisor is found.    "
 },
 {
   "id": "tab-loop-flow-control",
   "level": "2",
   "url": "sec-additional-flow-control.html#tab-loop-flow-control",
   "type": "Table",
-  "number": "2.22",
+  "number": "2.23",
   "title": "Flow control commands for loops",
   "body": " Flow control commands for loops    Command  Effect    continue  Skip the rest of the current iteration and move to the next iteration.    break  Exit the loop immediately and continue after end .    return  Exit the current script or function immediately.    "
 },
 {
-  "id": "subsec-dropinE",
+  "id": "sec-additional-flow-control-5",
   "level": "2",
-  "url": "sec-additional-flow-control.html#subsec-dropinE",
+  "url": "sec-additional-flow-control.html#sec-additional-flow-control-5",
   "type": "🌌 Example",
-  "number": "2.23",
+  "number": "2.24",
   "title": "Searching with break.",
   "body": " Searching with break   A loop can search for a target value and stop early when found. The break command exits the loop immediately.  target = 10; found = false; location = -1; for k = 1:50 value = randi([-20 20]); % generate one random integer if value == target found = true; location = k; break end end if found fprintf('The number %i was found on iteration %i\\n', target, location) else fprintf('The number %i was not found in 50 trials\\n', target) end  This pattern—test a condition, then exit early with break —is useful whenever you want to stop searching once you find what you need.   "
+},
+{
+  "id": "while-primality-test",
+  "level": "2",
+  "url": "sec-additional-flow-control.html#while-primality-test",
+  "type": "🌌 Example",
+  "number": "2.25",
+  "title": "Example: Testing for Primality.",
+  "body": " Example: Testing for Primality   An integer greater than 1 is prime if it has no divisors other than 1 and itself. This loop tests potential divisors and stops early if it finds one:  number = 75913; if number < 2 is_prime = false; else divider = 2; is_prime = true; while divider <= sqrt(number) if mod(number, divider) == 0 is_prime = false; break end divider = divider + 1; end end if is_prime fprintf('The number %0.10g is prime!\\n', number) else fprintf('The number %0.10g is not prime!\\n', number) end  We only need to test divisors up to , which makes the loop much faster for large inputs. The break command exits as soon as a divisor is found.   "
 },
 {
   "id": "subsec-loop-class-activities",
