@@ -1474,9 +1474,13 @@
     <task xml:id="ex-for-running-product">
       <statement>
         <p>
-          Write a script that computes the product <m>1 \cdot 2 \cdot 3 \cdot \cdots \cdot N</m> 
-          using a <pf>for</pf> loop. Initialize a variable <pf>product</pf> to 1 before the loop, 
-          then multiply it by each value from 1 to <m>N</m>. Store the final result in <pf>product</pf>.
+          Write a script that uses a <pf>for</pf> loop to compute the running products
+          <m>1,\, 1 \cdot 2,\, 1 \cdot 2 \cdot 3,\, \ldots,\, 1 \cdot 2 \cdot \cdots \cdot N</m>.
+          Initialize a variable <pf>current_product</pf> to 1 before the loop, and create a vector
+          <pf>running_product</pf> of length <m>N</m>. For each iteration <m>k = 1, 2, \ldots, N</m>,
+          update <pf>current_product</pf> by multiplying it by <m>k</m>, then store the result in
+          <m>\texttt{running\_product(k)}</m>. After the loop, display the contents of
+          <pf>running_product</pf>.
         </p>
       </statement>
     </task>
