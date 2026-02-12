@@ -1460,6 +1460,151 @@
         </p>
       </statement>
     </task>
+
+    <task xml:id="ex-for-powers-of-two">
+      <statement>
+        <p>
+          Write a script that uses a <pf>for</pf> loop to compute and display the first 10 powers of 2 
+          (i.e., <m>2^1, 2^2, \ldots, 2^{10}</m>). For each iteration, use <pf>fprintf</pf> to display 
+          the exponent and result in the format: <c>2^n = result</c>.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-for-running-product">
+      <statement>
+        <p>
+          Write a script that uses a <pf>for</pf> loop to compute the running products
+          <m>1,\, 1 \cdot 2,\, 1 \cdot 2 \cdot 3,\, \ldots,\, 1 \cdot 2 \cdot \cdots \cdot N</m>.
+          Initialize a variable <pf>current_product</pf> to 1 before the loop, and create a vector
+          <pf>running_product</pf> of length <m>N</m>. For each iteration <m>k = 1, 2, \ldots, N</m>,
+          update <pf>current_product</pf> by multiplying it by <m>k</m>, then store the result in
+          <m>\texttt{running\_product(k)}</m>. After the loop, display the contents of
+          <pf>running_product</pf>.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-while-doubling">
+      <statement>
+        <p>
+          Write a script that starts with <pf>num = 1</pf> and uses a <pf>while</pf> loop to repeatedly 
+          double <pf>num</pf> until it exceeds 1000. After the loop, display the final value of <pf>num</pf> 
+          using <pf>fprintf</pf>.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-while-harmonic-sum">
+      <statement>
+        <p>
+          Write a script that computes the smallest integer <m>N</m> such that the harmonic sum 
+          <me>\frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{N} \ge 5</me>
+          Use a <pf>while</pf> loop to add terms until the sum reaches or exceeds 5. Store the final 
+          value of <m>N</m> in a variable named <pf>N</pf> and the sum in <pf>harmonic_sum</pf>.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-for-primality-test">
+      <statement>
+        <p>
+          Write a script that tests whether a given positive integer <pf>number</pf> is prime. 
+          A number greater than 1 is prime if it has no divisors other than 1 and itself. 
+          By convention, 1 is not prime, so your script should set <pf>is_prime</pf> to <m>false</m> when <pf>number &lt;= 1</pf> and only run the divisor-testing loop when <pf>number &gt; 1</pf>. 
+          Use a <pf>for</pf> loop to test all potential divisors from 2 to <pf>sqrt(number)</pf>. 
+          Store the result in a logical variable <pf>is_prime</pf> (true if prime, false otherwise). 
+          Use <pf>mod(number, divisor) == 0</pf> to check divisibility.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-while-collatz">
+      <statement>
+        <p>
+          Write a script that implements the Collatz conjecture for a given positive integer <pf>n</pf>. 
+          The rules are: if <pf>n</pf> is even, divide by 2; if <pf>n</pf> is odd, multiply by 3 and add 1. 
+          Use a <pf>while</pf> loop to repeat until <pf>n</pf> reaches 1. Count the number of steps required 
+          and store it in a variable named <pf>steps</pf>. Use <pf>mod(n, 2) == 0</pf> to test if <pf>n</pf> is even.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-while-digital-root">
+      <statement>
+        <p>
+          Write a script that computes the digital root of a positive integer <pf>n</pf>. The digital root 
+          is found by repeatedly summing the digits until only a single digit remains.
+        </p>
+        <p>
+          Use an outer <pf>while</pf> loop that continues as long as <pf>n &gt;= 10</pf>. Inside this loop:
+          first set a variable (for example, <pf>sum_digits</pf>) to 0. Then copy <pf>n</pf> into a temporary 
+          variable (for example, <pf>temp</pf>) and use an inner <pf>while</pf> loop that runs while <pf>temp &gt; 0</pf>.
+          In the inner loop, extract the rightmost digit with <pf>mod(temp, 10)</pf>, add it to <pf>sum_digits</pf>, 
+          and then update <pf>temp</pf> using <pf>floor(temp/10)</pf> to remove the rightmost digit. After the inner 
+          loop finishes, assign <pf>n = sum_digits</pf> and repeat the outer loop test. When the outer loop ends, 
+          store the final single-digit value of <pf>n</pf> in <pf>digital_root</pf>.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-for-leibniz-pi">
+      <statement>
+        <p>
+          Write a script that approximates <m>\pi</m> using the Leibniz formula:
+          <me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
+          Use a <pf>for</pf> loop to compute the sum of the first 1000 terms, then multiply by 4 to 
+          approximate <m>\pi</m>. Store the approximation in <pf>pi_approx</pf>. The denominators follow 
+          the pattern <m>2k - 1</m> and signs alternate (use <c>(-1)^(k+1)</c> for the sign).
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-while-fibonacci">
+      <statement>
+        <p>
+          Write a script that uses a <pf>while</pf> loop to generate Fibonacci numbers until one exceeds 
+          10000. The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the 
+          two preceding numbers. Store the first Fibonacci number that exceeds 10000 in <pf>fib_result</pf>. 
+          You will need variables for the current number and the two previous numbers.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-for-perfect-number">
+      <statement>
+        <p>
+          Write a script that determines whether a given positive integer <pf>n</pf> is a perfect number. 
+          A perfect number equals the sum of its proper divisors (divisors excluding itself). Use a 
+          <pf>for</pf> loop to find all divisors from 1 to <pf>n-1</pf>, sum them, and compare to <pf>n</pf>. 
+          Store the result in a logical variable <pf>is_perfect</pf>. For example, 6 is perfect because 
+          <m>1 + 2 + 3 = 6</m>.
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-break-search">
+      <statement>
+        <p>
+          Write a script that searches for a target value in a sequence of random numbers. Use a 
+          <pf>for</pf> loop that runs up to 50 iterations, generating one random integer between -20 and 20 
+          each time using <pf>randi([-20 20])</pf>. When the target value is found, use <pf>break</pf> to 
+          exit the loop immediately. Store whether the target was found in <pf>found</pf> (logical) and the 
+          iteration number where it was found in <pf>location</pf> (or -1 if not found).
+        </p>
+      </statement>
+    </task>
+
+    <task xml:id="ex-for-sum-odd-numbers">
+      <statement>
+        <p>
+          Write a script that uses a <pf>for</pf> loop to compute the sum of all odd numbers from 1 to 
+          <pf>N</pf> (where <pf>N</pf> is given). Use the loop to iterate through the range <pf>1:2:N</pf>, 
+          which generates only odd numbers. Store the result in <pf>sum_odd</pf>.
+        </p>
+      </statement>
+    </task>
+
   </exercise>
 
 </exercises>
