@@ -14,7 +14,7 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MATLAB-BOOK <code class="code-inline tex2jax_ignore language-matlab">while</code> Loops</title>
+<title>MATLAB-BOOK The while Loop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -120,14 +120,14 @@ eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.11.13';
+eBookConfig.runestone_version = '7.11.14';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.0d5f811896ddeac1.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.e2abc79debce15fd.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<script src="_static/prefix-runtime.d892923478694492.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.1d6e4aba17c2c7f2.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
 <link rel="stylesheet" type="text/css" href="_static/prefix-runestone.6ec5960970d8b364.css">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
@@ -298,9 +298,10 @@ true);
 <div class="toc-title-box"><a href="sec-looping-structures.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Looping Structures</span></a></div>
 <ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-structure.html" class="internal"><span class="title">The for Loop</span></a></div></li>
-<li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="sec-while-loops.html" class="internal"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">while</code> Loops</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">Choosing Between for and while Loops</span></a></div></li>
+<li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="sec-while-loops.html" class="internal"><span class="title">The while Loop</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">Which to Use: for versus while</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-flow-control.html" class="internal"><span class="title">Additional Flow Control: continue, break, return</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="subsec-loop-class-activities.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-exercises"><div class="toc-title-box"><a href="fn-exercises.html" class="internal"><span class="codenumber">2.6</span> <span class="title">💻 Coding Problems</span></a></div></li>
@@ -310,9 +311,38 @@ true);
 <li class="toc-item toc-appendix"><div class="toc-title-box"><a href="matlabrs-7.html" class="internal"><span class="codenumber">A</span> <span class="title">Appendix</span></a></div></li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="sec-while-loops"><h2 class="heading hide-type">
-<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title"><code class="code-inline tex2jax_ignore language-matlab">while</code> Loops</span>
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The while Loop</span>
 </h2>
-<div class="para" id="sec-while-loops-2">A <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop repeats as long as a logical condition remains true. This is the right tool when you do not know in advance how many iterations you will need—for example, when repeating until you reach a tolerance, find a valid input, or satisfy a stopping condition.<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-while-loops-2">Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a starting value until it exceeds 1000:<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:48.9795918367347% 48.9795918367347%;column-gap:2%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">value = 1;
+
+value = value * 2;  % 2
+value = value * 2;  % 4
+value = value * 2;  % 8
+value = value * 2;  % 16
+value = value * 2;  % 32
+value = value * 2;  % 64
+value = value * 2;  % 128
+value = value * 2;  % 256
+value = value * 2;  % 512
+value = value * 2;  % 1024
+
+fprintf('Final value: %i\n', value)
+</code></pre></div>
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">value = 1;
+
+while value &lt;= 1000
+    value = value * 2;
+end
+
+fprintf('Final value: %i\n', value)
+</code></pre></div>
+</div></div>
+<div class="para" id="sec-while-loops-4">The loop version automatically stops when <code class="code-inline tex2jax_ignore language-matlab">value</code> exceeds 1000. Without a loop, you must manually count iterations and hope you wrote enough (or not too many) doubling operations. If you change the starting value or the threshold, the loop still works without modification, but the explicit version would need rewriting.<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-while-loops-5">A <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop repeats as long as a logical condition remains true. This is the right tool when you do not know in advance how many iterations you will need—for example, when repeating until you reach a tolerance, find a valid input, or satisfy a stopping condition.<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="assemblage assemblage-like" id="while-loop-structure"><h3 class="heading"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">while</code>-Loop Structure.</span></h3>
 <div class="para" id="while-loop-structure-2">The basic syntax is:<div class="autopermalink" data-description="Paragraph"><a href="#while-loop-structure-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -343,7 +373,7 @@ end
 </div>
 <div class="para" id="while-loop-structure-6">If MATLAB becomes unresponsive due to an infinite loop, press <code class="code-inline tex2jax_ignore language-matlab">Ctrl+C</code> (Windows) or <code class="code-inline tex2jax_ignore language-matlab">Command+C</code> (Mac) to stop execution.<div class="autopermalink" data-description="Paragraph"><a href="#while-loop-structure-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Assemblage: while-Loop Structure"><a href="#while-loop-structure" title="Copy heading and permalink for Assemblage: while-Loop Structure" aria-label="Copy heading and permalink for Assemblage: while-Loop Structure">🔗</a></div></article><div class="para" id="sec-while-loops-4">Here is a simple example you can trace by hand:<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Assemblage: while-Loop Structure"><a href="#while-loop-structure" title="Copy heading and permalink for Assemblage: while-Loop Structure" aria-label="Copy heading and permalink for Assemblage: while-Loop Structure">🔗</a></div></article><div class="para" id="sec-while-loops-7">Here is a simple example you can trace by hand:<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">loop = 0;
 x = 10;
@@ -355,7 +385,7 @@ end
 
 ratio = x/loop
 </code></pre></div>
-<div class="para" id="sec-while-loops-6">The loop runs exactly twice because <code class="code-inline tex2jax_ignore language-matlab">loop</code> increases from 0 to 1 to 2. After two iterations, <code class="code-inline tex2jax_ignore language-matlab">loop &lt; 2</code> becomes false and the loop ends. Then we compute <code class="code-inline tex2jax_ignore language-matlab">ratio</code> using the final values.<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-while-loops-9">The loop runs exactly twice because <code class="code-inline tex2jax_ignore language-matlab">loop</code> increases from 0 to 1 to 2. After two iterations, <code class="code-inline tex2jax_ignore language-matlab">loop &lt; 2</code> becomes false and the loop ends. Then we compute <code class="code-inline tex2jax_ignore language-matlab">ratio</code> using the final values.<div class="autopermalink" data-description="Paragraph"><a href="#sec-while-loops-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <section class="paragraphs" id="subsec-while-convergence"><h3 class="heading"><span class="title">Example: Iterating Until Convergence.</span></h3>
 <div class="para" id="subsec-while-convergence-2">Many numerical methods stop when successive approximations change by less than a tolerance. Here we approximate <span class="process-math">\(\sqrt{10}\)</span> using Newton’s method:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-while-convergence-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -437,7 +467,7 @@ end
 </code></pre></div>
 <div class="para" id="ssub-while-primality-test-4">We only need to test divisors up to <span class="process-math">\(\sqrt{\text{number}}\text{,}\)</span> which makes the loop much faster for large inputs. The <code class="code-inline tex2jax_ignore language-matlab">break</code> command exits as soon as a divisor is found.<div class="autopermalink" data-description="Paragraph"><a href="#ssub-while-primality-test-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Paragraphs: Example: Testing for Primality"><a href="#ssub-while-primality-test" title="Copy heading and permalink for Paragraphs: Example: Testing for Primality" aria-label="Copy heading and permalink for Paragraphs: Example: Testing for Primality">🔗</a></div></section><div class="autopermalink" data-description="Subsection: while Loops"><a href="#sec-while-loops" title="Copy heading and permalink for Subsection: while Loops" aria-label="Copy heading and permalink for Subsection: while Loops">🔗</a></div></section></div>
+<div class="autopermalink" data-description="Paragraphs: Example: Testing for Primality"><a href="#ssub-while-primality-test" title="Copy heading and permalink for Paragraphs: Example: Testing for Primality" aria-label="Copy heading and permalink for Paragraphs: Example: Testing for Primality">🔗</a></div></section><div class="autopermalink" data-description="Subsection: The while Loop"><a href="#sec-while-loops" title="Copy heading and permalink for Subsection: The while Loop" aria-label="Copy heading and permalink for Subsection: The while Loop">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-for-structure.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-for-vs-while.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
