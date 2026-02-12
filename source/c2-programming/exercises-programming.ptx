@@ -1422,25 +1422,115 @@
     <title>Looping Flow (for and while loops)</title>
 
     <task xml:id="ex-for-sum-squares">
+      <title>Sum of Squares</title>
+
       <statement>
         <p>
           Write a script that computes <m>1^2 + 2^2 + \cdots + n^2</m> for a given positive integer <m>n</m>.
           Your script should store the result in a variable named <pf>S</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>n</pf> (1x1) double — positive integer</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>S</pf> (1x1) double — the sum <m>1^2 + 2^2 + \cdots + n^2</m></p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Small value
+          n = 3;
+          % Run your script
+          % Expected: S = 14 (1^2 + 2^2 + 3^2 = 1 + 4 + 9)
+
+          % Test 2: Larger value
+          n = 5;
+          % Run your script
+          % Expected: S = 55 (1 + 4 + 9 + 16 + 25)
+
+          % Test 3: Edge case
+          n = 1;
+          % Run your script
+          % Expected: S = 1
+
+          % Test 4: Medium value
+          n = 10;
+          % Run your script
+          % Expected: S = 385
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-factorial">
+      <title>Factorial Computation</title>
+
       <statement>
         <p>
           Write a script that computes the factorial of a number:
           <me>n! = 1 \cdot 2 \cdot \cdots \cdot n</me>. 
           Use a for loop. Assume <m>n</m> is a nonnegative integer. Store the result in <pf>F</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>n</pf> (1x1) double — nonnegative integer</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>F</pf> (1x1) double — the factorial <m>n!</m></p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Small factorial
+          n = 5;
+          % Run your script
+          % Expected: F = 120 (5! = 1*2*3*4*5)
+
+          % Test 2: Edge case
+          n = 0;
+          % Run your script
+          % Expected: F = 1 (0! = 1 by definition)
+
+          % Test 3: Another edge case
+          n = 1;
+          % Run your script
+          % Expected: F = 1
+
+          % Test 4: Larger value
+          n = 7;
+          % Run your script
+          % Expected: F = 5040
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-partial-sum">
+      <title>Exponential Series Partial Sum</title>
+
       <statement>
         <p>
           Let <m>x</m> be a real number. Use a <pf>for</pf> loop to compute the partial sum
@@ -1449,29 +1539,162 @@
           </me>
           for a chosen integer <m>N</m>. Store the result in <pf>P</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>x</pf> (1x1) double — real number</p>
+            </cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>
+              <p><pf>N</pf> (1x1) double — number of terms in the series (positive integer)</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>P</pf> (1x1) double — the partial sum</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Simple case
+          x = 1;
+          N = 5;
+          % Run your script
+          % Expected: P ≈ 2.7167 (approximates e^1)
+
+          % Test 2: Zero input
+          x = 0;
+          N = 10;
+          % Run your script
+          % Expected: P = 1 (e^0 = 1)
+
+          % Test 3: Negative value
+          x = -1;
+          N = 10;
+          % Run your script
+          % Expected: P ≈ 0.3679 (approximates e^-1)
+
+          % Test 4: Larger N for better approximation
+          x = 2;
+          N = 20;
+          % Run your script
+          % Expected: P ≈ 7.3891 (approximates e^2)
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-simple-simulation">
+      <title>Die Rolling Simulation</title>
+
       <statement>
         <p>
           Simulate rolling a fair six-sided die <m>N</m> times. Use a <pf>for</pf> loop to count how many times
           you roll a 6. Store the count in <pf>sixes</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>N</pf> (1x1) double — number of die rolls (positive integer)</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>sixes</pf> (1x1) double — count of how many times a 6 was rolled</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Small number of rolls
+          rng(42);  % Set seed for reproducibility
+          N = 10;
+          % Run your script
+          % Expected: sixes will vary (typically 1-2)
+
+          % Test 2: Larger simulation
+          rng(123);
+          N = 100;
+          % Run your script
+          % Expected: sixes will vary (typically around 16-17)
+
+          % Test 3: Many rolls
+          rng(999);
+          N = 600;
+          % Run your script
+          % Expected: sixes will vary (typically around 100, which is 1/6 of 600)
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-powers-of-two">
+      <title>Powers of Two Display</title>
+
       <statement>
         <p>
           Write a script that uses a <pf>for</pf> loop to compute and display the first 10 powers of 2 
           (i.e., <m>2^1, 2^2, \ldots, 2^{10}</m>). For each iteration, use <pf>fprintf</pf> to display 
           the exponent and result in the format: <c>2^n = result</c>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p>None (loop from 1 to 10)</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p>Display to console — formatted output for each power</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test: Run your script
+          % Expected output:
+          % 2^1 = 2
+          % 2^2 = 4
+          % 2^3 = 8
+          % 2^4 = 16
+          % 2^5 = 32
+          % 2^6 = 64
+          % 2^7 = 128
+          % 2^8 = 256
+          % 2^9 = 512
+          % 2^10 = 1024
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-running-product">
+      <title>Running Products</title>
+
       <statement>
         <p>
           Write a script that uses a <pf>for</pf> loop to compute the running products
@@ -1482,20 +1705,87 @@
           <m>\texttt{running\_product(k)}</m>. After the loop, display the contents of
           <pf>running_product</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>N</pf> (1x1) double — positive integer for number of terms</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>running_product</pf> (1xN) double — vector of running products</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Small value
+          N = 5;
+          % Run your script
+          % Expected: running_product = [1, 2, 6, 24, 120]
+
+          % Test 2: Edge case
+          N = 1;
+          % Run your script
+          % Expected: running_product = 1
+
+          % Test 3: Medium value
+          N = 7;
+          % Run your script
+          % Expected: running_product = [1, 2, 6, 24, 120, 720, 5040]
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-while-doubling">
+      <title>Doubling Until Threshold</title>
+
       <statement>
         <p>
           Write a script that starts with <pf>num = 1</pf> and uses a <pf>while</pf> loop to repeatedly 
           double <pf>num</pf> until it exceeds 1000. After the loop, display the final value of <pf>num</pf> 
           using <pf>fprintf</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p>None (starts with <pf>num = 1</pf>)</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>num</pf> (1x1) double — first value that exceeds 1000</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test: Run your script
+          % Expected: num = 1024
+          % (Sequence: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024)
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-while-harmonic-sum">
+      <title>Harmonic Sum Threshold</title>
+
       <statement>
         <p>
           Write a script that computes the smallest integer <m>N</m> such that the harmonic sum 
@@ -1503,10 +1793,44 @@
           Use a <pf>while</pf> loop to add terms until the sum reaches or exceeds 5. Store the final 
           value of <m>N</m> in a variable named <pf>N</pf> and the sum in <pf>harmonic_sum</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p>None (start with <pf>N = 0</pf> and <pf>harmonic_sum = 0</pf>)</p>
+            </cell>
+          </row>
+          <row>
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>N</pf> (1x1) double — smallest integer for which harmonic sum <m>\ge 5</m></p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell/>
+            <cell>
+              <p><pf>harmonic_sum</pf> (1x1) double — the harmonic sum</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test: Run your script
+          % Expected: N = 83 (approximately)
+          %           harmonic_sum ≈ 5.0021
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-primality-test">
+      <title>Primality Test</title>
+
       <statement>
         <p>
           Write a script that tests whether a given positive integer <pf>number</pf> is prime. 
@@ -1516,10 +1840,59 @@
           Store the result in a logical variable <pf>is_prime</pf> (true if prime, false otherwise). 
           Use <pf>mod(number, divisor) == 0</pf> to check divisibility.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>number</pf> (1x1) double — positive integer to test</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>is_prime</pf> (1x1) logical — true if number is prime, false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Prime number
+          number = 17;
+          % Run your script
+          % Expected: is_prime = true
+
+          % Test 2: Composite number
+          number = 15;
+          % Run your script
+          % Expected: is_prime = false
+
+          % Test 3: Edge case - 1 is not prime
+          number = 1;
+          % Run your script
+          % Expected: is_prime = false
+
+          % Test 4: Edge case - 2 is prime
+          number = 2;
+          % Run your script
+          % Expected: is_prime = true
+
+          % Test 5: Large prime
+          number = 97;
+          % Run your script
+          % Expected: is_prime = true
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-while-collatz">
+      <title>Collatz Conjecture</title>
+
       <statement>
         <p>
           Write a script that implements the Collatz conjecture for a given positive integer <pf>n</pf>. 
@@ -1527,10 +1900,55 @@
           Use a <pf>while</pf> loop to repeat until <pf>n</pf> reaches 1. Count the number of steps required 
           and store it in a variable named <pf>steps</pf>. Use <pf>mod(n, 2) == 0</pf> to test if <pf>n</pf> is even.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>n</pf> (1x1) double — positive integer</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>steps</pf> (1x1) double — number of steps to reach 1</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Small value
+          n = 6;
+          % Run your script
+          % Expected: steps = 8
+          % (Sequence: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1)
+
+          % Test 2: Another small value
+          n = 10;
+          % Run your script
+          % Expected: steps = 6
+
+          % Test 3: Edge case
+          n = 1;
+          % Run your script
+          % Expected: steps = 0
+
+          % Test 4: Larger value
+          n = 27;
+          % Run your script
+          % Expected: steps = 111
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-while-digital-root">
+      <title>Digital Root</title>
+
       <statement>
         <p>
           Write a script that computes the digital root of a positive integer <pf>n</pf>. The digital root 
@@ -1545,10 +1963,57 @@
           loop finishes, assign <pf>n = sum_digits</pf> and repeat the outer loop test. When the outer loop ends, 
           store the final single-digit value of <pf>n</pf> in <pf>digital_root</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>n</pf> (1x1) double — positive integer</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>digital_root</pf> (1x1) double — single digit (0-9)</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Multi-digit number
+          n = 38;
+          % Run your script
+          % Expected: digital_root = 2
+          % (38 → 3+8=11 → 1+1=2)
+
+          % Test 2: Another example
+          n = 987;
+          % Run your script
+          % Expected: digital_root = 6
+          % (987 → 9+8+7=24 → 2+4=6)
+
+          % Test 3: Single digit
+          n = 7;
+          % Run your script
+          % Expected: digital_root = 7
+
+          % Test 4: Larger number
+          n = 12345;
+          % Run your script
+          % Expected: digital_root = 6
+          % (12345 → 1+2+3+4+5=15 → 1+5=6)
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-leibniz-pi">
+      <title>Leibniz Pi Approximation</title>
+
       <statement>
         <p>
           Write a script that approximates <m>\pi</m> using the Leibniz formula:
@@ -1557,10 +2022,39 @@
           approximate <m>\pi</m>. Store the approximation in <pf>pi_approx</pf>. The denominators follow 
           the pattern <m>2k - 1</m> and signs alternate (use <c>(-1)^(k+1)</c> for the sign).
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p>None (fixed at 1000 terms)</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>pi_approx</pf> (1x1) double — approximation of <m>\pi</m></p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test: Run your script with 1000 terms
+          % Expected: pi_approx ≈ 3.1406 (exact value depends on 1000 terms)
+          % Compare with MATLAB's built-in: pi
+          % Note: This is a slow-converging series, so it won't be very accurate
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-while-fibonacci">
+      <title>Fibonacci Threshold</title>
+
       <statement>
         <p>
           Write a script that uses a <pf>while</pf> loop to generate Fibonacci numbers until one exceeds 
@@ -1568,10 +2062,38 @@
           two preceding numbers. Store the first Fibonacci number that exceeds 10000 in <pf>fib_result</pf>. 
           You will need variables for the current number and the two previous numbers.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p>None (start sequence with 0 and 1)</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>fib_result</pf> (1x1) double — first Fibonacci number exceeding 10000</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test: Run your script
+          % Expected: fib_result = 10946
+          % (Sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, ..., 6765, 10946)
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-perfect-number">
+      <title>Perfect Number Test</title>
+
       <statement>
         <p>
           Write a script that determines whether a given positive integer <pf>n</pf> is a perfect number. 
@@ -1580,10 +2102,54 @@
           Store the result in a logical variable <pf>is_perfect</pf>. For example, 6 is perfect because 
           <m>1 + 2 + 3 = 6</m>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>n</pf> (1x1) double — positive integer to test</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>is_perfect</pf> (1x1) logical — true if n is perfect, false otherwise</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: First perfect number
+          n = 6;
+          % Run your script
+          % Expected: is_perfect = true (1 + 2 + 3 = 6)
+
+          % Test 2: Second perfect number
+          n = 28;
+          % Run your script
+          % Expected: is_perfect = true (1 + 2 + 4 + 7 + 14 = 28)
+
+          % Test 3: Not perfect
+          n = 10;
+          % Run your script
+          % Expected: is_perfect = false (1 + 2 + 5 = 8 ≠ 10)
+
+          % Test 4: Small non-perfect
+          n = 12;
+          % Run your script
+          % Expected: is_perfect = false
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-break-search">
+      <title>Random Search with Break</title>
+
       <statement>
         <p>
           Write a script that searches for a target value in a sequence of random numbers. Use a 
@@ -1592,16 +2158,104 @@
           exit the loop immediately. Store whether the target was found in <pf>found</pf> (logical) and the 
           iteration number where it was found in <pf>location</pf> (or -1 if not found).
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>target</pf> (1x1) double — integer value to search for</p>
+            </cell>
+          </row>
+          <row>
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>found</pf> (1x1) logical — true if target was found, false otherwise</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell/>
+            <cell>
+              <p><pf>location</pf> (1x1) double — iteration where found (or -1 if not found)</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Search for 0
+          rng(42);  % Set seed for reproducibility
+          target = 0;
+          % Run your script
+          % Expected: found = true or false (depends on random sequence)
+          %           location = iteration number or -1
+
+          % Test 2: Search for a specific value
+          rng(123);
+          target = 10;
+          % Run your script
+          % Results will vary based on random generation
+
+          % Note: Results depend on random number generation
+          % Set rng seed for reproducible results when testing
+        </program>
+
       </statement>
     </task>
 
     <task xml:id="ex-for-sum-odd-numbers">
+      <title>Sum of Odd Numbers</title>
+
       <statement>
         <p>
           Write a script that uses a <pf>for</pf> loop to compute the sum of all odd numbers from 1 to 
           <pf>N</pf> (where <pf>N</pf> is given). Use the loop to iterate through the range <pf>1:2:N</pf>, 
           which generates only odd numbers. Store the result in <pf>sum_odd</pf>.
         </p>
+
+        <tabular valign="top" halign="right" top="minor">
+          <col width="12%"/>
+          <col width="88%" halign="left"/>
+          <row>
+            <cell>Inputs:</cell>
+            <cell>
+              <p><pf>N</pf> (1x1) double — positive integer upper limit</p>
+            </cell>
+          </row>
+          <row bottom="minor">
+            <cell>Outputs:</cell>
+            <cell>
+              <p><pf>sum_odd</pf> (1x1) double — sum of all odd numbers from 1 to N</p>
+            </cell>
+          </row>
+        </tabular>
+
+        <p>Test cases:</p>
+
+        <program language="matlab">
+          % Test 1: Small range
+          N = 9;
+          % Run your script
+          % Expected: sum_odd = 25 (1 + 3 + 5 + 7 + 9)
+
+          % Test 2: Even upper limit
+          N = 10;
+          % Run your script
+          % Expected: sum_odd = 25 (1 + 3 + 5 + 7 + 9, stops before 10)
+
+          % Test 3: Larger range
+          N = 20;
+          % Run your script
+          % Expected: sum_odd = 100 (1 + 3 + 5 + ... + 19)
+
+          % Test 4: Edge case
+          N = 1;
+          % Run your script
+          % Expected: sum_odd = 1
+        </program>
+
       </statement>
     </task>
 
