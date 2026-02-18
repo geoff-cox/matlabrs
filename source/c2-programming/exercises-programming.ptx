@@ -492,6 +492,20 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function result = is_in_range(value, lower_bound, upper_bound)
+                if value &gt;= lower_bound &amp;&amp; value &lt;= upper_bound
+                    result = true;
+                else
+                    result = false;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-tax-bracket">
@@ -555,6 +569,24 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function tax_rate = find_tax_rate(income)
+                if income &lt;= 10000
+                    tax_rate = 0;
+                elseif income &lt;= 40000
+                    tax_rate = 0.10;
+                elseif income &lt;= 85000
+                    tax_rate = 0.15;
+                else
+                    tax_rate = 0.20;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-water-state">
@@ -617,6 +649,22 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function phase = water_phase(temp_celsius)
+                if temp_celsius &lt; 0
+                    phase = "ice";
+                elseif temp_celsius &lt;= 100
+                    phase = "liquid";
+                else
+                    phase = "steam";
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-bmi-category">
@@ -690,6 +738,26 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function category = bmi_category(weight_kg, height_m)
+                bmi = weight_kg / (height_m^2);
+
+                if bmi &lt; 18.5
+                    category = "Underweight";
+                elseif bmi &lt; 25
+                    category = "Normal weight";
+                elseif bmi &lt; 30
+                    category = "Overweight";
+                else
+                    category = "Obese";
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-check-even-positive">
@@ -746,6 +814,20 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function result = is_even_and_positive(num)
+                if mod(num, 2) == 0 &amp;&amp; num &gt; 0
+                    result = true;
+                else
+                    result = false;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-xor-function">
@@ -805,6 +887,20 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function result = my_xor(a, b)
+                if (a &amp;&amp; ~b) || (~a &amp;&amp; b)
+                    result = true;
+                else
+                    result = false;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-parking-fee">
@@ -871,6 +967,30 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function fee = parking_fee(hours)
+                rounded_hours = ceil(hours);
+
+                if rounded_hours &lt;= 0
+                    fee = 0;
+                elseif rounded_hours &lt;= 1
+                    fee = 3;
+                elseif rounded_hours &lt;= 4
+                    fee = 3 + (rounded_hours - 1) * 2;
+                else
+                    fee = 3 + 3 * 2 + (rounded_hours - 4) * 1.5;
+                end
+
+                if fee &gt; 15
+                    fee = 15;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-rock-paper-scissors">
@@ -944,6 +1064,25 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function result = rps_winner(player1, player2)
+                switch [player1 player2]
+                    case {'RS', 'PR', 'SP'}
+                        result = "Player 1";
+                    case {'SR', 'RP', 'PS'}
+                        result = "Player 2";
+                    case {'RR', 'PP', 'SS'}
+                        result = "Tie";
+                    otherwise
+                        result = "Invalid move";
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-hurricane-category">
@@ -1009,6 +1148,28 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function category = hurricane_category(wind_speed)
+                if wind_speed &lt; 74
+                    category = "Tropical Storm";
+                elseif wind_speed &lt;= 95
+                    category = "Category 1";
+                elseif wind_speed &lt;= 110
+                    category = "Category 2";
+                elseif wind_speed &lt;= 129
+                    category = "Category 3";
+                elseif wind_speed &lt;= 156
+                    category = "Category 4";
+                else
+                    category = "Category 5";
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-zodiac-sign">
@@ -1086,6 +1247,43 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function sign = zodiac_sign(month, day)
+                switch month
+                    case 1
+                        if day &lt;= 19, sign = "Capricorn"; else, sign = "Aquarius"; end
+                    case 2
+                        if day &lt;= 18, sign = "Aquarius"; else, sign = "Pisces"; end
+                    case 3
+                        if day &lt;= 20, sign = "Pisces"; else, sign = "Aries"; end
+                    case 4
+                        if day &lt;= 19, sign = "Aries"; else, sign = "Taurus"; end
+                    case 5
+                        if day &lt;= 20, sign = "Taurus"; else, sign = "Gemini"; end
+                    case 6
+                        if day &lt;= 20, sign = "Gemini"; else, sign = "Cancer"; end
+                    case 7
+                        if day &lt;= 22, sign = "Cancer"; else, sign = "Leo"; end
+                    case 8
+                        if day &lt;= 22, sign = "Leo"; else, sign = "Virgo"; end
+                    case 9
+                        if day &lt;= 22, sign = "Virgo"; else, sign = "Libra"; end
+                    case 10
+                        if day &lt;= 22, sign = "Libra"; else, sign = "Scorpio"; end
+                    case 11
+                        if day &lt;= 21, sign = "Scorpio"; else, sign = "Sagittarius"; end
+                    case 12
+                        if day &lt;= 21, sign = "Sagittarius"; else, sign = "Capricorn"; end
+                    otherwise
+                        sign = "Invalid month";
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-leap-year">
@@ -1149,6 +1347,24 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function is_leap = is_leap_year(year)
+                if mod(year, 400) == 0
+                    is_leap = true;
+                elseif mod(year, 100) == 0
+                    is_leap = false;
+                elseif mod(year, 4) == 0
+                    is_leap = true;
+                else
+                    is_leap = false;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-quadratic-solver">
@@ -1208,6 +1424,42 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function [x1, x2] = quadratic_solver(a, b, c)
+                if a == 0
+                    if b == 0
+                        if c == 0
+                            x1 = Inf;
+                            x2 = NaN;
+                        else
+                            x1 = NaN;
+                            x2 = NaN;
+                        end
+                    else
+                        x1 = -c / b;
+                        x2 = NaN;
+                    end
+                else
+                    discriminant = b^2 - 4 * a * c;
+
+                    if discriminant &gt; 0
+                        x1 = (-b + sqrt(discriminant)) / (2 * a);
+                        x2 = (-b - sqrt(discriminant)) / (2 * a);
+                    elseif discriminant == 0
+                        x1 = -b / (2 * a);
+                        x2 = x1;
+                    else
+                        x1 = (-b + sqrt(discriminant)) / (2 * a);
+                        x2 = (-b - sqrt(discriminant)) / (2 * a);
+                    end
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-quadrant-checker">
@@ -1280,6 +1532,30 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function location = find_quadrant(x, y)
+                if x == 0 &amp;&amp; y == 0
+                    location = "Origin";
+                elseif y == 0
+                    location = "X-axis";
+                elseif x == 0
+                    location = "Y-axis";
+                elseif x &gt; 0 &amp;&amp; y &gt; 0
+                    location = "Quadrant I";
+                elseif x &lt; 0 &amp;&amp; y &gt; 0
+                    location = "Quadrant II";
+                elseif x &lt; 0 &amp;&amp; y &lt; 0
+                    location = "Quadrant III";
+                else
+                    location = "Quadrant IV";
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-is-valid-triangle">
@@ -1337,6 +1613,22 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function is_valid = is_valid_triangle(a, b, c)
+                if a &gt; 0 &amp;&amp; b &gt; 0 &amp;&amp; c &gt; 0
+                    longest = max([a, b, c]);
+                    perimeter_of_two_shortest = a + b + c - longest;
+                    is_valid = perimeter_of_two_shortest &gt; longest;
+                else
+                    is_valid = false;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
     <task xml:id="hw-triangle-type">
@@ -1405,6 +1697,34 @@
         </program>
 
       </statement>
+
+      <solution>
+        <program language="matlab">
+          <code>
+            function type = classify_triangle(a, b, c)
+                if ~is_valid_triangle(a, b, c)
+                    type = "Invalid";
+                elseif a == b &amp;&amp; b == c
+                    type = "Equilateral";
+                elseif a == b || b == c || a == c
+                    type = "Isosceles";
+                else
+                    type = "Scalene";
+                end
+            end
+
+            function is_valid = is_valid_triangle(a, b, c)
+                if a &gt; 0 &amp;&amp; b &gt; 0 &amp;&amp; c &gt; 0
+                    longest = max([a, b, c]);
+                    perimeter_of_two_shortest = a + b + c - longest;
+                    is_valid = perimeter_of_two_shortest &gt; longest;
+                else
+                    is_valid = false;
+                end
+            end
+          </code>
+        </program>
+      </solution>
     </task>
 
   </exercise>
