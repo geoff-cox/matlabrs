@@ -402,6 +402,334 @@
 
     </exercise>
 
+    <exercise xml:id="activity-for-loop-drill-1">
+      <title>Activity 3: Counting with a <pf>for</pf>-loop</title>
+
+      <introduction>
+        <p>
+          Use the coding area, below, to complete these quick loop drills.
+        </p>
+
+        <sage language="octave">
+          <input>
+            % ==== Type your code here ====
+
+
+            % =============================
+          </input>
+        </sage>
+      </introduction>
+
+      <task xml:id="activity-for-loop-drill-1a">
+        <statement>
+          <p>
+            Write a <pf>for</pf>-loop that displays the integers 1 through 5, one value per line.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+for k = 1:5
+    disp(k)
+end
+          </program>
+        </solution>
+      </task>
+
+      <task xml:id="activity-for-loop-drill-1b">
+        <statement>
+          <p>
+            Modify your loop so it counts from 6 down to 2 and displays <pf>2*k</pf> each time.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+for k = 6:-1:2
+    disp(2*k)
+end
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-for-loop-drill-2">
+      <title>Activity 4: Running total drill</title>
+
+      <introduction>
+        <p>
+          Use the coding area, below, and update the same script for each task.
+        </p>
+
+        <sage language="octave">
+          <input>
+            total = 0;
+            % ==== Type your code here ====
+
+
+            % =============================
+            fprintf('total = %d\n', total);
+          </input>
+        </sage>
+      </introduction>
+
+      <task xml:id="activity-for-loop-drill-2a">
+        <statement>
+          <p>
+            Write a <pf>for</pf>-loop that adds the integers 1 through 8 to <pf>total</pf>.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+total = 0;
+for k = 1:8
+    total = total + k;
+end
+fprintf('total = %d\n', total);
+          </program>
+        </solution>
+      </task>
+
+      <task xml:id="activity-for-loop-drill-2b">
+        <statement>
+          <p>
+            Replace 8 with a random upper bound <pf>n</pf> between 5 and 12, then print both <pf>n</pf> and <pf>total</pf>.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+n = randi(8) + 4;
+total = 0;
+for k = 1:n
+    total = total + k;
+end
+fprintf('n = %d, total = %d\n', n, total);
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-for-loop-function-no-conditional">
+      <title>Activity 5: Build a loop function with no conditionals</title>
+
+      <task xml:id="activity-for-loop-function-no-conditional-a">
+        <statement>
+          <p>
+            Create a function named <pf>sumSquaresNoIf</pf> with input <pf>n</pf> and output <pf>s</pf>. Use a <pf>for</pf>-loop to compute
+            <m>1^2 + 2^2 + \cdots + n^2</m>. Do not use <pf>if</pf>, <pf>elseif</pf>, or <pf>switch</pf>.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+function s = sumSquaresNoIf(n)
+s = 0;
+for k = 1:n
+    s = s + k^2;
+end
+end
+          </program>
+        </solution>
+      </task>
+
+      <task xml:id="activity-for-loop-function-no-conditional-b">
+        <statement>
+          <p>
+            Test your function with <pf>n = 4</pf> and <pf>n = 7</pf>, then display each result.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+disp(sumSquaresNoIf(4))
+disp(sumSquaresNoIf(7))
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-for-loop-if-1">
+      <title>Activity 6: Loop decisions with <pf>if</pf></title>
+
+      <task xml:id="activity-for-loop-if-1a">
+        <statement>
+          <p>
+            Write a loop from 1 through 12. Use an <pf>if</pf>-statement and <pf>mod</pf> to display whether each value is even or odd.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+for k = 1:12
+    if mod(k,2) == 0
+        fprintf('%d is even\n', k);
+    else
+        fprintf('%d is odd\n', k);
+    end
+end
+          </program>
+        </solution>
+      </task>
+
+      <task xml:id="activity-for-loop-if-1b">
+        <statement>
+          <p>
+            Extend your script to keep a running sum of only the even values and print that sum after the loop ends.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+evenSum = 0;
+for k = 1:12
+    if mod(k,2) == 0
+        evenSum = evenSum + k;
+    end
+end
+fprintf('sum of even values = %d\n', evenSum);
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-for-loop-switch-1">
+      <title>Activity 7: Loop categories with <pf>switch</pf></title>
+
+      <task xml:id="activity-for-loop-switch-1a">
+        <statement>
+          <p>
+            Write a loop for rounds 1 through 9. In each round, use <pf>switch mod(roundNumber,3)</pf> to print one of three labels:
+            <pf>rest</pf>, <pf>walk</pf>, or <pf>run</pf>.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+for roundNumber = 1:9
+    switch mod(roundNumber,3)
+        case 1
+            disp('rest')
+        case 2
+            disp('walk')
+        otherwise
+            disp('run')
+    end
+end
+          </program>
+        </solution>
+      </task>
+
+      <task xml:id="activity-for-loop-switch-1b">
+        <statement>
+          <p>
+            Add a score variable. During each round, use your same <pf>switch</pf> to add 1 for <pf>rest</pf>, 2 for <pf>walk</pf>, and 4 for <pf>run</pf>.
+            Print the final score.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+score = 0;
+for roundNumber = 1:9
+    switch mod(roundNumber,3)
+        case 1
+            score = score + 1;
+        case 2
+            score = score + 2;
+        otherwise
+            score = score + 4;
+    end
+end
+fprintf('final score = %d\n', score);
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-for-loop-if-switch-2">
+      <title>Activity 8: Combined <pf>if</pf> and <pf>switch</pf> in a loop</title>
+
+      <task xml:id="activity-for-loop-if-switch-2a">
+        <statement>
+          <p>
+            A shop applies a base charge that depends on the customer number:
+            customer numbers with remainder 1 (after dividing by 3) get 12 dollars, remainder 2 get 15 dollars, and remainder 0 get 18 dollars.
+            Write a loop for customer numbers 1 through 10 that uses <pf>switch</pf> on <pf>mod(customer,3)</pf> to set the base charge.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+for customer = 1:10
+    switch mod(customer,3)
+        case 1
+            charge = 12;
+        case 2
+            charge = 15;
+        otherwise
+            charge = 18;
+    end
+    fprintf('customer %d base charge %d\n', customer, charge);
+end
+          </program>
+        </solution>
+      </task>
+
+      <task xml:id="activity-for-loop-if-switch-2b">
+        <statement>
+          <p>
+            Add an <pf>if</pf>-statement inside the loop: if the customer number is even, subtract 2 dollars from the base charge.
+            Track a running total of all adjusted charges.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+totalCharge = 0;
+for customer = 1:10
+    switch mod(customer,3)
+        case 1
+            charge = 12;
+        case 2
+            charge = 15;
+        otherwise
+            charge = 18;
+    end
+
+    if mod(customer,2) == 0
+        charge = charge - 2;
+    end
+
+    totalCharge = totalCharge + charge;
+end
+fprintf('total adjusted charge = %d\n', totalCharge);
+          </program>
+        </solution>
+      </task>
+
+      <task xml:id="activity-for-loop-if-switch-2c">
+        <statement>
+          <p>
+            Add one more condition: if an adjusted charge is greater than 15 dollars, print <q>high charge</q>; otherwise print <q>standard charge</q>.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+for customer = 1:10
+    switch mod(customer,3)
+        case 1
+            charge = 12;
+        case 2
+            charge = 15;
+        otherwise
+            charge = 18;
+    end
+
+    if mod(customer,2) == 0
+        charge = charge - 2;
+    end
+
+    if charge &gt; 15
+        disp('high charge')
+    else
+        disp('standard charge')
+    end
+end
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
   </reading-questions>
 
   <subsection xml:id="sec-while-loops">
