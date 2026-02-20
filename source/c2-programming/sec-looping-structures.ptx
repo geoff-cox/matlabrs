@@ -23,7 +23,7 @@
     </p>
   </introduction>
 
-  <subsection xml:id="subsec-for-structure">
+  <subsection xml:id="subsec-for-loops">
     <title>The for Loop</title>
 
     <p>
@@ -32,7 +32,7 @@
 
     <sidebyside widths="48% 48%">
       <stack>
-        <title>Without Loops</title>
+        <p>Without a loop ⤵︎</p>
         <program language="matlab">
           fprintf('Hello!\n')
           fprintf('Hello!\n')
@@ -42,7 +42,7 @@
         </program>
       </stack>
       <stack>
-        <title>With a for-Loop</title>
+        <p>With a loop ⤵︎</p>
         <program language="matlab">
           for i = 1:5
               fprintf('Hello!\n')
@@ -53,10 +53,6 @@
 
     <p>
       The <pf>for</pf>-loop version is shorter, clearer, and easier to modify. If you later need 100 repetitions instead of 5, you only change one number rather than copying and pasting 95 more lines.
-    </p>
-
-    <p>
-      A <pf>for</pf>-loop repeats a block of code once for each value in a specified list. This is the right tool when you know in advance how many times you want to repeat some code.
     </p>
 
     <assemblage xml:id="for-loop-structure">
@@ -162,63 +158,98 @@
       Both versions produce the same output: <c>2^1 = 2</c>, <c>2^2 = 4</c>, <c>2^3 = 8</c>, <c>2^4 = 16</c>, and <c>2^5 = 32</c>. The loop version eliminates redundancy by automatically updating the loop variable <pf>n</pf> from 1 to 5.
     </p>
 
-    <p>
-      Before writing a loop, identify: (1) what changes each iteration (the loop variable) and (2) what accumulates or updates (like a running total).
-    </p>
-
     <example xml:id="ex_forexampleonsums">
       <title>Accumulating a Sum</title>
 
       <statement>
         <p>
-          A common loop pattern is <term>accumulation</term>: start with an initial value, then repeatedly update it. Here we compute the sum <m>1+2+3+4+5</m>:
+          A common loop pattern is <term>accumulation</term>: 
+          start with an initial value, then repeatedly update it. 
+          Also known as a <term>running sum</term>. 
+          Here we compute the sum <m>1+2+3+4+5</m>:
         </p>
 
         <sidebyside width="100%">
           <program language="matlab">
             <code>
-              totalsum = 0; % initialize
+              totalSum = 0; % initialize
               for i = 1:5
-                totalsum = totalsum + i;
+                totalSum = totalSum + i;
               end
-              fprintf('Total sum: %i\n', totalsum)
+              fprintf('Total Sum: %i\n', totalSum)
             </code>
           </program>
         </sidebyside>
 
         <p>
-          The variable <pf>totalsum</pf> starts at 0, then adds 1, then 2, and so on, reaching 15. Compare this to MATLAB's built-in <pf>sum(1:5)</pf>, which gives the same result. The loop version shows you the logic step by step.
+          Here, <pf>totalSum</pf> starts at 0, then increases by 1, then 2, and so on, reaching 15.
         </p>
+
+        <sidebyside widths="95%">
+          <stack>
+            <p>Expanded loop for the accumulation of <pf>totalSum</pf> ⤵︎</p>
+            <program language="matlab">
+              totalSum = 0;
+              i = 1;
+              totalSum = totalSum + i;   % = 0 + 1 = 1;
+              i = 2;
+              totalSum = totalSum + i;   % = 1 + 2 = 3;
+              i = 3;
+              totalSum = totalSum + i;   % = 3 + 3 = 6;
+              i = 4;
+              totalSum = totalSum + i;   % = 6 + 4 = 10;
+              i = 5;
+              totalSum = totalSum + i;   % = 10 + 5 = 15;
+            </program>
+          </stack>
+        </sidebyside>
 
       </statement>
 
     </example>
 
     <example>
-      <title>Running Sum and Product</title>
+      <title>Factorial</title>
 
       <statement>
         <p>
-          This example shows two standard accumulation patterns: a running sum (initialize at 0) and a running product (initialize at 1).
+          This example shows another accumulation pattern: a running product, called a <term>factorial</term>:
+          <me>n! = 1 \cdot 2 \cdot 3 \cdots n</me>.
         </p>
 
-        <program language="matlab">
-        N = 10;
+        <sidebyside widths="52% 44%">
+          <stack>
+            <p>Loop version ⤵︎</p>
+            <program language="matlab">
+              n = 8; % Compute 8! 
 
-        sum_total = 0;
-        prod_total = 1;
+              factorial = 1; % initialize
 
-        for k = 1:N
-            sum_total = sum_total + k;
-            prod_total = prod_total * k;
-        end
+              for k = 1:n
+                  factorial = factorial * k;
+              end
 
-        sum_total
-        prod_total
-        </program>
+              fprintf('%i! = %i\n', n, factorial)
+            </program>
+          </stack>
+          <stack>
+            <p>Expanded loop form ⤵︎</p>
+            <program language="matlab">
+              factorial = 1; % initial
+              factorial = 1 * 1 = 1;
+              factorial = 1 * 2 = 2;
+              factorial = 2 * 3 = 6;
+              factorial = 6 * 4 = 24;
+              factorial = 24 * 5 = 120;
+              factorial = 120 * 6 = 720;
+              factorial = 720 * 7 = 5040;
+              factorial = 5040 * 8 = 40320;
+            </program>
+          </stack>
+        </sidebyside>
 
         <p>
-          After the loop completes, <pf>sum_total</pf> holds <m>1+2+\cdots+10=55</m>, and <pf>prod_total</pf> holds <m>1\cdot 2\cdot\cdots\cdot 10=3628800</m> (which is <m>10!</m>).
+          After the loop completes, <pf>factorial</pf> holds <m>1\cdot 2\cdot\cdots\cdot 8=40320</m> (<m>8!</m>).
         </p>
       </statement>
 
@@ -227,65 +258,6 @@
     <exercise label="looping-structures-reading-ckpt-1">
 
       <task label="looping-structures-reading-ckpt-1a">
-        <title>When to use a for-loop</title>
-        <statement>
-          <p>
-            When is a <pf>for</pf>-loop most appropriate?
-          </p>
-        </statement>
-        <choices randomize="yes">
-          <choice correct="yes">
-            <statement>
-              <p>
-                When you know how many times to repeat code.
-              </p>
-            </statement>
-            <feedback>
-              <p>
-                A <pf>for</pf>-loop works with a fixed list of values, making it ideal when you know the number of iterations in advance.
-              </p>
-            </feedback>
-          </choice>
-          <choice>
-            <statement>
-              <p>
-                When you need to repeat until a condition becomes false.
-              </p>
-            </statement>
-            <feedback>
-              <p>
-                This describes a <pf>while</pf>-loop, not a <pf>for</pf>-loop.
-              </p>
-            </feedback>
-          </choice>
-          <choice>
-            <statement>
-              <p>
-                When you need to skip certain iterations.
-              </p>
-            </statement>
-            <feedback>
-              <p>
-                Both <pf>for</pf>-loops and <pf>while</pf>-loops can skip iterations using <pf>continue</pf>.
-              </p>
-            </feedback>
-          </choice>
-          <choice>
-            <statement>
-              <p>
-                When you don't know how many times to repeat code.
-              </p>
-            </statement>
-            <feedback>
-              <p>
-                If the number of iterations is unknown, a <pf>while</pf>-loop is more appropriate.
-              </p>
-            </feedback>
-          </choice>
-        </choices>
-      </task>
-
-      <task label="looping-structures-reading-ckpt-1b">
         <title>The loop variable is automatically updated</title>
         <statement correct="yes">
           <p>
@@ -299,7 +271,7 @@
         </feedback>
       </task>
 
-      <task label="looping-structures-reading-ckpt-1c">
+      <task label="looping-structures-reading-ckpt-1b">
         <title>What does 5:2:15 produce?</title>
         <statement>
           <p>
@@ -361,6 +333,76 @@
     </exercise>
 
   </subsection>
+
+  <reading-questions xml:id="class-activities-for-loops">
+
+    <introduction>
+      <p>
+        These activities will help you practice using for-loops to solve interesting problems.
+      </p>
+    </introduction>
+
+    <exercise xml:id="activity-approximating-pi-for">
+      <title>Approximating Pi with Leibniz's Formula</title>
+
+      <task xml:id="activity-approximating-pi-for-a">
+        <statement>
+          <p>
+            The Leibniz formula for <m>\pi</m> states that:
+            <me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
+          </p>
+
+          <p>
+            This infinite series converges slowly to <m>\pi/4</m>, but we can approximate it by adding many terms.
+          </p>
+
+          <p>
+            Write a MATLAB script that:
+            <ol>
+              <li>Uses a <pf>for</pf>-loop to compute the sum of the first 1000 terms.</li>
+              <li>Multiplies the result by 4 to approximate <m>\pi</m>.</li>
+              <li>Compares your approximation to MATLAB's built-in <pf>pi</pf> value.</li>
+              <li>Reports the error (absolute difference).</li>
+            </ol>
+          </p>
+
+          <p>
+            <em>Hint:</em> The denominators are odd numbers (1, 3, 5, 7, ...) which follow the pattern <m>2k - 1</m> when looping with <pf>k = 1:1000</pf>. Signs alternate, so use <pf>(-1)^(k+1)</pf> to generate the alternating signs.
+          </p>
+        </statement>
+      </task>
+
+    </exercise>
+
+    <exercise xml:id="activity-perfect-numbers">
+      <title>Perfect Number Detector</title>
+
+      <task xml:id="activity-perfect-numbers-a">
+        <statement>
+          <p>
+            A <term>perfect number</term> is a positive integer that equals the sum of its proper divisors (positive divisors excluding itself). For example, 6 is perfect because <m>1 + 2 + 3 = 6</m>.
+          </p>
+
+          <p>
+            Write a MATLAB script that:
+            <ol>
+              <li>Prompts the user for a positive integer.</li>
+              <li>Uses a <pf>for</pf>-loop to find all proper divisors (numbers that divide evenly into the input).</li>
+              <li>Computes the sum of these divisors.</li>
+              <li>Determines whether the number is perfect, abundant (sum exceeds the number), or deficient (sum is less than the number).</li>
+              <li>Displays the classification and the sum of divisors.</li>
+            </ol>
+          </p>
+
+          <p>
+            <em>Hint:</em> Use <pf>mod(n, k) == 0</pf> to test if <pf>k</pf> divides <pf>n</pf> evenly. Loop from 1 to <pf>n-1</pf>.
+          </p>
+        </statement>
+      </task>
+
+    </exercise>
+
+  </reading-questions>
 
   <subsection xml:id="sec-while-loops">
     <title>The while Loop</title>
@@ -628,6 +670,175 @@
 
   </subsection>
 
+  <reading-questions xml:id="class-activities-while-loops">
+
+    <introduction>
+      <p>
+        These activities will help you practice using loops to solve interesting problems. Each activity requires only loops, variables, and basic arithmetic—no arrays needed.
+      </p>
+    </introduction>
+
+    <exercise xml:id="activity-approximating-pi-while">
+      <title>Approximating Pi with Leibniz's Formula</title>
+
+      <task xml:id="activity-approximating-pi-while-a">
+        <statement>
+          <p>
+            The Leibniz formula for <m>\pi</m> states that:
+            <me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
+          </p>
+
+          <p>
+            This infinite series converges slowly to <m>\pi/4</m>, but we can approximate it by adding many terms.
+          </p>
+
+          <p>
+            Write a MATLAB script that:
+            <ol>
+              <li>Determines how many terms are needed to get within 0.001 of <pf>pi</pf>. Convert your <pf>for</pf>-loop version to a <pf>while</pf>-loop that stops when the error is small enough.</li>
+            </ol>
+          </p>
+
+          <p>
+            <em>Hint:</em> The denominators are odd numbers (1, 3, 5, 7, ...) which follow the pattern <m>2k - 1</m> when looping with <pf>k = 1:1000</pf>. Signs alternate, so use <pf>(-1)^(k+1)</pf> to generate the alternating signs.
+          </p>
+        </statement>
+      </task>
+
+    </exercise>
+
+    <exercise xml:id="activity-collatz-conjecture">
+      <title>The Collatz Conjecture</title>
+
+      <task xml:id="activity-collatz-conjecture-a">
+        <statement>
+          <p>
+            The Collatz conjecture is one of mathematics' most famous unsolved problems. Start with any positive integer <pf>n</pf>. If it is even, divide it by 2. If it is odd, multiply by 3 and add 1. Repeat this process until you reach 1.
+          </p>
+
+          <p>
+            For example, starting with 6:
+            <md>
+              <mrow>6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1</mrow>
+            </md>
+          </p>
+
+          <p>
+            Write a MATLAB script that:
+            <ol>
+              <li>Starts with a user-chosen positive integer <pf>n</pf>.</li>
+              <li>Uses a <pf>while</pf>-loop to apply the Collatz rules repeatedly until reaching 1.</li>
+              <li>Displays each number in the sequence.</li>
+              <li>Reports how many steps it took to reach 1.</li>
+            </ol>
+          </p>
+        </statement>
+
+        <hint>
+          <p>
+            Use <pf>mod(n, 2) == 0</pf> to check if <pf>n</pf> is even. Keep a counter variable that increments each iteration.
+          </p>
+        </hint>
+      </task>
+
+      <task xml:id="activity-collatz-conjecture-b">
+        <statement>
+          <p>
+            <em>Challenge:</em> Test your script with different starting values. Can you find a starting number that takes more than 100 steps?
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-digital-root-calculator">
+      <title>Digital Root Calculator</title>
+
+      <task xml:id="activity-digital-root-calculator-a">
+        <statement>
+          <p>
+            The <term>digital root</term> of a number is found by repeatedly summing its digits until only a single digit remains. For example, the digital root of 9875 is found by:
+            <md>
+              <mrow>9 + 8 + 7 + 5 = 29</mrow>
+              <mrow>2 + 9 = 11</mrow>
+              <mrow>1 + 1 = 2</mrow>
+            </md>
+          </p>
+
+          <p>
+            Write a MATLAB script that computes the digital root of any positive integer <pf>n</pf> using a <pf>while</pf>-loop. You can extract the rightmost digit of <pf>n</pf> using <pf>mod(n, 10)</pf>, and remove it using <pf>floor(n/10)</pf>.
+          </p>
+
+          <p>
+            Your script should:
+            <ol>
+              <li>Accept a positive integer as input.</li>
+              <li>Use an outer loop that repeats until <pf>n</pf> has only one digit.</li>
+              <li>Use an inner loop to sum the digits of the current value of <pf>n</pf>.</li>
+              <li>Display the digital root.</li>
+            </ol>
+          </p>
+        </statement>
+
+        <hint>
+          <p>
+            Start with an outer loop: <c>while n >= 10</c>. Inside, use an inner loop to extract and sum digits, then update <pf>n</pf> to this sum.
+          </p>
+        </hint>
+      </task>
+
+      <task xml:id="activity-digital-root-calculator-b">
+        <statement>
+          <p>
+            <em>Extension:</em> Test your script with numbers like 38, 99, 123456, and 999999. What patterns do you notice?
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-fibonacci-threshold">
+      <title>Finding Fibonacci Numbers</title>
+
+      <task xml:id="activity-fibonacci-threshold-a">
+        <statement>
+          <p>
+            The Fibonacci sequence begins 0, 1, 1, 2, 3, 5, 8, 13, 21, ... where each number is the sum of the two preceding numbers.
+          </p>
+
+          <p>
+            Write a MATLAB script that:
+            <ol>
+              <li>Uses a <pf>while</pf>-loop to generate Fibonacci numbers until one exceeds 10,000.</li>
+              <li>Displays each Fibonacci number as it is computed.</li>
+              <li>Reports which Fibonacci number was the first to exceed 10,000.</li>
+            </ol>
+          </p>
+
+          <p>
+            <em>Hint:</em> You only need three variables: the current Fibonacci number, the previous one, and the one before that. Use a pattern like:
+          </p>
+          <program language="matlab">
+            prev2 = 0;
+            prev1 = 1;
+
+            while prev1 &lt; 10000
+                current = prev2 + prev1;
+                % display and update variables
+            end
+          </program>
+        </statement>
+      </task>
+
+      <task xml:id="activity-fibonacci-threshold-b">
+        <statement>
+          <p>
+            <em>Extension:</em> Modify your script to compute the ratio of consecutive Fibonacci numbers (e.g., <m>F_n / F_{n-1}</m>). What value does this ratio approach as <m>n</m> increases?
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+  </reading-questions>
+
   <subsection xml:id="subsec-for-vs-while">
     <title>Which to Use: for vs. while</title>
 
@@ -673,6 +884,65 @@
     <exercise label="looping-structures-reading-ckpt-3">
 
       <task label="looping-structures-reading-ckpt-3a">
+        <title>When to use a for-loop</title>
+        <statement>
+          <p>
+            When is a <pf>for</pf>-loop most appropriate?
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="yes">
+            <statement>
+              <p>
+                When you know how many times to repeat code.
+              </p>
+            </statement>
+            <feedback>
+              <p>
+                A <pf>for</pf>-loop works with a fixed list of values, making it ideal when you know the number of iterations in advance.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement>
+              <p>
+                When you need to repeat until a condition becomes false.
+              </p>
+            </statement>
+            <feedback>
+              <p>
+                This describes a <pf>while</pf>-loop, not a <pf>for</pf>-loop.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement>
+              <p>
+                When you need to skip certain iterations.
+              </p>
+            </statement>
+            <feedback>
+              <p>
+                Both <pf>for</pf>-loops and <pf>while</pf>-loops can skip iterations using <pf>continue</pf>.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement>
+              <p>
+                When you don't know how many times to repeat code.
+              </p>
+            </statement>
+            <feedback>
+              <p>
+                If the number of iterations is unknown, a <pf>while</pf>-loop is more appropriate.
+              </p>
+            </feedback>
+          </choice>
+        </choices>
+      </task>
+
+      <task label="looping-structures-reading-ckpt-3b">
         <title>For-loop requires a list of values</title>
         <statement correct="yes">
           <p>
@@ -686,7 +956,7 @@
         </feedback>
       </task>
 
-      <task label="looping-structures-reading-ckpt-3b">
+      <task label="looping-structures-reading-ckpt-3c">
         <title>Choosing the right loop type</title>
         <statement>
           <p>
@@ -745,7 +1015,7 @@
         </choices>
       </task>
 
-      <task label="looping-structures-reading-ckpt-3c">
+      <task label="looping-structures-reading-ckpt-3d">
         <title>Loops are interchangeable</title>
         <statement correct="yes">
           <p>
@@ -1069,217 +1339,53 @@
 
   </subsection>
 
-  <reading-questions xml:id="subsec-loop-class-activities">
+  <reading-questions xml:id="class-activities-break-continue-return">
 
     <introduction>
       <p>
         These activities will help you practice using loops to solve interesting problems. Each activity requires only loops, variables, and basic arithmetic—no arrays needed.
       </p>
     </introduction>
-
-    <exercise xml:id="activity-collatz-conjecture">
-      <title>The Collatz Conjecture</title>
-
-      <task xml:id="activity-collatz-conjecture-a">
-        <statement>
-          <p>
-            The Collatz conjecture is one of mathematics' most famous unsolved problems. Start with any positive integer <pf>n</pf>. If it is even, divide it by 2. If it is odd, multiply by 3 and add 1. Repeat this process until you reach 1.
-          </p>
-
-          <p>
-            For example, starting with 6:
-            <md>
-              <mrow>6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1</mrow>
-            </md>
-          </p>
-
-          <p>
-            Write a MATLAB script that:
-            <ol>
-              <li>Starts with a user-chosen positive integer <pf>n</pf>.</li>
-              <li>Uses a <pf>while</pf>-loop to apply the Collatz rules repeatedly until reaching 1.</li>
-              <li>Displays each number in the sequence.</li>
-              <li>Reports how many steps it took to reach 1.</li>
-            </ol>
-          </p>
-        </statement>
-
-        <hint>
-          <p>
-            Use <pf>mod(n, 2) == 0</pf> to check if <pf>n</pf> is even. Keep a counter variable that increments each iteration.
-          </p>
-        </hint>
-      </task>
-
-      <task xml:id="activity-collatz-conjecture-b">
-        <statement>
-          <p>
-            <em>Challenge:</em> Test your script with different starting values. Can you find a starting number that takes more than 100 steps?
-          </p>
-        </statement>
-      </task>
-    </exercise>
-
-    <exercise xml:id="activity-digital-root-calculator">
-      <title>Digital Root Calculator</title>
-
-      <task xml:id="activity-digital-root-calculator-a">
-        <statement>
-          <p>
-            The <term>digital root</term> of a number is found by repeatedly summing its digits until only a single digit remains. For example, the digital root of 9875 is found by:
-            <md>
-              <mrow>9 + 8 + 7 + 5 = 29</mrow>
-              <mrow>2 + 9 = 11</mrow>
-              <mrow>1 + 1 = 2</mrow>
-            </md>
-          </p>
-
-          <p>
-            Write a MATLAB script that computes the digital root of any positive integer <pf>n</pf> using a <pf>while</pf>-loop. You can extract the rightmost digit of <pf>n</pf> using <pf>mod(n, 10)</pf>, and remove it using <pf>floor(n/10)</pf>.
-          </p>
-
-          <p>
-            Your script should:
-            <ol>
-              <li>Accept a positive integer as input.</li>
-              <li>Use an outer loop that repeats until <pf>n</pf> has only one digit.</li>
-              <li>Use an inner loop to sum the digits of the current value of <pf>n</pf>.</li>
-              <li>Display the digital root.</li>
-            </ol>
-          </p>
-        </statement>
-
-        <hint>
-          <p>
-            Start with an outer loop: <c>while n >= 10</c>. Inside, use an inner loop to extract and sum digits, then update <pf>n</pf> to this sum.
-          </p>
-        </hint>
-      </task>
-
-      <task xml:id="activity-digital-root-calculator-b">
-        <statement>
-          <p>
-            <em>Extension:</em> Test your script with numbers like 38, 99, 123456, and 999999. What patterns do you notice?
-          </p>
-        </statement>
-      </task>
-    </exercise>
-
-    <exercise xml:id="activity-approximating-pi">
-      <title>Approximating Pi with Leibniz's Formula</title>
-
-      <task xml:id="activity-approximating-pi-a">
-        <statement>
-          <p>
-            The Leibniz formula for <m>\pi</m> states that:
-            <me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
-          </p>
-
-          <p>
-            This infinite series converges slowly to <m>\pi/4</m>, but we can approximate it by adding many terms.
-          </p>
-
-          <p>
-            Write a MATLAB script that:
-            <ol>
-              <li>Uses a <pf>for</pf>-loop to compute the sum of the first 1000 terms.</li>
-              <li>Multiplies the result by 4 to approximate <m>\pi</m>.</li>
-              <li>Compares your approximation to MATLAB's built-in <pf>pi</pf> value.</li>
-              <li>Reports the error (absolute difference).</li>
-            </ol>
-          </p>
-
-          <p>
-            <em>Hint:</em> The denominators are odd numbers (1, 3, 5, 7, ...) which follow the pattern <m>2k - 1</m> when looping with <pf>k = 1:1000</pf>. Signs alternate, so use <pf>(-1)^(k+1)</pf> to generate the alternating signs.
-          </p>
-        </statement>
-      </task>
-
-      <task xml:id="activity-approximating-pi-b">
-        <statement>
-          <p>
-            <em>Extension:</em> How many terms are needed to get within 0.001 of <pf>pi</pf>? Convert your <pf>for</pf>-loop to a <pf>while</pf>-loop that stops when the error is small enough.
-          </p>
-        </statement>
-      </task>
-    </exercise>
-
-    <exercise xml:id="activity-fibonacci-threshold">
-      <title>Finding Fibonacci Numbers</title>
-
-      <task xml:id="activity-fibonacci-threshold-a">
-        <statement>
-          <p>
-            The Fibonacci sequence begins 0, 1, 1, 2, 3, 5, 8, 13, 21, ... where each number is the sum of the two preceding numbers.
-          </p>
-
-          <p>
-            Write a MATLAB script that:
-            <ol>
-              <li>Uses a <pf>while</pf>-loop to generate Fibonacci numbers until one exceeds 10,000.</li>
-              <li>Displays each Fibonacci number as it is computed.</li>
-              <li>Reports which Fibonacci number was the first to exceed 10,000.</li>
-            </ol>
-          </p>
-
-          <p>
-            <em>Hint:</em> You only need three variables: the current Fibonacci number, the previous one, and the one before that. Use a pattern like:
-          </p>
-          <program language="matlab">
-            prev2 = 0;
-            prev1 = 1;
-
-            while prev1 &lt; 10000
-                current = prev2 + prev1;
-                % display and update variables
-            end
-          </program>
-        </statement>
-      </task>
-
-      <task xml:id="activity-fibonacci-threshold-b">
-        <statement>
-          <p>
-            <em>Extension:</em> Modify your script to compute the ratio of consecutive Fibonacci numbers (e.g., <m>F_n / F_{n-1}</m>). What value does this ratio approach as <m>n</m> increases?
-          </p>
-        </statement>
-      </task>
-    </exercise>
-
-    <exercise xml:id="activity-perfect-numbers">
-      <title>Perfect Number Detector</title>
+    <!-- <exercise xml:id="activity-perfect-numbers">
+      <title>Classifying Perfect, Abundant, and Deficient Numbers</title>
 
       <task xml:id="activity-perfect-numbers-a">
         <statement>
           <p>
-            A <term>perfect number</term> is a positive integer that equals the sum of its proper divisors (positive divisors excluding itself). For example, 6 is perfect because <m>1 + 2 + 3 = 6</m>.
+            A number is called:
+            <ul>
+              <li><term>perfect</term> if the sum of its positive divisors (excluding itself) equals the number.</li>
+              <li><term>abundant</term> if this sum exceeds the number.</li>
+              <li><term>deficient</term> if this sum is less than the number.</li>
+            </ul>
           </p>
 
           <p>
             Write a MATLAB script that:
             <ol>
-              <li>Prompts the user for a positive integer.</li>
-              <li>Uses a <pf>for</pf>-loop to find all proper divisors (numbers that divide evenly into the input).</li>
-              <li>Computes the sum of these divisors.</li>
-              <li>Determines whether the number is perfect, abundant (sum exceeds the number), or deficient (sum is less than the number).</li>
-              <li>Displays the classification and the sum of divisors.</li>
+              <li>Accepts a positive integer as input.</li>
+              <li>Calculates the sum of its positive divisors (excluding itself).</li>
+              <li>Classifies the number as perfect, abundant, or deficient based on this sum.</li>
+              <li>Displays the classification result.</li>
             </ol>
           </p>
-
-          <p>
-            <em>Hint:</em> Use <pf>mod(n, k) == 0</pf> to test if <pf>k</pf> divides <pf>n</pf> evenly. Loop from 1 to <pf>n-1</pf>.
-          </p>
         </statement>
+        <hint>
+          <p>
+            Use a <pf>for</pf>-loop to iterate through potential divisors from 1 to <pf>n-1</pf>. Use the <pf>mod</pf> function to check if a number is a divisor.
+          </p>
+        </hint>
       </task>
 
       <task xml:id="activity-perfect-numbers-b">
         <statement>
           <p>
-            <em>Extension:</em> The first four perfect numbers are 6, 28, 496, and 8128. Write a script using nested loops to search for all perfect numbers less than 10,000.
+            Test your script with numbers like 6, 12, 15, 28, and 30. What classifications do you get?
           </p>
         </statement>
       </task>
-    </exercise>
+
+    </exercise> -->
 
   </reading-questions>
 
