@@ -491,7 +491,7 @@ fprintf('total = %d\n', total);
       <task xml:id="activity-for-loop-drill-2b">
         <statement>
           <p>
-            Replace 8 with a random upper bound <pf>n</pf> between 5 and 12, then print both <pf>n</pf> and <pf>total</pf>.
+            Replace 8 with a random upper bound <pf>n</pf> between 5 and 12 (inclusive), then print both <pf>n</pf> and <pf>total</pf>.
           </p>
         </statement>
         <solution>
@@ -513,13 +513,13 @@ fprintf('n = %d, total = %d\n', n, total);
       <task xml:id="activity-for-loop-function-no-conditional-a">
         <statement>
           <p>
-            Create a function named <pf>sumSquaresNoIf</pf> with input <pf>n</pf> and output <pf>s</pf>. Use a <pf>for</pf>-loop to compute
+            Create a function named <pf>sumSquares</pf> with input <pf>n</pf> and output <pf>s</pf>. Use a <pf>for</pf>-loop to compute
             <m>1^2 + 2^2 + \cdots + n^2</m>. Do not use <pf>if</pf>, <pf>elseif</pf>, or <pf>switch</pf>.
           </p>
         </statement>
         <solution>
           <program language="matlab">
-function s = sumSquaresNoIf(n)
+function s = sumSquares(n)
 s = 0;
 for k = 1:n
     s = s + k^2;
@@ -537,8 +537,8 @@ end
         </statement>
         <solution>
           <program language="matlab">
-disp(sumSquaresNoIf(4))
-disp(sumSquaresNoIf(7))
+disp(sumSquares(4))
+disp(sumSquares(7))
           </program>
         </solution>
       </task>
@@ -592,8 +592,8 @@ fprintf('sum of even values = %d\n', evenSum);
       <task xml:id="activity-for-loop-switch-1a">
         <statement>
           <p>
-            Write a loop for rounds 1 through 9. In each round, use <pf>switch mod(roundNumber,3)</pf> to print one of three labels:
-            <pf>rest</pf>, <pf>walk</pf>, or <pf>run</pf>.
+            Write a loop for rounds 1 through 9. In each round, use <pf>switch mod(roundNumber,3)</pf> with this mapping:
+            remainder 1 prints <pf>rest</pf>, remainder 2 prints <pf>walk</pf>, and remainder 0 prints <pf>run</pf>.
           </p>
         </statement>
         <solution>
