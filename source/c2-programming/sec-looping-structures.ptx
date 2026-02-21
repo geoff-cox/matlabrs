@@ -342,66 +342,6 @@
       </p>
     </introduction>
 
-    <exercise xml:id="activity-approximating-pi-for">
-      <title>Approximating Pi with Leibniz's Formula</title>
-
-      <task xml:id="activity-approximating-pi-for-a">
-        <statement>
-          <p>
-            The Leibniz formula for <m>\pi</m> states that:
-            <me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
-          </p>
-
-          <p>
-            This infinite series converges slowly to <m>\pi/4</m>, but we can approximate it by adding many terms.
-          </p>
-
-          <p>
-            Write a MATLAB script that:
-            <ol>
-              <li>Uses a <pf>for</pf>-loop to compute the sum of the first 1000 terms.</li>
-              <li>Multiplies the result by 4 to approximate <m>\pi</m>.</li>
-              <li>Compares your approximation to MATLAB's built-in <pf>pi</pf> value.</li>
-              <li>Reports the error (absolute difference).</li>
-            </ol>
-          </p>
-
-          <p>
-            <em>Hint:</em> The denominators are odd numbers (1, 3, 5, 7, ...) which follow the pattern <m>2k - 1</m> when looping with <pf>k = 1:1000</pf>. Signs alternate, so use <pf>(-1)^(k+1)</pf> to generate the alternating signs.
-          </p>
-        </statement>
-      </task>
-
-    </exercise>
-
-    <exercise xml:id="activity-perfect-numbers">
-      <title>Perfect Number Detector</title>
-
-      <task xml:id="activity-perfect-numbers-a">
-        <statement>
-          <p>
-            A <term>perfect number</term> is a positive integer that equals the sum of its proper divisors (positive divisors excluding itself). For example, 6 is perfect because <m>1 + 2 + 3 = 6</m>.
-          </p>
-
-          <p>
-            Write a MATLAB script that:
-            <ol>
-              <li>Prompts the user for a positive integer.</li>
-              <li>Uses a <pf>for</pf>-loop to find all proper divisors (numbers that divide evenly into the input).</li>
-              <li>Computes the sum of these divisors.</li>
-              <li>Determines whether the number is perfect, abundant (sum exceeds the number), or deficient (sum is less than the number).</li>
-              <li>Displays the classification and the sum of divisors.</li>
-            </ol>
-          </p>
-
-          <p>
-            <em>Hint:</em> Use <pf>mod(n, k) == 0</pf> to test if <pf>k</pf> divides <pf>n</pf> evenly. Loop from 1 to <pf>n-1</pf>.
-          </p>
-        </statement>
-      </task>
-
-    </exercise>
-
     <exercise xml:id="activity-for-loop-drill-1">
       <title>Counting with a <pf>for</pf>-loop</title>
 
@@ -423,14 +363,21 @@
       <task xml:id="activity-for-loop-drill-1a">
         <statement>
           <p>
-            Write a <pf>for</pf>-loop that displays the integers 1 through 5, one value per line.
+            Write a <pf>for</pf>-loop that uses <pf>fprintf</pf> to display:
+            <program language="matlab">
+              '1-one-thousand'
+              '2-one-thousand'
+              '3-one-thousand'
+              '4-one-thousand'
+              '5-one-thousand'
+            </program>
           </p>
         </statement>
         <solution>
           <program language="matlab">
-for k = 1:5
-    disp(k)
-end
+            for k = 1:5
+              fprintf('%d-one-thousand\n', k);
+            end
           </program>
         </solution>
       </task>
@@ -438,14 +385,28 @@ end
       <task xml:id="activity-for-loop-drill-1b">
         <statement>
           <p>
-            Modify your loop so it counts from 6 down to 2 and displays <pf>2*k</pf> each time.
+            Write a <pf>for</pf>-loop that uses <pf>fprintf</pf> to display:
+            <program language="matlab">
+              '10'
+              '9'
+              '8'
+              '7'
+              '6'
+              '5'
+              '4'
+              '3'
+              '2'
+              '1'
+              'boom!'
+            </program>
           </p>
         </statement>
         <solution>
           <program language="matlab">
-for k = 6:-1:2
-    disp(2*k)
-end
+            for k = 10:-1:1
+              fprintf('%d\n', k);
+            end
+            fprintf('boom!\n');
           </program>
         </solution>
       </task>
@@ -542,6 +503,66 @@ disp(sumSquares(7))
           </program>
         </solution>
       </task>
+    </exercise>
+
+    <exercise xml:id="activity-approximating-pi-for">
+      <title>Approximating Pi with Leibniz's Formula</title>
+
+      <task xml:id="activity-approximating-pi-for-a">
+        <statement>
+          <p>
+            The Leibniz formula for <m>\pi</m> states that:
+            <me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
+          </p>
+
+          <p>
+            This infinite series converges slowly to <m>\pi/4</m>, but we can approximate it by adding many terms.
+          </p>
+
+          <p>
+            Write a MATLAB script that:
+            <ol>
+              <li>Uses a <pf>for</pf>-loop to compute the sum of the first 1000 terms.</li>
+              <li>Multiplies the result by 4 to approximate <m>\pi</m>.</li>
+              <li>Compares your approximation to MATLAB's built-in <pf>pi</pf> value.</li>
+              <li>Reports the error (absolute difference).</li>
+            </ol>
+          </p>
+
+          <p>
+            <em>Hint:</em> The denominators are odd numbers (1, 3, 5, 7, ...) which follow the pattern <m>2k - 1</m> when looping with <pf>k = 1:1000</pf>. Signs alternate, so use <pf>(-1)^(k+1)</pf> to generate the alternating signs.
+          </p>
+        </statement>
+      </task>
+
+    </exercise>
+
+    <exercise xml:id="activity-perfect-numbers">
+      <title>Perfect Number Detector</title>
+
+      <task xml:id="activity-perfect-numbers-a">
+        <statement>
+          <p>
+            A <term>perfect number</term> is a positive integer that equals the sum of its proper divisors (positive divisors excluding itself). For example, 6 is perfect because <m>1 + 2 + 3 = 6</m>.
+          </p>
+
+          <p>
+            Write a MATLAB script that:
+            <ol>
+              <li>Prompts the user for a positive integer.</li>
+              <li>Uses a <pf>for</pf>-loop to find all proper divisors (numbers that divide evenly into the input).</li>
+              <li>Computes the sum of these divisors.</li>
+              <li>Determines whether the number is perfect, abundant (sum exceeds the number), or deficient (sum is less than the number).</li>
+              <li>Displays the classification and the sum of divisors.</li>
+            </ol>
+          </p>
+
+          <p>
+            <em>Hint:</em> Use <pf>mod(n, k) == 0</pf> to test if <pf>k</pf> divides <pf>n</pf> evenly. Loop from 1 to <pf>n-1</pf>.
+          </p>
+        </statement>
+      </task>
+
     </exercise>
 
     <exercise xml:id="activity-for-loop-if-1">
