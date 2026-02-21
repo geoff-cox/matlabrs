@@ -1346,46 +1346,65 @@
         These activities will help you practice using loops to solve interesting problems. Each activity requires only loops, variables, and basic arithmetic—no arrays needed.
       </p>
     </introduction>
-    <!-- <exercise xml:id="activity-perfect-numbers">
-      <title>Classifying Perfect, Abundant, and Deficient Numbers</title>
+    <exercise xml:id="activity-continue-control-flow">
+      <title>Activity 1: Using <pf>continue</pf> in a Loop</title>
 
-      <task xml:id="activity-perfect-numbers-a">
+      <task xml:id="activity-continue-control-flow-a">
         <statement>
           <p>
-            A number is called:
-            <ul>
-              <li><term>perfect</term> if the sum of its positive divisors (excluding itself) equals the number.</li>
-              <li><term>abundant</term> if this sum exceeds the number.</li>
-              <li><term>deficient</term> if this sum is less than the number.</li>
-            </ul>
-          </p>
-
-          <p>
-            Write a MATLAB script that:
-            <ol>
-              <li>Accepts a positive integer as input.</li>
-              <li>Calculates the sum of its positive divisors (excluding itself).</li>
-              <li>Classifies the number as perfect, abundant, or deficient based on this sum.</li>
-              <li>Displays the classification result.</li>
-            </ol>
-          </p>
-        </statement>
-        <hint>
-          <p>
-            Use a <pf>for</pf>-loop to iterate through potential divisors from 1 to <pf>n-1</pf>. Use the <pf>mod</pf> function to check if a number is a divisor.
-          </p>
-        </hint>
-      </task>
-
-      <task xml:id="activity-perfect-numbers-b">
-        <statement>
-          <p>
-            Test your script with numbers like 6, 12, 15, 28, and 30. What classifications do you get?
+            Write a MATLAB script with a <pf>for</pf>-loop from 1 to 20 that adds values to a running total. Use an <pf>if</pf>-statement with <pf>mod</pf> and <pf>continue</pf> so that values divisible by 3 are skipped.
           </p>
         </statement>
       </task>
 
-    </exercise> -->
+      <task xml:id="activity-continue-control-flow-b">
+        <statement>
+          <p>
+            Modify your script to also count how many values were skipped. Print both the final total and the number of skipped values.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-break-control-flow">
+      <title>Activity 2: Using <pf>break</pf> in a Loop</title>
+
+      <task xml:id="activity-break-control-flow-a">
+        <statement>
+          <p>
+            Use a <pf>while</pf>-loop to generate random integers with <pf>randi([1, 10])</pf>. Keep a trial counter and use an <pf>if</pf>-statement with <pf>break</pf> to stop as soon as the value is 7.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-break-control-flow-b">
+        <statement>
+          <p>
+            Add a second stopping rule: if the trial counter reaches 15 before rolling a 7, break out of the loop and report that the trial limit was reached.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-return-control-flow">
+      <title>Activity 3: Using <pf>return</pf> in a Loop</title>
+
+      <task xml:id="activity-return-control-flow-a">
+        <statement>
+          <p>
+            Write a function named <pf>findFirstMultipleOfSix(limit)</pf> that loops through integers from 1 to <pf>limit</pf>. Inside the loop, use an <pf>if</pf>-statement and <pf>return</pf> to stop immediately when the first value divisible by both 2 and 3 is found.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-return-control-flow-b">
+        <statement>
+          <p>
+            Update your function so that it returns <pf>-1</pf> if no value in the loop meets the condition. Test with a small limit and a larger limit to confirm both outcomes.
+          </p>
+        </statement>
+      </task>
+    </exercise>
 
   </reading-questions>
 
