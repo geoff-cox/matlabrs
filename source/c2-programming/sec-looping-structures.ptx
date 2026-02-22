@@ -1186,6 +1186,200 @@ end
       </task>
     </exercise>
 
+    <exercise xml:id="activity-while-counter-drill">
+      <title>While-Loop Counter Drill</title>
+
+      <introduction>
+        <p>
+          Use the coding area, below, to complete the following tasks.
+        </p>
+
+        <sage language="octave">
+          <input>
+            count = 1;
+            total = 0;
+            % ==== Type your code here ====
+            
+
+            % =============================
+            fprintf('Final count = %d, total = %d\n', count, total);
+          </input>
+        </sage>
+      </introduction>
+
+      <task xml:id="activity-while-counter-drill-a">
+        <statement>
+          <p>
+            Use a <pf>while</pf>-loop to add the integers from 1 through 6 into <pf>total</pf>. Update <pf>total</pf> each pass and increment <pf>count</pf> so the loop eventually stops.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-while-counter-drill-b">
+        <statement>
+          <p>
+            Change your loop so it adds the integers from 1 through 10 instead.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-doubling-drill">
+      <title>Activity 6: Doubling Value Drill</title>
+
+      <introduction>
+        <p>
+          Use the coding area, below, to complete the following tasks.
+        </p>
+
+        <sage language="octave">
+          <input>
+            value = 3;
+            steps = 0;
+            % ==== Type your code here ====
+            
+
+            % =============================
+            fprintf('Final value = %d after %d steps\n', value, steps);
+          </input>
+        </sage>
+      </introduction>
+
+      <task xml:id="activity-doubling-drill-a">
+        <statement>
+          <p>
+            Write a <pf>while</pf>-loop that doubles <pf>value</pf> until it is at least 100. Increment <pf>steps</pf> by 1 each time the loop runs.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-doubling-drill-b">
+        <statement>
+          <p>
+            Change the starting value to a random integer between 1 and 8 using <pf>randi([1, 8])</pf>, then rerun the loop several times and compare the number of steps.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-function-count-by">
+      <title>Activity 7: Build a Counting Function with a While-Loop</title>
+
+      <task xml:id="activity-function-count-by-a">
+        <statement>
+          <p>
+            Create a function named <pf>count_by</pf> that takes two scalar inputs, <pf>step</pf> and <pf>limit</pf>, and returns one scalar output <pf>lastValue</pf>. Start at 0 and repeatedly add <pf>step</pf> using a <pf>while</pf>-loop while <pf>lastValue + step &lt;= limit</pf>.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-function-count-by-b">
+        <statement>
+          <p>
+            Modify the function so it returns a second output <pf>numSteps</pf> that records how many loop iterations were used.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-function-count-by-c">
+        <statement>
+          <p>
+            Test your function with a few scalar input pairs, such as <pf>(step, limit) = (4, 23)</pf> and <pf>(step, limit) = (7, 50)</pf>. For these two tests, <pf>lastValue</pf> should be 20 and 49.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-loop-if-points">
+      <title>Activity 8: Points Game with <pf>if</pf> Inside a Loop</title>
+
+      <task xml:id="activity-loop-if-points-a">
+        <statement>
+          <p>
+            Write a script that runs a <pf>while</pf>-loop for 12 rounds. Use a loop counter variable (for example <c>round = 1</c>) initialized before the loop, a condition like <c>while round &lt;= 12</c>, and increment the counter each iteration. Each round generates a random scalar <pf>roll = randi([1, 12])</pf>.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-loop-if-points-b">
+        <statement>
+          <p>
+            Before the loop starts, initialize <pf>score = 0</pf>. Inside the loop, use an <pf>if-else</pf> statement: if <pf>mod(roll, 3) == 0</pf>, add 4 points to <pf>score</pf>; otherwise subtract 1 point.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-loop-if-points-c">
+        <statement>
+          <p>
+            Before the loop starts, initialize two scalar counters named <pf>bonusCount</pf> and <pf>penaltyCount</pf> to 0, then use them to track how many times each branch executes and finally display all three final values.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-loop-switch-modes">
+      <title>Activity 9: Mode Updates with <pf>switch</pf> Inside a Loop</title>
+
+      <task xml:id="activity-loop-switch-modes-a">
+        <statement>
+          <p>
+            Write a script that runs a <pf>while</pf>-loop for exactly 15 iterations by using a loop counter. For example, start with <pf>iter = 0</pf>, use a condition like <pf>while iter &lt; 15</pf>, and increment the counter each time with <pf>iter = iter + 1</pf>. In each iteration, generate a random mode code with <pf>mode = randi([1, 3])</pf>.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-loop-switch-modes-b">
+        <statement>
+          <p>
+            Before the loop begins, initialize a scalar <pf>energy</pf> (for example, <c>energy = 0;</c>). Then, inside the loop, use a <pf>switch</pf>-statement to update <pf>energy</pf>: add 2 when <pf>mode</pf> is 1, add 5 when <pf>mode</pf> is 2, and subtract 3 when <pf>mode</pf> is 3.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-loop-switch-modes-c">
+        <statement>
+          <p>
+            Add scalar counters <pf>mode1Count</pf>, <pf>mode2Count</pf>, and <pf>mode3Count</pf> to record how many times each case runs, and initialize these counters to 0 before the loop starts.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-loop-switch-if-thermostat">
+      <title>Activity 10: Combined <pf>switch</pf> and <pf>if</pf> in a Loop</title>
+
+      <task xml:id="activity-loop-switch-if-thermostat-a">
+        <statement>
+          <p>
+            Start with scalar variables <pf>temp = 21</pf> and <pf>minute = 1</pf>. Use a <pf>while</pf>-loop that runs while <pf>minute &lt;= 10</pf> (10 minutes of simulated time). In each iteration, generate <pf>mode = randi([0, 2])</pf> where 0 = off, 1 = heat, and 2 = cool, then increment <pf>minute</pf> by 1.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-loop-switch-if-thermostat-b">
+        <statement>
+          <p>
+            Use a <pf>switch</pf>-statement on <pf>mode</pf>.
+          </p>
+          <p>
+            For heat mode, use an <pf>if-else</pf>: if <pf>temp &lt; 20</pf> increase temperature by 2, otherwise increase by 1.
+          </p>
+          <p>
+            For cool mode, if <pf>temp &gt; 22</pf> decrease by 2, otherwise decrease by 1. Off mode leaves temperature unchanged.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="activity-loop-switch-if-thermostat-c">
+        <statement>
+          <p>
+            Before the loop, initialize scalar counters such as <pf>offCount = 0</pf>, <pf>heatCount = 0</pf>, and <pf>coolCount = 0</pf>. Inside the loop, update the appropriate counter each iteration based on <pf>mode</pf>, then after the loop display the final temperature and the three mode counts.
+          </p>
+        </statement>
+      </task>
+    </exercise>
+
   </reading-questions>
 
   <subsection xml:id="subsec-for-vs-while">
