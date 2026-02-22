@@ -412,6 +412,93 @@
       </task>
     </exercise>
 
+    <exercise xml:id="activity-for-loop-drill-multiples-3">
+      <title>Rewrite repeated <pf>fprintf</pf> code: multiples of 3</title>
+
+      <task xml:id="activity-for-loop-drill-multiples-3a">
+        <statement>
+          <p>
+            The code below repeats the same pattern many times:
+            <program language="matlab">
+              fprintf('3\n');
+              fprintf('6\n');
+              fprintf('9\n');
+              fprintf('12\n');
+              fprintf('15\n');
+              fprintf('18\n');
+            </program>
+            Rewrite it as a single <pf>for</pf>-loop.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+            for k = 3:3:18
+              fprintf('%d\n', k);
+            end
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-for-loop-drill-4">
+      <title>Rewrite repeated <pf>fprintf</pf> code: stars</title>
+
+      <task xml:id="activity-for-loop-drill-4a">
+        <statement>
+          <p>
+            The code below has repeated lines:
+            <program language="matlab">
+              fprintf('*\n');
+              fprintf('**\n');
+              fprintf('***\n');
+              fprintf('****\n');
+            </program>
+            Rewrite it as a <pf>for</pf>-loop that prints one more star on each line.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+            stars = '';
+            for k = 1:4
+              stars = [stars '*'];
+              fprintf('%s\n', stars);
+            end
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
+    <exercise xml:id="activity-for-loop-drill-5">
+      <title>Rewrite repeated updates: running sum</title>
+
+      <task xml:id="activity-for-loop-drill-5a">
+        <statement>
+          <p>
+            Suppose you have this repeated code:
+            <program language="matlab">
+              total = 0;
+              total = total + 2;
+              total = total + 4;
+              total = total + 6;
+              total = total + 8;
+              total = total + 10;
+              fprintf('total = %d\n', total);
+            </program>
+            Rewrite the repeated update lines as a <pf>for</pf>-loop.
+          </p>
+        </statement>
+        <solution>
+          <program language="matlab">
+            total = 0;
+            for k = 2:2:10
+              total = total + k;
+            end
+            fprintf('total = %d\n', total);
+          </program>
+        </solution>
+      </task>
+    </exercise>
+
     <exercise xml:id="activity-for-loop-drill-2">
       <title>Activity 4: Running total drill</title>
 
