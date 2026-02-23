@@ -12,8 +12,8 @@
 
 		<xi:include href="./aa-bookends/front-matter.ptx" />
 
-		<chapter xml:id="ch-basics">
-			<title>Basics</title>
+		<chapter xml:id="ch-welcome-to-matlab">
+			<title>Welcome to MATLAB</title>
 
 			<introduction>
 				<p>
@@ -29,10 +29,10 @@
 				</p>
 			</introduction>
 
-			<xi:include href="c1-basics/sec-installing-matlab.ptx" />
-			<xi:include href="c1-basics/sec-matlab-desktop.ptx" />
-			<xi:include href="c1-basics/sec-command-window.ptx" />
-			<xi:include href="c1-basics/sec-variables.ptx" />
+			<xi:include href="c1-welcome-to-matlab/sec-installing-matlab.ptx" />
+			<xi:include href="c1-welcome-to-matlab/sec-matlab-desktop.ptx" />
+			<xi:include href="c1-welcome-to-matlab/sec-command-window.ptx" />
+			<xi:include href="c1-welcome-to-matlab/sec-variables.ptx" />
 
 			<conclusion>
 				<p>
@@ -51,8 +51,8 @@
 			</conclusion>
 		</chapter>
 
-		<chapter xml:id="ch-programming">
-			<title>Programming</title>
+		<chapter xml:id="ch-programming-basics">
+			<title>Programming Basics</title>
 
 			<introduction>
 
@@ -74,80 +74,13 @@
 					commands at the right times.
 				</p>
 
-				<p>
-					Scripts execute statements from top to bottom by default, and functions bundle a sequence of tasks you can reuse. However, most programs need to make decisions and repeat actions based on conditions. This section discusses the different flow patterns of code and the ways you can control them.
-				</p>
-
 			</introduction>
 
-			<xi:include href="c2-programming/sec-scripts.ptx" />
-			<xi:include href="c2-programming/sec-functions.ptx" />
-			<xi:include href="c2-programming/sec-logic.ptx" />
-			<xi:include href="c2-programming/sec-conditional-gates.ptx" />
-			<xi:include href="c2-programming/sec-looping-structures.ptx" />
-			<xi:include href="c2-programming/exercises-programming.ptx" />
-
-			<conclusion>
-				<p>
-					<objectives xml:id="programming-takeaways">
-						<ul>
-							<li>
-								<term>A function uses its own workspace</term>.
-								Variables created inside a function do not automatically appear in the Workspace after the function runs.
-							</li>
-							<li>
-								<term>The file name should match the function name</term>.
-								If the function header is <pf>function totalCents = coin_total(...)</pf>, then the file should be named <pf>coin_total.m</pf>.
-							</li>
-							<li>
-								<p>
-									<term>Calling a function</term>.
-									Unlike a script, a function is usually run by calling them with inputs in the Command Window (or inside a script).
-								</p>
-								<program language="matlab">
-									<code>
-										total = coin_total(7, 17, 13, 217);
-									</code>
-								</program>
-							</li>
-							<li>
-								<p>
-									<term>Using outputs</term>.
-									To use an output from a function later, assign it to a variable. For example, the command
-								</p>
-								<program language="matlab">
-									<code>
-										coin_total(7, 17, 13, 217)
-									</code>
-								</program>
-								<p>
-									calls the function and computes a value, but does not store it. By contrast, the command
-								</p>
-								<program language="matlab">
-									<code>
-										totalCents = coin_total(7, 17, 13, 217)
-									</code>
-								</program>
-								<p>
-									stores the output from <pf>coin_total</pf> in the variable <pf>totalCents</pf>, which can then be used elsewhere.
-								</p>
-							</li>
-							<li>
-								<p>
-									<term>Functions can call other functions</term>.
-								</p>
-							</li>
-							<li>
-								<p>
-									<term>Scripts vs Functions</term>. 
-									Scripts and functions are both <pf>.m</pf> files that execute MATLAB commands from top to bottom. Their differences are summarized in <xref ref="script-function-diffs"/>.
-								</p>
-
-							</li>
-						</ul>
-					</objectives>
-				</p>
-			</conclusion>
+			<xi:include href="c2-programming-basics/sec-scripts-functions.ptx" />
+			<xi:include href="c2-programming-basics/sec-logical-values-statements.ptx" />
+			<xi:include href="c2-programming-basics/sec-conditional-statements.ptx" />
+			<xi:include href="c2-programming-basics/sec-looping-statements.ptx" />
+			<xi:include href="c2-programming-basics/c2-coding-projects.ptx" />
 
 		</chapter>
 
