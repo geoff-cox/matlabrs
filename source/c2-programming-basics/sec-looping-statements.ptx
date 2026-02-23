@@ -629,192 +629,6 @@
 				</task>
 			</exercise>
 
-			<exercise xml:id="activity-for-loop-if-1">
-				<title>Loop decisions with <pf>if</pf></title>
-
-				<task xml:id="activity-for-loop-if-1a">
-					<statement>
-						<p>
-							Write a loop from 1 through 12. Use an <pf>if</pf>-statement and <pf>mod</pf> to display whether each value is even or odd.
-						</p>
-					</statement>
-					<!--<solution>
-						<program language="matlab">
-							for k = 1:12
-								if mod(k,2) == 0
-									fprintf('%i is even\n', k);
-								else
-									fprintf('%i is odd\n', k);
-								end
-							end
-						</program>
-					</solution>-->
-				</task>
-
-				<task xml:id="activity-for-loop-if-1b">
-					<statement>
-						<p>
-							Extend your script to keep a running sum of only the even values and print that sum after the loop ends.
-						</p>
-					</statement>
-					<!--<solution>
-						<program language="matlab">
-							evenSum = 0;
-							for k = 1:12
-								if mod(k,2) == 0
-									evenSum = evenSum + k;
-								end
-							end
-							fprintf('sum of even values = %i\n', evenSum);
-						</program>
-					</solution>-->
-				</task>
-			</exercise>
-
-			<exercise xml:id="activity-for-loop-switch-1">
-				<title>Loop categories with <pf>switch</pf></title>
-
-				<task xml:id="activity-for-loop-switch-1a">
-					<statement>
-						<p>
-							Write a loop for rounds 1 through 9. In each round, use <pf>switch mod(roundNumber,3)</pf> with this mapping:
-							remainder 1 prints <pf>rest</pf>, remainder 2 prints <pf>walk</pf>, and remainder 0 prints <pf>run</pf>.
-						</p>
-					</statement>
-					<!--<solution>
-						<program language="matlab">
-							for roundNumber = 1:9
-								switch mod(roundNumber,3)
-									case 1
-										disp('rest')
-									case 2
-										disp('walk')
-									otherwise
-										disp('run')
-								end
-							end
-						</program>
-					</solution>-->
-				</task>
-
-				<task xml:id="activity-for-loop-switch-1b">
-					<statement>
-						<p>
-							Add a score variable. During each round, use your same <pf>switch</pf> to add 1 for <pf>rest</pf>, 2 for <pf>walk</pf>, and 4 for <pf>run</pf>.
-							Print the final score.
-						</p>
-					</statement>
-					<!--<solution>
-						<program language="matlab">
-							score = 0;
-							for roundNumber = 1:9
-								switch mod(roundNumber,3)
-									case 1
-										score = score + 1;
-									case 2
-										score = score + 2;
-									otherwise
-										score = score + 4;
-								end
-							end
-							fprintf('final score = %i\n', score);
-						</program>
-					</solution>-->
-				</task>
-			</exercise>
-
-			<exercise xml:id="activity-for-loop-if-switch-2">
-				<title>Combined <pf>if</pf> and <pf>switch</pf> in a loop</title>
-
-				<task xml:id="activity-for-loop-if-switch-2a">
-					<statement>
-						<p>
-							A shop applies a base charge that depends on the customer number:
-							customer numbers with remainder 1 (after dividing by 3) get 12 dollars, remainder 2 get 15 dollars, and remainder 0 get 18 dollars.
-							Write a loop for customer numbers 1 through 10 that uses <pf>switch</pf> on <pf>mod(customer,3)</pf> to set the base charge.
-						</p>
-					</statement>
-					<!--<solution>
-						<program language="matlab">
-							for customer = 1:10
-								switch mod(customer,3)
-									case 1
-										charge = 12;
-									case 2
-										charge = 15;
-									otherwise
-										charge = 18;
-								end
-								fprintf('customer %i base charge %i\n', customer, charge);
-							end
-						</program>
-					</solution>-->
-				</task>
-
-				<task xml:id="activity-for-loop-if-switch-2b">
-					<statement>
-						<p>
-							Add an <pf>if</pf>-statement inside the loop: if the customer number is even, subtract 2 dollars from the base charge.
-							Track a running total of all adjusted charges.
-						</p>
-					</statement>
-					<!--<solution>
-						<program language="matlab">
-							totalCharge = 0;
-							for customer = 1:10
-								switch mod(customer,3)
-									case 1
-										charge = 12;
-									case 2
-										charge = 15;
-									otherwise
-										charge = 18;
-								end
-
-								if mod(customer,2) == 0
-									charge = charge - 2;
-								end
-
-								totalCharge = totalCharge + charge;
-							end
-							fprintf('total adjusted charge = %i\n', totalCharge);
-						</program>
-					</solution>-->
-				</task>
-
-				<task xml:id="activity-for-loop-if-switch-2c">
-					<statement>
-						<p>
-							Add one more condition: if an adjusted charge is greater than 15 dollars, print <q>high charge</q>; otherwise print <q>standard charge</q>.
-						</p>
-					</statement>
-					<!--<solution>
-						<program language="matlab">
-							for customer = 1:10
-								switch mod(customer,3)
-									case 1
-										charge = 12;
-									case 2
-										charge = 15;
-									otherwise
-										charge = 18;
-								end
-
-								if mod(customer,2) == 0
-									charge = charge - 2;
-								end
-
-								if charge &gt; 15
-									disp('high charge')
-								else
-									disp('standard charge')
-								end
-							end
-						</program>
-					</solution>-->
-				</task>
-			</exercise>
-
 			<exercise xml:id="activity-approximating-pi-for">
 				<title>Approximating Pi with Leibniz's Formula</title>
 
@@ -987,49 +801,154 @@
 
 			</exercise>
 
-			<exercise xml:id="activity-perfect-numbers">
-				<title>Perfect Number Detector</title>
+			<exercise xml:id="activity-for-loop-if-1">
+				<title>Counting Heads</title>
 
-				<task xml:id="activity-perfect-numbers-a">
+				<task xml:id="activity-for-loop-if-1a">
 					<statement>
 						<p>
-							A <term>perfect number</term> is a positive integer that equals the sum of its proper divisors (positive divisors excluding itself). For example, 6 is perfect because <m>1 + 2 + 3 = 6</m>.
-						</p>
-
-						<p>
-							Write a MATLAB script that:
-							<ol>
-								<li>Prompts the user for a positive integer.</li>
-								<li>Uses a <pf>for</pf>-loop to find all proper divisors (numbers that divide evenly into the input).</li>
-								<li>Computes the sum of these divisors.</li>
-								<li>Determines whether the number is perfect, abundant (sum exceeds the number), or deficient (sum is less than the number).</li>
-								<li>Displays the classification and the sum of divisors.</li>
-							</ol>
-						</p>
-
-						<p>
-							<em>Hint:</em> Use <pf>mod(n, k) == 0</pf> to test if <pf>k</pf> divides <pf>n</pf> evenly. Loop from 1 to <pf>n-1</pf>.
+							Write a function, called <pf>headsCount</pf>, that uses a for loop to count the number of heads that result from flipping a coin <pf>n</pf> times. Inside the loop, simulate a single coin flip using <pf>randi([0,1])</pf>, where <pf>0</pf> represents tails and <pf>1</pf> represents heads.
 						</p>
 					</statement>
 					<!--<solution>
 						<program language="matlab">
-							n = input('Enter a positive integer: ');
-							sumOfDivisors = 0;
-							for k = 1:n-1
-								if mod(n, k) == 0
-									sumOfDivisors = sumOfDivisors + k;
+							function numHeads = headsCount(n)
+								numHeads = 0;
+								for k = 1:n
+									flip = randi([0,1]);
+									if flip == 1
+										numHeads = numHeads + 1;
+									end
 								end
 							end
-							if sumOfDivisors == n
-								fprintf('%i is a perfect number.\n', n);
-							elseif sumOfDivisors > n
-								fprintf('%i is an abundant number.\n', n);
-							else
-								fprintf('%i is a deficient number.\n', n);
-							end
-							fprintf('Sum of proper divisors: %i\n', sumOfDivisors);
 						</program>
 					</solution>-->
+				</task>
+
+				<task xml:id="activity-for-loop-if-1b">
+					<statement>
+						<p>
+							Extend your function to count the number of times you get two heads in a row.
+						</p>
+					</statement>
+					<!--<solution>
+						<program language="matlab">
+							function twoHeadsInARow = headsInARowCount(n)
+								twoHeadsInARow = 0;
+								previousFlip = 0;
+								for k = 1:n
+									currentFlip = randi([0,1]);
+									if previousFlip == 1 && currentFlip == 1
+										twoHeadsInARow = twoHeadsInARow + 1;
+									end
+									previousFlip = currentFlip;
+									end
+								end
+							end
+						</program>
+					</solution>-->
+				</task>
+
+				<task xml:id="activity-for-loop-if-1c">
+					<statement>
+						<p>
+							Finally, update your function to estimate the probability of getting two heads in a row.
+						</p>
+					</statement>
+					<!--<solution>
+						<program language="matlab">
+							function probability = estimateTwoHeadsInARow(n)
+								twoHeadsInARow = 0;
+								previousFlip = 0;
+								for k = 1:n
+									currentFlip = randi([0,1]);
+									if previousFlip == 1 && currentFlip == 1
+										twoHeadsInARow = twoHeadsInARow + 1;
+									end
+									previousFlip = currentFlip;
+								end
+								probability = twoHeadsInARow / (n-1); % n-1 pairs of flips
+							end
+						</program>
+					</solution>-->
+
+				</task>
+
+			</exercise>
+
+			<exercise xml:id="activity-perfect-numbers">
+				<title>Number Classifier</title>
+
+				<introduction>
+					<p>
+						A <term>proper divisor</term> of a positive integer is any positive integer less than the number itself that divides it evenly. For example, the proper divisors of 12 are 1, 2, 3, 4, and 6.
+					</p>
+
+					<p>
+						In this exercise, you will write a MATLAB function to determine whether a given positive integer is one of the following:
+						<dl width="narrow">
+							<li>
+								<title>Perfect Number</title>
+								<p>
+									equals the sum of its proper divisors. For example, 6 is perfect because <m>1 + 2 + 3 = 6</m>.
+								</p>
+							</li>
+							<li>
+								<title>Deficient Number</title>
+								<p>
+									greater than the sum of its proper divisors. For example, 8 is deficient because <m>1 + 2 + 4 = 7 &lt; 8</m>.
+								</p>
+							</li>
+							<li>
+								<title>Abundant Number</title>
+								<p>
+									less than the sum of its proper divisors. For example, 12 is abundant since <m>1 + 2 + 3 + 4 + 6 = 16 &gt; 12</m>.
+								</p>
+							</li>
+						</dl>
+					</p>
+				</introduction>
+
+				<task xml:id="activity-perfect-numbers-a">
+					<statement>
+						<p>
+							Write a MATLAB function, called <pf>sumProperDivisors</pf>, that computes the sum of the proper divisors of a given positive integer, <m>n</m>. Use a <pf>for</pf>-loop and the <pf>mod</pf> function.
+						</p>
+					</statement>
+					<!-- <solution>
+						<program language="matlab">
+							function sumOfDivisors = sumProperDivisors(n)
+								sumOfDivisors = 0; % initialize
+								for k = 1:n-1
+									if mod(n, k) == 0
+										sumOfDivisors = sumOfDivisors + k;
+									end
+								end
+							end
+						</program>
+					</solution> -->
+				</task>
+
+				<task xml:id="activity-perfect-numbers-b">
+					<statement>
+						<p>
+							Write a MATLAB function, called <pf>classifyNumber</pf>, that classifies a given positive integer as <pf>"perfect"</pf>, <pf>"abundant"</pf>, or <pf>"deficient"</pf>. Use the function from the previous task as a helper function. You should not need a loop in this function.
+						</p>
+					</statement>
+					<!-- <solution>
+						<program language="matlab">
+							function classification = classifyNumber(n)
+								sumOfDivisors = sumProperDivisors(n);
+								if sumOfDivisors == n
+									classification = "perfect";
+								elseif sumOfDivisors &lt; n
+									classification = "deficient";
+								else
+									classification = "abundant";
+								end
+							end
+						</program>
+					</solution> -->
 				</task>
 
 			</exercise>
