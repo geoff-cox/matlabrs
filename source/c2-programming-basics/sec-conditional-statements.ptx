@@ -2446,132 +2446,132 @@
 
 			</task>
 
-			<task xml:id="coding-is-valid-triangle">
-				<title>Valid Triangle Detector</title>
+<task xml:id="coding-is-valid-triangle">
+	<title>Valid Triangle Detector</title>
 
-				<statement>
-					<p>
-						Write a function named <pf>is_valid_triangle</pf> that determines whether three side lengths form 
-						a valid triangle.
-					</p>
+	<statement>
+		<p>
+			Write a function named <pf>is_valid_triangle</pf> that determines whether three side lengths form 
+			a valid triangle.
+		</p>
 
-					<p>
-						A triangle is valid if the sum of the two shortest sides is greater than the longest side and all sides are positive.
-					</p>
+		<p>
+			A triangle is valid if the sum of the two shortest sides is greater than the longest side and all sides are positive.
+		</p>
 
-					<tabular valign="top" halign="right" top="minor">
-						<col width="12%"/>
-						<col width="88%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell>
-								<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
-							</cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell>
-								<p><pf>is_valid</pf> (1x1) logical — true if sides form a valid triangle, false otherwise</p>
-							</cell>
-						</row>
-					</tabular>
+		<tabular valign="top" halign="right" top="minor">
+			<col width="12%"/>
+			<col width="88%" halign="left"/>
+			<row>
+				<cell>Inputs:</cell>
+				<cell>
+					<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell>Outputs:</cell>
+				<cell>
+					<p><pf>is_valid</pf> (1x1) logical — true if sides form a valid triangle, false otherwise</p>
+				</cell>
+			</row>
+		</tabular>
 
-					<p>Test cases:</p>
+		<p>Test cases:</p>
 
-					<program language="matlab">
-						% Test 1: Equilateral triangle
-						v1 = is_valid_triangle(5, 5, 5)
-						% Expected: v1 = 1 (true)
+		<program language="matlab">
+			% Test 1: Equilateral triangle
+			v1 = is_valid_triangle(5, 5, 5)
+			% Expected: v1 = 1 (true)
 
-						% Test 2: Isosceles triangle
-						v2 = is_valid_triangle(5, 5, 8)
-						% Expected: v2 = 1 (true)
+			% Test 2: Isosceles triangle
+			v2 = is_valid_triangle(5, 5, 8)
+			% Expected: v2 = 1 (true)
 
-						% Test 3: Scalene triangle
-						v3 = is_valid_triangle(3, 4, 5)
-						% Expected: v3 = 1 (true)
+			% Test 3: Scalene triangle
+			v3 = is_valid_triangle(3, 4, 5)
+			% Expected: v3 = 1 (true)
 
-						% Test 4: Invalid triangle
-						v4 = is_valid_triangle(1, 2, 10)
-						% Expected: v4 = 0 (false)
+			% Test 4: Invalid triangle
+			v4 = is_valid_triangle(1, 2, 10)
+			% Expected: v4 = 0 (false)
 
-						% Test 5: Another isosceles case
-						v5 = is_valid_triangle(7, 10, 7)
-						% Expected: v5 = 1 (true)
-					</program>
+			% Test 5: Another isosceles case
+			v5 = is_valid_triangle(7, 10, 7)
+			% Expected: v5 = 1 (true)
+		</program>
 
-				</statement>
+	</statement>
 
-			</task>
+</task>
 
-			<task xml:id="coding-triangle-type">
-				<title>Triangle Type Classifier</title>
+<task xml:id="coding-triangle-type">
+	<title>Triangle Type Classifier</title>
 
-				<statement>
-					<p>
-						Write a function named <pf>classify_triangle</pf> that classifies a triangle as equilateral, isosceles, scalene, or invalid based on the lengths of its sides.
-					</p>
+	<statement>
+		<p>
+			Write a function named <pf>classify_triangle</pf> that classifies a triangle as equilateral, isosceles, scalene, or invalid based on the lengths of its sides.
+		</p>
 
-					<p>
-						Rules:
-						<ul>
-							<li><p>Equilateral: all three sides are equal</p></li>
-							<li><p>Isosceles: exactly two sides are equal</p></li>
-							<li><p>Scalene: all three sides are different</p></li>
-							<li><p>Invalid: does not form a valid triangle</p></li>
-						</ul>
-					</p>
+		<p>
+			Rules:
+			<ul>
+				<li><p>Equilateral: all three sides are equal</p></li>
+				<li><p>Isosceles: exactly two sides are equal</p></li>
+				<li><p>Scalene: all three sides are different</p></li>
+				<li><p>Invalid: does not form a valid triangle</p></li>
+			</ul>
+		</p>
 
-					<p>
-						You must use the <pf>is_valid_triangle</pf> function you wrote in the previous exercise as a <q>helper</q> function. 
-						This means that your <pf>classify_triangle</pf> function should (i) contain a call to <pf>is_valid_triangle</pf> and 
-						(ii) have a copy of the <pf>is_valid_triangle</pf> function code below it in the same file.
-					</p>
+		<p>
+			You must use the <pf>is_valid_triangle</pf> function you wrote in the previous exercise as a <q>helper</q> function. 
+			This means that your <pf>classify_triangle</pf> function should (i) contain a call to <pf>is_valid_triangle</pf> and 
+			(ii) have a copy of the <pf>is_valid_triangle</pf> function code below it in the same file.
+		</p>
 
-					<tabular valign="top" halign="right" top="minor">
-						<col width="12%"/>
-						<col width="88%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell>
-								<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
-							</cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell>
-								<p><pf>type</pf> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"</p>
-							</cell>
-						</row>
-					</tabular>
+		<tabular valign="top" halign="right" top="minor">
+			<col width="12%"/>
+			<col width="88%" halign="left"/>
+			<row>
+				<cell>Inputs:</cell>
+				<cell>
+					<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell>Outputs:</cell>
+				<cell>
+					<p><pf>type</pf> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"</p>
+				</cell>
+			</row>
+		</tabular>
 
-					<p>Test cases:</p>
+		<p>Test cases:</p>
 
-					<program language="matlab">
-						% Test 1: Equilateral triangle
-						t1 = classify_triangle(5, 5, 5)
-						% Expected: t1 = "Equilateral"
+		<program language="matlab">
+			% Test 1: Equilateral triangle
+			t1 = classify_triangle(5, 5, 5)
+			% Expected: t1 = "Equilateral"
 
-						% Test 2: Isosceles triangle
-						t2 = classify_triangle(5, 5, 8)
-						% Expected: t2 = "Isosceles"
+			% Test 2: Isosceles triangle
+			t2 = classify_triangle(5, 5, 8)
+			% Expected: t2 = "Isosceles"
 
-						% Test 3: Scalene triangle
-						t3 = classify_triangle(3, 4, 5)
-						% Expected: t3 = "Scalene"
+			% Test 3: Scalene triangle
+			t3 = classify_triangle(3, 4, 5)
+			% Expected: t3 = "Scalene"
 
-						% Test 4: Invalid triangle
-						t4 = classify_triangle(1, 2, 10)
-						% Expected: t4 = "Invalid"
+			% Test 4: Invalid triangle
+			t4 = classify_triangle(1, 2, 10)
+			% Expected: t4 = "Invalid"
 
-						% Test 5: Another isosceles case
-						t5 = classify_triangle(7, 10, 7)
-						% Expected: t5 = "Isosceles"
-					</program>
+			% Test 5: Another isosceles case
+			t5 = classify_triangle(7, 10, 7)
+			% Expected: t5 = "Isosceles"
+		</program>
 
-				</statement>
+	</statement>
 
-			</task>
+</task>
 
 		</exercise>
 
