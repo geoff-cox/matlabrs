@@ -366,7 +366,7 @@ fprintf('Hello!\n')
 <div class="para" id="subsec-for-loops-3-2-1">With a loop ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-loops-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <pre class="program clipboardable"><code class="language-matlab">for i = 1:5
-		fprintf('Hello!\n')
+	fprintf('Hello!\n')
 end
 </code></pre>
 </div>
@@ -769,6 +769,13 @@ total = 0; % initialize
 % =================================
 fprintf('total = %i\n', total);
 </script></div>
+<div class="solutions"><details id="activity-for-loop-drill-2a-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = x:a
+	total = total + k;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 3.a.1"><a href="#activity-for-loop-drill-2a-2" title="Copy heading and permalink for Solution 3.a.1" aria-label="Copy heading and permalink for Solution 3.a.1">🔗</a></div>
+</div></details></div>
 <div class="autopermalink" data-description="Task 3.a"><a href="#activity-for-loop-drill-2a" title="Copy heading and permalink for Task 3.a" aria-label="Copy heading and permalink for Task 3.a">🔗</a></div></article></div>
 <div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="activity-for-loop-drill-2b"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <div class="para" id="activity-for-loop-drill-2b-1-1">Compute the sum of all integers between <code class="code-inline tex2jax_ignore language-matlab">0</code> and <code class="code-inline tex2jax_ignore language-matlab">a</code> that are divisible by <code class="code-inline tex2jax_ignore language-matlab">x</code>. Store the result in <code class="code-inline tex2jax_ignore language-matlab">total</code>.<div class="autopermalink" data-description="Paragraph"><a href="#activity-for-loop-drill-2b-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -781,6 +788,15 @@ total = 0; % initialize
 % =================================
 fprintf('total = %i\n', total);
 </script></div>
+<div class="solutions"><details id="activity-for-loop-drill-2b-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = 0:a
+	if mod(k, x) == 0
+		total = total + k;
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 3.b.1"><a href="#activity-for-loop-drill-2b-2" title="Copy heading and permalink for Solution 3.b.1" aria-label="Copy heading and permalink for Solution 3.b.1">🔗</a></div>
+</div></details></div>
 <div class="autopermalink" data-description="Task 3.b"><a href="#activity-for-loop-drill-2b" title="Copy heading and permalink for Task 3.b" aria-label="Copy heading and permalink for Task 3.b">🔗</a></div></article></div>
 </div>
 </div></div>
@@ -814,6 +830,13 @@ fprintf('total = %i\n', total);
 % =================================
 fprintf('total = %f\n', total);
 </script></div>
+<div class="solutions"><details id="activity-approximating-pi-for-a-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = 1:10
+	total = total + 1/k;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 4.a.1"><a href="#activity-approximating-pi-for-a-2" title="Copy heading and permalink for Solution 4.a.1" aria-label="Copy heading and permalink for Solution 4.a.1">🔗</a></div>
+</div></details></div>
 <div class="autopermalink" data-description="Task 4.a"><a href="#activity-approximating-pi-for-a" title="Copy heading and permalink for Task 4.a" aria-label="Copy heading and permalink for Task 4.a">🔗</a></div></article></div>
 <div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="activity-approximating-pi-for-b"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <div class="para logical" id="activity-approximating-pi-for-b-1-1">
@@ -831,6 +854,13 @@ fprintf('total = %f\n', total);
 % =================================
 fprintf('total = %f\n', total);
 </script></div>
+<div class="solutions"><details id="activity-approximating-pi-for-b-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = 1:10
+	total = total + 1/(2*k);
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 4.b.1"><a href="#activity-approximating-pi-for-b-2" title="Copy heading and permalink for Solution 4.b.1" aria-label="Copy heading and permalink for Solution 4.b.1">🔗</a></div>
+</div></details></div>
 <div class="autopermalink" data-description="Task 4.b"><a href="#activity-approximating-pi-for-b" title="Copy heading and permalink for Task 4.b" aria-label="Copy heading and permalink for Task 4.b">🔗</a></div></article></div>
 <div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="activity-approximating-pi-for-c"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="para logical" id="activity-approximating-pi-for-c-1-1">
@@ -852,6 +882,13 @@ fprintf('total = %f\n', total);
 % =================================
 fprintf('total = %f\n', total);
 </script></div>
+<div class="solutions"><details id="activity-approximating-pi-for-c-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = 1:10
+	total = total + 1/(2*k - 1);
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 4.c.1"><a href="#activity-approximating-pi-for-c-2" title="Copy heading and permalink for Solution 4.c.1" aria-label="Copy heading and permalink for Solution 4.c.1">🔗</a></div>
+</div></details></div>
 <div class="autopermalink" data-description="Task 4.c"><a href="#activity-approximating-pi-for-c" title="Copy heading and permalink for Task 4.c" aria-label="Copy heading and permalink for Task 4.c">🔗</a></div></article></div>
 <div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="activity-approximating-pi-for-d"><h4 class="heading"><span class="codenumber">(d)</span></h4>
 <div class="para logical" id="activity-approximating-pi-for-d-1-1">
@@ -874,6 +911,13 @@ fprintf('total = %f\n', total);
 % =================================
 fprintf('total = %f\n', total);
 </script></div>
+<div class="solutions"><details id="activity-approximating-pi-for-d-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = 1:10
+	total = total + (-1)^(k+1) * 1/(2*k - 1);
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 4.d.1"><a href="#activity-approximating-pi-for-d-2" title="Copy heading and permalink for Solution 4.d.1" aria-label="Copy heading and permalink for Solution 4.d.1">🔗</a></div>
+</div></details></div>
 <div class="autopermalink" data-description="Task 4.d"><a href="#activity-approximating-pi-for-d" title="Copy heading and permalink for Task 4.d" aria-label="Copy heading and permalink for Task 4.d">🔗</a></div></article></div>
 <div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="activity-approximating-pi-for-e"><h4 class="heading"><span class="codenumber">(e)</span></h4>
 <div class="para logical" id="activity-approximating-pi-for-e-1-1">
@@ -895,6 +939,14 @@ fprintf('total = %f\n', total);
 fprintf('approx = %f, pi = %f\n', approx, pi);
 fprintf('error = %f\n', abs(pi - approx));
 </script></div>
+<div class="solutions"><details id="activity-approximating-pi-for-e-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = 1:10
+	total = total + (-1)^(k+1) * 1/(2*k - 1);
+end
+approx = total * 4;
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 4.e.1"><a href="#activity-approximating-pi-for-e-2" title="Copy heading and permalink for Solution 4.e.1" aria-label="Copy heading and permalink for Solution 4.e.1">🔗</a></div>
+</div></details></div>
 <div class="autopermalink" data-description="Task 4.e"><a href="#activity-approximating-pi-for-e" title="Copy heading and permalink for Task 4.e" aria-label="Copy heading and permalink for Task 4.e">🔗</a></div></article></div>
 </div>
 </div></div>
