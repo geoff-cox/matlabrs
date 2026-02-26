@@ -955,6 +955,1007 @@
 
 		</reading-questions>
 
+		<exercises xml:id="conceptual-questions-for-loops">
+			<title>🤔💭 Conceptual Questions &amp; Drills</title>
+
+			<exercise label="concepts-for-loops">
+
+				<task label="cqs-for-loops-1">
+					<statement>
+						<p>
+							Which line correctly starts a loop that runs exactly 7 times?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice>
+							<statement><p><pf>for t = 0:7</pf></p></statement>
+							<feedback><p>This runs 8 times because it includes both 0 and 7.</p></feedback>
+						</choice>
+						<choice correct="yes">
+							<statement><p><pf>for t = 1:7</pf></p></statement>
+							<feedback><p>The values 1 through 7 give exactly 7 iterations.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p><pf>for t = 7</pf></p></statement>
+							<feedback><p>This runs only once with <pf>t = 7</pf>.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p><pf>for t = 7:-1</pf></p></statement>
+							<feedback><p>This is not a complete descending range.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task label="cqs-for-loops-2">
+					<statement>
+						<p>
+							Which statement best describes when to use a <pf>for</pf>-loop in this chapter?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>Use it when you know the sequence of values or the number of repeats ahead of time.</p></statement>
+							<feedback><p>That is the main use case for <pf>for</pf>-loops in beginner MATLAB programming.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>Use it only when you need nested loops.</p></statement>
+							<feedback><p>Nested loops are not required for ordinary repetition tasks.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>Use it only when you need random numbers.</p></statement>
+							<feedback><p>Loops are useful for many repeated tasks, not just random-number tasks.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>Use it only inside functions, not scripts.</p></statement>
+							<feedback><p><pf>for</pf>-loops work in both scripts and functions.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task label="cqs-for-loops-3">
+					<statement>
+						<p>
+							What list of values does <pf>5:2:15</pf> produce?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement>
+								<p>
+									<pf>[5, 7, 9, 11, 13, 15]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									Correct! The loop starts at 5, adds 2 each time, and stops at or before 15.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									<pf>[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									This would be <pf>5:15</pf> (step size defaults to 1 when omitted).
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									<pf>[5, 10, 15]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									This would be <pf>5:5:15</pf> with a step size of 5, not 2.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									<pf>[2, 4, 6, 8, 10, 12, 14]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									The start value is 5, not 2. This would be <pf>2:2:14</pf>.
+								</p>
+							</feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task xml:id="quiz-for-loop-conceptual-2">
+					<statement correct="yes">
+						<p>
+							If you run <pf>for k = 2:2:8</pf>, then <pf>k</pf> takes the values 2, 4, 6, and 8.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The loop starts at 2, steps by 2, and stops at 8.
+						</p>
+					</feedback>
+				</task>
+
+				<task xml:id="quiz-looping-for-fundamentals-conceptual-5">
+					<statement correct="yes">
+						<p>
+							Every MATLAB <pf>for</pf>-loop must end with the keyword <pf>end</pf>.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The <pf>end</pf> keyword closes the loop body so MATLAB knows where the repeated block stops.
+						</p>
+					</feedback>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-conceptual-1">
+					<statement>
+						<p>
+							What happens when MATLAB runs the loop header <pf>for k = 5:2</pf>?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>The loop body runs 0 times.</p></statement>
+							<feedback><p>With the default step of 1, MATLAB cannot count up from 5 to reach 2, so the range is empty.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>The loop body runs exactly 1 time, with <pf>k = 5</pf>.</p></statement>
+							<feedback><p>A <pf>for</pf>-loop iterates over the values in its range; an empty range produces no iterations.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>The loop body runs exactly 1 time, with <pf>k = 2</pf>.</p></statement>
+							<feedback><p>If the range is empty, MATLAB never assigns a loop value.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>MATLAB produces an error because the start value is larger than the stop value.</p></statement>
+							<feedback><p>This situation does not cause an error; it simply produces 0 iterations.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task xml:id="quiz-looping-for-fundamentals-conceptual-1">
+					<statement>
+						<p>
+							In a loop header like <pf>for k = start:stop</pf>, what step size does MATLAB use if you do not write one?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>It uses a step size of 1.</p></statement>
+							<feedback><p>If you omit the step, MATLAB counts by 1 each iteration.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>It uses a step size of 0.</p></statement>
+							<feedback><p>A step of 0 would never move to a new value, so MATLAB does not default to 0.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>It uses a step size of 2.</p></statement>
+							<feedback><p>MATLAB only uses 2 if you explicitly write it (for example, <pf>start:2:stop</pf>).</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>It chooses the step size automatically based on <pf>stop</pf>.</p></statement>
+							<feedback><p>The step size is not inferred; the default is 1 unless you specify otherwise.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-conceptual-2" label="quiz-for-loop-fresh-conceptual-2">
+					<statement correct="yes">
+						<p>
+							In the loop <pf>for k = 1:4</pf>, if the code inside the loop sets <pf>k = 99</pf>, the next iteration still uses the next value from the loop range.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							The loop iterates over the values determined by the loop header. Even if you assign a different value to the loop variable inside the body, MATLAB overwrites it with the next loop value on the next iteration.
+						</p>
+					</feedback>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-conceptual-3">
+					<statement>
+						<p>
+							Suppose <pf>a = 3</pf>. How many times does this loop run?
+						</p>
+						<program language="matlab">
+							a = 3;
+							for k = a:2:(a+6)
+									fprintf('%d\n', k)
+							end
+						</program>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>4 times</p></statement>
+							<feedback><p>The loop values are 3, 5, 7, 9, which gives 4 iterations.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>3 times</p></statement>
+							<feedback><p>With step 2 from 3 up to 9, there are 4 values: 3, 5, 7, 9.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>5 times</p></statement>
+							<feedback><p>The stop value is <pf>a+6 = 9</pf>, so the values stop at 9.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>It depends on what gets printed in the loop body.</p></statement>
+							<feedback><p>The number of iterations is determined by the loop range, not by what the body prints.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-conceptual-4">
+					<statement correct="yes">
+						<p>
+							For a loop like <pf>for n = start:step:stop</pf> to count downward, the step must be negative and the start value must be larger than the stop value.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							A negative step moves the loop variable down. If the start is already below the stop, there is no way to reach the stop while moving downward, so the loop would run 0 times.
+						</p>
+					</feedback>
+				</task>
+
+				<task label="quiz-for-loops-conceptual-11">
+					<statement correct="yes">
+						<p>
+							In a <pf>for</pf>-loop, the loop variable is automatically updated to the next value after each iteration.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							MATLAB handles the loop variable update automatically, so you don't need to manually increment it.
+						</p>
+					</feedback>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-conceptual-6">
+					<statement>
+						<p>
+							Fill in the loop range so <pf>k</pf> takes the values 12, 9, 6, 3 (in that order):
+						</p>
+						<program language="matlab">
+							for k = <fillin answer="12:-3:3" mode="string" width="10"/>
+									fprintf('%d\n', k)
+							end
+						</program>
+					</statement>
+					<evaluation>
+						<evaluate>
+							<test correct="yes">
+								<strcmp use-answer="yes"/>
+								<feedback><p>Correct. A step of <pf>-3</pf> counts down by 3 each iteration.</p></feedback>
+							</test>
+							<test>
+								<strcmp>.*</strcmp>
+								<feedback><p>Use <pf>12:-3:3</pf> to generate 12, 9, 6, 3.</p></feedback>
+							</test>
+						</evaluate>
+					</evaluation>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-conceptual-8">
+					<statement>
+						<p>
+							Consider the code below. Which statement best describes what happens?
+						</p>
+						<program language="matlab">
+							stop = 6;
+							for k = 1:stop
+									stop = 2;
+							end
+							fprintf('k ended at %d\n', k)
+						</program>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>The loop still runs 6 iterations (k = 1,2,3,4,5,6).</p></statement>
+							<feedback><p>The loop range <pf>1:stop</pf> is determined when the loop begins; changing <pf>stop</pf> inside does not change the remaining iterations.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>The loop stops early after <pf>k = 2</pf> because <pf>stop</pf> becomes 2.</p></statement>
+							<feedback><p>Changing <pf>stop</pf> inside the loop does not change the pre-determined loop values.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>The loop runs forever because <pf>stop</pf> is reassigned.</p></statement>
+							<feedback><p>A <pf>for</pf>-loop does not run forever; it iterates over a finite range of values.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>MATLAB produces an error because you cannot change <pf>stop</pf> inside the loop.</p></statement>
+							<feedback><p>MATLAB allows this assignment; it just does not affect the loop range already chosen.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+			</exercise>
+
+			<exercise xml:id="for-loop-drill-expand">
+				<title>Expand the for-loop</title>
+
+				<task xml:id="for-loop-drill-expand-1">
+					<statement>
+						<p>
+							Expand the loop into equivalent repeated code lines:
+						</p>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									value = 3;
+									for n = 1:4
+											value = value + n;
+									end
+									fprintf('%d\n', value)
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab" line-numbers="no">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-expand-2">
+					<statement>
+						<p>
+							Expand the loop into equivalent repeated <pf>fprintf</pf> calls:
+						</p>
+
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									for k = 6:-2:0
+											fprintf('%d\n', k)
+									end
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab" line-numbers="no">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-expand-3">
+					<statement>
+						<p>
+							Expand the loop into equivalent repeated code lines (no loop).
+						</p>
+						<program language="matlab">
+							s = 0;
+							for k = 1:4
+									s = s + round(10/k);
+							end
+							fprintf('s = %d\n', s)
+						</program>
+						<program language="matlab" line-numbers="no">
+							% Write the repeated code here (no loop)
+
+
+
+
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-expand-4">
+					<statement>
+						<p>
+							Expand the loop into equivalent repeated <pf>fprintf</pf> calls (no loop).
+						</p>
+						<program language="matlab">
+							for n = 20:-5:5
+									fprintf('n = %d\n', n)
+							end
+						</program>
+						<program language="matlab" line-numbers="no">
+							% Write the repeated code here (no loop)
+
+
+
+						</program>
+					</statement>
+				</task>
+
+			</exercise>
+
+			<exercise xml:id="for-loop-drill-rewrite">
+				<title>Expand the for-loop</title>
+
+				<task xml:id="for-loop-drill-rewrite-1">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									fprintf('Hello!\n')
+									fprintf('Hello!\n')
+									fprintf('Hello!\n')
+									fprintf('Hello!\n')
+									fprintf('Hello!\n')
+									fprintf('Hello!\n')
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab" line-numbers="no">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-2">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									fprintf('2^1 = 2\n');
+									fprintf('2^2 = 4\n');
+									fprintf('2^3 = 8\n');
+									fprintf('2^4 = 16\n');
+									fprintf('2^5 = 32\n');
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-3">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									n = 4;
+									x = 1 - 3^2;
+									x = 2 - 4^3;
+									x = 3 - 5^4;
+									x = 4 - 6^5;
+									fprintf('x = %i\n', x);
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-4">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									n = 6;
+									x = 10;
+									x = 10 - 3;
+									x = 7 - 3;
+									x = 4 - 3;
+									x = 1 - 3;
+									x = -2 - 3;
+									fprintf('x = %i\n', x);
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-5">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									1-one-thousand
+									2-one-thousand
+									3-one-thousand
+									4-one-thousand
+									5-one-thousand
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-6">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									3
+									6
+									9
+									12
+									15
+									18
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-7">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									fprintf('5\n');
+									fprintf('10\n');
+									fprintf('15\n');
+									fprintf('20\n');
+									fprintf('25\n');
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-8">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									fprintf('10\n');
+									fprintf('8\n');
+									fprintf('6\n');
+									fprintf('4\n');
+									fprintf('2\n');
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-9">
+					<statement>
+						<sidebyside widths="44% 54%">
+							<stack>
+								<program language="matlab">
+									total = 0;
+									total = total + 3;
+									total = total + 4;
+									total = total + 5;
+									total = total + 6;
+									total = total + 7;
+								</program>
+							</stack>
+							<stack>
+								<program language="matlab">
+									% ==== Write your for loop here ====
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+									󠀠
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-10">
+					<statement>
+						<p>
+							Rewrite the repeated code as one <pf>for</pf>-loop that prints the same output.
+						</p>
+						<program language="matlab">
+							balance = 500;
+							balance = balance * 1.01;
+							fprintf('Week 1: %.2f\n', balance)
+
+							balance = balance * 1.01;
+							fprintf('Week 2: %.2f\n', balance)
+
+							balance = balance * 1.01;
+							fprintf('Week 3: %.2f\n', balance)
+
+							balance = balance * 1.01;
+							fprintf('Week 4: %.2f\n', balance)
+						</program>
+						<program language="matlab" line-numbers="no">
+							% Write your for-loop here
+
+
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="for-loop-drill-rewrite-11">
+					<statement>
+						<p>
+							Rewrite the repeated code as a <pf>for</pf>-loop. (Use the formula <m>C = (F-32)\cdot 5/9</m>.)
+						</p>
+						<program language="matlab">
+							F = 40;
+							C = (F - 32) * 5/9;
+							fprintf('%d F is %.1f C\n', F, C)
+
+							F = 50;
+							C = (F - 32) * 5/9;
+							fprintf('%d F is %.1f C\n', F, C)
+
+							F = 60;
+							C = (F - 32) * 5/9;
+							fprintf('%d F is %.1f C\n', F, C)
+
+							F = 70;
+							C = (F - 32) * 5/9;
+							fprintf('%d F is %.1f C\n', F, C)
+						</program>
+						<program language="matlab" line-numbers="no">
+							% Write your for-loop here
+
+
+						</program>
+					</statement>
+				</task>
+
+			</exercise>
+
+			<exercise xml:id="quiz-for-loop-script-writing">
+				<title>Write Scripts with for-Loops</title>
+
+				<task xml:id="quiz-for-loop-script-writing-1">
+					<statement>
+						<p>
+							Write a script that prints the integers from 1 through 8, one per line, using a <pf>for</pf>-loop and <pf>fprintf</pf>.
+						</p>
+						<program language="matlab">
+							% Write your script here
+
+
+
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="quiz-for-loop-script-writing-2">
+					<statement>
+						<p>
+							Write a script that computes the sum of all multiples of 3 from 3 through 30. Store the result in <pf>total</pf>.
+						</p>
+						<program language="matlab">
+							% Write your script here
+
+
+
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="quiz-for-loop-construction-1">
+					<title>Compute the Running Total</title>
+
+					<introduction>
+						<p>
+							For each of the following, assume that:
+							<ul>
+								<li><pf>a</pf> is a random integer between 100 and 900, and</li>
+								<li><pf>x</pf> is a random integer between 5 and 12</li>
+							</ul>
+							and write a <pf>for</pf>-loop that completes each task. 
+						</p>
+					</introduction>
+
+					<task xml:id="quiz-for-loop-construction-1a">
+						<statement>
+							<p>
+								Compute the sum of all integers between <pf>x</pf> and <pf>a</pf>. Store the result in <pf>total</pf>.
+							</p>
+							<program language="matlab">
+								a = randi([100, 900]);
+								x = randi([5, 12]);
+								total = 0; % initialize
+								% ==== Write your for loop here ====
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+							</program>
+						</statement>
+					</task>
+
+					<task xml:id="quiz-for-loop-construction-1b">
+						<statement>
+							<p>
+								Compute the sum of all integers between <pf>0</pf> and <pf>a</pf> that are divisible by <pf>x</pf>. Store the result in <pf>total</pf>.
+							</p>
+							<program language="matlab">
+								a = randi([100, 900]);
+								x = randi([5, 12]);
+								total = 0; % initialize
+								% ==== Write your for loop here ====
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+							</program>
+						</statement>
+					</task>
+				</task>
+
+				<task xml:id="quiz-for-loop-construction-2">
+					<title>Approximating Pi with Leibniz's Formula</title>
+
+					<statement>
+						<p>
+							The Leibniz formula for <m>\pi</m> states that:
+							<me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
+							This infinite series converges slowly to <m>\pi/4</m>, but we can approximate it by adding many terms. Work through the tasks below to approximate <m>\pi</m>.
+						</p>
+
+						<p>
+							Write a for loop that computes the sum of the first 1000 terms of the series:
+							<me>1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>.
+							Store the sum in a variable called <pf>total</pf>. Then use <pf>total</pf> to compute an approximation of <m>\pi</m>.
+							Store the approximation in a variable called <pf>approx</pf>. 
+						</p>
+
+						<program language="matlab">
+							% ==== Write your for loop here ====
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+						</program>
+					</statement>
+				</task>
+			</exercise>
+
+			<exercise label="quiz-looping-for-fundamentals-conceptual-parsons" language="matlab" adaptive="yes" indentation="hide">
+				<title>Conceptual Question: Build a Loop in the Correct Order</title>
+
+				<statement>
+					<p>
+						Put these blocks in the correct order to compute <pf>n!</pf> using a running product, then print the result.
+					</p>
+				</statement>
+
+				<blocks>
+					<block>
+						<cline>fact = 1;</cline>
+					</block>
+					<block>
+						<cline>for k = 1:6</cline>
+					</block>
+					<block>
+						<cline>    fact = fact * k;</cline>
+					</block>
+					<block>
+						<cline>end</cline>
+					</block>
+					<block>
+						<cline>fprintf('%d! = %d\n', n, fact)</cline>
+					</block>
+				</blocks>
+
+				<solution>
+					<program language="matlab">
+						fact = 1;
+						for k = 1:6
+								fact = fact * k;
+						end
+						fprintf('%d! = %d\n', n, fact)
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise xml:id="quiz-for-loop-fresh-conceptual-10" language="matlab" numbered="left" indentation="hide">
+				<title>Conceptual Question: Parsons Problem</title>
+				<statement>
+					<p>
+						Put the blocks in order to print the first multiple of 7 between 1 and 50 (inclusive), then stop looping.
+					</p>
+				</statement>
+				<blocks>
+					<block><cline>for k = 1:50</cline></block>
+					<block><cline>    if mod(k, 7) == 0</cline></block>
+					<block><cline>        fprintf('First multiple: %d\n', k)</cline></block>
+					<block><cline>        break</cline></block>
+					<block><cline>    end</cline></block>
+					<block><cline>end</cline></block>
+				</blocks>
+			</exercise>			
+
+		<!-- ========================================================= -->
+		<!-- Script-Writing Questions                                -->
+		<!-- ========================================================= -->
+
+			<exercise xml:id="quiz-looping-for-fundamentals-script-writing">
+				<title>Write Scripts with for-Loops</title>
+
+				<task xml:id="quiz-looping-for-fundamentals-script-1">
+					<statement>
+						<p>
+							Write a script that prints the multiples of 5 from 5 through 40, one per line, using a <pf>for</pf>-loop and <pf>fprintf</pf>.
+						</p>
+						<program language="matlab">
+							% Write your script here
+
+
+
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="quiz-looping-for-fundamentals-script-2">
+					<statement>
+						<p>
+							Write a script that computes the sum of all integers from 1 through 30 that are divisible by 4.
+							Store the result in <pf>total</pf>, then print <pf>total</pf>.
+						</p>
+						<program language="matlab">
+							% Write your script here
+
+
+
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-script-1">
+					<statement>
+						<p>
+							Write a script that asks the user for a positive integer <pf>n</pf>. Then, using a <pf>for</pf>-loop,
+							print the integers 1 through <pf>n</pf>. For each integer <pf>k</pf>, print <pf>k</pf> and either
+							<q>multiple of 3</q> or <q>not a multiple of 3</q>.
+						</p>
+						<program language="matlab">
+							% Write your script here
+
+
+
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="quiz-for-loop-fresh-script-2">
+					<statement>
+						<p>
+							Write a script that prints a Fahrenheit-to-Celsius table for <pf>F = 0, 10, 20, 30, 40, 50</pf>.
+							Use the formula <m>C = (F-32)\cdot 5/9</m>. Print one row per value of <pf>F</pf> using <pf>fprintf</pf>.
+						</p>
+						<program language="matlab">
+							% Write your script here
+
+
+
+						</program>
+					</statement>
+				</task>
+			<task xml:id="quiz-for-loop-function-writing-2">
+				<statement>
+					<p>
+						Write a function named <pf>countDivBySix</pf> that takes a positive integer <pf>n</pf> and returns how many integers from 1 through <pf>n</pf> are divisible by 6.
+					</p>
+					<program language="matlab">
+						% Write your function here
+						function count = countDivBySix(n)
+
+
+
+						end
+					</program>
+				</statement>
+			</task>
+
+			<task xml:id="quiz-for-loop-function-writing-3">
+				<statement>
+					<p>
+						Write a function named <pf>sumRounded</pf> that takes a positive integer <pf>n</pf>. In a loop from 1 to <pf>n</pf>, add <pf>round(k/2)</pf> to a running total. Return the total.
+					</p>
+					<program language="matlab">
+						% Write your function here
+						function total = sumRounded(n)
+
+
+
+						end
+					</program>
+				</statement>
+			</task>
+
+			</exercise>
+
+		</exercises>
+
 	</subsection>
 
 	<subsection xml:id="subsec-while-loops">
@@ -2091,6 +3092,7 @@
 					These activities will help you practice using loops to solve interesting problems. Each activity requires only loops, variables, and basic arithmetic—no arrays needed.
 				</p>
 			</introduction>
+
 			<exercise xml:id="activity-continue-control-flow">
 				<title>Using <pf>continue</pf> in a Loop</title>
 
@@ -2153,6 +3155,235 @@
 
 
 		</reading-questions>
+
+		<exercises xml:id="conceptual-questions-additional-flow-control">
+			<title>🤔💭 Conceptual Questions &amp; Drills</title>
+
+			<exercise label="concepts-additional-flow-control">
+
+				<task label="cqs-additional-flow-control-1">
+					<statement>
+						<p>
+							Which line correctly starts a loop that runs exactly 7 times?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice>
+							<statement><p><pf>for t = 0:7</pf></p></statement>
+							<feedback><p>This runs 8 times because it includes both 0 and 7.</p></feedback>
+						</choice>
+						<choice correct="yes">
+							<statement><p><pf>for t = 1:7</pf></p></statement>
+							<feedback><p>The values 1 through 7 give exactly 7 iterations.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p><pf>for t = 7</pf></p></statement>
+							<feedback><p>This runs only once with <pf>t = 7</pf>.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p><pf>for t = 7:-1</pf></p></statement>
+							<feedback><p>This is not a complete descending range.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task label="cqs-additional-flow-control-2">
+					<statement>
+						<p>
+							Which statement best describes when to use a <pf>for</pf>-loop in this chapter?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>Use it when you know the sequence of values or the number of repeats ahead of time.</p></statement>
+							<feedback><p>That is the main use case for <pf>for</pf>-loops in beginner MATLAB programming.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>Use it only when you need nested loops.</p></statement>
+							<feedback><p>Nested loops are not required for ordinary repetition tasks.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>Use it only when you need random numbers.</p></statement>
+							<feedback><p>Loops are useful for many repeated tasks, not just random-number tasks.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>Use it only inside functions, not scripts.</p></statement>
+							<feedback><p><pf>for</pf>-loops work in both scripts and functions.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task label="cqs-additional-flow-control-3">
+					<statement>
+						<p>
+							What list of values does <pf>5:2:15</pf> produce?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement>
+								<p>
+									<pf>[5, 7, 9, 11, 13, 15]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									Correct! The loop starts at 5, adds 2 each time, and stops at or before 15.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									<pf>[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									This would be <pf>5:15</pf> (step size defaults to 1 when omitted).
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									<pf>[5, 10, 15]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									This would be <pf>5:5:15</pf> with a step size of 5, not 2.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									<pf>[2, 4, 6, 8, 10, 12, 14]</pf>
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									The start value is 5, not 2. This would be <pf>2:2:14</pf>.
+								</p>
+							</feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task xml:id="cqs-additional-flow-control-4">
+					<statement>
+						<p>
+							What does the keyword <pf>continue</pf> do inside a loop?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>It skips the rest of the current iteration and moves to the next loop value.</p></statement>
+							<feedback><p><pf>continue</pf> jumps to the next iteration immediately.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>It exits the loop completely.</p></statement>
+							<feedback><p>Exiting the loop completely is what <pf>break</pf> does.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>It restarts the loop from the first value in the range.</p></statement>
+							<feedback><p>The loop proceeds forward through its range; it does not restart.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>It pauses the loop until the user presses a key.</p></statement>
+							<feedback><p>Pausing is done with commands like <pf>pause</pf>, not <pf>continue</pf>.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task xml:id="cqs-additional-flow-control-5">
+					<statement>
+						<p>
+							Which situation is the best reason to use <pf>break</pf> inside a <pf>for</pf>-loop?
+						</p>
+					</statement>
+					<choices randomize="no">
+						<choice correct="yes">
+							<statement><p>You want to stop early when you have found what you were looking for.</p></statement>
+							<feedback><p><pf>break</pf> is for ending the loop early once a goal is reached.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>You want to skip just one iteration but keep looping.</p></statement>
+							<feedback><p>Skipping a single iteration is what <pf>continue</pf> does.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>You want the loop variable to update automatically each iteration.</p></statement>
+							<feedback><p>The loop variable updates automatically without needing <pf>break</pf>.</p></feedback>
+						</choice>
+						<choice>
+							<statement><p>You want to print output on a new line.</p></statement>
+							<feedback><p>New lines depend on the format string (for example, including <pf>\n</pf>), not on <pf>break</pf>.</p></feedback>
+						</choice>
+					</choices>
+				</task>
+
+			</exercise>
+
+			<exercise xml:id="quiz-looping-for-fundamentals-output">
+				<title>Trace the Output</title>
+
+				<!-- Output 1: break -->
+				<task xml:id="quiz-for-loop-fresh-output-1">
+					<statement>
+						<p>
+							What is printed?
+						</p>
+						<program language="matlab">
+							total = 0;
+							for k = 1:10
+									total = total + k;
+									if total >= 15
+											break
+									end
+							end
+							fprintf('k = %d, total = %d\n', k, total)
+						</program>
+					</statement>
+				</task>
+
+				<!-- Output 2: continue -->
+				<task xml:id="quiz-for-loop-fresh-output-2">
+					<statement>
+						<p>
+							What is printed?
+						</p>
+						<program language="matlab">
+							count = 0;
+							for k = 1:12
+									if mod(k,4) == 0
+											continue
+									end
+									count = count + 1;
+							end
+							fprintf('count = %d\n', count)
+						</program>
+					</statement>
+				</task>
+
+				<task xml:id="quiz-looping-for-fundamentals-output-3">
+					<statement>
+						<program language="matlab">
+							total = 0;
+							for n = 1:8
+								if mod(n, 2) == 0
+									continue
+								end
+								total = total + n;
+							end
+							fprintf('total = %d\n', total)
+						</program>
+					</statement>
+				</task>
+
+			</exercise>
+
+		</exercises>
 
 	</subsection>
 
@@ -2859,6 +4090,122 @@
 
 				</statement>
 			</task>
+
+      <task xml:id="quiz-for-loop-fresh-function-2">
+        <statement>
+          <p>
+            Write a function named <pf>compoundBalance</pf> that takes <pf>P</pf> (starting balance),
+            <pf>r</pf> (monthly interest rate as a decimal, like 0.01), and <pf>months</pf> (a positive integer).
+            Each month, the balance is multiplied by <pf>(1+r)</pf>. Return the final balance after <pf>months</pf> months.
+          </p>
+        </statement>
+      </task>
+
+      <task xml:id="quiz-for-loop-fresh-function-3">
+        <statement>
+          <p>
+            Write a function named <pf>approxE</pf> that takes a nonnegative integer <pf>n</pf> and returns the approximation
+            <me>1 + \frac{1}{1!} + \frac{1}{2!} + \cdots + \frac{1}{n!}.</me>
+            Use one <pf>for</pf>-loop and a running factorial variable (do not use nested loops).
+          </p>
+        </statement>
+      </task>
+
+			<task xml:id="quiz-for-loop-function-3a">
+				<statement>
+					<p>
+						Write a function, <pf>sumSquares</pf> that computes 
+						<me>1^2 + 2^2 + \cdots + n^2</me>
+						for a given positive integer <m>n</m>.
+					</p>
+
+					<sidebyside>
+						<stack>
+							<tabular valign="top" halign="right" top="minor">
+								<col width="12%"/>
+								<col width="88%" halign="left"/>
+								<row>
+									<cell>Inputs:</cell>
+									<cell>
+										<p><pf>n</pf> (1x1) double — positive integer</p>
+									</cell>
+								</row>
+								<row bottom="minor">
+									<cell>Outputs:</cell>
+									<cell>
+										<p><pf>S</pf> (1x1) double — the sum <m>1^2 + 2^2 + \cdots + n^2</m></p>
+									</cell>
+								</row>
+							</tabular>
+							<p>Examples:</p>
+							<program language="matlab">
+								n = 1;		% returns: S = 1
+								n = 3;		% returns: S = 14 (1^2 + 2^2 + 3^2 = 1 + 4 + 9)
+							</program>
+							<program language="matlab">
+								% ==== Write your function here ====
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+			</task>
+
+			<task xml:id="quiz-for-loop-function-3b">
+				<statement>
+					<p>
+						Write a script that uses a <pf>for</pf> loop to compute the sum of all odd numbers from 1 to 
+						<pf>N</pf> (where <pf>N</pf> is given). Use the loop to iterate through the range <pf>1:2:N</pf>, 
+						which generates only odd numbers. Store the result in <pf>sum_odd</pf>.
+					</p>
+
+					<sidebyside>
+						<stack>
+							<tabular valign="top" halign="right" top="minor">
+								<col width="12%"/>
+								<col width="88%" halign="left"/>
+								<row>
+									<cell>Inputs:</cell>
+									<cell>
+										<p><pf>N</pf> (1x1) double — positive integer upper limit</p>
+									</cell>
+								</row>
+								<row bottom="minor">
+									<cell>Outputs:</cell>
+									<cell>
+										<p><pf>sum_odd</pf> (1x1) double — sum of all odd numbers from 1 to N</p>
+									</cell>
+								</row>
+							</tabular>
+							<p>Examples:</p>
+							<program language="matlab">
+								N = 5;		% returns: sum_odd = 25 (1 + 3 + 5)
+								N = 8;		% returns: sum_odd = 25 (1 + 3 + 5 + 7, stops before 8)
+								N = 1;		% returns: sum_odd = 1
+							</program>
+							<program language="matlab">
+								% ==== Write your function here ====
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+								󠀠
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+			</task>
+
 		</exercise>
 
 		<exercise xml:id="coding-exercises-while-loops">
