@@ -4173,6 +4173,323 @@
 				</statement>
 			</task>
 
+
+			<task xml:id="ex-for-coin-flip-streak">
+				<title>Coin-Flip Streak Detector</title>
+
+				<statement>
+					<p>
+						Simulate <pf>n</pf> fair coin flips using <pf>randi(2)</pf>, where 1 represents heads and 2 represents tails.
+						Use a <pf>for</pf> loop and <pf>if</pf> logic to track the current consecutive-heads streak length.
+						Determine whether a streak of at least 3 heads in a row ever occurs.
+						Store the result in the logical variable <pf>hasStreak</pf>.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>n</pf> (1x1) double — number of coin flips (positive integer)</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>hasStreak</pf> (1x1) logical — true if a streak of at least 3 consecutive heads occurred</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Fixed seed, moderate length
+						rng(7);
+						n = 20;
+						% Run your script
+						% Expected: hasStreak = true or false (verify with your output)
+
+						% Test 2: Very short sequence (unlikely to streak)
+						rng(1);
+						n = 5;
+						% Run your script
+						% Expected: hasStreak likely false for short sequences
+
+						% Note: Set rng seed before running for reproducible output.
+					</program>
+
+				</statement>
+			</task>
+
+			<task xml:id="ex-for-die-roll-tally">
+				<title>Die-Roll Tally with Bonus</title>
+
+				<statement>
+					<p>
+						Roll a six-sided die <pf>n</pf> times using <pf>randi(6)</pf>.
+						Use a single <pf>for</pf> loop with an <pf>if-else</pf> to count how many rolls are even vs. odd,
+						storing the results in <pf>evenCount</pf> and <pf>oddCount</pf>.
+						Additionally, increment <pf>bonusPoints</pf> each time a roll equals exactly 6.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>n</pf> (1x1) double — number of die rolls (positive integer)</p>
+							</cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>evenCount</pf> (1x1) double — number of even rolls</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>oddCount</pf> (1x1) double — number of odd rolls</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell/>
+							<cell>
+								<p><pf>bonusPoints</pf> (1x1) double — number of rolls that were exactly 6</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Small number of rolls
+						rng(0);
+						n = 10;
+						% Run your script
+						% Expected: evenCount + oddCount = 10
+						%           bonusPoints &lt;= evenCount
+
+						% Test 2: Verify counts sum to n
+						rng(42);
+						n = 50;
+						% Run your script
+						% Expected: evenCount + oddCount = 50
+						%           bonusPoints &lt;= evenCount
+					</program>
+
+				</statement>
+			</task>
+
+			<task xml:id="ex-for-password-policy">
+				<title>Random Password Policy Check</title>
+
+				<statement>
+					<p>
+						Generate a length-<pf>n</pf> numeric code one digit at a time using <pf>randi([0,9])</pf>.
+						Process each digit as it is generated — do not store the digits in an array
+						(array storage is covered in a later chapter).
+						Classify each digit and update counters using <pf>if-elseif-else</pf>:
+						<ul>
+							<li>If the digit is 0, increment <pf>zeros</pf>.</li>
+							<li>Elseif the digit is between 1 and 4 (inclusive), increment <pf>low</pf>.</li>
+							<li>Else (digit is 5–9), increment <pf>high</pf>.</li>
+						</ul>
+						After the loop, set <pf>valid = true</pf> if and only if <pf>zeros == 0</pf> and <pf>high &gt;= 2</pf>.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>n</pf> (1x1) double — length of the code (positive integer)</p>
+							</cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>zeros</pf> (1x1) double — count of digits equal to 0</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>low</pf> (1x1) double — count of digits in 1–4</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>high</pf> (1x1) double — count of digits in 5–9</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell/>
+							<cell>
+								<p><pf>valid</pf> (1x1) logical — true iff zeros == 0 and high &gt;= 2</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Short code
+						rng(5);
+						n = 6;
+						% Run your script
+						% Expected: zeros + low + high = 6
+						%           valid = (zeros == 0) &amp;&amp; (high &gt;= 2)
+
+						% Test 2: Longer code
+						rng(99);
+						n = 20;
+						% Run your script
+						% Expected: zeros + low + high = 20
+					</program>
+
+				</statement>
+			</task>
+
+			<task xml:id="ex-for-random-walk">
+				<title>Random Walk with Boundary</title>
+
+				<statement>
+					<p>
+						A walker starts at position <pf>x = 0</pf>.
+						For <pf>n</pf> steps, generate a random move using <pf>randi(2)</pf>:
+						<ul>
+							<li>If the result is 1, attempt to move left (<pf>x = x - 1</pf>).</li>
+							<li>Otherwise, move right (<pf>x = x + 1</pf>).</li>
+						</ul>
+						Add a boundary rule: if moving left would make <pf>x &lt; -5</pf>, set <pf>x = -5</pf> instead of
+						completing that move.
+						Use <pf>if-else</pf> and an additional <pf>if</pf> to handle the boundary.
+						At the end, store the final position in <pf>xFinal</pf> and store whether the boundary
+						was ever hit in the logical variable <pf>hitBoundary</pf>.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>n</pf> (1x1) double — number of steps (positive integer)</p>
+							</cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>xFinal</pf> (1x1) double — walker's position after n steps</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell/>
+							<cell>
+								<p><pf>hitBoundary</pf> (1x1) logical — true if x ever reached the -5 boundary</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Short walk
+						rng(0);
+						n = 10;
+						% Run your script
+						% Expected: xFinal &gt;= -5 (boundary enforced)
+						%           hitBoundary = true or false
+
+						% Test 2: Long walk (boundary more likely)
+						rng(3);
+						n = 100;
+						% Run your script
+						% Expected: xFinal &gt;= -5
+						%           hitBoundary likely true for long left-biased walks
+					</program>
+
+				</statement>
+			</task>
+
+			<task xml:id="ex-for-quality-label">
+				<title>Three-Way Quality Label</title>
+
+				<statement>
+					<p>
+						Simulate <pf>n</pf> sensor readings as integers from 0 to 100 using <pf>randi([0,100])</pf>.
+						For each reading <pf>v</pf>, use a <pf>for</pf> loop and <pf>if-elseif-else</pf> to assign a label
+						and update the appropriate counter:
+						<ul>
+							<li>If <pf>v &lt; 40</pf>, it is LOW — increment <pf>lowCount</pf>.</li>
+							<li>Elseif <pf>v &lt; 80</pf>, it is OK — increment <pf>okCount</pf>.</li>
+							<li>Else it is HIGH — increment <pf>highCount</pf>.</li>
+						</ul>
+						Additionally, set <pf>anyCritical = true</pf> if any reading equals exactly 100.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>n</pf> (1x1) double — number of sensor readings (positive integer)</p>
+							</cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>lowCount</pf> (1x1) double — number of readings below 40</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>okCount</pf> (1x1) double — number of readings from 40 to 79 (inclusive)</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>highCount</pf> (1x1) double — number of readings in [80, 100]</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell/>
+							<cell>
+								<p><pf>anyCritical</pf> (1x1) logical — true if any reading equals 100</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Small simulation
+						rng(1);
+						n = 20;
+						% Run your script
+						% Expected: lowCount + okCount + highCount = 20
+						%           anyCritical = true or false
+
+						% Test 2: Large simulation
+						rng(42);
+						n = 200;
+						% Run your script
+						% Expected: lowCount + okCount + highCount = 200
+						%           anyCritical likely true for large n (100 is one of 101 values)
+					</program>
+
+				</statement>
+			</task>
+
 		</exercise>
 
 		<exercise xml:id="coding-exercises-while-loops">
