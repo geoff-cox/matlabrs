@@ -2583,68 +2583,66 @@
 				<ul>
 					<li>
 						<p>
-							<term>The <pf>if</pf> statement</term>.
-							The simplest conditional runs a block of code only when a condition is <pf>true</pf>.
-							Every <pf>if</pf> statement must be closed with <pf>end</pf>.
+							<term>if</term>.
+							If <pf>condition</pf> is true, run <pf>myCode</pf>:
 						</p>
 						<program language="matlab">
 							<code>
 								if condition
-									codeBlock
+									myCode
 								end
 							</code>
 						</program>
 					</li>
 					<li>
 						<p>
-							<term>The <pf>if</pf>-<pf>else</pf> statement</term>.
-							Adds a second branch so exactly one of two blocks runs: the <pf>if</pf> block when the condition is <pf>true</pf>, or the <pf>else</pf> block when it is <pf>false</pf>.
+							<term>if-else</term>.
+							If <pf>condition</pf> is true, run <pf>myCodeA</pf>, otherwise run <pf>myCodeB</pf>.
 						</p>
 						<program language="matlab">
 							<code>
 								if condition
-									blockA
+									myCodeA
 								else
-									blockB
+									myCodeB
 								end
 							</code>
 						</program>
 					</li>
 					<li>
 						<p>
-							<term>The <pf>if</pf>-<pf>elseif</pf>-<pf>else</pf> statement</term>.
-							Use one or more <pf>elseif</pf> clauses to test additional conditions in order.
-							MATLAB evaluates each condition from top to bottom and runs only the first block whose condition is <pf>true</pf>.
-							The optional <pf>else</pf> branch catches everything that was not matched above.
+							<term>if-elseif-else</term>.
+							If <pf>conditionA</pf> is true, run <pf>myCodeA</pf>, otherwise if <pf>conditionB</pf> is true, run <pf>myCodeB</pf>. 
+							If none are true, run <pf>myCodeC</pf>.
 						</p>
 						<program language="matlab">
 							<code>
-								if condition1
-									block1
-								elseif condition2
-									block2
+								if conditionA
+									myCodeA
+								elseif conditionB
+									myCodeB
 								else
-									blockDefault
+									myCodeC
 								end
 							</code>
 						</program>
 					</li>
 					<li>
 						<p>
-							<term>The <pf>switch</pf> statement</term>.
-							Compares a single expression against a list of exact values (<pf>case</pf> labels).
-							The block under the first matching <pf>case</pf> runs; all others are skipped.
-							An optional <pf>otherwise</pf> block runs when no <pf>case</pf> matches.
+							<term>switch</term>.
+							Compares <pf>value</pf> against a list of exact values.
+							If <pf>value</pf> is <pf>valueA</pf>, run <pf>myCodeA</pf>. If <pf>value</pf> is <pf>valueB</pf>, run <pf>myCodeB</pf>.
+							If no values match, <pf>myCodeC</pf> runs.
 						</p>
 						<program language="matlab">
 							<code>
-								switch expression
-									case value1
-										block1
-									case value2
-										block2
+								switch value
+									case valueA
+										myCodeA
+									case valueB
+										myCodeB
 									otherwise
-										blockDefault
+										myCodeC
 								end
 							</code>
 						</program>
