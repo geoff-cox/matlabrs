@@ -35,7 +35,7 @@
     x = [1.2, 2.7, -0.5, -3.9];
     floor(x)   % returns [1, 2, -1, -4]
     ceil(x)    % returns [2, 3,  0, -3]
-    round(x)   % returns [1, 3,  0, -4]
+    round(x)   % returns [1, 3, -1, -4]
   </program>
 
   <p>
@@ -211,20 +211,20 @@
   </exercise>
 
   <exercise xml:id="quiz-floor-ceil-round-6">
-    <title>Round half-to-even behavior</title>
+    <title>Round half-away-from-zero behavior</title>
     <statement>
       <p>
         What does <pf>round(2.5)</pf> return in MATLAB?
       </p>
     </statement>
     <choices randomize="no">
-      <choice correct="yes">
-        <statement><p><pf>2</pf></p></statement>
-        <feedback><p>MATLAB's <pf>round</pf> uses <q>round half to even</q> (banker's rounding). Since <pf>2</pf> is the nearest even integer, <pf>round(2.5)</pf> returns <pf>2</pf>.</p></feedback>
-      </choice>
       <choice>
+        <statement><p><pf>2</pf></p></statement>
+        <feedback><p>MATLAB's <pf>round</pf> resolves exactly-half values by rounding <em>away from zero</em>, not toward the nearest even integer. Since <pf>2.5</pf> is positive, it rounds up to <pf>3</pf>.</p></feedback>
+      </choice>
+      <choice correct="yes">
         <statement><p><pf>3</pf></p></statement>
-        <feedback><p>In everyday rounding you might expect <pf>3</pf>, but MATLAB's <pf>round</pf> resolves exactly-half values by rounding to the nearest <em>even</em> integer. Here <pf>2</pf> is the nearest even integer.</p></feedback>
+        <feedback><p>MATLAB's <pf>round</pf> rounds halfway cases away from zero. Because <pf>2.5</pf> is exactly halfway and positive, it rounds up to <pf>3</pf>. Similarly, <pf>round(-2.5)</pf> returns <pf>-3</pf>.</p></feedback>
       </choice>
       <choice>
         <statement><p><pf>2.5</pf></p></statement>
@@ -232,7 +232,7 @@
       </choice>
       <choice>
         <statement><p><pf>0</pf></p></statement>
-        <feedback><p><pf>round(2.5)</pf> rounds to the nearest integer, not to zero. The result is <pf>2</pf>.</p></feedback>
+        <feedback><p><pf>round(2.5)</pf> rounds to the nearest integer, not to zero. The result is <pf>3</pf>.</p></feedback>
       </choice>
     </choices>
   </exercise>
