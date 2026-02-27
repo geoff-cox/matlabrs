@@ -2582,7 +2582,79 @@
 			<objectives xml:id="takeaways-conditional-statements">
 				<ul>
 					<li>
-					
+						<p>
+							<term>The <pf>if</pf> statement</term>.
+							The simplest conditional runs a block of code only when a condition is <pf>true</pf>.
+							Every <pf>if</pf> statement must be closed with <pf>end</pf>.
+						</p>
+						<program language="matlab">
+							<code>
+								if condition
+									codeBlock
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>The <pf>if</pf>-<pf>else</pf> statement</term>.
+							Adds a second branch so exactly one of two blocks runs: the <pf>if</pf> block when the condition is <pf>true</pf>, or the <pf>else</pf> block when it is <pf>false</pf>.
+						</p>
+						<program language="matlab">
+							<code>
+								if condition
+									blockA
+								else
+									blockB
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>The <pf>if</pf>-<pf>elseif</pf>-<pf>else</pf> statement</term>.
+							Use one or more <pf>elseif</pf> clauses to test additional conditions in order.
+							MATLAB evaluates each condition from top to bottom and runs only the first block whose condition is <pf>true</pf>.
+							The optional <pf>else</pf> branch catches everything that was not matched above.
+						</p>
+						<program language="matlab">
+							<code>
+								if condition1
+									block1
+								elseif condition2
+									block2
+								else
+									blockDefault
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>The <pf>switch</pf> statement</term>.
+							Compares a single expression against a list of exact values (<pf>case</pf> labels).
+							The block under the first matching <pf>case</pf> runs; all others are skipped.
+							An optional <pf>otherwise</pf> block runs when no <pf>case</pf> matches.
+						</p>
+						<program language="matlab">
+							<code>
+								switch expression
+									case value1
+										block1
+									case value2
+										block2
+									otherwise
+										blockDefault
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>Choosing between <pf>switch</pf> and <pf>if</pf>-<pf>elseif</pf></term>.
+							Use <pf>switch</pf> when you are comparing one variable against a small set of exact values (especially strings or integers).
+							Use <pf>if</pf>-<pf>elseif</pf> when your conditions involve ranges, inequalities, or multiple variables.
+						</p>
 					</li>
 				</ul>
 			</objectives>
