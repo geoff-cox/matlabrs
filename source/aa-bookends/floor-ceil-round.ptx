@@ -1,0 +1,349 @@
+<subsection xml:id="subsec-floor-ceil-round">
+  <title>The floor, ceil, and round functions</title>
+
+  <p>
+    MATLAB provides three built-in functions for rounding real numbers to integers:
+    <pf>floor</pf>, <pf>ceil</pf>, and <pf>round</pf>. Each function rounds in a different
+    direction, making them useful in different situations.
+  </p>
+
+  <p>
+    The <pf>floor</pf> function rounds a number <em>down</em> to the nearest integer—that is,
+    it returns the greatest integer that is less than or equal to the input. For example,
+    <pf>floor(3.7)</pf> returns <pf>3</pf> and <pf>floor(-2.3)</pf> returns <pf>-3</pf>.
+  </p>
+
+  <p>
+    The <pf>ceil</pf> function (short for <em>ceiling</em>) rounds a number <em>up</em> to the
+    nearest integer—it returns the smallest integer that is greater than or equal to the input.
+    For example, <pf>ceil(3.2)</pf> returns <pf>4</pf> and <pf>ceil(-2.7)</pf> returns <pf>-2</pf>.
+  </p>
+
+  <p>
+    The <pf>round</pf> function rounds to the <em>nearest</em> integer. When the fractional part
+    is exactly <pf>0.5</pf>, MATLAB rounds away from zero. For example, <pf>round(3.5)</pf>
+    returns <pf>4</pf>, while <pf>round(2.5)</pf> returns <pf>3</pf>, and <pf>round(-2.5)</pf>
+    returns <pf>-3</pf>.
+  </p>
+
+  <p>
+    All three functions also accept arrays as input and apply the rounding operation
+    element-wise to every entry. For example:
+  </p>
+
+  <program language="matlab">
+    x = [1.2, 2.7, -0.5, -3.9];
+    floor(x)   % returns [1, 2, -1, -4]
+    ceil(x)    % returns [2, 3,  0, -3]
+    round(x)   % returns [1, 3, -1, -4]
+  </program>
+
+  <p>
+    A common use of <pf>floor</pf> is to compute how many whole units fit into a quantity. For
+    instance, to find out how many complete weeks are in a given number of days:
+  </p>
+
+  <program language="matlab">
+    days = 20;
+    weeks = floor(days / 7)   % returns 2
+  </program>
+
+  <p>
+    The <pf>ceil</pf> function is often used when you need to allocate enough whole units to
+    cover a quantity—for example, determining how many buses are needed to transport a group:
+  </p>
+
+  <program language="matlab">
+    students = 53;
+    capacity = 20;
+    buses = ceil(students / capacity)   % returns 3
+  </program>
+
+  <p>
+    The <pf>round</pf> function is useful when displaying or comparing values that should be
+    rounded to a certain number of decimal places. To round to two decimal places, multiply
+    before rounding, then divide:
+  </p>
+
+  <program language="matlab">
+    x = 3.14159;
+    round(x * 100) / 100   % returns 3.14
+  </program>
+
+  <exercise xml:id="quiz-floor-ceil-round-1">
+    <title>Floor function basic behavior</title>
+    <statement>
+      <p>
+        What does <pf>floor(4.9)</pf> return?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>4</pf></p></statement>
+        <feedback><p><pf>floor</pf> always rounds down to the nearest integer, so <pf>floor(4.9)</pf> is <pf>4</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>5</pf></p></statement>
+        <feedback><p><pf>floor</pf> rounds <em>down</em>, not up. The value <pf>5</pf> would be the result of <pf>ceil(4.9)</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>4.9</pf></p></statement>
+        <feedback><p><pf>floor</pf> always returns an integer. It does not leave the fractional part unchanged.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>0</pf></p></statement>
+        <feedback><p><pf>floor</pf> returns the greatest integer not exceeding the input, which is <pf>4</pf>, not <pf>0</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-2">
+    <title>Ceiling function with negative input</title>
+    <statement>
+      <p>
+        What does <pf>ceil(-1.3)</pf> return?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>-1</pf></p></statement>
+        <feedback><p><pf>ceil</pf> rounds toward positive infinity. The smallest integer greater than or equal to <pf>-1.3</pf> is <pf>-1</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>-2</pf></p></statement>
+        <feedback><p><pf>-2</pf> would be the result of <pf>floor(-1.3)</pf>. The <pf>ceil</pf> function rounds <em>up</em> (toward positive infinity).</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>1</pf></p></statement>
+        <feedback><p><pf>ceil</pf> rounds toward positive infinity starting from the input value, not toward the nearest positive integer.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>2</pf></p></statement>
+        <feedback><p><pf>2</pf> is too large. <pf>ceil(-1.3)</pf> returns the smallest integer that is still <m>\geq -1.3</m>, which is <pf>-1</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-3">
+    <title>Comparing floor and ceil behavior</title>
+    <statement>
+      <p>
+        Which of the following correctly describes the difference between <pf>floor</pf> and <pf>ceil</pf>?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>floor</pf> rounds toward negative infinity; <pf>ceil</pf> rounds toward positive infinity.</p></statement>
+        <feedback><p>Correct. <pf>floor</pf> always goes down (toward <m>-\infty</m>), and <pf>ceil</pf> always goes up (toward <m>+\infty</m>), regardless of the sign of the input.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor</pf> rounds toward zero; <pf>ceil</pf> rounds away from zero.</p></statement>
+        <feedback><p>This is not correct. For negative numbers, <pf>floor(-1.3)</pf> gives <pf>-2</pf>, which is away from zero, not toward it.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor</pf> rounds down for positive numbers only; <pf>ceil</pf> rounds up for positive numbers only.</p></statement>
+        <feedback><p>Both functions work for all real numbers, positive or negative. <pf>floor</pf> always rounds toward <m>-\infty</m> and <pf>ceil</pf> always rounds toward <m>+\infty</m>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor</pf> and <pf>ceil</pf> produce the same result for non-integer inputs.</p></statement>
+        <feedback><p>They produce different results for any non-integer input. For example, <pf>floor(2.5)</pf> is <pf>2</pf> while <pf>ceil(2.5)</pf> is <pf>3</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-4">
+    <title>Using ceil for resource allocation</title>
+    <statement>
+      <p>
+        You have <pf>37</pf> students and each table seats <pf>4</pf>. Which expression gives the minimum
+        number of tables needed so every student has a seat?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>ceil(37 / 4)</pf></p></statement>
+        <feedback><p><pf>ceil</pf> rounds up, ensuring that the last partial group still gets a full table. <pf>ceil(9.25)</pf> gives <pf>10</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor(37 / 4)</pf></p></statement>
+        <feedback><p><pf>floor(9.25)</pf> gives <pf>9</pf> tables, but that only seats 36 students. The remaining student would have no seat.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>round(37 / 4)</pf></p></statement>
+        <feedback><p><pf>round(9.25)</pf> gives <pf>9</pf>, which is not enough. When you need to cover all items, use <pf>ceil</pf> to guarantee sufficient capacity.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>37 / 4</pf></p></statement>
+        <feedback><p>This returns the non-integer <pf>9.25</pf>. The number of tables must be a whole number, so you need a rounding function—specifically <pf>ceil</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-5">
+    <title>Floor with negative fractional values</title>
+    <statement>
+      <p>
+        What is the output of the following code?
+      </p>
+      <program language="matlab">
+        x = -2.5;
+        disp(floor(x))
+      </program>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>-3</pf></p></statement>
+        <feedback><p><pf>floor</pf> rounds toward negative infinity. The greatest integer that is <m>\leq -2.5</m> is <pf>-3</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>-2</pf></p></statement>
+        <feedback><p><pf>-2</pf> would be the result of <pf>ceil(-2.5)</pf>. Remember that <pf>floor</pf> rounds <em>down</em>, which for negative numbers means toward a more negative integer.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>2</pf></p></statement>
+        <feedback><p><pf>floor</pf> does not drop the negative sign. The input is negative, so the output is also negative.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>3</pf></p></statement>
+        <feedback><p><pf>floor</pf> does not drop the negative sign. The input is <pf>-2.5</pf>, so the output is <pf>-3</pf>, not <pf>3</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-6">
+    <title>Round half-away-from-zero behavior</title>
+    <statement>
+      <p>
+        What does <pf>round(2.5)</pf> return in MATLAB?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice>
+        <statement><p><pf>2</pf></p></statement>
+        <feedback><p>MATLAB's <pf>round</pf> resolves exactly-half values by rounding <em>away from zero</em>, not toward the nearest even integer. Since <pf>2.5</pf> is positive, it rounds up to <pf>3</pf>.</p></feedback>
+      </choice>
+      <choice correct="yes">
+        <statement><p><pf>3</pf></p></statement>
+        <feedback><p>MATLAB's <pf>round</pf> rounds halfway cases away from zero. Because <pf>2.5</pf> is exactly halfway and positive, it rounds up to <pf>3</pf>. Similarly, <pf>round(-2.5)</pf> returns <pf>-3</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>2.5</pf></p></statement>
+        <feedback><p><pf>round</pf> always returns an integer when given a scalar real input; it does not leave a fractional part.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>0</pf></p></statement>
+        <feedback><p><pf>round(2.5)</pf> rounds to the nearest integer, not to zero. The result is <pf>3</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-7">
+    <title>Rounding to decimal places</title>
+    <statement>
+      <p>
+        Which expression rounds the value <pf>x</pf> to the nearest hundredth (two decimal places)?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>round(x * 100) / 100</pf></p></statement>
+        <feedback><p>Multiplying by 100 shifts two decimal places to the left; rounding removes the remaining fractional part; dividing by 100 shifts back. This correctly rounds to two decimal places.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>round(x) / 100</pf></p></statement>
+        <feedback><p>This rounds <pf>x</pf> to the nearest integer first and then divides by 100, which does not give the nearest hundredth.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor(x * 100) / 100</pf></p></statement>
+        <feedback><p><pf>floor</pf> always rounds down, so this truncates to two decimal places rather than rounding to the nearest hundredth.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>round(x / 100) * 100</pf></p></statement>
+        <feedback><p>Dividing by 100 before rounding and then multiplying back would round to the nearest hundred, not the nearest hundredth.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-8">
+    <title>Element-wise rounding on arrays</title>
+    <statement>
+      <p>
+        Given <pf>x = [0.4, 1.5, 2.6, -0.7]</pf>, what does <pf>round(x)</pf> return?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>[0, 2, 3, -1]</pf></p></statement>
+        <feedback><p><pf>round</pf> operates element-wise: <pf>0.4 → 0</pf>, <pf>1.5 → 2</pf> (MATLAB rounds halves away from zero), <pf>2.6 → 3</pf>, <pf>-0.7 → -1</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>[0, 1, 2, 0]</pf></p></statement>
+        <feedback><p>This looks like truncation toward zero. <pf>round</pf> rounds to the nearest integer, not toward zero. For example, <pf>round(2.6)</pf> gives <pf>3</pf>, not <pf>2</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>[1, 2, 3, 0]</pf></p></statement>
+        <feedback><p>This would be <pf>ceil(x)</pf>, not <pf>round(x)</pf>. <pf>round(0.4)</pf> is <pf>0</pf>, not <pf>1</pf>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>[0, 1, 2, -1]</pf></p></statement>
+        <feedback><p>This would be <pf>floor(x)</pf>. Note that <pf>round(2.6)</pf> gives <pf>3</pf>, not <pf>2</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-9">
+    <title>Rounding functions with integer inputs</title>
+    <statement>
+      <p>
+        For any integer <pf>n</pf>, which of the following is always true?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>floor(n) == n</pf></p></statement>
+        <feedback><p>When the input is already an integer, <pf>floor</pf> returns the input unchanged. The same is true for <pf>ceil</pf> and <pf>round</pf>—all three functions leave integers unmodified.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor(n) == ceil(n) - 1</pf></p></statement>
+        <feedback><p>For integers, <pf>floor(n)</pf> equals <pf>ceil(n)</pf> (both return <pf>n</pf>), so this expression would give <pf>n == n - 1</pf>, which is false.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor(n) &lt; n</pf></p></statement>
+        <feedback><p><pf>floor(n)</pf> rounds down only when there is a fractional part. For integers, <pf>floor(n) == n</pf>, so this strict inequality is false.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor(n) == n - 1</pf></p></statement>
+        <feedback><p><pf>floor</pf> only subtracts from the value when there is a fractional part to discard. For an integer input, <pf>floor(n) == n</pf>.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+  <exercise xml:id="quiz-floor-ceil-round-10">
+    <title>Testing for integer values</title>
+    <statement>
+      <p>
+        A program needs to check whether a value <pf>x</pf> is already an integer (has no fractional part).
+        Which expression accomplishes this?
+      </p>
+    </statement>
+    <choices randomize="no">
+      <choice correct="yes">
+        <statement><p><pf>floor(x) == x</pf></p></statement>
+        <feedback><p>If <pf>x</pf> has no fractional part, <pf>floor(x)</pf> returns <pf>x</pf> unchanged, so the comparison is true. The same check can also be written as <pf>x == round(x)</pf> or <pf>x == ceil(x)</pf>. In this textbook, we use these patterns assuming that <pf>x</pf> is an exact integer-valued quantity. In practical numerical code with floating-point values, a more robust approach is to allow for tiny rounding errors, for example by testing <c>abs(x - round(x)) &lt; 1e-10</c>.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>floor(x) == 0</pf></p></statement>
+        <feedback><p>This checks whether <pf>x</pf> is between 0 and 1 (exclusive), not whether <pf>x</pf> is an integer.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>round(x) == 0</pf></p></statement>
+        <feedback><p>This checks whether <pf>x</pf> rounds to zero, not whether it is already an integer.</p></feedback>
+      </choice>
+      <choice>
+        <statement><p><pf>ceil(x) == floor(x) + 1</pf></p></statement>
+        <feedback><p>For non-integers, <pf>ceil(x)</pf> is one more than <pf>floor(x)</pf>, so this expression is true for non-integers, not integers. The opposite of what we want.</p></feedback>
+      </choice>
+    </choices>
+  </exercise>
+
+</subsection>
