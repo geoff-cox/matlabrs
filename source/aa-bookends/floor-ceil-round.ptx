@@ -329,7 +329,7 @@
     <choices randomize="no">
       <choice correct="yes">
         <statement><p><pf>floor(x) == x</pf></p></statement>
-        <feedback><p>If <pf>x</pf> has no fractional part, <pf>floor(x)</pf> returns <pf>x</pf> unchanged, so the comparison is true. The same check can also be written as <pf>x == round(x)</pf> or <pf>x == ceil(x)</pf>.</p></feedback>
+        <feedback><p>If <pf>x</pf> has no fractional part, <pf>floor(x)</pf> returns <pf>x</pf> unchanged, so the comparison is true. The same check can also be written as <pf>x == round(x)</pf> or <pf>x == ceil(x)</pf>. In this textbook, we use these patterns assuming that <pf>x</pf> is an exact integer-valued quantity. In practical numerical code with floating-point values, a more robust approach is to allow for tiny rounding errors, for example by testing <c>abs(x - round(x)) &lt; 1e-10</c>.</p></feedback>
       </choice>
       <choice>
         <statement><p><pf>floor(x) == 0</pf></p></statement>
