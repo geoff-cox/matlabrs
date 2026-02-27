@@ -2,8 +2,126 @@
   <title>The mod function</title>
 
   <p>
-    The <pf>mod</pf> function computes the remainder after division. It is useful for determining if a number is even or odd, among other applications. For example, <pf>mod(n, 2)</pf> returns 0 if <pf>n</pf> is even and 1 if <pf>n</pf> is odd.
+    The <pf>mod</pf> function computes the <term>remainder</term> after division. Its syntax is:
   </p>
+
+  <assemblage xml:id="mod-syntax">
+    <title><pf>mod</pf> Syntax</title>
+    <p>
+      <pf>r = mod(a, b)</pf>
+    </p>
+    <p>
+      Returns the remainder <pf>r</pf> when <pf>a</pf> is divided by <pf>b</pf>.
+      The result satisfies <pf>0 &lt;= r &lt; b</pf> for positive <pf>b</pf>.
+    </p>
+  </assemblage>
+
+  <p>
+    In other words, <pf>mod(a, b)</pf> answers the question: <q>after dividing <pf>a</pf> by <pf>b</pf>, what is left over?</q>
+    For example, if you divide 10 by 3 you get 3 with a remainder of 1, so <pf>mod(10, 3)</pf> returns <pf>1</pf>.
+  </p>
+
+  <p>
+    Two of the most common uses for <pf>mod</pf> are:
+    <dl width="narrow">
+      <li><title>Even/odd test</title>
+        <p>
+          <pf>mod(n, 2)</pf> returns <pf>0</pf> when <pf>n</pf> is even and <pf>1</pf> when <pf>n</pf> is odd.
+        </p>
+      </li>
+      <li><title>Divisibility test</title>
+        <p>
+          <pf>mod(n, k) == 0</pf> is <pf>true</pf> exactly when <pf>n</pf> is divisible by <pf>k</pf>.
+        </p>
+      </li>
+    </dl>
+  </p>
+
+  <example xml:id="ex-mod-basic-values">
+    <title>Basic mod Values</title>
+    <statement>
+      <p>
+        The table below shows several calls to <pf>mod</pf> and their results.
+      </p>
+      <table>
+        <title>Sample <pf>mod</pf> Results</title>
+        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+          <row header="yes">
+            <cell>Expression</cell>
+            <cell>Result</cell>
+            <cell>Reason</cell>
+          </row>
+          <row>
+            <cell><pf>mod(10, 3)</pf></cell>
+            <cell><pf>1</pf></cell>
+            <cell><m>10 = 3 \times 3 + 1</m></cell>
+          </row>
+          <row>
+            <cell><pf>mod(12, 4)</pf></cell>
+            <cell><pf>0</pf></cell>
+            <cell><m>12 = 4 \times 3 + 0</m></cell>
+          </row>
+          <row>
+            <cell><pf>mod(7, 7)</pf></cell>
+            <cell><pf>0</pf></cell>
+            <cell>any number mod itself is 0</cell>
+          </row>
+          <row>
+            <cell><pf>mod(5, 9)</pf></cell>
+            <cell><pf>5</pf></cell>
+            <cell><m>5 = 9 \times 0 + 5</m></cell>
+          </row>
+          <row>
+            <cell><pf>mod(0, 6)</pf></cell>
+            <cell><pf>0</pf></cell>
+            <cell>0 divided by anything leaves remainder 0</cell>
+          </row>
+        </tabular>
+      </table>
+    </statement>
+  </example>
+
+  <example xml:id="ex-mod-even-odd">
+    <title>Checking Even and Odd Numbers</title>
+    <statement>
+      <p>
+        Because <pf>mod(n, 2)</pf> is <pf>0</pf> for even numbers and <pf>1</pf> for odd numbers, we can
+        use it inside an <pf>if</pf>-statement to classify a number:
+      </p>
+      <program language="matlab">
+        n = 17;
+        if mod(n, 2) == 0
+            fprintf('%d is even\n', n)
+        else
+            fprintf('%d is odd\n', n)
+        end
+      </program>
+      <p>
+        Running this script prints <c>17 is odd</c> because <pf>mod(17, 2)</pf> equals <pf>1</pf>, not <pf>0</pf>.
+      </p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-mod-multiples-loop">
+    <title>Printing Multiples with a Loop</title>
+    <statement>
+      <p>
+        A <pf>for</pf>-loop combined with <pf>mod</pf> is a natural way to select every <m>k</m>-th value
+        from a range. Here we print all multiples of 3 from 1 to 20:
+      </p>
+      <program language="matlab">
+        for n = 1:20
+            if mod(n, 3) == 0
+                fprintf('%d\n', n)
+            end
+        end
+      </program>
+      <p>
+        The output is <c>3</c>, <c>6</c>, <c>9</c>, <c>12</c>, <c>15</c>, <c>18</c>.
+        The condition <pf>mod(n, 3) == 0</pf> is true exactly when <pf>n</pf> is divisible by 3.
+      </p>
+    </statement>
+  </example>
 
   <exercise xml:id="quiz-for-loop-conceptual-6">
     <statement>
@@ -30,5 +148,226 @@
       </choice>
     </choices>
   </exercise>
-  
+
+  <reading-questions xml:id="rqs-mod">
+    <title>Check Your Understanding</title>
+
+    <exercise label="mod-reading-ckpt-1">
+      <task label="mod-reading-ckpt-1a">
+        <title>mod(9, 3) equals 0</title>
+        <statement correct="yes">
+          <p>
+            <pf>mod(9, 3)</pf> returns <pf>0</pf>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            Because <m>9 = 3 \times 3 + 0</m>, the remainder is 0. Any number that divides evenly
+            leaves a remainder of 0.
+          </p>
+        </feedback>
+      </task>
+
+      <task label="mod-reading-ckpt-1b">
+        <title>What does mod(7, 4) return?</title>
+        <statement>
+          <p>
+            What does <pf>mod(7, 4)</pf> return?
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="yes">
+            <statement><p><pf>3</pf></p></statement>
+            <feedback>
+              <p>
+                <m>7 = 4 \times 1 + 3</m>, so the remainder is 3.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>1</pf></p></statement>
+            <feedback>
+              <p>
+                <pf>1</pf> is the quotient (how many times 4 fits into 7), not the remainder.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>4</pf></p></statement>
+            <feedback>
+              <p>
+                The remainder is always less than the divisor, so it cannot equal 4 here.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>0</pf></p></statement>
+            <feedback>
+              <p>
+                <pf>0</pf> would mean 7 is divisible by 4, but <m>7 / 4</m> is not a whole number.
+              </p>
+            </feedback>
+          </choice>
+        </choices>
+      </task>
+    </exercise>
+
+    <exercise label="mod-reading-ckpt-2">
+      <task label="mod-reading-ckpt-2a">
+        <title>Which expression tests divisibility by 5?</title>
+        <statement>
+          <p>
+            Which expression is <pf>true</pf> exactly when <pf>n</pf> is divisible by 5?
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="yes">
+            <statement><p><pf>mod(n, 5) == 0</pf></p></statement>
+            <feedback>
+              <p>
+                A remainder of 0 means <pf>n</pf> divides evenly by 5, which is exactly the definition
+                of divisibility.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>mod(5, n) == 0</pf></p></statement>
+            <feedback>
+              <p>
+                This tests whether 5 is divisible by <pf>n</pf>, not whether <pf>n</pf> is divisible by 5.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>mod(n, 5) == 5</pf></p></statement>
+            <feedback>
+              <p>
+                The remainder from <pf>mod(n, 5)</pf> is always between 0 and 4, so it can never equal 5.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>n / 5 == 0</pf></p></statement>
+            <feedback>
+              <p>
+                This is only true when <pf>n</pf> is 0, not for all multiples of 5 like 5, 10, or 15.
+              </p>
+            </feedback>
+          </choice>
+        </choices>
+      </task>
+    </exercise>
+
+    <exercise label="mod-reading-ckpt-3">
+      <task label="mod-reading-ckpt-3a">
+        <title>The result of mod is always less than the divisor</title>
+        <statement correct="yes">
+          <p>
+            For a positive divisor <pf>b</pf>, <pf>mod(a, b)</pf> always returns a value that is
+            strictly less than <pf>b</pf>.
+          </p>
+        </statement>
+        <feedback>
+          <p>
+            By definition, the remainder when dividing by <pf>b</pf> satisfies
+            <m>0 \leq r &lt; b</m>. Once the remainder would reach <pf>b</pf>, another full
+            group of <pf>b</pf> can be subtracted, so the remainder resets to 0.
+          </p>
+        </feedback>
+      </task>
+    </exercise>
+
+    <exercise label="mod-reading-ckpt-4">
+      <task label="mod-reading-ckpt-4a">
+        <title>What does mod(0, 6) return?</title>
+        <statement>
+          <p>
+            What does <pf>mod(0, 6)</pf> return?
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="yes">
+            <statement><p><pf>0</pf></p></statement>
+            <feedback>
+              <p>
+                Zero divided by any nonzero number gives a quotient of 0 with remainder 0.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>6</pf></p></statement>
+            <feedback>
+              <p>
+                The remainder is always less than the divisor, so it cannot be 6.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>1</pf></p></statement>
+            <feedback>
+              <p>
+                Zero is evenly divisible by 6 (zero times), leaving a remainder of 0, not 1.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>undefined</pf></p></statement>
+            <feedback>
+              <p>
+                <pf>mod(0, b)</pf> is well defined and equals 0 for any positive <pf>b</pf>.
+              </p>
+            </feedback>
+          </choice>
+        </choices>
+      </task>
+    </exercise>
+
+    <exercise label="mod-reading-ckpt-5">
+      <task label="mod-reading-ckpt-5a">
+        <title>Counting multiples of 4 from 1 to 20</title>
+        <statement>
+          <p>
+            How many integers from 1 to 20 satisfy <pf>mod(n, 4) == 0</pf>?
+          </p>
+        </statement>
+        <choices randomize="yes">
+          <choice correct="yes">
+            <statement><p>5</p></statement>
+            <feedback>
+              <p>
+                The multiples of 4 in that range are 4, 8, 12, 16, and 20 — five values in all.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p>4</p></statement>
+            <feedback>
+              <p>
+                Don't forget that 20 is also divisible by 4. The multiples are 4, 8, 12, 16, 20.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p>6</p></statement>
+            <feedback>
+              <p>
+                The next multiple after 20 would be 24, which is outside the range.
+                Count carefully: 4, 8, 12, 16, 20.
+              </p>
+            </feedback>
+          </choice>
+          <choice>
+            <statement><p>3</p></statement>
+            <feedback>
+              <p>
+                Three is too few. List them out: <m>4, 8, 12, 16, 20</m> — that is five values.
+              </p>
+            </feedback>
+          </choice>
+        </choices>
+      </task>
+    </exercise>
+
+  </reading-questions>
+
 </subsection>
