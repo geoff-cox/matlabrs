@@ -9,6 +9,7 @@
 				<p>NAME:</p>
 				<p>HR:</p>
 			</stack>
+			<stack><p/></stack>
 		</sidebyside>
 
     <!-- ========================================================= -->
@@ -80,10 +81,10 @@
 			<title>Rewrite Repeated Code and Loop Code</title>
 
 			<statement>
-
 				<p>
 					Rewrite each of the following repeated code snippets using a single <pf>for</pf>-loop. Your loop should produce the same output in the same order.
 				</p>
+
 				<sidebyside widths="44% 54%">
 					<stack>
 						<program language="matlab">
@@ -95,12 +96,19 @@
 						</program>
 					</stack>
 					<stack>
-						<program language="matlab" line-numbers="no">
+						<program component="stu" language="matlab" line-numbers="no">
 							% ==== Write your for loop here ====
 							󠀠
 							󠀠
 							󠀠
 							󠀠
+							󠀠
+						</program>
+						<program component="key" language="matlab" line-numbers="no">
+							% ==== Write your for loop here ====
+							for step = 1:4
+								fprintf('Step %d complete\n', step)
+							end
 							󠀠
 						</program>
 					</stack>
@@ -118,12 +126,20 @@
 						</program>
 					</stack>
 					<stack>
-						<program language="matlab" line-numbers="no">
+						<program component="stu" language="matlab" line-numbers="no">
 							% ==== Write your for loop here ====
 							󠀠
 							󠀠
 							󠀠
 							󠀠
+							󠀠
+						</program>
+						<program component="key" language="matlab" line-numbers="no">
+							% ==== Write your for loop here ====
+							score = 10;
+							for k = 1:5
+								score = score + 2;
+							end
 							󠀠
 						</program>
 					</stack>
@@ -142,28 +158,35 @@
 				<p>
 					For each of the following code snippets, determine what is printed by <pf>fprintf</pf>.
 				</p>
-				<sidebyside width="49%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<program language="matlab">
 							total = 0;
 							for k = 1:4
-								total = total + n - 1;
+								total = total + k - 1;
 							end
 							fprintf('total = %d\n', total)
 						</program>
 					</stack>
 					<stack>
-						<program language="matlab" line-numbers="no">
+						<program component="stu" language="matlab" line-numbers="no">
 							% What does this print?
 
 
 
 							total = 
 						</program>
+						<program component="key" language="matlab" line-numbers="no">
+							% What does this print?
+
+
+
+							total = 6
+						</program>
 					</stack>
 				</sidebyside>
 
-				<sidebyside width="49%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<program language="matlab">
 							x = 1;
@@ -174,12 +197,19 @@
 						</program>
 					</stack>
 					<stack>
-						<program language="matlab" line-numbers="no">
+						<program component="stu" language="matlab" line-numbers="no">
 							% What does this print?
 
 
 
 							x = 
+						</program>
+						<program component="key" language="matlab" line-numbers="no">
+							% What does this print?
+
+
+
+							x = 16
 						</program>
 					</stack>
 				</sidebyside>
@@ -194,10 +224,12 @@
 				<p>
 					For each of the following functions, determine the output when called with the given input.
 				</p>
+
 				<p>
 					What does this function return when <pf>x = 3</pf>?
 				</p>
-				<sidebyside width="49%">
+
+				<sidebyside widths="49% 49%">
 					<stack>
 						<program language="matlab">
 							function y = bump(x)
@@ -209,7 +241,7 @@
 						</program>
 					</stack>
 					<stack>
-						<program language="matlab" line-numbers="no">
+						<program component="stu" language="matlab" line-numbers="no">
 							% What is the value of out?
 
 							out = bump(3);
@@ -217,13 +249,21 @@
 							out = 
 							󠀠
 						</program>
+						<program component="key" language="matlab" line-numbers="no">
+							% What is the value of out?
+
+							out = bump(3);
+
+							out = 13
+						</program>
 					</stack>
 				</sidebyside>
 
 				<p>
 					What does this function return when <pf>n = 6</pf>?
 				</p>
-				<sidebyside width="49%">
+
+				<sidebyside widths="49% 49%">
 					<stack>
 						<program language="matlab">
 							function c = dump(n)
@@ -237,12 +277,22 @@
 						</program>
 					</stack>
 					<stack>
-						<program language="matlab" line-numbers="no">
+						<program component="stu" language="matlab" line-numbers="no">
 							% What is the value of out?
 
 							out = dump(6);
 
 							out = 
+							󠀠
+							󠀠
+							󠀠
+						</program>
+						<program component="key" language="matlab" line-numbers="no">
+							% What is the value of out?
+
+							out = dump(6);
+
+							out = 2
 							󠀠
 							󠀠
 							󠀠
@@ -289,20 +339,35 @@
 						</stack>
 					</sidebyside>
 
-					<program language="matlab">
+					<program component="stu" language="matlab">
 						% Write your sumFromOne function here. You must use a for-loop.
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+					</program>
+					<program component="key" language="matlab">
+						% Write your sumFromOne function here. You must use a for-loop.
+						function total = sumFromOne(n)
+							total = 0;
+							for k = 1:n
+								total = total + k;
+							end
+						end
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
 					</program>
 				</statement>
 			</task>
@@ -337,20 +402,35 @@
 						</stack>
 					</sidebyside>
 
-					<program language="matlab">
+					<program component="stu" language="matlab">
 						% Write your altsumFromOne function here. You must use a for-loop.
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+					</program>
+					<program component="key" language="matlab">
+						% Write your altsumFromOne function here. You must use a for-loop.
+						function total = altsumFromOne(n)
+							total = 0;
+							for k = 1:n
+								total = total + (-1)^(k+1) * k;
+							end
+						end
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
 					</program>
         </statement>
       </task>
@@ -390,21 +470,36 @@
 						</stack>
 					</sidebyside>
 
-					<program language="matlab">
+					<program component="stu" language="matlab">
 						% Write your headsCount function here. You must use a for-loop.
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
 					</program>
+					<program component="key" language="matlab">
+						% Write your headsCount function here. You must use a for-loop.
+						function count = headsCount(n)
+							count = 0;
+							for k = 1:n
+								if randi([0,1]) == 1
+									count = count + 1;
+								end
+							end
+						end
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+					</program>						
 				</statement>
 			</task>
 
@@ -437,20 +532,35 @@
 						</stack>
 					</sidebyside>
 
-					<program language="matlab">
+					<program component="stu" language="matlab">
 						% Write your headsCountTwoInARow function here. You must use a for-loop.
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
-								󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+					</program>
+					<program component="key" language="matlab">
+						% Write your headsCountTwoInARow function here. You must use a for-loop.
+						function count = headsCountTwoInARow(n)
+							count = 0;
+							prevFlip = 0; % Start with tails
+							for k = 1:n
+								currentFlip = randi([0,1]);
+								if currentFlip == 1 &amp;&amp; prevFlip == 1
+									count = count + 1;
+								end
+								prevFlip = currentFlip; % Update previous flip
+							end
+						end
+							󠀠
 					</program>
 				</statement>
 			</task>
