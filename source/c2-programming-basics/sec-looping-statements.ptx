@@ -3314,7 +3314,7 @@
 					<p>
 						Write a function, <pf>sumSquares</pf> that computes 
 						<me>1^2 + 2^2 + \cdots + n^2</me>
-						for a given positive integer <m>n</m>.
+						for a given non-negative integer <m>n</m>. You must use a <pf>for</pf>-loop. If <m>n</m> is <m>0</m>, return <m>0</m>.
 					</p>
 
 					<sidebyside>
@@ -3325,7 +3325,7 @@
 								<row>
 									<cell>Inputs:</cell>
 									<cell>
-										<p><pf>n</pf> (1x1) double — positive integer</p>
+										<p><pf>n</pf> (1x1) double — non-negative integer</p>
 									</cell>
 								</row>
 								<row bottom="minor">
@@ -3337,86 +3337,20 @@
 							</tabular>
 							<p>Test cases:</p>
 							<program language="matlab">
-								% Test 1: Small value
-								n = 3;
-								% Run your script
+								% Test 1:
+								S = sumSquares(3)
 								% Expected: S = 14 (1^2 + 2^2 + 3^2 = 1 + 4 + 9)
 
-								% Test 2: Larger value
-								n = 5;
-								% Run your script
+								% Test 2: 
+								S = sumSquares(5)
 								% Expected: S = 55 (1 + 4 + 9 + 16 + 25)
-
-								% Test 3: Edge case
-								n = 1;
-								% Run your script
-								% Expected: S = 1
-
-								% Test 4: Medium value
-								n = 10;
-								% Run your script
-								% Expected: S = 385
 							</program>
 						</stack>
 					</sidebyside>
 				</statement>
 			</task>
 
-			<task label="ex-for-factorial">
-				<title>Factorial Computation</title>
-
-				<statement>
-					<p>
-						Write a script that computes the factorial of a number:
-						<me>n! = 1 \cdot 2 \cdot \cdots \cdot n</me>. 
-						Use a for loop. Assume <m>n</m> is a nonnegative integer. Store the result in <pf>F</pf>.
-					</p>
-
-					<tabular valign="top" halign="right" top="minor">
-						<col width="12%"/>
-						<col width="88%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell>
-								<p><pf>n</pf> (1x1) double — nonnegative integer</p>
-							</cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell>
-								<p><pf>F</pf> (1x1) double — the factorial <m>n!</m></p>
-							</cell>
-						</row>
-					</tabular>
-
-					<p>Test cases:</p>
-
-					<program language="matlab">
-						% Test 1: Small factorial
-						n = 5;
-						% Run your script
-						% Expected: F = 120 (5! = 1*2*3*4*5)
-
-						% Test 2: Edge case
-						n = 0;
-						% Run your script
-						% Expected: F = 1 (0! = 1 by definition)
-
-						% Test 3: Another edge case
-						n = 1;
-						% Run your script
-						% Expected: F = 1
-
-						% Test 4: Larger value
-						n = 7;
-						% Run your script
-						% Expected: F = 5040
-					</program>
-
-				</statement>
-			</task>
-
-			<task label="ex-for-rewrite-drill-1">
+			<!-- <task label="ex-for-rewrite-drill-1">
 				<title>Rewrite repeated output: counting by fives</title>
 
 				<statement>
@@ -3483,7 +3417,7 @@
 						Keep the initialization and final <pf>fprintf</pf> line.
 					</p>
 				</statement>
-			</task>
+			</task> -->
 
 			<task label="ex-for-partial-sum">
 				<title>Exponential Series Partial Sum</title>
@@ -3551,54 +3485,87 @@
 				</statement>
 			</task>
 
-			<task label="ex-for-simple-simulation">
-				<title>Die Rolling Simulation</title>
-
+			<task xml:id="quiz-for-loop-function-2a">
 				<statement>
 					<p>
-						Simulate rolling a fair six-sided die <m>N</m> times. Use a <pf>for</pf> loop to count how many times
-						you roll a 6. Store the count in <pf>sixes</pf>.
+						Write a function named <pf>highDieCount</pf> that uses a for loop to count the number of times a 5 or 6 is rolled when rolling a six-sided die <pf>n</pf> times. 
+						Inside the loop, simulate a die roll using <pf>randi([1,6])</pf>, which returns a random integer between <pf>1</pf> and <pf>6</pf>.
 					</p>
 
-					<tabular valign="top" halign="right" top="minor">
-						<col width="12%"/>
-						<col width="88%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell>
-								<p><pf>N</pf> (1x1) double — number of die rolls (positive integer)</p>
-							</cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell>
-								<p><pf>sixes</pf> (1x1) double — count of how many times a 6 was rolled</p>
-							</cell>
-						</row>
-					</tabular>
-
+					<sidebyside>
+						<stack>
+							<tabular valign="top" halign="right" top="minor">
+								<col width="12%"/>
+								<col width="12%" halign="left"/>
+								<col width="22%" halign="left"/>
+								<col width="54%" halign="left"/>
+								<row>
+									<cell><p>Inputs:</p></cell>
+									<cell><p><pf>n</pf></p></cell>
+									<cell><p>(1x1) double</p></cell>
+									<cell><p>number of die rolls</p></cell>
+								</row>
+								<row bottom="minor">
+									<cell><p>Outputs:</p></cell>
+									<cell><p><pf>count</pf></p></cell>
+									<cell><p>(1x1) double</p></cell>
+									<cell><p>the number of times <pf>5</pf> or <pf>6</pf> is rolled</p></cell>
+								</row>
+							</tabular>
+						</stack>
+					</sidebyside>
+					
 					<p>Test cases:</p>
 
 					<program language="matlab">
 						% Test 1: Small number of rolls
 						rng(42);  % Set seed for reproducibility
-						N = 10;
-						% Run your script
-						% Expected: sixes will vary (typically 1-2)
+						highDieCount(10)
+						% Expected: count will vary (typically 3-4)
 
 						% Test 2: Larger simulation
 						rng(123);
-						N = 100;
-						% Run your script
-						% Expected: sixes will vary (typically around 16-17)
+						highDieCount(100)
+						% Run your function
+						% Expected: count will vary (typically around 33-34)
 
 						% Test 3: Many rolls
 						rng(999);
-						N = 600;
-						% Run your script
-						% Expected: sixes will vary (typically around 100, which is 1/6 of 600)
+						highDieCount(600)
+						% Run your function
+						% Expected: count will vary (typically around 200, which is 1/3 of 600)
 					</program>
+				</statement>
+			</task>
 
+			<task xml:id="quiz-for-loop-function-2b">
+				<statement>
+					<p>
+						Write a function named <pf>snakeEyesCount</pf> that counts the number of times you roll two <pf>1</pf>'s in a row in <pf>n</pf> rolls.
+					</p>
+
+					<sidebyside>
+						<stack>
+							<tabular valign="top" halign="right" top="minor">
+								<col width="12%"/>
+								<col width="12%" halign="left"/>
+								<col width="22%" halign="left"/>
+								<col width="54%" halign="left"/>
+								<row>
+									<cell><p>Inputs:</p></cell>
+									<cell><p><pf>n</pf></p></cell>
+									<cell><p>(1x1) double</p></cell>
+									<cell><p>number of die rolls</p></cell>
+								</row>
+								<row bottom="minor">
+									<cell><p>Outputs:</p></cell>
+									<cell><p><pf>count</pf></p></cell>
+									<cell><p>(1x1) double</p></cell>
+									<cell><p>the number of times two <pf>1</pf>s are rolled</p></cell>
+								</row>
+							</tabular>
+						</stack>
+					</sidebyside>
 				</statement>
 			</task>
 
@@ -3992,6 +3959,82 @@
           </p>
         </statement>
       </task>
+
+			<task label="ex-for-factorial">
+				<title>Factorial Computation</title>
+
+				<statement>
+					<p>
+						Write a function, <pf>binomialCoeff</pf>, that computes <m>n</m> choose <m>m</m> (the binomial coefficient) using the formula:
+						<me>
+							\binom{n}{m} = \frac{n!}{m!(n-m)!}
+						</me>. 
+						Use a for loop. Assume <m>n</m> is a nonnegative integer and <m>m</m> is a non-negative integer less than or equal to <m>n</m>.
+					</p>
+
+					<p>
+						To code this with one for loop, simplify the formula to:
+						<md>
+							<mrow>\binom{n}{m}	\amp= \frac{n(n-1)(n-2)\cdots(n-(m-1))\cancel{(n-m)!}}{m!\cancel{(n-m)!}}</mrow>
+							<mrow>							\amp= \frac{n(n-1)(n-2)\cdots(n-(m-1))}{m(m-1)(m-2)\cdots 1}</mrow>
+						</md>
+						This way, you can compute the numerator and denominator together in a single loop that runs <m>k=0,1,2,\ldots,m-1</m>.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>n</pf> (1x1) double — nonnegative integer</p>
+								<p><pf>m</pf> (1x1) double — non-negative integer less than or equal to <m>n</m></p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>bicoeff</pf> (1x1) double — the binomial coefficient <m>\binom{n}{m}</m></p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Small binomial coefficient
+						bicoeff = binomialCoeff(5, 2)
+						% Expected: bicoeff = 10 (5!/(2!*(5-2)!) = 120/(2*6) = 10)
+
+						% Test 2: Edge case
+						bicoeff = binomialCoeff(0, 0)
+						% Expected: bicoeff = 1 (0!/(0!*0!) = 1/1 = 1)
+
+						% Test 3: m equals n
+						bicoeff = binomialCoeff(7, 7)
+						% Expected: bicoeff = 1 (7!/(7!*0!) = 1/1 = 1)
+					</program>
+
+				</statement>
+				<!-- <solution>
+					<p>
+						Here is one way to compute the factorial using a for loop:
+					</p>
+					<program language="matlab">
+						function F = binomialCoeff(n, m)
+							numerator = 1;
+							denominator = 1;
+
+							for k = 0:(m-1)
+								numerator = numerator * (n - k);
+								denominator = denominator * (m - k);
+							end
+
+							F = numerator / denominator;
+						end
+					</program>
+				</solution> -->
+			</task>
 
 			<task label="cqs-for-loop-function-3a">
 				<statement>
