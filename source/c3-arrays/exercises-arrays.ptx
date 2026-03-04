@@ -274,4 +274,49 @@
 		</solution>
 	</exercise>
 
+	<exercise xml:id="coding-for-loop-snakeEyesCount">
+		<statement>
+			<p>
+				Write a function named <pf>snakeEyesCount</pf> that counts the number of times you roll two <pf>1</pf>'s in a row in <pf>n</pf> rolls.
+			</p>
+			<tabular valign="top" halign="right" top="minor">
+				<col width="12%" halign="right"/>
+				<col width="12%" halign="right"/>
+				<col width="22%" halign="center"/>
+				<col width="54%" halign="left"/>
+				<row>
+					<cell><p>Inputs:</p></cell>
+					<cell><p><pf>n</pf></p></cell>
+					<cell><p>(1x1) double</p></cell>
+					<cell><p>number of die rolls</p></cell>
+				</row>
+				<row bottom="minor">
+					<cell><p>Outputs:</p></cell>
+					<cell><p><pf>count</pf></p></cell>
+					<cell><p>(1x1) double</p></cell>
+					<cell><p>the number of times two <pf>1</pf>s are rolled</p></cell>
+				</row>
+			</tabular>
+			<sidebyside widths="49% 49%">
+				<stack>
+					<p>Test Cases ⤵︎</p>
+					<program language="matlab">
+						rng(123);  % Set seed
+						snakeEyesCount(10)
+						snakeEyesCount(100)
+						snakeEyesCount(600)
+					</program>
+				</stack>
+				<stack>
+					<p>Expected ⤵︎</p>
+					<program language="matlab">
+						󠀠
+						% count = 1
+						% count = 10
+						% count = 52
+					</program>
+				</stack>
+			</sidebyside>
+		</statement>
+	</exercise>
 </exercises>
