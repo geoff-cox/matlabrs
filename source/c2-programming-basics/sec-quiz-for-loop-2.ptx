@@ -84,14 +84,13 @@
 					Rewrite each of the following repeated code snippets using a single <pf>for</pf>-loop. Your loop should produce the same output in the same order.
 				</p>
 
-				<sidebyside widths="49% 49%">
+				<sidebyside widths="47% 52%">
 					<stack>
 						<program language="matlab">
 							fprintf('Step 1 of 6 complete\n')
 							fprintf('Step 2 of 6 complete\n')
 							fprintf('Step 3 of 6 complete\n')
 							fprintf('Step 4 of 6 complete\n')
-							󠀠
 							󠀠
 						</program>
 					</stack>
@@ -106,15 +105,15 @@
 						</program>
 						<program component="key" language="matlab" line-numbers="no">
 							% === Write your for loop here ===
-							for step = 1:4
-								fprintf('Step %d complete\n', step)
+							for k = 1:4
+							 fprintf('Step %d of 6 complete\n',k)
 							end
 							󠀠
 						</program>
 					</stack>
 				</sidebyside>
 
-				<sidebyside widths="49% 49%">
+				<sidebyside widths="47% 52%">
 					<stack>
 						<program language="matlab">
 							score = 10;
@@ -132,6 +131,14 @@
 							󠀠
 							󠀠
 							󠀠
+							󠀠
+						</program>
+						<program component="key" language="matlab" line-numbers="no">
+							% === Write your for loop here ===
+							score = 10;
+							for k = 1:5
+							  score = score*k + 1/(2*k+2);
+							end
 							󠀠
 						</program>
 					</stack>
@@ -202,7 +209,7 @@
 							
 							
 							
-							x = 94
+							x = 1
 						</program>
 					</stack>
 				</sidebyside>
@@ -292,7 +299,7 @@
 							󠀠
 							󠀠
 							󠀠
-							out = 
+							out = 6
 							󠀠
 						</program>
 					</stack>
@@ -408,7 +415,7 @@
 					</sidebyside>
 
 					<program component="stu" language="matlab">
-						% Write your sumFromOne function here. You must use a for-loop.
+						% Write your sumBetween function here. You must use a for-loop.
 							󠀠
 							󠀠
 							󠀠
@@ -417,6 +424,19 @@
 							󠀠
 							󠀠
 							󠀠
+							󠀠
+							󠀠
+							󠀠
+							󠀠
+					</program>
+					<program component="key" language="matlab">
+						% Write your sumBetween function here. You must use a for-loop.
+						function total = sumBetween(a,b)
+							total = 0;
+							for k = a:(b-1)
+								total = total + k;
+							end
+						end
 							󠀠
 							󠀠
 							󠀠
