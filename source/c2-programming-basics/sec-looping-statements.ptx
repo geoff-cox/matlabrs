@@ -1881,7 +1881,7 @@
 			Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a number until it exceeds 1000:
 		</p>
 
-		<sidebyside widths="48% 48%">
+		<sidebyside widths="49% 49%">
 			<stack>
 				<title>Without Loops</title>
 				<program language="matlab">
@@ -1907,7 +1907,7 @@
 					num = 1;
 
 					while num &lt;= 1000
-							num = num * 2;
+					  num = num * 2;
 					end
 
 					fprintf('Final value: %i\n', num)
@@ -1916,32 +1916,28 @@
 		</sidebyside>
 
 		<p>
-			The loop version automatically stops when <pf>num</pf> exceeds 1000. Without a loop, you must manually count iterations and hope you wrote enough (or not too many) doubling operations. If you change the starting value or the threshold, the loop still works without modification, but the explicit version would need rewriting.
+			The loop version automatically stops the moment <pf>num &lt;= 1000</pf> becomes false. In this sense, a <pf>while</pf>-loop is like an <pf>if</pf>-statement that repeats: it checks the condition, runs the code if true, then checks again, and so on until the condition becomes false.
 		</p>
 
-		<p>
-			Think of a <pf>while</pf>-loop as a repeating <pf>if</pf>-statement: it checks the condition, runs the code if true, then checks again, and so on until the condition becomes false.
-		</p>
-
-		<sidebyside widths="48% 48%">
+		<sidebyside widths="43% 56%">
 			<stack>
-				<p>With an if-statement ⤵︎</p>
+				<p>An if-statement ⤵︎</p>
 				<program language="matlab">
 					num = 5;
 
 					if num &lt;= 50
-							num = num * 2;
+					  num = num * 2;  % runs once
 					end
 				</program>
 				<p><pf>num = 5 → 10</pf>.</p>
 			</stack>
 			<stack>
-				<p>With a while-Loop ⤵︎</p>
+				<p>A while-Loop ⤵︎</p>
 				<program language="matlab">
 					num = 5;
 
 					while num &lt;= 50
-							num = num * 2;
+					  num = num * 2;  % runs while num &lt;= 50
 					end
 				</program>
 				<p><pf>num: 5 → 10 → 20 → 40 → 80</pf>.</p>
@@ -1957,7 +1953,7 @@
 
 			<program language="matlab">
 				while loop_condition
-						code_block
+				  code_block
 				end
 			</program>
 
@@ -1966,86 +1962,15 @@
 			</p>
 
 			<p>
-				Key requirements:
+				Notes:
 				<ul>
-					<li>The condition must be true initially, or the loop body never runs.</li>
-					<li>Something inside the loop must eventually make the condition false, or you create an <term>infinite loop</term>.</li>
-					<li>Every <pf>while</pf>-loop must end with <pf>end</pf>.</li>
+					<li>If condition is not initially true, the loop body never runs.</li>
+					<li>Something inside the loop body must eventually make the <pf>loop_condition</pf> false, otherwise you get an <term>infinite loop</term>.</li>
+					<li>If MATLAB becomes unresponsive due to an infinite loop, press <pf>Ctrl+C</pf> (Windows) or <pf>Command+C</pf> (Mac) to stop execution.</li>
 				</ul>
 			</p>
 
-			<p>
-				If MATLAB becomes unresponsive due to an infinite loop, press <pf>Ctrl+C</pf> (Windows) or <pf>Command+C</pf> (Mac) to stop execution.
-			</p>
-
 		</assemblage>
-
-		<p>
-			Here is a simple example. Trace the execution by hand:
-		</p>
-
-		<sidebyside widths="35% 63%">
-			<stack>
-				<p>While loop ⤵︎</p>
-				<program language="matlab">
-					loop = 0;
-					x = 10;
-
-					while loop &lt; 2
-							loop = loop + 1;
-							x = 2*(x + loop);
-					end
-
-					ratio = x/loop
-				</program>
-			</stack>
-			<stack>
-				<p>Written out ⤵︎</p>
-				<program language="matlab">
-					loop = 0
-					x = 10
-
-					(is loop &lt; 2? Yes → enter while)
-						loop = 0 + 1 = 1
-						x = 2*(10 + 1) = 22
-					(is loop &lt; 2? Yes → enter while again)	
-						loop = 1 + 1 = 2
-						x = 2*(22 + 2) = 48
-					(is loop &lt; 2? No → exit while)
-
-					ratio = 48/2 = 24
-				</program>
-			</stack>
-		</sidebyside>
-
-		<example xml:id="ssub-while-harmonic-threshold">
-			<title>Example: Summing Until a Threshold</title>
-
-			<statement>
-				<p>
-					Find the first integer <m>N</m> such that 
-					<me>\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{N} \ge 10</me>.
-				</p>
-
-				<program language="matlab">
-					the_sum = 0;
-					k = 1;
-
-					while the_sum &lt; 10
-						the_sum = the_sum + 1/k;
-						k = k + 1;
-					end
-
-					N = k - 1
-					the_sum
-				</program>
-
-				<p>
-					The loop adds terms until the sum crosses 10. Since <pf>k</pf> is incremented after adding each term, we need <pf>N = k - 1</pf> to get the correct count.
-				</p>
-			</statement>
-
-		</example>
 
 		<exercise label="looping-structures-reading-ckpt-2">
 
@@ -2137,6 +2062,82 @@
 			</task>
 
 		</exercise>
+
+		<p>
+			Here is a simple example. Trace the execution by hand:
+		</p>
+
+		<sidebyside widths="40% 59%">
+			<stack>
+				<p>While loop ⤵︎</p>
+				<program language="matlab">
+					loop = 0;
+					x = 10;
+
+					while loop &lt; 2
+					  loop = loop + 1;
+					  x = 2*(x + loop);
+					end
+
+					fprintf('x = %i\n', x)
+				</program>
+			</stack>
+			<stack>
+				<p>Written out ⤵︎</p>
+				<program language="matlab">
+					loop = 0
+					x = 10
+
+					(is loop &lt; 2? Yes → enter while)
+					  loop = 0 + 1 = 1
+					  x = 2*(10 + 1) = 22
+					(is loop &lt; 2? Yes → enter while again)	
+					  loop = 1 + 1 = 2
+					  x = 2*(22 + 2) = 48
+					(is loop &lt; 2? No → exit while)
+
+					fprintf('x = %i\n', x)
+				</program>
+			</stack>
+		</sidebyside>
+
+		<example xml:id="ssub-while-harmonic-threshold">
+			<title>Example: Summing Until a Threshold</title>
+
+			<statement>
+				<p>
+					Find the first integer <m>N</m> such that 
+					<me>\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{N} \ge 2.6</me>.
+				</p>
+
+				<program language="matlab">
+					S = 0;
+					k = 0;
+
+					while S &lt; 2.6
+					  k = k + 1;
+					  S = S + 1/k;
+					  fprintf(' + 1/%i', k)
+					end
+
+					fprintf(' = %g\n', S)
+				</program>
+
+				<p>
+					Initially, <m>S=0</m> and for each loop, <m>S</m> increases by <m>\frac{1}{k}</m>:
+					<me>
+						S = \us{S=1.8333}{\underline{\us{S=1.5}{\underline{\us{S=1}{\underline{0 + \frac11}} + \frac12}} + \frac13}} + \frac14 + \cdots
+					</me>
+				</p>
+				<p>
+					until, eventually,  <m>S</m> exceeds 2.6. Running this in MATLAB, we get the output:
+				</p>
+				<pre>
+					+ 1/1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6 + 1/7 + 1/8 = 2.71786
+				</pre>
+			</statement>
+
+		</example>
 
 		<reading-questions xml:id="class-activities-while-loops">
 
