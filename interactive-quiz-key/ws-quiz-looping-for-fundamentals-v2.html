@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MATLAB-BOOK Quiz: for-Loops (Fundamentals)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="og:image" content="vmi.instructure.com/external/figures/matlabrs-icon.png">
+<meta property="book:title" content="Introduction to Programming with MATLAB">
+<meta property="book:author" content="Geoffrey W. Cox, Ph.D.">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = true;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.11.17';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.86a1bdf80f338ffc.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.98ef3b0c170cd180.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.74f6fa0c85f09c79.css">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="matlabrs" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href="https://www.vmi.edu/"><img src="external/figures/matlabrs-icon.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="matlabrs.html"><span class="title">Introduction to Programming with MATLAB</span> <span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span></a></h1>
+<p class="byline">Geoffrey W. Cox, Ph.D.</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-3.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "classic",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="up-button button" href="sec-quiz-looping-for-fundamentals-v2.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand\DLGray{\color{Gray}}
+\newcommand\DLO{\color{BurntOrange}}
+\newcommand\DLRa{\color{WildStrawberry}}
+\newcommand\DLGa{\color{Green}}
+\newcommand\DLGb{\color{PineGreen}}
+\newcommand\DLBa{\color{RoyalBlue}}
+\newcommand\DLBb{\color{Cerulean}}
+\newcommand\ds{\displaystyle}
+\newcommand\ddx{\frac{d}{dx}}
+\newcommand\os{\overset}
+\newcommand\us{\underset}
+\newcommand\ob{\overbrace}
+\newcommand\obt{\overbracket}
+\newcommand\ub{\underbrace}
+\newcommand\ubt{\underbracket}
+\newcommand\ul{\underline}
+\newcommand\tikznode[3][]
+	{\tikz[remember picture,baseline=(#2.base)]
+		\node[minimum size=0pt,inner sep=0pt,#1](#2){#3};
+	}
+\newcommand\del{\nabla}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathcal{C}}
+\newcommand\N{\mathcal{N}}
+\newcommand\eps{\varepsilon}
+\renewcommand\epsilon{\varepsilon}
+\renewcommand\subset{\subseteq}
+\newcommand\norm[1]{\|{#1}\|}
+\newcommand\matrixbrackets[4][1]{
+	\draw (#3,#2) -- (\fpeval{#3+0.2},#2); 
+	\draw (#3,#1) -- (#3 ,#2); 
+	\draw (#3,#1) -- (\fpeval{#3+0.2},#1);
+	\draw (#4,#2) -- (\fpeval{#4-0.2},#2); 
+	\draw (#4,#1) -- (#4 ,#2); 
+	\draw (#4,#1) -- (\fpeval{#4-0.2},#1);
+}
+\tikzstyle{circle node 0}=[fill=white, draw=black, shape=circle, inner sep=0pt]
+\tikzstyle{circle node 2}=[fill=white, draw=black, shape=circle, inner sep=2pt]
+\tikzstyle{hrect node}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+\tikzstyle{vrect node}=[fill=white, draw=black, inner sep=0pt, outer sep=0pt]
+\tikzstyle{hidden node 0}=[inner sep=0pt, outer sep=0pt] 
+\tikzstyle{hidden node 2}=[fill=white, inner sep=2pt, outer sep=2pt]
+\tikzstyle{rect node 1}=[fill=white, inner sep=2pt, outer sep=0pt]
+\tikzstyle{rect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=0pt]
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 focused" data-preexpanded-levels="0" data-max-levels="3"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-welcome-to-matlab.html" class="internal"><span class="codenumber">1</span> <span class="title">Welcome to MATLAB</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="getting-matlab.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Installing MATLAB</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="matlab-desktop.html" class="internal"><span class="codenumber">1.2</span> <span class="title">MATLAB Desktop</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="desktop.html" class="internal"><span class="title">Main Components</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toggling-components.html" class="internal"><span class="title">Modifying the Layout</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="matlab-command-window.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Command Window (<span class="process-math">\(\texttt{cwd}\)</span>)</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="basic-calculations.html" class="internal"><span class="title">Basic Calculations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="command-window-utility.html" class="internal"><span class="title">Keeping the Command Window Organized</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="matlab-variables.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-defining.html" class="internal"><span class="title">Creating Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-using.html" class="internal"><span class="title">Using and Reassigning Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="naming-variables.html" class="internal"><span class="title">Naming Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-6.html" class="internal"><span class="title">Common Beginner Mistakes</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch-programming-basics.html" class="internal"><span class="codenumber">2</span> <span class="title">Programming Basics</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-scripts-functions.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Scripts &amp; Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-scripts.html" class="internal"><span class="title">Scripts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="activities-scripts.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-scripts.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-functions.html" class="internal"><span class="title">Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="activities-functions.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-functions.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="coding-exercises-scripts-functions.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-logical-values-statements.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Logical Values &amp; Statements</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-logical-values.html" class="internal"><span class="title">Logical Values: true/false (Answers)</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-values.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-logical-statements.html" class="internal"><span class="title">Logical Statements (Questions)</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-statements.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-logical-values-statements.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-conditional-statements.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Conditional Statements</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-if-statements.html" class="internal"><span class="title">If Statements</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-if-statements.html" class="internal"><span class="title">Review Questions</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-switch-statement.html" class="internal"><span class="title">Switch Statement</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-if-switch-statements.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-switch-statements.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-conditional-statements.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-looping-statements.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Looping Statements</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-for-loops.html" class="internal"><span class="title">The for Loop</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-for-loops.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-for-loops.html" class="internal"><span class="title">🤔💭 Conceptual Questions &amp; Drills</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-while-loops.html" class="internal"><span class="title">The while Loop</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-while-loops.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">Which to Use: for vs. while</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-additional-flow-control.html" class="internal"><span class="title">Additional Flow Control</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-break-continue-return.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-additional-flow-control.html" class="internal"><span class="title">🤔💭 Conceptual Questions &amp; Drills</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="coding-exercises-looping-statements.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-quiz-looping-for-fundamentals-v2.html" class="internal"><span class="codenumber">2.5</span> <span class="title">for-Loops Quiz (Fundamentals)</span></a></div>
+<ul class="structural toc-item-list contains-active"><li class="toc-item toc-worksheet active"><div class="toc-title-box"><a href="ws-quiz-looping-for-fundamentals-v2.html" class="internal"><span class="title">Quiz: for-Loops (Fundamentals)</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="fn-exercises.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Coding Projects</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="ch-arrays.html" class="internal"><span class="codenumber">3</span> <span class="title">Arrays</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-additional-topics.html" class="internal"><span class="codenumber">4</span> <span class="title">Additional Topics</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="subsec-nested-loops.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Nested Loops</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-.html" class="internal"><span class="codenumber">4.1</span> <span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-nested-loops.html" class="internal"><span class="codenumber">4.1</span> <span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sec-useful-built-in-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Useful Built-in Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">The mod function</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-floor-ceil-round.html" class="internal"><span class="codenumber">A.2</span> <span class="title">The floor, ceil, and round functions</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-floor-ceil-round.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="back-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<div class="print-preview-header">
+<h2 class="print-preview">Print preview</h2>
+<div class="print-controls">
+<div class="print-controls-toggles">
+<form class="papersize-select" id="papersize-select">
+<span class="name">Paper size</span><label><input type="radio" name="papersize" value="a4">A4
+        </label><label><input type="radio" name="papersize" value="letter">Letter
+        </label>
+</form>
+<details class="print-options"><summary>Additional printing options</summary><div class="header-footer-options">
+<div class="header-option">
+<span class="title">Print headers</span><label>First page<input type="checkbox" id="print-first-page-header-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-header-checkbox" checked></label>
+</div>
+<div class="footer-option">
+<span class="title">Print footers</span><label>First page<input type="checkbox" id="print-first-page-footer-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-footer-checkbox" checked></label>
+</div>
+</div>
+<div class="highlight-workspace-option">
+<label for="highlight-workspace-checkbox">Highlight workspace</label><input type="checkbox" id="highlight-workspace-checkbox">
+</div></details>
+</div>
+<button class="print-button" title="Print" onClick="window.print()"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span><span class="name">Print</span></button>
+</div>
+</div>
+<section class="worksheet" id="ws-quiz-looping-for-fundamentals-v2" data-margins="0.75in 0.75in 0.75in 0.75in"><h2 class="heading hide-type">
+<span class="type">Worksheet</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Quiz: for-Loops (Fundamentals)</span><div class="print-links"><a href="?printpreview=ws-quiz-looping-for-fundamentals-v2" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
+</h2>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:10% 90%;column-gap:0%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="ws-quiz-looping-for-fundamentals-v2-2-1-1">NAME:<div class="autopermalink" data-description="Paragraph"><a href="#ws-quiz-looping-for-fundamentals-v2-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="ws-quiz-looping-for-fundamentals-v2-2-1-2">HR:<div class="autopermalink" data-description="Paragraph"><a href="#ws-quiz-looping-for-fundamentals-v2-2-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="sbspanel sbspanel--top top" style=""><div class="para" id="ws-quiz-looping-for-fundamentals-v2-2-2-1"><div class="autopermalink" data-description="Paragraph"><a href="#ws-quiz-looping-for-fundamentals-v2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div></div>
+</div></div>
+<article class="exercise exercise-like" id="quiz-for-loop-conceptual"><h2 class="heading">
+<span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Conceptual Questions.</span>
+</h2>
+<article class="task exercise-like" id="quiz-for-loop-conceptual-1"><h3 class="heading"><span class="codenumber">(a)</span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="quiz-for-loop-conceptual-1-1-1">Which loop header generates the <code class="code-inline tex2jax_ignore language-matlab">k</code>-values: <code class="code-inline tex2jax_ignore language-matlab">3, 6, 9, 12, 15</code>?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-conceptual-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-for-loop-conceptual-1" data-multipleanswers="true">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1_opt_a" data-correct=""><div class="para" id="quiz-for-loop-conceptual-1-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">for k = [3, 6, 9, 12, 15]</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1_opt_a">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1_opt_b"><div class="para" id="quiz-for-loop-conceptual-1-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">for k = 1:3:15</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1_opt_b">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1_opt_c"><div class="para" id="quiz-for-loop-conceptual-1-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">for k = 3:6:15</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1_opt_c">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1_opt_d"><div class="para" id="quiz-for-loop-conceptual-1-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">for k = 3:2:15</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1_opt_d">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1_opt_e" data-correct=""><div class="para" id="quiz-for-loop-conceptual-1-2-5-1-1"><code class="code-inline tex2jax_ignore language-matlab">for k = 3:3:15</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1_opt_e">
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task 1.a"><a href="#quiz-for-loop-conceptual-1" title="Copy heading and permalink for Task 1.a" aria-label="Copy heading and permalink for Task 1.a">🔗</a></div></article><article class="task exercise-like" id="quiz-for-loop-conceptual-2"><h3 class="heading"><span class="codenumber">(b)</span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="quiz-for-loop-conceptual-2-1-1">What are the <code class="code-inline tex2jax_ignore language-matlab">k</code>-values generated by the loop header: <code class="code-inline tex2jax_ignore language-matlab">for k = 4:-2:-3</code>?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-conceptual-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-for-loop-conceptual-2" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-2_opt_a"><div class="para" id="quiz-for-loop-conceptual-2-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">4, 2, 0, -2, -4</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-2_opt_a"><div class="para" id="quiz-for-loop-conceptual-2-2-1-2-1">With a step of <code class="code-inline tex2jax_ignore language-matlab">-2</code>, the next value after <code class="code-inline tex2jax_ignore language-matlab">-2</code> would be <code class="code-inline tex2jax_ignore language-matlab">-4</code>, which overshoots past <code class="code-inline tex2jax_ignore language-matlab">-3</code>, so it is not included.</div></li>
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-2_opt_b" data-correct=""><div class="para" id="quiz-for-loop-conceptual-2-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">4, 2, 0, -2</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-2_opt_b"><div class="para" id="quiz-for-loop-conceptual-2-2-2-2-1">Start at 4 and subtract 2 each time. The next value would be <code class="code-inline tex2jax_ignore language-matlab">-4</code>, which goes past the stop value <code class="code-inline tex2jax_ignore language-matlab">-3</code>, so the loop ends at <code class="code-inline tex2jax_ignore language-matlab">-2</code>.</div></li>
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-2_opt_c"><div class="para" id="quiz-for-loop-conceptual-2-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">4, 2, 0, -2, -3</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-2_opt_c"><div class="para" id="quiz-for-loop-conceptual-2-2-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">-3</code> is the stop value, but it is only included if the step lands on it exactly.</div></li>
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-2_opt_d"><div class="para" id="quiz-for-loop-conceptual-2-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">2, 0, -2</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-2_opt_d"><div class="para" id="quiz-for-loop-conceptual-2-2-4-2-1">The start value 4 is missing.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task 1.b"><a href="#quiz-for-loop-conceptual-2" title="Copy heading and permalink for Task 1.b" aria-label="Copy heading and permalink for Task 1.b">🔗</a></div></article><div class="autopermalink" data-description="Worksheet Exercise 1: Conceptual Questions"><a href="#quiz-for-loop-conceptual" title="Copy heading and permalink for Worksheet Exercise 1: Conceptual Questions" aria-label="Copy heading and permalink for Worksheet Exercise 1: Conceptual Questions">🔗</a></div></article><article class="exercise exercise-like" id="quiz-for-loop-rewrite"><h2 class="heading">
+<span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Rewrite Repeated Code and Loop Code.</span>
+</h2>
+<div class="para" id="quiz-for-loop-rewrite-2-1">Rewrite each of the following repeated code snippets using a single <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop. Your loop should produce the same output in the same order.<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-rewrite-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.25%;margin-right:0.25%;grid-template-columns:47.2361809045226% 52.2613065326633%;column-gap:0.5%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">fprintf('Step 1 of 6 complete\n')
+fprintf('Step 2 of 6 complete\n')
+fprintf('Step 3 of 6 complete\n')
+fprintf('Step 4 of 6 complete\n')
+󠀠
+</code></pre></div>
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% === Write your for loop here ===
+for k = 1:4
+ fprintf('Step %d of 6 complete\n',k)
+end
+󠀠
+</code></pre></div>
+</div></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.25%;margin-right:0.25%;grid-template-columns:47.2361809045226% 52.2613065326633%;column-gap:0.5%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">score = 10;
+score = score*1 + 1/4;
+score = score*2 + 1/6;
+score = score*3 + 1/8;
+score = score*4 + 1/10;
+score = score*5 + 1/12;
+</code></pre></div>
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% === Write your for loop here ===
+score = 10;
+for k = 1:5
+  score = score*k + 1/(2*k+2);
+end
+󠀠
+</code></pre></div>
+</div></div>
+<div class="autopermalink" data-description="Worksheet Exercise 2: Rewrite Repeated Code and Loop Code"><a href="#quiz-for-loop-rewrite" title="Copy heading and permalink for Worksheet Exercise 2: Rewrite Repeated Code and Loop Code" aria-label="Copy heading and permalink for Worksheet Exercise 2: Rewrite Repeated Code and Loop Code">🔗</a></div></article><article class="exercise exercise-like" id="quiz-for-loop-output"><h2 class="heading">
+<span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Determine the Printed Values.</span>
+</h2>
+<div class="para" id="quiz-for-loop-output-2-1">For each of the following code snippets, determine what is printed by <code class="code-inline tex2jax_ignore language-matlab">fprintf</code>.<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-output-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:49.4949494949495% 49.4949494949495%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">total = 0;
+for k = 1:4
+	total = total + k*(k-1);
+end
+fprintf('total = %d\n', total)
+</code></pre></div>
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% What does this print?
+
+
+
+total = 20
+</code></pre></div>
+</div></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:49.4949494949495% 49.4949494949495%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">x = 1;
+for k = 4:4:11
+	x = 2-x;
+end
+fprintf('x = %d\n', x)
+</code></pre></div>
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% What does this print?
+
+
+
+x = 1
+</code></pre></div>
+</div></div>
+<div class="autopermalink" data-description="Worksheet Exercise 3: Determine the Printed Values"><a href="#quiz-for-loop-output" title="Copy heading and permalink for Worksheet Exercise 3: Determine the Printed Values" aria-label="Copy heading and permalink for Worksheet Exercise 3: Determine the Printed Values">🔗</a></div></article><article class="exercise exercise-like" id="quiz-for-loop-function-output"><h2 class="heading">
+<span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Determine the Output of Functions.</span>
+</h2>
+<div class="para" id="quiz-for-loop-function-output-2-1">For each of the following functions, determine the output when called with the given input.<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-output-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="quiz-for-loop-function-output-2-2">What does this function return when <code class="code-inline tex2jax_ignore language-matlab">x = 3</code>?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-output-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:49.4949494949495% 49.4949494949495%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">function y = bump(x)
+	y = x;
+	for k = 1:5
+		y = y + 2*k;
+	end
+end
+</code></pre></div>
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% What is the value of out?
+
+out = bump(3);
+󠀠
+out = 33
+󠀠
+</code></pre></div>
+</div></div> <div class="para" id="quiz-for-loop-function-output-2-4">What does this function return when <code class="code-inline tex2jax_ignore language-matlab">n = 6</code>?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-output-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:49.4949494949495% 49.4949494949495%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">function c = dump(n)
+	c = 0;
+	for k = 1:n
+		if mod(k, 3) == 0
+			c = c + 2;
+		elseif mod(k, 2) == 0
+			c = c + 1;
+		end
+	end
+end
+</code></pre></div>
+<div class="sbspanel sbspanel--top top" style=""><pre class="program clipboardable"><code class="language-matlab">% What is the value of out?
+
+out = dump(6);
+󠀠
+󠀠
+󠀠
+out = 6
+󠀠
+</code></pre></div>
+</div></div>
+<div class="autopermalink" data-description="Worksheet Exercise 4: Determine the Output of Functions"><a href="#quiz-for-loop-function-output" title="Copy heading and permalink for Worksheet Exercise 4: Determine the Output of Functions" aria-label="Copy heading and permalink for Worksheet Exercise 4: Determine the Output of Functions">🔗</a></div></article><article class="exercise exercise-like" id="quiz-for-loop-function-1"><h2 class="heading">
+<span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Summing with a for-Loop.</span>
+</h2>
+<article class="task exercise-like" id="quiz-for-loop-function-1a"><h3 class="heading"><span class="codenumber">(a)</span></h3>
+<div class="para logical" id="quiz-for-loop-function-1a-1-1">
+<div class="para">Write a function named <code class="code-inline tex2jax_ignore language-matlab">sumFromOne</code> that takes a positive integer <code class="code-inline tex2jax_ignore language-matlab">n</code> and returns the sum:</div>
+<div class="displaymath process-math" id="quiz-for-loop-function-1a-1-1-3">
+\begin{equation*}
+1 + 2 + \cdots + n
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:100%;column-gap:0%;"><div class="sbspanel sbspanel--top top" style=""><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-5-1-1">Inputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-5-4-1">number to sum up to<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-6-1-1">Outputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">total</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-1a-1-2-1-1-6-4-1">the sum above<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1a-1-2-1-1-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div></div></div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Write your sumFromOne function here. You must use a for-loop.
+function total = sumFromOne(n)
+	total = 0;
+	for k = 1:n
+		total = total + k;
+	end
+end
+	󠀠
+	󠀠
+	󠀠
+	󠀠
+	󠀠
+	󠀠
+</code></pre></div>
+<div class="autopermalink" data-description="Task 5.a"><a href="#quiz-for-loop-function-1a" title="Copy heading and permalink for Task 5.a" aria-label="Copy heading and permalink for Task 5.a">🔗</a></div></article><article class="task exercise-like" id="quiz-for-loop-function-1b"><h3 class="heading"><span class="codenumber">(b)</span></h3>
+<div class="para logical" id="quiz-for-loop-function-1b-1-1">
+<div class="para">Write a function named <code class="code-inline tex2jax_ignore language-matlab">sumBetween</code> that takes two nonnegative integers <code class="code-inline tex2jax_ignore language-matlab">a</code>, <code class="code-inline tex2jax_ignore language-matlab">b</code> and returns the sum:</div>
+<div class="displaymath process-math" id="quiz-for-loop-function-1b-1-1-4">
+\begin{equation*}
+a + (a+1) + (a+2) + \cdots + b
+\end{equation*}
+</div>
+<div class="para">You may assume that <code class="code-inline tex2jax_ignore language-matlab">a</code> is less than or equal to <code class="code-inline tex2jax_ignore language-matlab">b</code>. If <code class="code-inline tex2jax_ignore language-matlab">a</code> and <code class="code-inline tex2jax_ignore language-matlab">b</code> are equal, the sum should be <code class="code-inline tex2jax_ignore language-matlab">0</code>.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:100%;column-gap:0%;"><div class="sbspanel sbspanel--top top" style=""><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-5-1-1">Inputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">a</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-5-4-1">start of sum<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-6-1-1"><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">b</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-6-4-1">end of sum<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-7-1-1">Outputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">total</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-1b-1-2-1-1-7-4-1">the sum above<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-1b-1-2-1-1-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div></div></div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Write your sumBetween function here. You must use a for-loop.
+function total = sumBetween(a,b)
+	total = 0;
+	for k = a:(b-1)
+		total = total + k;
+	end
+end
+	󠀠
+	󠀠
+	󠀠
+	󠀠
+</code></pre></div>
+<div class="autopermalink" data-description="Task 5.b"><a href="#quiz-for-loop-function-1b" title="Copy heading and permalink for Task 5.b" aria-label="Copy heading and permalink for Task 5.b">🔗</a></div></article><div class="autopermalink" data-description="Worksheet Exercise 5: Summing with a for-Loop"><a href="#quiz-for-loop-function-1" title="Copy heading and permalink for Worksheet Exercise 5: Summing with a for-Loop" aria-label="Copy heading and permalink for Worksheet Exercise 5: Summing with a for-Loop">🔗</a></div></article><article class="exercise exercise-like" id="quiz-for-loop-function-2"><h2 class="heading">
+<span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Counting Die Rolls.</span>
+</h2>
+<article class="task exercise-like" id="quiz-for-loop-function-2a"><h3 class="heading"><span class="codenumber">(a)</span></h3>
+<div class="para" id="quiz-for-loop-function-2a-1-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">highDieCount</code> that uses a for loop to count the number of times a 5 or 6 is rolled when rolling a six-sided die <code class="code-inline tex2jax_ignore language-matlab">n</code> times. Inside the loop, simulate a die roll using <code class="code-inline tex2jax_ignore language-matlab">randi([1,6])</code>, which returns a random integer between <code class="code-inline tex2jax_ignore language-matlab">1</code> and <code class="code-inline tex2jax_ignore language-matlab">6</code>.<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:100%;column-gap:0%;"><div class="sbspanel sbspanel--top top" style=""><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-5-1-1">Inputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-5-4-1">number of die rolls<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-6-1-1">Outputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">count</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-2a-1-2-1-1-6-4-1">the number of times <code class="code-inline tex2jax_ignore language-matlab">5</code> or <code class="code-inline tex2jax_ignore language-matlab">6</code> is rolled<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2a-1-2-1-1-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div></div></div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Write your highDieCount function here. You must use a for-loop.
+function count = highDieCount(n)
+	count = 0;
+	for k = 1:n
+		roll = randi([1,6]);
+		if roll == 5 || roll == 6
+			count = count + 1;
+		end
+	end
+end
+	󠀠
+	󠀠
+	󠀠
+	󠀠
+</code></pre></div>
+<div class="autopermalink" data-description="Task 6.a"><a href="#quiz-for-loop-function-2a" title="Copy heading and permalink for Task 6.a" aria-label="Copy heading and permalink for Task 6.a">🔗</a></div></article><article class="task exercise-like" id="quiz-for-loop-function-2b"><h3 class="heading"><span class="codenumber">(b)</span></h3>
+<div class="para" id="quiz-for-loop-function-2b-1-1">Write a function named <code class="code-inline tex2jax_ignore language-matlab">snakeEyesCount</code> that counts the number of times you roll two <code class="code-inline tex2jax_ignore language-matlab">1</code>’s in a row in <code class="code-inline tex2jax_ignore language-matlab">n</code> rolls.<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:100%;column-gap:0%;"><div class="sbspanel sbspanel--top top" style=""><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-5-1-1">Inputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-5-4-1">number of die rolls<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-6-1-1">Outputs:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:72px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">count</code><div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:132px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:324px;"><div class="para" id="quiz-for-loop-function-2b-1-2-1-1-6-4-1">the number of times two <code class="code-inline tex2jax_ignore language-matlab">1</code>s are rolled<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-function-2b-1-2-1-1-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div></div></div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">% Write your snakeEyesCount function here. You must use a for-loop.
+function count = snakeEyesCount(n)
+	count = 0;
+	prevRoll = 0;
+	for k = 1:n
+		roll = randi([1,6]);
+		if roll == 1 &amp;&amp; prevRoll == 1
+			count = count + 1;
+		end
+		prevRoll = roll;
+	end
+end
+	󠀠
+</code></pre></div>
+<div class="autopermalink" data-description="Task 6.b"><a href="#quiz-for-loop-function-2b" title="Copy heading and permalink for Task 6.b" aria-label="Copy heading and permalink for Task 6.b">🔗</a></div></article><div class="autopermalink" data-description="Worksheet Exercise 6: Counting Die Rolls"><a href="#quiz-for-loop-function-2" title="Copy heading and permalink for Worksheet Exercise 6: Counting Die Rolls" aria-label="Copy heading and permalink for Worksheet Exercise 6: Counting Die Rolls">🔗</a></div></article><article class="exercise exercise-like" id="quiz-for-loop-special-student"><h2 class="heading">
+<span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Code Recall.</span>
+</h2>
+<div class="introduction" id="quiz-for-loop-special-student-2">
+<div class="para" id="quiz-for-loop-special-student-2-1">Use the functions below to answer the questions that follow. Assume that the functions are defined in the same file and that <code class="code-inline tex2jax_ignore language-matlab">is_valid_triangle</code> correctly identifies valid triangles.<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-special-student-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function result=my_xor_threeway(a,b,c)
+if a==true
+	result=1;
+elseif b==true
+	result=1;
+elseif c==true
+	result=1;
+else
+	result=0;
+end
+end
+</code></pre></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function type=classify_triangle(a,b,c)
+if is_valid_triangle(a,b,c)==true
+	if a==b &amp;&amp; b==c
+		type='Equilateral'
+	elseif my_xor_threeway(a==b,b==c,a==c)
+		type='Isosceles'
+	elseif a~=b &amp;&amp; b~=c
+		type='Scalene'
+	end
+elseif is_valid_triangle(a,b,c)==false
+	type='Invalid'
+end
+end
+</code></pre></div>
+</div>
+<article class="task exercise-like" id="quiz-for-loop-conceptual-1a"><h3 class="heading"><span class="codenumber">(a)</span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="quiz-for-loop-conceptual-1a-1-1">Which statement best explains why <code class="code-inline tex2jax_ignore language-matlab">my_xor_threeway</code> correctly detects isosceles triangles inside <code class="code-inline tex2jax_ignore language-matlab">classify_triangle</code>?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-conceptual-1a-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-for-loop-conceptual-1a" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1a_opt_a"><div class="para" id="quiz-for-loop-conceptual-1a-2-1-1-1">Because <code class="code-inline tex2jax_ignore language-matlab">my_xor_threeway</code> correctly implements <code class="code-inline tex2jax_ignore language-matlab">xor</code>.</div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1a_opt_a">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1a_opt_b"><div class="para" id="quiz-for-loop-conceptual-1a-2-2-1-1">Because for valid triangles, at most one of <code class="code-inline tex2jax_ignore language-matlab">a==b</code>, <code class="code-inline tex2jax_ignore language-matlab">b==c</code>, <code class="code-inline tex2jax_ignore language-matlab">a==c</code> can be true.</div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1a_opt_b">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1a_opt_c"><div class="para" id="quiz-for-loop-conceptual-1a-2-3-1-1">Because <code class="code-inline tex2jax_ignore language-matlab">my_xor_threeway</code> specifically checks the isosceles case.</div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1a_opt_c">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1a_opt_d" data-correct=""><div class="para" id="quiz-for-loop-conceptual-1a-2-4-1-1">Because after ruling out equilateral, the isosceles case reduces to checking whether at least one pair of sides is equal.</div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1a_opt_d">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1a_opt_e"><div class="para" id="quiz-for-loop-conceptual-1a-2-5-1-1">Because if the equilateral branch fails, all three <code class="code-inline tex2jax_ignore language-matlab">a==b</code>, <code class="code-inline tex2jax_ignore language-matlab">b==c</code>, <code class="code-inline tex2jax_ignore language-matlab">a==c</code> must be false</div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1a_opt_e">
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task 7.a"><a href="#quiz-for-loop-conceptual-1a" title="Copy heading and permalink for Task 7.a" aria-label="Copy heading and permalink for Task 7.a">🔗</a></div></article><article class="task exercise-like" id="quiz-for-loop-conceptual-1b"><h3 class="heading"><span class="codenumber">(b)</span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="quiz-for-loop-conceptual-1b-1-1">Suppose we modify the order of the conditional checks in <code class="code-inline tex2jax_ignore language-matlab">classify_triangle</code> as follows:<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-conceptual-1b-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function [type]=classify_triangle(a,b,c)
+	if is_valid_triangle(a,b,c)==true
+		if my_xor_threeway(a==b,b==c,a==c)
+			type='Isosceles'
+		elseif a==b &amp;&amp; b==c
+			type='Equilateral'
+		elseif a~=b &amp;&amp; b~=c
+			type='Scalene'
+		end
+	elseif is_valid_triangle(a,b,c)==false
+		type='Invalid'
+	end
+end
+</code></pre></div> <div class="para" id="quiz-for-loop-conceptual-1b-1-3">Which inputs will be misclassified by this code?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-conceptual-1b-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-for-loop-conceptual-1b" data-multipleanswers="true">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1b_opt_a" data-correct=""><div class="para" id="quiz-for-loop-conceptual-1b-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">(5,5,5)</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1b_opt_a">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1b_opt_b"><div class="para" id="quiz-for-loop-conceptual-1b-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">(5,0,8)</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1b_opt_b">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1b_opt_c"><div class="para" id="quiz-for-loop-conceptual-1b-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">(5,5,8)</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1b_opt_c">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1b_opt_d"><div class="para" id="quiz-for-loop-conceptual-1b-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">(-5,2,8)</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1b_opt_d">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1b_opt_e"><div class="para" id="quiz-for-loop-conceptual-1b-2-5-1-1"><code class="code-inline tex2jax_ignore language-matlab">(3,4,5)</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1b_opt_e">
+<li data-component="answer" id="rs-quiz-for-loop-conceptual-1b_opt_f"><div class="para" id="quiz-for-loop-conceptual-1b-2-6-1-1"><code class="code-inline tex2jax_ignore language-matlab">(7,10,7)</code></div></li>
+<li data-component="feedback" id="rs-quiz-for-loop-conceptual-1b_opt_f">
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task 7.b"><a href="#quiz-for-loop-conceptual-1b" title="Copy heading and permalink for Task 7.b" aria-label="Copy heading and permalink for Task 7.b">🔗</a></div></article><article class="task exercise-like" id="quiz-for-loop-conceptual-1c"><h3 class="heading"><span class="codenumber">(c)</span></h3>
+<div class="ptx-runestone-container"><div class="runestone shortanswer_section"><div data-component="shortanswer" data-question_label="" class="journal" data-mathjax="" id="rs-quiz-for-loop-conceptual-1c" data-placeholder="You can write here, and it will be saved on this device, but your response will not be graded."><div class="para" id="quiz-for-loop-conceptual-1c-1-1">The <code class="code-inline tex2jax_ignore language-matlab">xor</code> operator returns true if exactly one of its inputs is true, and false otherwise. Provide one specific input triple <code class="code-inline tex2jax_ignore language-matlab">(a,b,c)</code> for which <code class="code-inline tex2jax_ignore language-matlab">my_xor_threeway(a,b,c)</code> and <code class="code-inline tex2jax_ignore language-matlab">xor(a,b,c)</code> return different results. Then breifly explain why the results differ.<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-conceptual-1c-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></div></div>
+<div class="autopermalink" data-description="Task 7.c"><a href="#quiz-for-loop-conceptual-1c" title="Copy heading and permalink for Task 7.c" aria-label="Copy heading and permalink for Task 7.c">🔗</a></div></article><article class="task exercise-like" id="quiz-for-loop-conceptual-1d"><h3 class="heading"><span class="codenumber">(d)</span></h3>
+<div class="ptx-runestone-container"><div class="runestone shortanswer_section"><div data-component="shortanswer" data-question_label="" class="journal" data-mathjax="" id="rs-quiz-for-loop-conceptual-1d" data-placeholder="You can write here, and it will be saved on this device, but your response will not be graded."><div class="para" id="quiz-for-loop-conceptual-1d-1-1">You named your function <code class="code-inline tex2jax_ignore language-matlab">my_xor_threeway</code>. In your own words, what did you intend this function to do when you wrote it? Why did you choose that name?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-for-loop-conceptual-1d-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></div></div>
+<div class="autopermalink" data-description="Task 7.d"><a href="#quiz-for-loop-conceptual-1d" title="Copy heading and permalink for Task 7.d" aria-label="Copy heading and permalink for Task 7.d">🔗</a></div></article><article class="task exercise-like" id="quiz-for-loop-conceptual-1e"><h3 class="heading"><span class="codenumber">(e)</span></h3>
+<div class="ptx-runestone-container"><div class="runestone">
+<div data-component="fillintheblank" class="fillintheblank" style="visibility: hidden;" id="rs-quiz-for-loop-conceptual-1e"><script type="application/json">{
+"problemHtml": "<div class=\"para\" id=\"quiz-for-loop-conceptual-1e-1-1\">Consider the <code class=\"code-inline tex2jax_ignore language-matlab\">is_valid_triangle<\/code> function:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#quiz-for-loop-conceptual-1e-1-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"code-box\"><pre class=\"program clipboardable line-numbers\"><code class=\"language-matlab\">function [is_valid]=is_valid_triangle(a,b,c)\n\tis_valid=false;\n\tif (a&gt;0) &amp;&amp; (b&gt;0) &amp;&amp; (c&gt;0)\n\t\tif a&lt;=c &amp;&amp; b&lt;=c\n\t\t\tif (a+b)&gt;c\n\t\t\t\tis_valid = true;\n\t\t\tend\n\t\telseif b&lt;=a &amp;&amp; c&lt;=a \n\t\t\tif (b+c)&gt;a\n\t\t\t\tis_valid=true;\n\t\t\tend\n\t\telseif a&lt;=b &amp;&amp; c&lt;=b\n\t\t\tif (a+c)&gt;b\n\t\t\t\tis_valid=true;\n\t\t\tend\n\t\tend\n\tend\nend\n<\/code><\/pre><\/div><div class=\"para logical\" id=\"quiz-for-loop-conceptual-1e-1-3\"><div class=\"para\">Trace through <code class=\"code-inline tex2jax_ignore language-matlab\">is_valid_triangle(7, 10, 7)<\/code> step by step.<\/div><ol class=\"lower-alpha lower-alpha-level-1\" id=\"quiz-for-loop-conceptual-1e-1-3-2\"><li id=\"quiz-for-loop-conceptual-1e-1-3-2-1\"><div class=\"para\" id=\"quiz-for-loop-conceptual-1e-1-3-2-1-1\">Which branch of the outer if\/elseif\/elseif is entered?<br\/> Give the line number: <input type=\"text\" id=\"quiz-for-loop-special-student-blank1\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#quiz-for-loop-conceptual-1e-1-3-2-1-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"autopermalink\" data-description=\"Item 7.a\"><a href=\"#quiz-for-loop-conceptual-1e-1-3-2-1\" title=\"Copy heading and permalink for Item 7.a\" aria-label=\"Copy heading and permalink for Item 7.a\">🔗<\/a><\/div><\/li><li id=\"quiz-for-loop-conceptual-1e-1-3-2-2\"><div class=\"para\" id=\"quiz-for-loop-conceptual-1e-1-3-2-2-1\">What is the final value of <code class=\"code-inline tex2jax_ignore language-matlab\">is_valid<\/code>? <input type=\"text\" id=\"quiz-for-loop-special-student-blank1\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#quiz-for-loop-conceptual-1e-1-3-2-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"autopermalink\" data-description=\"Item 7.b\"><a href=\"#quiz-for-loop-conceptual-1e-1-3-2-2\" title=\"Copy heading and permalink for Item 7.b\" aria-label=\"Copy heading and permalink for Item 7.b\">🔗<\/a><\/div><\/li><\/ol><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#quiz-for-loop-conceptual-1e-1-3\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"solutionHtml": "",
+"blankNames": {"blank1": 0, "blank1": 1},
+"feedbackArray": [[{"regex": "555", "feedback": "Correct!"}, {"regex": "^\\s*555\\s*$", "regexFlags": "", "feedback": "Incorrect."}, {"feedback": "Incorrect."}], [{"regex": "555", "feedback": "Correct!"}, {"regex": "^\\s*555\\s*$", "regexFlags": "", "feedback": "Incorrect."}, {"feedback": "Incorrect."}]]
+}</script></div>
+</div></div>
+<div class="autopermalink" data-description="Task 7.e"><a href="#quiz-for-loop-conceptual-1e" title="Copy heading and permalink for Task 7.e" aria-label="Copy heading and permalink for Task 7.e">🔗</a></div></article><div class="autopermalink" data-description="Worksheet Exercise 7: Code Recall"><a href="#quiz-for-loop-special-student" title="Copy heading and permalink for Worksheet Exercise 7: Code Recall" aria-label="Copy heading and permalink for Worksheet Exercise 7: Code Recall">🔗</a></div></article><div class="autopermalink" data-description="Worksheet: Quiz: for-Loops (Fundamentals)"><a href="#ws-quiz-looping-for-fundamentals-v2" title="Copy heading and permalink for Worksheet: Quiz: for-Loops (Fundamentals)" aria-label="Copy heading and permalink for Worksheet: Quiz: for-Loops (Fundamentals)">🔗</a></div></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="feedback-link" href="mailto:coxgeoff@vmi.edu" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>
