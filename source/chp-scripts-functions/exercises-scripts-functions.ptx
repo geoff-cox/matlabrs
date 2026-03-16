@@ -1,0 +1,440 @@
+<exercises xml:id="coding-exercises-scripts">
+	<title>💻 Coding Exercises</title>
+
+	<exercise xml:id="coding-scripts">
+		<title>Programming with Scripts</title>
+
+		<introduction>
+			<p>
+				Answer the following questions to check your understanding of scripts.
+			</p>
+		</introduction>
+		
+	</exercise>
+
+	<exercise xml:id="coding-functions">
+		<title>Programming with Functions</title>
+
+		<introduction>
+			<p>
+				Answer the following questions to check your understanding of functions.
+			</p>
+		</introduction>
+		
+		<task xml:id="coding-celsius-to-fahrenheit">
+			<title>Temperature Conversion</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>celsius_to_fahrenheit</pf> that converts a temperature from Celsius to Fahrenheit.
+				</p>
+
+				<p>
+					The conversion formula is: <m>F = \frac{9}{5}C + 32</m>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>celsius</pf> (1x1) double — temperature in degrees Celsius</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>fahrenheit</pf> (1x1) double — temperature in degrees Fahrenheit</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Freezing point of water
+					f1 = celsius_to_fahrenheit(0)
+					% Expected: f1 = 32
+
+					% Test 2: Boiling point of water
+					f2 = celsius_to_fahrenheit(100)
+					% Expected: f2 = 212
+
+					% Test 3: Room temperature
+					f3 = celsius_to_fahrenheit(20)
+					% Expected: f3 = 68
+				</program>
+
+			</statement>
+		</task>
+
+		<task xml:id="coding-triangle-area">
+			<title>Triangle Area</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>triangle_area</pf> that computes the area of a triangle given its base and height.
+				</p>
+
+				<p>
+					The area formula is: <m>A = \frac{1}{2} \times \text{base} \times \text{height}</m>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>base</pf> (1x1) double — length of the triangle's base</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>height</pf> (1x1) double — height of the triangle</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>area</pf> (1x1) double — area of the triangle</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Simple triangle
+					a1 = triangle_area(6, 4)
+					% Expected: a1 = 12
+
+					% Test 2: Right triangle
+					a2 = triangle_area(5, 12)
+					% Expected: a2 = 30
+
+					% Test 3: Decimal values
+					a3 = triangle_area(7.5, 3.2)
+					% Expected: a3 = 12
+				</program>
+				
+			</statement>
+		</task>
+
+		<task xml:id="coding-sphere-properties">
+			<title>Sphere Properties</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>sphere_properties</pf> that computes both the surface area and volume of a sphere given its radius.
+				</p>
+
+				<p>
+					The formulas are:
+					<ul>
+						<li><p>Surface area: <m>A = 4\pi r^2</m></p></li>
+						<li><p>Volume: <m>V = \frac{4}{3}\pi r^3</m></p></li>
+					</ul>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>radius</pf> (1x1) double — radius of the sphere</p>
+						</cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>surface_area</pf> (1x1) double — surface area of the sphere</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell>
+							<p><pf>volume</pf> (1x1) double — volume of the sphere</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Unit sphere
+					[A1, V1] = sphere_properties(1)
+					% Expected: A1 ≈ 12.5664, V1 ≈ 4.1888
+
+					% Test 2: Radius of 2
+					[A2, V2] = sphere_properties(2)
+					% Expected: A2 ≈ 50.2655, V2 ≈ 33.5103
+
+					% Test 3: Radius of 5
+					[A3, V3] = sphere_properties(5)
+					% Expected: A3 ≈ 314.1593, V3 ≈ 523.5988
+				</program>
+
+			</statement>
+		</task>
+
+		<task xml:id="coding-cylinder-properties">
+			<title>Cylinder Properties</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>cylinder_properties</pf> that computes the surface area, volume, and diagonal of a cylinder given its radius and height.
+				</p>
+
+				<p>
+					The formulas are:
+					<ul>
+						<li><p>Surface area: <m>A = 2\pi r^2 + 2\pi r h</m></p></li>
+						<li><p>Volume: <m>V = \pi r^2 h</m></p></li>
+						<li><p>Diagonal: ?</p></li>
+					</ul>
+					Part of this problem is determining the correct formula for the diagonal of a cylinder. 
+					<em>Hint: take out a piece of paper and sketch the cylinder, then draw the diagonal line from one edge of the base to the opposite edge of the top.</em>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>radius</pf> (1x1) double — radius of the cylinder</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>height</pf> (1x1) double — height of the cylinder</p>
+						</cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>surface_area</pf> (1x1) double — total surface area of the cylinder</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>volume</pf> (1x1) double — volume of the cylinder</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell>
+							<p><pf>diagonal</pf> (1x1) double — diagonal length</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Unit cylinder (radius = 1, height = 1)
+					[A1, V1, d1] = cylinder_properties(1, 1)
+					% Expected: A1 ≈ 12.5664, V1 ≈ 3.1416, d1 ≈ 2.2361
+
+					% Test 2: Radius = 3, height = 5
+					[A2, V2, d2] = cylinder_properties(3, 5)
+					% Expected: A2 ≈ 150.7964, V2 ≈ 141.3717, d2 ≈ 7.8102
+
+					% Test 3: Radius = 2.5, height = 8
+					[A3, V3, d3] = cylinder_properties(2.5, 8)
+					% Expected: A3 ≈ 164.9336, V3 ≈ 157.0796, d3 ≈ 9.4340
+				</program>
+
+			</statement>
+		</task>
+
+		<task xml:id="coding-compound-interest">
+			<title>Compound Interest Calculator</title>
+
+			<statement>
+
+				<p>
+					Write a function named <pf>compound_interest</pf> that calculates the future value of an investment with compound interest,
+					and also returns the total interest earned and the effective annual rate.
+				</p>
+
+				<p>
+					The compound interest formula is: <m>A = P\left(1 + \frac{r}{n}\right)^{nt}</m>
+				</p>
+
+				<p>
+					where:
+					<ul>
+						<li><p><m>P</m> = principal (initial investment)</p></li>
+						<li><p><m>r</m> = annual interest rate (as a decimal, e.g., 0.05 for 5%)</p></li>
+						<li><p><m>n</m> = number of times interest is compounded per year</p></li>
+						<li><p><m>t</m> = time in years</p></li>
+						<li><p><m>A</m> = final amount</p></li>
+					</ul>
+				</p>
+
+				<p>
+					The effective annual rate (EAR) is: <m>\text{EAR} = \left(1 + \frac{r}{n}\right)^n - 1</m>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>principal</pf> (1x1) double — initial investment amount</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>rate</pf> (1x1) double — annual interest rate (as decimal)</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>compounds_per_year</pf> (1x1) double — compounding frequency (e.g., 12 for monthly)</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>years</pf> (1x1) double — time period in years</p>
+						</cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>final_amount</pf> (1x1) double — total amount after compound interest</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>interest_earned</pf> (1x1) double — total interest earned (final_amount - principal)</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell>
+							<p><pf>effective_rate</pf> (1x1) double — effective annual rate</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: $1000 at 5% annual rate, compounded monthly for 10 years
+					[final1, int1, effRate1] = compound_interest(1000, 0.05, 12, 10)
+					% Expected: final1 ≈ 1647.01, int1 ≈ 647.01, effRate1 ≈ 0.0512
+
+					% Test 2: $5000 at 3% annual rate, compounded quarterly for 5 years
+					[final2, int2, effRate2] = compound_interest(5000, 0.03, 4, 5)
+					% Expected: final2 ≈ 5805.92, int2 ≈ 805.92, effRate2 ≈ 0.03034
+
+					% Test 3: $10000 at 6% annual rate, compounded daily for 20 years
+					[final3, int3, effRate3] = compound_interest(10000, 0.06, 365, 20)
+					% Expected: final3 ≈ 33197.90, int3 ≈ 23197.90, effRate3 ≈ 0.0618
+				</program>
+
+			</statement>
+		</task>
+
+		<task xml:id="coding-triangle-3d">
+			<title>Triangle Perimeter and Area in 3D Space</title>
+
+			<statement>
+
+				<p>
+					Write a function named <pf>triangle_3d</pf> that computes the perimeter and area of a triangle in 3D space 
+					given the coordinates of its three vertices. You may assume the three points do not lie on the same straight line. 
+					This ensures a valid triangle.
+				</p>
+
+				<p>
+					Hints:
+					<ol>
+						<li>
+							<p>
+								The distance formula between two points <m>(x_1, y_1, z_1)</m> and <m>(x_2, y_2, z_2)</m> is: 
+								<me>d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}</me>
+							</p>
+						</li>
+						<li>
+							<p>
+								If the side lengths of the triangle are <m>a</m>, <m>b</m>, and <m>c</m>, then the area is given by Heron's formula:
+								<me>A = \sqrt{s(s-a)(s-b)(s-c)}</me> 
+								where <m>s = 0.5\left(a+b+c\right)</m> (known as the semi-perimeter).
+							</p>
+						</li>
+					</ol>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>x1, y1, z1</pf> (1x1) double — coordinates of first vertex</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>x2, y2, z2</pf> (1x1) double — coordinates of second vertex</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>x3, y3, z3</pf> (1x1) double — coordinates of third vertex</p>
+						</cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>perimeter</pf> (1x1) double — perimeter of the triangle</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell>
+							<p><pf>area</pf> (1x1) double — area of the triangle</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>
+					<em>Note: Typically you would pass coordinates as vectors or matrices, but we will save that for later exercises.</em>
+				</p>
+
+				<p>Test cases:</p>
+				
+				<program language="matlab">
+					% Test 1: Triangle in xy-plane (vertices at (0,0,0), (4,0,0), (0,3,0))
+					[p1, a1] = triangle_3d(0, 0, 0, 4, 0, 0, 0, 3, 0)
+					% Expected: p1 = 12, a1 = 6 (3-4-5 right triangle)
+
+					% Test 2: Equilateral triangle in space
+					[p2, a2] = triangle_3d(0, 0, 0, 1, 0, 0, 0.5, sqrt(3)/2, 0)
+					% Expected: p2 = 3, a2 ≈ 0.4330
+
+					% Test 3: Triangle with vertices at (1,2,3), (4,5,6), (2,3,5)
+					[p3, a3] = triangle_3d(1, 2, 3, 4, 5, 6, 2, 3, 5)
+					% Expected: p3 ≈ 10.6456, a3 ≈ 2.1213
+				</program>
+
+			</statement>
+		</task>
+	</exercise>
+</exercises>

@@ -1,0 +1,2171 @@
+<exercises xml:id="exercises-for-while-loops">
+	<title>💻 Coding Exercises</title>
+
+	<exercise label="coding-drills-for-loops">
+		<title>for-loop Drills</title>
+		
+		<task label="coding-drill-for-rewrite-1">
+			<title>Rewrite repeated output: counting by fives</title>
+
+			<statement>
+				<p>
+					Rewrite the repeated code below as a <pf>for</pf> loop:
+				</p>
+
+				<program language="matlab">
+					fprintf('5\n');
+					fprintf('10\n');
+					fprintf('15\n');
+					fprintf('20\n');
+					fprintf('25\n');
+				</program>
+
+				<p>
+					Your loop should produce the same output in the same order.
+				</p>
+			</statement>
+		</task>
+
+		<task label="coding-drill-for-rewrite-2">
+			<title>Rewrite repeated output: countdown by twos</title>
+
+			<statement>
+				<p>
+					Rewrite the repeated code below as a <pf>for</pf> loop:
+				</p>
+
+				<program language="matlab">
+					fprintf('12\n');
+					fprintf('10\n');
+					fprintf('8\n');
+					fprintf('6\n');
+					fprintf('4\n');
+					fprintf('2\n');
+				</program>
+
+				<p>
+					Your loop should produce the same output in the same order.
+				</p>
+			</statement>
+		</task>
+
+		<task label="coding-drill-for-rewrite-3">
+			<title>Rewrite repeated output: countdown by twos</title>
+
+			<statement>
+				<p>
+					Rewrite only the repeated update lines below as a <pf>for</pf> loop:
+				</p>
+
+				<program language="matlab">
+					total = 0;
+					total = total + 3;
+					total = total + 4;
+					total = total + 5;
+					total = total + 6;
+					total = total + 7;
+					fprintf('total = %i\n', total);
+				</program>
+
+				<p>
+					Keep the initialization and final <pf>fprintf</pf> line.
+				</p>
+			</statement>
+		</task>
+
+	</exercise>
+
+	<exercise label="coding-exercises-for-loops">
+		<title>For-loop Exercises</title>
+
+		<task label="coding-for-loop-display-powersOfTwo">
+			<statement>
+				<p>
+					Write a function named <pf>powersOfTwo</pf> that uses <pf>fprintf</pf> and a <pf>for</pf> loop to compute and display the first <m>n</m> powers of 2.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="11%"/>
+					<col width="15%"/>
+					<col width="28%" halign="left"/>
+					<col width="46%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of powers of 2 to display</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p>None</p></cell>
+						<cell colspan="2"><p>display to command window with <pf>fprintf</pf></p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							fprintf("Test with n = 2:\n");
+							powersOfTwo(2)
+							fprintf("Test with n = 7:\n");
+							powersOfTwo(7)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							Test with n = 2:
+							2^1 = 2
+							2^2 = 4
+							Test with n = 7:
+							2^1 = 2
+							2^2 = 4
+							2^3 = 8
+							2^4 = 16
+							2^5 = 32
+							2^6 = 64
+							2^7 = 128
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function powersOfTwo(n)
+						for k = 1:n
+							fprintf('2^%d = %d\n', k, 2^k);
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-sumSquares">
+			<statement>
+				<p>
+					Write a function, <pf>sumSquares</pf> that computes 
+					<me>1^2 + 2^2 + \cdots + n^2</me>
+					for a given non-negative integer <m>n</m>. You must use a <pf>for</pf>-loop. If <m>n</m> is <m>0</m>, return <m>0</m>.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="11%"/>
+					<col width="15%"/>
+					<col width="28%" halign="left"/>
+					<col width="46%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>non-negative integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>S</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>the sum of squares from 1 to n</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							S = sumSquares(3)
+							S = sumSquares(5)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% S = 14 (1 + 4 + 9)
+							% S = 55 (1 + 4 + 9 + 16 + 25)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function S = sumSquares(n)
+						S = 0;
+						for k = 1:n
+							S = S + k^2;
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task xml:id="coding-for-loop-sumMultiples">
+			<statement>
+				<p>
+					Write a function named <pf>sumMultiples</pf> that takes two nonnegative integers <pf>n</pf> and <pf>m</pf> and returns the sum of all multiples of <pf>m</pf> between <pf>1</pf> and <pf>n</pf> (inclusive).
+					If there are no multiples, the sum should be <pf>0</pf>.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="12%" halign="left"/>
+					<col width="22%" halign="left"/>
+					<col width="54%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>upper limit</p></cell>
+					</row>
+					<row>
+						<cell/>
+						<cell><p><pf>m</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>multiple to sum</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>total</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>sum of multiples of <pf>m</pf> from <pf>1</pf> to <pf>n</pf></p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							total = sumMultiples(10, 3)
+							total = sumMultiples(20, 5)
+							total = sumMultiples(15, 4)
+							total = sumMultiples(10, 11)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% total = 18 (3 + 6 + 9)
+							% total = 50 (5 + 10 + 15 + 20)
+							% total = 24 (4 + 8 + 12)
+							% total = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function total = sumMultiples(n, m)
+						total = 0;
+						for k = 1:n
+							if mod(k, m) == 0
+								total = total + k;
+							end
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task xml:id="coding-for-loop-prob3HeadsInARow">
+			<statement>
+				<p>
+					Write a function named <pf>prob3HeadsInARow</pf> that estimates the probability of flipping 3 heads when flipping a coin 3 times.
+					Inside the loop, simulate three coin flips using three separate calls to <pf>randi([0,1])</pf>. Let <pf>1</pf> represents heads and <pf>0</pf> represents tails.
+				</p>
+				<tabular top="minor">
+					<col width="12%"/>
+					<col width="15%" halign="left"/>
+					<col width="28%" halign="left"/>
+					<col width="45%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of times we flip 3 coins</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>prob</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>probability of 3 heads in a row</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							rng(123);  % Set seed
+							prob = prob3HeadsInARow(10)
+							prob = prob3HeadsInARow(100)
+							prob = prob3HeadsInARow(1000)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							󠀠
+							% prob = 0.2000
+							% prob = 0.1300
+							% prob = 0.1200
+						</program>
+					</stack>
+				</sidebyside>
+				<aside>
+					<title>What is <pf>rng(123)</pf>?</title>
+					<p>
+						Note: <pf>rng(123)</pf> sets the random seed (i.e., <pf>123</pf>) to ensure that the same sequence of random 
+						numbers is generated each time, which allows for consistent test results. The seed value can be any integer.
+					</p>
+				</aside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function prob = prob3HeadsInARow(n)
+						count_HHH = 0;
+						for k = 1:n
+							flip1 = randi([0, 1]);
+							flip2 = randi([0, 1]);
+							flip3 = randi([0, 1]);
+							if flip1 == 1 &amp;&amp; flip2 == 1 &amp;&amp; flip3 == 1
+								count_HHH = count_HHH + 1;
+							end
+						end
+						prob = count_HHH / n;
+					end
+				</program>	
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-loop-compoundBalance">
+			<statement>
+				<p>
+					Given a starting balance and a monthly interest rate, write a function named <pf>compoundBalance</pf> 
+					that returns the final balance of an account that has accumulated compound interest after a certain 
+					number of months. Use a for-loop to compute the monthly interest and add to the balance. 
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="11%"/>
+					<col width="18%"/>
+					<col width="28%" halign="left"/>
+					<col width="43%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>P</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>starting balance</p></cell>
+					</row>
+					<row>
+						<cell/>
+						<cell><p><pf>r</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>monthly interest rate</p></cell>
+					</row>
+					<row>
+						<cell/>
+						<cell><p><pf>months</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of months</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>balance</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>final balance after interest</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="59% 39%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							format shortG	% For nicer output
+							bal = compoundBalance(1000, 0.01, 12)
+							bal = compoundBalance(500, 0.02, 6)
+							bal = compoundBalance(1500, 0.005, 24)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							󠀠
+							% bal ≈ 1126.8
+							% bal ≈ 563.08
+							% bal ≈ 1690.7
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function balance = compoundBalance(P, r, months)
+						balance = P;
+						for k = 1:months
+							interest = balance * r;
+							balance = balance + interest;
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-loop-isPrime">
+			<statement>
+				<p>
+					An integer greater than 1 is <term>prime</term> if its only divisors are 1 and itself.
+				</p>
+				<p>
+					Write a function named <pf>isXPrime</pf> that tests whether a given positive integer is prime. 
+					Use a <pf>for</pf> loop and the <pf>mod</pf> function.
+				</p>
+				<p>
+					As a comment in your code (below HR statement), explain why it is enough to check divisors up to the square root of the number you are testing. 
+					Give an example to support your explanation.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="11%"/>
+					<col width="15%"/>
+					<col width="28%" halign="left"/>
+					<col width="46%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer to test</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>tf</pf></p></cell>
+						<cell><p>(1x1) logical</p></cell>
+						<cell><p><pf>true</pf> if <pf>x</pf> is prime, <pf>false</pf> otherwise</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							answer = isXPrime(17)
+							answer = isXPrime(15)
+							answer = isXPrime(1)
+							answer = isXPrime(899321)
+							answer = isXPrime(215773)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% answer = true
+							% answer = false
+							% answer = false
+							% answer = true
+							% answer = false
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function tf = isXPrime(x)
+						if x &lt;= 1
+							tf = false;	% Edge case handling
+							return
+						end
+						tf = true;	% Assume x is prime until we find a divisor
+						for k = 2:sqrt(x)	% Check divisors up to sqrt(x)
+							if mod(x, k) == 0
+								tf = false;	% Found a divisor =&gt; x is not prime
+								return
+							end
+						end
+					end
+				</program>
+				<aside>
+					<title>Why do we only Check Divisors Up to <m>\sqrt{x}</m>?</title>
+					<p>
+						Suppose we are testing whether 36 is prime. The proper divisors of 36 are (2, 18), (3, 12), (4, 9), and (6, 6). The square root of 36 is 6. All other pairs of divisors must include one divisor less than 6 and one greater than 6. Therefore, we don't need to check 9 since 4 would have been found as a divisor.
+					</p>
+				</aside>
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-loop-sumProperDivisors">
+			<statement>
+				<p>
+					Let <m>p</m> and <m>N</m> be positive integers, then 
+					<ul marker="square">
+						<li>
+							<p>
+								<line><m>p</m> is a <term>proper divisor</term> of <m>N</m> if <m>p &lt; N</m> and <m>p</m> divides <m>N</m> evenly.</line>
+								<line><em>Example: the proper divisors of 12 are 1, 2, 3, 4, and 6.</em></line>
+							</p>
+						</li>
+					</ul>
+				</p>
+				<p>
+					Write a function, called <pf>sumProperDivisors</pf>, that computes the sum of the proper divisors of a given positive integer, <m>n</m>. Use a <pf>for</pf>-loop and the <pf>mod</pf> function.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="11%"/>
+					<col width="21%"/>
+					<col width="28%" halign="left"/>
+					<col width="40%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>sum_divisors</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>sum of proper divisors of n</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							out = sumProperDivisors(6)
+							out = sumProperDivisors(8)
+							out = sumProperDivisors(12)
+							out = sumProperDivisors(1)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% out = 6 (1 + 2 + 3)
+							% out = 7 (1 + 2 + 4)
+							% out = 16 (1 + 2 + 3 + 4 + 6)
+							% out = 0 (no proper divisors)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function sum_divisors = sumProperDivisors(n)
+						sum_divisors = 0;
+						for k = 1:(n-1) % Check all numbers less than n
+							if mod(n, k) == 0
+								sum_divisors = sum_divisors + k; % Found one, add it
+							end
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-loop-classifyNumber">
+			<statement>
+				<p>
+					Let <m>p</m> and <m>N</m> be positive integers, then 
+					<ul marker="square">
+						<li>
+							<p>
+								<line><m>N</m> is <q><term>perfect</term></q> if it equals the sum of its proper divisors.</line>
+								<line><em>N = 6 is perfect because <m>1 + 2 + 3 = 6</m>.</em></line>
+							</p>
+						</li>
+						<li>
+							<p>
+								<line><m>N</m> is <q><term>abundant</term></q> if it is less than the sum of its proper divisors.</line>
+								<line><em>N = 12 is abundant because <m>12 &lt; 1 + 2 + 3 + 4 + 6 = 16</m>.</em></line>
+							</p>
+						</li>
+						<li>
+							<p>
+								<line><m>N</m> is <q><term>deficient</term></q> if it is greater than the sum of its proper divisors.</line>
+								<line><em>N = 8 is deficient because <m>8 &gt; 1 + 2 + 4 = 7</m>.</em></line>
+							</p>
+						</li>
+					</ul>
+				</p>
+				<p>
+					Write a function, called <pf>classifyNumber</pf>, that classifies a given positive integer as <pf>"perfect"</pf>, <pf>"abundant"</pf>, or <pf>"deficient"</pf>. Use the function from the previous task as a helper function.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="11%"/>
+					<col width="10%"/>
+					<col width="28%" halign="left"/>
+					<col width="51%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>N</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>type</pf></p></cell>
+						<cell><p>(1x1) string</p></cell>
+						<cell><p><pf>"perfect"</pf>, <pf>"abundant"</pf>, or <pf>"deficient"</pf> depending on n</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							type = classifyNumber(6)
+							type = classifyNumber(8)
+							type = classifyNumber(12)
+							type = classifyNumber(1)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% type = "perfect"
+							% type = "deficient"
+							% type = "abundant"
+							% type = "deficient"
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function type = classifyNumber(N)
+						sum_divisors = sumProperDivisors(N); % Call helper function
+						if N == sum_divisors
+							type = "perfect";
+						elseif N &lt; sum_divisors
+							type = "abundant";
+						else
+							type = "deficient";
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-loop-approxE">
+			<statement>
+				<p>
+					Write a function named <pf>approxE</pf> that takes a nonnegative integer <pf>n</pf> and returns the approximation
+					<me>e \approx 1 + \frac{1}{1!} + \frac{1}{2!} + \cdots + \frac{1}{n!}.</me>
+					Use one <pf>for</pf>-loop.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="15%"/>
+					<col width="25%" halign="left"/>
+					<col width="48%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>nonnegative integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>approx</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>approximation of e using n terms</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							out = approxE(0)
+							out = approxE(1)
+							out = approxE(5)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% out = 1 (1)
+							% out = 2 (1 + 1)
+							% out = 2.7167 (approximates e)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function approx = approxE(n)
+						approx = 0;
+						factorial = 1; % To keep track of k!
+						for k = 0:n
+							if k &gt; 0
+								factorial = factorial * k; % Update factorial to k!
+							end
+							approx = approx + 1/factorial; % Add 1/k!
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-loop-approxEofx">
+			<statement>
+				<p>
+					The following (partial) sum converges to <m>e^x</m> as <m>N \to \infty</m>: 
+					<me>
+						\sum_{k=0}^{N} \frac{x^k}{k!} = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \cdots + \frac{x^N}{N!}
+					</me>
+				</p>
+				<p>
+					So for large <m>N</m> this series can be used to approximate <m>e^x</m>:
+					<me>
+						e^x \approx 1 + \frac{x}{1!} + \frac{x^2}{2!} + \cdots + \frac{x^N}{N!}
+					</me>
+					for any real number <m>x</m>.
+				</p>
+				<p>
+					Write a function named <pf>approxEofx</pf> that takes a real number <pf>x</pf> and a positive integer <pf>N</pf> and returns the approximation of <m>e^x</m> using the series above. Use one <pf>for</pf>-loop.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="15%"/>
+					<col width="25%" halign="left"/>
+					<col width="48%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>real number</p></cell>
+					</row>
+					<row>
+						<cell/>
+						<cell><p><pf>N</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>approx</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>approximation of <m>e^x</m> using <m>N</m> terms</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="44% 54%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							out = approxEofx(0, 10)
+							out = approxEofx(1, 10)
+							out = approxEofx(2, 20)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% out = 1 (e^0 = 1)
+							% out ≈ 2.7183 (approximates e^1)
+							% out ≈ 7.3891 (approximates e^2)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function approx = approxEofx(x, N)
+						approx = 0;
+						factorial = 1; % To keep track of k!
+						for k = 0:N
+							if k &gt; 0
+								factorial = factorial * k; % Update factorial to k!
+							end
+							approx = approx + (x^k)/factorial; % Add x^k/k!
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task label="coding-for-loop-binomialCoeff">
+			<statement>
+				<p>
+					Write a function, <pf>binomialCoeff</pf>, that computes <m>n</m> choose <m>m</m> (the binomial coefficient) using the formula:
+					<me>
+						\binom{n}{m} = \frac{n!}{m!(n-m)!}
+					</me>. 
+					Use a for loop. Assume <m>n</m> is a nonnegative integer and <m>m</m> is a non-negative integer less than or equal to <m>n</m>.
+				</p>
+				<p>
+					To code this with one for loop, expand <m>n!</m> down to <m>(n-m)!</m>:
+					<me>n(n-1)(n-2)\cdots(n-(m-1))(n-m)!</me>
+					then cancel the <m>(n-m)!</m> in the numerator and denominator to get:
+					<me>
+						\binom{n}{m} = \frac{n(n-1)(n-2)\cdots(n-(m-1))}{m(m-1)(m-2)\cdots 1}
+					</me>
+					But this is the same as:
+					<me>
+						\binom{n}{m} = \frac{n}{m}\cdot\frac{n-1}{m-1}\cdot\frac{n-2}{m-2}\cdots\frac{n-(m-1)}{1}
+					</me>
+					This way, you can compute each fraction for <m>k=0,1,2,\ldots,m-1</m>.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>n</pf> (1x1) double — nonnegative integer</p>
+							<p><pf>m</pf> (1x1) double — non-negative integer less than or equal to <m>n</m></p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>bicoeff</pf> (1x1) double — the binomial coefficient <m>\binom{n}{m}</m></p>
+						</cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							bcoef = binomialCoeff(5, 2)
+							bcoef = binomialCoeff(0, 0)
+							bcoef = binomialCoeff(7, 7)
+							bcoef = binomialCoeff(10, 3)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% bcoef = 10 (5!/(2!*(5-2)!))
+							% bcoef = 1 (0!/(0!*0!))
+							% bcoef = 1 (7!/(7!*0!))
+							% bcoef = 120 (10!/(3!*7!))
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one way to compute the binomial coefficient using a for loop:
+				</p>
+				<program language="matlab">
+					function F = binomialCoeff(n, m)
+						numerator = 1;
+						denominator = 1;
+
+						for k = 0:(m-1)
+							numerator = numerator * (n - k);
+							denominator = denominator * (m - k);
+						end
+
+						F = numerator / denominator;
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task xml:id="coding-for-loop-countRunsOfOnes">
+			<statement>
+				<p>
+					Write a function named <pf>countRunsOfOnes</pf> that simulates <pf>n</pf> single coin flips using <pf>randi([0,1])</pf> and returns the number of <em>runs</em> of one or more consecutive heads.
+				</p>
+				<p>
+					Before you start coding, think about what information you need to count the runs. It is less than you might expect. You may find it helpful to write out some sequences of coin flips and count the runs by hand.
+				</p>
+				<p>
+					For example, 
+					<ul>
+						<li>the flip sequence <pf>0 1 1 0 1 0 1 1 1</pf> contains 3 runs of heads.</li>
+						<li>the flip sequence <pf>1 1 0 0 1 1 1 0</pf> contains 2 runs of heads.</li>
+						<li>the flip sequence <pf>0 0 0 0</pf> contains 0 runs of heads.</li>
+						<li>the flip sequence <pf>1 1 1 1 1 1</pf> contains 1 run of heads.</li>
+					</ul>
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="12%" halign="left"/>
+					<col width="22%" halign="left"/>
+					<col width="54%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of coin flips</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>runs</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of runs of consecutive heads</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							rng(123);  % Set seed
+							runs = countRunsOfOnes(10)
+							runs = countRunsOfOnes(100)
+							runs = countRunsOfOnes(600)
+							runs = countRunsOfOnes(0)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							󠀠
+							% runs = 3
+							% runs = 20
+							% runs = 160
+							% runs = 0 (no flips)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function runs = countRunsOfOnes(n)
+						runs = 0;
+						prev = 0;
+						for k = 1:n
+							cur = randi([0,1]);
+							if cur == 1 &amp;&amp; prev == 0
+								runs = runs + 1;
+							end
+							prev = cur;
+						end
+					end
+				</program>
+			</solution> --> 
+		</task>
+
+		<task xml:id="coding-for-loop-longestHeadRun">
+			<statement>
+				<p>
+					Write a function named <pf>longestHeadRun</pf> that simulates <pf>n</pf> single coin flips using <pf>randi([0,1])</pf> and returns the length of the longest run of consecutive heads.
+					If <pf>n = 0</pf>, return <pf>0</pf>.
+				</p>
+				<p>
+					For example, 
+					<ul>
+						<li>the longest head run of the sequence <pf>1 0 1 1 1 0 1</pf> is <pf>3</pf>.</li>
+						<li>the longest head run of the sequence <pf>1 1 0 0 1 0 1 1</pf> is <pf>2</pf>.</li>
+						<li>the longest head run of the sequence <pf>0 0 0 0</pf> is <pf>0</pf>.</li>
+						<li>the longest head run of the sequence <pf>1 1 1 1 1 1</pf> is <pf>6</pf>.</li>
+					</ul>
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="15%" halign="left"/>
+					<col width="22%" halign="left"/>
+					<col width="51%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of coin flips</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>maxLen</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>length of the longest run of heads</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							rng(123);  % Set seed
+							maxLen = longestHeadRun(10)
+							maxLen = longestHeadRun(100)
+							maxLen = longestHeadRun(600)
+							maxLen = longestHeadRun(0)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							󠀠
+							% maxLen = 2
+							% maxLen = 8
+							% maxLen = 11
+							% maxLen = 0 (no flips)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one possible solution:
+				</p>
+				<program language="matlab">
+					function maxLen = longestHeadRun(n)
+						maxLen = 0;
+						currentLen = 0;
+						for k = 1:n
+							coin = randi([0, 1]);
+							if coin == 1
+								currentLen = currentLen + 1; % increase the steak count
+								if currentLen > maxLen  % Update max length, if needed
+									maxLen = currentLen;
+								end
+							else
+								currentLen = 0; % Reset current run length on a tail
+							end
+						end
+					end
+				</program>
+			</solution>	 -->
+		</task>
+
+		<task xml:id="coding-for-loop-movePoint">
+			<statement>
+				<p>
+					Given a starting point <m>(x,y)</m>, a slope <m>m</m> and a step size <m>h</m>, 
+					write a function called <pf>movePoint</pf> that returns the coordinates of a new point, <m>(x_f,y_f)</m>,  
+					that results from moving <m>(x,y)</m> in the direction of <m>m</m> when <m>x</m> is increased by <m>h</m>.
+				</p>
+				<p>
+					Clearly, <m>x_f = x + h</m>. For <m>y_f</m>, get out a piece of paper and do some math to find a formula for <m>y_f</m> in terms of the given inputs: <m>x</m>, <m>y</m>, <m>m</m>, and <m>h</m>.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="15%" halign="left"/>
+					<col width="22%" halign="left"/>
+					<col width="51%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><m>x</m>-coordinate of starting point</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>y</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><m>y</m>-coordinate of starting point</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>m</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>slope of movement direction</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>h</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>step size in <m>x</m>-direction</p></cell>
+					</row>
+					<row>
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>xf</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><m>x</m>-coordinate of new point.</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell><p><pf>yf</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><m>y</m>-coordinate of new point.</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="53% 45%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							[xf,yf] = movePoint(0,0,1,1)
+							[xf,yf] = movePoint(1,2,-1,2)
+							[xf,yf] = movePoint(-1,-1,0.5,3)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% xf ≈ 1, yf ≈ 1
+							% xf ≈ 3, yf ≈ 0
+							% xf ≈ 2, yf ≈ 0.5
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one way to compute the new point:
+				</p>
+				<program language="matlab">
+					function [xf, yf] = movePoint(x, y, m, h)
+						xf = x + h;
+						yf = y + m * h;
+					end
+				</program>
+			</solution>  -->
+		</task>
+
+		<task xml:id="coding-for-loop-moveInYsDirection">
+			<statement>
+				<p>
+					Let <m>y(x)</m> be the solution to the differential equation:
+					<me>
+						y' = 2y-2xy, \quad y(0) = y_0
+					</me>.
+					In this form, the right-side of the equation gives the slope of the tangent line of <m>y(x)</m> (i.e., the direction of <m>y</m>) at any point <m>(x,y)</m>.
+				</p>
+				<p>
+					For example, to get the direction of <m>y(x)</m> at the point <m>(3,1)</m>, we plug <m>x=3</m> and <m>y=1</m> into <m>2y-2xy</m> to get <m>m=2\cdot 1 - 2\cdot 3 \cdot 1 = -4</m>.
+				</p>
+				<p>
+					Write a function called <pf>moveInYsDirection</pf> that returns a final <m>y</m>-value after moving the initial point <m>(0, y_0)</m> through a sequence of points in the same direction as <m>y(x)</m>. That is,
+					<me>
+						(0, y_0) \to (x_1, y_1) \to (x_2, y_2) \to \cdots \to (x_f, y_f)
+					</me>
+					where each new point is found by moving from the previous point in the direction of <m>y(x)</m>. 
+					For example, we get <m>(x_1, y_1)</m> by moving <m>(0, y_0)</m> in the direction we would get from plugging <m>(0, y_0)</m> into <m>2y-2xy</m>.
+					Repeat this for each point and stop when <m>x_f</m> is reached.
+				</p>
+				<p>
+					To code this, 
+					<ul marker="square">
+						<li>Compute the number of steps needed to go from <m>0</m> to <m>x_f</m> using the step size <m>h</m>. This will be the number of times to run the loop.</li>
+						<li>Define variables <pf>x</pf> and <pf>y</pf> to keep track of the current point. Initialize them as <m>(0, y_0)</m>.</li>
+						<li>For each step of the loop, update <pf>x</pf> and <pf>y</pf> as the output of your <pf>movePoint</pf> helper function.</li>
+						<li>When the loop finishes, <pf>y</pf> should be the <m>y</m>-value of <m>(x_f, y_f)</m>.</li>
+					</ul>
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="15%" halign="left"/>
+					<col width="22%" halign="left"/>
+					<col width="51%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>y0</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><m>y</m>-coordinate of the starting point</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>xf</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><m>x</m>-coordinate of the final point</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>h</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>step size in <m>x</m>-direction</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>yf</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><m>y</m>-coordinate of the final point</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="54% 44%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							yf = moveInYsDirection(1, 2, 1)
+							yf = moveInYsDirection(1, 2, 0.5)
+							yf = moveInYsDirection(1, 2, 0.1)
+							yf = moveInYsDirection(1, 2, 0.01)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% yf = 3.0
+							% yf = 1.5
+							% yf ≈ 1.0694
+							% yf ≈ 1.0067
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<!-- <solution>
+				<p>
+					Here is one way to approximate <m>y(x_f)</m> using a for loop and the <pf>movePoint</pf> function:
+				</p>
+				<program language="matlab">
+					function yf = moveInYsDirection(y0, xf, h)
+						x = 0;
+						y = y0;
+
+						numSteps = ceil(xf / h);
+
+						for i = 1:numSteps
+							slope = 2*y - 2*x*y;  % Compute slope at current point
+							[x, y] = movePoint(x, y, slope, h);  % Move to next point
+						end
+
+						yf = y;  % Final approximation of y(xf)
+					end
+				</program>
+			</solution> --> 
+		</task>
+	</exercise>
+
+	<!-- ============================================================ -->
+	<!--  HOMEWORK EXERCISES: while-Loops                             -->
+	<!--  Difficulty: ★ = easy, ★★ = medium, ★★★ = hard            -->
+	<!-- ============================================================ -->
+
+	<exercise label="coding-exercises-while-loops">
+		<title>While-loop Exercises</title>
+
+		<task label="hw-while-countdown">
+			<title>★ Rocket Launch Countdown</title>
+			<statement>
+				<p>
+					Write a script that counts down from a given starting number to 1, printing each number, and then prints <pf>"Liftoff!"</pf>. Use a <pf>while</pf>-loop (not a <pf>for</pf>-loop).
+				</p>
+
+				<p>
+					For example, if <pf>start = 5</pf>, the output should be:
+				</p>
+				
+				<pre>
+					5
+					4
+					3
+					2
+					1
+					Liftoff!
+				</pre>
+
+				<p>
+					Test with <pf>start = 10</pf> and <pf>start = 1</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Difficulty:</cell><cell>★</cell><cell/><cell/>
+					</row>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive number to be doubled</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>count</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of times <m>x</m> was doubled</p></cell>
+					</row>
+				</tabular>
+				
+				<sidebyside widths="50% 48%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							[c,v] = doubleXUntilN(5, 76)
+							[c,v] = doubleXUntilN(13.2, 52.7)
+							[c,v] = doubleXUntilN(3, 2)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% c=4, v=80   (5→10→20→40→80)
+							% c=2, v=52.8 (13.2→26.4→52.8)
+							% c=0, v=3    (3 already &gt; 2)
+						</program>
+					</stack>
+				</sidebyside>
+
+			</statement>
+			<solution>
+				<program language="matlab">
+					start = 5;
+					n = start;
+					while n &gt;= 1
+						fprintf('%i\n', n)
+						n = n - 1;
+					end
+					fprintf('Liftoff!\n')
+				</program>
+			</solution>
+		</task>
+
+		<task label="ex-while-doubling">
+			<statement>
+				<p>
+					Write a function called <pf>doublingXUntilN</pf> that uses a <pf>while</pf> loop to return the 
+					number of times <m>x</m> must be doubled before it exceeds <m>N</m>. Also, return the final 
+					doubled value after exceeding <m>N</m>. 
+				</p>
+
+				<p>
+					For example, if <m>x = 3</m> and <m>N = 20</m>, then repeatedly doubling <m>3</m> gives: 
+					<me>3 \overset{1}{\to} 6 \overset{2}{\to} 12 \overset{3}{\to} 24</me>.
+					So, <m>3</m> was doubled <m>3</m> times and the final value was <m>24</m>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Difficulty:</cell><cell>★</cell><cell/><cell/>
+					</row>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive number to be doubled</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>N</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>doubling threshold to exceed</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>count</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of times <m>x</m> was doubled</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell/><cell><p><pf>final</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>final doubled value</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="50% 48%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							[c,v] = doubleXUntilN(5, 76)
+							[c,v] = doubleXUntilN(13.2, 52.7)
+							[c,v] = doubleXUntilN(3, 2)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% c=4, v=80   (5→10→20→40→80)
+							% c=2, v=52.8 (13.2→26.4→52.8)
+							% c=0, v=3    (3 already &gt; 2)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+		</task>
+
+		<task label="hw-while-harmonic-sum">
+
+			<statement>
+				<p>
+					Write a function called <pf>harmonicSumThreshold</pf>	that computes the smallest integer 
+					<m>N</m> such that the harmonic sum 
+					<me>\frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{N} \ge 5</me>
+					Use a <pf>while</pf> loop to add terms until the sum reaches or exceeds 5. Store the final 
+					value of <m>N</m> in a variable named <pf>N</pf> and the sum in <pf>harmonic_sum</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Difficulty:</cell><cell>★</cell>
+					</row>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p>None (start with <pf>N = 0</pf> and <pf>harmonic_sum = 0</pf>)</p>
+						</cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>N</pf> (1x1) double — smallest integer for which harmonic sum <m>\ge 5</m></p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell>
+							<p><pf>harmonic_sum</pf> (1x1) double — the harmonic sum</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test: Run your script
+					% Expected: N = 83 (approximately)
+					%           harmonic_sum ≈ 5.0021
+				</program>
+
+			</statement>
+		</task>
+
+		<task label="hw-while-collatz">
+
+			<statement>
+				<p>
+					A famous problem in math is the Collatz conjecture, which states that if you start with any positive integer and repeatedly apply the following rules, you will eventually reach 1:
+					<ul>
+						<li>If the number is even, divide it by 2.</li>	
+						<li>If the number is odd, multiply it by 3 and add 1.</li>
+					</ul>
+				</p>
+
+				<p>
+					For example, starting with 6:
+					<md>
+						<mrow>6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1</mrow>
+					</md>
+				</p>
+
+				<p>
+					Despite its simple statement, the Collatz conjecture has not been proven or disproven, and it remains an open question in mathematics. In this exercise, you will write a MATLAB script to explore the Collatz conjecture for different starting values.
+				</p>
+
+				<p>
+					Write a function called <pf>collatzSteps</pf> that uses a <pf>while</pf> loop to return the number of steps required for the sequence to reach <m>1</m>.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="11%"/>
+					<col width="15%"/>
+					<col width="28%" halign="left"/>
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Difficulty:</cell><cell>★</cell><cell/><cell/>
+					</row>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>starting number (positive)</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>steps</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of steps to reach 1</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="50% 48%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							steps = collatzSteps(6)
+							steps = collatzSteps(10)
+							steps = collatzSteps(1)
+							steps = collatzSteps(27)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% steps = 8
+							% steps = 6
+							% steps = 0
+							% steps = 111
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+		</task>
+
+		<task label="hw-collatz-conjecture-b">
+			<statement>
+				<p>
+					Using your <pf>collatzSteps</pf> code as a helper function write a function called <pf>collatzMax</pf> that returns the max number of Collatz steps for each number between <m>a</m> and <m>b</m>.
+				</p>
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Difficulty:</cell><cell>★</cell><cell/><cell/>
+					</row>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>a</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>starting number (positive)</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>b</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>ending number (positive)</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>maxSteps</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>maximum number of steps to reach 1 for any number between <m>a</m> and <m>b</m></p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="50% 48%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							maxSteps = collatzMax(1, 10)
+							maxSteps = collatzMax(1, 100)
+							maxSteps = collatzMax(1, 1000)
+							maxSteps = collatzMax(1, 10000)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% maxSteps = 20 (for 9)
+							% maxSteps = 119 (for 97)
+							% maxSteps = 179 (for 871)
+							% maxSteps = 261 (for 6171)
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+		</task>
+
+		<task label="hw-collatz-conjecture-c">
+			<statement>
+				<p>
+					Using your <pf>collatzSteps</pf> code as a helper function write a function called <pf>collatzSiblings</pf> that returns quantity other values between <m>a</m> and <m>b</m> that share the same Collatz steps as <m>x</m>. 
+				</p>
+				<p>
+					For example, 6 and 10 both take 8 steps to reach 1, so they would count as a pair. 
+				</p>
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Difficulty:</cell><cell>★</cell><cell/><cell/>
+					</row>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number to find siblings of</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>a</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>starting number (positive)</p></cell>
+					</row>
+					<row>
+						<cell><p></p></cell>
+						<cell><p><pf>b</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>ending number (positive)</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>count</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of integers between <m>a</m> and <m>b</m> that have the same Collatz steps as <m>x</m></p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="60% 38%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							pairs = collatzSiblings(6, 1, 10)
+							pairs = collatzSiblings(10, 1, 100)
+							pairs = collatzSiblings(27, 1, 1000)
+							pairs = collatzSiblings(6171, 1, 10000)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% pairs = 1
+							% pairs = 2
+							% pairs = 7
+							% pairs = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+		</task>
+
+		<task label="hw-while-digital-root">
+			<title>Digital Root</title>
+
+			<statement>
+				<p>
+					Write a script that computes the digital root of a positive integer <pf>n</pf>. The digital root 
+					is found by repeatedly summing the digits until only a single digit remains.
+				</p>
+				<p>
+					Use an outer <pf>while</pf> loop that continues as long as <pf>n &gt;= 10</pf>. Inside this loop:
+					first set a variable (for example, <pf>sum_digits</pf>) to 0. Then copy <pf>n</pf> into a temporary 
+					variable (for example, <pf>temp</pf>) and use an inner <pf>while</pf> loop that runs while <pf>temp &gt; 0</pf>.
+					In the inner loop, extract the rightmost digit with <pf>mod(temp, 10)</pf>, add it to <pf>sum_digits</pf>, 
+					and then update <pf>temp</pf> using <pf>floor(temp/10)</pf> to remove the rightmost digit. After the inner 
+					loop finishes, assign <pf>n = sum_digits</pf> and repeat the outer loop test. When the outer loop ends, 
+					store the final single-digit value of <pf>n</pf> in <pf>digital_root</pf>.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>n</pf> (1x1) double — positive integer</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>digital_root</pf> (1x1) double — single digit (0-9)</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Multi-digit number
+					n = 38;
+					% Run your script
+					% Expected: digital_root = 2
+					% (38 → 3+8=11 → 1+1=2)
+
+					% Test 2: Another example
+					n = 987;
+					% Run your script
+					% Expected: digital_root = 6
+					% (987 → 9+8+7=24 → 2+4=6)
+
+					% Test 3: Single digit
+					n = 7;
+					% Run your script
+					% Expected: digital_root = 7
+
+					% Test 4: Larger number
+					n = 12345;
+					% Run your script
+					% Expected: digital_root = 6
+					% (12345 → 1+2+3+4+5=15 → 1+5=6)
+				</program>
+
+			</statement>
+		</task>
+
+		<task label="hw-while-fibonacci">
+			<title>Fibonacci Threshold</title>
+
+			<statement>
+				<p>
+					Write a script that uses a <pf>while</pf> loop to generate Fibonacci numbers until one exceeds 
+					10000. The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the 
+					two preceding numbers. Store the first Fibonacci number that exceeds 10000 in <pf>fib_result</pf>. 
+					You will need variables for the current number and the two previous numbers.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p>None (start sequence with 0 and 1)</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>fib_result</pf> (1x1) double — first Fibonacci number exceeding 10000</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test: Run your script
+					% Expected: fib_result = 10946
+					% (Sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, ..., 6765, 10946)
+				</program>
+
+			</statement>
+		</task>
+
+		<task label="hw-while-digit-count">
+			<title>★ Counting Digits</title>
+			<statement>
+				<p>
+					Write a function <pf>numDigits(n)</pf> that takes a positive integer <pf>n</pf> and returns how many digits it has. Use a <pf>while</pf>-loop that repeatedly divides <pf>n</pf> by 10 (using <pf>floor</pf>) until it reaches 0, counting each step.
+				</p>
+				<p>
+					For example:
+					<ul>
+						<li><pf>numDigits(7)</pf> returns <pf>1</pf></li>
+						<li><pf>numDigits(42)</pf> returns <pf>2</pf></li>
+						<li><pf>numDigits(10000)</pf> returns <pf>5</pf></li>
+					</ul>
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					function count = numDigits(n)
+						count = 0;
+						while n &gt; 0
+							n = floor(n / 10);
+							count = count + 1;
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="hw-while-loan-payoff">
+			<title>★★ Loan Payoff Calculator</title>
+			<statement>
+				<p>
+					You borrow $1000 at a monthly interest rate of 1.5%. Each month, interest is added to the balance, and then you make a fixed payment of $100. Write a script that uses a <pf>while</pf>-loop to determine how many months it takes to pay off the loan (i.e., until the balance reaches 0 or below).
+				</p>
+				<p>
+					Each month, the update is:
+					<me>\text{balance} = \text{balance} \times 1.015 - 100</me>.
+				</p>
+				<p>
+					Your script should print the month number and remaining balance each iteration, and report the total amount paid. Note that the final payment may be less than $100 (you don't overpay). Handle this by checking whether the balance after interest is less than the regular payment.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					balance = 1000;
+					rate = 0.015;
+					payment = 100;
+					month = 0;
+					totalPaid = 0;
+
+					while balance &gt; 0
+						balance = balance * (1 + rate);
+						month = month + 1;
+						if balance &lt; payment
+							totalPaid = totalPaid + balance;
+							balance = 0;
+						else
+							balance = balance - payment;
+							totalPaid = totalPaid + payment;
+						end
+						fprintf('Month %2i: balance = $%.2f\n', month, balance)
+					end
+
+					fprintf('Paid off in %i months.\n', month)
+					fprintf('Total paid: $%.2f\n', totalPaid)
+				</program>
+			</solution>
+		</task>
+
+		<task label="hw-while-int-sqrt">
+			<title>★★ Integer Square Root</title>
+			<statement>
+				<p>
+					Write a function <pf>intSqrt(n)</pf> that returns the largest integer whose square is less than or equal to <pf>n</pf>. This is the <term>integer square root</term>, sometimes written <m>\lfloor \sqrt{n} \rfloor</m>. Do <em>not</em> use <pf>sqrt</pf>, <pf>^</pf>, or any other built-in power/root function.
+				</p>
+				<p>
+					Use a <pf>while</pf>-loop that starts with <pf>k = 0</pf> and increments <pf>k</pf> as long as <pf>(k+1)*(k+1) &lt;= n</pf>.
+				</p>
+				<p>
+					For example:
+					<ul>
+						<li><pf>intSqrt(25)</pf> returns <pf>5</pf></li>
+						<li><pf>intSqrt(26)</pf> returns <pf>5</pf></li>
+						<li><pf>intSqrt(99)</pf> returns <pf>9</pf></li>
+						<li><pf>intSqrt(100)</pf> returns <pf>10</pf></li>
+					</ul>
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					function k = intSqrt(n)
+						k = 0;
+						while (k + 1) * (k + 1) &lt;= n
+							k = k + 1;
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="hw-while-base-conversion">
+			<title>★★ Decimal to Binary Conversion</title>
+			<statement>
+				<p>
+					To convert a positive integer from decimal to binary, repeatedly divide by 2 and record the remainders. The remainders, read in reverse order, form the binary representation. For example:
+					<md>
+						<mrow>13 \div 2 = 6 \text{ remainder } 1</mrow>
+						<mrow>6 \div 2 = 3 \text{ remainder } 0</mrow>
+						<mrow>3 \div 2 = 1 \text{ remainder } 1</mrow>
+						<mrow>1 \div 2 = 0 \text{ remainder } 1</mrow>
+					</md>
+					Reading the remainders bottom-to-top gives <m>13_{10} = 1101_2</m>.
+				</p>
+				<p>
+					Write a function <pf>toBinary(n)</pf> that takes a positive integer and returns its binary representation as a decimal number whose digits are the binary digits. For example, <pf>toBinary(13)</pf> returns <pf>1101</pf> (the number one-thousand-one-hundred-and-one, whose digits happen to be the binary representation of 13).
+				</p>
+				<p>
+					<em>Hint:</em> To build the result in the correct order, use a variable <pf>place</pf> that starts at 1 and is multiplied by 10 each iteration. Each remainder is added as <pf>result = result + remainder * place</pf>.
+				</p>
+				<p>
+					Verify: <pf>toBinary(1)</pf> returns <pf>1</pf>, <pf>toBinary(10)</pf> returns <pf>1010</pf>, and <pf>toBinary(255)</pf> returns <pf>11111111</pf>.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					function result = toBinary(n)
+						result = 0;
+						place = 1;
+						while n &gt; 0
+							remainder = mod(n, 2);
+							result = result + remainder * place;
+							n = floor(n / 2);
+							place = place * 10;
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="hw-while-hailstone">
+			<title>★★ Hailstone Sequence Analysis</title>
+			<statement>
+				<p>
+					The Collatz (or "hailstone") sequence for a starting value <m>n</m> applies these rules repeatedly until reaching 1:
+					<ul>
+						<li>If <m>n</m> is even, replace <m>n</m> with <m>n/2</m>.</li>
+						<li>If <m>n</m> is odd, replace <m>n</m> with <m>3n+1</m>.</li>
+					</ul>
+				</p>
+				<p>
+					Write a function <pf>hailstone(n)</pf> that takes a positive integer <pf>n</pf> and returns two outputs: <pf>steps</pf> (the number of steps to reach 1) and <pf>peak</pf> (the largest value reached during the sequence).
+				</p>
+				<p>
+					Use your function to answer: which starting value between 1 and 100 produces the longest sequence? Which produces the highest peak? Write a short script that uses a <pf>for</pf>-loop over starting values 1 through 100 and calls your <pf>hailstone</pf> function each time to find the answers.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					% --- Function ---
+					function [steps, peak] = hailstone(n)
+						steps = 0;
+						peak = n;
+						while n ~= 1
+							if mod(n, 2) == 0
+								n = n / 2;
+							else
+								n = 3*n + 1;
+							end
+							steps = steps + 1;
+							if n &gt; peak
+								peak = n;
+							end
+						end
+					end
+				</program>
+				<program language="matlab">
+					% --- Script ---
+					longestStart = 1;
+					longestSteps = 0;
+					highestStart = 1;
+					highestPeak = 1;
+
+					for k = 1:100
+						[s, p] = hailstone(k);
+						if s &gt; longestSteps
+							longestSteps = s;
+							longestStart = k;
+						end
+						if p &gt; highestPeak
+							highestPeak = p;
+							highestStart = k;
+						end
+					end
+
+					fprintf('Longest sequence: n = %i (%i steps)\n', longestStart, longestSteps)
+					fprintf('Highest peak: n = %i (peak = %i)\n', highestStart, highestPeak)
+				</program>
+			</solution>
+		</task>
+
+		<task label="hw-while-population">
+			<title>★★ Population Growth Model</title>
+			<statement>
+				<p>
+					A simple population model says that if the current population is <m>P</m>, the population next year is
+					<me>P_{\text{next}} = P + r \cdot P \cdot \left(1 - \frac{P}{K}\right)</me>
+					where <m>r</m> is the growth rate and <m>K</m> is the carrying capacity (the maximum sustainable population). This is the <term>logistic growth model</term>. When <m>P</m> is small relative to <m>K</m>, growth is roughly exponential. As <m>P</m> approaches <m>K</m>, growth slows and the population levels off.
+				</p>
+				<p>
+					Write a script with <pf>P = 100</pf>, <pf>r = 0.5</pf>, and <pf>K = 10000</pf>. Use a <pf>while</pf>-loop to simulate year-by-year population growth until the population reaches 95% of the carrying capacity (<pf>P &gt;= 0.95 * K</pf>). Print the year and population each iteration.
+				</p>
+				<p>
+					Then try <pf>r = 0.1</pf> and <pf>r = 1.5</pf>. How does the growth rate affect the number of years needed?
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					P = 100;
+					r = 0.5;
+					K = 10000;
+					year = 0;
+
+					fprintf('Year %3i: P = %.2f\n', year, P)
+
+					while P &lt; 0.95 * K
+						P = P + r * P * (1 - P / K);
+						year = year + 1;
+						fprintf('Year %3i: P = %.2f\n', year, P)
+					end
+
+					fprintf('Reached 95%% of capacity in %i years.\n', year)
+				</program>
+			</solution>
+		</task>
+
+		<task label="hw-while-continued-fraction">
+			<title>★★★ Continued Fraction for the Golden Ratio</title>
+			<statement>
+				<p>
+					The golden ratio <m>\varphi = \frac{1+\sqrt{5}}{2} \approx 1.6180339887\ldots</m> has the remarkable continued fraction representation
+					<me>\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}</me>.
+					This can be computed iteratively by starting from the inside and working outward. If we truncate at <m>N</m> levels, the approximation is built by starting with <pf>x = 1</pf> and repeatedly applying
+					<me>x = 1 + \frac{1}{x}</me>.
+				</p>
+				<p>
+					Write a script that starts with <pf>x = 1</pf> and applies this update in a <pf>while</pf>-loop until the approximation is within <pf>1e-12</pf> of <m>\varphi</m>. Use <pf>(1 + sqrt(5)) / 2</pf> as the true value. Print <pf>x</pf> and the error at each step.
+				</p>
+				<p>
+					How many iterations are needed? Is convergence fast or slow compared to Newton's method?
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					phi = (1 + sqrt(5)) / 2;
+					x = 1;
+					step = 0;
+					err = abs(x - phi);
+
+					fprintf('Step %3i: x = %.15f, error = %.2e\n', step, x, err)
+
+					while err &gt; 1e-12
+						x = 1 + 1/x;
+						step = step + 1;
+						err = abs(x - phi);
+						fprintf('Step %3i: x = %.15f, error = %.2e\n', step, x, err)
+					end
+
+					fprintf('Converged in %i steps.\n', step)
+					fprintf('phi = %.15f\n', phi)
+				</program>
+			</solution>
+		</task>
+
+		<task label="hw-while-fizzbuzz">
+			<title>★★★ FizzBuzz with a Twist</title>
+			<statement>
+				<p>
+					FizzBuzz is a classic programming exercise. The rules: for each integer from 1 to <pf>N</pf>, print <pf>"Fizz"</pf> if the number is divisible by 3, <pf>"Buzz"</pf> if divisible by 5, <pf>"FizzBuzz"</pf> if divisible by both, or the number itself otherwise.
+				</p>
+				<p>
+					<term>Part 1.</term> Write a function <pf>fizzBuzz(N)</pf> that prints the FizzBuzz output for integers 1 through <pf>N</pf> using a <pf>while</pf>-loop. Use <pf>fprintf</pf> with <pf>'%s'</pf> format for the words and <pf>'%i'</pf> for the numbers. Example output for <pf>N = 15</pf>:
+				</p>
+				<pre>
+					1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz
+				</pre>
+				<p>
+					<term>Part 2.</term> Write a second function <pf>fizzBuzzCount(N)</pf> that returns three outputs: the number of Fizzes, Buzzes, and FizzBuzzes in the range 1 to <pf>N</pf>.
+				</p>
+				<p>
+					<term>Part 3.</term> Without running code, predict the output of <pf>fizzBuzzCount(100)</pf>. Then check your prediction. <em>Hint:</em> Think about how many multiples of 3, 5, and 15 lie between 1 and 100.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					% --- Part 1 ---
+					function fizzBuzz(N)
+						k = 1;
+						while k &lt;= N
+							if mod(k, 15) == 0
+								fprintf('FizzBuzz ')
+							elseif mod(k, 3) == 0
+								fprintf('Fizz ')
+							elseif mod(k, 5) == 0
+								fprintf('Buzz ')
+							else
+								fprintf('%i ', k)
+							end
+							k = k + 1;
+						end
+						fprintf('\n')
+					end
+				</program>
+				<program language="matlab">
+					% --- Part 2 ---
+					function [fizzCount, buzzCount, fbCount] = fizzBuzzCount(N)
+						fizzCount = 0;
+						buzzCount = 0;
+						fbCount = 0;
+						k = 1;
+						while k &lt;= N
+							if mod(k, 15) == 0
+								fbCount = fbCount + 1;
+							elseif mod(k, 3) == 0
+								fizzCount = fizzCount + 1;
+							elseif mod(k, 5) == 0
+								buzzCount = buzzCount + 1;
+							end
+							k = k + 1;
+						end
+					end
+				</program>
+				<p>
+					Part 3: Between 1 and 100, there are 6 multiples of 15 (FizzBuzz), <m>33 - 6 = 27</m> additional multiples of 3 (Fizz), and <m>20 - 6 = 14</m> additional multiples of 5 (Buzz). So <pf>fizzBuzzCount(100)</pf> returns <pf>(27, 14, 6)</pf>.
+				</p>
+			</solution>
+		</task>
+
+		<task label="hw-while-egyptian-fractions">
+			<title>★★★ Egyptian Fraction Decomposition</title>
+			<statement>
+				<p>
+					The ancient Egyptians represented fractions as sums of distinct <term>unit fractions</term> (fractions with numerator 1). For example:
+					<me>\frac{5}{7} = \frac{1}{2} + \frac{1}{5} + \frac{1}{70}</me>.
+					The <term>greedy algorithm</term> for finding such a decomposition works as follows: given a fraction <m>\frac{p}{q}</m>, find the smallest integer <m>n</m> such that <m>\frac{1}{n} \le \frac{p}{q}</m>, subtract it, and repeat with the remainder. Mathematically, <m>n = \lceil q / p \rceil</m>, which in MATLAB is <pf>ceil(q / p)</pf>.
+				</p>
+				<p>
+					Write a function <pf>egyptian(p, q)</pf> that takes a fraction <m>\frac{p}{q}</m> (with <m>0 &lt; p &lt; q</m>) and prints its Egyptian fraction decomposition. Use a <pf>while</pf>-loop that continues as long as <pf>p &gt; 0</pf>. Each iteration:
+					<ol>
+						<li>Compute <pf>n = ceil(q / p)</pf>.</li>
+						<li>Print <pf>1/n</pf>.</li>
+						<li>Update the fraction: <m>\frac{p}{q} - \frac{1}{n} = \frac{pn - q}{qn}</m>, so set <pf>p = p*n - q</pf> and <pf>q = q*n</pf>.</li>
+					</ol>
+				</p>
+				<p>
+					Test with the following inputs:
+					<ul>
+						<li><pf>egyptian(5, 7)</pf> — should produce <m>\frac{1}{2} + \frac{1}{5} + \frac{1}{70}</m>.</li>
+						<li><pf>egyptian(3, 11)</pf></li>
+						<li><pf>egyptian(7, 15)</pf></li>
+					</ul>
+					Verify each result by adding the unit fractions and checking that they sum to the original fraction.
+				</p>
+			</statement>
+			<solution>
+				<program language="matlab">
+					function egyptian(p, q)
+						fprintf('%i/%i = ', p, q)
+						first = true;
+						while p &gt; 0
+							n = ceil(q / p);
+							if ~first
+								fprintf(' + ')
+							end
+							fprintf('1/%i', n)
+							first = false;
+							p = p * n - q;
+							q = q * n;
+						end
+						fprintf('\n')
+					end
+				</program>
+			</solution>
+		</task>
+
+	</exercise>
+
+	<exercise label="coding-exercises-additional-flow-control">
+		<title>Using break, continue, and return in Loops</title>
+		
+		<task label="ex-break-search">
+			<title>Random Search with Break</title>
+
+			<statement>
+				<p>
+					Write a script that searches for a target value in a sequence of random numbers. Use a 
+					<pf>for</pf> loop that runs up to 50 iterations, generating one random integer between -20 and 20 
+					each time using <pf>randi([-20 20])</pf>. When the target value is found, use <pf>break</pf> to 
+					exit the loop immediately. Store whether the target was found in <pf>found</pf> (logical) and the 
+					iteration number where it was found in <pf>location</pf> (or -1 if not found).
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>target</pf> (1x1) double — integer value to search for</p>
+						</cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>found</pf> (1x1) logical — true if target was found, false otherwise</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell>
+							<p><pf>location</pf> (1x1) double — iteration where found (or -1 if not found)</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Search for 0
+					rng(42);  % Set seed for reproducibility
+					target = 0;
+					% Run your script
+					% Expected: found = true or false (depends on random sequence)
+					%           location = iteration number or -1
+
+					% Test 2: Search for a specific value
+					rng(123);
+					target = 10;
+					% Run your script
+					% Results will vary based on random generation
+
+					% Note: Results depend on random number generation
+					% Set rng seed for reproducible results when testing
+				</program>
+
+			</statement>
+		</task>
+		
+	</exercise>
+</exercises>

@@ -1,0 +1,120 @@
+<section xml:id="sec-logical-values">
+	<title>Logical Values (Answers)</title> 
+
+	<p>
+		MATLAB has two logical values:
+		<pf>true</pf> and <pf>false</pf>. When displayed, they often appear as <pf>logical 1</pf> and <pf>logical 0</pf>.
+		Although they behave similarly to the numeric values <pf>1</pf> and <pf>0</pf>, they are different data types.
+		Just as numbers can be stored in variables, logical values can be stored in variables as well.
+	</p>
+
+	<program language="matlab">
+		a = 1;
+		b = true;
+		c = 0;
+		d = false;
+
+		fprintf("a = %g,  b = %g,  c = %g,  d = %g\n", a, b, c, d)
+	</program>
+
+	<p>
+		Running the above code, <pf>fprintf</pf> produces the following output:
+	</p>
+
+	<pre>
+		a = 1,  b = 1,  c = 0,  d = 0
+	</pre>
+
+	<p>
+		Even though <pf>a</pf> and <pf>b</pf> (and <pf>c</pf> and <pf>d</pf>) look the same, MATLAB treats them differently:
+		<pf>a</pf> is a number (a double), while <pf>b</pf> is a logical value. You can get more information using the <pf>whos</pf> command.
+		Here is the output you should see:
+	</p>
+
+	<pre>
+		Name        Size            Bytes  Class      Attributes
+		a           1x1                 8  double
+		b           1x1                 1  logical
+		c           1x1                 8  double
+		d           1x1                 1  logical
+	</pre>
+
+	<p>
+		This shows us two differences: 
+		<dl width="wide">
+			<li><title>Class (data type)</title>
+				<p><pf>a</pf> is a <pf>double</pf>, while <pf>b</pf> is a <pf>logical</pf>.</p>
+			</li>
+			<li><title>Bytes (memory usage)</title>
+				<p><pf>a</pf> uses 8 bytes, while <pf>b</pf> uses 1 byte.</p>
+			</li>
+		</dl>
+		At the end of the day, the <pf>double</pf> data type is meant to store numeric quantities, while the <pf>logical</pf> data type stores yes/no answers to questions.
+	</p>
+
+	<exercises xml:id="conceptual-questions-logical-values">
+		<title>🤔💭 Conceptual Questions</title>
+
+		<exercise label="concepts-logical-values">
+
+			<task label="cqs-logical-values-1">
+				<title>Logical Data Types</title>
+				<statement correct="no">
+					<p>
+						In MATLAB, <pf>true</pf> and <pf>1</pf> are the same.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Incorrect. While <pf>true</pf> and <pf>1</pf> are represented by the same numeric value, 
+						they have different data types: <pf>true</pf> is of type <pf>logical</pf>, 
+						while <pf>1</pf> is of type <pf>double</pf>.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="cqs-logical-values-2">
+				<title>Understanding Logical Values</title>
+
+				<statement>
+					<p>
+						Why is <pf>true</pf> (logical) different from <pf>1</pf> (double) in MATLAB, 
+						even though they display similarly?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>true</pf> represents a logical value, while <pf>1</pf> is numeric</p>
+						</statement>
+						<feedback>
+							<p>Correct! Logical values are designed to represent yes/no answers to questions, 
+							while numeric values represent measurements or counts.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>They are the same and can be used interchangeably</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. While they behave similarly in many contexts, they are different 
+							data types with different purposes.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Logical values are faster than numeric values</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. While logical values do use less memory, the key difference is 
+							their purpose: answering yes/no questions versus storing numeric data.</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+
+	</exercises>
+
+</section>

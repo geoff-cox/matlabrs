@@ -1,0 +1,193 @@
+<section xml:id="sec-for-vs-while">
+	<title>Which to Use: for vs. while</title>
+
+	<p>
+		Both <pf>for</pf>-loops and <pf>while</pf>-loops repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.
+	</p>
+
+	<table xml:id="tab-for-vs-while">
+		<title>Comparing for-loops and while-loops</title>
+		<tabular>
+			<row header="yes">
+				<cell>Feature</cell>
+				<cell><pf>for</pf>-loops</cell>
+				<cell><pf>while</pf>-loops</cell>
+			</row>
+			<row>
+				<cell>Requires</cell>
+				<cell>a fixed list of values (often <pf>1:N</pf>)</cell>
+				<cell>a logical condition</cell>
+			</row>
+			<row>
+				<cell>Behavior</cell>
+				<cell>repeats once per value in the list</cell>
+				<cell>repeats while the condition is true</cell>
+			</row>
+			<row>
+				<cell>Terminates</cell>
+				<cell>after the last value is used</cell>
+				<cell>when the condition becomes false</cell>
+			</row>
+			<row>
+				<cell>Best when</cell>
+				<cell>you know exactly how many iterations you need</cell>
+				<cell>you do not know how many iterations you will need</cell>
+			</row>
+		</tabular>
+	</table>
+
+	<p>
+		Technically, any <pf>for</pf>-loop can be rewritten as a <pf>while</pf>-loop and vice versa. However, using the loop that naturally fits the problem makes your code clearer.
+	</p>
+
+	<exercise label="looping-structures-reading-ckpt-3">
+
+		<task label="looping-structures-reading-ckpt-3a">
+			<title>When to use a for-loop</title>
+			<statement>
+				<p>
+					When is a <pf>for</pf>-loop most appropriate?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement>
+						<p>
+							When you know how many times to repeat code.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							A <pf>for</pf>-loop works with a fixed list of values, making it ideal when you know the number of iterations in advance.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							When you need to repeat until a condition becomes false.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							This describes a <pf>while</pf>-loop, not a <pf>for</pf>-loop.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							When you need to skip certain iterations.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Both <pf>for</pf>-loops and <pf>while</pf>-loops can skip iterations using <pf>continue</pf>.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							When you don't know how many times to repeat code.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							If the number of iterations is unknown, a <pf>while</pf>-loop is more appropriate.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</task>
+
+		<task label="looping-structures-reading-ckpt-3b">
+			<title>For-loop requires a list of values</title>
+			<statement correct="yes">
+				<p>
+					A <pf>for</pf>-loop requires a fixed list of values to iterate through.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Unlike <pf>while</pf>-loops which use a condition, <pf>for</pf>-loops need a list of values (like <pf>1:10</pf> or <pf>[2, 4, 6, 8]</pf>).
+				</p>
+			</feedback>
+		</task>
+
+		<task label="looping-structures-reading-ckpt-3c">
+			<title>Choosing the right loop type</title>
+			<statement>
+				<p>
+					Which loop should you use when you don't know in advance how many iterations are needed?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice>
+					<statement>
+						<p>
+							A <pf>for</pf>-loop
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							A <pf>for</pf>-loop requires knowing the number of iterations (or a list of values) in advance.
+						</p>
+					</feedback>
+				</choice>
+				<choice correct="yes">
+					<statement>
+						<p>
+							A <pf>while</pf>-loop
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							A <pf>while</pf>-loop is perfect when the number of iterations depends on a condition that changes during execution.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							Either one works equally well
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							While technically interchangeable, a <pf>while</pf>-loop is clearer and more natural when the iteration count is unknown.
+						</p>
+					</feedback>
+				</choice>
+				<choice>
+					<statement>
+						<p>
+							Neither, you need an <pf>if</pf>-statement
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							An <pf>if</pf>-statement doesn't repeat code. You need a loop for repetition.
+						</p>
+					</feedback>
+				</choice>
+			</choices>
+		</task>
+
+		<task label="looping-structures-reading-ckpt-3d">
+			<title>Loops are interchangeable</title>
+			<statement correct="yes">
+				<p>
+					Technically, any <pf>for</pf>-loop can be rewritten as a <pf>while</pf>-loop and vice versa.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Both loop types can accomplish the same tasks, but choosing the one that fits naturally makes your code easier to read and understand.
+				</p>
+			</feedback>
+		</task>
+
+	</exercise>
+
+</section>
