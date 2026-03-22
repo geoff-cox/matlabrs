@@ -1,8 +1,652 @@
 <exercises xml:id="fn-exercises">
-  <title>Coding Projects</title>
+  <title>Coding Projects</title> 
 
 
+		<exercise label="activity-while-root-hunter">
+			<title>Root Hunter</title>
+
+			<introduction>
+				<p>
+					In this activity, you will play a game where you try to find a root of a function by hand. The computer evaluates <m>f(x)</m> at each guess and tells you the result — your job is to zero in on where <m>f(x) = 0</m>. Think of it as a human-powered root-finding algorithm.
+				</p>
+			</introduction>
+
+			<task label="activity-root-hunter-a">
+				<title>Hunt for the root</title>
+				<statement>
+					<p>
+						Consider the function <m>f(x) = x^3 - 6x + 2</m>, which has a root somewhere in the interval <m>[0, 1]</m> (you can verify that <m>f(0) = 2</m> and <m>f(1) = -3</m>).
+					</p>
+					<p>
+						Write a script that uses a <pf>while</pf>-loop to repeatedly ask the player to guess a value of <m>x</m>. Each round, compute and display <m>f(x)</m> for the player's guess. The loop should end when <pf>abs(f(x))</pf> is less than 0.01. Count how many guesses it takes.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						fprintf('Find a root of f(x) = x^3 - 6x + 2.\n')
+						fprintf('Guess values of x until f(x) is close to 0.\n\n')
+
+						guesses = 0;
+						fx = Inf;
+
+						while abs(fx) &gt;= 0.01
+							x = input('Your guess for x: ');
+							fx = x^3 - 6*x + 2;
+							guesses = guesses + 1;
+							fprintf('  f(%.6f) = %.6f\n\n', x, fx)
+						end
+
+						fprintf('Close enough! Root ≈ %.6f in %i guesses.\n', x, guesses)
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-root-hunter-b">
+				<title>Strategy reflection</title>
+				<statement>
+					<p>
+						Play the game a few times. What strategy did you use to converge on the root? Did your strategy resemble bisection, Newton's method, or something else? Compare your guess count with a classmate's.
+					</p>
+				</statement>
+			</task>
+
+			<task label="activity-root-hunter-c">
+				<title>Warmer / Colder</title>
+				<statement>
+					<p>
+						Modify the script so that in addition to printing <m>f(x)</m>, it also tells the player whether their guess is <em>warmer</em> (closer to a root) or <em>colder</em> (farther from a root) compared to the previous guess. Use a variable to store the previous value of <pf>abs(f(x))</pf>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						fprintf('Find a root of f(x) = x^3 - 6x + 2.\n')
+						fprintf('I will tell you warmer/colder after each guess.\n\n')
+
+						guesses = 0;
+						fx = Inf;
+						prevDist = Inf;
+
+						while abs(fx) &gt;= 0.01
+							x = input('Your guess for x: ');
+							fx = x^3 - 6*x + 2;
+							guesses = guesses + 1;
+							currDist = abs(fx);
+							fprintf('  f(%.6f) = %.6f', x, fx)
+							if guesses &gt; 1
+								if currDist &lt; prevDist
+									fprintf('  (Warmer!)')
+								else
+									fprintf('  (Colder.)')
+								end
+							end
+							fprintf('\n\n')
+							prevDist = currDist;
+						end
+
+						fprintf('Close enough! Root ≈ %.6f in %i guesses.\n', x, guesses)
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+		<exercise label="activity-bisection-method">
+			<title>The Bisection Method</title>
+
+			<introduction>
+				<p>
+					The <term>bisection method</term> finds a root of <m>f(x) = 0</m> by exploiting the Intermediate Value Theorem. If <m>f(a)</m> and <m>f(b)</m> have opposite signs, then a root must lie in the interval <m>[a, b]</m>. The algorithm repeatedly halves this interval:
+					<ol>
+						<li>Compute the midpoint <m>m = \frac{a+b}{2}</m>.</li>
+						<li>If <m>f(a)</m> and <m>f(m)</m> have opposite signs, the root is in <m>[a, m]</m>, so set <m>b = m</m>.</li>
+						<li>Otherwise, the root is in <m>[m, b]</m>, so set <m>a = m</m>.</li>
+						<li>Repeat until <m>b - a</m> is small enough.</li>
+					</ol>
+				</p>
+				<p>
+					<em>Hint:</em> Two numbers have opposite signs when their product is negative.
+				</p>
+			</introduction>
+
+			<task label="activity-bisection-a">
+				<title>Finding <m>\sqrt{2}</m> via bisection</title>
+				<statement>
+					<p>
+						Use the bisection method to find a root of <m>f(x) = x^2 - 2</m> on the interval <m>[1, 2]</m>. Iterate until the interval width <m>b - a</m> is less than <pf>1e-10</pf>. Print <pf>a</pf>, <pf>b</pf>, and the midpoint at each step.
+					</p>
+					<sage language="octave">
+						<input>
+							a = 1; b = 2;
+							tol = 1e-10;
+							step = 0;
+							% ==== Type your code here ====
+							
+
+							% =============================
+							fprintf('Root ≈ %.15f\n', (a + b) / 2)
+							fprintf('sqrt(2) = %.15f\n', sqrt(2))
+						</input>
+					</sage>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						a = 1; b = 2;
+						tol = 1e-10;
+						step = 0;
+						while (b - a) &gt; tol
+							m = (a + b) / 2;
+							step = step + 1;
+							fprintf('Step %i: [%.10f, %.10f], midpoint = %.10f\n', step, a, b, m)
+							if (a^2 - 2) * (m^2 - 2) &lt; 0
+								b = m;
+							else
+								a = m;
+							end
+						end
+						fprintf('Root ≈ %.15f\n', (a + b) / 2)
+						fprintf('sqrt(2) = %.15f\n', sqrt(2))
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-bisection-b">
+				<title>Counting iterations</title>
+				<statement>
+					<p>
+						How many iterations did bisection take to reach a tolerance of <pf>1e-10</pf>? Compare this with how many steps Newton's method needed for the same problem. Which method converges faster? Why does this make sense?
+					</p>
+				</statement>
+			</task>
+
+			<task label="activity-bisection-c">
+				<title>A different equation</title>
+				<statement>
+					<p>
+						Use bisection to find a root of <m>f(x) = \cos(x) - x</m>. This equation has a root somewhere in <m>[0, 1]</m> (verify that <m>f(0)</m> and <m>f(1)</m> have opposite signs). Use a tolerance of <pf>1e-8</pf>.
+					</p>
+					<sage language="octave">
+						<input>
+							a = 0; b = 1;
+							tol = 1e-8;
+							step = 0;
+							% ==== Type your code here ====
+							
+
+							% =============================
+							fprintf('Root ≈ %.10f\n', (a + b) / 2)
+							fprintf('Iterations: %i\n', step)
+						</input>
+					</sage>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution. The root of <m>\cos(x) = x</m> is approximately 0.7390851332.
+					</p>
+					<program language="matlab">
+						a = 0; b = 1;
+						tol = 1e-8;
+						step = 0;
+						while (b - a) &gt; tol
+							m = (a + b) / 2;
+							step = step + 1;
+							fa = cos(a) - a;
+							fm = cos(m) - m;
+							if fa * fm &lt; 0
+								b = m;
+							else
+								a = m;
+							end
+						end
+						fprintf('Root ≈ %.10f\n', (a + b) / 2)
+						fprintf('Iterations: %i\n', step)
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+		<exercise label="activity-newton-method">
+			<title>Newton's Method</title>
+
+			<introduction>
+				<p>
+					<term>Newton's method</term> is one of the most important algorithms in mathematics. To find a root of <m>f(x) = 0</m>, start with an initial guess <m>x_0</m> and repeatedly apply:
+					<me>x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}</me>.
+					Each iteration typically produces a much better approximation. In this activity, you will implement Newton's method using a <pf>while</pf>-loop that stops when the approximation is sufficiently accurate.
+				</p>
+			</introduction>
+
+			<task label="activity-newton-method-a">
+				<title>Finding <m>\sqrt{2}</m></title>
+				<statement>
+					<p>
+						To compute <m>\sqrt{2}</m>, we can find the positive root of <m>f(x) = x^2 - 2</m>. Since <m>f'(x) = 2x</m>, Newton's update becomes:
+						<me>x_{n+1} = x_n - \frac{x_n^2 - 2}{2 x_n}</me>.
+					</p>
+					<p>
+						Write a script that starts with <pf>x = 1</pf> and uses a <pf>while</pf>-loop to iterate until <pf>abs(x^2 - 2)</pf> is less than <pf>1e-10</pf>. Print <pf>x</pf> at each step.
+					</p>
+					<sage language="octave">
+						<input>
+							x = 1;
+							tol = 1e-10;
+							step = 0;
+							fprintf('Step %i: x = %.15f\n', step, x)
+							% ==== Type your code here ====
+							
+
+							% =============================
+							fprintf('sqrt(2) = %.15f\n', sqrt(2))
+						</input>
+					</sage>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						x = 1;
+						tol = 1e-10;
+						step = 0;
+						fprintf('Step %i: x = %.15f\n', step, x)
+						% ==== Type your code here ====
+						while abs(x^2 - 2) &gt; tol
+							x = x - (x^2 - 2) / (2*x);
+							step = step + 1;
+							fprintf('Step %i: x = %.15f\n', step, x)
+						end
+						% =============================
+						fprintf('sqrt(2) = %.15f\n', sqrt(2))
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-newton-method-b">
+				<title>Observing convergence speed</title>
+				<statement>
+					<p>
+						Modify your script to also print the error <pf>abs(x - sqrt(2))</pf> at each step. How many correct decimal digits does each iteration add?
+					</p>
+					<p>
+						<em>Note:</em> Newton's method has <term>quadratic convergence</term>, meaning the number of correct digits roughly doubles each iteration.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						x = 1;
+						tol = 1e-10;
+						step = 0;
+						fprintf('Step %i: x = %.15f, error = %.2e\n', step, x, abs(x - sqrt(2)))
+						while abs(x^2 - 2) &gt; tol
+							x = x - (x^2 - 2) / (2*x);
+							step = step + 1;
+							fprintf('Step %i: x = %.15f, error = %.2e\n', step, x, abs(x - sqrt(2)))
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-newton-method-c">
+				<title>Finding <m>\sqrt[3]{5}</m></title>
+				<statement>
+					<p>
+						Adapt your code to compute <m>\sqrt[3]{5}</m> by finding the positive root of <m>f(x) = x^3 - 5</m>. What is the Newton's method update formula for this function? Start with <pf>x = 2</pf> and iterate until <pf>abs(x^3 - 5) &lt; 1e-10</pf>.
+					</p>
+					<sage language="octave">
+						<input>
+							x = 2;
+							tol = 1e-10;
+							step = 0;
+							fprintf('Step %i: x = %.15f\n', step, x)
+							% ==== Type your code here ====
+							
+
+							% =============================
+							fprintf('5^(1/3) = %.15f\n', 5^(1/3))
+						</input>
+					</sage>
+				</statement>
+				<solution>
+					<p>
+						Since <m>f(x) = x^3 - 5</m> and <m>f'(x) = 3x^2</m>, the update rule is:
+						<me>x_{n+1} = x_n - \frac{x_n^3 - 5}{3x_n^2}</me>.
+					</p>
+					<program language="matlab">
+						x = 2;
+						tol = 1e-10;
+						step = 0;
+						fprintf('Step %i: x = %.15f\n', step, x)
+						% ==== Type your code here ====
+						while abs(x^3 - 5) &gt; tol
+							x = x - (x^3 - 5) / (3*x^2);
+							step = step + 1;
+							fprintf('Step %i: x = %.15f\n', step, x)
+						end
+						% =============================
+						fprintf('5^(1/3) = %.15f\n', 5^(1/3))
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
 
 
+		<exercise label="activity-while-half-life">
+			<title>Half-Life, Drug Metabolism, and Steady State</title>
 
+			<introduction>
+				<p>
+					When a patient takes a medication, the body eliminates the drug over time. Most drugs follow <term>exponential decay</term>: in each fixed time interval, the same <em>fraction</em> of the drug is eliminated. The <term>half-life</term> <m>t_{1/2}</m> is the time it takes for the amount to drop to half its current value. For example, ibuprofen has a half-life of about 2 hours: if you take 400 mg, then after 2 hours roughly 200 mg remains, after 4 hours roughly 100 mg remains, and so on.
+				</p>
+				<p>
+					In this activity, you will simulate drug decay using a <pf>while</pf>-loop, then explore what happens when a patient takes repeated doses on a schedule.
+				</p>
+			</introduction>
+
+			<task label="activity-half-life-a">
+				<title>Simulating decay</title>
+				<statement>
+					<p>
+						A patient takes a 400 mg dose of ibuprofen, which has a half-life of 2 hours. To simulate the decay hour by hour, note that if the amount halves every 2 hours, then each hour it is multiplied by the <term>hourly decay factor</term>:
+						<me>r = \left(\frac{1}{2}\right)^{1/t_{1/2}} = \left(\frac{1}{2}\right)^{1/2} \approx 0.7071</me>.
+						That is, each hour the update rule is <m>A \to r \cdot A</m>.
+					</p>
+					<p>
+						Write a script that starts with <pf>amount = 400</pf> and uses a <pf>while</pf>-loop to simulate the amount of drug remaining hour by hour. Stop when the amount drops below 1 mg (considered negligible). Print the hour and amount each step.
+					</p>
+					<sage language="octave">
+						<input>
+							amount = 400;
+							halfLife = 2;
+							r = (0.5)^(1/halfLife);
+							hour = 0;
+							% ==== Type your code here ====
+							
+
+							% =============================
+							fprintf('Drug negligible after %i hours.\n', hour)
+						</input>
+					</sage>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						amount = 400;
+						halfLife = 2;
+						r = (0.5)^(1/halfLife);
+						hour = 0;
+						% ==== Type your code here ====
+						fprintf('Hour %2i: %.4f mg\n', hour, amount)
+						while amount &gt;= 1
+							amount = amount * r;
+							hour = hour + 1;
+							fprintf('Hour %2i: %.4f mg\n', hour, amount)
+						end
+						% =============================
+						fprintf('Drug negligible after %i hours.\n', hour)
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-half-life-b">
+				<title>Checking against the exact formula</title>
+				<statement>
+					<p>
+						The exact amount remaining after <m>t</m> hours is given by:
+						<me>A(t) = A_0 \cdot \left(\frac{1}{2}\right)^{t / t_{1/2}}</me>.
+					</p>
+					<p>
+						After your loop ends, compute the exact value using this formula and compare it to your simulation's final value. Do they agree? Why or why not?
+					</p>
+				</statement>
+			</task>
+
+			<task label="activity-half-life-c">
+				<title>Repeated doses</title>
+				<statement>
+					<p>
+						In reality, patients take medication on a schedule. Suppose the patient takes 400 mg of ibuprofen every 6 hours. Each hour, the existing drug in the body decays by the factor <m>r</m>. Every 6th hour, a new 400 mg dose is added <em>on top of</em> whatever remains.
+					</p>
+					<p>
+						Write a script that simulates this process for 48 hours. Use a <pf>while</pf>-loop over the hours, and an <pf>if</pf>-statement to add a dose whenever <pf>mod(hour, 6) == 0</pf> and <pf>hour &gt; 0</pf>. Print the hour and amount at each step. (The initial 400 mg dose at hour 0 is already accounted for by the starting value of <pf>amount</pf>.)
+					</p>
+					<sage language="octave">
+						<input>
+							amount = 400;
+							halfLife = 2;
+							r = (0.5)^(1/halfLife);
+							dose = 400;
+							interval = 6;
+							hour = 0;
+							peakAmount = amount;
+							% ==== Type your code here ====
+							
+
+							% =============================
+							fprintf('Peak amount over 48 hours: %.4f mg\n', peakAmount)
+						</input>
+					</sage>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						amount = 400;
+						halfLife = 2;
+						r = (0.5)^(1/halfLife);
+						dose = 400;
+						interval = 6;
+						hour = 0;
+						peakAmount = amount;
+						% ==== Type your code here ====
+						fprintf('Hour %2i: %.4f mg\n', hour, amount)
+						while hour &lt; 48
+							amount = amount * r;
+							hour = hour + 1;
+							if mod(hour, interval) == 0
+								amount = amount + dose;
+							end
+							fprintf('Hour %2i: %.4f mg\n', hour, amount)
+							if amount &gt; peakAmount
+								peakAmount = amount;
+							end
+						end
+						% =============================
+						fprintf('Peak amount over 48 hours: %.4f mg\n', peakAmount)
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-half-life-d">
+				<title>Approaching steady state</title>
+				<statement>
+					<p>
+						You should notice that the peak amount after each dose increases at first but begins to level off. This is the <term>steady state</term>: the amount gained from each dose is balanced by the amount lost to decay between doses.
+					</p>
+					<p>
+						Modify your simulation to run until the peak amount stabilizes. Specifically, track the peak amount right after each dose, and stop when the difference between consecutive peaks is less than 0.01 mg. How many doses does it take to reach steady state? What is the steady-state peak?
+					</p>
+					<p>
+						<em>Hint:</em> The steady-state peak can be computed exactly. Just before a new dose, the amount has decayed for <pf>interval</pf> hours, so it equals <m>P \cdot r^{\text{interval}}</m> where <m>P</m> is the peak. Right after the dose, the peak is this plus 400. At steady state, the peak equals itself:
+						<me>P = P \cdot r^{\text{interval}} + 400</me>.
+						Solve for <m>P</m> and verify that your simulation agrees.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						amount = 400;
+						halfLife = 2;
+						r = (0.5)^(1/halfLife);
+						dose = 400;
+						interval = 6;
+						hour = 0;
+
+						prevPeak = 0;
+						currPeak = amount;
+						doses = 1;
+
+						while abs(currPeak - prevPeak) &gt;= 0.01
+							% Simulate one dosing interval
+							step = 0;
+							while step &lt; interval
+								amount = amount * r;
+								hour = hour + 1;
+								step = step + 1;
+							end
+							% Take the next dose
+							amount = amount + dose;
+							doses = doses + 1;
+							prevPeak = currPeak;
+							currPeak = amount;
+							fprintf('Dose %2i (hour %2i): peak = %.4f mg\n', doses, hour, currPeak)
+						end
+
+						fprintf('\nSteady-state peak ≈ %.4f mg (after %i doses)\n', currPeak, doses)
+
+						exactPeak = dose / (1 - r^interval);
+						fprintf('Exact steady-state peak = %.4f mg\n', exactPeak)
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+
+		<exercise label="activity-while-escape-room">
+			<title>Escape Room</title>
+
+			<introduction>
+				<p>
+					In this activity, you will build a simple text-based escape room game. The player starts in a locked room and must find a key before they can escape. The game loop keeps running until the player either escapes or quits. <em>Note:</em> This activity uses the <pf>input</pf> command and must be run in MATLAB (not in the browser).
+				</p>
+			</introduction>
+
+			<task label="activity-escape-room-a">
+				<title>Build the game</title>
+				<statement>
+					<p>
+						The game has three rooms, tracked by a variable <pf>room</pf>:
+						<ul>
+							<li><pf>room = 1</pf>: The Main Hall. The player can go to the Library (2) or the Cellar (3).</li>
+							<li><pf>room = 2</pf>: The Library. Contains a hidden key. The player can return to the Main Hall (1).</li>
+							<li><pf>room = 3</pf>: The Cellar. Contains the locked exit door. The player can return to the Main Hall (1).</li>
+						</ul>
+					</p>
+					<p>
+						Use the following scalar variables:
+						<ul>
+							<li><pf>room</pf>: the current room number (start at 1)</li>
+							<li><pf>hasKey</pf>: 0 or 1, whether the player has found the key</li>
+							<li><pf>escaped</pf>: 0 or 1, whether the player has escaped</li>
+						</ul>
+					</p>
+					<p>
+						Write a <pf>while</pf>-loop that runs while <pf>escaped == 0</pf>. Each iteration, use a <pf>switch</pf>-statement on <pf>room</pf> to describe the current room and present choices via <pf>input</pf>. In the Library, automatically pick up the key (set <pf>hasKey = 1</pf>). In the Cellar, if the player has the key, they can unlock the door and escape; otherwise, tell them the door is locked.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Here is one possible solution:
+					</p>
+					<program language="matlab">
+						room = 1;
+						hasKey = 0;
+						escaped = 0;
+
+						fprintf('=== ESCAPE ROOM ===\n')
+						fprintf('Find the key and get out!\n\n')
+
+						while escaped == 0
+							switch room
+								case 1
+									fprintf('--- Main Hall ---\n')
+									fprintf('A dusty hall with two doors.\n')
+									fprintf('  1: Go to the Library\n')
+									fprintf('  2: Go to the Cellar\n')
+									choice = input('Your choice: ');
+									if choice == 1
+										room = 2;
+									elseif choice == 2
+										room = 3;
+									else
+										fprintf('Invalid choice.\n')
+									end
+
+								case 2
+									fprintf('--- The Library ---\n')
+									if hasKey == 0
+										fprintf('You find a rusty key on the shelf!\n')
+										hasKey = 1;
+									else
+										fprintf('Dusty books line every wall.\n')
+									end
+									fprintf('  1: Return to Main Hall\n')
+									choice = input('Your choice: ');
+									room = 1;
+
+								case 3
+									fprintf('--- The Cellar ---\n')
+									fprintf('A heavy iron door blocks the exit.\n')
+									if hasKey == 1
+										fprintf('  1: Use the key on the door\n')
+										fprintf('  2: Return to Main Hall\n')
+										choice = input('Your choice: ');
+										if choice == 1
+											fprintf('The lock clicks open. You escape!\n')
+											escaped = 1;
+										else
+											room = 1;
+										end
+									else
+										fprintf('The door is locked. You need a key.\n')
+										fprintf('  1: Return to Main Hall\n')
+										choice = input('Your choice: ');
+										room = 1;
+									end
+							end
+							fprintf('\n')
+						end
+
+						fprintf('=== YOU ESCAPED! ===\n')
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-escape-room-b">
+				<title>Step counter</title>
+				<statement>
+					<p>
+						Add a <pf>moves</pf> counter that tracks how many rooms the player visits. After escaping, display the total moves. What is the minimum number of moves needed to escape?
+					</p>
+				</statement>
+			</task>
+
+			<task label="activity-escape-room-c">
+				<title>Add a room</title>
+				<statement>
+					<p>
+						Add a fourth room of your own design (e.g., an Attic, a Garden, a Secret Passage). Give the player a reason to visit it — perhaps a clue, a second item, or a shortcut. Add the new room as another case in your <pf>switch</pf>-statement and update the connections.
+					</p>
+				</statement>
+			</task>
+
+		</exercise>
 </exercises>
