@@ -704,12 +704,10 @@
 				</p>
 				<program language="matlab">
 					function approx = approxE(n)
-						approx = 0;
+						approx = 1;
 						factorial = 1; % To keep track of k!
-						for k = 0:n
-							if k &gt; 0
-								factorial = factorial * k; % Update factorial to k!
-							end
+						for k = 1:n
+							factorial = factorial * k; % Update factorial to k!
 							approx = approx + 1/factorial; % Add 1/k!
 						end
 					end
@@ -784,7 +782,7 @@
 				</p>
 				<program language="matlab">
 					function approx = approxEofx(x, N)
-						approx = 0;
+						approx = 1;
 						factorial = 1; % To keep track of k!
 						for k = 0:N
 							if k &gt; 0
