@@ -1,0 +1,95 @@
+<exercise label="hw-while-continued-fraction">
+	<statement>
+		<p>
+			The golden ratio <m>\varphi = \frac{1+\sqrt{5}}{2} \approx 1.6180339887\ldots</m> has the remarkable continued fraction representation
+			<me>
+				\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}
+			</me>.
+		</p>
+
+		<p>
+			This can be computed, starting with <m>\varphi_1 = 1</m> and repeatedly applying
+			<me>
+				\varphi_2 = 1 + \frac{1}{\varphi_1},\quad
+				\varphi_3 = 1 + \frac{1}{\varphi_2},\quad
+				\varphi_4 = 1 + \frac{1}{\varphi_3},\ \ldots\quad
+			</me>.
+		</p>
+
+		<p>
+			Write a function called <pf>goldenRatio</pf> that uses a <pf>while</pf>-loop to return the approximation of the golden ratio and the number of steps needed for the approximation to be within a given tolerance.
+		</p>
+
+		<p>
+			We say that <m>\varphi_n</m> is within <m>\epsilon</m> of <m>\varphi</m> if the distance between them is less than <m>\epsilon</m>: 
+			<me>|\varphi_n - \varphi| &lt; \epsilon</me>. 
+			Use this as your looping condition. Use <m>\varphi = \frac{1+\sqrt{5}}{2}</m> in your function.
+		</p>
+
+		<tabular valign="top" top="minor">
+			<col width="11%" halign="right" />
+			<col width="15%" halign="left" />
+			<col width="28%" halign="center" />
+			<col width="46%" halign="left"/>
+			<row>
+				<cell>Inputs:</cell>
+				<cell><p><pf>tol</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>tolerance for approximation</p></cell>
+			</row>
+			<row>
+				<cell>Outputs:</cell>
+				<cell><p><pf>phi_n</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>approximation of the golden ratio, <m>\varphi</m></p></cell>
+			</row>
+			<row bottom="minor">
+				<cell></cell>
+				<cell><p><pf>steps</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>number of steps needed for <pf>phi_n</pf> to be within <pf>tol</pf> of <m>\varphi</m></p></cell>
+			</row>
+		</tabular>
+		
+		<sidebyside widths="48% 50%">
+			<stack>
+				<p>Test Cases ⤵︎</p>
+				<program language="matlab">
+					% Test 1
+					[val, n] = goldenRatio(0.5)
+					% Test 2
+					[val, n] = goldenRatio(1e-3)
+					% Test 3
+					[val, n] = goldenRatio(1e-8)
+				</program>
+			</stack>
+			<stack>
+				<p>Expected ⤵︎</p>
+				<program language="matlab">
+					% Test 1
+					val = 1.5				n = 1
+					% Test 2
+					val = 1.61538461538		n = 3
+					% Test 3
+					val = 1.61803398502		n = 6
+				</program>
+			</stack>
+		</sidebyside>
+	</statement>
+	<solution>
+		<program language="matlab">
+			function [phi_n, steps] = goldenRatio(tol)
+				phi = (1 + sqrt(5)) / 2;
+				phi_n = 1;
+				steps = 0;
+				err = abs(phi_n - phi);
+
+				while err &gt; tol
+					phi_n = 1 + 1/phi_n;
+					steps = steps + 1;
+					err = abs(phi_n - phi);
+				end
+			end
+		</program>
+	</solution>
+</exercise>
