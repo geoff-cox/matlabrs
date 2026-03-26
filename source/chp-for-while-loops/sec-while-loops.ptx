@@ -539,372 +539,360 @@
 			</task>
 		</exercise>
 
-		<exercise label="activity-while-doubling">
-			<title>Doubling Until a Threshold</title>
-			<statement>
-				<p>
-					Write a function <pf>doubleXUntilN(x, N)</pf> that uses a <pf>while</pf>-loop to determine how many times <pf>x</pf> must be doubled before it exceeds <pf>N</pf>. The function should also return the final doubled value.
-				</p>
+		<exercise label="activity-while-functions">
+			<title>While-Loop Functions</title>
 
-				<p>
-					For example, if <m>x = 3</m> and <m>N = 20</m>, then repeatedly doubling <m>3</m> gives: 
-					<me>
-						3 \overset{1}{\to} 6 \overset{2}{\to} 12 \overset{3}{\to} 24
-					</me>.
-					So, <m>3</m> was doubled <m>3</m> times and the final value was <m>24</m>.
-				</p>
+			<task label="activity-while-doubling">
+				<statement>
+					<p>
+						Write a function <pf>doubleXUntilN(x, N)</pf> that uses a <pf>while</pf>-loop to determine how many times <pf>x</pf> must be doubled before it exceeds <pf>N</pf>. The function should also return the final doubled value.
+					</p>
 
-				<p>
-					If <pf>x</pf> already exceeds <pf>N</pf>, then the function should return <pf>count = 0</pf> and <pf>final = x</pf>.
-				</p>
+					<p>
+						For example, if <m>x = 3</m> and <m>N = 20</m>, then repeatedly doubling <m>3</m> gives: 
+						<me>
+							3 \overset{1}{\to} 6 \overset{2}{\to} 12 \overset{3}{\to} 24
+						</me>.
+						So, <m>3</m> was doubled <m>3</m> times and the final value was <m>24</m>.
+					</p>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>x</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>positive starting value</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>N</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>threshold to exceed</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>count</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of doublings performed</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>final</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>final value after the last doubling</p></cell>
-					</row>
-				</tabular>
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>x</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive starting value</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>N</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>threshold to exceed</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>count</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of doublings performed</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>final</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>final value after the last doubling</p></cell>
+						</row>
+					</tabular>
 
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							[c, v] = doubleXUntilN(5, 76)
-							[c, v] = doubleXUntilN(13.2, 52.7)
-							[c, v] = doubleXUntilN(3, 2)
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							c = 4   v = 80
-							c = 2   v = 52.8
-							c = 0   v = 3
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution>
-				<program language="matlab">
-					function [count, final] = doubleXUntilN(x, N)
-						count = 0;
-						final = x;
+					<sidebyside widths="58% 40%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								[c, v] = doubleXUntilN(5, 76)
+								[c, v] = doubleXUntilN(13.2, 52.7)
+								[c, v] = doubleXUntilN(3, 2)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								c = 4   v = 80
+								c = 2   v = 52.8
+								c = 0   v = 3
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [count, final] = doubleXUntilN(x, N)
+							count = 0;
+							final = x;
 
-						while final &lt;= N
-							final = 2 * final;
-							count = count + 1;
+							while final &lt;= N
+								final = 2 * final;
+								count = count + 1;
+							end
 						end
-					end
-				</program>
-			</solution>
-		</exercise>
+					</program>
+				</solution>
+			</task>
 
-		<exercise label="activity-while-digit-count">
-			<title>Counting Digits</title>
-			<statement>
-				<p>
-					Write a function <pf>numDigits(n)</pf> that takes a positive integer <pf>n</pf> and returns the number of digits in <pf>n</pf>.
-				</p>
+			<task label="activity-while-digit-count">
+				<statement>
+					<p>
+						Write a function <pf>numDigits(n)</pf> that takes a positive integer <pf>n</pf> and returns the number of digits in <pf>n</pf>.
+					</p>
 
-				<p>
-					Use a <pf>while</pf>-loop that repeatedly replaces <pf>n</pf> with <pf>floor(n / 10)</pf> until <pf>n</pf> reaches <m>0</m>. Count how many times this happens.
-				</p>
+					<p>
+						Use a <pf>while</pf>-loop that repeatedly divides the number by 10. This will move the decimal point one place to the left. Then count how many times this can be done before before the number becomes less than 1.
+					</p>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>n</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>positive integer</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>count</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of digits in <pf>n</pf></p></cell>
-					</row>
-				</tabular>
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>count</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of digits in <pf>n</pf></p></cell>
+						</row>
+					</tabular>
 
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							count = numDigits(7)
-							count = numDigits(42)
-							count = numDigits(10000)
-							count = numDigits(938271)
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							count = 1
-							count = 2
-							count = 5
-							count = 6
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution>
-				<program language="matlab">
-					function count = numDigits(n)
-						count = 0;
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								count = numDigits(7)
+								count = numDigits(42)
+								count = numDigits(10000)
+								count = numDigits(938271)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								count = 1
+								count = 2
+								count = 5
+								count = 6
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function count = numDigits(n)
+							count = 0;
 
-						while n &gt; 0
-							n = floor(n / 10);
-							count = count + 1;
+							while n &gt;= 1
+								n = n / 10;
+								count = count + 1;
+							end
 						end
-					end
-				</program>
-			</solution>
-		</exercise>
+					</program>
+				</solution>
+			</task>
 
-		<exercise label="activity-euclidean-a">
-			<title>Euclidean Algorithm Steps</title>
-			<statement>
-				<p>
-					The <term>Euclidean algorithm</term> computes the greatest common divisor of two positive integers. The key identity is
-					<me>\gcd(a,b) = \gcd(b, \operatorname{mod}(a,b)).</me>
-					Repeatedly replacing the pair <m>(a,b)</m> with <m>(b, \operatorname{mod}(a,b))</m> makes the numbers smaller until the remainder is 0.
-				</p>
+			<task label="activity-euclidean-a">
+				<statement>
 
-				<p>
-					For example,
-					<md>
-						<mrow>\gcd(48,18) \to \gcd(18,12)</mrow>
-						<mrow>\gcd(18,12) \to \gcd(12,6)</mrow>
-						<mrow>\gcd(12,6) \to \gcd(6,0)</mrow>
-					</md>
-					so the greatest common divisor is <m>6</m>.
-				</p>
+					<p>
+						The greatest common divisor, <m>\gcd</m>, of two positive integers is the largest integer that divides both numbers. For example, 
+						<me>
+							\gcd(20, 12) = 4
+						</me>
+						since <m>4</m> is the largest integer that divides both <m>20</m> and <m>12</m> evenly.
+					</p>
 
-				<p>
-					Write a function called <pf>euclideanSteps</pf> that uses a <pf>while</pf>-loop to compute the greatest common divisor of two positive integers and the number of loop iterations used. Continue looping while <pf>b ~= 0</pf>. Because <pf>a</pf> is updated each iteration, store <pf>mod(a,b)</pf> in a temporary variable before overwriting <pf>a</pf>.
-				</p>
+					<p>
+						One way to compute the <m>\gcd</m> is with the <term>Euclidean algorithm</term>. This algorithm repeatedly uses the identity
+						<me>
+							\gcd(a,b) = \gcd(b, \operatorname{mod}(a,b))
+						</me>
+						until the remainder is 0. For example,
+						<md>
+							<mrow>
+								\gcd(20,12) \amp\to \gcd(12,\textcolor{red}{8}) \to \gcd(8,\textcolor{red}{4}) \to \gcd(4,\textcolor{red}{0}) = 4
+							</mrow>
+						</md>.
+					</p>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>a</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>positive integer</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>b</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>positive integer</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>gcd_value</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>greatest common divisor of <pf>a</pf> and <pf>b</pf></p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>steps</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of loop iterations used</p></cell>
-					</row>
-				</tabular>
+					<p>
+						Write a function called <pf>euclideanGCD</pf> that returns the <m>\gcd</m> of two positive integers and the steps needed to compute it.
+					</p>
 
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							[g, n] = euclideanSteps(100, 36)
-							% Test 2
-							[g, n] = euclideanSteps(1000000, 7)
-							% Test 3
-							[g, n] = euclideanSteps(89, 55)
-							% Test 4
-							[g, n] = euclideanSteps(233, 144)
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							g = 4				n = 4
-							% Test 2
-							g = 1				n = 2
-							% Test 3
-							g = 1				n = 9
-							% Test 4
-							g = 1				n = 11
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution>
-				<program language="matlab">
-					function [gcd_value, steps] = euclideanSteps(a, b)
-						steps = 0;
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="right" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>a</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>b</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>gcd</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><m>\gcd</m> of <pf>a</pf> and <pf>b</pf></p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>steps</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of steps needed</p></cell>
+						</row>
+					</tabular>
 
-						while b ~= 0
-							r = mod(a, b);
-							a = b;
-							b = r;
-							steps = steps + 1;
+					<sidebyside widths="58% 40%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								[g, n] = euclideanGCD(100, 36)
+								[g, n] = euclideanGCD(1000000, 3)
+								[g, n] = euclideanGCD(999, 369)
+								[g, n] = euclideanGCD(2244, 144)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								g = 4		n = 4
+								g = 1		n = 19
+								g = 3		n = 3
+								g = 12		n = 5
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [gcd_value, steps] = euclideanGCD(a, b)
+							steps = 0;
+
+							while b ~= 0
+								r = mod(a, b);
+								a = b;
+								b = r;
+								steps = steps + 1;
+							end
+
+							gcd_value = a;
 						end
+					</program>
+				</solution>
+			</task>
 
-						gcd_value = a;
-					end
-				</program>
-			</solution>
-		</exercise>
+			<task label="activity-change-machine-b">
+				<statement>
+					<p>
+						Write a function called <pf>makeChange</pf> that breaks a number of cents into quarters, dimes, nickels, and pennies using the greedy algorithm.
+					</p>
 
-		<exercise label="activity-change-machine-b">
-			<title>Greedy Change Breakdown</title>
-			<statement>
-				<p>
-					Write a function called <pf>makeChange</pf> that breaks a number of cents into quarters, dimes, nickels, and pennies using the greedy algorithm.
-				</p>
+					<p>
+						Use a separate <pf>while</pf>-loop for each coin type. Start with quarters, then dimes, then nickels, and finally pennies. Return the number of each coin used and <pf>totalCoins</pf>, the total number of coins in the final breakdown.
+					</p>
 
-				<p>
-					Use a separate <pf>while</pf>-loop for each coin type. Start with quarters, then dimes, then nickels, and finally pennies. Return the number of each coin used and <pf>totalCoins</pf>, the total number of coins in the final breakdown.
-				</p>
+					<p>
+						For U.S. coins, this greedy process gives the fewest coins possible.
+					</p>
 
-				<p>
-					For U.S. coins, this greedy process gives the fewest coins possible.
-				</p>
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>amount</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>nonnegative integer</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>q</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of quarters used</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>d</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of dimes used</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of nickels used</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>p</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of pennies used</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>change</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>total number of coins used</p></cell>
+						</row>
+					</tabular>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>amount</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>nonnegative integer amount in cents</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>quarters</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of quarters used</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>dimes</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of dimes used</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>nickels</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of nickels used</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>pennies</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of pennies used</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>totalCoins</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>total number of coins used</p></cell>
-					</row>
-				</tabular>
+					<sidebyside widths="54% 44%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								[q, d, n, p, tot] = makeChange(99)
+								[q, d, n, p, tot] = makeChange(41)
+								[q, d, n, p, tot] = makeChange(30)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								q=3, d=2, n=0, p=4, tot=9
+								q=1, d=1, n=1, p=1, tot=4
+								q=1, d=0, n=1, p=0, tot=2
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [quarters, dimes, nickels, pennies, totalCoins] = makeChange(amount)
+							quarters = 0;
+							dimes = 0;
+							nickels = 0;
+							pennies = 0;
+							remainder = amount;
 
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							[q, d, n, p, total] = makeChange(99)
-							% Test 2
-							[q, d, n, p, total] = makeChange(41)
-							% Test 3
-							[q, d, n, p, total] = makeChange(30)
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							q = 3		d = 2		n = 0		p = 4		total = 9
-							% Test 2
-							q = 1		d = 1		n = 1		p = 1		total = 4
-							% Test 3
-							q = 1		d = 0		n = 1		p = 0		total = 2
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution>
-				<program language="matlab">
-					function [quarters, dimes, nickels, pennies, totalCoins] = makeChange(amount)
-						quarters = 0;
-						dimes = 0;
-						nickels = 0;
-						pennies = 0;
-						remainder = amount;
+							while remainder &gt;= 25
+								remainder = remainder - 25;
+								quarters = quarters + 1;
+							end
 
-						while remainder &gt;= 25
-							remainder = remainder - 25;
-							quarters = quarters + 1;
+							while remainder &gt;= 10
+								remainder = remainder - 10;
+								dimes = dimes + 1;
+							end
+
+							while remainder &gt;= 5
+								remainder = remainder - 5;
+								nickels = nickels + 1;
+							end
+
+							while remainder &gt;= 1
+								remainder = remainder - 1;
+								pennies = pennies + 1;
+							end
+
+							totalCoins = quarters + dimes + nickels + pennies;
 						end
-
-						while remainder &gt;= 10
-							remainder = remainder - 10;
-							dimes = dimes + 1;
-						end
-
-						while remainder &gt;= 5
-							remainder = remainder - 5;
-							nickels = nickels + 1;
-						end
-
-						while remainder &gt;= 1
-							remainder = remainder - 1;
-							pennies = pennies + 1;
-						end
-
-						totalCoins = quarters + dimes + nickels + pennies;
-					end
-				</program>
-			</solution>
+					</program>
+				</solution>
+			</task>
 		</exercise>
 
 	</reading-questions>
