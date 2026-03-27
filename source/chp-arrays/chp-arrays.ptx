@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<chapter xml:id="chp-arrays" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<title>Arrays: Vectors &amp; Matrices</title>
+
+	<introduction>
+		<p>
+			In the previous chapters, you learned how to work with individual numbers and basic calculations in MATLAB. While scalar values are useful, much of MATLAB's power comes from its ability to work efficiently with collections of numbers called <term>arrays</term>. In fact, the name MATLAB stands for <q>Matrix Laboratory</q>, emphasizing the language's focus on array-based computing.
+		</p>
+
+		<p>
+			Arrays allow you to store multiple related values in a single variable and perform operations on all elements simultaneously. This approach, known as <term>vectorization</term>, is not only more efficient computationally but also leads to cleaner, more readable code. Understanding how to create, access, and manipulate arrays is fundamental to effective MATLAB programming.
+		</p>
+
+		<p>
+			This chapter introduces arrays systematically. You will learn how to create arrays using different methods, how to access individual elements or groups of elements through indexing, and how to perform mathematical operations on arrays. By the end of this chapter, you will be comfortable working with one-dimensional vectors and two-dimensional matrices, and you will understand how MATLAB's array operations enable you to write concise, powerful programs.
+		</p>
+	</introduction>
+
+	<!-- <xi:include href="sec-array-basics.ptx" /> -->
+	<!-- <xi:include href="sec-creating-arrays.ptx" /> -->
+	<!-- <xi:include href="sec-indexing.ptx" /> -->
+	<!-- <xi:include href="sec-array-operations.ptx" /> -->
+	<!-- <xi:include href="sec-array-functions.ptx" /> -->
+	<!-- <xi:include href="exercises-arrays.ptx" /> -->
+
+	<conclusion>
+		<p>
+			<objectives xml:id="arrays-takeaways">
+				<ul>
+					<li>
+						<term>Arrays are MATLAB's fundamental data structure</term>.
+						All numeric values in MATLAB are stored as arrays, even single numbers (which are 1-by-1 arrays).
+					</li>
+					<li>
+						<term>Vectors vs. matrices</term>.
+						A vector is a one-dimensional array (either a row or column), while a matrix is a two-dimensional array with multiple rows and columns.
+					</li>
+					<li>
+						<term>Creating arrays</term>.
+						Arrays can be created explicitly using square brackets <c>[ ]</c>, with functions like <pf>zeros</pf>, <pf>ones</pf>, and <pf>linspace</pf>, or using the colon operator <c>:</c> for sequences.
+					</li>
+					<li>
+						<term>Indexing starts at 1</term>.
+						Unlike many programming languages, MATLAB uses 1-based indexing, meaning the first element of an array is accessed with index 1, not 0.
+					</li>
+					<li>
+						<term>Element-wise vs. matrix operations</term>.
+						Operators like <c>.*</c>, <c>./</c>, and <c>.^</c> perform element-wise operations, while <c>*</c>, <c>/</c>, and <c>^</c> perform matrix operations following linear algebra rules.
+					</li>
+					<li>
+						<term>Array dimensions matter</term>.
+						Many operations require arrays to have compatible dimensions. Understanding row vectors vs. column vectors and how to transpose arrays with <c>'</c> is essential.
+					</li>
+					<li>
+						<term>Built-in functions operate on arrays</term>.
+						Functions like <pf>sum</pf>, <pf>mean</pf>, <pf>max</pf>, and <pf>length</pf> can process entire arrays efficiently, often eliminating the need for explicit loops.
+					</li>
+					<li>
+						<term>Vectorization improves code</term>.
+						Writing code that operates on entire arrays at once is typically faster and more readable than using loops to process individual elements.
+					</li>
+				</ul>
+			</objectives>
+		</p>
+	</conclusion>
+
+</chapter>
