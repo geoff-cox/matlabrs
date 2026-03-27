@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<chapter xml:id="chp-scripts-functions" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<title>Scripts &amp; Functions</title>
+
+	<introduction>
+
+		<p>
+			<term>Programming</term> is the process of writing a sequence of commands that a
+			computer can follow to perform a task. A <term>programming language</term>, like
+			MATLAB, provides a way to communicate your instructions to your computer.
+		</p>
+
+		<aside>
+			<title><q>Tasks</q></title>
+			<p>When we say "task", we mean writing a block of code that does something. It could be one line or many.</p>
+		</aside>
+
+		<p>
+			When you move from experimenting in the command window to writing scripts and
+			functions, you package commands into tasks and decide how those tasks should run.
+			As a programmer, your job is to steer the flow of your program so it runs the correct
+			commands at the right times.
+		</p>
+
+		<p>
+			Scripts execute statements from top to bottom by default, and functions bundle a sequence of tasks you can reuse. However, most programs need to make decisions and repeat actions based on conditions. This section discusses the different flow patterns of code and the ways you can control them.
+		</p>
+
+		<table xml:id="script-function-diffs">
+			<title>Scripts versus Functions</title>
+			<tabular top="minor" bottom="minor" left="minor" right="minor" halign="left">
+				<row header="yes">
+					<cell>Feature</cell>
+					<cell>Script</cell>
+					<cell>Function</cell>
+				</row>
+				<row>
+					<cell>Goal</cell>
+					<cell>Run a sequence of commands to complete a task</cell>
+					<cell>Create a reusable tool (inputs → outputs)</cell>
+				</row>
+				<row>
+					<cell>Running it</cell>
+					<cell>Press the <q>Run</q> button or type the script name in the command window</cell>
+					<cell>Call it with inputs in the command window or another script or function</cell>
+				</row>
+				<row>
+					<cell>Workspace</cell>
+					<cell>Shares the base workspace</cell>
+					<cell>Uses its own workspace</cell>
+				</row>
+				<row>
+					<cell>Reusability</cell>
+					<cell>Often specific to one situation</cell>
+					<cell>Designed to be used many times</cell>
+				</row>
+			</tabular>
+		</table>
+	</introduction>
+
+	<xi:include href="sec-scripts.ptx" />
+	<xi:include href="sec-functions.ptx" />
+	<xi:include href="exercises-scripts-functions.ptx" />
+
+	<conclusion>
+		<p>
+			<objectives xml:id="takeaways-scripts">
+				<ul>
+					<li>
+						<term>A function uses its own workspace</term>.
+						Variables created inside a function do not automatically appear in the Workspace after the function runs.
+					</li>
+					<li>
+						<term>The file name should match the function name</term>.
+						If the function header is <pf>function totalCents = coin_total(...)</pf>, then the file should be named <pf>coin_total.m</pf>.
+					</li>
+					<li>
+						<p>
+							<term>Calling a function</term>.
+							Unlike a script, a function is usually run by calling them with inputs in the Command Window (or inside a script).
+						</p>
+						<program language="matlab">
+							<code>
+								total = coin_total(7, 17, 13, 217);
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>Using outputs</term>.
+							To use an output from a function later, assign it to a variable. For example, the command
+						</p>
+						<program language="matlab">
+							<code>
+								coin_total(7, 17, 13, 217)
+							</code>
+						</program>
+						<p>
+							calls the function and computes a value, but does not store it. By contrast, the command
+						</p>
+						<program language="matlab">
+							<code>
+								totalCents = coin_total(7, 17, 13, 217)
+							</code>
+						</program>
+						<p>
+							stores the output from <pf>coin_total</pf> in the variable <pf>totalCents</pf>, which can then be used elsewhere.
+						</p>
+					</li>
+					<li>
+						<p>
+							<term>Functions can call other functions</term>.
+						</p>
+					</li>
+					<li>
+						<p>
+							<term>Scripts vs Functions</term>.
+							Scripts and functions are both <pf>.m</pf> files that execute MATLAB commands from top to bottom. Their differences are summarized in <xref ref="script-function-diffs"/>.
+						</p>
+
+					</li>
+				</ul>
+			</objectives>
+		</p>
+	</conclusion>
+</chapter>

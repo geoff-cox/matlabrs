@@ -5,7 +5,7 @@
 **Project**: Introduction to Programming with MATLAB - A textbook built with PreTeXt  
 **Type**: Educational textbook/documentation project  
 **Format**: PreTeXt XML (.ptx files) compiled to HTML and PDF  
-**Size**: Small (~11MB, 18 .ptx source files, ~8,300 lines of content)  
+**Size**: Small (~11MB, 45 .ptx source files, ~22,500 lines of content)  
 **Primary Language**: PreTeXt XML  
 **Target Audience**: Mathematicians, Engineers, and Scientists learning MATLAB
 
@@ -21,13 +21,15 @@ This repository contains an interactive textbook teaching MATLAB programming fun
 - `.gitignore` - Excludes output/, published/, generated-assets/, node_modules/, logs/, .cache/, and most `.github/` files, while explicitly including `.github/copilot-instructions.md`.
 
 ### Source Structure (`source/`)
-- `main.ptx` - Primary book source (full version)
+- `main.ptx` - Primary book source (table of contents that xi:includes each chapter file)
 - `main-dev.ptx` - Development version with commented-out sections
 - `aa-bookends/` - Front/back matter (book-info.ptx, front-matter.ptx)
-- `c1-basics/` - Chapter 1: MATLAB basics (4 sections, exercises) - 36KB
-- `c2-programming/` - Chapter 2: Programming fundamentals (6 sections, exercises) - 204KB (largest)
-- `c3-arrays/` - Chapter 3: Array operations (incomplete)
-- `c9-advanced-programming/` - Chapter 9: Advanced topics (nested loops)
+- `chp-welcome-to-matlab/` - Chapter: Welcome to MATLAB (4 sections, exercises)
+- `chp-scripts-functions/` - Chapter: Scripts & Functions (2 sections, exercises)
+- `chp-if-switch-statements/` - Chapter: Logic, If, & Switch (4 sections, exercises)
+- `chp-for-while-loops/` - Chapter: For & While Loops (4 sections, exercises)
+- `chp-arrays/` - Chapter: Arrays: Vectors & Matrices (sections commented out, incomplete)
+- `chp-nested-loops/` - Chapter: Additional Topics (nested loops, sections commented out)
 
 ### Configuration Files
 - `publication/publication.ptx` - Publication settings for web/pdf output (chunking level 3, TOC level 4)
@@ -196,7 +198,7 @@ pretext view web
 ### Adding New Sections
 
 1. Create new .ptx file in appropriate chapter directory
-2. Add `<xi:include href="path/to/new-file.ptx" />` in main.ptx or chapter file
+2. Add `<xi:include href="new-file.ptx" />` in the chapter-level .ptx file (e.g., chp-arrays/chp-arrays.ptx)
 3. Rebuild to validate inclusion
 
 ### Adding Images
@@ -207,16 +209,21 @@ pretext view web
 
 ### Working with Chapters
 
-- Chapter 1 (c1-basics): 4 sections on MATLAB environment and variables
-- Chapter 2 (c2-programming): 6 sections on scripts, functions, logic, and control flow
-- Chapter 3 (c3-arrays): Single file, incomplete
-- Chapter 9 (c9-advanced-programming): Nested loops content
+Each chapter directory contains a chapter-level .ptx file (e.g., `chp-welcome-to-matlab/chp-welcome-to-matlab.ptx`) that defines the chapter element and xi:includes its section files. The main.ptx file xi:includes each chapter-level file.
+
+- chp-welcome-to-matlab: 4 sections on MATLAB environment and variables
+- chp-scripts-functions: 2 sections on scripts and functions
+- chp-if-switch-statements: 4 sections on logic, if-statements, and switch-statements
+- chp-for-while-loops: 4 sections on for-loops, while-loops, and flow control
+- chp-arrays: Array operations (sections commented out, incomplete)
+- chp-nested-loops: Nested loops content (sections commented out)
 
 Some sections in main-dev.ptx are commented out for development purposes.
 
 ## File Naming Conventions
 
-- Chapter directories: `cN-name/` (e.g., c1-basics, c2-programming)
+- Chapter directories: `chp-name/` (e.g., chp-welcome-to-matlab, chp-scripts-functions)
+- Chapter files: `chp-name/chp-name.ptx` (e.g., chp-arrays/chp-arrays.ptx)
 - Section files: `sec-topic-name.ptx`
 - Exercise files: `exercises-chapter-name.ptx`
 - Bookend files: In `aa-bookends/`
