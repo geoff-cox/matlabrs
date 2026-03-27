@@ -4205,17 +4205,18 @@
 					<p>Test cases:</p>
 
 					<program language="matlab">
-						% Test 1: Fixed seed, moderate length
-						rng(7);
+						% Test 1: Deterministic no-streak case (n < 3)
+						rng(7);        % Any seed is fine here
+						n = 2;         % Fewer than 3 flips cannot contain a 3-head streak
+						% Run your script
+						% Expected: hasStreak must be false
+
+						% Test 2: Longer random sequence (behavior depends on rng)
+						rng(1);
 						n = 20;
 						% Run your script
-						% Expected: hasStreak = true or false (verify with your output)
-
-						% Test 2: Very short sequence (unlikely to streak)
-						rng(1);
-						n = 5;
-						% Run your script
-						% Expected: hasStreak likely false for short sequences
+						% Record the value of hasStreak you obtain.
+						% Re-running with the same seed should always give the same hasStreak.
 
 						% Note: Set rng seed before running for reproducible output.
 					</program>
