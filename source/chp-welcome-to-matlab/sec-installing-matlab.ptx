@@ -1,77 +1,59 @@
-<section xml:id="getting-matlab">
-	<title>Installing MATLAB</title>
+commit e449331ca2e746375b1a662682c5d615c49dfdeb
+Author: Claude <noreply@anthropic.com>
+Date:   Sat Mar 28 17:27:14 2026 +0000
 
-  <p>
-    MATLAB is a professional computing environment developed by MathWorks.
-    Before you can begin using it, you must install MATLAB on your computer
-    using a licensed MathWorks account.
-  </p>
+    Fix content issues in Ch1-2: broken exercises, typos, terminology
+    
+    - Remove institution-specific (VMI) references from installation section
+    - Fix cwd abbreviation confusion in Command Window section
+    - Fix transition text in MATLAB Desktop section
+    - Add missing truncated pyramid formula in exercises
+    - Replace placeholder exercises with real content (Ch1 and Ch2)
+    - Fix broken cardsort in scripts section (add responses to match elements)
+    - Fix wrong function name (rectangle_perimeter -> rectangle_properties)
+    - Remove duplicate script-vs-function table, replace with xref
+    - Fix typos ("is problem" -> "this problem")
+    - Add %d format specifier documentation
+    - Add factorial hint for Stirling's formula exercise
+    
+    https://claude.ai/code/session_01ERt9khoWPqjnbTgpRCm2VX
 
-  <p>
-    The current version of MATLAB is <em>R2025b</em>.
-    The steps below describe a typical installation process.
-    Screens and options may vary slightly depending on your operating system.
-		<ol>
-			<li>Go to <url href="https://www.mathworks.com/">mathworks.com</url>.</li>
-			<li>Click <q>Sign In</q> in the top-right corner.</li>
-			<li>
-				If you do not already have an account, create one using your VMI email address.
-			</li>
-			<li>After signing in, click <q>MATLAB</q> and then <q>Install MATLAB</q>.</li>
-			<li>Select your operating system from the dropdown menu.</li>
-			<li>Download and launch the installer.</li>
-			<li>
-				When prompted, sign in using the same MathWorks account.
-			</li>
-			<li>Accept the license agreement.</li>
-			<li>
-				Select the VMI-issued license when it appears.
-			</li>
-			<li>
-				Use the default installation location and pre-selected products unless instructed otherwise.
-			</li>
-			<li>
-				Choose whether to create desktop shortcuts and allow data collection.
-			</li>
-			<li>
-				Click <q>Begin Install</q> and wait for the installation to complete.
-			</li>
-		</ol>
-  </p>
-
-  <p>
-    Once installation is complete, you should be able to launch MATLAB from your
-    applications menu or desktop shortcut.
-    The first launch may ask you to sign in again to verify your license.
-  </p>
-
-	<p>
-		Once MATLAB is installed, you are ready to explore the MATLAB Desktop and begin working interactively.
-		In the next section, you will see the panels that make up the desktop layout.
-	</p>
-	
-  <!-- <exercise label="quiz-installing-matlab">
-    <title>Installing MATLAB</title>
-		
-    <statement>
-      <p>
-        Why is it important to sign in using your VMI email address when creating a MathWorks account?
-      </p>
-    </statement>
-    <choices randomize="yes">
-      <choice correct="yes">
-        <statement><p>It ensures access to the institution-issued MATLAB license.</p></statement>
-      </choice>
-      <choice correct="no">
-        <statement><p>It changes the version of MATLAB that is installed.</p></statement>
-      </choice>
-      <choice correct="no">
-        <statement><p>It allows MATLAB to run without an internet connection.</p></statement>
-      </choice>
-      <choice correct="no">
-        <statement><p>It prevents MATLAB from collecting user data.</p></statement>
-      </choice>
-    </choices>
-  </exercise> -->
-
-</section>
+diff --git a/source/chp-welcome-to-matlab/sec-installing-matlab.ptx b/source/chp-welcome-to-matlab/sec-installing-matlab.ptx
+index a42feeb..dc6a8a9 100644
+--- a/source/chp-welcome-to-matlab/sec-installing-matlab.ptx
++++ b/source/chp-welcome-to-matlab/sec-installing-matlab.ptx
+@@ -8,14 +8,14 @@
+   </p>
+ 
+   <p>
+-    The current version of MATLAB is <em>R2025b</em>.
++    We recommend installing a recent version of MATLAB.
+     The steps below describe a typical installation process.
+     Screens and options may vary slightly depending on your operating system.
+ 		<ol>
+ 			<li>Go to <url href="https://www.mathworks.com/">mathworks.com</url>.</li>
+ 			<li>Click <q>Sign In</q> in the top-right corner.</li>
+ 			<li>
+-				If you do not already have an account, create one using your VMI email address.
++				If you do not already have an account, create one using your institution's email address.
+ 			</li>
+ 			<li>After signing in, click <q>MATLAB</q> and then <q>Install MATLAB</q>.</li>
+ 			<li>Select your operating system from the dropdown menu.</li>
+@@ -25,7 +25,7 @@
+ 			</li>
+ 			<li>Accept the license agreement.</li>
+ 			<li>
+-				Select the VMI-issued license when it appears.
++				Select your institution's MATLAB license when it appears.
+ 			</li>
+ 			<li>
+ 				Use the default installation location and pre-selected products unless instructed otherwise.
+@@ -55,7 +55,7 @@
+ 		
+     <statement>
+       <p>
+-        Why is it important to sign in using your VMI email address when creating a MathWorks account?
++        Why is it important to sign in using your institution's email address when creating a MathWorks account?
+       </p>
+     </statement>
+     <choices randomize="yes">
