@@ -7,37 +7,6 @@
 	<p>
 		Scripts execute statements from top to bottom by default, and functions bundle a sequence of tasks you can reuse (see <xref ref="script-function-diffs"/> for a comparison). However, most programs need to make decisions and repeat actions based on conditions. This section discusses the different flow patterns of code and the ways you can control them.
 	</p>
-
-	<table xml:id="script-function-diffys">
-		<title>Scripts versus Functions</title>
-		<tabular top="minor" bottom="minor" left="minor" right="minor" halign="left">
-			<row header="yes">
-				<cell>Feature</cell>
-				<cell>Script</cell>
-				<cell>Function</cell>
-			</row>
-			<row>
-				<cell>Goal</cell>
-				<cell>Run a sequence of commands to complete a task</cell>
-				<cell>Create a reusable tool (inputs → outputs)</cell>
-			</row>
-			<row>
-				<cell>Running it</cell>
-				<cell>Press the <q>Run</q> button or type the script name in the command window</cell>
-				<cell>Call it with inputs in the command window or another script or function</cell>
-			</row>
-			<row>
-				<cell>Workspace</cell>
-				<cell>Shares the base workspace</cell>
-				<cell>Uses its own workspace</cell>
-			</row>
-			<row>
-				<cell>Reusability</cell>
-				<cell>Often specific to one situation</cell>
-				<cell>Designed to be used many times</cell>
-			</row>
-		</tabular>
-	</table>
 </introduction>
 
 	<p>
@@ -202,7 +171,7 @@
 
 		<program language="matlab">
 			<code>
-				[p, a] = rectangle_perimeter(4, 7)	% returns p = 22 and a = 28
+				[p, a] = rectangle_properties(4, 7)	% returns p = 22 and a = 28
 			</code>
 		</program>
 
@@ -220,7 +189,7 @@
 			<program language="matlab">
 				<code>
 					% returns a = 28, ignores perimeter
-					[~, a] = rectangle_perimeter(4, 7)	
+					[~, a] = rectangle_properties(4, 7)
 				</code>
 			</program>
 		</aside>
