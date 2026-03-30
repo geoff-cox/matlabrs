@@ -1,990 +1,885 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <section xml:id="sec-logical-statements">
-	<title>Logical Statements (Questions)</title>
+	<title>Logical Statements</title>
 
-	<p>
-		A <term>logical statement</term> is any MATLAB expression that produces a <pf>logical</pf> value, 
-		either <pf>true</pf> or <pf>false</pf>.
-		The most common logical statements come from comparing two values. These comparisons use
-		<term>relational operators</term>.
-	</p>
-
-	<table xml:id="tab-relational-operators">
-		<title>Relational operators in MATLAB</title>
-
-		<tabular>
-			<col width="25%" halign="center"/>
-			<col width="25%" halign="center"/>
-			<col width="50%" halign="left"/>
-			<row header="yes">
-				<cell>Relational operator</cell>
-				<cell>Logical statement</cell>
-				<cell>Question being asked</cell>
-			</row>
-			<row>
-				<cell><pf>==</pf></cell>
-				<cell><pf>x == y</pf></cell>
-				<cell>Is <m>\texttt{x}</m> equal to <m>\texttt{y}</m>?</cell>
-			</row>
-			<row>
-				<cell><pf>~=</pf></cell>
-				<cell><pf>x ~= y</pf></cell>
-				<cell>Is <m>\texttt{x}</m> not equal to <m>\texttt{y}</m>?</cell>
-			</row>
-			<row>
-				<cell><pf>&lt;</pf></cell>
-				<cell><pf>x &lt; y</pf></cell>
-				<cell>Is <m>\texttt{x}</m> less than <m>\texttt{y}</m>?</cell>
-			</row>
-			<row>
-				<cell><pf>&lt;=</pf></cell>
-				<cell><pf>x &lt;= y</pf></cell>
-				<cell>Is <m>\texttt{x}</m> less than or equal to <m>\texttt{y}</m>?</cell>
-			</row>
-			<row>
-				<cell><pf>&gt;</pf></cell>
-				<cell><pf>x &gt; y</pf></cell>
-				<cell>Is <m>\texttt{x}</m> greater than <m>\texttt{y}</m>?</cell>
-			</row>
-			<row>
-				<cell><pf>&gt;=</pf></cell>
-				<cell><pf>x &gt;= y</pf></cell>
-				<cell><p><m>\text{Is}\ \texttt{x}\ \text{greater than or equal to}\ \texttt{y} \text{?}</m></p></cell>
-			</row>
-		</tabular>
-	</table>
-
-	<p>
-		A common beginner mistake is confusing the assignment operator <pf>=</pf> with the 
-		comparison operator <pf>==</pf>. The single equal sign assigns a value to a variable 
-		(telling MATLAB what to store), while the double equal sign compares two values 
-		(asking MATLAB a question).
-	</p>
-
-	<program language="matlab">
-		cost = 7.1;     % Telling: assign a value
-		cost == 7.1     % Asking: compare a value
-	</program>
-
-	<exercise label="ckpt-logical-statements-1">
-		<title>Assignment vs. Comparison</title>
-
-		<statement>
-			<p>
-				Which of the following statements is correct?
-			</p>
-		</statement>
-		<choices randomize="yes">
-			<choice correct="yes">
-				<statement>
-					<p><pf>x = 5</pf> sets x equal to 5, while <pf>x == 5</pf> tests if x equals 5</p>
-				</statement>
-				<feedback>
-					<p>Correct! The single equal sign is for assignment, and the double equal sign is for comparison.</p>
-				</feedback>
-			</choice>
-			<choice>
-				<statement>
-					<p><pf>x = 5</pf> and <pf>x == 5</pf> both do the same thing</p>
-				</statement>
-				<feedback>
-					<p>Incorrect. These operators have completely different purposes: one assigns a value, 
-					the other asks a question.</p>
-				</feedback>
-			</choice>
-			<choice>
-				<statement>
-					<p><pf>x == 5</pf> assigns 5 to x only if x doesn't already have a value</p>
-				</statement>
-				<feedback>
-					<p>Incorrect. The <pf>==</pf> operator never assigns values; it only compares them.</p>
-				</feedback>
-			</choice>
-		</choices>
-	</exercise>
-
-	<p>
-		Here are a few comparison examples. The parentheses are optional, but they help clarify
-		which parts of the expression are being compared.
-	</p>
-
-	<program language="matlab">
-		a = 4; 
-		b = -4;
-
-		ans1 = (a == 4);	% ← Is a equal to 4?	Yes.
-		ans2 = (a == b);	% ← Is a equal to b?	No.
-		ans3 = (b &lt; a);		% ← Is b less than a?	Yes.
-	</program>
-
-	<p>
-		This code defines two <pf>double</pf> variables, <pf>a</pf> and <pf>b</pf>, and three <pf>logical</pf> variables:
-
-		<ul>
-			<li><pf>ans1 = 1</pf> since the logical statement <pf>a == 4</pf> is true.</li>
-			<li><pf>ans2 = 0</pf> since the logical statement <pf>a == b</pf> is false.</li>
-			<li><pf>ans3 = 1</pf> since the logical statement <pf>b &lt; a</pf> is true.</li>
-		</ul>
-	</p>
-
-	<exercise label="ckpt-logical-statements-2">
-		<title>Check Your Understanding: Logical Statements</title>
-		
-		<task label="logic-ckpt-intro">
-			<title>Logical Statements</title>
-			<statement>
-				<p>
-					Let <pf>x</pf>, <pf>y</pf>, and <pf>z</pf> be numeric variables. Which of the following are valid logical statements in MATLAB?
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice>
-					<statement><p><pf>x = y</pf></p></statement>
-					<feedback>
-						<p>
-							Incorrect. The expression <pf>x = y</pf> uses a single equal sign, which is for assignment, not comparison.
-						</p>
-					</feedback>
-				</choice>
-				<choice correct="yes">
-					<statement><p><pf>z &gt; y</pf></p></statement>
-					<feedback>
-						<p>
-							Correct! The expression <pf>z &gt; y</pf> is a valid logical statement that asks if <pf>z</pf> is greater than <pf>y</pf>.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>y =&lt; 2</pf></p></statement>
-					<feedback>
-						<p>
-							Incorrect. The expression <pf>y =&lt; 2</pf> uses an incorrect operator; the correct operator for "less than or equal to" is <pf>&lt;=</pf>.
-						</p>
-					</feedback>
-				</choice>
-				<choice correct="yes">
-					<statement><p><pf>z ~= z</pf></p></statement>
-					<feedback>
-						<p>
-							Correct! The expression <pf>z ~= z</pf> is a valid logical statement that asks if <pf>z</pf> is not equal to <pf>z</pf>.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>x ~ z</pf></p></statement>
-					<feedback>
-						<p>
-							Incorrect. The expression <pf>x ~ z</pf> is not a valid logical statement because it lacks a proper relational operator.
-						</p>
-					</feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<task>
-			<statement>
-				<p>
-					What is the result of the following logical expression in MATLAB?
-				</p>
-				<program language="matlab">
-					p = 10 &gt; 5;
-				</program>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p><pf>1</pf> (logical)</p></statement>
-					<feedback>
-						<p>
-							Correct! Since 10 is indeed greater than 5, the expression evaluates to <pf>true</pf> (logical 1).
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>0</pf> (logical)</p></statement>
-					<feedback>
-						<p>
-							Incorrect. Remember that 10 is greater than 5, so the expression evaluates to <pf>true</pf>.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>1</pf> (double)</p></statement>
-					<feedback>
-						<p>
-							Incorrect. While <pf>1</pf> (double) and <pf>true</pf> (logical 1) may seem similar, they are different data types in MATLAB.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>0</pf> (double)</p></statement>
-					<feedback>
-						<p>
-							Incorrect. The expression evaluates to <pf>true</pf> (logical 1), not <pf>false</pf>.
-						</p>
-					</feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<task>
-			<statement>
-				<p>
-					What is the result of the following logical expression in MATLAB?
-				</p>
-				<program language="matlab">
-					r = (pi ~= 3.14);
-				</program>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p><pf>1</pf> (logical)</p></statement>
-					<feedback>
-						<p>
-							Correct! Since 3.14 is only an approximation of pi, it is not equal to pi.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>0</pf> (logical)</p></statement>
-					<feedback>
-						<p>
-							Incorrect. Since 3.14 is only an approximation of pi, it is not exactly equal to the 
-							value of pi in MATLAB, so the expression evaluates to true.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>1</pf> (double)</p></statement>
-					<feedback>
-						<p>
-							Incorrect. While <pf>1</pf> (double) and <pf>true</pf> (logical 1) may seem similar, they are different data types in MATLAB.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement><p><pf>0</pf> (double)</p></statement>
-					<feedback>
-						<p>
-							Incorrect. The expression evaluates to true (logical 1), not false, since pi and 3.14 
-							are not exactly equal.
-						</p>
-					</feedback>
-				</choice>
-			</choices>
-		</task>
-	</exercise>
-
-	<paragraphs xml:id="negating-statements">
-		<title>Negating Logical Statements</title>
-
+	<introduction>
 		<p>
-			To ask the opposite of a logical statement, use the NOT operator <pf>~</pf>.
-			If an expression is true, its negation is false, and vice versa.
+			A <term>logical statement</term> is any MATLAB expression that produces a <pf>logical</pf> value, either <pf>true</pf> or <pf>false</pf>. These statements are the questions your programs ask before deciding what to do next.
 		</p>
+	</introduction>
 
-		<program language="matlab">
-			~true	% returns false
-			~false	% returns true
-		</program>
+	<subsection xml:id="subsec-logical-statements-structure">
+		<title>🧱 Structure</title>
 
-		<p>
-			The NOT operator negates a single logical value or statement. When the statement is a comparison, 
-			use parentheses so MATLAB negates the whole comparison.
-		</p>
-
-		<p>
-			For example, the following statements ask if <q>8 is not equal to 9</q>:
-			<ul>
-				<li><pf>~(8 == 9)</pf> <m>\quad\Rightarrow\quad</m> <q>NOT (8 is equal to 9)</q></li>
-				<li><pf>8 ~= 9</pf> <m>\quad\Rightarrow\quad</m> <q>8 is not equal to 9</q></li>
-			</ul>
-		</p>
-
-		<p>
-			Similarly, the negation of <pf>x &gt;= 5</pf> is <pf>x &lt; 5</pf>, so the two statements are equivalent:
-			<ul>
-				<li><pf>~(x &gt;= 5)</pf> <m>\quad\Rightarrow\quad</m> <q>NOT (x is greater than or equal to 5)</q></li>
-				<li><pf>x &lt; 5</pf> <m>\quad\Rightarrow\quad</m> <q>x is less than 5</q></li>
-			</ul>
-		</p>
-
-		<p>
-			When negating expressions, use parentheses to make your intent clear and improve the readability of your code.
-		</p>
-
-		<exercise label="ckpt-negating-statements-1">
-			<title>Negating Logical Statements</title>
-			<statement>
-				<p>
-					Which of the following expressions correctly asks "Is <pf>x</pf> NOT greater than 10?"
-					Select all that apply.
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement>
-						<p><pf>~(x &gt; 10)</pf></p>
-					</statement>
-					<feedback>
-						<p>Correct! This uses the NOT operator to negate the comparison.</p>
-					</feedback>
-				</choice>
-				<choice correct="yes">
-					<statement>
-						<p><pf>x &lt;= 10</pf></p>
-					</statement>
-					<feedback>
-						<p>Correct! This is the equivalent relational operator form without negation.</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>~x &gt; 10</pf></p>
-					</statement>
-					<feedback>
-						<p>Incorrect. Without parentheses, this negates x first, then compares the result to 10, 
-						which is not the intended meaning.</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>x &lt; 10</pf></p>
-					</statement>
-					<feedback>
-						<p>Incorrect. This asks if x is strictly less than 10, which excludes the case where x equals 10.</p>
-					</feedback>
-				</choice>
-			</choices>
-		</exercise>
-
-	</paragraphs>
-
-	<paragraphs xml:id="joining-two-statements">
-		<title>Joining Two Statements</title>
+		<assemblage xml:id="logical-statements-structure">
+			<title>Logical Statements: Relational and Logical Operators</title>
 
 			<p>
-				Many questions involve multiple conditions. For example, to determine if a number is an even number greater than 100,
-				then you need to check two things at once:
-				<ul>
-					<li>Is the number even?</li>
-					<li>Is the number greater than 100?</li>
-				</ul>
-				Because both must be true, we join these statements with <q>and</q>. 
-				If either of these conditions could be true, then we would join them with <q>or</q>. 
+				The most common logical statements come from comparing two values using <term>relational operators</term>:
 			</p>
 
-			<p>
-				MATLAB joins logical statements with AND and OR using the operators <pf>&amp;</pf> (AND) and <pf>|</pf> (OR). 
-			</p>
+			<table xml:id="tab-relational-operators">
+				<title>Relational operators in MATLAB</title>
 
-			<table xml:id="tab-logical-operators">
-				<title>Logical operators for combining statements</title>
-
-				<tabular>
-					<col width="15%" halign="center"/>
-					<col width="40%" halign="center"/>
-					<col width="45%" halign="left"/>
-					<row>
-						<cell><p><m>\textbf{Logical}</m> <m>\textbf{operator}</m></p></cell>
-						<cell><p><m>\textbf{Logical statement}</m></p></cell>
-						<cell><p><m>\textbf{Question being asked}</m></p></cell>
+				<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+					<col width="25%" halign="center"/>
+					<col width="25%" halign="center"/>
+					<col width="50%" halign="left"/>
+					<row header="yes">
+						<cell>Operator</cell>
+						<cell>Example</cell>
+						<cell>Question being asked</cell>
 					</row>
 					<row>
-						<cell><pf>&amp;</pf></cell>
-						<cell><p><pf>ans1 &amp; ans2</pf></p></cell>
-						<cell>Are both <m>\texttt{ans1}</m> and <m>\texttt{ans2}</m> true?</cell>
+						<cell><pf>==</pf></cell>
+						<cell><pf>x == y</pf></cell>
+						<cell>Is <m>\texttt{x}</m> equal to <m>\texttt{y}</m>?</cell>
 					</row>
 					<row>
-						<cell><pf>|</pf></cell>
-						<cell><pf>ans1 | ans2</pf></cell>
-						<cell><m>\text{Is at least one of}\ \texttt{ans1}\ \text{or}\ \texttt{ans2}\ \text{true?}</m></cell>
+						<cell><pf>~=</pf></cell>
+						<cell><pf>x ~= y</pf></cell>
+						<cell>Is <m>\texttt{x}</m> not equal to <m>\texttt{y}</m>?</cell>
+					</row>
+					<row>
+						<cell><pf>&lt;</pf></cell>
+						<cell><pf>x &lt; y</pf></cell>
+						<cell>Is <m>\texttt{x}</m> less than <m>\texttt{y}</m>?</cell>
+					</row>
+					<row>
+						<cell><pf>&lt;=</pf></cell>
+						<cell><pf>x &lt;= y</pf></cell>
+						<cell>Is <m>\texttt{x}</m> less than or equal to <m>\texttt{y}</m>?</cell>
+					</row>
+					<row>
+						<cell><pf>&gt;</pf></cell>
+						<cell><pf>x &gt; y</pf></cell>
+						<cell>Is <m>\texttt{x}</m> greater than <m>\texttt{y}</m>?</cell>
+					</row>
+					<row>
+						<cell><pf>&gt;=</pf></cell>
+						<cell><pf>x &gt;= y</pf></cell>
+						<cell>Is <m>\texttt{x}</m> greater than or equal to <m>\texttt{y}</m>?</cell>
 					</row>
 				</tabular>
 			</table>
 
 			<p>
-				The result of joining logical statements are exactly what you would expect from everyday language:
-				AND is true only when both sides are true, while OR is true when at least one side is true.
+				Logical statements can be combined using <term>logical operators</term>:
 			</p>
 
-			<program language="matlab">
-				% Quick checks
-				true  &amp; true	% → true:  1 (logical)
-				true  &amp; false	% → false: 0 (logical)
-				false &amp; true	% → false: 0 (logical)
-				false &amp; false	% → false: 0 (logical)
+			<table xml:id="tab-logical-operators">
+				<title>Logical operators for combining statements</title>
 
-				true  | true	% → true:  1 (logical)
-				true  | false	% → true:  1 (logical)
-				false | true	% → true:  1 (logical)
-				false | false	% → false: 0 (logical)
-			</program>
+				<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+					<col width="15%" halign="center"/>
+					<col width="40%" halign="center"/>
+					<col width="45%" halign="left"/>
+					<row header="yes">
+						<cell>Operator</cell>
+						<cell>Example</cell>
+						<cell>Question being asked</cell>
+					</row>
+					<row>
+						<cell><pf>~</pf></cell>
+						<cell><pf>~ans1</pf></cell>
+						<cell>Is <m>\texttt{ans1}</m> NOT true?</cell>
+					</row>
+					<row>
+						<cell><pf>&amp;</pf></cell>
+						<cell><pf>ans1 &amp; ans2</pf></cell>
+						<cell>Are BOTH <m>\texttt{ans1}</m> and <m>\texttt{ans2}</m> true?</cell>
+					</row>
+					<row>
+						<cell><pf>|</pf></cell>
+						<cell><pf>ans1 | ans2</pf></cell>
+						<cell>Is AT LEAST ONE of <m>\texttt{ans1}</m> or <m>\texttt{ans2}</m> true?</cell>
+					</row>
+				</tabular>
+			</table>
 
 			<p>
-				Now try these operators in context.
+				Key rules:
+				<ul>
+					<li>Use <pf>=</pf> (single) to assign a value; use <pf>==</pf> (double) to compare values.</li>
+					<li>NOT (<pf>~</pf>) is evaluated first, then AND (<pf>&amp;</pf>), then OR (<pf>|</pf>). Use parentheses to override this order.</li>
+					<li>Every logical expression produces a <pf>logical</pf> value: <pf>true</pf> or <pf>false</pf>.</li>
+					<li>Use parentheses around complex expressions to improve readability.</li>
+				</ul>
 			</p>
 
-			<program language="matlab">
-				<code>
+		</assemblage>
+
+		<exercise label="logical-statements-reading-ckpt-1">
+
+			<task label="logical-statements-reading-ckpt-1a">
+				<statement>
+					<p>
+						Which of the following statements is correct about <pf>=</pf> and <pf>==</pf>?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p><pf>x = 5</pf> assigns 5 to <pf>x</pf>, while <pf>x == 5</pf> tests whether <pf>x</pf> equals 5.</p>
+						</statement>
+						<feedback>
+							<p>Correct! Single <pf>=</pf> is for assignment; double <pf>==</pf> is for comparison.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x = 5</pf> and <pf>x == 5</pf> do the same thing.</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. These operators have completely different purposes.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x == 5</pf> assigns 5 to <pf>x</pf> only if <pf>x</pf> doesn't already have a value.</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. The <pf>==</pf> operator never assigns values; it only compares them.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x == 5</pf> sets <pf>x</pf> to 5 and checks if the assignment succeeded.</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. <pf>==</pf> is purely a comparison operator and never assigns values.</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="logical-statements-reading-ckpt-1b">
+				<statement>
+					<p>
+						According to MATLAB's operator precedence, in what order are the logical operators <pf>~</pf>, <pf>&amp;</pf>, and <pf>|</pf> evaluated?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p>NOT first, then AND, then OR.</p></statement>
+						<feedback><p>Correct! The precedence order is <pf>~</pf>, then <pf>&amp;</pf>, then <pf>|</pf>.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>OR first, then AND, then NOT.</p></statement>
+						<feedback><p>Incorrect. NOT has the highest precedence, not OR.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>AND first, then NOT, then OR.</p></statement>
+						<feedback><p>Incorrect. NOT is evaluated before AND.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>All operators have equal precedence.</p></statement>
+						<feedback><p>Incorrect. They have different precedence: NOT, then AND, then OR.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="logical-statements-reading-ckpt-1c">
+				<statement correct="yes">
+					<p>
+						The expression <pf>~(x &gt; 10)</pf> is equivalent to <pf>x &lt;= 10</pf>.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						True. Negating "greater than" gives "less than or equal to."
+					</p>
+				</feedback>
+			</task>
+
+		</exercise>
+
+	</subsection>
+
+	<subsection xml:id="subsec-logical-statements-examples">
+		<title>👀 Examples</title>
+
+		<p>
+			Here are a few comparison examples. The parentheses are optional, but they help clarify which parts of the expression are being compared.
+		</p>
+
+		<example xml:id="ex-relational-operators">
+			<title>Using Relational Operators</title>
+
+			<statement>
+				<p>
+					The following code shows how each relational operator produces a logical result:
+				</p>
+
+				<program language="matlab">
+					a = 4;
+					b = -4;
+
+					ans1 = (a == 4);    % Is a equal to 4?    Yes → true  (1)
+					ans2 = (a == b);    % Is a equal to b?    No  → false (0)
+					ans3 = (b &lt; a);    % Is b less than a?  Yes → true  (1)
+					ans4 = (a ~= b);    % Is a not equal to b? Yes → true (1)
+					ans5 = (a &gt;= 5);  % Is a &gt;= 5?      No  → false (0)
+				</program>
+
+			</statement>
+		</example>
+
+		<example xml:id="ex-combining-logical-statements">
+			<title>Combining Logical Statements</title>
+
+			<statement>
+				<p>
+					Use <pf>&amp;</pf> (AND) and <pf>|</pf> (OR) to ask multi-part questions:
+				</p>
+
+				<program language="matlab">
 					P = 1;
 					Q = 10;
 					R = -4;
 
-					P &lt;= R &amp; P &gt; Q	  % → false	&amp; false: 0 (logical)
-					R &lt; 0 &amp; R &lt; Q	  % → true	&amp; true:  1 (logical)
-					Q == R | Q == P	  % → false	| false: 0 (logical)
-					P &lt; Q | P &lt; R	  % → true	| false: 1 (logical)
+					% AND examples
+					P &lt;= R &amp; P &gt; Q    % false &amp; false → 0
+					R &lt; 0 &amp; R &lt; Q    % true &amp; true  → 1
 
-					~(P &lt; Q &amp; P &lt; R)  % → NOT (true &amp; false): 1 (logical)
-					P &gt; Q | P &gt; R	  % → false | true:		  1 (logical)
-				</code>
-			</program>
+					% OR examples
+					Q == R | Q == P    % false | false → 0
+					P &lt; Q | P &lt; R    % true  | false → 1
 
-			<!-- <p>
-				These examples are intentionally written in a style that reads like an English sentence.
-				That habit pays off later: readable conditions produce readable <pf>if</pf>-statements.
-			</p> -->
+					% NOT example
+					~(P &lt; Q &amp; P &lt; R)  % NOT (true &amp; false) → 1
+				</program>
 
-		<exercise label="ckpt-joining-two-statements-1">
-			<title>Combining Logical Statements</title>
-			<statement>
 				<p>
-					Given <pf>age = 25</pf> and <pf>hasLicense = true</pf>, which expression is the 
-					<em>most readable way</em> to ask "Is the person at least 18 years old AND has a driver's license?"
+					The truth table for all combinations:
 				</p>
+
+				<table>
+					<title>Logical Operators Truth Table</title>
+					<tabular top="minor" bottom="minor" left="minor" right="minor">
+						<col halign="center"/>
+						<col halign="center"/>
+						<col halign="center"/>
+						<col halign="center"/>
+						<col halign="center"/>
+						<row header="yes">
+							<cell colspan="2">Logical Variables</cell>
+							<cell colspan="3">Operator Results</cell>
+						</row>
+						<row header="yes">
+							<cell><pf>ans1</pf></cell>
+							<cell><pf>ans2</pf></cell>
+							<cell><pf>ans1 &amp; ans2</pf></cell>
+							<cell><pf>ans1 | ans2</pf></cell>
+							<cell><pf>~ans1</pf></cell>
+						</row>
+						<row>
+							<cell><pf>1</pf></cell><cell><pf>1</pf></cell><cell><pf>1</pf></cell><cell><pf>1</pf></cell><cell><pf>0</pf></cell>
+						</row>
+						<row>
+							<cell><pf>1</pf></cell><cell><pf>0</pf></cell><cell><pf>0</pf></cell><cell><pf>1</pf></cell><cell><pf>0</pf></cell>
+						</row>
+						<row>
+							<cell><pf>0</pf></cell><cell><pf>1</pf></cell><cell><pf>0</pf></cell><cell><pf>1</pf></cell><cell><pf>1</pf></cell>
+						</row>
+						<row>
+							<cell><pf>0</pf></cell><cell><pf>0</pf></cell><cell><pf>0</pf></cell><cell><pf>0</pf></cell><cell><pf>1</pf></cell>
+						</row>
+					</tabular>
+				</table>
 			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement>
-						<p><pf>(age &gt;= 18) &amp; hasLicense</pf></p>
-					</statement>
-					<feedback>
-						<p>Correct! This is clear and readable, using the AND operator directly with meaningful variable names.</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>(age &gt;= 18) | hasLicense</pf></p>
-					</statement>
-					<feedback>
-						<p>Incorrect. The OR operator returns true if either condition is true, but we need 
-						both conditions to be true.</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>age &gt;= 18 &amp; hasLicense == true</pf></p>
-					</statement>
-					<feedback>
-						<p>While logically correct, comparing <pf>hasLicense == true</pf> is redundant and less readable. 
-						Use <pf>hasLicense</pf> directly since it's already a logical value.</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>~(age &lt; 18 | ~hasLicense)</pf></p>
-					</statement>
-					<feedback>
-						<p>While logically equivalent (using De Morgan's Law), this is much harder to read. 
-						Prefer the straightforward AND version for clarity.</p>
-					</feedback>
-				</choice>
-			</choices>
-		</exercise>
+		</example>
 
-		<aside>
-			<title><pf>xor</pf></title>
-			<p><pf>xor</pf> is another logical operator available in MATLAB that tends to be used less than the operators listed here. If you are curious about it, see MATLAB's documentation.</p>
-		</aside>
+		<exercise label="logical-statements-practice-1">
+			<title>Evaluate Logical Expressions</title>
 
-		<p>
-			The following table summarizes every possible outcome for each of the logical operators above.
-		</p>
-
-		<table>
-			<title>Logical Operators Truth Tables</title>
-
-			<tabular top="minor" bottom="minor" left="minor" right="minor" >
-				<col halign="center"/>
-				<col halign="center"/>
-				<col halign="center"/>
-				<col halign="center"/>
-				<col halign="center"/>
-				<row header="yes">
-					<cell colspan="2">Logical Variables</cell>
-					<cell colspan="3">Logical Operator Results</cell>
-				</row>
-				<row header="yes">
-					<cell><pf>ans1</pf></cell>
-					<cell><pf>ans2</pf></cell>
-					<cell><pf>ans1 &amp; ans2</pf></cell>
-					<cell><pf>ans1 | ans2</pf></cell>
-					<cell><pf>~ans1</pf></cell>
-				</row>
-				<row>
-					<cell><pf>1</pf></cell>
-					<cell><pf>1</pf></cell>
-					<cell><pf>1</pf></cell>
-					<cell><pf>1</pf></cell>
-					<cell><pf>0</pf></cell>
-				</row>
-				<row>
-					<cell><pf>1</pf></cell>
-					<cell><pf>0</pf></cell>
-					<cell><pf>0</pf></cell>
-					<cell><pf>1</pf></cell>
-					<cell><pf>0</pf></cell>
-				</row>
-				<row>
-					<cell><pf>0</pf></cell>
-					<cell><pf>1</pf></cell>
-					<cell><pf>0</pf></cell>
-					<cell><pf>1</pf></cell>
-					<cell><pf>1</pf></cell>
-				</row>
-				<row>
-					<cell><pf>0</pf></cell>
-					<cell><pf>0</pf></cell>
-					<cell><pf>0</pf></cell>
-					<cell><pf>0</pf></cell>
-					<cell><pf>1</pf></cell>
-				</row>
-			</tabular>
-		</table>
-
-	</paragraphs>
-
-	<paragraphs xml:id="joining-many-statements">
-		<title>Joining Many Statements</title>
-
-		<p>
-			You can combine more than two logical statements, and you can mix <pf>~</pf>, <pf>&amp;</pf>, and <pf>|</pf>
-			in the same expression. When you do, MATLAB evaluates operators in a fixed order.
-			Parentheses override everything, so you can always force the grouping you intend.
-		</p>
-
-		<p>
-			In general, the logical operator precedence chain is as follows:
-		</p>
-
-		<tabular halign="center">
-			<row>
-				<cell>1st</cell><cell/><cell>2nd</cell><cell/><cell>3rd</cell><cell/><cell>4th</cell>
-			</row>
-			<row>
-				<cell><pf>()</pf></cell><cell>❯</cell><cell><pf>~</pf></cell><cell>❯</cell><cell><pf>&amp;</pf></cell><cell>❯</cell><cell><pf>|</pf></cell>
-			</row>
-		</tabular>
-
-		<table>
-			<title>Sample Logical Operator Precedence Interpretations</title>
-
-			<tabular halign="center">
-				<row bottom="minor">
-					<cell>MATLAB Command</cell><cell/><cell>Interpretation</cell>
-				</row>
-				<row>
-					<cell><pf>~A &amp; B</pf></cell><cell>➜</cell><cell><pf>(~A) &amp; B</pf></cell>
-				</row>
-				<row>
-					<cell><pf>~A | B</pf></cell><cell>➜</cell><cell><pf>(~A) | B</pf></cell>
-				</row>
-				<row>
-					<cell><pf>A &amp; B | C</pf></cell><cell>➜</cell><cell><pf>(A &amp; B) | C</pf></cell>
-				</row>
-				<row>
-					<cell><pf>A | B &amp; C</pf></cell><cell>➜</cell><cell><pf>A | (B &amp; C)</pf></cell>
-				</row>
-			</tabular>
-		</table>
-
-		<p>
-			When in doubt, use parentheses. They make your code clearer to readers and reduce errors caused by
-			misinterpreting precedence.
-		</p>
-
-		<exercise label="ckpt-joining-many-statements-1">
-			<title>Operator Precedence</title>
-
-			<statement>
-				<p>
-					According to MATLAB's operator precedence rules, which expression illustrates how 
-					<pf>A | ~B &amp; C | D</pf> is evaluated?
-				</p>
-			</statement>
-
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement>
-						<p><pf>A | ((~B) &amp; C) | D</pf></p>
-					</statement>
-					<feedback>
-						<p>
-							Correct! 
-							The NOT operator <pf>~</pf> is evaluated first, followed by the AND operator <pf>&amp;</pf>,
-							and finally the OR operators <pf>|</pf> are evaluated from left to right.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>(A | (~B)) &amp; (C | D)</pf></p>
-					</statement>
-					<feedback>
-						<p>
-							Incorrect.
-							The AND operator <pf>&amp;</pf> has higher precedence than the OR operator <pf>|</pf>, 
-							so this grouping is not correct.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>((A | ~B) &amp; C) | D</pf></p>
-					</statement>
-					<feedback>
-						<p>
-							Incorrect.
-							The AND operator <pf>&amp;</pf> is evaluated before the OR operator <pf>|</pf>,
-							but the NOT operator <pf>~</pf> is evaluated first.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p><pf>A | ~(B &amp; C) | D</pf></p>
-					</statement>
-					<feedback>
-						<p>
-							Incorrect.
-							The AND operator <pf>&amp;</pf> is evaluated before the OR operator <pf>|</pf>,
-							but the NOT operator <pf>~</pf> is evaluated first.
-						</p>
-					</feedback>
-				</choice>
-			</choices>
-		</exercise>
-
-	</paragraphs>
-
-	<exercises xml:id="conceptual-questions-logical-statements">
-		<title>🤔💭 Conceptual Questions</title>
-
-		<exercise label="concepts-logical-statements">
-
-			<task label="cqs-logical-statements-data-types">
-				<title>Logical Data Types</title>
-				<statement correct="no">
-					<p>
-						In MATLAB, <pf>true</pf> and <pf>1</pf> are the same.
-					</p>
-				</statement>
-				<feedback>
-					<p>
-						Incorrect. While <pf>true</pf> and <pf>1</pf> are represented by the same numeric value, 
-						they have different data types: <pf>true</pf> is of type <pf>logical</pf>, 
-						while <pf>1</pf> is of type <pf>double</pf>.
-					</p>
-				</feedback>
-			</task>
-
-			<task label="cqs-logical-statements-relational-not-equal">
-				<title>Relational Operators: Inequality</title>
-
+			<task label="logical-statements-practice-1a">
 				<statement>
 					<p>
-						Which of the following commands test that <pf>x</pf> is not equal to <pf>y</pf>?
+						Given <pf>x = 5</pf> and <pf>y = 3</pf>, what does <pf>(x &gt; y) &amp; (y ~= 0)</pf> evaluate to?
 					</p>
 				</statement>
-				<choices randomize="no">
-					<choice correct="no"><statement><p><pf>~(x = y)</pf></p></statement></choice>
-					<choice correct="yes"><statement><p><pf>~(x == y)</pf></p></statement></choice>
-					<choice correct="no"><statement><p><pf>~x == y</pf></p></statement></choice>
-					<choice correct="yes"><statement><p><pf>x ~= y</pf></p></statement></choice>
-					<choice correct="no"><statement><pf>x ~== y</pf></statement></choice>
-				</choices>
-				<feedback>
+				<solution component="example-solution">
 					<p>
-						In MATLAB, the tilde-equals <pf>~=</pf> operator tests for inequality. 
-						Note that many other languages use <pf>!=</pf>, but MATLAB uses <pf>~=</pf>.
-					</p>
-				</feedback>
-			</task>
-
-			<task label="cqs-logical-statements-translation-intro">
-				<title>Translating Relational Operators</title>
-				<statement>
-					<p>
-						Give the logical statement that is equivalent to the question:
-					</p>
-					<p>
-						Is <m>7</m> greater than <m>3</m>? ➜ <fillin mode="string" answer="7 &gt; 3" width="10"/>
-					</p>
-				</statement>
-				<evaluation>
-					<evaluate>
-						<test correct="yes">
-							<strcmp>(7\s*&gt;\s*3|3\s*&lt;\s*7)</strcmp>
-							<feedback><p>Correct!</p></feedback>
-						</test>
-						<test>
-							<strcmp>.*</strcmp>
-							<feedback><p>Incorrect. Use the <pf>&gt;</pf> operator to test if one value is greater than another.</p></feedback>
-						</test>
-					</evaluate>
-				</evaluation>
-				<solution>
-					<p>
-						The MATLAB command is <pf>7 &gt; 3</pf>, which evaluates to <pf>1</pf> (true).
+						<pf>1</pf> (true). Both parts are true: <pf>5 &gt; 3</pf> is true and <pf>3 ~= 0</pf> is true.
 					</p>
 				</solution>
 			</task>
 
-			<task label="cqs-logical-statements-basic-ops-result">
-				<title>Basic Logical Operators</title>
+			<task label="logical-statements-practice-1b">
 				<statement>
 					<p>
-						Select the value contained in <pf>ans</pf> after evaluating the following expression:
+						Given <pf>a = 7</pf>, what does <pf>(a &lt; 5) | (a &gt; 10)</pf> evaluate to?
 					</p>
+				</statement>
+				<solution component="example-solution">
+					<p>
+						<pf>0</pf> (false). Neither part is true: <pf>7 &lt; 5</pf> is false and <pf>7 &gt; 10</pf> is false.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+
+	</subsection>
+
+	<subsection xml:id="subsec-logical-statements-practice-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
+
+		<exercise label="logical-statements-activity-trace">
+			<title>Trace Logical Expressions</title>
+
+			<introduction>
+				<p>
+					For each expression, determine the result without running the code. Then verify in the cell below.
+				</p>
+			</introduction>
+
+			<task label="logical-statements-activity-trace-a">
+				<statement>
 					<program language="matlab">
-						<code>
-							ans = (3 &gt;= 2) &amp; (3+4 == 6)
-						</code>
+						x = 8;
+						result = (x &gt; 5) &amp; (x &lt; 10);
 					</program>
+					<p>What is the value of <pf>result</pf>?</p>
+					<sage language="octave">
+						<input>
+							% ==== Type your code here ====
+							x = 8;
+							result = (x &gt; 5) &amp; (x &lt; 10);
+							fprintf('result = %d\n', result)
+						</input>
+					</sage>
+					<p>When done, confirm it prints <pf>result = 1</pf>.</p>
 				</statement>
-				<choices>
-					<choice>
-						<statement><p><pf>ans = 1</pf> (logical)</p></statement>
-						<feedback>
-							<p>
-								Incorrect. While <pf>3 &gt;= 2</pf> is true, check the second part: is <m>3+4</m> really equal to <m>6</m>?
-							</p>
-						</feedback>
-					</choice>
-					<choice correct="yes">
-						<statement><p><pf>ans = 0</pf> (logical)</p></statement>
-						<feedback>
-							<p>
-								Correct! Even though <pf>3 &gt;= 2</pf> is true, the expression <pf>3+4 == 6</pf> is false (since <m>3+4=7</m>). 
-								For an AND operation to be true, both sides must be true.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>ans = 1</pf></p></statement>
-						<feedback>
-							<p>
-								Incorrect. The result of a logical operation is always of type <pf>logical</pf>, not <pf>double</pf>.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>
-								<pf>ans = 0</pf>
-							</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. The result of a logical operation is always of type <pf>logical</pf>, not <pf>double</pf>.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>
-								None of the above. This expression will produce an error.
-							</p>
-						</statement>
-					</choice>
-				</choices>
-			</task>
-
-			<task label="cqs-logical-statements-basic-ops-explanation">
-				<title>Understanding AND</title>
-
-				<statement correct="no">
+				<solution component="example-solution">
 					<p>
-						An AND operation (<pf>&amp;</pf>) returns true if at least one of the conditions is true.
-					</p>
-				</statement>
-				<feedback>
-					<p>
-						Incorrect. An AND operation requires <em>both</em> conditions to be true. 
-						You're thinking of OR (<pf>|</pf>), which returns true if <em>at least one</em> condition is true.
-					</p>
-				</feedback>
-			</task>
-
-			<task label="cqs-logical-statements-combined-1">
-				<title>Is p positive?</title>
-				<statement>
-					<p>
-						Give the command that is equivalent to asking the question:
-					</p>
-					<p>
-						Is <pf>p</pf> positive? ➜ <fillin mode="string" answer="p &gt; 0" width="10"/>
-					</p>
-				</statement>
-					<evaluation>
-						<evaluate>
-							<test correct="yes">
-								<strcmp>(p\s*&gt;\s*0|0\s*&lt;\s*p)</strcmp>
-								<feedback><p>Correct!</p></feedback>
-							</test>
-							<test>
-								<strcmp>.*</strcmp>
-								<feedback><p>Incorrect. Use the <pf>&gt;</pf> operator to test if <pf>p</pf> is greater than 0.</p></feedback>
-							</test>
-						</evaluate>
-					</evaluation>
-					<solution>
-						<p>
-							<pf>ans1 = p &gt; 0</pf> evaluates to <pf>0</pf> (false) since <m>-3</m> is not positive.
-						</p>
-					</solution>
-			</task>
-
-			<task label="cqs-logical-statements-combined-2">
-				<title>Is p equal to 4?</title>
-
-				<statement>
-					<p>
-						Give the command that is equivalent to asking the question:
-					</p>
-					<p>
-						Is <pf>p</pf> equal to <pf>4</pf>? ➜ <fillin mode="string" answer="p == 4" width="10"/>
-					</p>
-				</statement>
-				<evaluation>
-					<evaluate>
-						<test correct="yes">
-							<strcmp>(p\s*==\s*4|4\s*==\s*p)</strcmp>
-							<feedback><p>Correct!</p></feedback>
-						</test>
-						<test>
-							<strcmp>.*</strcmp>
-							<feedback><p>Incorrect. Use the <pf>==</pf> operator to test equality.</p></feedback>
-						</test>
-					</evaluate>
-				</evaluation>
-				<solution>
-					<p>
-						<pf>ans2 = p == 4</pf> evaluates to <pf>0</pf> (false) since <m>-3 \neq 4</m>.
+						<pf>result = 1</pf> (true). Both <pf>8 &gt; 5</pf> (true) and <pf>8 &lt; 10</pf> (true) are true, so the AND result is true.
 					</p>
 				</solution>
 			</task>
 
-			<task label="cqs-logical-statements-combined-3">
-				<title>Combining with AND</title>
+			<task label="logical-statements-activity-trace-b">
 				<statement>
-					<p>
-						Select the command that is equivalent to asking the question:
-					</p>
-					<p>
-						Is <pf>p</pf> a negative number greater than <pf>-4</pf>?
-					</p>
+					<program language="matlab">
+						a = 3;
+						b = 7;
+						result = ~(a == b) | (a &gt; b);
+					</program>
+					<p>What is the value of <pf>result</pf>?</p>
+					<sage language="octave">
+						<input>
+							% ==== Type your code here ====
+							a = 3;
+							b = 7;
+							result = ~(a == b) | (a &gt; b);
+							fprintf('result = %d\n', result)
+						</input>
+					</sage>
+					<p>When done, confirm it prints <pf>result = 1</pf>.</p>
 				</statement>
-				<choices>
-					<choice><statement><p><pf> p &lt; 0 &amp; p &gt;= -4 </pf></p></statement></choice>
-					<choice><statement><p><pf> p &lt;= 0 | p &gt; -4 </pf></p></statement></choice>
-					<choice><statement><p><pf> -4 &lt; p &lt; 0 </pf></p></statement></choice>
-					<choice><statement><p><pf> p &lt; 0 | p &gt; -4 </pf></p></statement></choice>
-					<choice correct="yes"><statement><p><pf>p &lt; 0 &amp; p &gt; -4</pf></p></statement></choice>
-				</choices>
-				<feedback>
-					<p>The condition must be true for both parts: <pf>p</pf> is negative (<pf>p &lt; 0</pf>) AND <pf>p</pf> is greater than <pf>-4</pf> (<pf>p &gt; -4</pf>). Use the AND operator (<pf>&amp;</pf>) to combine these two conditions.</p>
-				</feedback>
-			</task>
-
-			<task label="cqs-logical-statements-combined-4">
-				<title>Negating with NOT</title>
-				<statement>
+				<solution component="example-solution">
 					<p>
-						Which logical statements are equivalent to asking the question:
-					</p>
-					<p>
-						Is <pf>p</pf> NOT positive?
-					</p>
-				</statement>
-				<choices>
-					<choice correct="yes"><statement><p><pf>~(p &gt; 0)</pf></p></statement></choice>
-					<choice correct="yes"><statement><p><pf>p &lt;= 0</pf></p></statement></choice>
-					<choice><statement><p><pf>~p &gt; 0</pf></p></statement></choice>
-					<choice><statement><p><pf>p ~&gt; 0</pf></p></statement></choice>
-					<choice><statement><p><pf>p &lt; 0</pf></p></statement></choice>
-				</choices>
-				<feedback>
-					<p>
-						The NOT operator <pf>~</pf> negates a logical value, turning true into false and false into true.
-					</p>
-				</feedback>
-			</task>
-
-			<task label="cqs-logical-statements-combined-5">
-				<title>Combining with OR</title>
-
-				<statement>
-					<p>
-						Give the command that is equivalent to asking the question:
-					</p>
-					<p>
-						Is <pf>p</pf> not equal to 5 OR greater than 7? ➜ <fillin mode="string" answer="(p ~= 5) | (p &gt; 7)" width="15"/>
-					</p>
-				</statement>
-				<evaluation>
-					<evaluate>
-						<test correct="yes">
-							<strcmp>\(?\s*p\s*~=\s*5\s*\)?\s*\|\s*\(?\s*p\s*&gt;\s*7\s*\)?</strcmp>
-							<feedback><p>Correct!</p></feedback>
-						</test>
-						<test>
-							<strcmp>.*</strcmp>
-							<feedback><p>Incorrect. Use <pf>~=</pf> for "not equal" and <pf>|</pf> for OR.</p></feedback>
-						</test>
-					</evaluate>
-				</evaluation>
-				<solution>
-					<p>
-						<pf>ans5 = (p ~= 5) | (p &gt; 7)</pf> evaluates to <pf>1</pf> (true) since <m>-3 \neq 5</m> is true.
+						<pf>result = 1</pf> (true). <pf>~(3 == 7)</pf> is <pf>~false = true</pf>; since the first part of OR is true, the whole expression is true.
 					</p>
 				</solution>
-			</task>
-
-			<task label="cqs-logical-statements-precedence">
-				<title>Operator Precedence</title>
-
-				<statement>
-					<p>
-						Select the logical statement that is equivalent to the following:
-					</p>
-					<program>
-						~A &amp; B | C
-					</program>
-				</statement>
-
-				<choices randomize="no">
-					<choice correct="yes">
-						<statement><p><pf>((~A) &amp; B) | C</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>~(A &amp; B | C)</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>~A &amp; (B | C)</pf></p></statement>
-					</choice>
-					<choice>
-						<statement><p><pf>~(A &amp; B) | C</pf></p></statement>
-					</choice>
-				</choices>
-				<feedback>
-					<p>
-						MATLAB evaluates logical operators in this order: first <pf>~</pf> (NOT), then <pf>&amp;</pf> (AND), then <pf>|</pf> (OR).
-						So <pf>~A &amp; B | C</pf> is evaluated as <pf>((~A) &amp; B) | C</pf>.
-					</p>
-				</feedback>
 			</task>
 
 		</exercise>
+
+		<exercise label="logical-statements-activity-write">
+			<title>Write Logical Expressions from English</title>
+
+			<introduction>
+				<p>
+					Translate each English question into a MATLAB logical expression. Use the <pf>sage</pf> cell to test your answers with sample values.
+				</p>
+			</introduction>
+
+			<task label="logical-statements-activity-write-a">
+				<statement>
+					<p>
+						"Is <pf>score</pf> at least 60 but less than 70?"
+					</p>
+					<sage language="octave">
+						<input>
+							% ==== Type your code here ====
+							score = 65;   % change to test different values
+
+							% =============================
+						</input>
+					</sage>
+					<p>When <pf>score = 65</pf>, the result should be <pf>1</pf> (true). When <pf>score = 72</pf>, it should be <pf>0</pf> (false).</p>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						score = 65;
+						result = (score &gt;= 60) &amp; (score &lt; 70);
+						fprintf('result = %d\n', result)
+					</program>
+				</solution>
+			</task>
+
+			<task label="logical-statements-activity-write-b">
+				<statement>
+					<p>
+						"Is <pf>n</pf> outside the range 0 to 100?" (i.e., less than 0 or greater than 100)
+					</p>
+					<sage language="octave">
+						<input>
+							% ==== Type your code here ====
+							n = 50;   % change to test different values
+
+							% =============================
+						</input>
+					</sage>
+					<p>When <pf>n = 50</pf>, the result should be <pf>0</pf> (false). When <pf>n = 110</pf>, it should be <pf>1</pf> (true).</p>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						n = 50;
+						result = (n &lt; 0) | (n &gt; 100);
+						fprintf('result = %d\n', result)
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+	</subsection>
+
+	<reading-questions xml:id="logical-statements-reading-questions">
+		<title>📖 Reading Questions</title>
+
+		<exercise label="rq-logical-statements-1">
+			<title>Assignment vs. Comparison</title>
+			<statement>
+				<p>
+					Which operator tests whether two values are equal?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>==</pf></p></statement>
+					<feedback><p>Correct! Double equals tests equality.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>=</pf></p></statement>
+					<feedback><p>Single equals assigns a value; it does not compare.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>~=</pf></p></statement>
+					<feedback><p>This tests for inequality (not equal), not equality.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>=&gt;</pf></p></statement>
+					<feedback><p>This is not a valid MATLAB operator. Greater-than-or-equal uses <pf>&gt;=</pf>.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-statements-2">
+			<statement correct="no">
+				<p>
+					An AND operation (<pf>&amp;</pf>) returns true if at least one of the conditions is true.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					False. AND requires <em>both</em> conditions to be true. You are thinking of OR (<pf>|</pf>), which returns true if at least one is true.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-logical-statements-3">
+			<title>Result of a comparison</title>
+			<statement>
+				<p>
+					What is the value of <pf>p</pf> after <pf>p = (10 &gt; 5)</pf>?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>1</pf> (logical)</p></statement>
+					<feedback><p>Correct! Since 10 is greater than 5, the expression evaluates to <pf>true</pf>, which displays as <pf>1</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>0</pf> (logical)</p></statement>
+					<feedback><p>Incorrect. 10 is greater than 5, so the result is true.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>1</pf> (double)</p></statement>
+					<feedback><p>The numeric value is correct, but the class is <pf>logical</pf>, not <pf>double</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>An error occurs.</p></statement>
+					<feedback><p>No error. This is a valid comparison that produces a logical result.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-statements-4">
+			<title>Negation result</title>
+			<statement>
+				<p>
+					What does <pf>~(3 &gt; 5)</pf> evaluate to?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>1</pf> (true)</p></statement>
+					<feedback><p>Correct! <pf>3 &gt; 5</pf> is false, and NOT false is true.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>0</pf> (false)</p></statement>
+					<feedback><p>Incorrect. <pf>3 &gt; 5</pf> is false; negating it gives true.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>An error occurs.</p></statement>
+					<feedback><p>No error. The NOT operator negates any logical value.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>-1</pf></p></statement>
+					<feedback><p>Incorrect. NOT produces <pf>true</pf> or <pf>false</pf>, not <pf>-1</pf>.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-statements-5">
+			<statement correct="yes">
+				<p>
+					The expression <pf>x &lt;= 10</pf> is equivalent to <pf>~(x &gt; 10)</pf>.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					True. "Not greater than 10" is the same as "less than or equal to 10."
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-logical-statements-6">
+			<title>AND evaluation</title>
+			<statement>
+				<p>
+					Given <pf>x = 5</pf>, what does <pf>(x &gt; 0) &amp; (x &lt; 3)</pf> evaluate to?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>0</pf> (false)</p></statement>
+					<feedback><p>Correct! While <pf>5 &gt; 0</pf> is true, <pf>5 &lt; 3</pf> is false. AND requires both to be true.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>1</pf> (true)</p></statement>
+					<feedback><p>Incorrect. <pf>5 &lt; 3</pf> is false, so the AND expression is false.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>An error occurs.</p></statement>
+					<feedback><p>No error. This is a valid logical expression.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>5</pf></p></statement>
+					<feedback><p>Incorrect. Logical expressions produce <pf>0</pf> or <pf>1</pf>, not the value of <pf>x</pf>.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-statements-7">
+			<title>OR evaluation</title>
+			<statement>
+				<p>
+					Given <pf>x = 5</pf>, what does <pf>(x &lt; 0) | (x &gt; 4)</pf> evaluate to?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>1</pf> (true)</p></statement>
+					<feedback><p>Correct! Although <pf>5 &lt; 0</pf> is false, <pf>5 &gt; 4</pf> is true. OR requires only one to be true.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>0</pf> (false)</p></statement>
+					<feedback><p>Incorrect. <pf>5 &gt; 4</pf> is true, so the OR is true.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>An error occurs.</p></statement>
+					<feedback><p>No error. This is a valid logical expression.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>2</pf></p></statement>
+					<feedback><p>Incorrect. Logical expressions produce <pf>0</pf> or <pf>1</pf>.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-statements-8">
+			<title>Precedence: NOT before AND</title>
+			<statement>
+				<p>
+					How does MATLAB interpret <pf>~A &amp; B</pf>?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>(~A) &amp; B</pf></p></statement>
+					<feedback><p>Correct! NOT has higher precedence than AND, so <pf>A</pf> is negated first.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>~(A &amp; B)</pf></p></statement>
+					<feedback><p>Incorrect. NOT applies only to <pf>A</pf>, not to the whole AND expression.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>A &amp; (~B)</pf></p></statement>
+					<feedback><p>Incorrect. The NOT operator is placed before <pf>A</pf>, so it negates <pf>A</pf>, not <pf>B</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>This causes an error.</p></statement>
+					<feedback><p>No error. This is valid MATLAB syntax.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-statements-9">
+			<statement correct="no">
+				<p>
+					In MATLAB, <pf>A &amp; B | C</pf> is evaluated as <pf>A &amp; (B | C)</pf>.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					False. AND has higher precedence than OR, so it is evaluated as <pf>(A &amp; B) | C</pf>.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-logical-statements-10">
+			<title>Inequality operator</title>
+			<statement>
+				<p>
+					Which operator is used in MATLAB to test "not equal to"?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>~=</pf></p></statement>
+					<feedback><p>Correct! Many other languages use <pf>!=</pf>, but MATLAB uses <pf>~=</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>!=</pf></p></statement>
+					<feedback><p>Incorrect. MATLAB uses <pf>~=</pf> for "not equal to."</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>&lt;&gt;</pf></p></statement>
+					<feedback><p>Incorrect. MATLAB does not use <pf>&lt;&gt;</pf>; use <pf>~=</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>=/=</pf></p></statement>
+					<feedback><p>Incorrect. Use <pf>~=</pf> for inequality in MATLAB.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+	</reading-questions>
+
+	<exercises xml:id="logical-statements-coding-exercises">
+		<title>💻 Coding Exercises</title>
+
+		<exercisegroup>
+			<title>Foundational</title>
+
+			<exercise label="coding-logical-statements-even-positive">
+				<title>Even and Positive</title>
+				<statement>
+					<p>
+						Write a function named <pf>is_even_and_positive</pf> that determines whether a number is both even and positive.
+						A number is even if dividing it by 2 produces no remainder. Use the <pf>mod</pf> function to find remainders.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>num</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>the number to check</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>result</pf></p></cell>
+							<cell><p>(1x1) logical</p></cell>
+							<cell><p>true if num is both even and positive</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								is_even_and_positive(4)
+								is_even_and_positive(7)
+								is_even_and_positive(-6)
+								is_even_and_positive(0)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 1  % true
+								ans = 0  % false
+								ans = 0  % false
+								ans = 0  % false
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function result = is_even_and_positive(num)
+							result = (mod(num, 2) == 0) &amp; (num &gt; 0);
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="coding-logical-statements-xor">
+				<title>Exclusive OR (XOR)</title>
+				<statement>
+					<p>
+						Write a function named <pf>my_xor</pf> that implements the exclusive OR operation without using MATLAB's built-in <pf>xor</pf> function. XOR returns true when exactly one (but not both) of the inputs is true. Combine AND, OR, and NOT operators to achieve this behavior.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>a</pf></p></cell>
+							<cell><p>(1x1) logical</p></cell>
+							<cell><p>first logical value</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>b</pf></p></cell>
+							<cell><p>(1x1) logical</p></cell>
+							<cell><p>second logical value</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>result</pf></p></cell>
+							<cell><p>(1x1) logical</p></cell>
+							<cell><p>true if exactly one input is true</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								my_xor(false, false)
+								my_xor(true,  false)
+								my_xor(false, true)
+								my_xor(true,  true)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 0
+								ans = 1
+								ans = 1
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function result = my_xor(a, b)
+							result = (a | b) &amp; ~(a &amp; b);
+						end
+					</program>
+				</solution>
+			</exercise>
+
+		</exercisegroup>
+
+		<exercisegroup>
+			<title>Extended</title>
+
+			<exercise label="coding-logical-statements-is-in-range">
+				<title>Number in Range</title>
+				<statement>
+					<p>
+						Write a function named <pf>is_in_range</pf> that determines whether a number falls within a specified range (inclusive).
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>value</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>the number to check</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>lower</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>minimum of the range</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>upper</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>maximum of the range</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>result</pf></p></cell>
+							<cell><p>(1x1) logical</p></cell>
+							<cell><p>true if value is in [lower, upper]</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								is_in_range(5, 1, 10)
+								is_in_range(1, 1, 10)
+								is_in_range(0, 1, 10)
+								is_in_range(11, 1, 10)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 1
+								ans = 1
+								ans = 0
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function result = is_in_range(value, lower, upper)
+							result = (value &gt;= lower) &amp; (value &lt;= upper);
+						end
+					</program>
+				</solution>
+			</exercise>
+
+		</exercisegroup>
 
 	</exercises>
 
