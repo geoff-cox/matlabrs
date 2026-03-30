@@ -1,40 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <chapter xml:id="chp-welcome-to-matlab" xmlns:xi="http://www.w3.org/2001/XInclude">
-	<title>Welcome to MATLAB</title>
+    <title>Welcome to MATLAB</title>
 
-	<introduction>
-		<p>
-			This chapter introduces the MATLAB computing environment and the basic skills needed to work with it interactively.
-		</p>
+    <introduction>
+        <p>
+            MATLAB is a programming environment designed for numerical computation, data analysis,
+            and visualization. It is widely used by engineers, scientists, and mathematicians
+            because its syntax closely mirrors the way mathematical problems are written, and
+            because its built-in libraries cover an enormous range of technical tasks — from
+            solving differential equations to processing images and designing control systems.
+            Learning MATLAB gives you a versatile tool that you can apply throughout your academic
+            and professional career.
+        </p>
 
-		<p>
-			You will begin by installing MATLAB and becoming familiar with the MATLAB Desktop, including the Command Window, Workspace, and Editor. You will then learn how to use the Command Window as a calculator, how MATLAB evaluates commands, and how results are stored in memory.
-		</p>
+        <p>
+            This chapter builds the foundation you need before writing your first programs.
+            The four sections progress logically from setup to interactive use to data storage:
+            <dl>
+                <li>
+                    <title>Installing MATLAB</title>
+                    <p>How to obtain, license, and install MATLAB on your computer.</p>
+                </li>
+                <li>
+                    <title>The MATLAB Desktop</title>
+                    <p>A tour of the MATLAB interface — the Command Window, Workspace panel,
+                    Current Folder browser, and Editor.</p>
+                </li>
+                <li>
+                    <title>The Command Window</title>
+                    <p>Using MATLAB interactively as a powerful calculator, understanding
+                    operator precedence, and managing the session with commands like
+                    <pf>clc</pf>, <pf>clear</pf>, and <pf>format</pf>.</p>
+                </li>
+                <li>
+                    <title>Variables</title>
+                    <p>Storing computed values in named memory locations, following MATLAB's
+                    naming rules, and understanding how assignment differs from a
+                    mathematical equation.</p>
+                </li>
+            </dl>
+        </p>
 
-		<p>
-			The chapter concludes with an introduction to variables—how they are created, named, and reused. Understanding how MATLAB stores values and executes assignments is essential before moving on to writing scripts and programs, which will be the focus of the next chapter.
-		</p>
-	</introduction>
+        <p>
+            By the end of this chapter you will be able to:
+            <ul>
+                <li>Install MATLAB and verify that the environment launches correctly.</li>
+                <li>Navigate the MATLAB Desktop and locate the key panels used throughout the course.</li>
+                <li>Enter arithmetic expressions in the Command Window and interpret the results.</li>
+                <li>Create, name, and reassign variables following MATLAB's naming rules.</li>
+            </ul>
+        </p>
+    </introduction>
 
-	<xi:include href="sec-installing-matlab.ptx" />
-	<xi:include href="sec-matlab-desktop.ptx" />
-	<xi:include href="sec-command-window.ptx" />
-	<xi:include href="sec-variables.ptx" />
+    <xi:include href="sec-installing-matlab.ptx" />
+    <xi:include href="sec-matlab-desktop.ptx" />
+    <xi:include href="sec-command-window.ptx" />
+    <xi:include href="sec-variables.ptx" />
 
-	<conclusion>
-		<p>
-			<objectives xml:id="basics-takeaways">
-				<ol>
-					<li>The Command Window functions as a command-line interface embedded within MATLAB's graphical environment.</li>
-					<li>MATLAB stores all defined variables in memory in a location called the workspace.</li>
-					<li>The assignment operator <c>=</c> tells MATLAB to evaluate an expression and store its value under a variable name; it does not represent a mathematical equation.</li>
-					<li>Variables store numerical values, not formulas, and changing one variable does not automatically update values that were computed earlier.</li>
-					<li>Ending a command with a semicolon suppresses output but does not affect how values are stored.</li>
-					<li>Commands such as <pf>clear</pf>, <pf>clc</pf>, and <pf>format</pf> help manage the workspace and Command Window during an interactive session.</li>
-					<li>MATLAB imposes specific rules on variable names, and clear, descriptive names make code easier to read and debug.</li>
-				</ol>
-			</objectives>
-		</p>
-	</conclusion>
+    <conclusion>
+        <title>Key Takeaways</title>
+        <objectives xml:id="takeaways-welcome-to-matlab">
+            <ul>
+                <li>Use the Command Window to quickly evaluate expressions without saving them — it works like an interactive calculator that keeps a record of everything you type.</li>
+                <li>Every value you compute can be stored in a variable using the assignment operator <pf>=</pf>; MATLAB saves the result, not the formula, so changing one variable does not automatically update others.</li>
+                <li>Variable names must start with a letter, may contain letters, digits, and underscores, are case-sensitive, and cannot be MATLAB keywords; choosing descriptive names makes code far easier to read and debug.</li>
+                <li>Ending a statement with a semicolon suppresses Command Window output but still creates the variable in the workspace — use semicolons to keep intermediate results from cluttering your screen.</li>
+                <li>Commands such as <pf>clear</pf>, <pf>clc</pf>, and <pf>whos</pf> help you manage the workspace and Command Window; developing the habit of clearing the workspace before re-running commands prevents hard-to-find errors caused by stale variable values.</li>
+            </ul>
+        </objectives>
+    </conclusion>
+
 </chapter>

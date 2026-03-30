@@ -1,100 +1,604 @@
-<section xml:id="matlab-desktop">
-  <title>MATLAB Desktop</title>
+<section xml:id="sec-matlab-desktop">
+	<title>MATLAB Desktop</title>
 
-  <introduction>
-    <p>
-      MATLAB is more than a calculator. It is a full computing environment designed
-      to help you explore mathematics, write programs, and manage data.
-      To use MATLAB effectively, it is important to understand the main parts of
-      the MATLAB Desktop.
-    </p>
-  </introduction>
-
-  <subsection xml:id="desktop">
-    <title>Main Components</title>
-
-    <p>
-      When MATLAB opens, the screen is divided into panels.
-      Each panel has a specific role in how you interact with MATLAB.
-      Although the layout can be customized, the following components are essential.
-      <dl width="narrow">
-        <li>
-          <title>Files</title>
-          <p>
-            Shows the current working directory.
-            Files you create or save are placed here by default.
-          </p>
-        </li>
-
-        <li xml:id="command-window">
-          <title>Command Window</title>
-          <p>
-            The Command Window is where you enter commands at the prompt <pf>&gt;&gt;</pf>.
-            MATLAB evaluates each command when you press <kbd>Enter</kbd>.
-          </p>
-        </li>
-
-        <li>
-          <title>Workspace</title>
-          <p>
-            Displays variables currently stored in memory, including their names,
-            sizes, and values.
-          </p>
-        </li>
-
-        <li>
-          <title>Editor</title>
-          <p>
-            Used to write, edit, and debug MATLAB programs and scripts.
-          </p>
-        </li>
-      </dl>
-    </p>
-
-    <figure>
-      <caption>Main components of the MATLAB Desktop.</caption>
-      <image source="figures/matlab-desktop.png"/>
-    </figure>
-
-    <exercise label="desktop-chkpt-1">
-      <statement>
-        <p>
-          Which MATLAB panel shows the variables currently stored in memory?
-        </p>
-      </statement>
-      <choices randomize="yes">
-        <choice correct="no"><statement><p>Files</p></statement></choice>
-        <choice correct="yes"><statement><p>Workspace</p></statement></choice>
-        <choice correct="no"><statement><p>Editor</p></statement></choice>
-        <choice correct="no"><statement><p>Command Window</p></statement></choice>
-      </choices>
-    </exercise>
-  </subsection>
-
-  <subsection xml:id="toggling-components">
-    <title>Modifying the Layout</title>
-
-    <p>
-      The MATLAB Desktop is customizable.
-      Panels can be shown, hidden, or rearranged to suit your workflow.
-    </p>
-
-    <figure>
-      <caption>Toggling panels on and off in the MATLAB Desktop.</caption>
-      <image source="figures/desktoplayout.gif"/>
-    </figure>
-
+	<introduction>
 		<p>
-			The sidebars on the left, right, and bottom of the desktop display the tools docked there.
-			Use them to show or hide panels, drag panel title bars to reposition them, and open additional tools with
-			the <q>Open more panels</q> button.
+			MATLAB is more than a calculator. It is a full computing environment designed to help you explore mathematics, write programs, and manage data. To use MATLAB effectively, you need to understand the main parts of the MATLAB Desktop and how each panel supports your workflow.
 		</p>
+	</introduction>
 
-		<p>
-			In this chapter, you will work interactively in the Command Window.
-			The next section introduces variables, which help you store and reuse the results of those commands.
-		</p>
+	<subsection xml:id="subsec-matlab-desktop-structure">
+		<title>🧱 Structure</title>
 
-  </subsection>
+		<assemblage xml:id="matlab-desktop-panels">
+			<title>MATLAB Desktop Panels</title>
+
+			<p>
+				When MATLAB opens, the screen is divided into panels. Although the layout can be customized, the following four components are essential:
+			</p>
+
+			<dl width="narrow">
+				<li>
+					<title>Files</title>
+					<p>
+						Shows the <term>current working directory</term>. Files you create or save are placed here by default.
+					</p>
+				</li>
+				<li xml:id="command-window">
+					<title>Command Window</title>
+					<p>
+						The <term>Command Window</term> is where you enter commands at the prompt <pf>&gt;&gt;</pf>. MATLAB evaluates each command when you press <kbd>Enter</kbd>.
+					</p>
+				</li>
+				<li>
+					<title>Workspace</title>
+					<p>
+						The <term>workspace</term> displays variables currently stored in memory, including their names, sizes, and values.
+					</p>
+				</li>
+				<li>
+					<title>Editor</title>
+					<p>
+						The <term>Editor</term> is used to write, edit, and save MATLAB scripts and functions.
+					</p>
+				</li>
+			</dl>
+
+			<p>
+				Key rules:
+				<ul>
+					<li>You type commands in the Command Window and see results there immediately.</li>
+					<li>Variables created in the Command Window appear automatically in the Workspace.</li>
+					<li>The Editor is used for writing longer programs that you save and run as files.</li>
+					<li>The layout can be customized by dragging, hiding, or docking panels.</li>
+				</ul>
+			</p>
+		</assemblage>
+
+		<figure>
+			<caption>Main components of the MATLAB Desktop.</caption>
+			<image source="figures/matlab-desktop.png"/>
+		</figure>
+
+		<exercise label="desktop-reading-ckpt-1">
+
+			<task label="desktop-reading-ckpt-1a">
+				<statement>
+					<p>
+						Which MATLAB panel shows the variables currently stored in memory?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p>Workspace</p></statement>
+						<feedback><p>Correct. The Workspace panel lists all variables currently in memory, along with their names, sizes, and values.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Files</p></statement>
+						<feedback><p>The Files panel shows files in the current working directory, not variables in memory.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Editor</p></statement>
+						<feedback><p>The Editor is for writing and editing scripts. Variable information appears in the Workspace.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Command Window</p></statement>
+						<feedback><p>The Command Window displays output from commands, but the Workspace panel specifically tracks all current variables.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="desktop-reading-ckpt-1b">
+				<statement correct="yes">
+					<p>
+						The Command Window is where you enter commands and see their output immediately.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Correct. The Command Window is the interactive interface where you type commands at the <pf>&gt;&gt;</pf> prompt and MATLAB displays the results.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="desktop-reading-ckpt-1c">
+				<statement>
+					<p>
+						Which panel is used to write and save longer MATLAB programs?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p>Editor</p></statement>
+						<feedback><p>Correct. The Editor is for writing, editing, and saving scripts and functions as files.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Command Window</p></statement>
+						<feedback><p>The Command Window is for interactive one-at-a-time commands, not for saving programs.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Workspace</p></statement>
+						<feedback><p>The Workspace displays variable information. Programs are written in the Editor.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Files</p></statement>
+						<feedback><p>The Files panel browses directory contents. Programs are written and edited in the Editor.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+	</subsection>
+
+	<subsection xml:id="subsec-matlab-desktop-examples">
+		<title>👀 Examples</title>
+
+		<example xml:id="ex-desktop-layout">
+			<title>Identifying Desktop Panels</title>
+
+			<statement>
+				<p>
+					When you first open MATLAB, you see a multi-panel layout. Here is a summary of what each panel is used for and when you will use it:
+				</p>
+
+				<tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+					<col width="20%"/>
+					<col width="40%"/>
+					<col width="40%"/>
+					<row header="yes">
+						<cell><p>Panel</p></cell>
+						<cell><p>What it shows</p></cell>
+						<cell><p>When you use it</p></cell>
+					</row>
+					<row>
+						<cell><p>Files</p></cell>
+						<cell><p>Files in the current working directory</p></cell>
+						<cell><p>When opening, saving, or organizing scripts</p></cell>
+					</row>
+					<row>
+						<cell><p>Command Window</p></cell>
+						<cell><p>Interactive prompt <pf>&gt;&gt;</pf> and output</p></cell>
+						<cell><p>For quick calculations and running commands</p></cell>
+					</row>
+					<row>
+						<cell><p>Workspace</p></cell>
+						<cell><p>All variables currently in memory</p></cell>
+						<cell><p>To check what values are stored</p></cell>
+					</row>
+					<row>
+						<cell><p>Editor</p></cell>
+						<cell><p>Script and function files</p></cell>
+						<cell><p>When writing programs longer than one line</p></cell>
+					</row>
+				</tabular>
+			</statement>
+		</example>
+
+		<example xml:id="ex-desktop-customization">
+			<title>Customizing the Layout</title>
+
+			<statement>
+				<p>
+					The MATLAB Desktop is customizable. Panels can be shown, hidden, or rearranged to suit your workflow.
+				</p>
+
+				<figure>
+					<caption>Toggling panels on and off in the MATLAB Desktop.</caption>
+					<image source="figures/desktoplayout.gif"/>
+				</figure>
+
+				<p>
+					To modify the layout:
+					<ul>
+						<li>Use the sidebars on the left, right, and bottom to show or hide panels.</li>
+						<li>Drag a panel's title bar to reposition it.</li>
+						<li>Use the <q>Open more panels</q> button to access additional tools.</li>
+					</ul>
+				</p>
+
+				<p>
+					For this chapter, the Command Window is the most important panel. You will use it to enter commands interactively.
+				</p>
+			</statement>
+		</example>
+
+	</subsection>
+
+	<subsection xml:id="subsec-matlab-desktop-practice-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
+
+		<exercise label="desktop-activity-match-panels">
+			<title>Match the Panel to Its Purpose</title>
+
+			<introduction>
+				<p>
+					For each description, identify the MATLAB Desktop panel it refers to. Type your answer in the Sage cell.
+				</p>
+			</introduction>
+
+			<task label="desktop-activity-match-1">
+				<statement>
+					<p>
+						You notice a variable called <pf>totalCost</pf> was accidentally left over from a previous session. In which panel would you see this variable listed?
+					</p>
+					<sage language="octave">
+						<input>
+							% Type the name of the panel here as a comment, then evaluate.
+							% ==== Type your answer here ====
+							% Panel:
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<p>
+						The <term>Workspace</term> panel. It lists all variables currently stored in memory, including leftover ones from previous commands.
+					</p>
+				</solution>
+			</task>
+
+			<task label="desktop-activity-match-2">
+				<statement>
+					<p>
+						You want to write a 20-line program that computes several values and saves the result to a file. Which panel do you use?
+					</p>
+					<sage language="octave">
+						<input>
+							% Type the name of the panel here as a comment, then evaluate.
+							% ==== Type your answer here ====
+							% Panel:
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<p>
+						The <term>Editor</term>. It is designed for writing, editing, and saving longer programs as script or function files.
+					</p>
+				</solution>
+			</task>
+
+			<task label="desktop-activity-match-3">
+				<statement>
+					<p>
+						You want to quickly test whether <pf>sqrt(144)</pf> returns <c>12</c>. Which panel do you use?
+					</p>
+					<sage language="octave">
+						<input>
+							% Type the name of the panel here as a comment, then try the command below.
+							% ==== Type your answer here ====
+							% Panel:
+
+							sqrt(144)
+						</input>
+					</sage>
+					<p>
+						When done, evaluate and confirm the result is <c>ans = 12</c>.
+					</p>
+				</statement>
+				<solution component="example-solution">
+					<p>
+						The <term>Command Window</term>. It is the interactive panel for entering and immediately evaluating single commands.
+					</p>
+				</solution>
+			</task>
+
+		</exercise>
+
+	</subsection>
+
+	<reading-questions xml:id="matlab-desktop-reading-questions">
+		<title>Reading Questions</title>
+
+		<exercise label="rq-matlab-desktop-1">
+			<statement>
+				<p>
+					What prompt symbol appears in the Command Window, indicating MATLAB is ready for input?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>&gt;&gt;</pf></p></statement>
+					<feedback><p>Correct. The double greater-than symbol <pf>&gt;&gt;</pf> is the MATLAB command prompt.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>$</pf></p></statement>
+					<feedback><p>The dollar sign is used in Unix/Linux shells, not in MATLAB.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>&gt;</pf></p></statement>
+					<feedback><p>A single greater-than is not MATLAB's prompt. MATLAB uses a double greater-than <pf>&gt;&gt;</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>%</pf></p></statement>
+					<feedback><p>The percent sign is used to start a comment in MATLAB code, not as the prompt.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-2">
+			<statement correct="yes">
+				<p>
+					Variables created in the Command Window appear automatically in the Workspace panel.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Correct. Any variable you define, whether in the Command Window or by running a script, is tracked in the Workspace.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-3">
+			<statement>
+				<p>
+					Which panel shows the files and folders in your current working directory?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>Files</p></statement>
+					<feedback><p>Correct. The Files panel (also called the Current Folder panel) shows the contents of the active working directory.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Workspace</p></statement>
+					<feedback><p>The Workspace shows variables in memory, not files on disk.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Command Window</p></statement>
+					<feedback><p>The Command Window displays command output. To see files, use the Files panel.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Editor</p></statement>
+					<feedback><p>The Editor opens and edits specific files. The Files panel lets you browse for them.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-4">
+			<statement correct="no">
+				<p>
+					The MATLAB Desktop layout cannot be changed; all panels are fixed in place.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Incorrect. The MATLAB Desktop is fully customizable. Panels can be shown, hidden, moved, and docked to suit your workflow.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-5">
+			<statement>
+				<p>
+					A student types <pf>x = 5</pf> in the Command Window and presses <kbd>Enter</kbd>. In which panel will the variable <pf>x</pf> immediately appear?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>Workspace</p></statement>
+					<feedback><p>Correct. After executing any assignment, the variable appears in the Workspace where you can see its name, size, and value.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Editor</p></statement>
+					<feedback><p>The Editor shows program code, not live variable values. Variable tracking happens in the Workspace.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Files</p></statement>
+					<feedback><p>The Files panel shows files on disk. In-memory variables appear in the Workspace.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Command History</p></statement>
+					<feedback><p>The Command History records past commands, not variable values. Variables appear in the Workspace.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-6">
+			<statement>
+				<p>
+					What is the primary purpose of the Editor panel?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>To write, edit, and save MATLAB scripts and functions.</p></statement>
+					<feedback><p>Correct. The Editor is designed for authoring program files, not for one-off interactive commands.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>To display variables and their values.</p></statement>
+					<feedback><p>That is the role of the Workspace panel, not the Editor.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>To browse files in the current directory.</p></statement>
+					<feedback><p>That is the role of the Files panel. The Editor is for writing code.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>To enter quick one-line calculations.</p></statement>
+					<feedback><p>Quick calculations are done in the Command Window. The Editor is for longer programs saved as files.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-7">
+			<statement correct="no">
+				<p>
+					The Workspace panel is only visible when you are running a script.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Incorrect. The Workspace is visible at all times by default. It updates whenever you create or modify variables, whether from the Command Window or from a running script.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-8">
+			<statement>
+				<p>
+					How do you press to execute a command you have typed in the Command Window?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><kbd>Enter</kbd></p></statement>
+					<feedback><p>Correct. Pressing <kbd>Enter</kbd> after typing a command causes MATLAB to evaluate it immediately.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><kbd>F5</kbd></p></statement>
+					<feedback><p><kbd>F5</kbd> runs the current script in the Editor. In the Command Window, you press <kbd>Enter</kbd>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><kbd>Ctrl+Enter</kbd></p></statement>
+					<feedback><p><kbd>Ctrl+Enter</kbd> runs the current section of a script in the Editor. In the Command Window, press <kbd>Enter</kbd>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><kbd>Tab</kbd></p></statement>
+					<feedback><p><kbd>Tab</kbd> triggers auto-completion in MATLAB. To run a command, press <kbd>Enter</kbd>.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-9">
+			<statement correct="yes">
+				<p>
+					The Files panel and the Workspace panel serve different purposes: Files shows what is on disk, while Workspace shows what is in memory.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Correct. The Files panel browses saved files on your computer, while the Workspace tracks variables currently loaded into MATLAB's memory.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-matlab-desktop-10">
+			<statement>
+				<p>
+					A student wants to hide the Workspace panel to get more screen space. How can they do this?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>Drag or close the panel using the desktop customization tools.</p></statement>
+					<feedback><p>Correct. The MATLAB Desktop allows panels to be hidden, moved, or docked using the sidebar controls and drag-and-drop.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Type <pf>hide workspace</pf> in the Command Window.</p></statement>
+					<feedback><p>There is no such command. Panel visibility is controlled through the desktop interface.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Restart MATLAB without the Workspace loaded.</p></statement>
+					<feedback><p>Restarting does not change the panel layout. Use the desktop customization tools instead.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>The Workspace cannot be hidden.</p></statement>
+					<feedback><p>Any panel in MATLAB can be hidden or rearranged using the desktop layout tools.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+	</reading-questions>
+
+	<exercises xml:id="matlab-desktop-coding-exercises">
+		<title>Coding Exercises</title>
+
+		<exercisegroup>
+			<title>Foundational</title>
+
+			<exercise label="desktop-ex-explore-panels">
+				<title>Explore Desktop Panels</title>
+
+				<introduction>
+					<p>
+						These exercises guide you through interacting with each major panel of the MATLAB Desktop.
+					</p>
+				</introduction>
+
+				<task label="desktop-ex-explore-panels-a">
+					<statement>
+						<p>
+							Open MATLAB and identify the four main panels: Files, Command Window, Workspace, and Editor. In the Command Window, type the following and press <kbd>Enter</kbd>:
+						</p>
+						<program language="matlab">
+							x = 10
+						</program>
+						<p>
+							Verify that <pf>x</pf> appears in the Workspace panel with value <c>10</c>.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							After typing <pf>x = 10</pf> and pressing <kbd>Enter</kbd>, the Command Window shows <c>x = 10</c> and the Workspace panel updates to list <pf>x</pf> with value <c>10</c>.
+						</p>
+					</solution>
+				</task>
+
+				<task label="desktop-ex-explore-panels-b">
+					<statement>
+						<p>
+							In the Command Window, type <pf>clear</pf> and press <kbd>Enter</kbd>. What happens to the Workspace panel?
+						</p>
+					</statement>
+					<solution>
+						<p>
+							The Workspace panel becomes empty. The <pf>clear</pf> command removes all variables from memory.
+						</p>
+					</solution>
+				</task>
+
+				<task label="desktop-ex-explore-panels-c">
+					<statement>
+						<p>
+							Open the Editor panel (go to <q>Home</q> tab, click <q>New Script</q>). Type the following in the Editor, save it as <c>myFirstScript.m</c>, and run it:
+						</p>
+						<program language="matlab">
+							a = 3;
+							b = 4;
+							c = sqrt(a^2 + b^2)
+						</program>
+						<p>
+							Confirm that <pf>c</pf> appears in the Workspace with the correct value and that the output is shown in the Command Window.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Running the script produces <c>c = 5</c> in the Command Window and adds <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> to the Workspace. This illustrates how the Editor and Command Window work together.
+						</p>
+					</solution>
+				</task>
+
+			</exercise>
+		</exercisegroup>
+
+		<exercisegroup>
+			<title>Extended</title>
+
+			<exercise label="desktop-ex-layout-customization">
+				<title>Customize and Restore the Layout</title>
+
+				<statement>
+					<p>
+						Experiment with the MATLAB Desktop layout:
+					</p>
+					<ol>
+						<li>Hide the Workspace panel by clicking its close button.</li>
+						<li>Drag the Command Window to a different position on screen.</li>
+						<li>Restore the default layout using the <q>Home</q> tab, <q>Layout</q> dropdown, and selecting <q>Default</q>.</li>
+					</ol>
+					<p>
+						Write a brief description (as a MATLAB comment) of what changed when you restored the default layout.
+					</p>
+					<program language="matlab">
+						% Description of what happened when the default layout was restored:
+						%
+					</program>
+				</statement>
+				<solution>
+					<p>
+						Restoring the default layout resets all panels to their original positions and makes hidden panels visible again. This is useful if the desktop becomes disorganized during customization.
+					</p>
+				</solution>
+			</exercise>
+		</exercisegroup>
+
+	</exercises>
+
 </section>
-
