@@ -1,119 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <section xml:id="sec-logical-values">
-	<title>Logical Values (Answers)</title> 
+	<title>Logical Values</title>
 
-	<p>
-		MATLAB has two logical values:
-		<pf>true</pf> and <pf>false</pf>. When displayed, they often appear as <pf>logical 1</pf> and <pf>logical 0</pf>.
-		Although they behave similarly to the numeric values <pf>1</pf> and <pf>0</pf>, they are different data types.
-		Just as numbers can be stored in variables, logical values can be stored in variables as well.
-	</p>
+	<introduction>
+		<p>
+			Before MATLAB can make a decision, it needs a way to represent the answer to a yes-or-no question. Those answers are called <term>logical values</term>: <pf>true</pf> and <pf>false</pf>. They are the foundation of every conditional statement you will write.
+		</p>
+	</introduction>
 
-	<program language="matlab">
-		a = 1;
-		b = true;
-		c = 0;
-		d = false;
+	<subsection xml:id="subsec-logical-values-structure">
+		<title>🧱 Structure</title>
 
-		fprintf("a = %g,  b = %g,  c = %g,  d = %g\n", a, b, c, d)
-	</program>
+		<assemblage xml:id="logical-values-structure">
+			<title>Logical Values in MATLAB</title>
 
-	<p>
-		Running the above code, <pf>fprintf</pf> produces the following output:
-	</p>
+			<p>
+				MATLAB has two <term>logical values</term>: <pf>true</pf> and <pf>false</pf>. When displayed, they often appear as <pf>logical 1</pf> and <pf>logical 0</pf>.
+				Although they behave similarly to the numeric values <pf>1</pf> and <pf>0</pf>, they have a different data type: <pf>logical</pf> instead of <pf>double</pf>.
+			</p>
 
-	<pre>
-		a = 1,  b = 1,  c = 0,  d = 0
-	</pre>
+			<program language="matlab">
+				a = true;    % logical value: true
+				b = false;   % logical value: false
+			</program>
 
-	<p>
-		Even though <pf>a</pf> and <pf>b</pf> (and <pf>c</pf> and <pf>d</pf>) look the same, MATLAB treats them differently:
-		<pf>a</pf> is a number (a double), while <pf>b</pf> is a logical value. You can get more information using the <pf>whos</pf> command.
-		Here is the output you should see:
-	</p>
+			<p>
+				Key rules:
+				<ul>
+					<li>Logical values are of type <pf>logical</pf>, not <pf>double</pf>.</li>
+					<li><pf>true</pf> and <pf>1</pf> display the same but are different data types.</li>
+					<li><pf>false</pf> and <pf>0</pf> display the same but are different data types.</li>
+					<li>Use <pf>whos</pf> to inspect variable class and memory usage.</li>
+				</ul>
+			</p>
 
-	<pre>
-		Name        Size            Bytes  Class      Attributes
-		a           1x1                 8  double
-		b           1x1                 1  logical
-		c           1x1                 8  double
-		d           1x1                 1  logical
-	</pre>
+		</assemblage>
 
-	<p>
-		This shows us two differences: 
-		<dl width="wide">
-			<li><title>Class (data type)</title>
-				<p><pf>a</pf> is a <pf>double</pf>, while <pf>b</pf> is a <pf>logical</pf>.</p>
-			</li>
-			<li><title>Bytes (memory usage)</title>
-				<p><pf>a</pf> uses 8 bytes, while <pf>b</pf> uses 1 byte.</p>
-			</li>
-		</dl>
-		At the end of the day, the <pf>double</pf> data type is meant to store numeric quantities, while the <pf>logical</pf> data type stores yes/no answers to questions.
-	</p>
+		<p>
+			Just as numbers can be stored in variables, logical values can be stored in variables as well. The code below stores both numeric and logical values so you can compare them:
+		</p>
 
-	<exercises xml:id="conceptual-questions-logical-values">
-		<title>🤔💭 Conceptual Questions</title>
+		<program language="matlab">
+			a = 1;
+			b = true;
+			c = 0;
+			d = false;
 
-		<exercise label="concepts-logical-values">
+			fprintf("a = %g,  b = %g,  c = %g,  d = %g\n", a, b, c, d)
+		</program>
 
-			<task label="cqs-logical-values-1">
-				<title>Logical Data Types</title>
+		<p>
+			Running the above code, <pf>fprintf</pf> produces the following output:
+		</p>
+
+		<pre>
+a = 1,  b = 1,  c = 0,  d = 0
+		</pre>
+
+		<p>
+			Even though <pf>a</pf> and <pf>b</pf> (and <pf>c</pf> and <pf>d</pf>) look the same, MATLAB treats them differently.
+			You can get more information using the <pf>whos</pf> command. Here is the output you should see:
+		</p>
+
+		<pre>
+Name        Size            Bytes  Class      Attributes
+a           1x1                 8  double
+b           1x1                 1  logical
+c           1x1                 8  double
+d           1x1                 1  logical
+		</pre>
+
+		<p>
+			This shows us two differences:
+			<dl width="wide">
+				<li><title>Class (data type)</title>
+					<p><pf>a</pf> is a <pf>double</pf>, while <pf>b</pf> is a <pf>logical</pf>.</p>
+				</li>
+				<li><title>Bytes (memory usage)</title>
+					<p><pf>a</pf> uses 8 bytes, while <pf>b</pf> uses 1 byte.</p>
+				</li>
+			</dl>
+			The <pf>double</pf> data type is meant to store numeric quantities, while the <pf>logical</pf> data type stores yes/no answers to questions.
+		</p>
+
+		<exercise label="logical-values-reading-ckpt-1">
+
+			<task label="logical-values-reading-ckpt-1a">
 				<statement correct="no">
 					<p>
-						In MATLAB, <pf>true</pf> and <pf>1</pf> are the same.
+						In MATLAB, <pf>true</pf> and <pf>1</pf> are the same data type.
 					</p>
 				</statement>
 				<feedback>
 					<p>
-						Incorrect. While <pf>true</pf> and <pf>1</pf> are represented by the same numeric value, 
-						they have different data types: <pf>true</pf> is of type <pf>logical</pf>, 
-						while <pf>1</pf> is of type <pf>double</pf>.
+						False. While <pf>true</pf> displays as <pf>1</pf>, it is of type <pf>logical</pf>, not <pf>double</pf>. They have different data types even though they display the same way.
 					</p>
 				</feedback>
 			</task>
 
-			<task label="cqs-logical-values-2">
-				<title>Understanding Logical Values</title>
-
+			<task label="logical-values-reading-ckpt-1b">
 				<statement>
 					<p>
-						Why is <pf>true</pf> (logical) different from <pf>1</pf> (double) in MATLAB, 
-						even though they display similarly?
+						Which of the following correctly describes the difference between <pf>true</pf> (logical) and <pf>1</pf> (double)?
 					</p>
 				</statement>
 				<choices randomize="yes">
 					<choice correct="yes">
 						<statement>
-							<p><pf>true</pf> represents a logical value, while <pf>1</pf> is numeric</p>
+							<p><pf>true</pf> represents a yes/no answer; <pf>1</pf> represents a numeric quantity.</p>
 						</statement>
 						<feedback>
-							<p>Correct! Logical values are designed to represent yes/no answers to questions, 
-							while numeric values represent measurements or counts.</p>
+							<p>Correct! Logical values are designed for yes/no answers, while numeric values represent measurements or counts.</p>
 						</feedback>
 					</choice>
 					<choice>
 						<statement>
-							<p>They are the same and can be used interchangeably</p>
+							<p>They are identical and can be used interchangeably in all contexts.</p>
 						</statement>
 						<feedback>
-							<p>Incorrect. While they behave similarly in many contexts, they are different 
-							data types with different purposes.</p>
+							<p>Incorrect. While they often behave similarly, they are different data types with different purposes.</p>
 						</feedback>
 					</choice>
 					<choice>
 						<statement>
-							<p>Logical values are faster than numeric values</p>
+							<p><pf>true</pf> uses more memory than <pf>1</pf>.</p>
 						</statement>
 						<feedback>
-							<p>Incorrect. While logical values do use less memory, the key difference is 
-							their purpose: answering yes/no questions versus storing numeric data.</p>
+							<p>Incorrect. A <pf>logical</pf> value uses 1 byte; a <pf>double</pf> uses 8 bytes. Logical values use <em>less</em> memory.</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB displays <pf>true</pf> as <pf>true</pf> and <pf>1</pf> as <pf>1</pf>.</p>
+						</statement>
+						<feedback>
+							<p>Incorrect. Both <pf>true</pf> and <pf>1</pf> are displayed as <pf>1</pf> when used with <pf>fprintf</pf>.</p>
 						</feedback>
 					</choice>
 				</choices>
 			</task>
 
+			<task label="logical-values-reading-ckpt-1c">
+				<statement>
+					<p>
+						Which MATLAB command displays the class (data type) and memory size of all variables in the workspace?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p><pf>whos</pf></p></statement>
+						<feedback><p>Correct! <pf>whos</pf> lists every variable with its size, byte count, and class.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>disp</pf></p></statement>
+						<feedback><p><pf>disp</pf> prints the value of a variable but does not show its type or memory usage.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>class</pf></p></statement>
+						<feedback><p><pf>class</pf> returns the data type of a single variable but does not list the whole workspace.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>size</pf></p></statement>
+						<feedback><p><pf>size</pf> returns the dimensions of an array, not the data type.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
 		</exercise>
+
+	</subsection>
+
+	<subsection xml:id="subsec-logical-values-examples">
+		<title>👀 Examples</title>
+
+		<example xml:id="ex-logical-values-store">
+			<title>Storing and Displaying Logical Values</title>
+
+			<statement>
+				<p>
+					The following example shows how logical values are stored and how they differ from numeric values when inspected with <pf>whos</pf>:
+				</p>
+
+				<program language="matlab">
+					isRaining = true;
+					temperature = 22;
+
+					whos isRaining temperature
+				</program>
+
+				<p>
+					Expected output:
+				</p>
+
+				<pre>
+Name            Size    Bytes  Class      Attributes
+isRaining       1x1         1  logical
+temperature     1x1         8  double
+				</pre>
+
+				<p>
+					Notice that <pf>isRaining</pf> is of type <pf>logical</pf> and uses only 1 byte, while <pf>temperature</pf> is of type <pf>double</pf> and uses 8 bytes.
+				</p>
+			</statement>
+		</example>
+
+		<example xml:id="ex-logical-values-arithmetic">
+			<title>Logical Values in Arithmetic</title>
+
+			<statement>
+				<p>
+					MATLAB allows logical values to participate in arithmetic expressions, treating <pf>true</pf> as <pf>1</pf> and <pf>false</pf> as <pf>0</pf>. This can be useful for counting:
+				</p>
+
+				<program language="matlab">
+					a = true;
+					b = false;
+
+					fprintf("a + b = %g\n", a + b)   % 1 + 0 = 1
+					fprintf("a * 5 = %g\n", a * 5)   % 1 * 5 = 5
+					fprintf("b * 5 = %g\n", b * 5)   % 0 * 5 = 0
+				</program>
+
+				<p>
+					While this works, keep in mind that the result of arithmetic on logical values is of type <pf>double</pf>, not <pf>logical</pf>.
+				</p>
+			</statement>
+		</example>
+
+		<exercise label="logical-values-practice-1">
+			<title>Logical Value Identification</title>
+
+			<task label="logical-values-practice-1a">
+				<statement>
+					<p>
+						Without running the code, predict the output of the following:
+					</p>
+					<program language="matlab">
+						x = false;
+						fprintf("x = %g\n", x)
+					</program>
+				</statement>
+				<solution component="example-solution">
+					<p>
+						Output: <pf>x = 0</pf>. The logical value <pf>false</pf> displays as <pf>0</pf> when printed with <pf>%g</pf>.
+					</p>
+				</solution>
+			</task>
+
+		</exercise>
+
+	</subsection>
+
+	<subsection xml:id="subsec-logical-values-practice-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
+
+		<exercise label="logical-values-activity-1">
+			<title>Recognizing Logical vs. Numeric Types</title>
+
+			<introduction>
+				<p>
+					Use the coding area below to explore how MATLAB distinguishes logical values from numeric ones.
+				</p>
+			</introduction>
+
+			<task label="logical-values-activity-1a">
+				<statement>
+					<p>
+						Define variables <pf>p = true</pf>, <pf>q = 1</pf>, <pf>r = false</pf>, and <pf>s = 0</pf>. Then run <pf>whos</pf> to inspect their types.
+					</p>
+					<sage language="octave">
+						<input>
+							% ==== Type your code here ====
+
+							% =============================
+						</input>
+					</sage>
+					<p>
+						Confirm that <pf>p</pf> and <pf>r</pf> have class <pf>logical</pf>, while <pf>q</pf> and <pf>s</pf> have class <pf>double</pf>.
+					</p>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						p = true;
+						q = 1;
+						r = false;
+						s = 0;
+						whos p q r s
+					</program>
+				</solution>
+			</task>
+
+			<task label="logical-values-activity-1b">
+				<statement>
+					<p>
+						Add the lines <pf>fprintf("p = %g\n", p)</pf> and <pf>fprintf("q = %g\n", q)</pf>. Confirm both print <pf>1</pf> even though they have different types.
+					</p>
+					<sage language="octave">
+						<input>
+							% ==== Type your code here ====
+
+							% =============================
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						p = true;
+						q = 1;
+						fprintf("p = %g\n", p)
+						fprintf("q = %g\n", q)
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+	</subsection>
+
+	<reading-questions xml:id="logical-values-reading-questions">
+		<title>📖 Reading Questions</title>
+
+		<exercise label="rq-logical-values-1">
+			<title>What are the two logical values?</title>
+			<statement>
+				<p>
+					What are the two logical values in MATLAB?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>true</pf> and <pf>false</pf></p></statement>
+					<feedback><p>Correct! These are the two logical values in MATLAB.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>yes</pf> and <pf>no</pf></p></statement>
+					<feedback><p>Incorrect. MATLAB uses <pf>true</pf> and <pf>false</pf>, not <pf>yes</pf> and <pf>no</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>1</pf> and <pf>0</pf></p></statement>
+					<feedback><p>These are the numeric representations, but the logical values are <pf>true</pf> and <pf>false</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>on</pf> and <pf>off</pf></p></statement>
+					<feedback><p>Incorrect. MATLAB uses <pf>true</pf> and <pf>false</pf>.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-values-2">
+			<statement correct="no">
+				<p>
+					In MATLAB, <pf>true</pf> and <pf>1</pf> are the same data type.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					False. <pf>true</pf> is of type <pf>logical</pf>, while <pf>1</pf> is of type <pf>double</pf>.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-logical-values-3">
+			<title>Memory usage of logical values</title>
+			<statement>
+				<p>
+					How many bytes does a <pf>logical</pf> scalar use in MATLAB?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>1 byte</p></statement>
+					<feedback><p>Correct! Logical values use only 1 byte, compared to 8 bytes for a <pf>double</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>8 bytes</p></statement>
+					<feedback><p>That is the size of a <pf>double</pf>, not a <pf>logical</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>4 bytes</p></statement>
+					<feedback><p>Incorrect. Logical scalars use 1 byte in MATLAB.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>2 bytes</p></statement>
+					<feedback><p>Incorrect. Logical scalars use 1 byte in MATLAB.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-values-4">
+			<statement correct="yes">
+				<p>
+					Logical values in MATLAB can be stored in variables just like numbers.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					True! You can assign <pf>true</pf> or <pf>false</pf> to a variable exactly like any numeric value.
+				</p>
+			</feedback>
+		</exercise>
+
+		<exercise label="rq-logical-values-5">
+			<title>Class of a logical value</title>
+			<statement>
+				<p>
+					What is the MATLAB class of the variable <pf>x</pf> after <pf>x = false</pf>?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>logical</pf></p></statement>
+					<feedback><p>Correct! Assigning <pf>false</pf> creates a variable of class <pf>logical</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>double</pf></p></statement>
+					<feedback><p>Incorrect. <pf>false</pf> creates a <pf>logical</pf>, not a <pf>double</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>int</pf></p></statement>
+					<feedback><p>Incorrect. MATLAB does not have a class named <pf>int</pf> for this purpose.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>boolean</pf></p></statement>
+					<feedback><p>Incorrect. MATLAB calls this type <pf>logical</pf>, not <pf>boolean</pf>.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-values-6">
+			<title>Arithmetic with logical values</title>
+			<statement>
+				<p>
+					What does MATLAB print after <pf>fprintf('%g\n', true + true)</pf>?
+				</p>
+			</statement>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>2</pf></p></statement>
+					<feedback><p>Correct! <pf>true</pf> acts as <pf>1</pf> in arithmetic, so <pf>true + true = 2</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>true</pf></p></statement>
+					<feedback><p>Incorrect. MATLAB does not print the word <pf>true</pf> with <pf>fprintf('%g', ...)</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>1</pf></p></statement>
+					<feedback><p>Incorrect. Adding two <pf>true</pf> values gives <pf>2</pf>, not <pf>1</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>An error occurs.</p></statement>
+					<feedback><p>Incorrect. Logical values can participate in arithmetic; no error is raised.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
+
+		<exercise label="rq-logical-values-7">
+			<statement correct="no">
+				<p>
+					MATLAB will produce an error if you use a logical value in an arithmetic expression.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					False. MATLAB allows logical values in arithmetic, treating <pf>true</pf> as <pf>1</pf> and <pf>false</pf> as <pf>0</pf>.
+				</p>
+			</feedback>
+		</exercise>
+
+	</reading-questions>
+
+	<exercises xml:id="logical-values-coding-exercises">
+		<title>💻 Coding Exercises</title>
+
+		<exercisegroup>
+			<title>Foundational</title>
+
+			<exercise label="coding-logical-values-1">
+				<title>Flag Classifier</title>
+				<statement>
+					<p>
+						Write a function named <pf>describe_flag</pf> that takes a single <pf>logical</pf> input <pf>flag</pf> and returns a string <pf>label</pf> that is <pf>'on'</pf> when <pf>flag</pf> is <pf>true</pf> and <pf>'off'</pf> when <pf>flag</pf> is <pf>false</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>flag</pf></p></cell>
+							<cell><p>(1x1) logical</p></cell>
+							<cell><p>the logical value to classify</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>label</pf></p></cell>
+							<cell><p>(1x1) string</p></cell>
+							<cell><p><pf>'on'</pf> or <pf>'off'</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								describe_flag(true)
+								describe_flag(false)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 'on'
+								ans = 'off'
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function label = describe_flag(flag)
+							if flag
+								label = 'on';
+							else
+								label = 'off';
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+		</exercisegroup>
+
+		<exercisegroup>
+			<title>Extended</title>
+
+			<exercise label="coding-logical-values-2">
+				<title>Logical Value Inspector</title>
+				<statement>
+					<p>
+						Write a function named <pf>logical_info</pf> that takes any scalar input <pf>val</pf> and returns two outputs: <pf>is_logical</pf> (true if <pf>val</pf> is of class <pf>logical</pf>) and <pf>as_number</pf> (the numeric value of <pf>val</pf> as a double). Use the built-in function <pf>islogical</pf> to check the type and <pf>double</pf> to convert it.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>val</pf></p></cell>
+							<cell><p>(1x1) any</p></cell>
+							<cell><p>the value to inspect</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>is_logical</pf></p></cell>
+							<cell><p>(1x1) logical</p></cell>
+							<cell><p>true if <pf>val</pf> is logical type</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>as_number</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>numeric value of <pf>val</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								[a, b] = logical_info(true)
+								[c, d] = logical_info(7)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								a = 1  b = 1
+								c = 0  d = 7
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution>
+					<program language="matlab">
+						function [is_logical, as_number] = logical_info(val)
+							is_logical = islogical(val);
+							as_number = double(val);
+						end
+					</program>
+				</solution>
+			</exercise>
+
+		</exercisegroup>
 
 	</exercises>
 
