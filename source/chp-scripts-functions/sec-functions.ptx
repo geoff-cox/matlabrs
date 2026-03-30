@@ -270,7 +270,7 @@ end
                     Run the code below and trace through it manually before pressing Evaluate.
                     Predict what value is printed.
                 </p>
-                <sage language="octave" component="example-solution">
+                <sage language="octave">
                     <input>
 % ==== Type your code here ====
 function result = double_it(x)
@@ -282,6 +282,9 @@ fprintf('y = %d\n', y);
                     </input>
                 </sage>
             </statement>
+            <solution component="example-solution">
+                <p>The function doubles its input, so <pf>double_it(7)</pf> returns <m>2 \times 7 = 14</m>. The output is <pf>y = 14</pf>.</p>
+            </solution>
         </exercise>
 
         <exercise xml:id="act-functions-modify">
@@ -291,7 +294,7 @@ fprintf('y = %d\n', y);
                     The function below computes the area of a square.
                     Modify it so that it instead returns both the area <em>and</em> the perimeter.
                 </p>
-                <sage language="octave" component="example-solution">
+                <sage language="octave">
                     <input>
 % Starter code — modify the function below
 function area = square_area(side)
@@ -304,6 +307,17 @@ end
                     </input>
                 </sage>
             </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+function [area, perimeter] = square_area(side)
+    area = side^2;
+    perimeter = 4 * side;
+end
+
+[a, p] = square_area(5);
+fprintf('Area = %g, Perimeter = %g\n', a, p);
+                </program>
+            </solution>
         </exercise>
 
         <exercise xml:id="act-functions-write-scratch">
@@ -314,13 +328,23 @@ end
                     The formula is: <m>\text{BMI} = \frac{\text{weight}}{\text{height}^2}</m>.
                     Then call it with <pf>weight = 70</pf> and <pf>height = 1.75</pf> and print the result with two decimal places.
                 </p>
-                <sage language="octave" component="example-solution">
+                <sage language="octave">
                     <input>
 % ==== Type your code here ====
 
                     </input>
                 </sage>
             </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+function b = bmi(weight, height)
+    b = weight / height^2;
+end
+
+result = bmi(70, 1.75);
+fprintf('BMI = %.2f\n', result);
+                </program>
+            </solution>
         </exercise>
 
         <exercise xml:id="act-functions-hello-greet">
@@ -330,13 +354,22 @@ end
                     Write a function named <pf>hello</pf> that accepts one input (<pf>name</pf>) and displays a greeting such as <pf>'Hello Alice, nice to meet you!'</pf>.
                     Test it with a name of your choice.
                 </p>
-                <sage language="octave" component="example-solution">
+                <sage language="octave">
                     <input>
 % ==== Type your code here ====
 
                     </input>
                 </sage>
             </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+function hello(name)
+    fprintf('Hello %s, nice to meet you!\n', name);
+end
+
+hello('Alice');
+                </program>
+            </solution>
         </exercise>
 
     </subsection>
