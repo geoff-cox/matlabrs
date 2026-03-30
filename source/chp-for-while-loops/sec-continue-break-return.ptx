@@ -1,0 +1,590 @@
+<section xml:id="sec-continue-break-return">
+  <title>Continue, Break, &amp; Return</title>
+
+	<introduction>
+		<p>
+			MATLAB provides commands that modify the normal flow of code. In particular, you can skip the current loop iteration or even exit loop entirely. It is also possible to end a function early if your code already knows the output.
+		</p>
+
+		<p>
+			These flow-control commands are known as <term>continue</term>, <term>break</term>, and <term>return</term>. They are used in specific contexts to alter the execution of loops and functions. The table below summarizes their effects:
+		</p>
+
+		<table xml:id="tab-loop-flow-control">
+			<title>Flow control commands for loops</title>
+			<tabular>
+				<row header="yes">
+					<cell>Command</cell>
+					<cell>Effect</cell>
+				</row>
+				<row>
+					<cell><pf>continue</pf></cell>
+					<cell>Skip the rest of the current iteration and move to the next iteration.</cell>
+				</row>
+				<row>
+					<cell><pf>break</pf></cell>
+					<cell>Exit the loop immediately and continue after <pf>end</pf>.</cell>
+				</row>
+				<row>
+					<cell><pf>return</pf></cell>
+					<cell>Exit the current script or function immediately.</cell>
+				</row>
+			</tabular>
+		</table>
+
+		<p>
+			Important notes:
+			<ul>
+				<li>These commands only execute if MATLAB reaches the line where they appear.</li>
+				<li><pf>continue</pf> and <pf>break</pf> may only be used inside a <xref ref="sec-for-loops" text="custom"><pf>for</pf>-loop</xref> or <xref ref="sec-while-loops" text="custom"><pf>while</pf>-loop</xref>; using them elsewhere causes an error.</li>
+				<li><pf>return</pf> can be used anywhere inside a script or function to exit early.</li>
+			</ul>
+		</p>
+
+	</introduction>
+
+	<subsection xml:id="subsec-continue-break-return-examples">
+		<title>👀 Examples</title>
+
+		<example>
+			<title>Searching with break</title>
+
+			<statement>
+				<p>
+					A loop can search for a target value and stop early when found. The <pf>break</pf> command exits the loop immediately.
+				</p>
+
+				<program language="matlab">
+				target = 10;
+
+				found = false;
+				location = -1;
+
+				for k = 1:50
+					value = randi([-20 20]);   % generate one random integer
+
+					if value == target
+						found = true;
+						location = k;
+						break
+					end
+				end
+
+				if found
+					fprintf('The number %i was found on iteration %i\n', target, location)
+				else
+					fprintf('The number %i was not found in 50 trials\n', target)
+				end
+				</program>
+
+				<p>
+					This pattern—test a condition, then exit early with <pf>break</pf>—is useful whenever you want to stop searching once you find what you need.
+				</p>
+			</statement>
+
+		</example>
+
+		<example xml:id="example-continue-skip-multiples">
+			<title>Example: Skipping Multiples with continue</title>
+
+			<statement>
+				<p>
+					Sometimes you want to skip certain iterations in a loop without exiting early. The <pf>continue</pf> command jumps to the next iteration immediately, skipping any remaining code in the current iteration.
+				</p>
+
+				<p>
+					For example, suppose you want to print all numbers from 1 to 10, but skip multiples of 3:
+				</p>
+
+				<program language="matlab">
+					for num = 1:10
+						if mod(num, 3) == 0
+							continue
+						end
+						fprintf('%i ', num)
+					end
+					fprintf('\n')
+				</program>
+
+				<p>
+					Output: <c>1 2 4 5 7 8 10</c>
+				</p>
+
+				<p>
+					When <pf>num</pf> is 3, 6, or 9, the <pf>continue</pf> command skips the <pf>fprintf</pf> statement and moves directly to the next value. This is cleaner than nesting the print statement inside an <pf>else</pf> block.
+				</p>
+			</statement>
+
+		</example>
+
+		<exercise label="continue-break-return-reading-ckpt-4">
+
+			<task label="continue-break-return-reading-ckpt-4a">
+				<title>What does continue do?</title>
+				<statement>
+					<p>
+						What does the <pf>continue</pf> command do in a loop?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>
+								Skips the rest of the current iteration and moves to the next iteration.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>continue</pf> command immediately jumps to the next iteration, skipping any remaining code in the current iteration.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Exits the loop completely.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>break</pf>, not <pf>continue</pf>. The <pf>continue</pf> command stays in the loop but skips to the next iteration.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Restarts the loop from the beginning.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>continue</pf> command moves to the next iteration, not back to the first one.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Exits the current function or script.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>return</pf>, not <pf>continue</pf>.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="continue-break-return-reading-ckpt-4b">
+				<title>Break exits the loop</title>
+				<statement correct="yes">
+					<p>
+						The <pf>break</pf> command exits the loop immediately and continues execution after the <pf>end</pf> statement.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Unlike <pf>continue</pf> which skips to the next iteration, <pf>break</pf> completely exits the loop.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="continue-break-return-reading-ckpt-4c">
+				<title>Where can continue and break be used?</title>
+				<statement>
+					<p>
+						Where can the <pf>continue</pf> and <pf>break</pf> commands be used?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>
+								Only inside <pf>for</pf>- or <pf>while</pf>-loops.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								These commands only make sense inside loops. Using them elsewhere causes an error.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Anywhere in a script or function.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>return</pf>. The <pf>continue</pf> and <pf>break</pf> commands require a loop context.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Only inside <pf>if</pf>-statements.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								While often used with <pf>if</pf>-statements, they must be inside a loop, not just an <pf>if</pf>-statement.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Only at the end of a loop.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								These commands can appear anywhere inside the loop body.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="continue-break-return-reading-ckpt-4d">
+				<title>When does return exit?</title>
+				<statement>
+					<p>
+						What does the <pf>return</pf> command do?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>
+								Exits only the current loop.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>break</pf>. The <pf>return</pf> command exits the entire script or function.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								Exits the current script or function immediately.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>return</pf> command stops execution of the entire script or function, not just a loop.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Returns to the start of the loop.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>return</pf> command doesn't return to any previous location; it exits completely.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Skips to the next iteration.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>continue</pf>, not <pf>return</pf>.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+	</subsection>
+
+	<subsection xml:id="subsec-continue-break-return-practice-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
+
+		<exercise label="activity-continue-control-flow">
+			<title>Using <pf>continue</pf> in a Loop</title>
+
+			<task label="activity-continue-control-flow-a">
+				<statement>
+					<p>
+						Write a MATLAB script with a <pf>for</pf>-loop from 1 to 20 that adds the loop index (1..20) to a running total (for example, stored in a variable <c>total</c>). Use an <pf>if</pf>-statement with <pf>mod</pf> and <pf>continue</pf> so that values divisible by 3 are skipped.
+					</p>
+				</statement>
+			</task>
+
+			<task label="activity-continue-control-flow-b">
+				<statement>
+					<p>
+						Modify your script to also count how many values were skipped. Print both the final total and the number of skipped values.
+					</p>
+				</statement>
+			</task>
+		</exercise>
+
+		<exercise label="activity-break-control-flow">
+			<title>Using <pf>break</pf> in a Loop</title>
+
+			<task label="activity-break-control-flow-a">
+				<statement>
+					<p>
+						Use a <pf>while</pf>-loop to generate random integers with <pf>randi([1, 10])</pf>. Keep a trial counter and use an <pf>if</pf>-statement with <pf>break</pf> to stop as soon as the value is 7.
+					</p>
+				</statement>
+			</task>
+
+			<task label="activity-break-control-flow-b">
+				<statement>
+					<p>
+						Add a second stopping rule: if the trial counter reaches 15 before rolling a 7, break out of the loop and report that the trial limit was reached.
+					</p>
+				</statement>
+			</task>
+		</exercise>
+
+		<exercise label="activity-return-control-flow">
+			<title>Using <pf>return</pf> in a Loop</title>
+
+			<task label="activity-return-control-flow-a">
+				<statement>
+					<p>
+						Write a function named <pf>find_first_multiple_of_six</pf> that loops through integers from 1 to <pf>limit</pf>. Inside the loop, use an <pf>if</pf>-statement and <pf>return</pf> to stop immediately when the first multiple of 6 is found.
+					</p>
+				</statement>
+			</task>
+
+			<task label="activity-return-control-flow-b">
+				<statement>
+					<p>
+						Update your function so that it returns <pf>-1</pf> if no value in the loop meets the condition. Test with a small limit and a larger limit to confirm both outcomes.
+					</p>
+				</statement>
+			</task>
+		</exercise>
+	</subsection>
+
+	<reading-questions xml:id="continue-break-return-reading-questions">
+		<title>📖 Reading Questions</title>
+
+		<exercise label="concepts-continue-break-return">
+
+			<task label="cqs-continue-break-return-4">
+				<statement>
+					<p>
+						What does the keyword <pf>continue</pf> do inside a loop?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>It skips the rest of the current iteration and moves to the next loop value.</p></statement>
+						<feedback><p><pf>continue</pf> jumps to the next iteration immediately.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It exits the loop completely.</p></statement>
+						<feedback><p>Exiting the loop completely is what <pf>break</pf> does.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It restarts the loop from the first value in the range.</p></statement>
+						<feedback><p>The loop proceeds forward through its range; it does not restart.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It pauses the loop until the user presses a key.</p></statement>
+						<feedback><p>Pausing is done with commands like <pf>pause</pf>, not <pf>continue</pf>.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-continue-break-return-5">
+				<statement>
+					<p>
+						Which situation is the best reason to use <pf>break</pf> inside a <pf>for</pf>-loop?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>You want to stop early when you have found what you were looking for.</p></statement>
+						<feedback><p><pf>break</pf> is for ending the loop early once a goal is reached.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>You want to skip just one iteration but keep looping.</p></statement>
+						<feedback><p>Skipping a single iteration is what <pf>continue</pf> does.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>You want the loop variable to update automatically each iteration.</p></statement>
+						<feedback><p>The loop variable updates automatically without needing <pf>break</pf>.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>You want to print output on a new line.</p></statement>
+						<feedback><p>New lines depend on the format string (for example, including <pf>\n</pf>), not on <pf>break</pf>.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+
+		<exercise label="drill-continue-break-return-trace-output">
+			<title>Trace the Output</title>
+
+			<!-- Output 1: break -->
+			<task label="cqs-for-loop-fresh-output-1">
+				<statement>
+					<p>
+						What is printed?
+					</p>
+					<program language="matlab">
+						total = 0;
+						for k = 1:10
+								total = total + k;
+								if total &gt;= 15
+										break
+								end
+						end
+						fprintf('k = %d, total = %d\n', k, total)
+					</program>
+				</statement>
+			</task>
+
+			<!-- Output 2: continue -->
+			<task label="cqs-for-loop-fresh-output-2">
+				<statement>
+					<p>
+						What is printed?
+					</p>
+					<program language="matlab">
+						count = 0;
+						for k = 1:12
+								if mod(k,4) == 0
+										continue
+								end
+								count = count + 1;
+						end
+						fprintf('count = %d\n', count)
+					</program>
+				</statement>
+			</task>
+
+			<task label="cqs-looping-for-fundamentals-output-3">
+				<statement>
+					<program language="matlab">
+						total = 0;
+						for n = 1:8
+							if mod(n, 2) == 0
+								continue
+							end
+							total = total + n;
+						end
+						fprintf('total = %d\n', total)
+					</program>
+				</statement>
+			</task>
+
+		</exercise>
+
+		<exercise label="drill-continue-break-return-code-build" language="octave" numbered="left" indentation="hide">
+			<title>Build the Code</title>
+
+			<task label="drill-continue-break-return-code-build-a" language="octave" numbered="left" indentation="hide">
+				<title>Build the Code</title>
+
+				<statement>
+					<p>
+						Put the blocks in order to print the first multiple of 7 between 1 and 50.
+					</p>
+					<p>
+						<em>Use correct indentation to show which lines are inside the loop and if statement.</em>
+					</p>
+				</statement>
+
+				<blocks>
+					<block><cline>first = NaN;			</cline></block>
+					<block><cline>for k = 1:50							</cline></block>
+					<block><cline>	if mod(k, 7) == 0				</cline></block>
+					<block><cline>		first = k;		</cline></block>
+					<block><cline>		break									</cline></block>
+					<block><cline>	end											</cline></block>
+					<block><cline>end												</cline>
+								<cline>fprintf('%i\n', first)	</cline></block>
+				</blocks>
+			</task>
+
+		</exercise>
+
+	</reading-questions>
+
+	<exercises xml:id="continue-break-return-coding-exercises">
+		<title>💻 Coding Exercises</title>
+
+		<task label="ex-break-search">
+			<title>Random Search with Break</title>
+
+			<statement>
+				<p>
+					Write a script that searches for a target value in a sequence of random numbers. Use a 
+					<pf>for</pf> loop that runs up to 50 iterations, generating one random integer between -20 and 20 
+					each time using <pf>randi([-20 20])</pf>. When the target value is found, use <pf>break</pf> to 
+					exit the loop immediately. Store whether the target was found in <pf>found</pf> (logical) and the 
+					iteration number where it was found in <pf>location</pf> (or -1 if not found).
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>target</pf> (1x1) double — integer value to search for</p>
+						</cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>found</pf> (1x1) logical — true if target was found, false otherwise</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell/>
+						<cell>
+							<p><pf>location</pf> (1x1) double — iteration where found (or -1 if not found)</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Search for 0
+					rng(42);  % Set seed for reproducibility
+					target = 0;
+					% Run your script
+					% Expected: found = true or false (depends on random sequence)
+					%           location = iteration number or -1
+
+					% Test 2: Search for a specific value
+					rng(123);
+					target = 10;
+					% Run your script
+					% Results will vary based on random generation
+
+					% Note: Results depend on random number generation
+					% Set rng seed for reproducible results when testing
+				</program>
+
+			</statement>
+		</task>
+	</exercises>
+
+</section>
