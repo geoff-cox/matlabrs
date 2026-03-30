@@ -478,10 +478,10 @@ end
 
         <exercise label="rq-functions-fail-a-zero">
             <statement>
-                <p>Fill in the blank: The quadratic formula function <pf>[x1,x2] = quadratic(a,b,c)</pf> will fail (produce a divide-by-zero error) when <pf>a</pf> equals <fillin answer="0"/>.</p>
+                <p>Fill in the blank: The quadratic formula function <pf>[x1,x2] = quadratic(a,b,c)</pf> will not work correctly (it divides by zero and produces Inf or NaN) when <pf>a</pf> equals <fillin answer="0"/>.</p>
             </statement>
             <feedback>
-                <p>When <pf>a = 0</pf>, the formula divides by <m>2a = 0</m>, which is undefined. Handling this case requires a conditional statement.</p>
+                <p>When <pf>a = 0</pf>, the formula divides by <m>2a = 0</m>, which is mathematically undefined. In MATLAB, this division by zero returns special values like <pf>Inf</pf> or <pf>NaN</pf> (often with a warning), so a robust quadratic function should detect this case with a conditional statement and handle it separately.</p>
             </feedback>
         </exercise>
 
