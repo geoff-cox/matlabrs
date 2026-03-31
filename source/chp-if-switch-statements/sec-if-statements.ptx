@@ -26,7 +26,7 @@
 
 			<p>
 				Notes &amp; Rules:
-				<ul>
+				<ul marker="square">
 					<li>Every <pf>if</pf>-statement must end with <pf>end</pf>.</li>
 					<li><pf>condition</pf> must be a logical statement that returns <pf>true</pf> or <pf>false</pf>.</li>
 					<li>If <pf>condition</pf> is false, MATLAB does nothing and skips to <pf>end</pf>.</li>
@@ -222,7 +222,7 @@
 
 			<p>
 				Notes &amp; Rules:
-				<ul>
+				<ul marker="square">
 					<li>Every <pf>if</pf>-statement must end with <pf>end</pf>.</li>
 					<li><pf>conditionA</pf> must be a logical statement that returns <pf>true</pf> or <pf>false</pf>.</li>
 					<li>Exactly one of <pf>blockA</pf> OR <pf>blockB</pf> must run when the code executes.</li>
@@ -358,7 +358,7 @@
 			<sidebyside widths="15% 85%">
 				<p>Use Case: </p>
 				<p>
-					<ul>
+					<ul marker="square">
 						<li>if <pf>conditionA</pf> is true, run <pf>blockA</pf>,</li>
 						<li>if <pf>conditionB</pf> is true, run <pf>blockB</pf>,</li>
 						<li>if <pf>conditionC</pf> is true, run <pf>blockC</pf>,</li>
@@ -381,7 +381,7 @@
 
 				<p>
 					Notes &amp; Rules:
-					<ul>
+					<ul marker="square">
 						<li>You can add as many <pf>elseif</pf> branches as needed.</li>
 						<li>The <pf>else</pf> (default) branch is optional.</li>
 						<li>The conditions are checked in order from top to bottom.</li>
@@ -594,10 +594,10 @@
 
 				<sage language="octave">
 					<input>
-						% ==== Type your code here ====
+						%─── TYPE YOUR CODE HERE ───%
 						
 
-						% =============================
+						%───────────────────────────%
 						fprintf('for x = %d, we set y to %d\n', x, y);
 					</input>
 				</sage>
@@ -613,7 +613,7 @@
 					</p>
 				</statement>
 
-				<solution>
+				<solution component="example-solution">
 					<program language="matlab">
 						x = 6;
 
@@ -634,7 +634,7 @@
 						Change <pf>x</pf> to <pf>16</pf> and rerun your code block.
 					</p>
 				</statement>
-				<solution>
+				<solution component="example-solution">
 					<p>Just change the value of <pf>x</pf> to <pf>16</pf> in the previous code block.</p>
 				</solution>
 			</task>
@@ -648,7 +648,7 @@
 						Rerun your code multiple times to see how the value of <pf>y</pf> changes based on the random value of <pf>x</pf>.
 					</p>
 				</statement>
-				<solution>
+				<solution component="example-solution">
 					<p>Just change the value of <pf>x</pf> to <pf>randi([-5, 15])</pf> in the previous code block.</p>
 				</solution>
 			</task>
@@ -663,7 +663,7 @@
 					</p>
 				</statement>
 
-				<solution>
+				<solution component="example-solution">
 					<program language="matlab">
 						x = randi([-5, 15]);
 
@@ -691,10 +691,10 @@
 					<input>
 						num = randi([0, 20]);
 						fprintf('Starting num = %d\n', num);
-						% ==== Type your code here ====
+						%─── TYPE YOUR CODE HERE ───%
 						
 
-						% =============================
+						%───────────────────────────%
 						fprintf('Updated num = %d\n', num);
 					</input>
 				</sage>
@@ -708,7 +708,7 @@
 					</p>
 				</statement>
 
-				<solution>
+				<solution component="example-solution">
 					<program language="matlab">
 						<code>
 							nnum = randi([0, 20]);
@@ -735,7 +735,7 @@
 					</p>
 				</statement>
 
-				<solution>
+				<solution component="example-solution">
 					<p>
 						If <pf>x = 0</pf>, the below script runs the commands <pf>x = x - 5</pf> and <pf>disp(x)</pf>, outputting <pf>-5</pf>. However, if <pf>x = 10</pf>, only the <pf>disp(x)</pf> command is run, producing an output of <pf>10</pf>.
 					</p>
@@ -770,7 +770,7 @@
 						<pf>label</pf> with the value <pf>'positive'</pf>, <pf>'negative'</pf>, or <pf>'zero'</pf>.
 					</p>
 				</statement>
-				 <solution>
+				 <solution component="example-solution">
 					<program language="matlab">
 						function label = sign_label(x)
 							if x &gt; 0
@@ -792,7 +792,7 @@
 						or <pf>0</pf> that match the sign.
 					</p>
 				</statement>
-				 <solution>
+				 <solution component="example-solution">
 					<program language="matlab">
 						function [label, code] = sign_label(x)
 							if x &gt; 0
@@ -829,7 +829,7 @@
 						If <pf>tempC</pf> is at or below <pf>tempWarn</pf>, return <pf>'Freeze warning'</pf>; otherwise return <pf>'No warning'</pf>.
 					</p>
 				</statement>
-				 <solution>
+				 <solution component="example-solution">
 					<program language="matlab">
 						function message = freeze_alert(tempC, tempWarn)
 							if tempC &lt;= tempWarn
@@ -849,7 +849,7 @@
 						along with the message.
 					</p>
 				</statement>
-				 <solution>
+				 <solution component="example-solution">
 					<program language="matlab">
 						function [message, isFreezing] = freeze_alert(tempC, tempWarn)
 							
@@ -885,7 +885,7 @@
 						Create a function named <pf>ticket_price</pf> that takes a scalar input <pf>age</pf> (a single person's age, in years) and returns
 						<pf>price</pf> using the rules below:
 					</p>
-					<ul>
+					<ul marker="square">
 						<li>Age less than 13: <pf>price = 6</pf></li>
 						<li>Age from 13 to 64: <pf>price = 12</pf></li>
 						<li>Age 65 or older: <pf>price = 8</pf></li>
@@ -1116,7 +1116,7 @@
 					<statement>
 						<p>
 							Use the coding area, below, to set <pf>w</pf> according to the following rules:
-							<ul>
+							<ul marker="square">
 								<li>if <pf>x</pf> is equal to 9, set <pf>w</pf> to 1</li>
 								<li>if <pf>x</pf> is between (but not equal to) -4 and 0, set <pf>w</pf> to 2</li>
 								<li>if <pf>x</pf> is not less than 3 or greater than 9, set <pf>w</pf> to 3</li>
@@ -1127,17 +1127,17 @@
 						<sage language="octave">
 							<input>
 								x = randi([-5, 15]);
-								% ==== Type your code here ====
+								%─── TYPE YOUR CODE HERE ───%
 								
 
-								% ============================
+								%───────────────────────────%
 								fprintf('for x = %d, we set w to %d\n', x, w);
 							</input>
 						</sage>
 
 					</statement>
 
-					<solution>
+					<solution component="example-solution">
 						
 						<program language="matlab">
 							x = randi([-5, 15]);

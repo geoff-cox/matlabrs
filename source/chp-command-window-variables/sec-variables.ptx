@@ -23,7 +23,7 @@
 
 		<p>
 			Key rules:
-			<ul>
+			<ul marker="square">
 				<li>The expression on the right-hand side is evaluated first; the result is stored under the name on the left-hand side.</li>
 				<li>Variable names must start with a letter, may contain letters, digits, and underscores, and cannot be a MATLAB keyword.</li>
 				<li>Names are case-sensitive: <pf>Area</pf> and <pf>area</pf> are different variables.</li>
@@ -54,7 +54,7 @@ b = 7.8;
 
 			<p>
 				After running these commands:
-				<ul>
+				<ul marker="square">
 					<li>Both <pf>a</pf> and <pf>b</pf> appear in the Workspace with their assigned values.</li>
 					<li>Only the value of <pf>a</pf> is printed in the Command Window because <pf>b</pf> ends with a semicolon.</li>
 				</ul>
@@ -71,11 +71,11 @@ b = 7.8;
 			</p>
 
 			<program language="matlab">
-<code>
-base	 = 4;
-height = 10;
-area	 = 0.5 * base * height
-</code>
+				<code>
+					base   = 4;
+					height = 10;
+					area   = 0.5 * base * height
+				</code>
 			</program>
 
 			<p>
@@ -96,11 +96,11 @@ area	 = 0.5 * base * height
 			</p>
 
 			<program language="matlab">
-<code>
-pricePerGallon = 3.11;
-tankCapacity	 = 15;
-fullTankCost	 = pricePerGallon * tankCapacity
-</code>
+				<code>
+					pricePerGallon = 3.11;
+					tankCapacity   = 15;
+					fullTankCost   = pricePerGallon * tankCapacity
+				</code>
 			</program>
 
 			<p>
@@ -112,7 +112,7 @@ fullTankCost	 = pricePerGallon * tankCapacity
 
 			<p>
 				The following names are <em>invalid</em> and cause an error:
-				<ul>
+				<ul marker="square">
 					<li><pf>3sides</pf> — starts with a digit.</li>
 					<li><pf>tank-capacity</pf> — contains a hyphen (interpreted as minus).</li>
 					<li><pf>end</pf> — is a reserved MATLAB keyword.</li>
@@ -120,27 +120,6 @@ fullTankCost	 = pricePerGallon * tankCapacity
 			</p>
 		</statement>
 	</example>
-
-	<exercise label="vars-examples-practice">
-		<statement>
-			<p>
-				A rectangle has a length of <pf>8</pf> and a width of <pf>3</pf>.
-				Write MATLAB commands that store each dimension in a descriptively named
-				variable, then compute and display the perimeter
-				(<m>P = 2(\ell + w)</m>).
-				Suppress the intermediate variables.
-			</p>
-		</statement>
-		<solution>
-			<program language="matlab">
-<code>
-rectLength = 8;
-rectWidth	= 3;
-perimeter	= 2 * (rectLength + rectWidth)
-</code>
-			</program>
-		</solution>
-	</exercise>
 
 	<!-- ============================================================ -->
 	<!--	3. Practice Activities										 -->
@@ -150,12 +129,11 @@ perimeter	= 2 * (rectLength + rectWidth)
 		<title>Working With Variables</title>
 		
 		<task label="vars-practice-1">
-			<title>Assigning and Displaying Variables</title>
 			<statement>
 				<p>
 					In the code cell below, create three variables:
-					<ul>
-						<li><pf>x</pf> with value <pf>5</pf></li>
+					<ul marker="square">
+						<li><pf>x</pf> with value <pf>5</pf> (suppressed)</li>
 						<li><pf>y</pf> with value <pf>-2.5</pf> (suppressed)</li>
 						<li><pf>z</pf> equal to <pf>x + y</pf> (displayed)</li>
 					</ul>
@@ -172,7 +150,7 @@ perimeter	= 2 * (rectLength + rectWidth)
 			<solution component="example-solution">
 				<program language="matlab">
 					<code>
-					x = 5
+					x = 5;
 					y = -2.5;
 					z = x + y
 					</code>
@@ -181,65 +159,24 @@ perimeter	= 2 * (rectLength + rectWidth)
 		</task>
 
 		<task label="vars-practice-2">
-			<title>Reassigning a Variable</title>
 			<statement>
 				<p>
-					Run the following sequence and predict each displayed value before checking:
-					<ol>
-						<li>Assign <pf>n = 10</pf> (display it).</li>
-						<li>Assign <pf>n = n + 5</pf> (display it).</li>
-						<li>Assign <pf>n = n * 2</pf> (display it).</li>
-					</ol>
+					Predict each displayed value from the commands below, then run the code to check your predictions.
 				</p>
 				<sage language="octave">
 					<input>
-						%─── TYPE YOUR CODE HERE ───%
-						
-						%───────────────────────────%
+						n = 10
+						n = n + 5
+						n = n * 2
 					</input>
 				</sage>
 			</statement>
 			<solution component="example-solution">
-				<program language="matlab">
-<code>
-n = 10
-n = n + 5
-n = n * 2
-</code>
-				</program>
 				<p>Expected output: <pf>10</pf>, then <pf>15</pf>, then <pf>30</pf>.</p>
 			</solution>
 		</task>
 
 		<task label="vars-practice-3">
-			<title>Descriptive Names and Workspace</title>
-			<statement>
-				<p>
-					A cylindrical water tank has a radius of <pf>1.2</pf> meters and a height of
-					<pf>3.5</pf> meters. Using descriptive variable names, compute its volume
-					<m>V = \pi r^2 h</m>. Use <pf>pi</pf> for <m>\pi</m>.
-				</p>
-				<sage language="octave">
-					<input>
-						%─── TYPE YOUR CODE HERE ───%
-						
-						%───────────────────────────%
-					</input>
-				</sage>
-			</statement>
-			<solution component="example-solution">
-				<program language="matlab">
-<code>
-radius = 1.2;
-height = 3.5;
-volume = pi * radius^2 * height
-</code>
-				</program>
-			</solution>
-		</task>
-
-		<task label="vars-practice-4">
-			<title>Swap Two Variables</title>
 			<statement>
 				<p>
 					Given <pf>a = 3</pf> and <pf>b = 7</pf>, write code that swaps their values
@@ -619,262 +556,212 @@ p = 2;
 	<!-- ============================================================ -->
 	<!--	5. Coding Exercises											-->
 	<!-- ============================================================ -->
-	<exercise xml:id="variables-coding-exercises">
-		<title>Coding Exercises</title>
+<exercise xml:id="variables-coding-exercises">
+	<title>Coding Exercises</title>
 
-		<task xml:id="vars-ex-1">
-			<title>Speed, Distance, and Time</title>
-			<statement>
-				<p>
-					Write a MATLAB script that stores a car's speed and travel time in variables,
-					then computes the distance traveled using <m>d = s \cdot t</m>.
-				</p>
+	<task xml:id="vars-ex-1">
+		<title>Speed, Distance, and Time</title>
+		<statement>
+			<p>
+				Use the MATLAB command window to assign values to variables for a car's speed and travel time, then compute the distance traveled using <m>d = s \cdot t</m>.
+			</p>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>speed</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>speed in miles per hour</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>time</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>travel time in hours</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>distance</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>distance traveled in miles</p></cell>
-					</row>
-				</tabular>
+			<p>
+				Use the variable names <pf>speed</pf>, <pf>time</pf>, and <pf>distance</pf>.
+			</p>
 
-				<p>
-					Test with <pf>speed = 60</pf> and <pf>time = 2.5</pf>; the result should be
-					<pf>distance = 150</pf>.
-				</p>
-			</statement>
-			<solution>
-				<program language="matlab">
-<code>
-speed	= 60;
-time	 = 2.5;
-distance = speed * time
-</code>
-				</program>
-			</solution>
-		</task>
+			<p>
+				Test your work with <pf>speed = 60</pf> and <pf>time = 2.5</pf>. Your result should be <pf>distance = 150</pf>.
+			</p>
+		</statement>
+		<solution component="example-solution">
+			<program language="matlab">
+				speed = 60;
+				time = 2.5;
+				distance = speed * time
+			</program>
+		</solution>
+	</task>
 
-		<task xml:id="vars-ex-2">
-			<title>Celsius to Fahrenheit</title>
-			<statement>
-				<p>
-					Convert a temperature from Celsius to Fahrenheit using the formula
-					<m>F = \tfrac{9}{5}C + 32</m>.
-				</p>
+	<task xml:id="vars-ex-2">
+		<title>Celsius to Fahrenheit</title>
+		<statement>
+			<p>
+				Use the MATLAB command window to assign a temperature in Celsius to a variable, then convert it to Fahrenheit using the formula <m>F = \frac{9}{5}C + 32</m>.
+			</p>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>tempC</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>temperature in degrees Celsius</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>tempF</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>temperature in degrees Fahrenheit</p></cell>
-					</row>
-				</tabular>
+			<p>
+				Use the variable names <pf>tempC</pf> and <pf>tempF</pf>.
+			</p>
 
-				<p>
-					Test with <pf>tempC = 100</pf>; the result should be <pf>tempF = 212</pf>.
-				</p>
-			</statement>
-			<solution>
-				<program language="matlab">
-<code>
-tempC = 100;
-tempF = (9/5) * tempC + 32
-</code>
-				</program>
-			</solution>
-		</task>
+			<p>
+				Test your work with <pf>tempC = 100</pf>. Your result should be <pf>tempF = 212</pf>.
+			</p>
+		</statement>
+		<solution component="example-solution">
+			<program language="matlab">
+				tempC = 100;
+				tempF = (9/5) * tempC + 32
+			</program>
+		</solution>
+	</task>
 
-		<task xml:id="vars-ex-3">
-			<title>Compound Interest — One Period</title>
-			<statement>
-				<p>
-					Compute the balance after one year of compound interest using
-					<m>A = P(1 + r)^n</m>, where <m>P</m> is the principal, <m>r</m> is the
-					annual interest rate, and <m>n</m> is the number of years.
-				</p>
+	<task xml:id="vars-ex-3">
+		<title>Compound Interest</title>
+		<statement>
+			<p>
+				Use the MATLAB command window to assign values for the principal, interest rate, and number of years, then compute the balance using <m>A = P(1 + r)^n</m>.
+			</p>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>principal</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>initial deposit in dollars</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>rate</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>annual interest rate (e.g., 0.05 for 5%)</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>years</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of years</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>balance</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>account balance after the given years</p></cell>
-					</row>
-				</tabular>
+			<p>
+				Use the variable names <pf>principal</pf>, <pf>rate</pf>, <pf>years</pf>, and <pf>balance</pf>.
+			</p>
 
-				<p>
-					Test with <pf>principal = 1000</pf>, <pf>rate = 0.05</pf>,
-					<pf>years = 3</pf>; the result should be approximately
-					<pf>balance = 1157.6</pf>.
-				</p>
-			</statement>
-			<solution>
-				<program language="matlab">
-<code>
-principal = 1000;
-rate		= 0.05;
-years	 = 3;
-balance	 = principal * (1 + rate)^years
-</code>
-				</program>
-			</solution>
-		</task>
+			<p>
+				Test your work with <pf>principal = 1000</pf>, <pf>rate = 0.05</pf>, and <pf>years = 3</pf>. Your result should be approximately <pf>balance = 1157.625</pf>.
+			</p>
+		</statement>
+		<solution component="example-solution">
+			<program language="matlab">
+				principal = 1000;
+				rate = 0.05;
+				years = 3;
+				balance = principal * (1 + rate)^years
+			</program>
+		</solution>
+	</task>
 
-		<task xml:id="vars-ex-4">
-			<title>Area and Perimeter of a Rectangle</title>
-			<statement>
-				<p>
-					Given the length and width of a rectangle, compute both its area and
-					perimeter using descriptively named variables.
-				</p>
+	<task xml:id="vars-ex-4">
+		<title>Area and Perimeter of a Rectangle</title>
+		<statement>
+			<p>
+				Use the MATLAB command window to assign values for the length and width of a rectangle, then compute both its area and perimeter.
+			</p>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>rectLen</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>length of the rectangle</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>rectWid</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>width of the rectangle</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>rectArea</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>area of the rectangle</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>rectPerim</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>perimeter of the rectangle</p></cell>
-					</row>
-				</tabular>
+			<sidebyside widths="65% 32%" valign="middle">
+				<stack>
+					<p>
+						Use descriptive variable names, like <pf>rectLen</pf>, <pf>rectWid</pf>, <pf>rectArea</pf>, and <pf>rectPerim</pf>.
+					</p>
+					<p>
+						Test your work with <m>\ell = 5</m> and <m>w = 3</m>.
+					</p>
+				</stack>
+				<image>
+					<latex-image>
+						\begin{tikzpicture}[scale=1.0]
+							% rectangle
+							\draw[thick] (0,0) rectangle (3,1);
 
-				<p>
-					Test with <pf>rectLen = 5</pf> and <pf>rectWid = 3</pf>; results should be
-					<pf>rectArea = 15</pf> and <pf>rectPerim = 16</pf>.
-				</p>
-			</statement>
-			<solution>
-				<program language="matlab">
-<code>
-rectLen	 = 5;
-rectWid	 = 3;
-rectArea	= rectLen * rectWid
-rectPerim = 2 * (rectLen + rectWid)
-</code>
-				</program>
-			</solution>
-		</task>
+							% length label \ell
+							%\draw[&lt;-&gt;] (0,-0.1) -- (3,-0.1);
+							\node at (1.5,-0.3) {$\ell$};
 
-		<task xml:id="vars-ex-5">
-			<title>Kinetic Energy</title>
-			<statement>
-				<p>
-					Compute the kinetic energy of a moving object using
-					<m>KE = \tfrac{1}{2}mv^2</m>.
-				</p>
+							% width label w
+							%\draw[&lt;-&gt;] (3.05,0) -- (3.05,1);
+							\node[right] at (3.05,0.5) {$w$};
+						\end{tikzpicture}
+					</latex-image>
+				</image>
+			</sidebyside>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>mass</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>mass of the object in kilograms</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>velocity</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>speed of the object in meters per second</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>kineticEnergy</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>kinetic energy in joules</p></cell>
-					</row>
-				</tabular>
+			<p>
+				Your results should be <pf>rectArea = 15</pf> and <pf>rectPerim = 16</pf>.
+			</p>
+		</statement>
+		<solution component="example-solution">
+			<program language="matlab">
+				rectLen = 5;
+				rectWid = 3;
+				rectArea = rectLen * rectWid
+				rectPerim = 2 * (rectLen + rectWid)
+			</program>
+		</solution>
+	</task>
 
-				<p>
-					Test with <pf>mass = 2</pf> and <pf>velocity = 3</pf>; the result should be
-					<pf>kineticEnergy = 9</pf>.
-				</p>
-			</statement>
-			<solution>
-				<program language="matlab">
-<code>
-mass			= 2;
-velocity		= 3;
-kineticEnergy = 0.5 * mass * velocity^2
-</code>
-				</program>
-			</solution>
-		</task>
+	<task label="vars-ex-5">
+		<title>Volume &amp; Surface Area of a Cylinder</title>
+		<statement>
+			<p>
+				Use the MATLAB command window to assign values for the radius and height of a cylinder, then compute its volume and surface area.
+			</p>
 
-	</exercise>
+			<sidebyside widths="82% 5% 13%" valign="middle">
+				<stack>
+					<p>
+						The volume and surface area of a cylinder is given by:
+						<me>V = \pi r^2 h, \qquad S = 2\pi r h + 2\pi r^2</me>
+						Use <pf>pi</pf> for <m>\pi</m> and
+						use descriptive variable names.
+					</p>
+					<p>
+						Test your work with <m>r = 1.2</m> and <m>h = 3.5</m>.
+					</p>
+				</stack>
+				<p/>
+				<image>
+					<latex-image>
+						\begin{tikzpicture}[scale=1.1]
+							\def\rad{0.6}
+							\def\height{1.3}
+							\def\ellh{0.28}
+
+							% cylinder
+							\draw[thick] (0,0) ellipse [x radius=\rad, y radius=\ellh];
+							\draw[thick] (-\rad,0) -- (-\rad,\height);
+							\draw[thick] (\rad,0) -- (\rad,\height);
+							\draw[thick] (0,\height) ellipse [x radius=\rad, y radius=\ellh];
+
+							% hidden back half of bottom ellipse
+							\draw[dashed] (-\rad,0) arc[start angle=180,end angle=360,x radius=\rad,y radius=\ellh];
+
+							% height marker
+							\draw[] (0,0) -- (0,\height);
+							\node[right, font=\small] at (-0.1,0.5*\height) {$h$};
+
+							% radius marker on top
+							\draw[] (0,\height) -- (\rad,\height);
+							\node[above] at (0.5*\rad,\height-0.1) {$r$};
+						\end{tikzpicture}
+					</latex-image>
+				</image>
+			</sidebyside>
+		</statement>
+		<solution component="example-solution">
+			<program language="matlab">
+				<code>
+					radius = 1.2;
+					height = 3.5;
+					volume = pi * radius^2 * height
+					surfaceArea = 2 * pi * radius * height + 2 * pi * radius^2
+				</code>
+			</program>
+		</solution>
+	</task>
+
+	<task xml:id="vars-ex-6">
+		<title>Kinetic Energy</title>
+		<statement>
+			<p>
+				Use the MATLAB command window to assign values for an object's mass and velocity, then compute its kinetic energy using <m>KE = \frac{1}{2}mv^2</m>.
+			</p>
+
+			<p>
+				Use the variable names <pf>mass</pf>, <pf>velocity</pf>, and <pf>kineticEnergy</pf>.
+			</p>
+
+			<p>
+				Test your work with <pf>mass = 2</pf> and <pf>velocity = 3</pf>. Your result should be <pf>kineticEnergy = 9</pf>.
+			</p>
+		</statement>
+		<solution component="example-solution">
+			<program language="matlab">
+				mass = 2;
+				velocity = 3;
+				kineticEnergy = 0.5 * mass * velocity^2
+			</program>
+		</solution>
+	</task>
+</exercise>
 
 </section>

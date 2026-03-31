@@ -34,9 +34,9 @@
 
 		<p>
 			Important notes:
-			<ul>
+			<ul marker="square">
 				<li>These commands only execute if MATLAB reaches the line where they appear.</li>
-				<li><pf>continue</pf> and <pf>break</pf> may only be used inside a <xref ref="sec-for-loops" text="custom"><pf>for</pf>-loop</xref> or <xref ref="sec-while-loops" text="custom"><pf>while</pf>-loop</xref>; using them elsewhere causes an error.</li>
+				<li><pf>continue</pf> and <pf>break</pf> may only be used inside a <xref ref="sec-4loops" text="custom"><pf>for</pf>-loop</xref> or <xref ref="sec-wloops" text="custom"><pf>while</pf>-loop</xref>; using them elsewhere causes an error.</li>
 				<li><pf>return</pf> can be used anywhere inside a script or function to exit early.</li>
 			</ul>
 		</p>
@@ -375,10 +375,10 @@
 						<input>
 							total = 0;
 							for k = 1:20
-								% ==== Add your if/continue check here ====
+								%─── TYPE YOUR CODE HERE ───%
 
 
-								% ==========================================
+								%───────────────────────────%=============
 								total = total + k;
 							end
 							fprintf('total = %i\n', total);
@@ -412,10 +412,10 @@
 							total = 0;
 							skipped = 0;
 							for k = 1:20
-								% ==== Add your if/continue check here ====
+								%─── TYPE YOUR CODE HERE ───%
 
 
-								% ==========================================
+								%───────────────────────────%=============
 								total = total + k;
 							end
 							fprintf('total = %i, skipped = %i\n', total, skipped);
@@ -454,10 +454,10 @@
 						<input>
 							rng(42); % Set seed for reproducibility
 							found = false;
-							% ==== Type your loop here ====
+							%─── TYPE YOUR CODE HERE ───%
 
 
-							% =============================
+							%───────────────────────────%
 							if found
 								fprintf('Found 7 on trial %i\n', trial);
 							else
@@ -496,10 +496,10 @@
 							rng(42); % Set seed for reproducibility
 							found = false;
 							trial = 0;
-							% ==== Type your while-loop here ====
+							%─── TYPE YOUR CODE HERE ───%
 
 
-							% =====================================
+							%───────────────────────────%========
 							if found
 								fprintf('Found 7 on trial %i\n', trial);
 							else
@@ -544,13 +544,13 @@
 					</p>
 					<sage language="octave">
 						<input>
-							% ==== Write your function here ====
+							%─── TYPE YOUR CODE HERE ───%
 							function result = firstMultipleOf(d, limit)
 								result = -1;
 								% your loop here
 
 							end
-							% ===================================
+							%───────────────────────────%======
 							fprintf('%i\n', firstMultipleOf(6, 20));   % expected: 6
 							fprintf('%i\n', firstMultipleOf(7, 5));    % expected: -1
 							fprintf('%i\n', firstMultipleOf(13, 100)); % expected: 13
@@ -583,10 +583,10 @@
 
 					<sage language="octave">
 						<input>
-							% ==== Write your function here ====
+							%─── TYPE YOUR CODE HERE ───%
 
 
-							% ===================================
+							%───────────────────────────%======
 							fprintf('%i\n', hasRepeatedDigit(1234));   % expected: 0
 							fprintf('%i\n', hasRepeatedDigit(1214));   % expected: 1
 							fprintf('%i\n', hasRepeatedDigit(11));     % expected: 1
@@ -930,7 +930,7 @@
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution>
+				<solution component="example-solution-dev">
 					<program language="matlab">
 						function total = sumNonDivisible(n, d)
 							total = 0;
@@ -991,7 +991,7 @@
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution>
+				<solution component="example-solution-dev">
 					<program language="matlab">
 						function k = firstAbove(threshold)
 							k = -1;
@@ -1060,7 +1060,7 @@
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution>
+				<solution component="example-solution-dev">
 					<program language="matlab">
 						function result = checkPrime(n)
 							if n &lt; 2
@@ -1135,7 +1135,7 @@
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution>
+				<solution component="example-solution-dev">
 					<program language="matlab">
 						function [validCount, validSum] = countValidRolls(n)
 							validCount = 0;

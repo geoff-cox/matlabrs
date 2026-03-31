@@ -1,0 +1,4025 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-wloops">
+	<title>The while Loop</title>
+
+	<introduction>
+		<p>
+			The <pf>while</pf>-loop is a fundamental programming structure that allows you to repeat a block of code as long as a specified condition remains true. It is particularly useful when the number of iterations is not known beforehand and depends on dynamic conditions during execution.
+		</p>
+	</introduction>
+
+	<subsection xml:id="wloop-description">
+		<title>🧱 Description &amp; Usage</title>
+
+		<introduction>
+			<p>
+				Sometimes you need to repeat code until a specific condition changes, but you do not know in advance how many iterations that will take. For example, suppose you want to double a number until it exceeds 1000:
+			</p>
+
+			<sidebyside widths="49% 49%">
+				<stack>
+					<title>Without Loops</title>
+					<program language="matlab">
+						num = 1;
+
+						num = num * 2;  % 2
+						num = num * 2;  % 4
+						num = num * 2;  % 8
+						num = num * 2;  % 16
+						num = num * 2;  % 32
+						num = num * 2;  % 64
+						num = num * 2;  % 128
+						num = num * 2;  % 256
+						num = num * 2;  % 512
+						num = num * 2;  % 1024
+
+						fprintf('Final value: %i\n', num)
+					</program>
+				</stack>
+				<stack>
+					<title>With a while-Loop</title>
+					<program language="matlab">
+						num = 1;
+
+						while num &lt;= 1000
+							num = num * 2;
+						end
+
+						fprintf('Final value: %i\n', num)
+					</program>
+				</stack>
+			</sidebyside>
+
+			<p>
+				The loop version automatically stops the moment <pf>num &lt;= 1000</pf> becomes false. In this sense, a <pf>while</pf>-loop is like an <xref ref="sec-if-statements" text="custom"><pf>if</pf>-statement</xref> that repeats: it checks the condition, runs the code if true, then checks again, and so on until the condition becomes false.
+			</p>
+
+			<sidebyside widths="43% 56%">
+				<stack>
+					<p>An if-statement ⤵︎</p>
+					<program language="matlab">
+						num = 5;
+
+						if num &lt;= 50
+							num = num * 2;  % run once
+						end
+					</program>
+					<p><pf>num = 5 → 10</pf>.</p>
+				</stack>
+				<stack>
+					<p>A while-Loop ⤵︎</p>
+					<program language="matlab">
+						num = 5;
+
+						while num &lt;= 50
+							num = num * 2;  % run until num &gt; 50
+						end
+					</program>
+					<p><pf>num: 5 → 10 → 20 → 40 → 80</pf>.</p>
+				</stack>
+			</sidebyside>
+		</introduction>
+
+		<subsubsection xml:id="wloop-structure">
+			<title><pf>while</pf>-Loop Structure</title>
+
+			<p>
+				The basic syntax is:
+			</p>
+
+			<program language="matlab">
+				while loop_condition
+					code_block
+				end
+			</program>
+
+			<p>
+				MATLAB repeatedly executes <pf>code_block</pf> as long as <pf>loop_condition</pf> evaluates to <pf>true</pf>. Think of it like an <pf>if</pf>-statement that jumps back to the top and checks the condition again.
+			</p>
+
+			<p>
+				Notes:
+				<ul marker="square">
+					<li>If condition is not initially true, the loop body never runs.</li>
+					<li>Something inside the loop body must eventually make the <pf>loop_condition</pf> false, otherwise you get an <term>infinite loop</term>.</li>
+					<li>If MATLAB becomes unresponsive due to an infinite loop, press <pf>Ctrl+C</pf> (Windows) or <pf>Command+C</pf> (Mac) to stop execution.</li>
+				</ul>
+			</p>
+
+			<exercise label="wloop-structure-reading-quiz">
+				<title>While-Loop Structure Quiz</title>
+
+				<task label="wloop-structure-reading-quiz-a">
+					<title>While-loop condition timing</title>
+					<statement>
+						<p>
+							When does MATLAB check the condition in a <pf>while</pf>-loop?
+						</p>
+					</statement>
+					<choices randomize="yes">
+						<choice correct="yes">
+							<statement>
+								<p>
+									Before each iteration, including the first one.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									MATLAB checks the condition before every iteration. If it's false initially, the loop body never runs.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									After each iteration completes.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									The condition is checked before executing the loop body, not after.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									Only once, at the start of the loop.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									The condition is checked repeatedly before each iteration until it becomes false.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									Only when the loop body updates a variable.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									The condition is checked before each iteration regardless of what happens in the loop body.
+								</p>
+							</feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task label="wloop-structure-reading-quiz-b">
+					<title>Avoiding infinite loops</title>
+					<statement correct="yes">
+						<p>
+							To avoid an infinite loop, something inside the <pf>while</pf>-loop body must eventually make the condition false.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							If the condition never becomes false, the loop continues forever. You must update variables inside the loop to eventually satisfy the exit condition.
+						</p>
+					</feedback>
+				</task>
+
+				<task label="wloop-structure-reading-quiz-c">
+					<title>While-loop as repeating if-statement</title>
+					<statement correct="yes">
+						<p>
+							A <pf>while</pf>-loop can be thought of as a repeating <pf>if</pf>-statement that checks the condition, runs code if true, then checks again.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							This mental model helps understand how <pf>while</pf>-loops work: they repeatedly check and execute, just like an <pf>if</pf>-statement that repeats.
+						</p>
+					</feedback>
+				</task>
+
+			</exercise>
+		</subsubsection>
+
+		<subsubsection xml:id="sec-for-vs-while">
+			<title>📌 For vs. While Loops</title>
+
+			<p>
+				Both <xref ref="sec-4loops" text="custom"><pf>for</pf>-loops</xref> and <xref ref="sec-wloops" text="custom"><pf>while</pf>-loops</xref> repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.
+			</p>
+
+			<tabular halign="center" valign="top" bottom="minor" left="minor" right="minor" top="minor">
+				<col width="15%"/>
+				<col width="35%"/>
+				<col width="50%"/>
+				<row header="yes">
+					<cell><p>Feature</p></cell>
+					<cell><p><pf>for</pf>-loops</p></cell>
+					<cell><p><pf>while</pf>-loops</p></cell>
+				</row>
+				<row>
+					<cell><p>Structure</p></cell>
+					<cell>
+						<p>
+						<program language="matlab">
+							for k = k_values
+								code_block
+							end
+						</program>
+						</p>
+					</cell>
+					<cell>
+						<p>
+						<program language="matlab">
+							while loop_condition
+								code_block
+							end
+						</program>
+						</p>
+					</cell>
+				</row>
+				<row>
+					<cell><p>Repeats</p></cell>
+					<cell><p>once for each <pf>k</pf></p></cell>
+					<cell><p>if <pf>loop_condition</pf> is true</p></cell>
+				</row>
+				<row>
+					<cell><p>Ends</p></cell>
+					<cell><p>after the last <pf>k</pf> is used</p></cell>
+					<cell><p>when <pf>loop_condition</pf> becomes false</p></cell>
+				</row>
+				<row>
+					<cell><p>Best when</p></cell>
+					<cell><p>you know exactly how many iterations you need</p></cell>
+					<cell><p>you do not know how many iterations you will need</p></cell>
+				</row>
+			</tabular>
+
+			<p>
+				Technically, <pf>for</pf> and <pf>while</pf>-loops are interchangable. However, using a loop that naturally fits the problem makes your code clearer.
+			</p>
+
+			<exercise label="for-vs-while-quiz">
+				<title>For vs. While Quiz</title>
+
+				<task label="for-vs-while-quiz-a">
+					<title>When to use a for-loop</title>
+					<statement>
+						<p>
+							When is it better to use a <pf>for</pf>-loop instead of a <pf>while</pf>-loop?
+						</p>
+					</statement>
+					<choices randomize="yes">
+						<choice correct="yes">
+							<statement>
+								<p>
+									When you know how many times to repeat code.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									A <pf>for</pf>-loop works with a fixed list of values, making it ideal when you know the number of iterations in advance.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									When you need to repeat until a condition becomes false.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									This describes a <pf>while</pf>-loop, not a <pf>for</pf>-loop.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									When you need to skip certain iterations.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									Both <pf>for</pf>-loops and <pf>while</pf>-loops can skip iterations using <pf>continue</pf>.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									When you don't know how many times to repeat code.
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									If the number of iterations is unknown, a <pf>while</pf>-loop is more appropriate.
+								</p>
+							</feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task label="for-vs-while-quiz-b">
+					<title>For-loop requires a list of values</title>
+					<statement correct="yes">
+						<p>
+							A <pf>for</pf>-loop requires a fixed list of values to iterate through.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Unlike <pf>while</pf>-loops which use a condition, <pf>for</pf>-loops need a list of values (like <pf>1:10</pf> or <pf>[2, 4, 6, 8]</pf>).
+						</p>
+					</feedback>
+				</task>
+
+				<task label="for-vs-while-quiz-c">
+					<title>Choosing the right loop type</title>
+					<statement>
+						<p>
+							Which loop should you use when you don't know in advance how many iterations are needed?
+						</p>
+					</statement>
+					<choices randomize="yes">
+						<choice>
+							<statement>
+								<p>
+									A <pf>for</pf>-loop
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									A <pf>for</pf>-loop requires knowing the number of iterations (or a list of values) in advance.
+								</p>
+							</feedback>
+						</choice>
+						<choice correct="yes">
+							<statement>
+								<p>
+									A <pf>while</pf>-loop
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									A <pf>while</pf>-loop is perfect when the number of iterations depends on a condition that changes during execution.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									Either one works equally well
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									While technically interchangeable, a <pf>while</pf>-loop is clearer and more natural when the iteration count is unknown.
+								</p>
+							</feedback>
+						</choice>
+						<choice>
+							<statement>
+								<p>
+									Neither, you need an <pf>if</pf>-statement
+								</p>
+							</statement>
+							<feedback>
+								<p>
+									An <pf>if</pf>-statement doesn't repeat code. You need a loop for repetition.
+								</p>
+							</feedback>
+						</choice>
+					</choices>
+				</task>
+
+				<task label="for-vs-while-quiz-d">
+					<title>Loops are interchangeable</title>
+					<statement correct="yes">
+						<p>
+							Technically, any <pf>for</pf>-loop can be rewritten as a <pf>while</pf>-loop and vice versa.
+						</p>
+					</statement>
+					<feedback>
+						<p>
+							Both loop types can accomplish the same tasks, but choosing the one that fits naturally makes your code easier to read and understand.
+						</p>
+					</feedback>
+				</task>
+
+			</exercise>
+
+		</subsubsection>
+
+		<subsubsection xml:id="subsec-wloop-examples">
+			<title>👀 Examples</title>
+
+			<example xml:id="wloop-example-expand-trace">
+				<title>Expand &amp; Trace the While Loop</title>
+
+				<statement>
+					<p>
+						Consider the while loop code below.
+					</p>
+
+					<p>
+						At each line where either the <pf>loop</pf> or <pf>x</pf> variable is updated, write the value of each variable and whether the loop condition is true or false at that line.
+					</p>
+				
+					<sidebyside width="45%" valign="middle">
+						<program language="matlab" line-numbers="yes">
+							loop = 0;
+							x = 10;
+
+							while loop &lt; 2
+								loop = loop + 1;
+								x = 2*(x + loop);
+							end
+
+							fprintf('x = %i\n', x)
+						</program>
+						<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+							<row header="yes">
+								<cell>current line</cell><cell><pf>loop</pf></cell><cell><pf>x</pf></cell><cell><pf>loop &lt; 2</pf></cell>
+							</row>
+							<row><cell>1</cell><cell/><cell/><cell/></row>
+							<row><cell>2</cell><cell/><cell/><cell/></row>
+							<row><cell>5</cell><cell/><cell/><cell/></row>
+							<row><cell>6</cell><cell/><cell/><cell/></row>
+							<row><cell>5</cell><cell/><cell/><cell/></row>
+							<row><cell>6</cell><cell/><cell/><cell/></row>
+							<row><cell>9</cell><cell/><cell/><cell/></row>
+						</tabular>
+					</sidebyside>
+				</statement>
+				<solution>
+					<p>
+						The loop runs twice. The first time, <pf>loop</pf> goes from 0 to 1 and <pf>x</pf> goes from 10 to 22. The second time, <pf>loop</pf> goes from 1 to 2 and <pf>x</pf> goes from 22 to 48. After the second iteration, the condition <pf>loop &lt; 2</pf> becomes false, so the loop exits with <pf>x = 48</pf>.
+					</p>
+					<sidebyside widths="44% 54%" valign="middle">
+						<program language="matlab" line-numbers="yes">
+							loop = 0;
+							x = 10;
+
+							while loop &lt; 2
+								loop = loop + 1;
+								x = 2*(x + loop);
+							end
+
+							fprintf('x = %i\n', x)
+						</program>
+						<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+							<row header="yes">
+								<cell>current line</cell><cell><pf>loop</pf></cell><cell><pf>x</pf></cell><cell><pf>loop &lt; 2</pf></cell>
+							</row>
+							<row>
+								<cell>1</cell><cell><pf>0</pf></cell><cell><pf>-</pf></cell><cell><pf>true</pf></cell>
+							</row>
+							<row>
+								<cell>2</cell><cell><pf>0</pf></cell><cell><pf>10</pf></cell><cell><pf>true</pf></cell>
+							</row>
+							<row>
+								<cell>5</cell><cell><pf>1</pf></cell><cell><pf>10</pf></cell><cell><pf>true</pf></cell>
+							</row>
+							<row>
+								<cell>6</cell><cell><pf>1</pf></cell><cell><pf>22</pf></cell><cell><pf>true</pf></cell>
+							</row>
+							<row>
+								<cell>5</cell><cell><pf>2</pf></cell><cell><pf>22</pf></cell><cell><pf>false</pf></cell>
+							</row>
+							<row>
+								<cell>6</cell><cell><pf>2</pf></cell><cell><pf>48</pf></cell><cell><pf>false</pf></cell>
+							</row>
+							<row>
+								<cell>9</cell><cell><pf>2</pf></cell><cell><pf>48</pf></cell><cell><pf>false</pf></cell>
+							</row>
+						</tabular>
+					</sidebyside>
+				</solution>
+
+			</example>
+
+			<example xml:id="ssub-while-harmonic-threshold">
+				<title>Summing Until a Threshold</title>
+				<statement>
+					<p>
+						Give the commands to find the first integer <m>N</m> such that 
+						<me>\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{N} \ge 2.5</me>.
+					</p>
+				</statement>
+				<solution>
+					<p>
+						Expanding this sum by hand, we see <m>S</m> increase as follows:
+						<me>
+							S = 
+							\underbracket{
+								\underbracket{
+									\underbracket{
+										\underbracket{
+											\underbracket{
+												\underbracket{
+													\frac11 
+													+ \frac12}_{1.5} 
+													+ \frac13}_{1.8333} 
+													+ \frac14}_{2.0833} 
+													+ \frac15}_{2.2833} 
+													+ \frac16}_{2.45} 
+													+ \frac17}_{2.5929} 
+													+ \cdots
+						</me>
+						So the smallest integer <m>N</m> that makes <m>S \ge 2.5</m> is <m>N=6</m>.
+					</p>
+
+					<p>
+						Here is one way to code this. Press <kbd>Evaluate</kbd> to see the output.
+					</p>
+
+					<sage language="octave">
+						<input>
+							S = 0; k = 0;
+
+							while S &lt; 2.5
+								k = k + 1;
+								fprintf('S = %g + 1/%i = ', S, k)
+								S = S + 1/k;
+								fprintf('%g\n', S)
+							end
+							N = k - 1;
+						</input>
+					</sage>
+				</solution>
+			</example>
+		</subsubsection>
+
+	</subsection>
+
+	<reading-questions xml:id="wloop-reading-questions">
+		<title>📖 Reading Questions</title>
+
+		<exercise label="wloop-reading-question-1">
+			<title>While Loop Concepts</title>
+
+			<task label="wloop-reading-question-1a">
+				<statement>
+					<p>
+						Which statement best describes when to use a <pf>while</pf>-loop instead of a <pf>for</pf>-loop?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>Use it when you do not know how many iterations are needed before the loop starts.</p></statement>
+						<feedback><p>A <pf>while</pf>-loop is ideal when the number of repetitions depends on a condition that changes during execution.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Use it when you want to loop over a known range of values like <pf>1:10</pf>.</p></statement>
+						<feedback><p>A known range is better suited for a <pf>for</pf>-loop, which handles the counting automatically.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Use it whenever you need a loop inside a function.</p></statement>
+						<feedback><p>Both <pf>for</pf>-loops and <pf>while</pf>-loops work inside functions. The choice depends on whether the iteration count is known ahead of time.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Use it only when performance matters more than readability.</p></statement>
+						<feedback><p>Performance is not the deciding factor. Choose <pf>while</pf> when the stopping point depends on a run-time condition.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1b">
+				<statement>
+					<p>
+						What is the value of <pf>x</pf> after this code runs?
+					</p>
+					<program language="matlab">
+						x = 1;
+						while x &lt; 20
+							x = x * 3;
+						end
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p><pf>27</pf></p></statement>
+						<feedback><p>The values are 1 → 3 → 9 → 27. When <pf>x = 27</pf>, the condition <pf>27 &lt; 20</pf> is false, so the loop exits with <pf>x = 27</pf>.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>9</pf></p></statement>
+						<feedback><p>After <pf>x = 9</pf>, the condition <pf>9 &lt; 20</pf> is still true, so the loop runs one more time.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>81</pf></p></statement>
+						<feedback><p>The loop exits as soon as <pf>x &gt;= 20</pf>. Since <pf>27 &gt;= 20</pf>, the loop does not continue to <pf>81</pf>.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>20</pf></p></statement>
+						<feedback><p>The loop does not stop at exactly 20. It exits when the condition <pf>x &lt; 20</pf> first becomes false, which occurs at <pf>x = 27</pf>.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1c">
+				<statement>
+					<p>
+						What happens when this code runs?
+					</p>
+					<program language="matlab">
+						x = 50;
+						while x &lt; 10
+							x = x + 1;
+						end
+						fprintf('x = %i\n', x)
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>It prints <pf>x = 50</pf> because the loop body never runs.</p></statement>
+						<feedback><p>The condition <pf>50 &lt; 10</pf> is false from the start, so MATLAB skips the loop body entirely and <pf>x</pf> remains 50.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It prints <pf>x = 10</pf>.</p></statement>
+						<feedback><p>The condition is checked before the first iteration. Since <pf>50 &lt; 10</pf> is already false, the body never runs.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It runs forever because <pf>x + 1</pf> moves away from the condition.</p></statement>
+						<feedback><p>The loop body never starts because the condition is false initially. There is no infinite loop.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>MATLAB produces an error.</p></statement>
+						<feedback><p>A false initial condition is valid MATLAB code. The loop simply executes zero iterations.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1d">
+				<statement>
+					<p>
+						Consider the following code. What does it print?
+					</p>
+					<program language="matlab">
+						count = 0;
+						n = 81;
+						while n &gt; 1
+							n = floor(n / 3);
+							count = count + 1;
+						end
+						fprintf('count = %i\n', count)
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p><pf>count = 4</pf></p></statement>
+						<feedback><p>The values of <pf>n</pf> are 81 → 27 → 9 → 3 → 1. Each division is one iteration, so <pf>count = 4</pf>. When <pf>n = 1</pf>, the condition <pf>1 &gt; 1</pf> is false and the loop exits.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>count = 3</pf></p></statement>
+						<feedback><p>Trace through carefully: <pf>n</pf> goes 81 → 27 → 9 → 3 → 1. That is four divisions, not three.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>count = 5</pf></p></statement>
+						<feedback><p>The loop exits when <pf>n = 1</pf> because <pf>1 &gt; 1</pf> is false. It does not run an extra time.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It runs forever because <pf>n</pf> never reaches exactly 0.</p></statement>
+						<feedback><p>The condition is <pf>n &gt; 1</pf>, not <pf>n &gt; 0</pf>. When <pf>n</pf> reaches 1, the loop stops.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1e">
+				<statement>
+					<p>
+						Which of the following is an infinite loop?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice>
+						<statement>
+							<program language="matlab">
+								x = 10;
+								while x &gt; 0
+									x = x - 2;
+								end
+							</program>
+						</statement>
+						<feedback><p>This loop terminates. The value of <pf>x</pf> decreases by 2 each iteration: 10, 8, 6, 4, 2, 0. When <pf>x = 0</pf>, the condition is false.</p></feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<program language="matlab">
+								x = 1;
+								while x &gt; 0
+									x = x + 1;
+								end
+							</program>
+						</statement>
+						<feedback><p>Since <pf>x</pf> starts positive and increases every iteration, the condition <pf>x &gt; 0</pf> is always true.</p></feedback>
+					</choice>
+					<choice>
+						<statement>
+							<program language="matlab">
+								x = 100;
+								while x &gt;= 1
+									x = floor(x / 2);
+								end
+							</program>
+						</statement>
+						<feedback><p>This loop terminates. Repeatedly halving and flooring: 100, 50, 25, 12, 6, 3, 1, 0. When <pf>x = 0</pf>, the condition is false.</p></feedback>
+					</choice>
+					<choice>
+						<statement>
+							<program language="matlab">
+								x = 5;
+								while x ~= 1
+									x = x - 1;
+								end
+							</program>
+						</statement>
+						<feedback><p>This loop terminates. The value of <pf>x</pf> decreases by 1 each iteration until it reaches 1.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1f">
+				<statement correct="no">
+					<p>
+						In a <pf>while</pf>-loop, MATLAB automatically updates a loop counter for you, just like in a <pf>for</pf>-loop.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Unlike a <pf>for</pf>-loop, a <pf>while</pf>-loop does not manage any counter automatically. If you need a counter, you must initialize it before the loop and update it yourself inside the loop body.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="wloop-reading-question-1g">
+				<statement>
+					<p>
+						What is printed by this code?
+					</p>
+					<program language="matlab">
+						k = 1;
+						total = 0;
+						while total &lt; 10
+							total = total + k;
+							k = k + 1;
+						end
+						fprintf('k = %i, total = %i\n', k, total)
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p><pf>k = 5, total = 10</pf></p></statement>
+						<feedback><p>Iteration 1: total = 1, k = 2. Iteration 2: total = 3, k = 3. Iteration 3: total = 6, k = 4. Iteration 4: total = 10, k = 5. Now <pf>total &lt; 10</pf> is false, so the loop exits with <pf>k = 5</pf> and <pf>total = 10</pf>.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>k = 4, total = 10</pf></p></statement>
+						<feedback><p>Remember that <pf>k</pf> is incremented inside the loop body after adding to the total. On the last iteration, <pf>k</pf> becomes 5 before the condition is checked again.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>k = 5, total = 15</pf></p></statement>
+						<feedback><p>When <pf>total = 10</pf>, the condition <pf>10 &lt; 10</pf> is false, so the loop does not run again.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>k = 4, total = 6</pf></p></statement>
+						<feedback><p>After <pf>total = 6</pf>, the condition <pf>6 &lt; 10</pf> is still true, so the loop runs at least one more time.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1h">
+				<statement correct="yes">
+					<p>
+						If you accidentally write a <pf>while</pf>-loop that never ends, you can press <pf>Ctrl+C</pf> (Windows) or <pf>Command+C</pf> (Mac) to stop execution.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						This keyboard shortcut interrupts MATLAB's execution. If you suspect an infinite loop, this is the way to regain control. Common causes of infinite loops include forgetting to update the variable in the condition.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="wloop-reading-question-1i">
+				<statement>
+					<p>
+						Consider the following code. How many times does the loop body execute?
+					</p>
+					<program language="matlab">
+						x = 7;
+						while x &gt; 10
+							x = x - 1;
+						end
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>0 times</p></statement>
+						<feedback><p>The condition <pf>7 &gt; 10</pf> is false from the start, so the loop body is skipped entirely.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>1 time</p></statement>
+						<feedback><p>MATLAB checks the condition before the first iteration. Since <pf>7 &gt; 10</pf> is false, the body never runs.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>7 times</p></statement>
+						<feedback><p>The condition is <pf>x &gt; 10</pf>, which is false when <pf>x = 7</pf>. The loop does not run at all.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It runs forever.</p></statement>
+						<feedback><p>The loop body never starts because the condition is initially false.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1j">
+				<statement>
+					<p>
+						Which of the following correctly converts this <pf>for</pf>-loop to a <pf>while</pf>-loop?
+					</p>
+					<program language="matlab">
+						total = 0;
+						for k = 1:5
+							total = total + k;
+						end
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice>
+						<statement>
+							<program language="matlab">
+								total = 0;
+								while k &lt;= 5
+									total = total + k;
+									k = k + 1;
+								end
+							</program>
+						</statement>
+						<feedback><p>This is missing the initialization <pf>k = 1</pf> before the loop. Without it, <pf>k</pf> is undefined.</p></feedback>
+					</choice>
+					<choice>
+						<statement>
+							<program language="matlab">
+								total = 0;
+								k = 1;
+								while k &lt;= 5
+									total = total + k;
+								end
+							</program>
+						</statement>
+						<feedback><p>This loop never updates <pf>k</pf>, so <pf>k</pf> stays at 1 forever. You must include <pf>k = k + 1</pf> inside the loop body.</p></feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<program language="matlab">
+								total = 0;
+								k = 1;
+								while k &lt;= 5
+									total = total + k;
+									k = k + 1;
+								end
+							</program>
+						</statement>
+						<feedback><p>This correctly initializes <pf>k</pf>, checks the condition, performs the work, and increments <pf>k</pf> each iteration.</p></feedback>
+					</choice>
+					<choice>
+						<statement>
+							<program language="matlab">
+								total = 0;
+								k = 0;
+								while k &lt;= 5
+									total = total + k;
+									k = k + 1;
+								end
+							</program>
+						</statement>
+						<feedback><p>This starts <pf>k</pf> at 0, so it adds 0 + 1 + 2 + 3 + 4 + 5 = 15 instead of 1 + 2 + 3 + 4 + 5 = 15. Wait — the totals match here, but <pf>k</pf> takes the value 0, which the original <pf>for</pf>-loop does not. This is not equivalent.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1k">
+				<statement>
+					<p>
+						Why does the following loop cause an error or unexpected behavior?
+					</p>
+					<program language="matlab">
+						total = 0;
+						k = 10;
+						while k &gt;= 1
+							total = total + k;
+						end
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>It runs forever because <pf>k</pf> is never updated inside the loop.</p></statement>
+						<feedback><p>Since <pf>k</pf> stays at 10, the condition <pf>10 &gt;= 1</pf> is always true. A line like <pf>k = k - 1</pf> is needed inside the loop body.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It runs 0 times because the condition is wrong.</p></statement>
+						<feedback><p>The condition <pf>10 &gt;= 1</pf> is true, so the loop body does run — it just never stops.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It produces an error because <pf>k</pf> should start at 1, not 10.</p></statement>
+						<feedback><p>Starting <pf>k</pf> at 10 is valid. The problem is that <pf>k</pf> never changes.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>It prints <pf>total = 55</pf> and exits normally.</p></statement>
+						<feedback><p>Without updating <pf>k</pf>, the loop keeps adding 10 to <pf>total</pf> indefinitely.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="wloop-reading-question-1l">
+				<statement>
+					<p>
+						Give the correct <pf>loop_condition</pf> that allows <pf>x</pf> to double until it exceeds 100:
+					</p>
+					<program language="matlab">
+						x = 3;
+						while loop_condition
+							x = x * 2;
+						end
+					</program>
+					<p>
+						where <pf>loop_condition</pf> is <fillin answer="x &lt;= 100" mode="string" width="12"/>.
+					</p>
+				</statement>
+				<evaluation>
+					<evaluate>
+						<test correct="yes">
+							<strcmp>x\s*&lt;=\s*100</strcmp>
+							<feedback><p>Correct. The loop continues while <pf>x</pf> is at most 100, so it exits once <pf>x</pf> exceeds 100.</p></feedback>
+						</test>
+						<test>
+							<strcmp>100\s*&gt;=\s*x</strcmp>
+							<feedback><p>This is technicallay correct, but reverse the inequality for clarity.</p></feedback>
+						</test>
+						<test>
+							<strcmp>x\s*&lt;\s*100</strcmp>
+							<feedback><p>Close! This would exit when <pf>x</pf> reaches exactly 100, not when it exceeds 100.</p></feedback>
+						</test>
+						<test>
+							<strcmp>100\s*&gt;\s*x</strcmp>
+							<feedback><p>Close! This would exit when <pf>x</pf> reaches exactly 100, not when it exceeds 100.</p></feedback>
+						</test>
+						<test>
+							<strcmp>.*</strcmp>
+							<feedback><p>The condition should keep the loop running while <pf>x</pf> has not yet exceeded 100.</p></feedback>
+						</test>
+					</evaluate>
+				</evaluation>
+			</task>
+
+			<task label="wloop-reading-question-1m">
+				<statement correct="yes">
+					<p>
+						A <pf>while</pf>-loop with a condition that is initially false will execute its body zero times.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						MATLAB checks the condition before the first iteration. If the condition is already false, the entire loop body is skipped and execution continues with the code after <pf>end</pf>.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="wloop-reading-question-1n">
+				<statement>
+					<p>
+						Which statement best describes when to use a <pf>for</pf>-loop in this chapter?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>Use it when you know the sequence of values or the number of repeats ahead of time.</p></statement>
+						<feedback><p>That is the main use case for <pf>for</pf>-loops in beginner MATLAB programming.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Use it only when you need nested loops.</p></statement>
+						<feedback><p>Nested loops are not required for ordinary repetition tasks.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Use it only when you need random numbers.</p></statement>
+						<feedback><p>Loops are useful for many repeated tasks, not just random-number tasks.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>Use it only inside functions, not scripts.</p></statement>
+						<feedback><p><pf>for</pf>-loops work in both scripts and functions.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+		</exercise>
+	</reading-questions>
+
+	<subsection xml:id="wloop-skill-building">
+		<title>🏗️ Skill Building</title>
+
+		<introduction>
+			<p>
+				These questions and activities help you practice the concepts covered in this section. Try to answer each question on your own before checking the provided solutions.
+			</p>
+		</introduction>
+
+		<subsubsection xml:id="wloop-drill-1">
+			<title>Drills</title>
+
+			<exercise label="wloop-activity-expand">
+				<title>Expand the while-loop</title>
+
+			<introduction>
+				<p>
+					Expand each <pf>while</pf>-loop into equivalent repeated code. Write out each iteration as if there were no loop at all, including the condition check at each step.
+				</p>
+			</introduction>
+
+				<task label="wloop-activity-expand-1">
+					<statement>
+						<program language="matlab">
+							x = 1;
+							while x &lt; 10
+								x = x * 2;
+							end
+							fprintf('x = %d\n', x)
+						</program>
+						<sage language="octave">
+							<input>
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
+								fprintf('x = %d\n', x);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>x = 16</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							x = 1;
+							% (is x &lt; 10? 1 &lt; 10, Yes)
+							x = x * 2;    % x = 2
+							% (is x &lt; 10? 2 &lt; 10, Yes)
+							x = x * 2;    % x = 4
+							% (is x &lt; 10? 4 &lt; 10, Yes)
+							x = x * 2;    % x = 8
+							% (is x &lt; 10? 8 &lt; 10, Yes)
+							x = x * 2;    % x = 16
+							% (is x &lt; 10? 16 &lt; 10, No → exit)
+							fprintf('x = %d\n', x)
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-expand-2">
+					<statement>
+						<program language="matlab">
+							n = 100;
+							count = 0;
+							while n &gt;= 10
+								n = floor(n / 10);
+								count = count + 1;
+							end
+							fprintf('count = %d\n', count)
+						</program>
+						<sage language="octave">
+							<input>
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
+								fprintf('count = %d\n', count);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>count = 2</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							n = 100;
+							count = 0;
+							% (is n &gt;= 10? 100 &gt;= 10, Yes)
+							n = floor(100 / 10);       % n = 10
+							count = count + 1;         % count = 1
+							% (is n &gt;= 10? 10 &gt;= 10, Yes)
+							n = floor(10 / 10);        % n = 1
+							count = count + 1;         % count = 2
+							% (is n &gt;= 10? 1 &gt;= 10, No → exit)
+							fprintf('count = %d\n', count)
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-expand-3">
+					<statement>
+						<program language="matlab">
+							total = 0;
+							k = 5;
+							while k &gt;= 1
+								total = total + k;
+								k = k - 2;
+							end
+							fprintf('total = %d\n', total)
+						</program>
+						<sage language="octave">
+							<input>
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
+								fprintf('total = %d\n', total);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>total = 9</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							total = 0;
+							k = 5;
+							% (is k &gt;= 1? 5 &gt;= 1, Yes)
+							total = 0 + 5;     % total = 5
+							k = 5 - 2;         % k = 3
+							% (is k &gt;= 1? 3 &gt;= 1, Yes)
+							total = 5 + 3;     % total = 8
+							k = 3 - 2;         % k = 1
+							% (is k &gt;= 1? 1 &gt;= 1, Yes)
+							total = 8 + 1;     % total = 9
+							k = 1 - 2;         % k = -1
+							% (is k &gt;= 1? -1 &gt;= 1, No → exit)
+							fprintf('total = %d\n', total)
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-expand-4">
+					<statement>
+						<program language="matlab">
+							a = 30;
+							b = 12;
+							while b ~= 0
+								r = mod(a, b);
+								a = b;
+								b = r;
+							end
+							fprintf('a = %d\n', a)
+						</program>
+						<sage language="octave">
+							<input>
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
+								fprintf('a = %d\n', a);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>a = 6</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							a = 30;
+							b = 12;
+							% (is b ~= 0? 12 ~= 0, Yes)
+							r = mod(30, 12);   % r = 6
+							a = 12;
+							b = 6;
+							% (is b ~= 0? 6 ~= 0, Yes)
+							r = mod(12, 6);    % r = 0
+							a = 6;
+							b = 0;
+							% (is b ~= 0? 0 ~= 0, No → exit)
+							fprintf('a = %d\n', a)
+						</program>
+					</solution>
+				</task>
+
+			</exercise>
+
+			<exercise label="wloop-activity-convert">
+				<title>Rewrite the for-loop as a while-loop</title>
+
+				<introduction>
+					<p>
+						Every <pf>for</pf>-loop can be rewritten as a <pf>while</pf>-loop. The pattern is:
+					</p>
+
+					<p><m/></p>
+
+					<sidebyside widths="48% 48%">
+						<stack>
+							<p>for-loop ⤵︎</p>
+							<program language="matlab">
+								for k = start:step:stop
+									body
+								end
+							</program>
+						</stack>
+						<stack>
+							<p>Equivalent while-loop ⤵︎</p>
+							<program language="matlab">
+								k = start;
+								while k &lt;= stop
+									body
+									k = k + step;
+								end
+							</program>
+						</stack>
+					</sidebyside>
+
+					<p>
+						For each <pf>for</pf>-loop below, rewrite it as an equivalent <pf>while</pf>-loop. Replace each <pf>?</pf> with the appropriate code.
+					</p>
+				</introduction>
+
+				<task label="wloop-activity-convert-a">
+					<statement>
+						<program language="matlab">
+							total = 0;
+							for k = 1:5
+								total = total + k;
+							end
+							fprintf('total = %i\n', total)
+						</program>
+						<sage language="octave">
+							<input>
+								% Replace each "?" with the appropriate code
+								total = 0;
+								k = ?;
+								while ?
+									total = total + k;
+									?;
+								end
+								fprintf('total = %i\n', total);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>total = 15</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							total = 0;
+							k = 1;
+							while k &lt;= 5
+								total = total + k;
+								k = k + 1;
+							end
+							fprintf('total = %i\n', total);
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-convert-b">
+					<statement>
+						<program language="matlab">
+							product = 1;
+							for k = 2:2:10
+								product = product * k;
+							end
+							fprintf('product = %i\n', product)
+						</program>
+						<sage language="octave">
+							<input>
+								% Replace each "?" with the appropriate code
+								product = 1;
+								k = ?;
+								while ?
+									product = product * k;
+									?;
+								end
+								fprintf('product = %i\n', product);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>product = 3840</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							product = 1;
+							k = 2;
+							while k &lt;= 10
+								product = product * k;
+								k = k + 2;
+							end
+							fprintf('product = %i\n', product);
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-convert-c">
+					<statement>
+						<program language="matlab">
+							for n = 10:-3:1
+								fprintf('%d, ', n)
+							end
+							fprintf('\n')
+						</program>
+						<sage language="octave">
+							<input>
+								% Replace each "?" with the appropriate code
+								n = ?;
+								while ?
+									fprintf('%d, ', n);
+									?;
+								end
+								fprintf('\n');
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>10, 7, 4, 1,</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							n = 10;
+							while n &gt;= 1
+								fprintf('%d, ', n);
+								n = n - 3;
+							end
+							fprintf('\n');
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-convert-d">
+					<statement>
+						<program language="matlab">
+							count = 0;
+							n = 20;
+							for k = 1:n
+								if mod(k, 4) == 0
+									count = count + 1;
+								end
+							end
+							fprintf('count = %i\n', count)
+						</program>
+						<sage language="octave">
+							<input>
+								% Replace each "?" with the appropriate code
+								count = 0;
+								n = 20;
+								k = ?;
+								while ?
+									if mod(k, 4) == 0
+										count = count + 1;
+									end
+									?;
+								end
+								fprintf('count = %i\n', count);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>count = 5</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							count = 0;
+							n = 20;
+							k = 1;
+							while k &lt;= n
+								if mod(k, 4) == 0
+									count = count + 1;
+								end
+								k = k + 1;
+							end
+							fprintf('count = %i\n', count);
+						</program>
+					</solution>
+				</task>
+
+			</exercise>
+
+			<exercise label="wloop-activity-write">
+				<title>Write the while-loop</title>
+
+				<introduction>
+					<p>
+						For each task, write a <pf>while</pf>-loop that produces the requested result.
+					</p>
+				</introduction>
+
+				<task label="wloop-activity-write-c">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that prints the following countdown and message. Use a variable <pf>n</pf> that starts at <pf>5</pf> and decreases by 1 each iteration.
+						</p>
+						<pre>
+							5
+							4
+							3
+							2
+							1
+							Liftoff!
+						</pre>
+						<sage language="octave">
+							<input>
+								n = 5;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								fprintf('Liftoff!\n');
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							n = 5;
+							while n &gt;= 1
+								fprintf('%i\n', n);
+								n = n - 1;
+							end
+							fprintf('Liftoff!\n');
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-write-b">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that starts with <pf>x = 1000</pf> and repeatedly divides <pf>x</pf> by 3 (using <pf>floor</pf>) until <pf>x</pf> reaches 0. Count how many divisions are needed and store the count in <pf>steps</pf>.
+						</p>
+						<sage language="octave">
+							<input>
+								x = 1000;
+								steps = 0;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								fprintf('steps = %i\n', steps);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>steps = 7</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							x = 1000;
+							steps = 0;
+							while x &gt; 0
+								x = floor(x / 3);
+								steps = steps + 1;
+							end
+							fprintf('steps = %i\n', steps);
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-write-d">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that finds the smallest power of 2 that is greater than a given number <pf>N</pf>. Store the power in <pf>result</pf>.
+						</p>
+						<sage language="octave">
+							<input>
+								N = 1000;
+								result = 1;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								fprintf('result = %i\n', result);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>result = 1024</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							N = 1000;
+							result = 1;
+							while result &lt;= N
+								result = result * 2;
+							end
+							fprintf('result = %i\n', result);
+						</program>
+					</solution>
+				</task>
+				
+				<task label="activity-whileloops-drill-b">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that finds the smallest value of <m>N</m> needed so that
+							<me>\sum_{k=1}^N k = 1 + 2 + 3 + \cdots + N \ge 123456</me>.
+						</p>
+						<sage language="octave">
+							<input>
+								total = 0;
+								%─── TYPE YOUR CODE HERE ───%
+								
+
+								%───────────────────────────%
+								fprintf('smallest N = %i, total = %i\n', N, total);
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution-dev">
+						<p>
+							Here is one possible solution:
+						</p>
+						<program language="matlab">
+							total = 0;
+							%─── TYPE YOUR CODE HERE ───%
+							N = 0;
+							while total &lt; 123456
+								N = N + 1;
+								total = total + N;
+							end
+							%───────────────────────────%
+							fprintf('smallest N = %i, total = %i\n', N, total);
+						</program>
+					</solution>
+				</task>
+
+				<task label="activity-whileloops-drill-d">
+					<statement>
+						<p>
+							In <xref ref="sec-4loops" text="custom">the previous section</xref>, you approximated <m>\pi</m> using the formula
+							<me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
+							and the following MATLAB code:
+						</p>
+
+						<program language="matlab">
+							N = 10;
+							total = 0;
+							for k = 1:N
+								total = total + (-1)^(k+1) * 1/(2*k - 1);
+							end
+							approx = total * 4;
+							fprintf('Approximation of pi: %g\n', approx);
+						</program>
+
+						<p>
+							Rewrite this code using a <pf>while</pf>-loop instead of a <pf>for</pf>-loop.
+						</p>
+
+						<sage language="octave">
+							<input>
+								N = 10;
+								total = 0;
+								%─── TYPE YOUR CODE HERE ───%
+								
+
+								%───────────────────────────%
+								approx = total * 4;
+								fprintf('Approximation of pi: %g\n', approx);
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution-dev">
+						<p>
+							Here is one possible solution:
+						</p>
+						<program language="matlab">
+							N = 10;
+							total = 0;
+							%─── TYPE YOUR CODE HERE ───%
+							k = 1;
+							while k &lt;= N
+								total = total + (-1)^(k+1) * 1/(2*k - 1);
+								k = k + 1;
+							end
+							%───────────────────────────%
+							approx = total * 4;
+							fprintf('Approximation of pi: %g\n', approx);
+						</program>
+					</solution>
+				</task>
+
+				<task label="activity-whileloops-drill-e">
+					<statement>
+						<p>
+							The previous series is known to converge slowly to <m>\frac{\pi}{4}</m>. This means that to get close to <m>\frac{\pi}{4}</m>, many terms (i.e., <m>N</m>) must be used.
+						</p>
+
+						<p>
+							In this exercise, update your code so that it determines how many terms are needed for this approximation to be within 0.001 of <pf>pi</pf>.
+						</p>
+
+						<sage language="octave">
+							<input>
+								N = 0; total = 0;
+								%─── TYPE YOUR CODE HERE ───%
+								
+
+								%───────────────────────────%
+								approx = total * 4;
+								fprintf('          pi ≈ %10.8g\n', pi);
+								fprintf('approx of pi ≈ %10.8g\n', approx);
+								fprintf('terms needed = %i\n', N);
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution-dev">
+						<p>
+							Here is one possible solution:
+						</p>
+						<program language="matlab">
+							N = 0; total = 0;
+							%─── TYPE YOUR CODE HERE ───%
+							distFromPi = Inf;
+							while distFromPi &gt; 0.001
+								N = N + 1;
+								total = total + (-1)^(N+1) * 1/(2*N - 1);
+								distFromPi = abs(4 * total - pi);
+							end
+							%───────────────────────────%
+							approx = total * 4;
+							fprintf('          pi ≈ %10.8g\n', pi);
+							fprintf('approx of pi ≈ %10.8g\n', approx);
+							fprintf('terms needed = %i\n', N);
+						</program>
+					</solution>
+				</task>
+			</exercise>
+		</subsubsection>
+
+		<subsubsection xml:id="wloop-drill-2">
+			<title>Construct the Code Blocks</title>
+
+			<exercise label="wloop-activity-code-build-a" language="octave" adaptive="yes" indentation="hide">
+				<title>Halving until below 1</title>
+
+				<statement>
+					<p>
+						Put the blocks in order to create a script that starts with <pf>x = 100</pf> and repeatedly halves it until <pf>x</pf> drops below 1. Count and print the number of halvings.
+					</p>
+					<p>
+						<em>Use correct indentation to show which lines are inside the loop.</em>
+					</p>
+				</statement>
+
+				<blocks>
+					<block>	<cline>x = 100;											</cline>
+									<cline>count = 0;										</cline></block>
+					<block>	<cline>while x &gt;= 1							</cline></block>
+					<block>	<cline>	x = x / 2;									</cline>
+									<cline>	count = count + 1;					</cline></block>
+					<block>	<cline>end													</cline></block>
+					<block>	<cline>fprintf('count=%i\n',count)	</cline></block>
+				</blocks>
+			</exercise>
+
+			<exercise label="wloop-activity-code-build-b" language="octave" adaptive="yes" indentation="hide">
+				<title>Sum until threshold</title>
+
+				<statement>
+					<p>
+						Put the blocks in order to create a script that adds <m>1 + 2 + 3 + \cdots</m> until the total first reaches or exceeds 50 and print the last integer added.
+					</p>
+					<p>
+						<em>Use correct indentation to show which lines are inside the loop.</em>
+					</p>
+				</statement>
+
+				<blocks>
+					<block>	<cline>total = 0;						</cline>
+									<cline>k = 0;								</cline></block>
+					<block>	<cline>while total &lt; 50	</cline></block>
+					<block>	<cline>	k = k + 1;					</cline>
+									<cline>	total = total + k;	</cline></block>
+					<block>	<cline>end									</cline></block>
+					<block>	<cline>fprintf('k=%i\n',k)	</cline></block>
+				</blocks>
+			</exercise>
+
+			<exercise label="wloop-activity-code-build-c" language="octave" adaptive="yes" indentation="hide">
+				<title>Doubling past a target</title>
+
+				<statement>
+					<p>
+						Put the blocks in order to create a script that repeatedly doubles <pf>x</pf> until it exceeds <pf>N</pf>. Count how many doublings were performed.
+					</p>
+					<p>
+						<em>Use correct indentation to show which lines are inside the loop.</em>
+					</p>
+				</statement>
+
+				<blocks>
+					<block>	<cline>x = 3;							</cline>
+								<cline>N = 200;						</cline>
+									<cline>ct = 0;					</cline></block>
+					<block>	<cline>while x &lt;= N				</cline></block>
+					<block>	<cline>	x = x * 2;				</cline>
+									<cline>	ct = ct + 1;	</cline></block>
+					<block>	<cline>end									</cline></block>
+					<block>	
+						<cline>fprintf('steps=%i\n',ct)</cline>
+						<cline>fprintf('⇒ x=%i\n',x)</cline>
+					</block>
+				</blocks>
+			</exercise>
+
+			<exercise label="wloop-activity-code-build-d" language="octave" adaptive="yes" indentation="hide">
+				<title>Interest until doubled</title>
+
+				<statement>
+					<p>
+						Place the blocks to construct a function called <pf>double</pf> that returns how many years it takes for a balance to double given an annual interest rate.
+					</p>
+					<p>
+						<line>Inputs: <pf>r</pf> = the interest rate (e.g. 0.05 for 5%), <pf>bal</pf> = balance.</line>
+						<line>Output: <pf>yrs</pf> = the number of years to double.</line>
+					</p>
+					<p>
+						<em>Use correct indentation to show which lines are inside the loop.</em>
+					</p>
+				</statement>
+
+				<blocks>
+					<block>	<cline>function yrs=double(bal,r)	</cline></block>
+					<block>	<cline>	goal = 2 * bal;										</cline>
+									<cline>	yrs = 0;													</cline></block>
+					<block>	<cline>	while bal &lt; goal								</cline></block>
+					<block>	<cline>		bal = bal + bal * r;						</cline>
+									<cline>		yrs = yrs + 1;									</cline></block>
+					<block>	<cline>	end																</cline>
+									<cline>end																</cline></block>
+				</blocks>
+			</exercise>
+
+		</subsubsection>
+
+	</subsection>
+
+	<subsection xml:id="subsec-wloop-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
+
+		<subsubsection xml:id="wloop-activities-scaffolded">
+			<title>Scaffolded Activities</title>
+
+			<exercise label="wloop-activity-approximating-pi">
+				<title>Approximating Pi with Leibniz's Formula</title>
+
+				<introduction>
+					<p>
+						In <xref ref="sec-4loops" text="custom">the previous section</xref>, you approximated <m>\pi</m> using the Leibniz formula:
+						<me>\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots</me>
+						with a <pf>for</pf>-loop:
+					</p>
+
+					<program language="matlab">
+						N = 10;
+						total = 0;
+						for k = 1:N
+							total = total + (-1)^(k+1) * 1/(2*k - 1);
+						end
+						approx = total * 4;
+					</program>
+
+					<p>
+						Work through the tasks below to convert this to a <pf>while</pf>-loop.
+					</p>
+				</introduction>
+
+				<task label="wloop-activity-pi-a">
+					<statement>
+						<p>
+							Rewrite the <pf>for</pf>-loop above as a <pf>while</pf>-loop that computes the first 10 terms of the Leibniz series. Verify that both versions give the same result.
+						</p>
+						<sage language="octave">
+							<input>
+								N = 10;
+								total = 0;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								approx = total * 4;
+								fprintf('Approximation of pi: %g\n', approx);
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							N = 10;
+							total = 0;
+							k = 1;
+							while k &lt;= N
+								total = total + (-1)^(k+1) * 1/(2*k - 1);
+								k = k + 1;
+							end
+							approx = total * 4;
+							fprintf('Approximation of pi: %g\n', approx);
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-pi-b">
+					<statement>
+						<p>
+							Now update your <pf>while</pf>-loop so that instead of stopping after a 
+							fixed number of terms, it keeps adding terms until the approximation 
+							is within <pf>0.001</pf> of <pf>pi</pf>. Track the number of terms needed 
+							in <pf>N</pf>.
+						</p>
+
+						<sage language="octave">
+							<input>
+								N = 0; total = 0;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								approx = total * 4;
+								fprintf('          pi ≈ %10.8g\n', pi);
+								fprintf('approx of pi ≈ %10.8g\n', approx);
+								fprintf('terms needed = %i\n', N);
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							N = 0; total = 0;
+							distFromPi = Inf;
+							while distFromPi &gt; 0.001
+								N = N + 1;
+								total = total + (-1)^(N+1) * 1/(2*N - 1);
+								distFromPi = abs(4 * total - pi);
+							end
+							approx = total * 4;
+							fprintf('          pi ≈ %10.8g\n', pi);
+							fprintf('approx of pi ≈ %10.8g\n', approx);
+							fprintf('terms needed = %i\n', N);
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-pi-c">
+					<statement>
+						<p>
+							Experiment with different tolerances. Replace <pf>0.001</pf> with <pf>0.0001</pf> and then <pf>0.00001</pf>. How does the number of terms change?
+						</p>
+						<sage language="octave">
+							<input>
+								% Copy your code from the previous task and try different tolerances
+
+
+
+							</input>
+						</sage>
+						<p>
+							Notice that each extra digit of accuracy requires roughly 10 times as many terms. This series converges very slowly.
+						</p>
+					</statement>
+				</task>
+
+			</exercise>
+
+		</subsubsection>
+
+		<subsubsection xml:id="wloop-activities-functions">
+			<title>While-Loop Functions</title>
+
+			<exercise label="wloop-activity-functions">
+				<title>While-Loop Functions</title>
+
+				<introduction>
+					<p>
+						The following problems use <pf>while</pf>-loops inside functions. These are problems where the number of iterations depends on the input and cannot be known ahead of time.
+					</p>
+				</introduction>
+
+				<task label="wloop-activity-doubling">
+					<statement>
+						<p>
+							Write a function <pf>doubleUntil(x, N)</pf> that uses a <pf>while</pf>-loop to determine how many times <pf>x</pf> must be doubled before it exceeds <pf>N</pf>. Return the number of doublings and the final value.
+						</p>
+
+						<p>
+							For example, if <m>x = 3</m> and <m>N = 20</m>, then repeatedly doubling <m>3</m> gives: 
+							<me>
+								3 \overset{1}{\to} 6 \overset{2}{\to} 12 \overset{3}{\to} 24
+							</me>.
+							So, <m>3</m> was doubled <m>3</m> times and the final value was <m>24</m>.
+						</p>
+
+						<tabular valign="top" top="minor">
+							<col width="11%" halign="right" />
+							<col width="15%" halign="left" />
+							<col width="28%" halign="center" />
+							<col width="46%" halign="left" />
+							<row>
+								<cell>Inputs:</cell>
+								<cell><p><pf>x</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>positive starting value</p></cell>
+							</row>
+							<row>
+								<cell></cell>
+								<cell><p><pf>N</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>threshold to exceed</p></cell>
+							</row>
+							<row>
+								<cell>Outputs:</cell>
+								<cell><p><pf>count</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of doublings performed</p></cell>
+							</row>
+							<row bottom="minor">
+								<cell></cell>
+								<cell><p><pf>final</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>final value after the last doubling</p></cell>
+							</row>
+						</tabular>
+
+						<sidebyside widths="58% 40%">
+							<stack>
+								<p>Test Cases ⤵︎</p>
+								<program language="matlab">
+									[c, v] = doubleUntil(5, 76)
+									[c, v] = doubleUntil(13.2, 52.7)
+									[c, v] = doubleUntil(3, 2)
+								</program>
+							</stack>
+							<stack>
+								<p>Expected ⤵︎</p>
+								<program language="matlab">
+									c = 4   v = 80
+									c = 2   v = 52.8
+									c = 0   v = 3
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							function [count, final] = doubleUntil(x, N)
+								count = 0;
+								final = x;
+
+								while final &lt;= N
+									final = 2 * final;
+									count = count + 1;
+								end
+							end
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-digit-count">
+					<statement>
+						<p>
+							Write a function <pf>numDigits(n)</pf> that takes a positive integer <pf>n</pf> and returns the number of digits in <pf>n</pf>.
+						</p>
+
+						<p>
+							Use a <pf>while</pf>-loop that repeatedly divides the number by 10 (moving the decimal point one place left) and counts how many times this can be done before the number becomes less than 1.
+						</p>
+
+						<tabular valign="top" top="minor">
+							<col width="11%" halign="right" />
+							<col width="15%" halign="left" />
+							<col width="28%" halign="center" />
+							<col width="46%" halign="left" />
+							<row>
+								<cell>Inputs:</cell>
+								<cell><p><pf>n</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>positive integer</p></cell>
+							</row>
+							<row bottom="minor">
+								<cell>Outputs:</cell>
+								<cell><p><pf>count</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of digits in <pf>n</pf></p></cell>
+							</row>
+						</tabular>
+
+						<sidebyside widths="48% 50%">
+							<stack>
+								<p>Test Cases ⤵︎</p>
+								<program language="matlab">
+									count = numDigits(7)
+									count = numDigits(42)
+									count = numDigits(10000)
+									count = numDigits(938271)
+								</program>
+							</stack>
+							<stack>
+								<p>Expected ⤵︎</p>
+								<program language="matlab">
+									count = 1
+									count = 2
+									count = 5
+									count = 6
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							function count = numDigits(n)
+								count = 0;
+
+								while n &gt;= 1
+									n = n / 10;
+									count = count + 1;
+								end
+							end
+						</program>
+					</solution>
+				</task>
+
+				<task label="wloop-activity-interest">
+					<statement>
+						<p>
+							Write a function <pf>yearsToDouble(rate)</pf> that determines how many years it takes for an investment to double at a given annual interest rate. Each year, the balance grows by <pf>balance = balance * (1 + rate)</pf>. Assume an initial balance of $1.
+						</p>
+
+						<tabular valign="top" top="minor">
+							<col width="11%" halign="right" />
+							<col width="15%" halign="left" />
+							<col width="28%" halign="center" />
+							<col width="46%" halign="left" />
+							<row>
+								<cell>Inputs:</cell>
+								<cell><p><pf>rate</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>annual interest rate as a decimal (e.g., 0.05 for 5%)</p></cell>
+							</row>
+							<row bottom="minor">
+								<cell>Outputs:</cell>
+								<cell><p><pf>years</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of years to at least double the investment</p></cell>
+							</row>
+						</tabular>
+
+						<sidebyside widths="55% 43%">
+							<stack>
+								<p>Test Cases ⤵︎</p>
+								<program language="matlab">
+									years = yearsToDouble(0.05)
+									years = yearsToDouble(0.10)
+									years = yearsToDouble(0.01)
+								</program>
+							</stack>
+							<stack>
+								<p>Expected ⤵︎</p>
+								<program language="matlab">
+									years = 15
+									years = 8
+									years = 70
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							function years = yearsToDouble(rate)
+								balance = 1;
+								goal = 2;
+								years = 0;
+
+								while balance &lt; goal
+									balance = balance * (1 + rate);
+									years = years + 1;
+								end
+							end
+						</program>
+					</solution>
+				</task>
+
+				<task label="activity-euclidean-a">
+					<statement>
+
+						<p>
+							The greatest common divisor, <m>\gcd</m>, of two positive integers is the largest integer that divides both numbers. For example, 
+							<me>
+								\gcd(20, 12) = 4
+							</me>
+							since <m>4</m> is the largest integer that divides both <m>20</m> and <m>12</m> evenly.
+						</p>
+
+						<p>
+							One way to compute the <m>\gcd</m> is with the <term>Euclidean algorithm</term>. This algorithm repeatedly uses the identity
+							<me>
+								\gcd(a,b) = \gcd(b, \operatorname{mod}(a,b))
+							</me>
+							until the remainder is 0. For example,
+							<md>
+								<mrow>
+									\gcd(20,12) \amp\to \gcd(12,\textcolor{red}{8}) \to \gcd(8,\textcolor{red}{4}) \to \gcd(4,\textcolor{red}{0}) = 4
+								</mrow>
+							</md>.
+						</p>
+
+						<p>
+							Write a function called <pf>euclideanGCD</pf> that returns the <m>\gcd</m> of two positive integers and the steps needed to compute it.
+						</p>
+
+						<tabular valign="top" top="minor">
+							<col width="11%" halign="right" />
+							<col width="15%" halign="right" />
+							<col width="28%" halign="center" />
+							<col width="46%" halign="left"/>
+							<row>
+								<cell>Inputs:</cell>
+								<cell><p><pf>a</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>positive integer</p></cell>
+							</row>
+							<row>
+								<cell></cell>
+								<cell><p><pf>b</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>positive integer</p></cell>
+							</row>
+							<row>
+								<cell>Outputs:</cell>
+								<cell><p><pf>gcd</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p><m>\gcd</m> of <pf>a</pf> and <pf>b</pf></p></cell>
+							</row>
+							<row bottom="minor">
+								<cell></cell>
+								<cell><p><pf>steps</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of steps needed</p></cell>
+							</row>
+						</tabular>
+
+						<sidebyside widths="58% 40%">
+							<stack>
+								<p>Test Cases ⤵︎</p>
+								<program language="matlab">
+									[g, n] = euclideanGCD(100, 36)
+									[g, n] = euclideanGCD(1000000, 3)
+									[g, n] = euclideanGCD(999, 369)
+									[g, n] = euclideanGCD(2244, 144)
+								</program>
+							</stack>
+							<stack>
+								<p>Expected ⤵︎</p>
+								<program language="matlab">
+									g = 4		n = 4
+									g = 1		n = 19
+									g = 3		n = 3
+									g = 12		n = 5
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							function [gcd_value, steps] = euclideanGCD(a, b)
+								steps = 0;
+
+								while b ~= 0
+									r = mod(a, b);
+									a = b;
+									b = r;
+									steps = steps + 1;
+								end
+
+								gcd_value = a;
+							end
+						</program>
+					</solution>
+				</task>
+
+				<task label="activity-change-machine-b">
+					<statement>
+						<p>
+							Write a function called <pf>makeChange</pf> that breaks a number of cents into quarters, dimes, nickels, and pennies using the greedy algorithm.
+						</p>
+
+						<p>
+							Use a separate <pf>while</pf>-loop for each coin type. Start with quarters, then dimes, then nickels, and finally pennies. Return the number of each coin used and <pf>totalCoins</pf>, the total number of coins in the final breakdown.
+						</p>
+
+						<p>
+							For U.S. coins, this greedy process gives the fewest coins possible.
+						</p>
+
+						<tabular valign="top" top="minor">
+							<col width="11%" halign="right" />
+							<col width="15%" halign="left" />
+							<col width="28%" halign="center" />
+							<col width="46%" halign="left"/>
+							<row>
+								<cell>Inputs:</cell>
+								<cell><p><pf>amount</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>nonnegative integer</p></cell>
+							</row>
+							<row>
+								<cell>Outputs:</cell>
+								<cell><p><pf>q</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of quarters used</p></cell>
+							</row>
+							<row>
+								<cell></cell>
+								<cell><p><pf>d</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of dimes used</p></cell>
+							</row>
+							<row>
+								<cell></cell>
+								<cell><p><pf>n</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of nickels used</p></cell>
+							</row>
+							<row>
+								<cell></cell>
+								<cell><p><pf>p</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of pennies used</p></cell>
+							</row>
+							<row bottom="minor">
+								<cell></cell>
+								<cell><p><pf>change</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>total number of coins used</p></cell>
+							</row>
+						</tabular>
+
+						<sidebyside widths="54% 44%">
+							<stack>
+								<p>Test Cases ⤵︎</p>
+								<program language="matlab">
+									[q, d, n, p, tot] = makeChange(99)
+									[q, d, n, p, tot] = makeChange(41)
+									[q, d, n, p, tot] = makeChange(30)
+								</program>
+							</stack>
+							<stack>
+								<p>Expected ⤵︎</p>
+								<program language="matlab">
+									q=3, d=2, n=0, p=4, tot=9
+									q=1, d=1, n=1, p=1, tot=4
+									q=1, d=0, n=1, p=0, tot=2
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							function [quarters, dimes, nickels, pennies, totalCoins] = makeChange(amount)
+								quarters = 0;
+								dimes = 0;
+								nickels = 0;
+								pennies = 0;
+								remainder = amount;
+
+								while remainder &gt;= 25
+									remainder = remainder - 25;
+									quarters = quarters + 1;
+								end
+
+								while remainder &gt;= 10
+									remainder = remainder - 10;
+									dimes = dimes + 1;
+								end
+
+								while remainder &gt;= 5
+									remainder = remainder - 5;
+									nickels = nickels + 1;
+								end
+
+								while remainder &gt;= 1
+									remainder = remainder - 1;
+									pennies = pennies + 1;
+								end
+
+								totalCoins = quarters + dimes + nickels + pennies;
+							end
+						</program>
+					</solution>
+				</task>
+			</exercise>
+		</subsubsection>
+	</subsection>
+
+	<exercises xml:id="wloop-coding-exercises">
+		<title>💻 Coding Exercises</title>
+
+		<exercise label="coding-exercises-whileloops">
+			<title>While-Loop Exercises</title>
+
+			<task label="hw-while-int-sqrt">
+				<title>Integer Square Root</title>
+				<statement>
+					<p>
+						Write a function <pf>intSqrt(n)</pf> that returns the largest integer whose square is less than or equal to <pf>n</pf>. This value is called the <term>integer square root</term> of <pf>n</pf>.
+					</p>
+
+					<p>
+						In other words, your function should return
+						<me>
+							\lfloor \sqrt{n} \rfloor.
+						</me>
+						Do not use <pf>sqrt</pf>, <pf>^</pf>, or any other built-in power or root function.
+					</p>
+
+					<p>
+						Use a <pf>while</pf>-loop that starts with <pf>k = 0</pf> and increases <pf>k</pf> while <pf>(k + 1) * (k + 1) &lt;= n</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>nonnegative integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>k</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>largest integer with <m>k^2 &lt;= n</m></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								k = intSqrt(25)
+								k = intSqrt(26)
+								k = intSqrt(99)
+								k = intSqrt(100)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								k = 5
+								k = 5
+								k = 9
+								k = 10
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function k = intSqrt(n)
+							k = 0;
+
+							while (k + 1) * (k + 1) &lt;= n
+								k = k + 1;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-while-collatz">
+				<title>Collatz Steps</title>
+				<statement>
+					<p>
+						The <term>Collatz sequence</term> starts with a positive integer <pf>x</pf> and repeatedly applies the following rules:
+					</p>
+
+					<ul marker="square">
+						<li>If the current value is even, divide it by 2.</li>
+						<li>If the current value is odd, multiply it by 3 and add 1.</li>
+					</ul>
+
+					<p>
+						For example, starting with <m>6</m> gives
+						<me>
+							6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1.
+						</me>
+					</p>
+
+					<p>
+						Write a function <pf>collatzSteps(x)</pf> that uses a <pf>while</pf>-loop to return the number of steps required for the sequence to reach <m>1</m>. If <pf>x = 1</pf>, the function should return <pf>0</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>x</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer starting value</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>steps</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of Collatz steps needed to reach <m>1</m></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								steps = collatzSteps(6)
+								steps = collatzSteps(10)
+								steps = collatzSteps(1)
+								steps = collatzSteps(27)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								steps = 8
+								steps = 6
+								steps = 0
+								steps = 111
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function steps = collatzSteps(x)
+							steps = 0;
+
+							while x ~= 1
+								if mod(x, 2) == 0
+									x = x / 2;
+								else
+									x = 3 * x + 1;
+								end
+								steps = steps + 1;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-while-digit-sum">
+				<title>Digit Sum</title>
+				<statement>
+					<p>
+						Write a function called <pf>digitSum</pf> that returns the sum of the digits of a positive integer <pf>n</pf>.
+					</p>
+
+					<p>
+						Use a <pf>while</pf>-loop with two operations per iteration: extract the rightmost digit with <pf>mod(n, 10)</pf> and remove it with <pf>floor(n / 10)</pf>. Continue while <pf>n &gt; 0</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>s</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>sum of the digits of <pf>n</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								s = digitSum(123)
+								s = digitSum(9999)
+								s = digitSum(7)
+								s = digitSum(10001)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								s = 6
+								s = 36
+								s = 7
+								s = 2
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function s = digitSum(n)
+							s = 0;
+
+							while n &gt; 0
+								s = s + mod(n, 10);
+								n = floor(n / 10);
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-while-print-digits">
+			<title>Print Digits from Right to Left</title>
+			<statement>
+				<p>
+					Write a function called <pf>printDigits</pf> that prints the digits of a positive integer one at a time, starting with the ones digit and moving left.
+				</p>
+
+				<p>
+					Use the following two-step process inside a <pf>while</pf>-loop:
+					<ul marker="square">
+						<li>Extract the rightmost digit with <pf>mod(n,10)</pf>.</li>
+						<li>Remove that digit with <pf>floor(n/10)</pf>.</li>
+					</ul>
+				</p>
+
+				<p>
+					For example, <pf>printDigits(1234)</pf> should print <pf>4321</pf>. The function does not return a value; it prints directly to the Command Window.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p>none</p></cell>
+						<cell><p>—</p></cell>
+						<cell><p>prints the digits of <pf>n</pf> from right to left</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							printDigits(1234)
+							printDigits(50374254)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							4321
+							45247305
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function printDigits(n)
+						while n &gt; 0
+							digit = mod(n, 10);
+							fprintf('%i', digit);
+							n = floor(n / 10);
+						end
+						fprintf('\n');
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-fibonacci">
+			<title>Fibonacci Threshold</title>
+			
+			<statement>
+				<p>
+					Write a function <pf>fibonacciThreshold()</pf> that uses a <pf>while</pf>-loop to generate Fibonacci numbers, starting with <m>0</m> and <m>1</m>, until the first Fibonacci number exceeds <m>10000</m>.
+				</p>
+
+				<p>
+					Return that first value in the variable <pf>fib_result</pf>. You will need to keep track of the two previous Fibonacci numbers.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p>none</p></cell>
+						<cell><p>—</p></cell>
+						<cell><p>start the sequence with <m>0</m> and <m>1</m></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>result</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>first Fibonacci number greater than <m>10000</m></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="56% 44%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							result = fibonacciThreshold()
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							result = 10946
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function result = fibonacciThreshold()
+						prev2 = 0;
+						prev1 = 1;
+
+						while prev1 &lt;= 10000
+							current = prev1 + prev2;
+							prev2 = prev1;
+							prev1 = current;
+						end
+
+						result = prev1;
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-golden-ratio">
+			<statement>
+				<p>
+					The golden ratio <m>\varphi = \frac{1+\sqrt{5}}{2} \approx 1.6180339887\ldots</m> has the remarkable continued fraction representation
+					<me>
+						\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}
+					</me>.
+				</p>
+
+				<p>
+					This can be computed, starting with <m>\varphi_1 = 1</m> and repeatedly applying
+					<me>
+						\varphi_2 = 1 + \frac{1}{\varphi_1},\quad
+						\varphi_3 = 1 + \frac{1}{\varphi_2},\quad
+						\varphi_4 = 1 + \frac{1}{\varphi_3},\ \ldots\quad
+					</me>.
+				</p>
+
+				<p>
+					Write a function called <pf>goldenRatio</pf> that uses a <pf>while</pf>-loop to return the approximation of the golden ratio and the number of steps needed for the approximation to be within a given tolerance.
+				</p>
+
+				<p>
+					We say that <m>\varphi_n</m> is within <m>\epsilon</m> of <m>\varphi</m> if the distance between them is less than <m>\epsilon</m>: 
+					<me>|\varphi_n - \varphi| &lt; \epsilon</me>. 
+					Use this as your looping condition. Use <m>\varphi = \frac{1+\sqrt{5}}{2}</m> in your function.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>tol</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>tolerance for approximation</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>phi_n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>approximation of the golden ratio, <m>\varphi</m></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>steps</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of steps needed for <pf>phi_n</pf> to be within <pf>tol</pf> of <m>\varphi</m></p></cell>
+					</row>
+				</tabular>
+				
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							[val, n] = goldenRatio(0.5)
+							[val, n] = goldenRatio(1e-3)
+							[val, n] = goldenRatio(1e-8)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							val = 2.000000000000000   n = 1
+							val = 1.617647058823529   n = 8
+							val = 1.618033998521804   n = 19
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function [phi_n, steps] = goldenRatio(tol)
+						phi = (1 + sqrt(5)) / 2;
+						phi_n = 1;
+						steps = 0;
+
+						while abs(phi_n - phi) &gt; tol
+							phi_n = 1 + 1 / phi_n;
+							steps = steps + 1;
+						end
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-base-digits-to-number">
+				<title>Build a Number from Random Digits</title>
+				<statement>
+					<p>
+						Write a function called <pf>buildRandomNumber</pf> that constructs a number from <pf>n</pf> randomly generated digits. Use a <pf>while</pf>-loop and generate each digit with <pf>randi([0,9])</pf>.
+					</p>
+
+					<p>
+						Treat the first generated digit as the ones digit, the second as the tens digit, the third as the hundreds digit, and so on. For example, if <pf>n = 4</pf> and the generated digits are <m>7</m>, <m>3</m>, <m>0</m>, and <m>5</m>, then the final number is
+						<me>x = 7\cdot 10^0 + 3\cdot 10^1 + 0\cdot 10^2 + 5\cdot 10^3 = 5037.</me>
+					</p>
+
+					<p>
+						Print each step as the number is built. Use <pf>x</pf> for the current value, <pf>x0</pf> for the previous value, <pf>k</pf> for the place value index, and <pf>digit</pf> for the random digit generated at each step.
+					</p>
+
+					<p>
+						Because the digits are random, your exact result will vary from one run to the next. Also note that if the last digit generated is 0, the returned number may display with fewer than <pf>n</pf> digits.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of random digits to generate</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>x</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>constructed number</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="46% 52%">
+						<stack>
+							<p>Example Calls ⤵︎</p>
+							<program language="matlab">
+								x1 = buildRandomNumber(1)
+
+
+								x2 = buildRandomNumber(4)
+							</program>
+						</stack>
+						<stack>
+							<p>What to Expect ⤵︎</p>
+							<program language="matlab">
+								% x1 is an integer from 0-9.
+								% One line of output is printed.
+								
+								% x2 is an integer from 0-9999.
+								% Four lines of intermediate output are printed,
+								% followed by the final number.
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function x = buildRandomNumber(n)
+							x = 0;
+							x0 = 0;
+							k = 0;
+
+							while k &lt; n
+								digit = randi([0, 9]);
+								fprintf('k = %i, digit = %i: ', k, digit);
+								x = x + digit * 10^k;
+								fprintf('x = %i + %i*10^%i = %i\n', x0, digit, k, x);
+								x0 = x;
+								k = k + 1;
+							end
+
+							fprintf('Final number: %i\n', x)
+						end
+					</program>
+				</solution>
+			</task>
+	
+			<task label="hw-while-digital-root">
+			<title>Digital Root</title>
+			<statement>
+				<p>
+					The <term>digital root</term> of a positive integer is found by repeatedly summing its digits until only one digit remains. For example, the digital root of <m>38</m> is <m>2</m> because <m>3+8=11</m> and <m>1+1=2</m>.
+				</p>
+
+				<p>
+					Write a function called <pf>digitalRoot</pf> that computes the digital root of a positive integer <pf>n</pf> using <pf>while</pf>-loops.
+				</p>
+
+				<p>
+					Use an outer loop that repeats while <pf>n &gt;= 10</pf>. Inside that loop, copy <pf>n</pf> to a temporary variable and use an inner loop to add its digits one at a time with <pf>mod(temp,10)</pf> and <pf>floor(temp/10)</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>d_root</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>single digit from 0 to 9</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							digitalRoot(38)
+							digitalRoot(987)
+							digitalRoot(7)
+							digitalRoot(12345)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							ans = 2
+							ans = 6
+							ans = 7
+							ans = 6
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function d_root = digitalRoot(n)
+						while n &gt;= 10
+							sum_digits = 0;
+							temp = n;
+
+							while temp &gt; 0
+								sum_digits = sum_digits + mod(temp, 10);
+								temp = floor(temp / 10);
+							end
+
+							n = sum_digits;
+						end
+
+						d_root = n;
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-to-binary">
+			<title>Putting It Together: Decimal to Binary</title>
+			<statement>
+				<p>
+					Write a function called <pf>toBinary</pf> that takes a positive integer <pf>n</pf> and returns its binary representation as an ordinary base-10 integer whose digits are the binary digits. For example, <pf>toBinary(13)</pf> should return <pf>1101</pf>.
+				</p>
+
+				<p>
+					This combines the two earlier ideas: repeatedly extract remainders with division by 2, and build the output one digit at a time using a <pf>place</pf> variable that is multiplied by 10 each iteration.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer to convert</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>result</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>base-10 integer whose digits are the binary digits of <pf>n</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							toBinary(1)
+							toBinary(10)
+							toBinary(255)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							ans = 1
+							ans = 1010
+							ans = 11111111
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function result = toBinary(n)
+						result = 0;
+						place = 1;
+
+						while n &gt; 0
+							remainder = mod(n, 2);
+							result = result + remainder * place;
+							n = floor(n / 2);
+							place = place * 10;
+						end
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-gcd">
+			<title>Greatest Common Divisor Function</title>
+			<statement>
+				<p>
+					Write a function called <pf>myGCD</pf> that takes two positive integers <pf>a</pf> and <pf>b</pf> and returns their greatest common divisor.
+				</p>
+
+				<p>
+					Use the Euclidean algorithm: while <pf>b ~= 0</pf>, replace <pf>(a,b)</pf> with <pf>(b, mod(a,b))</pf>. When the loop ends, <pf>a</pf> is the greatest common divisor.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>a</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>b</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>result</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>greatest common divisor of <pf>a</pf> and <pf>b</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							myGCD(270, 192)
+							myGCD(17, 13)
+							myGCD(84, 30)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							ans = 6
+							ans = 1
+							ans = 6
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function result = myGCD(a, b)
+						while b ~= 0
+							r = mod(a, b);
+							a = b;
+							b = r;
+						end
+
+						result = a;
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-is-prime">
+				<title>Primality Test</title>
+				<statement>
+					<p>
+						A positive integer <m>n &gt; 1</m> is <term>prime</term> if its only positive divisors are 1 and itself.
+					</p>
+
+					<p>
+						Write a function called <pf>isPrime</pf> that returns <pf>1</pf> if <pf>n</pf> is prime and <pf>0</pf> otherwise. Use a <pf>while</pf>-loop that tests potential divisors <pf>d</pf> starting at 2. If any <pf>d</pf> divides <pf>n</pf> evenly, then <pf>n</pf> is not prime. You only need to test divisors while <pf>d * d &lt;= n</pf>.
+					</p>
+
+					<p>
+						If the loop ends without finding a divisor, <pf>n</pf> is prime. As a special case, <pf>n = 1</pf> is not considered prime.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>result</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if <pf>n</pf> is prime, <pf>0</pf> otherwise</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								isPrime(2)
+								isPrime(7)
+								isPrime(15)
+								isPrime(97)
+								isPrime(1)
+								isPrime(49)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 1
+								ans = 1
+								ans = 0
+								ans = 1
+								ans = 0
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function result = isPrime(n)
+							if n &lt; 2
+								result = 0;
+								return
+							end
+
+							d = 2;
+							result = 1;
+
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									result = 0;
+									return
+								end
+								d = d + 1;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-while-factorization">
+				<title>Integer Factorization by Trial Division</title>
+				<statement>
+					<p>
+						Every integer greater than 1 can be written as a product of prime factors. For example,
+						<me>
+							360 = 2^3 \cdot 3^2 \cdot 5.
+						</me>
+						A simple way to find these factors is <term>trial division</term>: test divisors starting at 2, divide them out when they work, and move on when they do not.
+					</p>
+
+					<p>
+						As a warm-up, first write a <pf>while</pf>-loop that divides out all copies of 2 from a number <pf>n</pf>. For example, starting with <pf>n = 360</pf>, the values should change as follows:
+						<me>
+							360 \to 180 \to 90 \to 45.
+						</me>
+					</p>
+
+					<p>
+						Then write a function <pf>primeFactors(n)</pf> that returns all prime factors of <pf>n</pf> as a row vector in nondecreasing order. Use a divisor <pf>d</pf> that starts at 2. While <pf>d * d &lt;= n</pf>, test whether <pf>d</pf> divides <pf>n</pf>. If it does, record the factor and divide it out. If it does not, increase <pf>d</pf> by 1. After the loop, if <pf>n &gt; 1</pf>, then the remaining value of <pf>n</pf> is the last prime factor.
+					</p>
+
+					<p>
+						Finally, write a function <pf>smallestFactor(n)</pf> that returns the smallest prime factor of <pf>n</pf>. If <pf>n</pf> is prime, the function should return <pf>n</pf> itself.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>integer greater than 1</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>factors</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>row vector of prime factors returned by <pf>primeFactors</pf></p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>p</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>smallest prime factor returned by <pf>smallestFactor</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								primeFactors(360)
+								primeFactors(97)
+								smallestFactor(91)
+								smallestFactor(9973)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = [2 2 2 3 3 5]
+								ans = [97]
+								ans = 7
+								ans = 9973
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						n = 360;
+						fprintf('Starting with n = %i\n', n)
+						while mod(n, 2) == 0
+							n = n / 2;
+							fprintf('  /2 -> %i\n', n)
+						end
+						fprintf('Remaining: n = %i\n', n)
+					</program>
+					<program language="matlab">
+						function factors = primeFactors(n)
+							factors = [];
+							d = 2;
+
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									factors(end + 1) = d; %#ok&lt;AGROW&gt;
+									n = n / d;
+								else
+									d = d + 1;
+								end
+							end
+
+							if n &gt; 1
+								factors(end + 1) = n;
+							end
+						end
+					</program>
+					<program language="matlab">
+						function p = smallestFactor(n)
+							d = 2;
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									p = d;
+									return
+								end
+								d = d + 1;
+							end
+							p = n;
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-collatz-conjecture-c">
+				<title>Collatz Siblings</title>
+				<statement>
+					<p>
+						Write a function <pf>collatzSiblings(x, a, b)</pf> that uses <pf>collatzSteps</pf> to count how many <em>other</em> integers in the interval from <pf>a</pf> through <pf>b</pf>, inclusive, have the same Collatz step count as <pf>x</pf>.
+					</p>
+
+					<p>
+						For example, <pf>collatzSteps(6) = 8</pf>, but no other integer from 1 through 10 takes 8 steps, so <pf>collatzSiblings(6, 1, 10)</pf> should return <pf>0</pf>.
+					</p>
+
+					<p>
+						Assume <pf>x</pf>, <pf>a</pf>, and <pf>b</pf> are positive integers with <pf>a &lt;= x &lt;= b</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>x</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>reference integer whose Collatz steps are being matched</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>a</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>starting integer in the interval</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>b</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>ending integer in the interval</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>count</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of integers in <m>[a,b]</m>, excluding <pf>x</pf>, with the same Collatz step count as <pf>x</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="56% 42%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								collatzSiblings(6, 1, 10)
+								collatzSiblings(10, 1, 100)
+								collatzSiblings(27, 1, 1000)
+								collatzSiblings(6171, 1, 10000)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 0
+								ans = 1
+								ans = 5
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function count = collatzSiblings(x, a, b)
+							targetSteps = collatzSteps(x);
+							count = 0;
+
+							for n = a:b
+								if n ~= x &amp;&amp; collatzSteps(n) == targetSteps
+									count = count + 1;
+								end
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+		<exercise label="coding-exercises-while-extended">
+			<title>Extended While-Loop Problems</title>
+
+			<task label="hw-while-hailstone">
+			<title>Hailstone Sequence Analysis</title>
+			<statement>
+				<p>
+					The Collatz, or hailstone, sequence starts with a positive integer <m>n</m> and repeats the following rules until it reaches 1:
+				</p>
+
+				<ul marker="square">
+					<li>If <m>n</m> is even, replace <m>n</m> with <m>n/2</m>.</li>
+					<li>If <m>n</m> is odd, replace <m>n</m> with <m>3n + 1</m>.</li>
+				</ul>
+
+				<p>
+					Write a function <pf>hailstone(n)</pf> that returns two values: <pf>steps</pf>, the number of updates needed to reach 1, and <pf>peak</pf>, the largest value reached anywhere in the sequence.
+				</p>
+
+				<p>
+					Then write a short function <pf>hailstoneSummary(limit)</pf> that checks every starting value from 1 through <pf>limit</pf>. It should report which starting value produces the longest sequence and which produces the highest peak.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer starting value</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>steps</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of steps needed to reach 1</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>peak</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>largest value reached in the sequence</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="60% 38%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							[steps, peak] = hailstone(1)
+							[steps, peak] = hailstone(7)
+							[steps, peak] = hailstone(10)
+							[l0, lN, h0, hP] = hailstoneSummary(100)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							steps = 0    peak = 1
+							steps = 16   peak = 52
+							steps = 6    peak = 16
+							l0 = 97      lN = 118
+							h0 = 27      hP = 9232
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function [steps, peak] = hailstone(n)
+						steps = 0;
+						peak = n;
+
+						while n ~= 1
+							if mod(n, 2) == 0
+								n = n / 2;
+							else
+								n = 3 * n + 1;
+							end
+							steps = steps + 1;
+							peak = max(peak, n);
+						end
+					end
+				</program>
+				<program language="matlab">
+					function [longestStart, longestSteps, highestStart, highestPeak] = hailstoneSummary(limit)
+						longestStart = 1;
+						longestSteps = 0;
+						highestStart = 1;
+						highestPeak = 1;
+
+						for k = 1:limit
+							[steps, peak] = hailstone(k);
+							if steps &gt; longestSteps
+								longestSteps = steps;
+								longestStart = k;
+							end
+							if peak &gt; highestPeak
+								highestPeak = peak;
+								highestStart = k;
+							end
+						end
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-loan-payoff">
+			<title>Loan Payoff Calculator</title>
+			<statement>
+				<p>
+					Suppose a loan has current balance <pf>balance</pf>, monthly interest rate <pf>rate</pf>, and fixed monthly payment <pf>payment</pf>. Each month, interest is added first and then the payment is made, so the update is
+					<me>
+						\text{balance} = \text{balance}(1 + \text{rate}) - \text{payment}.
+					</me>
+				</p>
+
+				<p>
+					Write a function <pf>loanPayoff(balance, rate, payment)</pf> that uses a <pf>while</pf>-loop to determine how many months it takes to pay off the loan. Print the month number and remaining balance each iteration, and return the total number of months and the total amount paid.
+				</p>
+
+				<p>
+					Do not overpay on the final month. If the balance after interest is less than the regular payment, then the final payment should be exactly the remaining balance.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>balance</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>starting loan balance</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>rate</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>monthly interest rate written as a decimal</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>payment</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>regular monthly payment</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>months</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of months needed to pay off the loan</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>totalPaid</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>total amount paid over the life of the loan</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="58% 40%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							format short
+							[m, tot] = loanPayoff(1000, 0.015, 100)
+							[m, tot] = loanPayoff(500, 0.01, 75)
+							[m, tot] = loanPayoff(200, 0.02, 50)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							%
+							m = 11  tot = 1091.6227
+							m = 7   tot = 520.0525
+							m = 5   tot = 210.6142
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function [months, totalPaid] = loanPayoff(balance, rate, payment)
+						months = 0;
+						totalPaid = 0;
+
+						while balance &gt; 0
+							balance = balance * (1 + rate);
+							months = months + 1;
+
+							thisPayment = min(payment, balance);
+							balance = balance - thisPayment;
+							totalPaid = totalPaid + thisPayment;
+
+							fprintf('Month %2i: balance = $%.2f\n', months, balance)
+						end
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-population">
+			<title>Population Growth Model</title>
+			<statement>
+				<p>
+					A simple population model updates the current population <m>P</m> by
+					<me>
+						P_{\text{next}} = P + rP\left(1 - \frac{P}{K}\right),
+					</me>
+					where <m>r</m> is the growth rate and <m>K</m> is the carrying capacity. This is a discrete version of the logistic growth model.
+				</p>
+
+				<p>
+					Write a function <pf>populationYears(r)</pf> that uses the fixed values <pf>P = 100</pf> and <pf>K = 10000</pf>. Use a <pf>while</pf>-loop to simulate the population year by year until it reaches at least 95% of the carrying capacity. Print the year and population each iteration, and return the number of years needed together with the final population.
+				</p>
+
+				<p>
+					Test your function with <pf>r = 0.1</pf>, <pf>r = 0.5</pf>, and <pf>r = 1.5</pf>. In this discrete model, a large growth rate can overshoot the carrying capacity before settling down.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>r</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>growth rate</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>years</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of years needed to reach 95% of capacity</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>P</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>population at the stopping time</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="52% 46%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							format short
+							[yrs, P] = populationYears(0.1)
+							[yrs, P] = populationYears(0.5)
+							[yrs, P] = populationYears(1.5)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% 
+							yrs = 77   P = 9539.9976
+							yrs = 16   P = 9560.7011
+							yrs = 6    P = 10018.7342
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function [years, P] = populationYears(r)
+						P = 100;
+						K = 10000;
+						years = 0;
+
+						fprintf('Year %3i: P = %.2f\n', years, P)
+						while P &lt; 0.95 * K
+							P = P + r * P * (1 - P / K);
+							years = years + 1;
+							fprintf('Year %3i: P = %.2f\n', years, P)
+						end
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-archimedes-pi">
+				<title>Archimedes' Method for <m>\pi</m></title>
+			<statement>
+				<p>
+					Archimedes approximated <m>\pi</m> by using regular polygons inscribed in a unit circle. If a regular <m>n</m>-gon is inscribed in a circle of radius 1, then its perimeter is
+					<me>
+						P_n = 2n\sin\left(\frac{\pi}{n}\right).
+					</me>
+					As <m>n</m> increases, the perimeter approaches the circle's circumference <m>2\pi</m>. Therefore,
+					<me>
+						\frac{P_n}{2} = n\sin\left(\frac{\pi}{n}\right)
+					</me>
+					approaches <m>\pi</m>.
+				</p>
+
+				<p>
+					Write a function <pf>archimedesPi(tol)</pf> that starts with <pf>n = 6</pf> and repeatedly doubles <pf>n</pf> in a <pf>while</pf>-loop. In each iteration, compute
+					<me>
+						\text{approx} = n\sin\left(\frac{\pi}{n}\right)
+					</me>
+					and continue until <pf>abs(approx - pi) &lt;= tol</pf>. Display the step number, the current value of <pf>n</pf>, the approximation, and the error at each step. Return the final <pf>n</pf>, the final approximation, and the number of doublings used.
+				</p>
+
+				<p>
+					Because the error is proportional to <m>1/n^2</m>, doubling <m>n</m> reduces the error by about a factor of 4. So each doubling gives about <m>\log_{10}(4) \approx 0.60</m> additional correct decimal digits. This is much slower than Newton's method, which typically doubles the number of correct digits each iteration once it is close to the root.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>tol</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>stopping tolerance for <pf>abs(approx - pi)</pf></p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>final number of polygon sides</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>approx</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>final approximation of <m>\pi</m></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>steps</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of times <pf>n</pf> was doubled</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="54% 44%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% --------------TEST 1--------------
+
+							[n, approx, s] = archimedesPi(1e-2)
+
+							% --------------TEST 2--------------
+
+							[n, approx, s] = archimedesPi(1e-6)
+
+							% --------------TEST 3--------------
+
+							[n, approx, s] = archimedesPi(1e-10)
+
+							% ----------------------------------
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% ---------TEST 1---------
+							n = 24
+							approx = 3.132628613281238
+							s = 2
+							% ---------TEST 2---------
+							n = 3072
+							approx = 3.141592105999271
+							s = 9
+							% ---------TEST 3---------
+							n = 393216
+							approx = 3.141592653556370
+							s = 16
+							% ------------------------
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function [n, approx, steps] = archimedesPi(tol)
+						n = 6;
+						steps = 0;
+						approx = n * sin(pi / n);
+						err = abs(approx - pi);
+
+						while err &gt; tol
+							fprintf('Step %2i: n = %8i, approx = %.15f, error = %.3e\n', ...
+								steps, n, approx, err)
+							n = 2 * n;
+							steps = steps + 1;
+							approx = n * sin(pi / n);
+							err = abs(approx - pi);
+						end
+
+						fprintf('Step %2i: n = %8i, approx = %.15f, error = %.3e\n', ...
+							steps, n, approx, err)
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-smallest-factor">
+				<title>Smallest Prime Factor</title>
+				<statement>
+					<p>
+						Write a function called <pf>smallestFactor</pf> that returns the smallest prime factor of an integer <pf>n &gt; 1</pf>. If <pf>n</pf> is prime, the function should return <pf>n</pf> itself.
+					</p>
+
+					<p>
+						Use a <pf>while</pf>-loop that tests divisors <pf>d</pf> starting at 2. If <pf>d</pf> divides <pf>n</pf>, return <pf>d</pf> immediately. Otherwise, increase <pf>d</pf> by 1. You only need to test while <pf>d * d &lt;= n</pf>. If no divisor is found, <pf>n</pf> is prime and is its own smallest factor.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>integer greater than 1</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>p</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>smallest prime factor of <pf>n</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								smallestFactor(15)
+								smallestFactor(97)
+								smallestFactor(91)
+								smallestFactor(360)
+								smallestFactor(9973)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 3
+								ans = 97
+								ans = 7
+								ans = 2
+								ans = 9973
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function p = smallestFactor(n)
+							d = 2;
+
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									p = d;
+									return
+								end
+								d = d + 1;
+							end
+
+							p = n;
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-while-print-factorization">
+				<title>Print Prime Factorization</title>
+				<statement>
+					<p>
+						Every integer greater than 1 can be written as a product of prime factors. For example,
+						<me>
+							360 = 2 \cdot 2 \cdot 2 \cdot 3 \cdot 3 \cdot 5.
+						</me>
+						A simple method called <term>trial division</term> tests divisors starting at 2, divides them out when they work, and moves on when they do not.
+					</p>
+
+					<p>
+						As a warm-up, write a <pf>while</pf>-loop that divides out all copies of 2 from a number <pf>n</pf>, printing each step. For example, starting with <pf>n = 360</pf>:
+					</p>
+
+					<pre>
+						/2 -> 180
+						/2 -> 90
+						/2 -> 45
+						Remaining: 45
+					</pre>
+
+					<p>
+						Then write a function called <pf>printFactors</pf> that prints all the prime factors of <pf>n</pf> separated by spaces. Use a divisor <pf>d</pf> starting at 2. While <pf>d * d &lt;= n</pf>, test whether <pf>d</pf> divides <pf>n</pf>. If it does, print <pf>d</pf> and divide it out. If it does not, increase <pf>d</pf> by 1. After the loop, if <pf>n &gt; 1</pf>, print the remaining value as the last factor.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>integer greater than 1</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell colspan="3"><p>none — prints the prime factorization of <pf>n</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								printFactors(360)
+								printFactors(97)
+								printFactors(84)
+								printFactors(2)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected Output ⤵︎</p>
+							<program language="matlab">
+								2 2 2 3 3 5
+								97
+								2 2 3 7
+								2
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<p>
+						Here is the warm-up script for dividing out all copies of 2:
+					</p>
+					<program language="matlab">
+						n = 360;
+						while mod(n, 2) == 0
+							n = n / 2;
+							fprintf('/2 -> %i\n', n)
+						end
+						fprintf('Remaining: %i\n', n)
+					</program>
+					<p>
+						Here is the <pf>printFactors</pf> function:
+					</p>
+					<program language="matlab">
+						function printFactors(n)
+							d = 2;
+
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									fprintf('%i ', d)
+									n = n / d;
+								else
+									d = d + 1;
+								end
+							end
+
+							if n &gt; 1
+								fprintf('%i', n)
+							end
+							fprintf('\n')
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-while-egyptian-fractions">
+			<title>Egyptian Fraction Decomposition</title>
+			<statement>
+				<p>
+					An <term>unit fraction</term> is a fraction with numerator 1. The ancient Egyptians wrote every positive fraction as a sum of distinct unit fractions. For example,
+					<me>
+						\frac{5}{7} = \frac{1}{2} + \frac{1}{5} + \frac{1}{70}.
+					</me>
+				</p>
+
+				<p>
+					A standard greedy algorithm builds this decomposition one term at a time. If the current fraction is <m>\frac{p}{q}</m>, choose
+					<me>
+						n = \left\lceil \frac{q}{p} \right\rceil,
+					</me>
+					so that <m>\frac{1}{n}</m> is the largest unit fraction that does not exceed <m>\frac{p}{q}</m>. Then subtract it and continue with the remainder.
+				</p>
+
+				<p>
+					Write a function <pf>egyptian(p, q)</pf> that takes positive integers <pf>p</pf> and <pf>q</pf> with <m>0 &lt; p &lt; q</m> and prints the Egyptian fraction decomposition of <m>\frac{p}{q}</m>. Use a <pf>while</pf>-loop that continues while <pf>p &gt; 0</pf>. In each iteration:
+				</p>
+
+				<ol>
+					<li>Compute <pf>n = ceil(q / p)</pf>.</li>
+					<li>Print the next term <pf>1/n</pf>.</li>
+					<li>Update the fraction using
+						<me>
+							\frac{p}{q} - \frac{1}{n} = \frac{pn - q}{qn}.
+						</me>
+						So set <pf>p = p*n - q</pf> and <pf>q = q*n</pf>.
+					</li>
+				</ol>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>p</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer numerator</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>q</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer denominator, with <m>p &lt; q</m></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p>none</p></cell>
+						<cell><p>printed text</p></cell>
+						<cell><p>the Egyptian fraction decomposition of <m>\frac{p}{q}</m></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							egyptian(5, 7)
+							egyptian(3, 11)
+							egyptian(7, 15)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							5/7 = 1/2 + 1/5 + 1/70
+							3/11 = 1/4 + 1/44
+							7/15 = 1/3 + 1/8 + 1/120
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function egyptian(p, q)
+						origP = p;
+						origQ = q;
+						first = true;
+
+						fprintf('%i/%i = ', origP, origQ)
+						while p &gt; 0
+							n = ceil(q / p);
+							if ~first
+								fprintf(' + ')
+							end
+							fprintf('1/%i', n)
+
+							p = p * n - q;
+							q = q * n;
+							g = gcd(p, q);
+							if g &gt; 0
+								p = p / g;
+								q = q / g;
+							end
+
+							first = false;
+						end
+						fprintf('\n')
+					end
+				</program>
+			</solution>
+			</task>
+
+		</exercise>
+
+	</exercises>
+
+</section>

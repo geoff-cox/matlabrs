@@ -7,7 +7,7 @@ Use these as starting points when requesting refactoring work from an AI agent. 
 ### Initial orientation prompt
 ```
 I am refactoring the chapter on [TOPIC] (see the attached project files) to align with the
-structure and quality of my for-while-loops chapter. The for-loops section (sec-for-loops.txt)
+structure and quality of my for-while-loops chapter. The for-loops section (sec-4loops.txt)
 is the canonical structural template. Please read all project files, then summarize:
 (A) the current state of the chapter being refactored,
 (B) which subsections exist vs. which are missing relative to the template, and
@@ -17,7 +17,7 @@ is the canonical structural template. Please read all project files, then summar
 ### Per-subsection refactoring prompt
 ```
 Please draft a new [Practice Activities / Reading Questions / Coding Exercises] subsection for
-[sec-TOPIC.txt]. Use the corresponding subsection in sec-for-loops.txt as a structural template.
+[sec-TOPIC.txt]. Use the corresponding subsection in sec-4loops.txt as a structural template.
 
 Key constraints:
 - Students have [not yet covered X / already covered Y].
@@ -91,7 +91,7 @@ Each `<section>` follows this subsection order:
 | 5 | 💻 Coding Exercises | `TOPIC-coding-exercises` | Primary assignments, solutions hidden by default |
 
 ### Structure subsection
-- Open with an `<assemblage>` box containing the syntax template, key rules as `<ul>`, and
+- Open with an `<assemblage>` box containing the syntax template, key rules as `<ul marker="square">`, and
   any important terminology marked with `<term>`.
 - Follow with 2–5 inline `<exercise>` tasks (MC or T/F) that check reading comprehension of
   the structure just introduced. These are embedded reading checkpoints, not graded assignments.
@@ -116,7 +116,7 @@ Each `<section>` follows this subsection order:
   5. **Multi-step activities**: Scaffolded sequences where each task builds on the previous.
   6. **Function-writing**: Progressively harder functions with I/O tables and test cases.
 - Use `<sage language="octave">` cells for interactive exercises. Provide starter code with
-  `% ==== Type your code here ====` markers.
+  `%─── TYPE YOUR CODE HERE ───%` markers.
 - Include expected output so students can self-check: "When done, evaluate and confirm it
   prints `total = 15`."
 

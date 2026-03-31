@@ -23,7 +23,7 @@
 		<sidebyside widths="15% 85%">
 			<p>Use Case: </p>
 			<p>
-				<ul>
+				<ul marker="square">
 					<li>if <pf>var</pf> is equal to <pf>val1</pf>, run <pf>blockA</pf>,</li>
 					<li>if <pf>var</pf> is equal to <pf>val2</pf> or <pf>val3</pf>, run <pf>blockB</pf>,</li>
 					<li>if <pf>var</pf> is equal to <pf>val4</pf>, run <pf>blockC</pf>,</li>
@@ -52,7 +52,7 @@
 
 		<p>
 			Rules:
-			<ul>
+			<ul marker="square">
 				<li>Case values are checked in order from top to bottom.</li>
 				<li>The <pf>otherwise</pf> block runs only when no cases match.</li>
 				<li>The <pf>otherwise</pf> (default) branch is optional.</li>
@@ -66,7 +66,7 @@
 
 		<p>
 			Limitations:
-			<ul>
+			<ul marker="square">
 				<li>Case values cannot use logical operators (e.g., <pf>&lt;</pf>, <pf>&gt;</pf>, <pf>==</pf>, <pf>&amp;</pf>, <pf>|</pf>).</li>
 				<li>Switch statements are not suitable for range-based conditions (e.g., checking if a value is between two numbers).</li>
 			</ul>
@@ -238,7 +238,7 @@
 						<pf>'E'</pf>, or <pf>'O'</pf>) and returns a scalar <pf>cost</pf> of 5, 12, or 20.
 					</p>
 				</statement>
-				<solution>
+				<solution component="example-solution">
 					<program language="matlab">
 						function cost = shipping_cost(mode)
 							switch mode
@@ -263,7 +263,7 @@
 						and <pf>'overnight'</pf>) in addition to the single-letter codes.
 					</p>
 				</statement>
-				<solution>
+				<solution component="example-solution">
 					<program language="matlab">
 						function cost = shipping_cost(mode)
 							switch mode
@@ -287,7 +287,7 @@
 						Concept check: what happens when <pf>mode = 'e'</pf> (lowercase), and why?
 					</p>
 				</statement>
-				<solution>
+				<solution component="example-solution">
 					<p>
 						The <pf>otherwise</pf> branch runs and returns <pf>NaN</pf> because <pf>switch</pf> comparisons are
 						case-sensitive, so <pf>'e'</pf> does not match <pf>'E'</pf>.

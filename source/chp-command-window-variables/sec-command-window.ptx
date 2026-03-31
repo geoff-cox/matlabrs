@@ -36,7 +36,7 @@
 
 			<p>
 				Key rules:
-				<ul>
+				<ul marker="square">
 					<li>Type a mathematical expression or command at the <pf>&gt;&gt;</pf> prompt and press <kbd>Enter</kbd>.</li>
 					<li>If you do not assign the result to a variable, MATLAB stores it in the special variable <pf>ans</pf>.</li>
 					<li>End a command with a <term>semicolon</term> <pf>;</pf> to suppress output display; the result is still computed and stored.</li>
@@ -46,10 +46,10 @@
 
 			<p>
 				Session management commands:
-				<ul>
+				<ul marker="square">
 					<li><pf>clear</pf> — removes all variables from the workspace.</li>
 					<li><pf>clc</pf> — clears the Command Window display (does not delete variables).</li>
-					<li><pf>format</pf> — controls how numerical output is displayed (not how it is stored).</li>
+					<li><pf>format</pf> — controls how numerical output is displayed.</li>
 				</ul>
 			</p>
 		</assemblage>
@@ -219,27 +219,31 @@ ans =
 					As you work, the Command Window fills up with output and the Workspace accumulates variables. Use these commands to stay organized:
 				</p>
 
-				<sidebyside widths="48% 48%">
+				<sidebyside widths="36% 60%">
 					<stack>
 						<p>Commands ⤵︎</p>
-						<program language="matlab">
+						<program language="matlab" line-numbers="yes">
 							x = 5;
 							y = 10;
 							clear
 							clc
+							format short
+							sqrt(2)
 							format long
 							pi
 						</program>
 					</stack>
 					<stack>
 						<p>What happens ⤵︎</p>
-						<program language="matlab">
-							% x created silently (semicolon)
-							% y created silently (semicolon)
-							% workspace cleared: x and y removed
-							% Command Window display cleared
-							% switch to long display format
-							% ans = 3.141592653589793
+						<program line-numbers="yes">
+							x created silently (semicolon)
+							y created silently (semicolon)
+							workspace cleared: x, y removed
+							Command Window display cleared
+							sets short display format
+							ans = 1.4142
+							sets long display format
+							ans = 3.141592653589793
 						</program>
 					</stack>
 				</sidebyside>
@@ -576,7 +580,7 @@ ans =
 						</p>
 						<sage language="octave">
 							<input>
-								% ==== Type your code here ====
+								%─── TYPE YOUR CODE HERE ───%
 								format short
 								pi
 
@@ -610,7 +614,7 @@ ans =
 					<statement>
 						<sage language="octave">
 							<input>
-								% ==== Type your code here ====
+								%─── TYPE YOUR CODE HERE ───%
 								% Evaluate: floor(7.9), ceil(7.1), round(7.5)
 							</input>
 						</sage>
@@ -631,7 +635,7 @@ ans =
 					<statement>
 						<sage language="octave">
 							<input>
-								% ==== Type your code here ====
+								%─── TYPE YOUR CODE HERE ───%
 								% Evaluate: mod(17, 5)
 							</input>
 						</sage>
@@ -697,7 +701,7 @@ ans =
 							</stack>
 						</sidebyside>
 					</statement>
-					<solution>
+					<solution component="example-solution">
 						<program language="matlab">
 							r = 7;
 							A = pi * r^2
@@ -728,7 +732,7 @@ ans =
 							</stack>
 						</sidebyside>
 					</statement>
-					<solution>
+					<solution component="example-solution">
 						<program language="matlab">
 							a = 5;
 							b = 12;
@@ -760,7 +764,7 @@ ans =
 							</stack>
 						</sidebyside>
 					</statement>
-					<solution>
+					<solution component="example-solution">
 						<program language="matlab">
 							F = 98.6;
 							C = (F - 32) * 5/9
@@ -803,7 +807,7 @@ ans =
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution>
+				<solution component="example-solution">
 					<program language="matlab">
 						radius = 5;
 						area = pi * radius^2;
@@ -843,7 +847,7 @@ ans =
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution>
+				<solution component="example-solution">
 					<program language="matlab">
 						clear
 						result = factorial(5)
