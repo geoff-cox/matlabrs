@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MATLAB-BOOK 💻 Coding Exercises</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="external/custom-styles.css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="og:image" content="vmi.instructure.com/external/figures/matlabrs-icon.png">
+<meta property="book:title" content="Getting Started with MATLAB Programming">
+<meta property="book:author" content="Geoffrey W. Cox, Ph.D.">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = true;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.12.2';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.d2d4c56cb9826035.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.a4a209ed3a55c515.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="matlabrs" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href="https://www.vmi.edu/"><img src="external/figures/matlabrs-icon.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="matlabrs.html"><span class="title">Getting Started with MATLAB Programming</span> <span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span></a></h1>
+<p class="byline">Geoffrey W. Cox, Ph.D.</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-3.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "classic",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="while-loop-reading-questions.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="sec-while-loops.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\newcommand\DLGray{\color{Gray}}
+\newcommand\DLO{\color{BurntOrange}}
+\newcommand\DLRa{\color{WildStrawberry}}
+\newcommand\DLGa{\color{Green}}
+\newcommand\DLGb{\color{PineGreen}}
+\newcommand\DLBa{\color{RoyalBlue}}
+\newcommand\DLBb{\color{Cerulean}}
+\newcommand\ds{\displaystyle}
+\newcommand\ddx{\frac{d}{dx}}
+\newcommand\os{\overset}
+\newcommand\us{\underset}
+\newcommand\ob{\overbrace}
+\newcommand\obt{\overbracket}
+\newcommand\ub{\underbrace}
+\newcommand\ubt{\underbracket}
+\newcommand\ul{\underline}
+\newcommand\tikznode[3][]
+	{\tikz[remember picture,baseline=(#2.base)]
+		\node[minimum size=0pt,inner sep=0pt,#1](#2){#3};
+	}
+\newcommand\del{\nabla}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathcal{C}}
+\newcommand\N{\mathcal{N}}
+\newcommand\eps{\varepsilon}
+\renewcommand\epsilon{\varepsilon}
+\renewcommand\subset{\subseteq}
+\newcommand\norm[1]{\|{#1}\|}
+\newcommand\matrixbrackets[4][1]{
+	\draw (#3,#2) -- (\fpeval{#3+0.2},#2); 
+	\draw (#3,#1) -- (#3 ,#2); 
+	\draw (#3,#1) -- (\fpeval{#3+0.2},#1);
+	\draw (#4,#2) -- (\fpeval{#4-0.2},#2); 
+	\draw (#4,#1) -- (#4 ,#2); 
+	\draw (#4,#1) -- (\fpeval{#4-0.2},#1);
+}
+\tikzstyle{circle node 0}=[fill=white, draw=black, shape=circle, inner sep=0pt]
+\tikzstyle{circle node 2}=[fill=white, draw=black, shape=circle, inner sep=2pt]
+\tikzstyle{hrect node}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+\tikzstyle{vrect node}=[fill=white, draw=black, inner sep=0pt, outer sep=0pt]
+\tikzstyle{hidden node 0}=[inner sep=0pt, outer sep=0pt] 
+\tikzstyle{hidden node 2}=[fill=white, inner sep=2pt, outer sep=2pt]
+\tikzstyle{rect node 1}=[fill=white, inner sep=2pt, outer sep=0pt]
+\tikzstyle{rect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=0pt]
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 focused" data-preexpanded-levels="0" data-max-levels="3"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-welcome-to-matlab.html" class="internal"><span class="codenumber">1</span> <span class="title">Welcome to MATLAB</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-installing-matlab.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Installing MATLAB</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-matlab-desktop.html" class="internal"><span class="codenumber">1.2</span> <span class="title">MATLAB Desktop</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-command-window-variables.html" class="internal"><span class="codenumber">2</span> <span class="title">Command Window &amp; Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-command-window.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Command Window</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-variables.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Variables</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-scripts-functions.html" class="internal"><span class="codenumber">3</span> <span class="title">Scripts &amp; Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-scripts.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Scripts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="assemblage-scripts.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="assemblage-scripts.html#scripts-key-rules" class="internal"><span class="title">Key Rules</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="assemblage-scripts.html#scripts-fprintf" class="internal"><span class="title">Reporting Results from Scripts with <code class="code-inline tex2jax_ignore language-matlab">fprintf</code></span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="assemblage-scripts.html#scripts-examples" class="internal"><span class="title">Examples</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="scripts-rqs.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-scripts-exercises.html" class="internal"><span class="title">🧑🏻‍💻 Exercises</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-scripts-exercises.html#subsubsec-scripts-drills" class="internal"><span class="title">Drills</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-scripts-exercises.html#subsubsec-scripts-scaffolded" class="internal"><span class="title">Scaffolded Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-scripts-exercises.html#scripts-coding-exercises" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-functions.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-functions-structure.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-functions-structure.html#functions-examples" class="internal"><span class="title">Examples</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="functions-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-functions-exercises.html" class="internal"><span class="title">🧑🏻‍💻 Exercises</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-functions-exercises.html#subsubsec-functions-drills" class="internal"><span class="title">Drills</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-functions-exercises.html#subsubsec-functions-scaffolded" class="internal"><span class="title">Scaffolded Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-functions-exercises.html#functions-coding-exercises" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-if-switch-statements.html" class="internal"><span class="codenumber">4</span> <span class="title">Logic, If, &amp; Switch</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-logical-values.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Logical Values (Answers)</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-values.html" class="internal"><span class="codenumber">4.1</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-logical-statements.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Logical Statements (Questions)</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-statements.html" class="internal"><span class="codenumber">4.2</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-if-statements.html" class="internal"><span class="codenumber">4.3</span> <span class="title">If Statements</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="sec-if-statements-5.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-if-statements.html" class="internal"><span class="codenumber">4.3</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-switch-statements.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Switch Statement</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-if-switch-statements.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-switch-statements.html" class="internal"><span class="codenumber">4.4</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-logic-if-switch-statements.html" class="internal"><span class="codenumber">4.5</span> <span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="chp-for-while-loops.html" class="internal"><span class="codenumber">5</span> <span class="title">For &amp; While Loops</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-for-loops.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The for Loop</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-loop-structure.html" class="internal"><span class="title">🧱 Structure</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-loop-examples.html" class="internal"><span class="title">👀 Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-loop-practice-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="for-loop-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-while-loops.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The while Loop</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-while-loop-structure.html" class="internal"><span class="title">🧱 Structure</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-while-loop-examples.html" class="internal"><span class="title">👀 Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-while-loop-practice-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="while-loop-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises active"><div class="toc-title-box"><a href="while-loop-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-continue-break-return.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Continue, Break, &amp; Return</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-continue-break-return-examples.html" class="internal"><span class="title">👀 Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-continue-break-return-practice-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="continue-break-return-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="continue-break-return-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chp-arrays.html" class="internal"><span class="codenumber">6</span> <span class="title">Arrays: Vectors &amp; Matrices</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appdx-matlab-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Common Built-In MATLAB Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-math-functions.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Mathematical Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-rounding-functions.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Rounding Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-trig-functions.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Trigonometric Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-random-functions.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Random Number Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-output-functions.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Output Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-input-functions.html" class="internal"><span class="codenumber">A.6</span> <span class="title">Input Functions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sec-useful-built-in-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Useful Built-in Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">The mod function</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-floor-ceil-round.html" class="internal"><span class="codenumber">A.2</span> <span class="title">The floor, ceil, and round functions</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-floor-ceil-round.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="back-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="exercises" id="while-loop-coding-exercises"><h2 class="heading hide-type">
+<span class="type">Exercises</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">💻 Coding Exercises</span>
+</h2>
+<article class="exercise exercise-like" id="coding-exercises-while-loops"><h3 class="heading">
+<span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">While-Loop Exercises.</span>
+</h3>
+<div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-coding-exercises-while-loops">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="hw-while-int-sqrt"><h4 class="heading">
+<span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Integer Square Root.</span>
+</h4>
+<div class="para" id="hw-while-int-sqrt-2-1">Write a function <code class="code-inline tex2jax_ignore language-matlab">intSqrt(n)</code> that returns the largest integer whose square is less than or equal to <code class="code-inline tex2jax_ignore language-matlab">n</code>. This value is called the <dfn class="terminology">integer square root</dfn> of <code class="code-inline tex2jax_ignore language-matlab">n</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-while-int-sqrt-2-2">
+<div class="para">In other words, your function should return</div>
+<div class="displaymath process-math" id="hw-while-int-sqrt-2-2-1">
+\begin{equation*}
+\lfloor \sqrt{n} \rfloor.
+\end{equation*}
+</div>
+<div class="para">Do not use <code class="code-inline tex2jax_ignore language-matlab">sqrt</code>, <code class="code-inline tex2jax_ignore language-matlab">^</code>, or any other built-in power or root function.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-int-sqrt-2-3">Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop that starts with <code class="code-inline tex2jax_ignore language-matlab">k = 0</code> and increases <code class="code-inline tex2jax_ignore language-matlab">k</code> while <code class="code-inline tex2jax_ignore language-matlab">(k + 1) * (k + 1) &lt;= n</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-int-sqrt-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-int-sqrt-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-int-sqrt-2-4-5-4-1">nonnegative integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-int-sqrt-2-4-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">k</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-int-sqrt-2-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-int-sqrt-2-4-6-4-1">largest integer with <span class="process-math">\(k^2 &lt;= n\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-int-sqrt-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">k = intSqrt(25)
+k = intSqrt(26)
+k = intSqrt(99)
+k = intSqrt(100)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-int-sqrt-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-int-sqrt-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">k = 5
+k = 5
+k = 9
+k = 10
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-int-sqrt-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function k = intSqrt(n)
+	k = 0;
+
+	while (k + 1) * (k + 1) &lt;= n
+		k = k + 1;
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.a.1"><a href="#hw-while-int-sqrt-3" title="Copy heading and permalink for Solution 1.a.1" aria-label="Copy heading and permalink for Solution 1.a.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.a: Integer Square Root"><a href="#hw-while-int-sqrt" title="Copy heading and permalink for Task 1.a: Integer Square Root" aria-label="Copy heading and permalink for Task 1.a: Integer Square Root">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="hw-while-collatz"><h4 class="heading">
+<span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Collatz Steps.</span>
+</h4>
+<div class="para" id="hw-while-collatz-2-1">The <dfn class="terminology">Collatz sequence</dfn> starts with a positive integer <code class="code-inline tex2jax_ignore language-matlab">x</code> and repeatedly applies the following rules:<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <ul class="square" id="hw-while-collatz-2-2">
+<li id="hw-while-collatz-2-2-1">
+<div class="para" id="p-derived-hw-while-collatz-2-2-1">If the current value is even, divide it by 2.</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-while-collatz-2-2-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-while-collatz-2-2-2">
+<div class="para" id="p-derived-hw-while-collatz-2-2-2">If the current value is odd, multiply it by 3 and add 1.</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-while-collatz-2-2-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul> <div class="para logical" id="hw-while-collatz-2-3">
+<div class="para">For example, starting with <span class="process-math">\(6\)</span> gives</div>
+<div class="displaymath process-math" id="hw-while-collatz-2-3-2">
+\begin{equation*}
+6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1.
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-collatz-2-4">Write a function <code class="code-inline tex2jax_ignore language-matlab">collatzSteps(x)</code> that uses a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop to return the number of steps required for the sequence to reach <span class="process-math">\(1\text{.}\)</span> If <code class="code-inline tex2jax_ignore language-matlab">x = 1</code>, the function should return <code class="code-inline tex2jax_ignore language-matlab">0</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-collatz-2-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-collatz-2-5-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-collatz-2-5-5-4-1">positive integer starting value<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-collatz-2-5-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">steps</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-collatz-2-5-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-collatz-2-5-6-4-1">number of Collatz steps needed to reach <span class="process-math">\(1\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-collatz-2-6-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">steps = collatzSteps(6)
+steps = collatzSteps(10)
+steps = collatzSteps(1)
+steps = collatzSteps(27)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-collatz-2-6-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-collatz-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">steps = 8
+steps = 6
+steps = 0
+steps = 111
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-collatz-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function steps = collatzSteps(x)
+	steps = 0;
+
+	while x ~= 1
+		if mod(x, 2) == 0
+			x = x / 2;
+		else
+			x = 3 * x + 1;
+		end
+		steps = steps + 1;
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.b.1"><a href="#hw-while-collatz-3" title="Copy heading and permalink for Solution 1.b.1" aria-label="Copy heading and permalink for Solution 1.b.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.b: Collatz Steps"><a href="#hw-while-collatz" title="Copy heading and permalink for Task 1.b: Collatz Steps" aria-label="Copy heading and permalink for Task 1.b: Collatz Steps">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="hw-while-digit-sum"><h4 class="heading">
+<span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Digit Sum.</span>
+</h4>
+<div class="para" id="hw-while-digit-sum-2-1">Write a function called <code class="code-inline tex2jax_ignore language-matlab">digitSum</code> that returns the sum of the digits of a positive integer <code class="code-inline tex2jax_ignore language-matlab">n</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-digit-sum-2-2">Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop with two operations per iteration: extract the rightmost digit with <code class="code-inline tex2jax_ignore language-matlab">mod(n, 10)</code> and remove it with <code class="code-inline tex2jax_ignore language-matlab">floor(n / 10)</code>. Continue while <code class="code-inline tex2jax_ignore language-matlab">n &gt; 0</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-digit-sum-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-digit-sum-2-3-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-3-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-digit-sum-2-3-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-3-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-digit-sum-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">s</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-digit-sum-2-3-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-3-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-digit-sum-2-3-6-4-1">sum of the digits of <code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-3-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-digit-sum-2-4-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">s = digitSum(123)
+s = digitSum(9999)
+s = digitSum(7)
+s = digitSum(10001)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-digit-sum-2-4-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digit-sum-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">s = 6
+s = 36
+s = 7
+s = 2
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-digit-sum-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function s = digitSum(n)
+	s = 0;
+
+	while n &gt; 0
+		s = s + mod(n, 10);
+		n = floor(n / 10);
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.c.1"><a href="#hw-while-digit-sum-3" title="Copy heading and permalink for Solution 1.c.1" aria-label="Copy heading and permalink for Solution 1.c.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.c: Digit Sum"><a href="#hw-while-digit-sum" title="Copy heading and permalink for Task 1.c: Digit Sum" aria-label="Copy heading and permalink for Task 1.c: Digit Sum">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="hw-while-print-digits"><h4 class="heading">
+<span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Print Digits from Right to Left.</span>
+</h4>
+<div class="para" id="hw-while-print-digits-2-1">Write a function called <code class="code-inline tex2jax_ignore language-matlab">printDigits</code> that prints the digits of a positive integer one at a time, starting with the ones digit and moving left.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-while-print-digits-2-2">
+<div class="para">Use the following two-step process inside a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop:</div>
+<ul class="square" id="hw-while-print-digits-2-2-2">
+<li id="hw-while-print-digits-2-2-2-1">
+<div class="para" id="p-derived-hw-while-print-digits-2-2-2-1">Extract the rightmost digit with <code class="code-inline tex2jax_ignore language-matlab">mod(n,10)</code>.</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-while-print-digits-2-2-2-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-while-print-digits-2-2-2-2">
+<div class="para" id="p-derived-hw-while-print-digits-2-2-2-2">Remove that digit with <code class="code-inline tex2jax_ignore language-matlab">floor(n/10)</code>.</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-while-print-digits-2-2-2-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-print-digits-2-3">For example, <code class="code-inline tex2jax_ignore language-matlab">printDigits(1234)</code> should print <code class="code-inline tex2jax_ignore language-matlab">4321</code>. The function does not return a value; it prints directly to the Command Window.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-print-digits-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-print-digits-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-print-digits-2-4-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-print-digits-2-4-6-2-1">none<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-print-digits-2-4-6-3-1">—<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-print-digits-2-4-6-4-1">prints the digits of <code class="code-inline tex2jax_ignore language-matlab">n</code> from right to left<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-print-digits-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1
+printDigits(1234)
+% Test 2
+printDigits(50374254)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-print-digits-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-digits-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1 prints
+4321
+% Test 2 prints
+45247305
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-print-digits-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function printDigits(n)
+	while n &gt; 0
+		digit = mod(n, 10);
+		fprintf('%i', digit);
+		n = floor(n / 10);
+	end
+	fprintf('\n');
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.d.1"><a href="#hw-while-print-digits-3" title="Copy heading and permalink for Solution 1.d.1" aria-label="Copy heading and permalink for Solution 1.d.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.d: Print Digits from Right to Left"><a href="#hw-while-print-digits" title="Copy heading and permalink for Task 1.d: Print Digits from Right to Left" aria-label="Copy heading and permalink for Task 1.d: Print Digits from Right to Left">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="hw-while-fibonacci"><h4 class="heading">
+<span class="codenumber">(e)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Fibonacci Threshold.</span>
+</h4>
+<div class="para" id="hw-while-fibonacci-2-1">Write a function <code class="code-inline tex2jax_ignore language-matlab">fibonacciThreshold()</code> that uses a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop to generate Fibonacci numbers, starting with <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{,}\)</span> until the first Fibonacci number exceeds <span class="process-math">\(10000\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-fibonacci-2-2">Return that first value in the variable <code class="code-inline tex2jax_ignore language-matlab">fib_result</code>. You will need to keep track of the two previous Fibonacci numbers.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-fibonacci-2-3-5-2-1">none<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-fibonacci-2-3-5-3-1">—<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-3-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-fibonacci-2-3-5-4-1">start the sequence with <span class="process-math">\(0\)</span> and <span class="process-math">\(1\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-3-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-fibonacci-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">fib_result</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-fibonacci-2-3-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-3-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-fibonacci-2-3-6-4-1">first Fibonacci number greater than <span class="process-math">\(10000\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-3-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-fibonacci-2-4-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">fib_result = fibonacciThreshold()
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-fibonacci-2-4-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-fibonacci-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">fib_result = 10946
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-fibonacci-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function fib_result = fibonacciThreshold()
+	prev2 = 0;
+	prev1 = 1;
+
+	while prev1 &lt;= 10000
+		current = prev1 + prev2;
+		prev2 = prev1;
+		prev1 = current;
+	end
+
+	fib_result = prev1;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.e.1"><a href="#hw-while-fibonacci-3" title="Copy heading and permalink for Solution 1.e.1" aria-label="Copy heading and permalink for Solution 1.e.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.e: Fibonacci Threshold"><a href="#hw-while-fibonacci" title="Copy heading and permalink for Task 1.e: Fibonacci Threshold" aria-label="Copy heading and permalink for Task 1.e: Fibonacci Threshold">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(f)"><article class="task exercise-like" id="hw-while-golden-ratio"><h4 class="heading"><span class="codenumber">(f)</span></h4>
+<div class="para logical" id="hw-while-golden-ratio-1-1">
+<div class="para">The golden ratio <span class="process-math">\(\varphi = \frac{1+\sqrt{5}}{2} \approx 1.6180339887\ldots\)</span> has the remarkable continued fraction representation</div>
+<div class="displaymath process-math" id="hw-while-golden-ratio-1-1-2">
+\begin{equation*}
+\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}\text{.}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-while-golden-ratio-1-2">
+<div class="para">This can be computed, starting with <span class="process-math">\(\varphi_1 = 1\)</span> and repeatedly applying</div>
+<div class="displaymath process-math" id="hw-while-golden-ratio-1-2-2">
+\begin{equation*}
+\varphi_2 = 1 + \frac{1}{\varphi_1},\quad
+\varphi_3 = 1 + \frac{1}{\varphi_2},\quad
+\varphi_4 = 1 + \frac{1}{\varphi_3},\ \ldots\quad\text{.}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-golden-ratio-1-3">Write a function called <code class="code-inline tex2jax_ignore language-matlab">goldenRatio</code> that uses a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop to return the approximation of the golden ratio and the number of steps needed for the approximation to be within a given tolerance.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-while-golden-ratio-1-4">
+<div class="para">We say that <span class="process-math">\(\varphi_n\)</span> is within <span class="process-math">\(\epsilon\)</span> of <span class="process-math">\(\varphi\)</span> if the distance between them is less than <span class="process-math">\(\epsilon\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="hw-while-golden-ratio-1-4-5">
+\begin{equation*}
+|\varphi_n - \varphi| &lt; \epsilon\text{.}
+\end{equation*}
+</div>
+<div class="para">Use this as your looping condition. Use <span class="process-math">\(\varphi = \frac{1+\sqrt{5}}{2}\)</span> in your function.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-golden-ratio-1-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">tol</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-golden-ratio-1-5-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-golden-ratio-1-5-5-4-1">tolerance for approximation<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-golden-ratio-1-5-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">phi_n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-golden-ratio-1-5-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-golden-ratio-1-5-6-4-1">approximation of the golden ratio, <span class="process-math">\(\varphi\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-golden-ratio-1-5-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">steps</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-golden-ratio-1-5-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-golden-ratio-1-5-7-4-1">number of steps needed for <code class="code-inline tex2jax_ignore language-matlab">phi_n</code> to be within <code class="code-inline tex2jax_ignore language-matlab">tol</code> of <span class="process-math">\(\varphi\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-5-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-golden-ratio-1-6-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">[val, n] = goldenRatio(0.5)
+[val, n] = goldenRatio(1e-3)
+[val, n] = goldenRatio(1e-8)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-golden-ratio-1-6-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-golden-ratio-1-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">val = 2.000000000000000   n = 1
+val = 1.617647058823529   n = 8
+val = 1.618033998521804   n = 19
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-golden-ratio-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function [phi_n, steps] = goldenRatio(tol)
+	phi = (1 + sqrt(5)) / 2;
+	phi_n = 1;
+	steps = 0;
+
+	while abs(phi_n - phi) &gt; tol
+		phi_n = 1 + 1 / phi_n;
+		steps = steps + 1;
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.f.1"><a href="#hw-while-golden-ratio-2" title="Copy heading and permalink for Solution 1.f.1" aria-label="Copy heading and permalink for Solution 1.f.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.f"><a href="#hw-while-golden-ratio" title="Copy heading and permalink for Task 1.f" aria-label="Copy heading and permalink for Task 1.f">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(g)"><article class="task exercise-like" id="hw-base-digits-to-number"><h4 class="heading">
+<span class="codenumber">(g)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Build a Number from Random Digits.</span>
+</h4>
+<div class="para" id="hw-base-digits-to-number-2-1">Write a function called <code class="code-inline tex2jax_ignore language-matlab">buildRandomNumber</code> that constructs a number from <code class="code-inline tex2jax_ignore language-matlab">n</code> randomly generated digits. Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop and generate each digit with <code class="code-inline tex2jax_ignore language-matlab">randi([0,9])</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-base-digits-to-number-2-2">
+<div class="para">Treat the first generated digit as the ones digit, the second as the tens digit, the third as the hundreds digit, and so on. For example, if <code class="code-inline tex2jax_ignore language-matlab">n = 4</code> and the generated digits are <span class="process-math">\(7\text{,}\)</span> <span class="process-math">\(3\text{,}\)</span> <span class="process-math">\(0\text{,}\)</span> and <span class="process-math">\(5\text{,}\)</span> then the final number is</div>
+<div class="displaymath process-math" id="hw-base-digits-to-number-2-2-6">
+\begin{equation*}
+x = 7\cdot 10^0 + 3\cdot 10^1 + 0\cdot 10^2 + 5\cdot 10^3 = 5037.
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-base-digits-to-number-2-3">Print each step as the number is built. Use <code class="code-inline tex2jax_ignore language-matlab">x</code> for the current value, <code class="code-inline tex2jax_ignore language-matlab">x0</code> for the previous value, <code class="code-inline tex2jax_ignore language-matlab">k</code> for the place value index, and <code class="code-inline tex2jax_ignore language-matlab">digit</code> for the random digit generated at each step.<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-base-digits-to-number-2-4">Because the digits are random, your exact result will vary from one run to the next. Also note that if the last digit generated is 0, the returned number may display with fewer than <code class="code-inline tex2jax_ignore language-matlab">n</code> digits.<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-base-digits-to-number-2-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-base-digits-to-number-2-5-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-base-digits-to-number-2-5-5-4-1">number of random digits to generate<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-base-digits-to-number-2-5-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-base-digits-to-number-2-5-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-base-digits-to-number-2-5-6-4-1">constructed number<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-base-digits-to-number-2-6-1-1">Example Calls ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Example 1
+x = buildRandomNumber(1)
+% Example 2
+x = buildRandomNumber(4)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-base-digits-to-number-2-6-2-1">What to Expect ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-base-digits-to-number-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Example 1
+% x is an integer from 0 to 9.
+% One line of output is printed.
+
+% Example 2
+% x is an integer from 0 to 9999.
+% Four lines of intermediate output are printed,
+% followed by the final number.
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-base-digits-to-number-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function x = buildRandomNumber(n)
+	x = 0;
+	x0 = 0;
+	k = 0;
+
+	while k &lt; n
+		digit = randi([0, 9]);
+		fprintf('k = %i, digit = %i: ', k, digit);
+		x = x + digit * 10^k;
+		fprintf('x = %i + %i*10^%i = %i\n', x0, digit, k, x);
+		x0 = x;
+		k = k + 1;
+	end
+
+	fprintf('Final number: %i\n', x)
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.g.1"><a href="#hw-base-digits-to-number-3" title="Copy heading and permalink for Solution 1.g.1" aria-label="Copy heading and permalink for Solution 1.g.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.g: Build a Number from Random Digits"><a href="#hw-base-digits-to-number" title="Copy heading and permalink for Task 1.g: Build a Number from Random Digits" aria-label="Copy heading and permalink for Task 1.g: Build a Number from Random Digits">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(h)"><article class="task exercise-like" id="hw-while-digital-root"><h4 class="heading">
+<span class="codenumber">(h)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Digital Root.</span>
+</h4>
+<div class="para" id="hw-while-digital-root-2-1">The <dfn class="terminology">digital root</dfn> of a positive integer is found by repeatedly summing its digits until only one digit remains. For example, the digital root of <span class="process-math">\(38\)</span> is <span class="process-math">\(2\)</span> because <span class="process-math">\(3+8=11\)</span> and <span class="process-math">\(1+1=2\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-digital-root-2-2">Write a function called <code class="code-inline tex2jax_ignore language-matlab">digitalRoot</code> that computes the digital root of a positive integer <code class="code-inline tex2jax_ignore language-matlab">n</code> using <code class="code-inline tex2jax_ignore language-matlab">while</code>-loops.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-digital-root-2-3">Use an outer loop that repeats while <code class="code-inline tex2jax_ignore language-matlab">n &gt;= 10</code>. Inside that loop, copy <code class="code-inline tex2jax_ignore language-matlab">n</code> to a temporary variable and use an inner loop to add its digits one at a time with <code class="code-inline tex2jax_ignore language-matlab">mod(temp,10)</code> and <code class="code-inline tex2jax_ignore language-matlab">floor(temp/10)</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-digital-root-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-digital-root-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-digital-root-2-4-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-digital-root-2-4-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">digital_root</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-digital-root-2-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-digital-root-2-4-6-4-1">single digit from 0 to 9<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-digital-root-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1
+digitalRoot(38)
+% Test 2
+digitalRoot(987)
+% Test 3
+digitalRoot(7)
+% Test 4
+digitalRoot(12345)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-digital-root-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-digital-root-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1
+ans = 2
+% Test 2
+ans = 6
+% Test 3
+ans = 7
+% Test 4
+ans = 6
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-digital-root-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function digital_root = digitalRoot(n)
+	while n &gt;= 10
+		sum_digits = 0;
+		temp = n;
+
+		while temp &gt; 0
+			sum_digits = sum_digits + mod(temp, 10);
+			temp = floor(temp / 10);
+		end
+
+		n = sum_digits;
+	end
+
+	digital_root = n;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.h.1"><a href="#hw-while-digital-root-3" title="Copy heading and permalink for Solution 1.h.1" aria-label="Copy heading and permalink for Solution 1.h.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.h: Digital Root"><a href="#hw-while-digital-root" title="Copy heading and permalink for Task 1.h: Digital Root" aria-label="Copy heading and permalink for Task 1.h: Digital Root">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(i)"><article class="task exercise-like" id="hw-while-to-binary"><h4 class="heading">
+<span class="codenumber">(i)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Putting It Together: Decimal to Binary.</span>
+</h4>
+<div class="para" id="hw-while-to-binary-2-1">Write a function called <code class="code-inline tex2jax_ignore language-matlab">toBinary</code> that takes a positive integer <code class="code-inline tex2jax_ignore language-matlab">n</code> and returns its binary representation as an ordinary base-10 integer whose digits are the binary digits. For example, <code class="code-inline tex2jax_ignore language-matlab">toBinary(13)</code> should return <code class="code-inline tex2jax_ignore language-matlab">1101</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-to-binary-2-2">This combines the two earlier ideas: repeatedly extract remainders with division by 2, and build the output one digit at a time using a <code class="code-inline tex2jax_ignore language-matlab">place</code> variable that is multiplied by 10 each iteration.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-to-binary-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-to-binary-2-3-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-3-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-to-binary-2-3-5-4-1">positive integer to convert<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-3-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-to-binary-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-to-binary-2-3-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-3-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-to-binary-2-3-6-4-1">base-10 integer whose digits are the binary digits of <code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-3-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-to-binary-2-4-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1
+toBinary(1)
+% Test 2
+toBinary(10)
+% Test 3
+toBinary(255)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-to-binary-2-4-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-to-binary-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1
+ans = 1
+% Test 2
+ans = 1010
+% Test 3
+ans = 11111111
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-to-binary-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function result = toBinary(n)
+	result = 0;
+	place = 1;
+
+	while n &gt; 0
+		remainder = mod(n, 2);
+		result = result + remainder * place;
+		n = floor(n / 2);
+		place = place * 10;
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.i.1"><a href="#hw-while-to-binary-3" title="Copy heading and permalink for Solution 1.i.1" aria-label="Copy heading and permalink for Solution 1.i.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.i: Putting It Together: Decimal to Binary"><a href="#hw-while-to-binary" title="Copy heading and permalink for Task 1.i: Putting It Together: Decimal to Binary" aria-label="Copy heading and permalink for Task 1.i: Putting It Together: Decimal to Binary">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(j)"><article class="task exercise-like" id="hw-while-gcd"><h4 class="heading">
+<span class="codenumber">(j)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Greatest Common Divisor Function.</span>
+</h4>
+<div class="para" id="hw-while-gcd-2-1">Write a function called <code class="code-inline tex2jax_ignore language-matlab">myGCD</code> that takes two positive integers <code class="code-inline tex2jax_ignore language-matlab">a</code> and <code class="code-inline tex2jax_ignore language-matlab">b</code> and returns their greatest common divisor.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-gcd-2-2">Use the Euclidean algorithm: while <code class="code-inline tex2jax_ignore language-matlab">b ~= 0</code>, replace <code class="code-inline tex2jax_ignore language-matlab">(a,b)</code> with <code class="code-inline tex2jax_ignore language-matlab">(b, mod(a,b))</code>. When the loop ends, <code class="code-inline tex2jax_ignore language-matlab">a</code> is the greatest common divisor.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-gcd-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">a</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-gcd-2-3-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-gcd-2-3-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-gcd-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">b</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-gcd-2-3-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-gcd-2-3-6-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-gcd-2-3-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-gcd-2-3-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-gcd-2-3-7-4-1">greatest common divisor of <code class="code-inline tex2jax_ignore language-matlab">a</code> and <code class="code-inline tex2jax_ignore language-matlab">b</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-3-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-gcd-2-4-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1
+myGCD(270, 192)
+% Test 2
+myGCD(17, 13)
+% Test 3
+myGCD(84, 30)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-gcd-2-4-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-gcd-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">% Test 1
+ans = 6
+% Test 2
+ans = 1
+% Test 3
+ans = 6
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-gcd-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function result = myGCD(a, b)
+	while b ~= 0
+		r = mod(a, b);
+		a = b;
+		b = r;
+	end
+
+	result = a;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.j.1"><a href="#hw-while-gcd-3" title="Copy heading and permalink for Solution 1.j.1" aria-label="Copy heading and permalink for Solution 1.j.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.j: Greatest Common Divisor Function"><a href="#hw-while-gcd" title="Copy heading and permalink for Task 1.j: Greatest Common Divisor Function" aria-label="Copy heading and permalink for Task 1.j: Greatest Common Divisor Function">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(k)"><article class="task exercise-like" id="hw-while-is-prime"><h4 class="heading">
+<span class="codenumber">(k)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Primality Test.</span>
+</h4>
+<div class="para" id="hw-while-is-prime-2-1">A positive integer <span class="process-math">\(n &gt; 1\)</span> is <dfn class="terminology">prime</dfn> if its only positive divisors are 1 and itself.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-is-prime-2-2">Write a function called <code class="code-inline tex2jax_ignore language-matlab">isPrime</code> that returns <code class="code-inline tex2jax_ignore language-matlab">1</code> if <code class="code-inline tex2jax_ignore language-matlab">n</code> is prime and <code class="code-inline tex2jax_ignore language-matlab">0</code> otherwise. Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop that tests potential divisors <code class="code-inline tex2jax_ignore language-matlab">d</code> starting at 2. If any <code class="code-inline tex2jax_ignore language-matlab">d</code> divides <code class="code-inline tex2jax_ignore language-matlab">n</code> evenly, then <code class="code-inline tex2jax_ignore language-matlab">n</code> is not prime. You only need to test divisors while <code class="code-inline tex2jax_ignore language-matlab">d * d &lt;= n</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-is-prime-2-3">If the loop ends without finding a divisor, <code class="code-inline tex2jax_ignore language-matlab">n</code> is prime. As a special case, <code class="code-inline tex2jax_ignore language-matlab">n = 1</code> is not considered prime.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-is-prime-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-is-prime-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-is-prime-2-4-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-is-prime-2-4-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-is-prime-2-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-is-prime-2-4-6-4-1">
+<code class="code-inline tex2jax_ignore language-matlab">1</code> if <code class="code-inline tex2jax_ignore language-matlab">n</code> is prime, <code class="code-inline tex2jax_ignore language-matlab">0</code> otherwise<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-is-prime-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">isPrime(2)
+isPrime(7)
+isPrime(15)
+isPrime(97)
+isPrime(1)
+isPrime(49)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-is-prime-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-is-prime-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">ans = 1
+ans = 1
+ans = 0
+ans = 1
+ans = 0
+ans = 0
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-is-prime-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function result = isPrime(n)
+	if n &lt; 2
+		result = 0;
+		return
+	end
+
+	d = 2;
+	result = 1;
+
+	while d * d &lt;= n
+		if mod(n, d) == 0
+			result = 0;
+			return
+		end
+		d = d + 1;
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.k.1"><a href="#hw-while-is-prime-3" title="Copy heading and permalink for Solution 1.k.1" aria-label="Copy heading and permalink for Solution 1.k.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.k: Primality Test"><a href="#hw-while-is-prime" title="Copy heading and permalink for Task 1.k: Primality Test" aria-label="Copy heading and permalink for Task 1.k: Primality Test">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(l)"><article class="task exercise-like" id="hw-while-factorization"><h4 class="heading">
+<span class="codenumber">(l)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Integer Factorization by Trial Division.</span>
+</h4>
+<div class="para logical" id="hw-while-factorization-2-1">
+<div class="para">Every integer greater than 1 can be written as a product of prime factors. For example,</div>
+<div class="displaymath process-math" id="hw-while-factorization-2-1-1">
+\begin{equation*}
+360 = 2^3 \cdot 3^2 \cdot 5.
+\end{equation*}
+</div>
+<div class="para">A simple way to find these factors is <dfn class="terminology">trial division</dfn>: test divisors starting at 2, divide them out when they work, and move on when they do not.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-while-factorization-2-2">
+<div class="para">As a warm-up, first write a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop that divides out all copies of 2 from a number <code class="code-inline tex2jax_ignore language-matlab">n</code>. For example, starting with <code class="code-inline tex2jax_ignore language-matlab">n = 360</code>, the values should change as follows:</div>
+<div class="displaymath process-math" id="hw-while-factorization-2-2-4">
+\begin{equation*}
+360 \to 180 \to 90 \to 45.
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-factorization-2-3">Then write a function <code class="code-inline tex2jax_ignore language-matlab">primeFactors(n)</code> that returns all prime factors of <code class="code-inline tex2jax_ignore language-matlab">n</code> as a row vector in nondecreasing order. Use a divisor <code class="code-inline tex2jax_ignore language-matlab">d</code> that starts at 2. While <code class="code-inline tex2jax_ignore language-matlab">d * d &lt;= n</code>, test whether <code class="code-inline tex2jax_ignore language-matlab">d</code> divides <code class="code-inline tex2jax_ignore language-matlab">n</code>. If it does, record the factor and divide it out. If it does not, increase <code class="code-inline tex2jax_ignore language-matlab">d</code> by 1. After the loop, if <code class="code-inline tex2jax_ignore language-matlab">n &gt; 1</code>, then the remaining value of <code class="code-inline tex2jax_ignore language-matlab">n</code> is the last prime factor.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-factorization-2-4">Finally, write a function <code class="code-inline tex2jax_ignore language-matlab">smallestFactor(n)</code> that returns the smallest prime factor of <code class="code-inline tex2jax_ignore language-matlab">n</code>. If <code class="code-inline tex2jax_ignore language-matlab">n</code> is prime, the function should return <code class="code-inline tex2jax_ignore language-matlab">n</code> itself.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-factorization-2-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-factorization-2-5-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-factorization-2-5-5-4-1">integer greater than 1<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-factorization-2-5-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">factors</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-factorization-2-5-6-3-1">(1xn) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-factorization-2-5-6-4-1">row vector of prime factors returned by <code class="code-inline tex2jax_ignore language-matlab">primeFactors</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-factorization-2-5-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">p</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-factorization-2-5-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-factorization-2-5-7-4-1">smallest prime factor returned by <code class="code-inline tex2jax_ignore language-matlab">smallestFactor</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-5-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-factorization-2-6-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">primeFactors(360)
+primeFactors(97)
+smallestFactor(91)
+smallestFactor(9973)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-factorization-2-6-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-factorization-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">ans = [2 2 2 3 3 5]
+ans = [97]
+ans = 7
+ans = 9973
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-factorization-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">n = 360;
+fprintf('Starting with n = %i\n', n)
+while mod(n, 2) == 0
+	n = n / 2;
+	fprintf('  /2 -&gt; %i\n', n)
+end
+fprintf('Remaining: n = %i\n', n)
+</code></pre></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function factors = primeFactors(n)
+	factors = [];
+	d = 2;
+
+	while d * d &lt;= n
+		if mod(n, d) == 0
+			factors(end + 1) = d; %#ok&lt;AGROW&gt;
+			n = n / d;
+		else
+			d = d + 1;
+		end
+	end
+
+	if n &gt; 1
+		factors(end + 1) = n;
+	end
+end
+</code></pre></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function p = smallestFactor(n)
+	d = 2;
+	while d * d &lt;= n
+		if mod(n, d) == 0
+			p = d;
+			return
+		end
+		d = d + 1;
+	end
+	p = n;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.l.1"><a href="#hw-while-factorization-3" title="Copy heading and permalink for Solution 1.l.1" aria-label="Copy heading and permalink for Solution 1.l.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.l: Integer Factorization by Trial Division"><a href="#hw-while-factorization" title="Copy heading and permalink for Task 1.l: Integer Factorization by Trial Division" aria-label="Copy heading and permalink for Task 1.l: Integer Factorization by Trial Division">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(m)"><article class="task exercise-like" id="hw-collatz-conjecture-c"><h4 class="heading">
+<span class="codenumber">(m)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Collatz Siblings.</span>
+</h4>
+<div class="para" id="hw-collatz-conjecture-c-2-1">Write a function <code class="code-inline tex2jax_ignore language-matlab">collatzSiblings(x, a, b)</code> that uses <code class="code-inline tex2jax_ignore language-matlab">collatzSteps</code> to count how many <em class="emphasis">other</em> integers in the interval from <code class="code-inline tex2jax_ignore language-matlab">a</code> through <code class="code-inline tex2jax_ignore language-matlab">b</code>, inclusive, have the same Collatz step count as <code class="code-inline tex2jax_ignore language-matlab">x</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-collatz-conjecture-c-2-2">For example, <code class="code-inline tex2jax_ignore language-matlab">collatzSteps(6) = 8</code>, but no other integer from 1 through 10 takes 8 steps, so <code class="code-inline tex2jax_ignore language-matlab">collatzSiblings(6, 1, 10)</code> should return <code class="code-inline tex2jax_ignore language-matlab">0</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-collatz-conjecture-c-2-3">Assume <code class="code-inline tex2jax_ignore language-matlab">x</code>, <code class="code-inline tex2jax_ignore language-matlab">a</code>, and <code class="code-inline tex2jax_ignore language-matlab">b</code> are positive integers with <code class="code-inline tex2jax_ignore language-matlab">a &lt;= x &lt;= b</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-collatz-conjecture-c-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-collatz-conjecture-c-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-collatz-conjecture-c-2-4-5-4-1">reference integer whose Collatz steps are being matched<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-collatz-conjecture-c-2-4-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">a</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-collatz-conjecture-c-2-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-collatz-conjecture-c-2-4-6-4-1">starting integer in the interval<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-collatz-conjecture-c-2-4-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">b</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-collatz-conjecture-c-2-4-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-collatz-conjecture-c-2-4-7-4-1">ending integer in the interval<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-collatz-conjecture-c-2-4-8-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">count</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-collatz-conjecture-c-2-4-8-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-8-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-collatz-conjecture-c-2-4-8-4-1">number of integers in <span class="process-math">\([a,b]\text{,}\)</span> excluding <code class="code-inline tex2jax_ignore language-matlab">x</code>, with the same Collatz step count as <code class="code-inline tex2jax_ignore language-matlab">x</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-4-8-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-collatz-conjecture-c-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">count = collatzSiblings(6, 1, 10)
+count = collatzSiblings(10, 1, 100)
+count = collatzSiblings(27, 1, 1000)
+count = collatzSiblings(6171, 1, 10000)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-collatz-conjecture-c-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-collatz-conjecture-c-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">count = 0
+count = 1
+count = 5
+count = 0
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-collatz-conjecture-c-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function count = collatzSiblings(x, a, b)
+	targetSteps = collatzSteps(x);
+	count = 0;
+
+	for n = a:b
+		if n ~= x &amp;&amp; collatzSteps(n) == targetSteps
+			count = count + 1;
+		end
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 1.m.1"><a href="#hw-collatz-conjecture-c-3" title="Copy heading and permalink for Solution 1.m.1" aria-label="Copy heading and permalink for Solution 1.m.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.m: Collatz Siblings"><a href="#hw-collatz-conjecture-c" title="Copy heading and permalink for Task 1.m: Collatz Siblings" aria-label="Copy heading and permalink for Task 1.m: Collatz Siblings">🔗</a></div></article></div>
+</div></div></div>
+<div class="autopermalink" data-description="Exercise 1: While-Loop Exercises"><a href="#coding-exercises-while-loops" title="Copy heading and permalink for Exercise 1: While-Loop Exercises" aria-label="Copy heading and permalink for Exercise 1: While-Loop Exercises">🔗</a></div></article><article class="exercise exercise-like" id="coding-exercises-while-extended"><h3 class="heading">
+<span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Extended While-Loop Problems.</span>
+</h3>
+<div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-coding-exercises-while-extended">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="hw-while-hailstone"><h4 class="heading">
+<span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Hailstone Sequence Analysis.</span>
+</h4>
+<div class="para" id="hw-while-hailstone-2-1">The Collatz, or hailstone, sequence starts with a positive integer <span class="process-math">\(n\)</span> and repeats the following rules until it reaches 1:<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <ul class="square" id="hw-while-hailstone-2-2">
+<li id="hw-while-hailstone-2-2-1">
+<div class="para" id="p-derived-hw-while-hailstone-2-2-1">If <span class="process-math">\(n\)</span> is even, replace <span class="process-math">\(n\)</span> with <span class="process-math">\(n/2\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-while-hailstone-2-2-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="hw-while-hailstone-2-2-2">
+<div class="para" id="p-derived-hw-while-hailstone-2-2-2">If <span class="process-math">\(n\)</span> is odd, replace <span class="process-math">\(n\)</span> with <span class="process-math">\(3n + 1\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#hw-while-hailstone-2-2-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul> <div class="para" id="hw-while-hailstone-2-3">Write a function <code class="code-inline tex2jax_ignore language-matlab">hailstone(n)</code> that returns two values: <code class="code-inline tex2jax_ignore language-matlab">steps</code>, the number of updates needed to reach 1, and <code class="code-inline tex2jax_ignore language-matlab">peak</code>, the largest value reached anywhere in the sequence.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-hailstone-2-4">Then write a short function <code class="code-inline tex2jax_ignore language-matlab">hailstoneSummary(limit)</code> that checks every starting value from 1 through <code class="code-inline tex2jax_ignore language-matlab">limit</code>. It should report which starting value produces the longest sequence and which produces the highest peak.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-hailstone-2-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-hailstone-2-5-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-hailstone-2-5-5-4-1">positive integer starting value<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-hailstone-2-5-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">steps</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-hailstone-2-5-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-hailstone-2-5-6-4-1">number of steps needed to reach 1<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-hailstone-2-5-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">peak</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-hailstone-2-5-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-hailstone-2-5-7-4-1">largest value reached in the sequence<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-5-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-hailstone-2-6-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">[steps, peak] = hailstone(1)
+[steps, peak] = hailstone(7)
+[steps, peak] = hailstone(10)
+[longestStart, longestSteps, highestStart, highestPeak] = hailstoneSummary(100)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-hailstone-2-6-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-hailstone-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">steps = 0    peak = 1
+steps = 16   peak = 52
+steps = 6    peak = 16
+longestStart = 97   longestSteps = 118
+highestStart = 27   highestPeak = 9232
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-hailstone-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function [steps, peak] = hailstone(n)
+	steps = 0;
+	peak = n;
+
+	while n ~= 1
+		if mod(n, 2) == 0
+			n = n / 2;
+		else
+			n = 3 * n + 1;
+		end
+		steps = steps + 1;
+		peak = max(peak, n);
+	end
+end
+</code></pre></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function [longestStart, longestSteps, highestStart, highestPeak] = hailstoneSummary(limit)
+	longestStart = 1;
+	longestSteps = 0;
+	highestStart = 1;
+	highestPeak = 1;
+
+	for k = 1:limit
+		[steps, peak] = hailstone(k);
+		if steps &gt; longestSteps
+			longestSteps = steps;
+			longestStart = k;
+		end
+		if peak &gt; highestPeak
+			highestPeak = peak;
+			highestStart = k;
+		end
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 2.a.1"><a href="#hw-while-hailstone-3" title="Copy heading and permalink for Solution 2.a.1" aria-label="Copy heading and permalink for Solution 2.a.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 2.a: Hailstone Sequence Analysis"><a href="#hw-while-hailstone" title="Copy heading and permalink for Task 2.a: Hailstone Sequence Analysis" aria-label="Copy heading and permalink for Task 2.a: Hailstone Sequence Analysis">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="hw-while-loan-payoff"><h4 class="heading">
+<span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Loan Payoff Calculator.</span>
+</h4>
+<div class="para logical" id="hw-while-loan-payoff-2-1">
+<div class="para">Suppose a loan has current balance <code class="code-inline tex2jax_ignore language-matlab">balance</code>, monthly interest rate <code class="code-inline tex2jax_ignore language-matlab">rate</code>, and fixed monthly payment <code class="code-inline tex2jax_ignore language-matlab">payment</code>. Each month, interest is added first and then the payment is made, so the update is</div>
+<div class="displaymath process-math" id="hw-while-loan-payoff-2-1-4">
+\begin{equation*}
+\text{balance} = \text{balance}(1 + \text{rate}) - \text{payment}.
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-loan-payoff-2-2">Write a function <code class="code-inline tex2jax_ignore language-matlab">loanPayoff(balance, rate, payment)</code> that uses a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop to determine how many months it takes to pay off the loan. Print the month number and remaining balance each iteration, and return the total number of months and the total amount paid.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-loan-payoff-2-3">Do not overpay on the final month. If the balance after interest is less than the regular payment, then the final payment should be exactly the remaining balance.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-loan-payoff-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">balance</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-loan-payoff-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-loan-payoff-2-4-5-4-1">starting loan balance<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-loan-payoff-2-4-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">rate</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-loan-payoff-2-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-loan-payoff-2-4-6-4-1">monthly interest rate written as a decimal<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-loan-payoff-2-4-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">payment</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-loan-payoff-2-4-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-loan-payoff-2-4-7-4-1">regular monthly payment<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-loan-payoff-2-4-8-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">months</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-loan-payoff-2-4-8-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-8-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-loan-payoff-2-4-8-4-1">number of months needed to pay off the loan<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-8-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-loan-payoff-2-4-9-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">totalPaid</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-loan-payoff-2-4-9-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-9-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-loan-payoff-2-4-9-4-1">total amount paid over the life of the loan<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-4-9-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-loan-payoff-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">[m, total] = loanPayoff(1000, 0.015, 100)
+[m, total] = loanPayoff(500, 0.01, 75)
+[m, total] = loanPayoff(200, 0.02, 50)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-loan-payoff-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-loan-payoff-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">m = 11   total = 1091.622688063678
+m = 7    total = 520.052535250930
+m = 5    total = 210.614152640000
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-loan-payoff-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function [months, totalPaid] = loanPayoff(balance, rate, payment)
+	months = 0;
+	totalPaid = 0;
+
+	while balance &gt; 0
+		balance = balance * (1 + rate);
+		months = months + 1;
+
+		thisPayment = min(payment, balance);
+		balance = balance - thisPayment;
+		totalPaid = totalPaid + thisPayment;
+
+		fprintf('Month %2i: balance = $%.2f\n', months, balance)
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 2.b.1"><a href="#hw-while-loan-payoff-3" title="Copy heading and permalink for Solution 2.b.1" aria-label="Copy heading and permalink for Solution 2.b.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 2.b: Loan Payoff Calculator"><a href="#hw-while-loan-payoff" title="Copy heading and permalink for Task 2.b: Loan Payoff Calculator" aria-label="Copy heading and permalink for Task 2.b: Loan Payoff Calculator">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="hw-while-population"><h4 class="heading">
+<span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Population Growth Model.</span>
+</h4>
+<div class="para logical" id="hw-while-population-2-1">
+<div class="para">A simple population model updates the current population <span class="process-math">\(P\)</span> by</div>
+<div class="displaymath process-math" id="hw-while-population-2-1-2">
+\begin{equation*}
+P_{\text{next}} = P + rP\left(1 - \frac{P}{K}\right),
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(r\)</span> is the growth rate and <span class="process-math">\(K\)</span> is the carrying capacity. This is a discrete version of the logistic growth model.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-population-2-2">Write a function <code class="code-inline tex2jax_ignore language-matlab">populationYears(r)</code> that uses the fixed values <code class="code-inline tex2jax_ignore language-matlab">P = 100</code> and <code class="code-inline tex2jax_ignore language-matlab">K = 10000</code>. Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop to simulate the population year by year until it reaches at least 95% of the carrying capacity. Print the year and population each iteration, and return the number of years needed together with the final population.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-population-2-3">Test your function with <code class="code-inline tex2jax_ignore language-matlab">r = 0.1</code>, <code class="code-inline tex2jax_ignore language-matlab">r = 0.5</code>, and <code class="code-inline tex2jax_ignore language-matlab">r = 1.5</code>. In this discrete model, a large growth rate can overshoot the carrying capacity before settling down.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-population-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">r</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-population-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-population-2-4-5-4-1">growth rate<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-population-2-4-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">years</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-population-2-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-population-2-4-6-4-1">number of years needed to reach 95% of capacity<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-population-2-4-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">P</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-population-2-4-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-population-2-4-7-4-1">population at the stopping time<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-4-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-population-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">[years, P] = populationYears(0.1)
+[years, P] = populationYears(0.5)
+[years, P] = populationYears(1.5)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-population-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-population-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">years = 77   P = 9539.997631357417
+years = 16   P = 9560.701086710253
+years = 6    P = 10018.734202549871
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-population-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function [years, P] = populationYears(r)
+	P = 100;
+	K = 10000;
+	years = 0;
+
+	fprintf('Year %3i: P = %.2f\n', years, P)
+	while P &lt; 0.95 * K
+		P = P + r * P * (1 - P / K);
+		years = years + 1;
+		fprintf('Year %3i: P = %.2f\n', years, P)
+	end
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 2.c.1"><a href="#hw-while-population-3" title="Copy heading and permalink for Solution 2.c.1" aria-label="Copy heading and permalink for Solution 2.c.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 2.c: Population Growth Model"><a href="#hw-while-population" title="Copy heading and permalink for Task 2.c: Population Growth Model" aria-label="Copy heading and permalink for Task 2.c: Population Growth Model">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="hw-while-archimedes-pi"><h4 class="heading">
+<span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Archimedes’ Method for <span class="process-math">\(\pi\)</span>.</span>
+</h4>
+<div class="para logical" id="hw-while-archimedes-pi-2-1">
+<div class="para">Archimedes approximated <span class="process-math">\(\pi\)</span> by using regular polygons inscribed in a unit circle. If a regular <span class="process-math">\(n\)</span>-gon is inscribed in a circle of radius 1, then its perimeter is</div>
+<div class="displaymath process-math" id="hw-while-archimedes-pi-2-1-3">
+\begin{equation*}
+P_n = 2n\sin\left(\frac{\pi}{n}\right).
+\end{equation*}
+</div>
+<div class="para">As <span class="process-math">\(n\)</span> increases, the perimeter approaches the circle’s circumference <span class="process-math">\(2\pi\text{.}\)</span> Therefore,</div>
+<div class="displaymath process-math" id="hw-while-archimedes-pi-2-1-6">
+\begin{equation*}
+\frac{P_n}{2} = n\sin\left(\frac{\pi}{n}\right)
+\end{equation*}
+</div>
+<div class="para">approaches <span class="process-math">\(\pi\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-while-archimedes-pi-2-2">
+<div class="para">Write a function <code class="code-inline tex2jax_ignore language-matlab">archimedesPi(tol)</code> that starts with <code class="code-inline tex2jax_ignore language-matlab">n = 6</code> and repeatedly doubles <code class="code-inline tex2jax_ignore language-matlab">n</code> in a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop. In each iteration, compute</div>
+<div class="displaymath process-math" id="hw-while-archimedes-pi-2-2-5">
+\begin{equation*}
+\text{approx} = n\sin\left(\frac{\pi}{n}\right)
+\end{equation*}
+</div>
+<div class="para">and continue until <code class="code-inline tex2jax_ignore language-matlab">abs(approx - pi) &lt;= tol</code>. Display the step number, the current value of <code class="code-inline tex2jax_ignore language-matlab">n</code>, the approximation, and the error at each step. Return the final <code class="code-inline tex2jax_ignore language-matlab">n</code>, the final approximation, and the number of doublings used.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-archimedes-pi-2-3">Because the error is proportional to <span class="process-math">\(1/n^2\text{,}\)</span> doubling <span class="process-math">\(n\)</span> reduces the error by about a factor of 4. So each doubling gives about <span class="process-math">\(\log_{10}(4) \approx 0.60\)</span> additional correct decimal digits. This is much slower than Newton’s method, which typically doubles the number of correct digits each iteration once it is close to the root.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-archimedes-pi-2-4-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">tol</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-archimedes-pi-2-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-archimedes-pi-2-4-5-4-1">stopping tolerance for <code class="code-inline tex2jax_ignore language-matlab">abs(approx - pi)</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-archimedes-pi-2-4-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-archimedes-pi-2-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-archimedes-pi-2-4-6-4-1">final number of polygon sides<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-archimedes-pi-2-4-7-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">approx</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-archimedes-pi-2-4-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-archimedes-pi-2-4-7-4-1">final approximation of <span class="process-math">\(\pi\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines"></td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-archimedes-pi-2-4-8-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">steps</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-archimedes-pi-2-4-8-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-8-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-archimedes-pi-2-4-8-4-1">number of times <code class="code-inline tex2jax_ignore language-matlab">n</code> was doubled<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-4-8-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-archimedes-pi-2-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">[n, approx, steps] = archimedesPi(1e-2)
+[n, approx, steps] = archimedesPi(1e-6)
+[n, approx, steps] = archimedesPi(1e-10)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-archimedes-pi-2-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-archimedes-pi-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">n = 24      approx = 3.132628613281238   steps = 2
+n = 3072    approx = 3.141592105999271   steps = 9
+n = 393216  approx = 3.141592653556370   steps = 16
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-archimedes-pi-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function [n, approx, steps] = archimedesPi(tol)
+	n = 6;
+	steps = 0;
+	approx = n * sin(pi / n);
+	err = abs(approx - pi);
+
+	while err &gt; tol
+		fprintf('Step %2i: n = %8i, approx = %.15f, error = %.3e\n', ...
+			steps, n, approx, err)
+		n = 2 * n;
+		steps = steps + 1;
+		approx = n * sin(pi / n);
+		err = abs(approx - pi);
+	end
+
+	fprintf('Step %2i: n = %8i, approx = %.15f, error = %.3e\n', ...
+		steps, n, approx, err)
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 2.d.1"><a href="#hw-while-archimedes-pi-3" title="Copy heading and permalink for Solution 2.d.1" aria-label="Copy heading and permalink for Solution 2.d.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 2.d: Archimedes’ Method for \pi"><a href="#hw-while-archimedes-pi" title="Copy heading and permalink for Task 2.d: Archimedes’ Method for \pi" aria-label="Copy heading and permalink for Task 2.d: Archimedes’ Method for \pi">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="hw-while-smallest-factor"><h4 class="heading">
+<span class="codenumber">(e)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Smallest Prime Factor.</span>
+</h4>
+<div class="para" id="hw-while-smallest-factor-2-1">Write a function called <code class="code-inline tex2jax_ignore language-matlab">smallestFactor</code> that returns the smallest prime factor of an integer <code class="code-inline tex2jax_ignore language-matlab">n &gt; 1</code>. If <code class="code-inline tex2jax_ignore language-matlab">n</code> is prime, the function should return <code class="code-inline tex2jax_ignore language-matlab">n</code> itself.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-smallest-factor-2-2">Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop that tests divisors <code class="code-inline tex2jax_ignore language-matlab">d</code> starting at 2. If <code class="code-inline tex2jax_ignore language-matlab">d</code> divides <code class="code-inline tex2jax_ignore language-matlab">n</code>, return <code class="code-inline tex2jax_ignore language-matlab">d</code> immediately. Otherwise, increase <code class="code-inline tex2jax_ignore language-matlab">d</code> by 1. You only need to test while <code class="code-inline tex2jax_ignore language-matlab">d * d &lt;= n</code>. If no divisor is found, <code class="code-inline tex2jax_ignore language-matlab">n</code> is prime and is its own smallest factor.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-smallest-factor-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-smallest-factor-2-3-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-3-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-smallest-factor-2-3-5-4-1">integer greater than 1<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-3-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-smallest-factor-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">p</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-smallest-factor-2-3-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-3-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-smallest-factor-2-3-6-4-1">smallest prime factor of <code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-3-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-smallest-factor-2-4-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">smallestFactor(15)
+smallestFactor(97)
+smallestFactor(91)
+smallestFactor(360)
+smallestFactor(9973)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-smallest-factor-2-4-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-smallest-factor-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">ans = 3
+ans = 97
+ans = 7
+ans = 2
+ans = 9973
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-smallest-factor-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function p = smallestFactor(n)
+	d = 2;
+
+	while d * d &lt;= n
+		if mod(n, d) == 0
+			p = d;
+			return
+		end
+		d = d + 1;
+	end
+
+	p = n;
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 2.e.1"><a href="#hw-while-smallest-factor-3" title="Copy heading and permalink for Solution 2.e.1" aria-label="Copy heading and permalink for Solution 2.e.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 2.e: Smallest Prime Factor"><a href="#hw-while-smallest-factor" title="Copy heading and permalink for Task 2.e: Smallest Prime Factor" aria-label="Copy heading and permalink for Task 2.e: Smallest Prime Factor">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(f)"><article class="task exercise-like" id="hw-while-print-factorization"><h4 class="heading">
+<span class="codenumber">(f)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Print Prime Factorization.</span>
+</h4>
+<div class="para logical" id="hw-while-print-factorization-2-1">
+<div class="para">Every integer greater than 1 can be written as a product of prime factors. For example,</div>
+<div class="displaymath process-math" id="hw-while-print-factorization-2-1-1">
+\begin{equation*}
+360 = 2 \cdot 2 \cdot 2 \cdot 3 \cdot 3 \cdot 5.
+\end{equation*}
+</div>
+<div class="para">A simple method called <dfn class="terminology">trial division</dfn> tests divisors starting at 2, divides them out when they work, and moves on when they do not.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-print-factorization-2-2">As a warm-up, write a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop that divides out all copies of 2 from a number <code class="code-inline tex2jax_ignore language-matlab">n</code>, printing each step. For example, starting with <code class="code-inline tex2jax_ignore language-matlab">n = 360</code>:<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="code-block tex2jax_ignore clipboardable">/2 -&gt; 180
+/2 -&gt; 90
+/2 -&gt; 45
+Remaining: 45
+</pre>
+<div class="para" id="hw-while-print-factorization-2-4">Then write a function called <code class="code-inline tex2jax_ignore language-matlab">printFactors</code> that prints all the prime factors of <code class="code-inline tex2jax_ignore language-matlab">n</code> separated by spaces. Use a divisor <code class="code-inline tex2jax_ignore language-matlab">d</code> starting at 2. While <code class="code-inline tex2jax_ignore language-matlab">d * d &lt;= n</code>, test whether <code class="code-inline tex2jax_ignore language-matlab">d</code> divides <code class="code-inline tex2jax_ignore language-matlab">n</code>. If it does, print <code class="code-inline tex2jax_ignore language-matlab">d</code> and divide it out. If it does not, increase <code class="code-inline tex2jax_ignore language-matlab">d</code> by 1. After the loop, if <code class="code-inline tex2jax_ignore language-matlab">n &gt; 1</code>, print the remaining value as the last factor.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-print-factorization-2-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-print-factorization-2-5-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-print-factorization-2-5-5-4-1">integer greater than 1<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" colspan="3" style="max-width:90px;"><div class="para" id="hw-while-print-factorization-2-5-6-2-1">none — prints the prime factorization of <code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-print-factorization-2-6-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">printFactors(360)
+printFactors(97)
+printFactors(84)
+printFactors(2)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-print-factorization-2-6-2-1">Expected Output ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">2 2 2 3 3 5
+97
+2 2 3 7
+2
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-print-factorization-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="para" id="hw-while-print-factorization-3-1">Here is the warm-up script for dividing out all copies of 2:<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">n = 360;
+while mod(n, 2) == 0
+	n = n / 2;
+	fprintf('/2 -&gt; %i\n', n)
+end
+fprintf('Remaining: %i\n', n)
+</code></pre></div>
+<div class="para" id="hw-while-print-factorization-3-3">Here is the <code class="code-inline tex2jax_ignore language-matlab">printFactors</code> function:<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-print-factorization-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function printFactors(n)
+	d = 2;
+
+	while d * d &lt;= n
+		if mod(n, d) == 0
+			fprintf('%i ', d)
+			n = n / d;
+		else
+			d = d + 1;
+		end
+	end
+
+	if n &gt; 1
+		fprintf('%i', n)
+	end
+	fprintf('\n')
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 2.f.1"><a href="#hw-while-print-factorization-3" title="Copy heading and permalink for Solution 2.f.1" aria-label="Copy heading and permalink for Solution 2.f.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 2.f: Print Prime Factorization"><a href="#hw-while-print-factorization" title="Copy heading and permalink for Task 2.f: Print Prime Factorization" aria-label="Copy heading and permalink for Task 2.f: Print Prime Factorization">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(g)"><article class="task exercise-like" id="hw-while-egyptian-fractions"><h4 class="heading">
+<span class="codenumber">(g)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Egyptian Fraction Decomposition.</span>
+</h4>
+<div class="para logical" id="hw-while-egyptian-fractions-2-1">
+<div class="para">An <dfn class="terminology">unit fraction</dfn> is a fraction with numerator 1. The ancient Egyptians wrote every positive fraction as a sum of distinct unit fractions. For example,</div>
+<div class="displaymath process-math" id="hw-while-egyptian-fractions-2-1-2">
+\begin{equation*}
+\frac{5}{7} = \frac{1}{2} + \frac{1}{5} + \frac{1}{70}.
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="hw-while-egyptian-fractions-2-2">
+<div class="para">A standard greedy algorithm builds this decomposition one term at a time. If the current fraction is <span class="process-math">\(\frac{p}{q}\text{,}\)</span> choose</div>
+<div class="displaymath process-math" id="hw-while-egyptian-fractions-2-2-2">
+\begin{equation*}
+n = \left\lceil \frac{q}{p} \right\rceil,
+\end{equation*}
+</div>
+<div class="para">so that <span class="process-math">\(\frac{1}{n}\)</span> is the largest unit fraction that does not exceed <span class="process-math">\(\frac{p}{q}\text{.}\)</span> Then subtract it and continue with the remainder.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="hw-while-egyptian-fractions-2-3">Write a function <code class="code-inline tex2jax_ignore language-matlab">egyptian(p, q)</code> that takes positive integers <code class="code-inline tex2jax_ignore language-matlab">p</code> and <code class="code-inline tex2jax_ignore language-matlab">q</code> with <span class="process-math">\(0 &lt; p &lt; q\)</span> and prints the Egyptian fraction decomposition of <span class="process-math">\(\frac{p}{q}\text{.}\)</span> Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop that continues while <code class="code-inline tex2jax_ignore language-matlab">p &gt; 0</code>. In each iteration:<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <ol class="lower-alpha lower-alpha-level-1" id="hw-while-egyptian-fractions-2-4">
+<li id="hw-while-egyptian-fractions-2-4-1">
+<div class="para" id="p-derived-hw-while-egyptian-fractions-2-4-1">Compute <code class="code-inline tex2jax_ignore language-matlab">n = ceil(q / p)</code>.</div>
+<div class="autopermalink" data-description="Item 2.a"><a href="#hw-while-egyptian-fractions-2-4-1" title="Copy heading and permalink for Item 2.a" aria-label="Copy heading and permalink for Item 2.a">🔗</a></div>
+</li>
+<li id="hw-while-egyptian-fractions-2-4-2">
+<div class="para" id="p-derived-hw-while-egyptian-fractions-2-4-2">Print the next term <code class="code-inline tex2jax_ignore language-matlab">1/n</code>.</div>
+<div class="autopermalink" data-description="Item 2.b"><a href="#hw-while-egyptian-fractions-2-4-2" title="Copy heading and permalink for Item 2.b" aria-label="Copy heading and permalink for Item 2.b">🔗</a></div>
+</li>
+<li id="hw-while-egyptian-fractions-2-4-3">
+<div class="para" id="p-derived-hw-while-egyptian-fractions-2-4-3">Update the fraction using<div class="displaymath process-math" id="hw-while-egyptian-fractions-2-4-3-1">
+\begin{equation*}
+\frac{p}{q} - \frac{1}{n} = \frac{pn - q}{qn}.
+\end{equation*}
+</div>So set <code class="code-inline tex2jax_ignore language-matlab">p = p*n - q</code> and <code class="code-inline tex2jax_ignore language-matlab">q = q*n</code>.</div>
+<div class="autopermalink" data-description="Item 2.c"><a href="#hw-while-egyptian-fractions-2-4-3" title="Copy heading and permalink for Item 2.c" aria-label="Copy heading and permalink for Item 2.c">🔗</a></div>
+</li>
+</ol> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
+<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="hw-while-egyptian-fractions-2-5-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">p</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="hw-while-egyptian-fractions-2-5-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="hw-while-egyptian-fractions-2-5-5-4-1">positive integer numerator<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines"></td>
+<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-egyptian-fractions-2-5-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">q</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-egyptian-fractions-2-5-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-egyptian-fractions-2-5-6-4-1">positive integer denominator, with <span class="process-math">\(p &lt; q\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="r t b1 r0 l0 t0 lines">Outputs:</td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="hw-while-egyptian-fractions-2-5-7-2-1">none<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="hw-while-egyptian-fractions-2-5-7-3-1">printed text<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="hw-while-egyptian-fractions-2-5-7-4-1">the Egyptian fraction decomposition of <span class="process-math">\(\frac{p}{q}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-5-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+</tr>
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:48.4848484848485% 50.5050505050505%;column-gap:1%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-egyptian-fractions-2-6-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">egyptian(5, 7)
+egyptian(3, 11)
+egyptian(7, 15)
+</code></pre>
+</div>
+<div class="sbspanel sbspanel--top top" style="">
+<div class="para" id="hw-while-egyptian-fractions-2-6-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-egyptian-fractions-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<pre class="program clipboardable"><code class="language-matlab">5/7 = 1/2 + 1/5 + 1/70
+3/11 = 1/4 + 1/44
+7/15 = 1/3 + 1/8 + 1/120
+</code></pre>
+</div>
+</div></div>
+<div class="solutions"><details id="hw-while-egyptian-fractions-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">function egyptian(p, q)
+	origP = p;
+	origQ = q;
+	first = true;
+
+	fprintf('%i/%i = ', origP, origQ)
+	while p &gt; 0
+		n = ceil(q / p);
+		if ~first
+			fprintf(' + ')
+		end
+		fprintf('1/%i', n)
+
+		p = p * n - q;
+		q = q * n;
+		g = gcd(p, q);
+		if g &gt; 0
+			p = p / g;
+			q = q / g;
+		end
+
+		first = false;
+	end
+	fprintf('\n')
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Solution 2.g.1"><a href="#hw-while-egyptian-fractions-3" title="Copy heading and permalink for Solution 2.g.1" aria-label="Copy heading and permalink for Solution 2.g.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 2.g: Egyptian Fraction Decomposition"><a href="#hw-while-egyptian-fractions" title="Copy heading and permalink for Task 2.g: Egyptian Fraction Decomposition" aria-label="Copy heading and permalink for Task 2.g: Egyptian Fraction Decomposition">🔗</a></div></article></div>
+</div></div></div>
+<div class="autopermalink" data-description="Exercise 2: Extended While-Loop Problems"><a href="#coding-exercises-while-extended" title="Copy heading and permalink for Exercise 2: Extended While-Loop Problems" aria-label="Copy heading and permalink for Exercise 2: Extended While-Loop Problems">🔗</a></div></article><div class="autopermalink" data-description="Exercises: 💻 Coding Exercises"><a href="#while-loop-coding-exercises" title="Copy heading and permalink for Exercises: 💻 Coding Exercises" aria-label="Copy heading and permalink for Exercises: 💻 Coding Exercises">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="while-loop-reading-questions.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="feedback-link" href="mailto:coxgeoff@vmi.edu" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="external/custom-styles.css">
 <script>
 var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
@@ -95,7 +96,7 @@ window.MathJax = {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
 <meta property="og:image" content="vmi.instructure.com/external/figures/matlabrs-icon.png">
-<meta property="book:title" content="Introduction to Programming with MATLAB">
+<meta property="book:title" content="Getting Started with MATLAB Programming">
 <meta property="book:author" content="Geoffrey W. Cox, Ph.D.">
 <script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
@@ -120,22 +121,22 @@ eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.11.18';
+eBookConfig.runestone_version = '7.12.2';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.1d92cd109bc12c4d.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.98ef3b0c170cd180.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.74f6fa0c85f09c79.css">
+<script src="_static/prefix-runtime.d2d4c56cb9826035.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.a4a209ed3a55c515.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
 <body id="matlabrs" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" target="_blank" href="https://www.vmi.edu/"><img src="external/figures/matlabrs-icon.png" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="matlabrs.html"><span class="title">Introduction to Programming with MATLAB</span> <span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span></a></h1>
+<h1 class="heading"><a href="matlabrs.html"><span class="title">Getting Started with MATLAB Programming</span> <span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span></a></h1>
 <p class="byline">Geoffrey W. Cox, Ph.D.</p>
 </div>
 </div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
@@ -164,8 +165,8 @@ var ggbApp = new GGBApplet({"appName": "classic",
     "autoHeight": true,
     "disableAutoScale": false},
 true);
-</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="up-button button" href="matlabrs.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="ch-welcome-to-matlab.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
-</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand\DLGray{\color{Gray}}
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="up-button button" href="matlabrs.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="chp-welcome-to-matlab.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\newcommand\DLGray{\color{Gray}}
 \newcommand\DLO{\color{BurntOrange}}
 \newcommand\DLRa{\color{WildStrawberry}}
 \newcommand\DLGa{\color{Green}}
@@ -222,126 +223,173 @@ true);
 <ul class="structural toc-item-list active"><li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li></ul>
 </li>
 <li class="toc-item toc-chapter">
-<div class="toc-title-box"><a href="ch-welcome-to-matlab.html" class="internal"><span class="codenumber">1</span> <span class="title">Welcome to MATLAB</span></a></div>
+<div class="toc-title-box"><a href="chp-welcome-to-matlab.html" class="internal"><span class="codenumber">1</span> <span class="title">Welcome to MATLAB</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="getting-matlab.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Installing MATLAB</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-installing-matlab.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Installing MATLAB</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-matlab-desktop.html" class="internal"><span class="codenumber">1.2</span> <span class="title">MATLAB Desktop</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-command-window-variables.html" class="internal"><span class="codenumber">2</span> <span class="title">Command Window &amp; Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-command-window.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Command Window</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-variables.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Variables</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-scripts-functions.html" class="internal"><span class="codenumber">3</span> <span class="title">Scripts &amp; Functions</span></a></div>
+<ul class="structural toc-item-list">
 <li class="toc-item toc-section">
-<div class="toc-title-box"><a href="matlab-desktop.html" class="internal"><span class="codenumber">1.2</span> <span class="title">MATLAB Desktop</span></a></div>
+<div class="toc-title-box"><a href="sec-scripts.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Scripts</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="desktop.html" class="internal"><span class="title">Main Components</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toggling-components.html" class="internal"><span class="title">Modifying the Layout</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="assemblage-scripts.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="assemblage-scripts.html#scripts-key-rules" class="internal"><span class="title">Key Rules</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="assemblage-scripts.html#scripts-fprintf" class="internal"><span class="title">Reporting Results from Scripts with <code class="code-inline tex2jax_ignore language-matlab">fprintf</code></span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="assemblage-scripts.html#scripts-examples" class="internal"><span class="title">Examples</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="scripts-rqs.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-scripts-exercises.html" class="internal"><span class="title">🧑🏻‍💻 Exercises</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-scripts-exercises.html#subsubsec-scripts-drills" class="internal"><span class="title">Drills</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-scripts-exercises.html#subsubsec-scripts-scaffolded" class="internal"><span class="title">Scaffolded Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-scripts-exercises.html#scripts-coding-exercises" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-item toc-section">
-<div class="toc-title-box"><a href="matlab-command-window.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Command Window (<span class="process-math">\(\texttt{cwd}\)</span>)</span></a></div>
+<div class="toc-title-box"><a href="sec-functions.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Functions</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="basic-calculations.html" class="internal"><span class="title">Basic Calculations</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="command-window-utility.html" class="internal"><span class="title">Keeping the Command Window Organized</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="functions-description-usage.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="functions-description-usage.html#subsubsec-function-structure" class="internal"><span class="title">Function Structure</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="functions-description-usage.html#one-input-one-output" class="internal"><span class="title">One Input, One Output</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="functions-description-usage.html#two-inputs-one-output" class="internal"><span class="title">Two Inputs, One Output</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="functions-description-usage.html#two-inputs-two-outputs" class="internal"><span class="title">Two Inputs, Two Outputs</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="functions-description-usage.html#functions-examples" class="internal"><span class="title">Examples</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="matlab-variables.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Variables</span></a></div>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="functions-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-functions-exercises.html" class="internal"><span class="title">🧑🏻‍💻 Exercises</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-defining.html" class="internal"><span class="title">Creating Variables</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-using.html" class="internal"><span class="title">Using and Reassigning Variables</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="naming-variables.html" class="internal"><span class="title">Naming Variables</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="matlab-variables-6.html" class="internal"><span class="title">Common Beginner Mistakes</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-functions-exercises.html#subsubsec-functions-drills" class="internal"><span class="title">Drills</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-functions-exercises.html#subsubsec-functions-scaffolded" class="internal"><span class="title">Scaffolded Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-functions-exercises.html#functions-coding-exercises" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-item toc-chapter">
-<div class="toc-title-box"><a href="ch-programming-basics.html" class="internal"><span class="codenumber">2</span> <span class="title">Programming Basics</span></a></div>
+<div class="toc-title-box"><a href="chp-if-switch-statements.html" class="internal"><span class="codenumber">4</span> <span class="title">Logic, If, &amp; Switch</span></a></div>
 <ul class="structural toc-item-list">
 <li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec-scripts-functions.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Scripts &amp; Functions</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="subsec-scripts.html" class="internal"><span class="title">Scripts</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="activities-scripts.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-scripts.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
-</ul>
+<div class="toc-title-box"><a href="sec-logical-values.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Logical Values (Answers)</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-values.html" class="internal"><span class="codenumber">4.1</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
 </li>
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="subsec-functions.html" class="internal"><span class="title">Functions</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="activities-functions.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-functions.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
-</ul>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-logical-statements.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Logical Statements (Questions)</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-statements.html" class="internal"><span class="codenumber">4.2</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
 </li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="coding-exercises-scripts-functions.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-if-statements.html" class="internal"><span class="codenumber">4.3</span> <span class="title">If Statements</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="sec-if-statements-5.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-if-statements.html" class="internal"><span class="codenumber">4.3</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec-logical-values-statements.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Logical Values &amp; Statements</span></a></div>
+<div class="toc-title-box"><a href="sec-switch-statements.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Switch Statement</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="sec-logical-values.html" class="internal"><span class="title">Logical Values: true/false (Answers)</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-values.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="sec-logical-statements.html" class="internal"><span class="title">Logical Statements (Questions)</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-logical-statements.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-logical-values-statements.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-if-switch-statements.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-switch-statements.html" class="internal"><span class="codenumber">4.4</span> <span class="title">🤔💭 Conceptual Questions</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec-conditional-statements.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Conditional Statements</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="subsec-if-statements.html" class="internal"><span class="title">If Statements</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-if-statements.html" class="internal"><span class="title">Review Questions</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="subsec-switch-statement.html" class="internal"><span class="title">Switch Statement</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-if-switch-statements.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-switch-statements.html" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-logic-if-switch-statements.html" class="internal"><span class="codenumber">4.5</span> <span class="title">💻 Coding Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-conditional-statements.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec-looping-statements.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Looping Statements</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="subsec-for-loops.html" class="internal"><span class="title">The for Loop</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-for-loops.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-for-loops.html" class="internal"><span class="title">🤔💭 Conceptual Questions &amp; Drills</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="subsec-while-loops.html" class="internal"><span class="title">The while Loop</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-while.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">Which to Use: for vs. while</span></a></div></li>
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="subsec-additional-flow-control.html" class="internal"><span class="title">Additional Flow Control</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-break-continue-return.html" class="internal"><span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conceptual-questions-additional-flow-control.html" class="internal"><span class="title">🤔💭 Conceptual Questions &amp; Drills</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="coding-exercises-looping-statements.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="fn-exercises.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Coding Projects</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="ch-arrays.html" class="internal"><span class="codenumber">3</span> <span class="title">Arrays</span></a></div></li>
 <li class="toc-item toc-chapter">
-<div class="toc-title-box"><a href="ch-additional-topics.html" class="internal"><span class="codenumber">4</span> <span class="title">Additional Topics</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-section">
-<div class="toc-title-box"><a href="subsec-nested-loops.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Nested Loops</span></a></div>
+<div class="toc-title-box"><a href="chp-for-while-loops.html" class="internal"><span class="codenumber">5</span> <span class="title">For &amp; While Loops</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-.html" class="internal"><span class="codenumber">4.1</span> <span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
-<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="class-activities-nested-loops.html" class="internal"><span class="codenumber">4.1</span> <span class="title">🧑🏻‍💻 Class Activities</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-4loops.html" class="internal"><span class="codenumber">5.1</span> <span class="title">The for Loop</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="4loop-description.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="4loop-description.html#4loop-structure" class="internal"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop Structure</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="4loop-description.html#4loop-examples" class="internal"><span class="title">👀 Examples</span></a></div></li>
 </ul>
-</li></ul>
+</li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="4loop-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="4loop-skill-building.html" class="internal"><span class="title">🏗️ Skill Building</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="4loop-skill-building.html#4loop-drill-1" class="internal"><span class="title">Drills</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="4loop-skill-building.html#4loop-drill-2" class="internal"><span class="title">Construct the Code Blocks</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="4loop-practice-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="4loop-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-wloops.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The while Loop</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="wloop-description.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="wloop-description.html#wloop-structure" class="internal"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">while</code>-Loop Structure</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="wloop-description.html#sec-for-vs-while" class="internal"><span class="title">📌 For vs. While Loops</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="wloop-description.html#subsec-wloop-examples" class="internal"><span class="title">👀 Examples</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="wloop-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="wloop-skill-building.html" class="internal"><span class="title">🏗️ Skill Building</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="wloop-skill-building.html#wloop-drill-1" class="internal"><span class="title">Drills</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="wloop-skill-building.html#wloop-drill-2" class="internal"><span class="title">Construct the Code Blocks</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-wloop-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-wloop-activities.html#wloop-activities-scaffolded" class="internal"><span class="title">Scaffolded Activities</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-wloop-activities.html#wloop-activities-functions" class="internal"><span class="title">While-Loop Functions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="wloop-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-continue-break-return.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Continue, Break, &amp; Return</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-continue-break-return-examples.html" class="internal"><span class="title">👀 Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-continue-break-return-practice-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="continue-break-return-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="continue-break-return-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appdx-matlab-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Common Built-In MATLAB Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-math-functions.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Mathematical Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-rounding-functions.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Rounding Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-trig-functions.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Trigonometric Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-random-functions.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Random Number Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-output-functions.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Output Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-input-functions.html" class="internal"><span class="codenumber">A.6</span> <span class="title">Input Functions</span></a></div></li>
+</ul>
 </li>
 <li class="toc-item toc-backmatter">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
@@ -365,17 +413,17 @@ true);
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="frontmatter" id="frontmatter"><h2 class="heading">
-<span class="title">Introduction to Programming with MATLAB</span><span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span>
+<span class="title">Getting Started with MATLAB Programming</span><span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span>
 </h2>
 <div class="author">
 <div class="author-name">Geoffrey W. Cox, Ph.D.</div>
 <div class="author-info">Applied Mathematics<br>Virginia Military Institute<br><a href="mailto:coxgeoff@vmi.edu">coxgeoff@vmi.edu</a>
 </div>
 </div>
-<div class="date">March 12, 2026</div>
+<div class="date">March 31, 2026</div>
 <nav class="summary-links"><ul><li><a href="preface.html" class="internal"><span class="title">Preface</span></a></li></ul></nav><div class="autopermalink" data-description="Front Matter"><a href="#frontmatter" title="Copy heading and permalink for Front Matter" aria-label="Copy heading and permalink for Front Matter">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="ch-welcome-to-matlab.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="chp-welcome-to-matlab.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
