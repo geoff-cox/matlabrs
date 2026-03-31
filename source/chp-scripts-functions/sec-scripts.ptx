@@ -1,351 +1,1111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="sec-scripts" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Scripts</title>
+	<title>Scripts</title>
 
-    <subsection xml:id="subsec-scripts-structure">
-        <title>Structure</title>
-        <assemblage xml:id="assemblage-scripts">
-            <title>MATLAB Scripts</title>
-            <p>A <term>script</term> is a <pf>.m</pf> file containing MATLAB commands that execute top to bottom.</p>
-            <p>Key rules:</p>
-            <ul>
-                <li><p>The filename must end in <pf>.m</pf> and match valid MATLAB naming rules.</p></li>
-                <li><p>Scripts share the base workspace — variables persist after the script runs.</p></li>
-                <li><p>Run a script by typing its name in the Command Window or pressing the Run button.</p></li>
-                <li><p>Scripts have no inputs or outputs — use functions for that.</p></li>
-            </ul>
-        </assemblage>
-        <exercise label="chk-scripts-run">
-            <statement><p>How do you run a MATLAB script named <pf>myScript.m</pf> from the Command Window?</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p>Type <pf>myScript</pf> and press Enter.</p></statement><feedback><p>Correct. Type the script name (without <pf>.m</pf>) to run it.</p></feedback></choice>
-                <choice><statement><p>Type <pf>run("myScript.m")</pf>.</p></statement><feedback><p>This syntax works but is not the most common way.</p></feedback></choice>
-                <choice><statement><p>Type <pf>myScript.m</pf> and press Enter.</p></statement><feedback><p>MATLAB does not include the extension when calling a script.</p></feedback></choice>
-                <choice><statement><p>Double-click the file in the Editor.</p></statement><feedback><p>That opens the file for editing, not running.</p></feedback></choice>
-            </choices>
-        </exercise>
-        <exercise label="chk-scripts-workspace">
-            <statement correct="yes"><p>Variables created in a script remain in the base workspace after the script finishes.</p></statement>
-            <feedback><p>True. Scripts share the base workspace, so their variables persist.</p></feedback>
-        </exercise>
-        <exercise label="chk-scripts-naming">
-            <statement><p>Which of the following is a valid MATLAB script filename?</p></statement>
-            <choices>
-                <choice><statement><p><pf>my script.m</pf></p></statement><feedback><p>Spaces are not allowed in MATLAB identifiers.</p></feedback></choice>
-                <choice><statement><p><pf>2ndScript.m</pf></p></statement><feedback><p>Names cannot begin with a digit.</p></feedback></choice>
-                <choice correct="yes"><statement><p><pf>calcArea.m</pf></p></statement><feedback><p>Correct. This starts with a letter and contains only letters and digits.</p></feedback></choice>
-                <choice><statement><p><pf>calc-area.m</pf></p></statement><feedback><p>Hyphens are not allowed in MATLAB names.</p></feedback></choice>
-            </choices>
-        </exercise>
-    </subsection>
+	<subsection xml:id="subsec-scripts-structure">
+		<title>🧱 Description &amp; Examples</title>
+		<assemblage xml:id="assemblage-scripts">
+				<title>MATLAB Scripts</title>
+				<p>A <term>script</term> is a <pf>.m</pf> file containing MATLAB commands that execute top to bottom.</p>
+				<p>
+					Key rules:
+					<ul marker="square">
+							<li><p>The filename must end in <pf>.m</pf> and match valid MATLAB naming rules.</p></li>
+							<li><p>Scripts share the base workspace — variables persist after the script runs.</p></li>
+							<li><p>Run a script by typing its name in the Command Window or pressing the Run button.</p></li>
+							<li><p>Scripts have no inputs or outputs — use functions for that.</p></li>
+					</ul>
+				</p>
+		</assemblage>
+		<exercise label="chk-scripts-run">
+				<statement><p>How do you run a MATLAB script named <pf>myScript.m</pf> from the Command Window?</p></statement>
+				<choices>
+						<choice correct="yes"><statement><p>Type <pf>myScript</pf> and press Enter.</p></statement><feedback><p>Correct. Type the script name (without <pf>.m</pf>) to run it.</p></feedback></choice>
+						<choice><statement><p>Type <pf>run("myScript.m")</pf>.</p></statement><feedback><p>This syntax works but is not the most common way.</p></feedback></choice>
+						<choice><statement><p>Type <pf>myScript.m</pf> and press Enter.</p></statement><feedback><p>MATLAB does not include the extension when calling a script.</p></feedback></choice>
+						<choice><statement><p>Double-click the file in the Editor.</p></statement><feedback><p>That opens the file for editing, not running.</p></feedback></choice>
+				</choices>
+		</exercise>
+		<exercise label="chk-scripts-workspace">
+				<statement correct="yes"><p>Variables created in a script remain in the base workspace after the script finishes.</p></statement>
+				<feedback><p>True. Scripts share the base workspace, so their variables persist.</p></feedback>
+		</exercise>
+		<exercise label="chk-scripts-naming">
+				<statement><p>Which of the following is a valid MATLAB script filename?</p></statement>
+				<choices>
+						<choice><statement><p><pf>my script.m</pf></p></statement><feedback><p>Spaces are not allowed in MATLAB identifiers.</p></feedback></choice>
+						<choice><statement><p><pf>2ndScript.m</pf></p></statement><feedback><p>Names cannot begin with a digit.</p></feedback></choice>
+						<choice correct="yes"><statement><p><pf>calcArea.m</pf></p></statement><feedback><p>Correct. This starts with a letter and contains only letters and digits.</p></feedback></choice>
+						<choice><statement><p><pf>calc-area.m</pf></p></statement><feedback><p>Hyphens are not allowed in MATLAB names.</p></feedback></choice>
+				</choices>
+		</exercise>
+		<example xml:id="ex-scripts-basic">
+				<title>A Simple Script</title>
+				<statement>
+						<p>The following script calculates and displays the area of a circle with radius 5.</p>
+						<program language="matlab">
+	% circleArea.m
+	radius = 5;
+	area = pi * radius^2;
+	fprintf('Area = %.4f\n', area)
+						</program>
+						<p>Running <pf>circleArea</pf> in the Command Window prints: <c>Area = 78.5398</c></p>
+				</statement>
+		</example>
+		<example xml:id="ex-scripts-multiple">
+				<title>Script with Multiple Calculations</title>
+				<statement>
+						<p>This script converts a temperature from Celsius to Fahrenheit and Kelvin.</p>
+						<program language="matlab">
+	% tempConvert.m
+	celsius = 100;
+	fahrenheit = (9/5) * celsius + 32;
+	kelvin = celsius + 273.15;
+	fprintf('%g C = %g F = %g K\n', celsius, fahrenheit, kelvin)
+						</program>
+				</statement>
+		</example>
+		<example xml:id="ex-scripts-comments">
+				<title>Using Comments in Scripts</title>
+				<statement>
+						<p>Comments (lines starting with <pf>%</pf>) document your script without affecting execution.</p>
+						<program language="matlab">
+	% projectile.m  -- models vertical launch
+	% Input values
+	v0 = 20;          % initial speed (m/s)
+	g  = 9.81;        % gravity (m/s^2)
 
-    <subsection xml:id="subsec-scripts-examples">
-        <title>Examples</title>
-        <example xml:id="ex-scripts-basic">
-            <title>A Simple Script</title>
-            <statement>
-                <p>The following script calculates and displays the area of a circle with radius 5.</p>
-                <program language="matlab">
-% circleArea.m
-radius = 5;
-area = pi * radius^2;
-fprintf('Area = %.4f\n', area)
-                </program>
-                <p>Running <pf>circleArea</pf> in the Command Window prints: <c>Area = 78.5398</c></p>
-            </statement>
-        </example>
-        <example xml:id="ex-scripts-multiple">
-            <title>Script with Multiple Calculations</title>
-            <statement>
-                <p>This script converts a temperature from Celsius to Fahrenheit and Kelvin.</p>
-                <program language="matlab">
-% tempConvert.m
-celsius = 100;
-fahrenheit = (9/5) * celsius + 32;
-kelvin = celsius + 273.15;
-fprintf('%g C = %g F = %g K\n', celsius, fahrenheit, kelvin)
-                </program>
-            </statement>
-        </example>
-        <example xml:id="ex-scripts-comments">
-            <title>Using Comments in Scripts</title>
-            <statement>
-                <p>Comments (lines starting with <pf>%</pf>) document your script without affecting execution.</p>
-                <program language="matlab">
-% projectile.m  -- models vertical launch
-% Input values
-v0 = 20;          % initial speed (m/s)
-g  = 9.81;        % gravity (m/s^2)
+	% Time to peak
+	t_peak = v0 / g;
 
-% Time to peak
-t_peak = v0 / g;
+	% Maximum height
+	h_max = v0^2 / (2 * g);
 
-% Maximum height
-h_max = v0^2 / (2 * g);
+	fprintf('Peak time: %.2f s,  Max height: %.2f m\n', t_peak, h_max)
+						</program>
+				</statement>
+		</example>
+		<exercise label="ex-scripts-practice-1">
+				<statement><p>Write a script that computes the hypotenuse of a right triangle with legs <pf>a = 3</pf> and <pf>b = 4</pf>, then prints the result.</p></statement>
+				<solution>
+						<program language="matlab">
+	% hypotenuse.m
+	a = 3;
+	b = 4;
+	c = sqrt(a^2 + b^2);
+	fprintf('Hypotenuse = %g\n', c)
+						</program>
+				</solution>
+		</exercise>
+	</subsection>
 
-fprintf('Peak time: %.2f s,  Max height: %.2f m\n', t_peak, h_max)
-                </program>
-            </statement>
-        </example>
-        <exercise label="ex-scripts-practice-1">
-            <statement><p>Write a script that computes the hypotenuse of a right triangle with legs <pf>a = 3</pf> and <pf>b = 4</pf>, then prints the result.</p></statement>
-            <solution>
-                <program language="matlab">
-% hypotenuse.m
-a = 3;
-b = 4;
-c = sqrt(a^2 + b^2);
-fprintf('Hypotenuse = %g\n', c)
-                </program>
-            </solution>
-        </exercise>
-    </subsection>
+	<subsection xml:id="subsec-scripts-practice-activities">
+		<title>🧑🏻‍💻 Questions &amp; Activities</title>
 
-    <subsection xml:id="subsec-scripts-practice-activities">
-        <title>Practice Activities</title>
-        <exercise label="pa-scripts-cylinder">
-            <title>Cylinder Volume Script</title>
-            <statement>
-                <p>Write a script that computes the volume of a cylinder (<m>V = \pi r^2 h</m>) with <pf>r = 3</pf> and <pf>h = 7</pf>. Display the result with <pf>fprintf</pf>.</p>
-                <sage language="octave">
-                    <input>
-% ==== Type your code here ====
+		<p>
+			These questions and activities help you practice the concepts covered in this section. Try to answer each question on your own before checking the provided solutions.
+		</p>
 
-                    </input>
-                </sage>
-            </statement>
-            <solution component="example-solution">
-                <program language="matlab">
-r = 3;
-h = 7;
-V = pi * r^2 * h;
-fprintf('Volume = %.4f\n', V)
-                </program>
-            </solution>
-        </exercise>
-        <exercise label="pa-scripts-speed">
-            <title>Speed Calculation</title>
-            <statement>
-                <p>Write a script to compute the speed (<m>v = d/t</m>) for distance <pf>d = 150</pf> km and time <pf>t = 2.5</pf> hours. Print the speed in km/h.</p>
-                <sage language="octave">
-                    <input>
-% ==== Type your code here ====
+		<reading-questions label="scripts-rqs">
+			<title>Reading Questions</title>
+			<exercise>
+			<task label="rq-scripts-workspace">
+					<statement><p>A script named <pf>compute.m</pf> assigns <pf>x = 42</pf>. After running the script, what happens to the variable <pf>x</pf>?</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p>It remains in the base workspace.</p></statement><feedback><p>Correct. Scripts share the base workspace.</p></feedback></choice>
+							<choice><statement><p>It is deleted automatically.</p></statement><feedback><p>Variables in scripts persist unless you call <pf>clear</pf>.</p></feedback></choice>
+							<choice><statement><p>It is stored inside the script file.</p></statement><feedback><p>Variables live in the workspace, not inside the file.</p></feedback></choice>
+							<choice><statement><p>It causes an error because scripts cannot create variables.</p></statement><feedback><p>Scripts can create variables; they go into the base workspace.</p></feedback></choice>
+					</choices>
+			</task>
+			<task label="rq-scripts-vs-function">
+					<statement><p>What is the main difference between a script and a function?</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p>Functions accept inputs and return outputs; scripts do not.</p></statement><feedback><p>Correct. That is the defining distinction.</p></feedback></choice>
+							<choice><statement><p>Scripts can only run once; functions can run many times.</p></statement><feedback><p>Both can run any number of times.</p></feedback></choice>
+							<choice><statement><p>Functions are saved as <pf>.mat</pf> files; scripts are saved as <pf>.m</pf> files.</p></statement><feedback><p>Both scripts and functions are saved as <pf>.m</pf> files.</p></feedback></choice>
+							<choice><statement><p>Scripts are faster than functions.</p></statement><feedback><p>Speed difference is negligible; the distinction is about inputs/outputs and workspace.</p></feedback></choice>
+					</choices>
+			</task>
+			<task label="rq-scripts-comment">
+					<statement><p>In MATLAB, the character used to start a comment is:</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p><pf>%</pf></p></statement><feedback><p>Correct. Everything after <pf>%</pf> on a line is a comment.</p></feedback></choice>
+							<choice><statement><p><pf>#</pf></p></statement><feedback><p>That is the comment character in Python and other languages, not MATLAB.</p></feedback></choice>
+							<choice><statement><p><pf>//</pf></p></statement><feedback><p>That is used in C, C++, and Java.</p></feedback></choice>
+							<choice><statement><p><pf>--</pf></p></statement><feedback><p>That is used in SQL and Lua.</p></feedback></choice>
+					</choices>
+			</task>
+			<task label="rq-scripts-extension">
+					<statement correct="yes"><p>A MATLAB script must be saved with the <pf>.m</pf> file extension.</p></statement>
+					<feedback><p>True. MATLAB recognizes code files by the <pf>.m</pf> extension.</p></feedback>
+			</task>
+			<task label="rq-scripts-suppress">
+					<statement><p>Adding a semicolon (<pf>;</pf>) at the end of a line in a script:</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p>Suppresses the automatic display of that line's result.</p></statement><feedback><p>Correct. Without a semicolon, MATLAB prints the result; with one, it does not.</p></feedback></choice>
+							<choice><statement><p>Ends the script.</p></statement><feedback><p>The semicolon does not end execution — it only suppresses output.</p></feedback></choice>
+							<choice><statement><p>Creates a comment.</p></statement><feedback><p>Comments start with <pf>%</pf>, not <pf>;</pf>.</p></feedback></choice>
+							<choice><statement><p>Has no effect in scripts.</p></statement><feedback><p>Semicolons work the same in scripts as in the Command Window.</p></feedback></choice>
+					</choices>
+			</task>
+			<task label="rq-scripts-name-rule">
+					<statement correct="no"><p>A MATLAB script can be named <pf>3dPlot.m</pf>.</p></statement>
+					<feedback><p>False. MATLAB names must begin with a letter, not a digit.</p></feedback>
+			</task>
+			<task label="rq-scripts-run-method">
+					<statement><p>Which of the following correctly runs a script named <pf>analysis.m</pf>?</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p>Type <pf>analysis</pf> in the Command Window.</p></statement><feedback><p>Correct. Omit the extension when calling a script.</p></feedback></choice>
+							<choice><statement><p>Type <pf>analysis.m</pf> in the Command Window.</p></statement><feedback><p>MATLAB expects the name without the extension.</p></feedback></choice>
+							<choice><statement><p>Type <pf>call analysis</pf> in the Command Window.</p></statement><feedback><p>There is no <pf>call</pf> keyword in MATLAB.</p></feedback></choice>
+							<choice><statement><p>Type <pf>execute('analysis')</pf> in the Command Window.</p></statement><feedback><p>There is no <pf>execute</pf> function in MATLAB.</p></feedback></choice>
+					</choices>
+			</task>
+			<task label="rq-scripts-clear">
+					<statement><p>To remove all variables from the workspace before running a script, you would add <fillin answer="clear" mode="string" width="10"/> as the first line of the script.</p></statement>
+			</task>
+			<task label="rq-scripts-order">
+					<statement correct="yes"><p>MATLAB executes script commands in order from top to bottom.</p></statement>
+					<feedback><p>True. Scripts execute sequentially unless control structures change the flow.</p></feedback>
+			</task>
+			<task label="rq-scripts-clc">
+					<statement><p>The command <pf>clc</pf> placed at the top of a script will:</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p>Clear the Command Window display.</p></statement><feedback><p>Correct. <pf>clc</pf> clears the Command Window but does not affect variables.</p></feedback></choice>
+							<choice><statement><p>Clear all workspace variables.</p></statement><feedback><p>Use <pf>clear</pf> to remove variables.</p></feedback></choice>
+							<choice><statement><p>Close all open figures.</p></statement><feedback><p>Use <pf>close all</pf> to close figures.</p></feedback></choice>
+							<choice><statement><p>Delete the script file.</p></statement><feedback><p><pf>clc</pf> only clears the Command Window display.</p></feedback></choice>
+					</choices>
+			</task>
+			</exercise>
+		</reading-questions>
 
-                    </input>
-                </sage>
-            </statement>
-            <solution component="example-solution">
-                <program language="matlab">
-d = 150;
-t = 2.5;
-v = d / t;
-fprintf('Speed = %.1f km/h\n', v)
-                </program>
-            </solution>
-        </exercise>
-        <exercise label="pa-scripts-bmi">
-            <title>BMI Calculator</title>
-            <statement>
-                <p>Write a script that computes BMI (<m>\text{BMI} = \text{mass} / \text{height}^2</m>) for mass = 70 kg and height = 1.75 m.</p>
-                <sage language="octave">
-                    <input>
-% ==== Type your code here ====
+		<exercises xml:id="assemblage-scaffolded-activities">
+			<title>Scaffolded Activities</title>
+			<introduction>
+				<p>
+					These activities guide you through writing scripts step-by-step. 
+					They are designed to build confidence and reinforce the concepts
+					 covered in this section. Try completing each task on your own 
+					 before checking the provided solutions.
+				</p>
+			</introduction>
 
-                    </input>
-                </sage>
-            </statement>
-            <solution component="example-solution">
-                <program language="matlab">
-mass = 70;
-height = 1.75;
-bmi = mass / height^2;
-fprintf('BMI = %.2f\n', bmi)
-                </program>
-            </solution>
-        </exercise>
-    </subsection>
+			<exercise label="scripts-activities">
+				<title>Quick Drills</title>
+				
+				<task label="pa-scripts-cylinder">
+						<title>Cylinder Volume Script</title>
+						<statement>
+								<p>Write a script that computes the volume of a cylinder (<m>V = \pi r^2 h</m>) with <pf>r = 3</pf> and <pf>h = 7</pf>. Display the result with <pf>fprintf</pf>.</p>
+								<sage language="octave">
+										<input>
+	% ==== Type your code here ====
 
-    <reading-questions xml:id="scripts-reading-questions">
-        <title>Reading Questions</title>
-        <exercise label="rq-scripts-workspace">
-            <statement><p>A script named <pf>compute.m</pf> assigns <pf>x = 42</pf>. After running the script, what happens to the variable <pf>x</pf>?</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p>It remains in the base workspace.</p></statement><feedback><p>Correct. Scripts share the base workspace.</p></feedback></choice>
-                <choice><statement><p>It is deleted automatically.</p></statement><feedback><p>Variables in scripts persist unless you call <pf>clear</pf>.</p></feedback></choice>
-                <choice><statement><p>It is stored inside the script file.</p></statement><feedback><p>Variables live in the workspace, not inside the file.</p></feedback></choice>
-                <choice><statement><p>It causes an error because scripts cannot create variables.</p></statement><feedback><p>Scripts can create variables; they go into the base workspace.</p></feedback></choice>
-            </choices>
-        </exercise>
-        <exercise label="rq-scripts-vs-function">
-            <statement><p>What is the main difference between a script and a function?</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p>Functions accept inputs and return outputs; scripts do not.</p></statement><feedback><p>Correct. That is the defining distinction.</p></feedback></choice>
-                <choice><statement><p>Scripts can only run once; functions can run many times.</p></statement><feedback><p>Both can run any number of times.</p></feedback></choice>
-                <choice><statement><p>Functions are saved as <pf>.mat</pf> files; scripts are saved as <pf>.m</pf> files.</p></statement><feedback><p>Both scripts and functions are saved as <pf>.m</pf> files.</p></feedback></choice>
-                <choice><statement><p>Scripts are faster than functions.</p></statement><feedback><p>Speed difference is negligible; the distinction is about inputs/outputs and workspace.</p></feedback></choice>
-            </choices>
-        </exercise>
-        <exercise label="rq-scripts-comment">
-            <statement><p>In MATLAB, the character used to start a comment is:</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p><pf>%</pf></p></statement><feedback><p>Correct. Everything after <pf>%</pf> on a line is a comment.</p></feedback></choice>
-                <choice><statement><p><pf>#</pf></p></statement><feedback><p>That is the comment character in Python and other languages, not MATLAB.</p></feedback></choice>
-                <choice><statement><p><pf>//</pf></p></statement><feedback><p>That is used in C, C++, and Java.</p></feedback></choice>
-                <choice><statement><p><pf>--</pf></p></statement><feedback><p>That is used in SQL and Lua.</p></feedback></choice>
-            </choices>
-        </exercise>
-        <exercise label="rq-scripts-extension">
-            <statement correct="yes"><p>A MATLAB script must be saved with the <pf>.m</pf> file extension.</p></statement>
-            <feedback><p>True. MATLAB recognizes code files by the <pf>.m</pf> extension.</p></feedback>
-        </exercise>
-        <exercise label="rq-scripts-suppress">
-            <statement><p>Adding a semicolon (<pf>;</pf>) at the end of a line in a script:</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p>Suppresses the automatic display of that line's result.</p></statement><feedback><p>Correct. Without a semicolon, MATLAB prints the result; with one, it does not.</p></feedback></choice>
-                <choice><statement><p>Ends the script.</p></statement><feedback><p>The semicolon does not end execution — it only suppresses output.</p></feedback></choice>
-                <choice><statement><p>Creates a comment.</p></statement><feedback><p>Comments start with <pf>%</pf>, not <pf>;</pf>.</p></feedback></choice>
-                <choice><statement><p>Has no effect in scripts.</p></statement><feedback><p>Semicolons work the same in scripts as in the Command Window.</p></feedback></choice>
-            </choices>
-        </exercise>
-        <exercise label="rq-scripts-name-rule">
-            <statement correct="no"><p>A MATLAB script can be named <pf>3dPlot.m</pf>.</p></statement>
-            <feedback><p>False. MATLAB names must begin with a letter, not a digit.</p></feedback>
-        </exercise>
-        <exercise label="rq-scripts-run-method">
-            <statement><p>Which of the following correctly runs a script named <pf>analysis.m</pf>?</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p>Type <pf>analysis</pf> in the Command Window.</p></statement><feedback><p>Correct. Omit the extension when calling a script.</p></feedback></choice>
-                <choice><statement><p>Type <pf>analysis.m</pf> in the Command Window.</p></statement><feedback><p>MATLAB expects the name without the extension.</p></feedback></choice>
-                <choice><statement><p>Type <pf>call analysis</pf> in the Command Window.</p></statement><feedback><p>There is no <pf>call</pf> keyword in MATLAB.</p></feedback></choice>
-                <choice><statement><p>Type <pf>execute('analysis')</pf> in the Command Window.</p></statement><feedback><p>There is no <pf>execute</pf> function in MATLAB.</p></feedback></choice>
-            </choices>
-        </exercise>
-        <exercise label="rq-scripts-clear">
-            <statement><p>To remove all variables from the workspace before running a script, you would add <fillin answer="clear" mode="string" width="10"/> as the first line of the script.</p></statement>
-        </exercise>
-        <exercise label="rq-scripts-order">
-            <statement correct="yes"><p>MATLAB executes script commands in order from top to bottom.</p></statement>
-            <feedback><p>True. Scripts execute sequentially unless control structures change the flow.</p></feedback>
-        </exercise>
-        <exercise label="rq-scripts-clc">
-            <statement><p>The command <pf>clc</pf> placed at the top of a script will:</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p>Clear the Command Window display.</p></statement><feedback><p>Correct. <pf>clc</pf> clears the Command Window but does not affect variables.</p></feedback></choice>
-                <choice><statement><p>Clear all workspace variables.</p></statement><feedback><p>Use <pf>clear</pf> to remove variables.</p></feedback></choice>
-                <choice><statement><p>Close all open figures.</p></statement><feedback><p>Use <pf>close all</pf> to close figures.</p></feedback></choice>
-                <choice><statement><p>Delete the script file.</p></statement><feedback><p><pf>clc</pf> only clears the Command Window display.</p></feedback></choice>
-            </choices>
-        </exercise>
-    </reading-questions>
+										</input>
+								</sage>
+						</statement>
+						<solution component="example-solution">
+								<program language="matlab">
+	r = 3;
+	h = 7;
+	V = pi * r^2 * h;
+	fprintf('Volume = %.4f\n', V)
+								</program>
+						</solution>
+				</task>
+				<task label="pa-scripts-speed">
+						<title>Speed Calculation</title>
+						<statement>
+								<p>Write a script to compute the speed (<m>v = d/t</m>) for distance <pf>d = 150</pf> km and time <pf>t = 2.5</pf> hours. Print the speed in km/h.</p>
+								<sage language="octave">
+										<input>
+	% ==== Type your code here ====
 
-    <exercises xml:id="scripts-coding-exercises">
-        <title>Coding Exercises</title>
-        <exercise label="ce-scripts-distance">
-            <title>Distance Traveled</title>
-            <statement>
-                <p>Write a script that computes the distance traveled by an object moving at constant velocity.</p>
-                <tabular valign="top" top="minor">
-                    <col width="11%" halign="right" /><col width="15%" halign="left" />
-                    <col width="28%" halign="center" /><col width="46%" halign="left"/>
-                    <row><cell>Inputs:</cell><cell><p><pf>v</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>velocity in m/s</p></cell></row>
-                    <row><cell></cell><cell><p><pf>t</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>time in seconds</p></cell></row>
-                    <row bottom="minor"><cell>Output:</cell><cell><p><pf>d</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>distance in meters (<m>d = vt</m>)</p></cell></row>
-                </tabular>
-                <sidebyside widths="48% 50%">
-                    <stack><p>Test Cases ⤵︎</p><program language="matlab">v = 30; t = 5;</program></stack>
-                    <stack><p>Expected ⤵︎</p><program language="matlab">d = 150</program></stack>
-                </sidebyside>
-            </statement>
-            <solution>
-                <program language="matlab">
+										</input>
+								</sage>
+						</statement>
+						<solution component="example-solution">
+								<program language="matlab">
+	d = 150;
+	t = 2.5;
+	v = d / t;
+	fprintf('Speed = %.1f km/h\n', v)
+								</program>
+						</solution>
+				</task>
+				<task label="pa-scripts-bmi">
+						<title>BMI Calculator</title>
+						<statement>
+								<p>Write a script that computes BMI (<m>\text{BMI} = \text{mass} / \text{height}^2</m>) for mass = 70 kg and height = 1.75 m.</p>
+								<sage language="octave">
+										<input>
+	% ==== Type your code here ====
+
+										</input>
+								</sage>
+						</statement>
+						<solution component="example-solution">
+								<program language="matlab">
+	mass = 70;
+	height = 1.75;
+	bmi = mass / height^2;
+	fprintf('BMI = %.2f\n', bmi)
+								</program>
+						</solution>
+				</task>
+			</exercise>
+
+			<exercise xml:id="script-circle-report">
+				<title>Circle Report Script</title>
+
+				<introduction>
+						<p>
+							Write a script that computes the circumference and area of a circle from its radius, then prints a formatted report.
+						</p>
+				</introduction>
+
+				<task>
+					<statement>
+						<p>
+							Create a new script and add <pf>clc</pf> and <pf>clear</pf> at the top.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								clc;
+								clear;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Define a radius variable <pf>r</pf> (starting with <m>r = 4.5</m>).
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Selected Value
+								r = 4.5;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Compute the circumference <m>C = 2\pi r</m> and area <m>A = \pi r^2</m>.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Computations
+								C = 2*pi*r;
+								A = pi*r^2;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Print a clean report with three decimal places.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Display Results
+								fprintf('Circle report\n');
+								fprintf('Radius:        %.3f\n', r);
+								fprintf('Circumference: %.3f\n', C);
+								fprintf('Area:          %.3f\n', A);
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Change <pf>r</pf> to a new value (such as <m>10</m>) and run again.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Your script should automatically update the report whenever you change the input.
+						</p>
+					</solution>
+				</task>
+			</exercise>
+
+			<exercise xml:id="script-temp-converter">
+				<title>Temperature Conversion Script</title>
+
+				<introduction>
+					<p>
+						The conversion formula between Fahrenheit and Celsius is:
+						<me>\text{tempC} = (\text{tempF} - 32)\cdot \frac59</me>
+						Write a script that converts a temperature from Fahrenheit to Celsius and use <pf>fprintf</pf> to print some relevant messages to the command window.
+					</p>
+				</introduction>
+
+				<task>
+					<statement>
+						<p>
+							Create a new script and add <pf>clc</pf> and <pf>clear</pf> at the top.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								clc;
+								clear;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Define a variable <pf>tempF</pf> for the temperature in Fahrenheit and start it at <m>77^{\circ}</m>F.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Selected Values
+								tempF = 77;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Compute the corresponding Celsius temperature and print both values using <pf>fprintf</pf>, rounding to one decimal place.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Computation
+								tempC = (tempF - 32) * (5/9);
+								% Display results
+								fprintf('Temperature: %.1f F = %.1f C\n', tempF, tempC);
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Rerun the script with different temperatures (e.g., <m>32^{\circ}</m>F, <m>100^{\circ}</m>F).
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Your output should show <m>32</m> F corresponds to approximately <m>0</m> C, and <m>100</m> F corresponds to approximately <m>37.8</m> C.
+						</p>
+					</solution>
+				</task>
+			</exercise>
+			
+			<exercise xml:id="script-projectile-height">
+				<title>Projectile Height Script</title>
+
+				<introduction>
+					<p>
+						A projectile's height <m>h(t)</m> at time <m>t</m> seconds is given by the formula:
+						<me>h(t) = h_0 + v_0 t - \tfrac12 g t^2</me>,
+						with parameters:
+						<ul>
+							<li><m>h_0</m> is the initial height (in meters),</li>
+							<li><m>v_0</m> is the initial velocity (in meters per second), and</li>
+							<li><m>g = 9.81</m> m/s<sup>2</sup> is the acceleration due to gravity.</li>
+						</ul>
+					</p>
+					<p>
+						Write a script that computes the height of a projectile at any given time.
+					</p>
+				</introduction>
+
+				<task>
+					<statement>
+						<p>
+							Create a new script and add <pf>clc</pf> and <pf>clear</pf> at the top.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								clc;
+								clear;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Define the model parameters. Use an initial height of <m>1.5</m> meters and an initial velocity of <m>12</m> m/s.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Selected Values
+								h0 = 1.5;
+								v0 = 12;
+								g  = 9.81;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Compute the height <pf>h</pf> at time <pf>t = 0.8</pf>.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Computation (height formula)
+								t = 0.8;
+								h = h0 + v0*t - 0.5*g*t^2;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Compute the time of maximum height <m>t_\text{peak}</m> and the maximum height <m>h(t_\text{peak})</m>.
+						</p>
+						<p>
+							Recall that the peak occurs when the velocity is zero, i.e., when <m>h'(t_\text{peak}) = 0</m>. Do the calculus to find the formula for <m>t_\text{peak}</m>.
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% compute tPeak and h(tPeak)
+								tPeak = v0/g;
+								hMax  = h0 + v0*tPeak - 0.5*g*tPeak^2;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Print a report showing <pf>t</pf>, <pf>h</pf>, <pf>tPeak</pf>, and <pf>hMax</pf> (2-decimal places).
+						</p>
+					</statement>
+					<solution>
+						<program language="matlab">
+							<code>
+								% Display Results
+								fprintf('Projectile report\n');
+								fprintf('At t = %.2f s, height h = %.2f m\n', t, h);
+								fprintf('Peak occurs at t = %.2f s, max height = %.2f m\n', tPeak, hMax);
+							</code>
+						</program>
+						<p>
+							Running this should display the following in the Command Window:
+						</p>
+						<program language="matlab">
+							<code>
+								Projectile report
+								At t = 0.80 s, height h = 7.96 m
+								Peak occurs at t = 1.22 s, max height = 8.84 m
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Rerun your script with (i) <pf>t = 0</pf> and (ii) <pf>t = tPeak</pf>.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Part (i) should display:
+						</p>
+						<program language="matlab">
+							<code>
+								Projectile report
+								At t = 0.00 s, height h = 1.50 m
+								Peak occurs at t = 1.22 s, max height = 8.84 m
+							</code>
+						</program>
+						<p>
+							Part (ii) should display:
+						</p>
+						<program language="matlab">
+							<code>
+								Projectile report
+								At t = 1.22 s, height h = 8.84 m
+								Peak occurs at t = 1.22 s, max height = 8.84 m
+							</code>
+						</program>
+					</solution>
+				</task>
+			</exercise>
+
+			<exercise xml:id="script-piggy-bank">
+				<title>Piggy Bank Script</title>
+				
+				<introduction>
+					<p>
+						Create a script that performs the following tasks.
+					</p>
+				</introduction>
+
+				<task>
+					<statement>
+						<p>
+							Create a new script. At the very top, add <pf>clc</pf> and <pf>clear</pf> so each run starts with a clean state.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to the top of your script:
+						</p>
+						<program language="matlab">	
+							<code>
+								% (a) Add clc and clear
+								clc;    % Clear the Command Window
+								clear;  % Clear the workspace
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Suppose your piggy bank has the following number of coins:
+							<ul>
+								<li>87 pennies</li>
+								<li>113 nickels</li>
+								<li>13 dimes</li>
+								<li>233 quarters</li>
+							</ul>
+							Inside the script, define a variable for the quantity of each type of coin.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to your script:
+						</p>
+						<program language="matlab">
+							<code>
+								% (b) Inputs: quantity of each type of coin
+								nPennies  = 87;
+								nNickels  = 113;
+								nDimes    = 13;
+								nQuarters = 233;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							In the same script, compute the worth (in cents) of each type of coin, and then compute the total value of all the coins.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to your script:
+						</p>
+						<program language="matlab">
+							<code>
+								% (c) Computations: values in cents
+								pValue = nPennies;          % 1 cent each
+								nValue = 5  * nNickels;
+								dValue = 10 * nDimes;
+								qValue = 25 * nQuarters;
+
+								totalCents = pValue + nValue + dValue + qValue;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Display the total value of all the coins using the <pf>fprintf</pf> command.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to your script:
+						</p>
+						<program language="matlab">
+							<code>
+								% (d) Display the total value in cents
+								fprintf('Total value (in cents): %i cents\n', totalCents);
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Save the script as <pf>piggy_bank_counter.m</pf>. Run the script to test it and see the output.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							The output in the Command Window should be:
+						</p>
+						<program language="matlab">
+							<code>
+								Total value (in cents): 6607 cents
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Finally, compute 
+							<ul>
+								<li>the total value (in dollars)</li>
+								<li>the number of dollars</li>
+								<li>the left-over cents</li>
+							</ul>
+							and run the script again to display these values.
+						</p>
+						<p>
+							<em>Hint: After getting the total value in dollars, use MATLAB's <pf>floor</pf> function to round the dollar amount down to the nearest whole number to get the number of dollars.</em>
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to your script:
+						</p>
+						<program language="matlab">
+							<code>
+								% (f) Convert to dollars and print the dollars and cents
+								totalDollars = totalCents/100;
+								nDollars = floor(totalDollars);
+								nCents = totalCents - nDollars * 100;
+								fprintf('Total value (in dollars): %i dollars and %i cents\n', nDollars, nCents);
+							</code>
+						</program>
+						<p>
+							The output in the Command Window should be:
+						</p>
+						<program language="matlab">
+							<code>
+								Total value (in dollars): 66 dollars and 7 cents
+							</code>
+						</program>
+					</solution>
+				</task>
+
+			</exercise>
+
+			<exercise xml:id="script-quadratic">
+				<title>Solving a Quadratic Equation</title>
+
+				<introduction>
+					<p>
+						The solution to the quadratic equation of the form:
+						<me>a x^2 + b x + c = 0</me>
+						is given by the quadratic formula:
+						<me>x = \frac{-b \pm \sqrt{b^2 - 4 a c}}{2 a}</me>.
+					</p>
+
+					<p>
+						An important part of this formula is the value under the square root, called the <term>discriminant</term>, given by: 
+						<me>\Delta = b^2 - 4 a c</me>.
+
+						Knowing the discriminant tells you the nature of the solutions:
+						<ul>
+							<li>If <m>\Delta</m> is positive, there are two distinct real solutions.</li>
+							<li>If <m>\Delta</m> is zero, there is exactly one real (repeated) solution.</li>
+							<li>If <m>\Delta</m> is negative, the solutions are complex numbers.</li>
+						</ul>
+
+						For example, the equation <m>x^2 + x - 6 = 0</m> has 
+						<ul>
+							<li>coefficients	<m>a = 1</m>, <m>b = 1</m>, and <m>c = -6</m>, and</li>
+							<li>discriminant	<m>\Delta = 1^2 - 4(1)(-6) = 25</m>, which is positive.</li>
+						</ul>
+						So there are two distinct real solutions given by:
+						<md>
+							<mrow> 
+								x_1 \amp = \frac{-1 + \sqrt{1^2 - 4(1)(-6)}}{2(1)} = \frac{-1 + \sqrt{25}}{2} = 2,
+								\quad \text{and}
+							</mrow>
+							<mrow>
+								x_2 \amp = \frac{-1 - \sqrt{1^2 - 4(1)(-6)}}{2(1)} = \frac{-1 - \sqrt{25}}{2} = -3
+							</mrow>
+						</md>.
+
+						Write a script that uses the quadratic formula to solve a quadratic equation.
+					</p>
+
+				</introduction>
+
+				<task>
+					<statement>
+						<p>
+							Create a new script file and add the following to the top:
+							<program language="matlab">
+								<code>
+									% This script uses the quadratic formula to solve an equation of the form:
+									%    
+									%    a*x^2 + b*x + c = 0
+									%    
+									% where a, b, and c are given.
+
+									clc; clear;
+								</code>
+							</program>
+							This ensures each run starts from a clean state.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to the top of your script:
+						</p>
+						<program language="matlab">	
+							<code>
+								% (a) Add clc and clear
+								clc;    % Clear the Command Window
+								clear;  % Clear the workspace
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Define variables <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> in your script to represent the coefficients of any possible quadratic equation.
+						</p>
+						<p>
+							As a starting point, use the values in the example above.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to your script:
+						</p>
+						<program language="matlab">
+							<code>
+								% (b) Set a, b, and c  (example: x^2 + x - 6 = 0)
+								a = 1;
+								b = 1;
+								c = -6;
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Using these variables, compute
+							<ul>
+								<li>the discriminant and</li>
+								<li>the solutions to the quadratic equation.</li>
+							</ul>
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to your script:
+						</p>
+						<program language="matlab">
+							<code>
+								% (c) Compute the discriminant and the two solutions
+								discriminant = b^2 - 4*a*c;
+								x1 = (-b + sqrt(discriminant)) / (2*a);
+								x2 = (-b - sqrt(discriminant)) / (2*a);
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Display the two solutions using <pf>fprintf</pf> and <pf>disp</pf> (for the solutions).
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Add the following lines to your script:
+						</p>
+						<program language="matlab">
+							<code>
+								% (d) Print a short report
+								fprintf('\n');
+								fprintf('Solving the equation:\n');
+								fprintf('    %g x^2 + %g x + %g = 0\n\n', a, b, c);
+
+								fprintf('Discriminant: %g\n', discriminant);
+								fprintf('Solutions:\n');
+								fprintf('    x1 = ');
+								disp(x1);
+								fprintf('    x2 = ');
+								disp(x2);
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Save the script as <pf>quadratic_solver.m</pf> and run it to make sure it works.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							The output in the Command Window should be:
+						</p>
+						<program language="matlab">
+							<code>
+								Solutions: 
+								x1 =  2
+								x2 = -3
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Change the values of <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> to solve the equation
+							<me>2 x^2 - 4 x - 6 = 0</me>.
+							Run the script again to see the new solutions.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Update the coefficient definitions in your script as follows:
+						</p>
+						<program language="matlab">
+							<code>
+								% (f) Update coefficients for new equation
+								a = 2;
+								b = -4;
+								c = -6;
+							</code>
+						</program>
+						<p>
+							The output in the Command Window should be:
+						</p>
+						<program language="matlab">
+							<code>
+								Solutions: 
+								x1 =  3
+								x2 =  -1
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							Change the values of <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> to solve the equation
+							<me>x^2 + 2x + 5 = 0</me>.
+							Run the script again to see the new solutions.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							Update the coefficient definitions in your script as follows:
+						</p>
+						<program language="matlab">
+							<code>
+								% (g) Update coefficients for new equation
+								a = 1;
+								b = 2;
+								c = 5;
+							</code>
+						</program>
+						<p>
+							The output in the Command Window should be:
+						</p>
+						<program language="matlab">
+							<code>
+								Solutions: 
+								x1 =	-1.0000 + 2.0000i
+
+								x2 =	-1.0000 - 2.0000i
+							</code>
+						</program>
+					</solution>
+				</task>
+
+				<task>
+					<statement>
+						<p>
+							The previous example shows that our script can handle complex solutions.
+						</p>
+						<p>
+							Are there any quadratic equations that our script cannot handle? If so, give an example and explain why the script fails.
+						</p>
+					</statement>
+					<solution>
+						<p>
+							The script fails when <pf>a = 0</pf>, because the quadratic formula divides by <m>2a</m>.  
+							For example, the equation <me>2x + 5 = 0</me> corresponds to <pf>a = 0</pf>, and then the expressions
+							<pf>(2*a)</pf> in the denominator become zero.
+						</p>
+
+						<p>
+							A more robust solver would first check whether <pf>a</pf> is zero, and if so, switch to solving a linear equation.
+							Making that kind of decision requires flow control, which we will study later.
+						</p>
+					</solution>
+				</task>
+
+			</exercise>
+		</exercises>
+	</subsection>
+
+	<exercises xml:id="scripts-coding-exercises">
+		<title>💻 Coding Exercises</title>
+		<exercise label="ce-scripts-distance">
+				<title>Distance Traveled</title>
+				<statement>
+						<p>Write a script that computes the distance traveled by an object moving at constant velocity.</p>
+						<tabular valign="top" top="minor">
+								<col width="11%" halign="right" /><col width="15%" halign="left" />
+								<col width="28%" halign="center" /><col width="46%" halign="left"/>
+								<row><cell>Inputs:</cell><cell><p><pf>v</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>velocity in m/s</p></cell></row>
+								<row><cell></cell><cell><p><pf>t</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>time in seconds</p></cell></row>
+								<row bottom="minor"><cell>Output:</cell><cell><p><pf>d</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>distance in meters (<m>d = vt</m>)</p></cell></row>
+						</tabular>
+						<sidebyside widths="48% 50%">
+								<stack><p>Test Cases ⤵︎</p><program language="matlab">v = 30; t = 5;</program></stack>
+								<stack><p>Expected ⤵︎</p><program language="matlab">d = 150</program></stack>
+						</sidebyside>
+				</statement>
+				<solution>
+						<program language="matlab">
 v = 30;
 t = 5;
 d = v * t;
 fprintf('d = %g\n', d)
-                </program>
-            </solution>
-        </exercise>
-        <exercise label="ce-scripts-celsius">
-            <title>Celsius to Fahrenheit</title>
-            <statement>
-                <p>Write a script that converts a temperature in Celsius to Fahrenheit using <m>F = \tfrac{9}{5}C + 32</m>.</p>
-                <tabular valign="top" top="minor">
-                    <col width="11%" halign="right" /><col width="15%" halign="left" />
-                    <col width="28%" halign="center" /><col width="46%" halign="left"/>
-                    <row><cell>Inputs:</cell><cell><p><pf>C</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>temperature in Celsius</p></cell></row>
-                    <row bottom="minor"><cell>Output:</cell><cell><p><pf>F</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>temperature in Fahrenheit</p></cell></row>
-                </tabular>
-                <sidebyside widths="48% 50%">
-                    <stack><p>Test Cases ⤵︎</p><program language="matlab">C = 0;
+						</program>
+				</solution>
+		</exercise>
+		<exercise label="ce-scripts-celsius">
+				<title>Celsius to Fahrenheit</title>
+				<statement>
+						<p>Write a script that converts a temperature in Celsius to Fahrenheit using <m>F = \tfrac{9}{5}C + 32</m>.</p>
+						<tabular valign="top" top="minor">
+								<col width="11%" halign="right" /><col width="15%" halign="left" />
+								<col width="28%" halign="center" /><col width="46%" halign="left"/>
+								<row><cell>Inputs:</cell><cell><p><pf>C</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>temperature in Celsius</p></cell></row>
+								<row bottom="minor"><cell>Output:</cell><cell><p><pf>F</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>temperature in Fahrenheit</p></cell></row>
+						</tabular>
+						<sidebyside widths="48% 50%">
+								<stack><p>Test Cases ⤵︎</p><program language="matlab">C = 0;
 C = 100;</program></stack>
-                    <stack><p>Expected ⤵︎</p><program language="matlab">F = 32
+								<stack><p>Expected ⤵︎</p><program language="matlab">F = 32
 F = 212</program></stack>
-                </sidebyside>
-            </statement>
-            <solution>
-                <program language="matlab">
+						</sidebyside>
+				</statement>
+				<solution>
+						<program language="matlab">
 C = 0;
 F = (9/5) * C + 32;
 fprintf('F = %g\n', F)
-                </program>
-            </solution>
-        </exercise>
-        <exercise label="ce-scripts-rectangle">
-            <title>Rectangle Properties</title>
-            <statement>
-                <p>Write a script that computes both the area and perimeter of a rectangle.</p>
-                <tabular valign="top" top="minor">
-                    <col width="11%" halign="right" /><col width="15%" halign="left" />
-                    <col width="28%" halign="center" /><col width="46%" halign="left"/>
-                    <row><cell>Inputs:</cell><cell><p><pf>w</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>width</p></cell></row>
-                    <row><cell></cell><cell><p><pf>h</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>height</p></cell></row>
-                    <row><cell>Outputs:</cell><cell><p><pf>A</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>area</p></cell></row>
-                    <row bottom="minor"><cell></cell><cell><p><pf>P</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>perimeter</p></cell></row>
-                </tabular>
-                <sidebyside widths="48% 50%">
-                    <stack><p>Test Cases ⤵︎</p><program language="matlab">w = 4; h = 6;</program></stack>
-                    <stack><p>Expected ⤵︎</p><program language="matlab">A = 24
+						</program>
+				</solution>
+		</exercise>
+		<exercise label="ce-scripts-rectangle">
+				<title>Rectangle Properties</title>
+				<statement>
+						<p>Write a script that computes both the area and perimeter of a rectangle.</p>
+						<tabular valign="top" top="minor">
+								<col width="11%" halign="right" /><col width="15%" halign="left" />
+								<col width="28%" halign="center" /><col width="46%" halign="left"/>
+								<row><cell>Inputs:</cell><cell><p><pf>w</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>width</p></cell></row>
+								<row><cell></cell><cell><p><pf>h</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>height</p></cell></row>
+								<row><cell>Outputs:</cell><cell><p><pf>A</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>area</p></cell></row>
+								<row bottom="minor"><cell></cell><cell><p><pf>P</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>perimeter</p></cell></row>
+						</tabular>
+						<sidebyside widths="48% 50%">
+								<stack><p>Test Cases ⤵︎</p><program language="matlab">w = 4; h = 6;</program></stack>
+								<stack><p>Expected ⤵︎</p><program language="matlab">A = 24
 P = 20</program></stack>
-                </sidebyside>
-            </statement>
-            <solution>
-                <program language="matlab">
+						</sidebyside>
+				</statement>
+				<solution>
+						<program language="matlab">
 w = 4;
 h = 6;
 A = w * h;
 P = 2 * (w + h);
 fprintf('A = %g\n', A)
 fprintf('P = %g\n', P)
-                </program>
-            </solution>
-        </exercise>
-        <exercise label="ce-scripts-compound">
-            <title>Compound Interest</title>
-            <statement>
-                <p>Write a script to compute the final value of an investment using <m>A = P(1 + r)^n</m>.</p>
-                <tabular valign="top" top="minor">
-                    <col width="11%" halign="right" /><col width="15%" halign="left" />
-                    <col width="28%" halign="center" /><col width="46%" halign="left"/>
-                    <row><cell>Inputs:</cell><cell><p><pf>P</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>principal ($)</p></cell></row>
-                    <row><cell></cell><cell><p><pf>r</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>annual interest rate (decimal)</p></cell></row>
-                    <row><cell></cell><cell><p><pf>n</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>number of years</p></cell></row>
-                    <row bottom="minor"><cell>Output:</cell><cell><p><pf>A</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>final amount ($)</p></cell></row>
-                </tabular>
-                <sidebyside widths="48% 50%">
-                    <stack><p>Test Cases ⤵︎</p><program language="matlab">P=1000; r=0.05; n=10;</program></stack>
-                    <stack><p>Expected ⤵︎</p><program language="matlab">A = 1628.89</program></stack>
-                </sidebyside>
-            </statement>
-            <solution>
-                <program language="matlab">
+						</program>
+				</solution>
+		</exercise>
+		<exercise label="ce-scripts-compound">
+				<title>Compound Interest</title>
+				<statement>
+						<p>Write a script to compute the final value of an investment using <m>A = P(1 + r)^n</m>.</p>
+						<tabular valign="top" top="minor">
+								<col width="11%" halign="right" /><col width="15%" halign="left" />
+								<col width="28%" halign="center" /><col width="46%" halign="left"/>
+								<row><cell>Inputs:</cell><cell><p><pf>P</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>principal ($)</p></cell></row>
+								<row><cell></cell><cell><p><pf>r</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>annual interest rate (decimal)</p></cell></row>
+								<row><cell></cell><cell><p><pf>n</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>number of years</p></cell></row>
+								<row bottom="minor"><cell>Output:</cell><cell><p><pf>A</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>final amount ($)</p></cell></row>
+						</tabular>
+						<sidebyside widths="48% 50%">
+								<stack><p>Test Cases ⤵︎</p><program language="matlab">P=1000; r=0.05; n=10;</program></stack>
+								<stack><p>Expected ⤵︎</p><program language="matlab">A = 1628.89</program></stack>
+						</sidebyside>
+				</statement>
+				<solution>
+						<program language="matlab">
 P = 1000;
 r = 0.05;
 n = 10;
 A = P * (1 + r)^n;
 fprintf('A = %.2f\n', A)
-                </program>
-            </solution>
-        </exercise>
-    </exercises>
+						</program>
+				</solution>
+		</exercise>
+	</exercises>
 
 </section>
