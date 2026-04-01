@@ -2319,11 +2319,7 @@
 						<me>
 							\lfloor \sqrt{n} \rfloor.
 						</me>
-						Do not use <pf>sqrt</pf>, <pf>^</pf>, or any other built-in power or root function.
-					</p>
-
-					<p>
-						Use a <pf>while</pf>-loop that starts with <pf>k = 0</pf> and increases <pf>k</pf> while <pf>(k + 1) * (k + 1) &lt;= n</pf>.
+						Do not use <pf>sqrt</pf>, <pf>^</pf>, or any other built-in power or root function. All you need is addition, multiplication, comparison, and a <pf>while</pf>-loop.
 					</p>
 
 					<tabular valign="top" top="minor">
@@ -2341,7 +2337,7 @@
 							<cell>Outputs:</cell>
 							<cell><p><pf>k</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>largest integer with <m>k^2 &lt;= n</m></p></cell>
+							<cell><p>largest integer with <m>k^2 \le n</m></p></cell>
 						</row>
 					</tabular>
 
@@ -2417,7 +2413,7 @@
 							<cell>Outputs:</cell>
 							<cell><p><pf>steps</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of Collatz steps needed to reach <m>1</m></p></cell>
+							<cell><p>Collatz steps needed to reach <m>1</m></p></cell>
 						</row>
 					</tabular>
 
@@ -2595,67 +2591,75 @@
 			</task>
 
 			<task label="hw-while-fibonacci">
-			<title>Fibonacci Threshold</title>
-			
-			<statement>
-				<p>
-					Write a function <pf>fibonacciThreshold()</pf> that uses a <pf>while</pf>-loop to generate Fibonacci numbers, starting with <m>0</m> and <m>1</m>, until the first Fibonacci number exceeds <m>10000</m>.
-				</p>
+				<title>Nearest Fibonacci</title>
+				
+				<statement>
+					<p>
+						Write a function <pf>nearestFibonacci(n)</pf> that uses a <pf>while</pf>-loop to return the Fibonacci number that is closest to <m>n</m> (above, below, or equal).
+					</p>
 
-				<p>
-					Return that first value in the variable <pf>fib_result</pf>. You will need to keep track of the two previous Fibonacci numbers.
-				</p>
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>fib_num</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>Fibonacci number closest to <pf>n</pf></p></cell>
+						</row>
+					</tabular>
 
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p>none</p></cell>
-						<cell><p>—</p></cell>
-						<cell><p>start the sequence with <m>0</m> and <m>1</m></p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>result</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>first Fibonacci number greater than <m>10000</m></p></cell>
-					</row>
-				</tabular>
+					<sidebyside widths="56% 44%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								result = nearestFibonacci(15)
+								result = nearestFibonacci(1)
+								result = nearestFibonacci(0)
+								result = nearestFibonacci(100)
+								result = nearestFibonacci(100000)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								result = 13
+								result = 1
+								result = 0
+								result = 89
+								result = 75025
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function result = nearestFibonacci(n)
+							prev2 = 0;
+							prev1 = 1;
 
-				<sidebyside widths="56% 44%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							result = fibonacciThreshold()
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							result = 10946
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution component="exercise-solution">
-				<program language="matlab">
-					function result = fibonacciThreshold()
-						prev2 = 0;
-						prev1 = 1;
+							while prev1 &lt;= n
+								current = prev1 + prev2;
+								prev2 = prev1;
+								prev1 = current;
+							end
 
-						while prev1 &lt;= 10000
-							current = prev1 + prev2;
-							prev2 = prev1;
-							prev1 = current;
+							if abs(prev2 - n) &lt;= abs(prev1 - n)
+								result = prev2;
+							else
+								result = prev1;
+							end
 						end
-
-						result = prev1;
-					end
-				</program>
-			</solution>
+					</program>
+				</solution>
 			</task>
 
 			<task label="hw-while-golden-ratio">
