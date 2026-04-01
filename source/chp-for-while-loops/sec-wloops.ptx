@@ -89,19 +89,16 @@
 
 			<program language="matlab">
 				while loop_condition
-					code_block
+					loop_body
 				end
 			</program>
 
 			<p>
-				MATLAB repeatedly executes <pf>code_block</pf> as long as <pf>loop_condition</pf> evaluates to <pf>true</pf>. Think of it like an <pf>if</pf>-statement that jumps back to the top and checks the condition again.
-			</p>
-
-			<p>
 				Notes:
 				<ul marker="square">
-					<li>If condition is not initially true, the loop body never runs.</li>
-					<li>Something inside the loop body must eventually make the <pf>loop_condition</pf> false, otherwise you get an <term>infinite loop</term>.</li>
+					<li>The  <pf>loop_body</pf> repeats as long as the <pf>loop_condition</pf> is true.</li>
+					<li>If <pf>loop_condition</pf> is not initially true, the <pf>loop_body</pf> never runs.</li>
+					<li>Something inside the <pf>loop_body</pf> must eventually make the <pf>loop_condition</pf> false, otherwise you get an <term>infinite loop</term>.</li>
 					<li>If MATLAB becomes unresponsive due to an infinite loop, press <pf>Ctrl+C</pf> (Windows) or <pf>Command+C</pf> (Mac) to stop execution.</li>
 				</ul>
 			</p>
@@ -113,7 +110,7 @@
 					<title>While-loop condition timing</title>
 					<statement>
 						<p>
-							When does MATLAB check the condition in a <pf>while</pf>-loop?
+							When does MATLAB check the <pf>loop_condition</pf> in a while-loop?
 						</p>
 					</statement>
 					<choices randomize="yes">
@@ -170,14 +167,14 @@
 
 				<task label="wloop-structure-reading-quiz-b">
 					<title>Avoiding infinite loops</title>
-					<statement correct="yes">
+					<statement correct="no">
 						<p>
-							To avoid an infinite loop, something inside the <pf>while</pf>-loop body must eventually make the condition false.
+							To avoid an infinite loop, something inside the <pf>loop_body</pf> must eventually make the <pf>loop_condition</pf> true.
 						</p>
 					</statement>
 					<feedback>
 						<p>
-							If the condition never becomes false, the loop continues forever. You must update variables inside the loop to eventually satisfy the exit condition.
+							If the <pf>loop_condition</pf> never becomes <term>false</term>, the loop continues forever. You must update variables inside the <pf>loop_body</pf> to make the <pf>loop_condition</pf> false.
 						</p>
 					</feedback>
 				</task>
@@ -186,7 +183,7 @@
 					<title>While-loop as repeating if-statement</title>
 					<statement correct="yes">
 						<p>
-							A <pf>while</pf>-loop can be thought of as a repeating <pf>if</pf>-statement that checks the condition, runs code if true, then checks again.
+							A while-loop can be thought of as a repeating <pf>if</pf>-statement that checks the <pf>loop_condition</pf>, runs the <pf>loop_body</pf> if true, then checks again.
 						</p>
 					</statement>
 					<feedback>
@@ -206,6 +203,13 @@
 				Both <xref ref="sec-4loops" text="custom"><pf>for</pf>-loops</xref> and <xref ref="sec-wloops" text="custom"><pf>while</pf>-loops</xref> repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.
 			</p>
 
+			<aside>
+				<title><q>Iteration</q></title>
+				<p>
+					The word <term>iteration</term> refers to one complete run (execution) of the loop body. For example, if a loop repeats 5 times, it has 5 iterations.
+				</p>
+			</aside>
+
 			<tabular halign="center" valign="top" bottom="minor" left="minor" right="minor" top="minor">
 				<col width="15%"/>
 				<col width="35%"/>
@@ -221,7 +225,7 @@
 						<p>
 						<program language="matlab">
 							for k = k_values
-								code_block
+								loop_body
 							end
 						</program>
 						</p>
@@ -230,16 +234,16 @@
 						<p>
 						<program language="matlab">
 							while loop_condition
-								code_block
+								loop_body
 							end
 						</program>
 						</p>
 					</cell>
 				</row>
 				<row>
-					<cell><p>Repeats</p></cell>
-					<cell><p>once for each <pf>k</pf></p></cell>
-					<cell><p>if <pf>loop_condition</pf> is true</p></cell>
+					<cell><p>Repeats <pf>loop_body</pf></p></cell>
+					<cell><p>once for each <pf>k</pf> in <pf>k_values</pf></p></cell>
+					<cell><p>as long as <pf>loop_condition</pf> is true</p></cell>
 				</row>
 				<row>
 					<cell><p>Ends</p></cell>
@@ -1211,7 +1215,7 @@
 							<p>for-loop ⤵︎</p>
 							<program language="matlab">
 								for k = start:step:stop
-									body
+									loop_body
 								end
 							</program>
 						</stack>
@@ -1220,7 +1224,7 @@
 							<program language="matlab">
 								k = start;
 								while k &lt;= stop
-									body
+									loop_body
 									k = k + step;
 								end
 							</program>
@@ -1243,13 +1247,10 @@
 						</program>
 						<sage language="octave">
 							<input>
-								% Replace each "?" with the appropriate code
 								total = 0;
-								k = ?;
-								while ?
-									total = total + k;
-									?;
-								end
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
 								fprintf('total = %i\n', total);
 							</input>
 						</sage>
@@ -1281,13 +1282,10 @@
 						</program>
 						<sage language="octave">
 							<input>
-								% Replace each "?" with the appropriate code
 								product = 1;
-								k = ?;
-								while ?
-									product = product * k;
-									?;
-								end
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
 								fprintf('product = %i\n', product);
 							</input>
 						</sage>
@@ -1318,12 +1316,9 @@
 						</program>
 						<sage language="octave">
 							<input>
-								% Replace each "?" with the appropriate code
-								n = ?;
-								while ?
-									fprintf('%d, ', n);
-									?;
-								end
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
 								fprintf('\n');
 							</input>
 						</sage>
@@ -1357,16 +1352,11 @@
 						</program>
 						<sage language="octave">
 							<input>
-								% Replace each "?" with the appropriate code
 								count = 0;
 								n = 20;
-								k = ?;
-								while ?
-									if mod(k, 4) == 0
-										count = count + 1;
-									end
-									?;
-								end
+								%─── TYPE YOUR CODE HERE ───%
+
+								%───────────────────────────%
 								fprintf('count = %i\n', count);
 							</input>
 						</sage>
