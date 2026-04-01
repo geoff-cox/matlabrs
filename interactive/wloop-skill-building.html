@@ -659,48 +659,6 @@ fprintf('result = %i\n', result);
 fprintf('smallest N = %i, total = %i\n', N, total);
 </script></div>
 <div class="autopermalink" data-description="Task 5.25.d"><a href="#activity-whileloops-drill-b" title="Copy heading and permalink for Task 5.25.d" aria-label="Copy heading and permalink for Task 5.25.d">🔗</a></div></article></div>
-<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="activity-whileloops-drill-d"><h5 class="heading"><span class="codenumber">(e)</span></h5>
-<div class="para logical" id="activity-whileloops-drill-d-1-1">
-<div class="para">In <a href="sec-4loops.html" class="internal" title="Section 5.1: The for Loop">the previous section</a>, you approximated <span class="process-math">\(\pi\)</span> using the formula</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sec-4loops.html" id="activity-whileloops-drill-d-1-1-3">
-\begin{equation*}
-\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots
-\end{equation*}
-</div>
-<div class="para">and the following MATLAB code:</div>
-<div class="autopermalink" data-description="Paragraph"><a href="#activity-whileloops-drill-d-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">N = 10;
-total = 0;
-for k = 1:N
-	total = total + (-1)^(k+1) * 1/(2*k - 1);
-end
-approx = total * 4;
-fprintf('Approximation of pi: %g\n', approx);
-</code></pre></div> <div class="para" id="activity-whileloops-drill-d-1-3">Rewrite this code using a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop instead of a <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop.<div class="autopermalink" data-description="Paragraph"><a href="#activity-whileloops-drill-d-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div id="activity-whileloops-drill-d-1-4" class="ptx-sagecell sagecell-octave"><script type="text/x-sage">N = 10;
-total = 0;
-%─── TYPE YOUR CODE HERE ───%
-
-
-%───────────────────────────%
-approx = total * 4;
-fprintf('Approximation of pi: %g\n', approx);
-</script></div>
-<div class="autopermalink" data-description="Task 5.25.e"><a href="#activity-whileloops-drill-d" title="Copy heading and permalink for Task 5.25.e" aria-label="Copy heading and permalink for Task 5.25.e">🔗</a></div></article></div>
-<div data-component="tab" data-tabname="(f)"><article class="task exercise-like" id="activity-whileloops-drill-e"><h5 class="heading"><span class="codenumber">(f)</span></h5>
-<div class="para" id="activity-whileloops-drill-e-1-1">The previous series is known to converge slowly to <span class="process-math">\(\frac{\pi}{4}\text{.}\)</span> This means that to get close to <span class="process-math">\(\frac{\pi}{4}\text{,}\)</span> many terms (i.e., <span class="process-math">\(N\)</span>) must be used.<div class="autopermalink" data-description="Paragraph"><a href="#activity-whileloops-drill-e-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="para" id="activity-whileloops-drill-e-1-2">In this exercise, update your code so that it determines how many terms are needed for this approximation to be within 0.001 of <code class="code-inline tex2jax_ignore language-matlab">pi</code>.<div class="autopermalink" data-description="Paragraph"><a href="#activity-whileloops-drill-e-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div id="activity-whileloops-drill-e-1-3" class="ptx-sagecell sagecell-octave"><script type="text/x-sage">N = 0; total = 0;
-%─── TYPE YOUR CODE HERE ───%
-
-
-%───────────────────────────%
-approx = total * 4;
-fprintf('          pi ≈ %10.8g\n', pi);
-fprintf('approx of pi ≈ %10.8g\n', approx);
-fprintf('terms needed = %i\n', N);
-</script></div>
-<div class="autopermalink" data-description="Task 5.25.f"><a href="#activity-whileloops-drill-e" title="Copy heading and permalink for Task 5.25.f" aria-label="Copy heading and permalink for Task 5.25.f">🔗</a></div></article></div>
 </div>
 </div></div>
 <div class="autopermalink" data-description="Checkpoint 5.25: Write the while-loop"><a href="#wloop-activity-write" title="Copy heading and permalink for Checkpoint 5.25: Write the while-loop" aria-label="Copy heading and permalink for Checkpoint 5.25: Write the while-loop">🔗</a></div></article><div class="autopermalink" data-description="Subsubsection: Drills"><a href="#wloop-drill-1" title="Copy heading and permalink for Subsubsection: Drills" aria-label="Copy heading and permalink for Subsubsection: Drills">🔗</a></div></section><section class="subsubsection" id="wloop-drill-2"><h3 class="heading hide-type">
