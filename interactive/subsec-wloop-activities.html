@@ -36,7 +36,6 @@ window.MathJax = {
     "packages": {
       "[+]": [
         "base",
-        "extpfeil",
         "ams",
         "amscd",
         "color",
@@ -73,7 +72,6 @@ window.MathJax = {
   "loader": {
     "load": [
       "input/asciimath",
-      "[tex]/extpfeil",
       "[tex]/amscd",
       "[tex]/color",
       "[tex]/newcommand",
@@ -121,16 +119,16 @@ eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.12.2';
+eBookConfig.runestone_version = '7.13.0';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.d2d4c56cb9826035.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.a4a209ed3a55c515.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<script src="_static/prefix-runtime.d2d4c56cb9826035.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.5a05244a9cd615a2.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
 <link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><script>// Make *any* div with class 'sagecell-octave' an executable Sage cell
 // Their results will be linked, only within language type
 sagecell.makeSagecell({
@@ -687,95 +685,7 @@ years = 70
 </div>
 </div></div>
 <div class="autopermalink" data-description="Task 5.31.c"><a href="#wloop-activity-interest" title="Copy heading and permalink for Task 5.31.c" aria-label="Copy heading and permalink for Task 5.31.c">🔗</a></div></article></div>
-<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="activity-euclidean-a"><h5 class="heading"><span class="codenumber">(d)</span></h5>
-<div class="para logical" id="activity-euclidean-a-1-1">
-<div class="para">The greatest common divisor, <span class="process-math">\(\gcd\text{,}\)</span> of two positive integers is the largest integer that divides both numbers. For example,</div>
-<div class="displaymath process-math" id="activity-euclidean-a-1-1-2">
-\begin{equation*}
-\gcd(20, 12) = 4
-\end{equation*}
-</div>
-<div class="para">since <span class="process-math">\(4\)</span> is the largest integer that divides both <span class="process-math">\(20\)</span> and <span class="process-math">\(12\)</span> evenly.</div>
-<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="para logical" id="activity-euclidean-a-1-2">
-<div class="para">One way to compute the <span class="process-math">\(\gcd\)</span> is with the <dfn class="terminology">Euclidean algorithm</dfn>. This algorithm repeatedly uses the identity</div>
-<div class="displaymath process-math" id="activity-euclidean-a-1-2-3">
-\begin{equation*}
-\gcd(a,b) = \gcd(b, \operatorname{mod}(a,b))
-\end{equation*}
-</div>
-<div class="para">until the remainder is 0. For example,</div>
-<div class="displaymath process-math" id="activity-euclidean-a-1-2-4">
-\begin{align*}
-\gcd(20,12) \amp\to \gcd(12,\textcolor{red}{8}) \to \gcd(8,\textcolor{red}{4}) \to \gcd(4,\textcolor{red}{0}) = 4\text{.}
-\end{align*}
-</div>
-<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="para" id="activity-euclidean-a-1-3">Write a function called <code class="code-inline tex2jax_ignore language-matlab">euclideanGCD</code> that returns the <span class="process-math">\(\gcd\)</span> of two positive integers and the steps needed to compute it.<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="tabular-box natural-width"><table class="tabular">
-<tr>
-<td class="r t b0 r0 l0 t1 lines">Inputs:</td>
-<td class="r t b0 r0 l0 t1" style="max-width:90px;"><div class="para" id="activity-euclidean-a-1-4-5-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">a</code><div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para" id="activity-euclidean-a-1-4-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para" id="activity-euclidean-a-1-4-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-</tr>
-<tr>
-<td class="r t b0 r0 l0 t0 lines"></td>
-<td class="r t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="activity-euclidean-a-1-4-6-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">b</code><div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="activity-euclidean-a-1-4-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="activity-euclidean-a-1-4-6-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-</tr>
-<tr>
-<td class="r t b0 r0 l0 t0 lines">Outputs:</td>
-<td class="r t b0 r0 l0 t0" style="max-width:90px;"><div class="para" id="activity-euclidean-a-1-4-7-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">gcd</code><div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para" id="activity-euclidean-a-1-4-7-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para" id="activity-euclidean-a-1-4-7-4-1">
-<span class="process-math">\(\gcd\)</span> of <code class="code-inline tex2jax_ignore language-matlab">a</code> and <code class="code-inline tex2jax_ignore language-matlab">b</code><div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-</tr>
-<tr>
-<td class="r t b1 r0 l0 t0 lines"></td>
-<td class="r t b1 r0 l0 t0" style="max-width:90px;"><div class="para" id="activity-euclidean-a-1-4-8-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">steps</code><div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="c t b1 r0 l0 t0" style="max-width:168px;"><div class="para" id="activity-euclidean-a-1-4-8-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-8-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="l t b1 r0 l0 t0" style="max-width:276px;"><div class="para" id="activity-euclidean-a-1-4-8-4-1">number of steps needed<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-4-8-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-</tr>
-</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:58.5858585858586% 40.4040404040404%;column-gap:1%;">
-<div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="activity-euclidean-a-1-5-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<pre class="program clipboardable"><code class="language-matlab">[g, n] = euclideanGCD(100, 36)
-[g, n] = euclideanGCD(1000000, 3)
-[g, n] = euclideanGCD(999, 369)
-[g, n] = euclideanGCD(2244, 144)
-</code></pre>
-</div>
-<div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="activity-euclidean-a-1-5-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#activity-euclidean-a-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<pre class="program clipboardable"><code class="language-matlab">g = 4		n = 4
-g = 1		n = 19
-g = 3		n = 3
-g = 12		n = 5
-</code></pre>
-</div>
-</div></div>
-<div class="autopermalink" data-description="Task 5.31.d"><a href="#activity-euclidean-a" title="Copy heading and permalink for Task 5.31.d" aria-label="Copy heading and permalink for Task 5.31.d">🔗</a></div></article></div>
-<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="activity-change-machine-b"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="activity-change-machine-b"><h5 class="heading"><span class="codenumber">(d)</span></h5>
 <div class="para" id="activity-change-machine-b-1-1">Write a function called <code class="code-inline tex2jax_ignore language-matlab">makeChange</code> that breaks a number of cents into quarters, dimes, nickels, and pennies using the greedy algorithm.<div class="autopermalink" data-description="Paragraph"><a href="#activity-change-machine-b-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="para" id="activity-change-machine-b-1-2">Use a separate <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop for each coin type. Start with quarters, then dimes, then nickels, and finally pennies. Return the number of each coin used and <code class="code-inline tex2jax_ignore language-matlab">totalCoins</code>, the total number of coins in the final breakdown.<div class="autopermalink" data-description="Paragraph"><a href="#activity-change-machine-b-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="para" id="activity-change-machine-b-1-3">For U.S. coins, this greedy process gives the fewest coins possible.<div class="autopermalink" data-description="Paragraph"><a href="#activity-change-machine-b-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -858,7 +768,7 @@ q=1, d=0, n=1, p=0, tot=2
 </code></pre>
 </div>
 </div></div>
-<div class="autopermalink" data-description="Task 5.31.e"><a href="#activity-change-machine-b" title="Copy heading and permalink for Task 5.31.e" aria-label="Copy heading and permalink for Task 5.31.e">🔗</a></div></article></div>
+<div class="autopermalink" data-description="Task 5.31.d"><a href="#activity-change-machine-b" title="Copy heading and permalink for Task 5.31.d" aria-label="Copy heading and permalink for Task 5.31.d">🔗</a></div></article></div>
 </div>
 </div></div>
 <div class="autopermalink" data-description="Checkpoint 5.31: While-Loop Functions"><a href="#wloop-activity-functions" title="Copy heading and permalink for Checkpoint 5.31: While-Loop Functions" aria-label="Copy heading and permalink for Checkpoint 5.31: While-Loop Functions">🔗</a></div></article><div class="autopermalink" data-description="Subsubsection: While-Loop Functions"><a href="#wloop-activities-functions" title="Copy heading and permalink for Subsubsection: While-Loop Functions" aria-label="Copy heading and permalink for Subsubsection: While-Loop Functions">🔗</a></div></section><div class="autopermalink" data-description="Subsection: 🧑🏻‍💻 Practice Activities"><a href="#subsec-wloop-activities" title="Copy heading and permalink for Subsection: 🧑🏻‍💻 Practice Activities" aria-label="Copy heading and permalink for Subsection: 🧑🏻‍💻 Practice Activities">🔗</a></div></section></div>
