@@ -288,4 +288,84 @@ end
 			</exercise>
 
 		</reading-questions>
+
+		<exercises xml:id="exercises-">
+			<exercise>
+			<task label="hw-while-digital-root">
+				<title>Digital Root</title>
+				<statement>
+					<p>
+						The <term>digital root</term> of a positive integer is found by repeatedly summing its digits until only one digit remains. For example, the digital root of <m>38</m> is <m>2</m> because <m>3+8=11</m> and <m>1+1=2</m>.
+					</p>
+
+					<p>
+						Write a function called <pf>digitalRoot</pf> that computes the digital root of a positive integer <pf>n</pf> using <pf>while</pf>-loops.
+					</p>
+
+					<p>
+						Use an outer loop that repeats while <pf>n &gt;= 10</pf>. Inside that loop, copy <pf>n</pf> to a temporary variable and use an inner loop to add its digits one at a time with <pf>mod(temp,10)</pf> and <pf>floor(temp/10)</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>d_root</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>single digit from 0 to 9</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								digitalRoot(38)
+								digitalRoot(987)
+								digitalRoot(7)
+								digitalRoot(12345)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 2
+								ans = 6
+								ans = 7
+								ans = 6
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function d_root = digitalRoot(n)
+							while n &gt;= 10
+								sum_digits = 0;
+								temp = n;
+
+								while temp &gt; 0
+									sum_digits = sum_digits + mod(temp, 10);
+									temp = floor(temp / 10);
+								end
+
+								n = sum_digits;
+							end
+
+							d_root = n;
+						end
+					</program>
+				</solution>
+			</task>
+			</exercise>
+		</exercises>
 </section>

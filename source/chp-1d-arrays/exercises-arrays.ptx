@@ -1435,4 +1435,121 @@
 			</sidebyside>
 		</statement>
 	</exercise>
+
+			<task label="hw-while-factorization">
+				<title>Integer Factorization by Trial Division</title>
+				<statement>
+					<p>
+						Every integer greater than 1 can be written as a product of prime factors. For example,
+						<me>
+							360 = 2^3 \cdot 3^2 \cdot 5.
+						</me>
+						A simple way to find these factors is <term>trial division</term>: test divisors starting at 2, divide them out when they work, and move on when they do not.
+					</p>
+
+					<p>
+						As a warm-up, first write a <pf>while</pf>-loop that divides out all copies of 2 from a number <pf>n</pf>. For example, starting with <pf>n = 360</pf>, the values should change as follows:
+						<me>
+							360 \to 180 \to 90 \to 45.
+						</me>
+					</p>
+
+					<p>
+						Then write a function <pf>primeFactors(n)</pf> that returns all prime factors of <pf>n</pf> as a row vector in nondecreasing order. Use a divisor <pf>d</pf> that starts at 2. While <pf>d * d &lt;= n</pf>, test whether <pf>d</pf> divides <pf>n</pf>. If it does, record the factor and divide it out. If it does not, increase <pf>d</pf> by 1. After the loop, if <pf>n &gt; 1</pf>, then the remaining value of <pf>n</pf> is the last prime factor.
+					</p>
+
+					<p>
+						Finally, write a function <pf>smallestFactor(n)</pf> that returns the smallest prime factor of <pf>n</pf>. If <pf>n</pf> is prime, the function should return <pf>n</pf> itself.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>integer greater than 1</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>factors</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>row vector of prime factors returned by <pf>primeFactors</pf></p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>p</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>smallest prime factor returned by <pf>smallestFactor</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								primeFactors(360)
+								primeFactors(97)
+								smallestFactor(91)
+								smallestFactor(9973)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = [2 2 2 3 3 5]
+								ans = [97]
+								ans = 7
+								ans = 9973
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						n = 360;
+						fprintf('Starting with n = %i\n', n)
+						while mod(n, 2) == 0
+							n = n / 2;
+							fprintf('  /2 -> %i\n', n)
+						end
+						fprintf('Remaining: n = %i\n', n)
+					</program>
+					<program language="matlab">
+						function factors = primeFactors(n)
+							factors = [];
+							d = 2;
+
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									factors(end + 1) = d; %#ok&lt;AGROW&gt;
+									n = n / d;
+								else
+									d = d + 1;
+								end
+							end
+
+							if n &gt; 1
+								factors(end + 1) = n;
+							end
+						end
+					</program>
+					<program language="matlab">
+						function p = smallestFactor(n)
+							d = 2;
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									p = d;
+									return
+								end
+								d = d + 1;
+							end
+							p = n;
+						end
+					</program>
+				</solution>
+			</task>
 </exercises>

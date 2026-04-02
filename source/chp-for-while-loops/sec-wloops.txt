@@ -2007,6 +2007,104 @@
 					</solution>
 				</task>
 
+				<task label="activity-euclidean-a">
+					<statement>
+
+						<p>
+							The greatest common divisor, <m>\gcd</m>, of two positive integers is the largest integer that divides both numbers. For example, 
+							<me>
+								\gcd(20, 12) = 4
+							</me>
+							since <m>4</m> is the largest integer that divides both <m>20</m> and <m>12</m> evenly.
+						</p>
+
+						<p>
+							One way to compute the <m>\gcd</m> is with the <term>Euclidean algorithm</term>. This algorithm repeatedly uses the identity
+							<me>
+								\gcd(a,b) = \gcd(b, \operatorname{mod}(a,b))
+							</me>
+							until the remainder is 0. For example,
+							<md>
+								<mrow>
+									\gcd(20,12) \amp\to \gcd(12,\textcolor{red}{8}) \to \gcd(8,\textcolor{red}{4}) \to \gcd(4,\textcolor{red}{0}) = 4
+								</mrow>
+							</md>.
+						</p>
+
+						<p>
+							Write a function called <pf>euclideanGCD</pf> that returns the <m>\gcd</m> of two positive integers and the steps needed to compute it.
+						</p>
+
+						<tabular valign="top" top="minor">
+							<col width="11%" halign="right" />
+							<col width="15%" halign="right" />
+							<col width="28%" halign="center" />
+							<col width="46%" halign="left"/>
+							<row>
+								<cell>Inputs:</cell>
+								<cell><p><pf>a</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>positive integer</p></cell>
+							</row>
+							<row>
+								<cell></cell>
+								<cell><p><pf>b</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>positive integer</p></cell>
+							</row>
+							<row>
+								<cell>Outputs:</cell>
+								<cell><p><pf>gcd</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p><m>\gcd</m> of <pf>a</pf> and <pf>b</pf></p></cell>
+							</row>
+							<row bottom="minor">
+								<cell></cell>
+								<cell><p><pf>steps</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>number of steps needed</p></cell>
+							</row>
+						</tabular>
+
+						<sidebyside widths="58% 40%">
+							<stack>
+								<p>Test Cases ⤵︎</p>
+								<program language="matlab">
+									[g, n] = euclideanGCD(100, 36)
+									[g, n] = euclideanGCD(1000000, 3)
+									[g, n] = euclideanGCD(999, 369)
+									[g, n] = euclideanGCD(2244, 144)
+								</program>
+							</stack>
+							<stack>
+								<p>Expected ⤵︎</p>
+								<program language="matlab">
+									g = 4		n = 4
+									g = 1		n = 19
+									g = 3		n = 3
+									g = 12		n = 5
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+					<solution component="example-solution-dev">
+						<program language="matlab">
+							function [gcd_value, steps] = euclideanGCD(a, b)
+								steps = 0;
+
+								while b ~= 0
+									r = mod(a, b);
+									a = b;
+									b = r;
+									steps = steps + 1;
+								end
+
+								gcd_value = a;
+							end
+						</program>
+					</solution>
+				</task>
+
 				<task label="activity-change-machine-b">
 					<statement>
 						<p>
@@ -2127,483 +2225,11 @@
 		<exercise label="coding-exercises-whileloops">
 			<title>While-Loop Exercises</title>
 
-			<task label="hw-while-collatz">
-				<title>Collatz Steps</title>
-				<statement>
-					<p>
-						The <term>Collatz sequence</term> starts with a positive integer <pf>x</pf> and repeatedly applies the following rules:
-					</p>
-
-					<ul marker="square">
-						<li>If the current value is even, divide it by 2.</li>
-						<li>If the current value is odd, multiply it by 3 and add 1.</li>
-					</ul>
-
-					<p>
-						For example, starting with <m>6</m> gives
-						<me>
-							6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1.
-						</me>
-					</p>
-
-					<p>
-						Write a function <pf>collatzSteps()</pf> that uses a <pf>while</pf>-loop to return the number of steps required for the sequence to reach <m>1</m>. If <pf>x = 1</pf>, the function should return <pf>0</pf>.
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left" />
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>x</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer starting value</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>steps</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>Collatz steps needed to reach <m>1</m></p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="48% 50%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								steps = collatzSteps(6)
-								steps = collatzSteps(10)
-								steps = collatzSteps(1)
-								steps = collatzSteps(27)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								steps = 8
-								steps = 6
-								steps = 0
-								steps = 111
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="exercise-solution">
-					<program language="matlab">
-						function steps = collatzSteps(x)
-							steps = 0;
-
-							while x ~= 1
-								if mod(x, 2) == 0
-									x = x / 2;
-								else
-									x = 3 * x + 1;
-								end
-								steps = steps + 1;
-							end
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="hw-while-largest-fib-num">
-				<title>Largest Fibonacci</title>
-				
-				<statement>
-					<p>
-						Write a function <pf>largestFibNum()</pf> that returns the largest Fibonacci number less than or equal to <m>n</m>. Use a <pf>while</pf>-loop
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="30%" halign="center" />
-						<col width="44%" halign="left" />
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>fib_num</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>largest Fibonacci number less than or equal to <pf>n</pf></p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="56% 44%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								result = largestFibNum(13)
-								result = largestFibNum(11)
-								result = largestFibNum(0)
-								result = largestFibNum(193)
-								result = largestFibNum(100000)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								result = 13
-								result = 1
-								result = 0
-								result = 144
-								result = 75025
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="exercise-solution">
-					<program language="matlab">
-						function result = largestFibNum(n)
-							prev2 = 0;
-							prev1 = 1;
-
-							while prev1 &lt;= n
-								current = prev1 + prev2;
-								prev2 = prev1;
-								prev1 = current;
-							end
-
-							result = prev1;
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="hw-while-nearest-fib-num">
-				<title>Nearest Fibonacci</title>
-				
-				<statement>
-					<p>
-						Write a function <pf>nearestFibNum()</pf> that returns the closest Fibonacci number to <m>n</m>. Use a <pf>while</pf>-loop
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left" />
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>fib_num</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>Fibonacci number closest to <pf>n</pf></p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="56% 44%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								result = nearestFibNum(13)
-								result = nearestFibNum(11)
-								result = nearestFibNum(0)
-								result = nearestFibNum(193)
-								result = nearestFibNum(100000)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								result = 13
-								result = 13
-								result = 0
-								result = 233
-								result = 121393
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="exercise-solution">
-					<program language="matlab">
-						function result = nearestFibNum(n)
-							prev2 = 0;
-							prev1 = 1;
-
-							while prev1 &lt;= n
-								current = prev1 + prev2;
-								prev2 = prev1;
-								prev1 = current;
-							end
-
-							if abs(prev2 - n) &lt;= abs(prev1 - n)
-								result = prev2;
-							else
-								result = prev1;
-							end
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="hw-while-bouncing-ball">
-				<title>Bouncing Ball</title>
-				<statement>
-					<p>
-						A ball is dropped from a height of <pf>h</pf> meters. 
-						Each time it bounces, it reaches a fraction <pf>r</pf> of 
-						its previous height (where <m>0 &lt; r &lt; 1</m>). 
-					</p>
-
-					<p>
-						Write a function <pf>bounceCount()</pf> that uses a 
-						<pf>while</pf>-loop to count how many bounces occur before 
-						the ball's height drops below <m>0.01</m> meters. Print the 
-						bounce number and height at each step, and return the number 
-						of bounces.
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="17%" halign="left" />
-						<col width="30%" halign="center" />
-						<col width="42%" halign="left" />
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>h</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>initial drop height (meters)</p></cell>
-						</row>
-						<row>
-							<cell></cell>
-							<cell><p><pf>r</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>bounce ratio (between 0 and 1)</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>bounces</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of bounces before height drops below <m>0.01</m> meters</p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="44% 54%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								b = bounceCount(10, 0.5)
-								b = bounceCount(100, 0.75)
-								b = bounceCount(5, 0.3)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								b = 4   % 10→5→2.5→...→0.0098
-								b = 11  % 100→75→56.25→...→0.0075
-								b = 4   % 5→1.5→0.45→...→0.0036
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="exercise-solution">
-					<program language="matlab">
-						function bounces = bounceCount(h, r)
-							bounces = 0;
-
-							fprintf('Drop: h = %.4f m\n', h)
-							while h &gt;= 0.01
-								h = h * r;
-								bounces = bounces + 1;
-								fprintf('Bounce %2i: h = %.4f m\n', bounces, h)
-							end
-						end
-					</program>
-				</solution>
-			</task>
-			
-			<task label="hw-while-dice-target">
-				<title>Dice Roll to Target</title>
-				<statement>
-					<p>
-						Write a function <pf>rollToTarget()</pf> that simulates 
-						rolling a six-sided die repeatedly until the running 
-						total reaches or exceeds <pf>target</pf>. Use 
-						<pf>randi(6)</pf> to generate each roll. Print each roll 
-						and the running total, and return the number of rolls needed.
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left" />
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>target</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>target sum to reach</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>rolls</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of rolls needed</p></cell>
-						</row>
-					</tabular>
-
-					<p>
-						Because of the randomness, outputs will differ each run. Below is one possible run; your exact numbers will vary.
-					</p>
-
-					<sidebyside widths="49% 49%">
-						<stack>
-							<p>Test Case ⤵︎</p>
-							<program language="matlab">
-								rng(77)
-								rolls = rollToTarget(20)
-							</program>
-						</stack>
-						<stack>
-							<p>Example Output ⤵︎</p>
-							<program language="matlab">
-								rolls = 5
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="exercise-solution">
-					<program language="matlab">
-						function rolls = rollToTarget(target)
-							total = 0;
-							rolls = 0;
-
-							while total &lt; target
-								die = randi(6);
-								total = total + die;
-								rolls = rolls + 1;
-								fprintf('Roll %i: got %i, total = %i\n', rolls, die, total)
-							end
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="hw-while-gcd">
-				<title>Greatest Common Divisor</title>
-				<statement>
-
-					<p>
-						The greatest common divisor, <m>\gcd</m>, of two positive 
-						integers is the largest integer that divides both numbers. 
-						For example, 
-						<me>
-							\gcd(20, 12) = 4
-						</me>
-						since <m>4</m> is the largest integer that divides both <m>20</m> and <m>12</m> evenly.
-					</p>
-
-					<p>
-						One way to compute the <m>\gcd</m> is with the <term>Euclidean algorithm</term>. This algorithm repeatedly uses the identity
-						<me>
-							\gcd(a,b) = \gcd(b, \operatorname{mod}(a,b))
-						</me>
-						until the remainder is 0. For example, computing <m>\gcd(20, 12)</m> requires 3 iterations of the Euclidean algorithm:
-						<md>
-							<mrow>
-								\gcd(20,12) \amp\overset{1}{\to} \gcd(12,\textcolor{red}{8}) \overset{2}{\to} \gcd(8,\textcolor{red}{4}) \overset{3}{\to} \gcd(4,\textcolor{red}{0}) = 4
-							</mrow>
-						</md>.
-					</p>
-
-					<p>
-						Write a function called <pf>myGCD()</pf> that returns the <m>\gcd</m> of two positive integers and the steps needed to compute it.
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="right" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>a</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer</p></cell>
-						</row>
-						<row>
-							<cell></cell>
-							<cell><p><pf>b</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer</p></cell>
-						</row>
-						<row>
-							<cell>Outputs:</cell>
-							<cell><p><pf>gcd</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p><m>\gcd</m> of <pf>a</pf> and <pf>b</pf></p></cell>
-						</row>
-						<row bottom="minor">
-							<cell></cell>
-							<cell><p><pf>steps</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of steps needed</p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="58% 40%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								[gcd, steps] = myGCD(100, 36)
-								[gcd, steps] = myGCD(10000, 2228)
-								[gcd, steps] = myGCD(999, 369)
-								[gcd, steps] = myGCD(17, 13)
-								[gcd, steps] = myGCD(84, 30)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								gcd = 4  steps = 4
-								gcd = 4  steps = 5
-								gcd = 9  steps = 6
-								gcd = 1  steps = 3
-								gcd = 6  steps = 3
-							</program>
-						</stack>
-					</sidebyside>
-
-				</statement>
-				<solution component="example-solution-dev">
-					<program language="matlab">
-						function [gcd_value, steps] = myGCD(a, b)
-							steps = 0;
-
-							while b ~= 0
-								r = mod(a, b);
-								a = b;
-								b = r;
-								steps = steps + 1;
-							end
-
-							gcd_value = a;
-						end
-					</program>
-				</solution>
-			</task>
-
 			<task label="hw-while-int-sqrt">
 				<title>Integer Square Root</title>
 				<statement>
 					<p>
-						Write a function <pf>intSqrt()</pf> that returns the largest 
-						integer whose square is less than or equal to <pf>n</pf>. 
-						This value is called the <term>integer square root</term> of 
-						<pf>n</pf>.
+						Write a function <pf>intSqrt(n)</pf> that returns the largest integer whose square is less than or equal to <pf>n</pf>. This value is called the <term>integer square root</term> of <pf>n</pf>.
 					</p>
 
 					<p>
@@ -2675,39 +2301,45 @@
 				</solution>
 			</task>
 
-			<task xml:id="hw-while-digit-counter">
-				<title>Digit Counter</title>
+			<task label="hw-while-collatz">
+				<title>Collatz Steps</title>
 				<statement>
 					<p>
-						Write a function called <pf>digitCount()</pf> that returns 
-						the number of digits in a positive integer <pf>n</pf>.
+						The <term>Collatz sequence</term> starts with a positive integer <pf>x</pf> and repeatedly applies the following rules:
+					</p>
+
+					<ul marker="square">
+						<li>If the current value is even, divide it by 2.</li>
+						<li>If the current value is odd, multiply it by 3 and add 1.</li>
+					</ul>
+
+					<p>
+						For example, starting with <m>6</m> gives
+						<me>
+							6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1.
+						</me>
 					</p>
 
 					<p>
-						Use a <pf>while</pf>-loop performs the following for each iteration: 
-						<ul>
-							<li>Extract the rightmost digit as the remainder from dividing by 10.</li>
-							<li>Remove the rightmost digit by dividing by 10 and rounding down.</li>
-						</ul>
-						The number of iterations gives the digit count.
+						Write a function <pf>collatzSteps(x)</pf> that uses a <pf>while</pf>-loop to return the number of steps required for the sequence to reach <m>1</m>. If <pf>x = 1</pf>, the function should return <pf>0</pf>.
 					</p>
 
 					<tabular valign="top" top="minor">
 						<col width="11%" halign="right" />
 						<col width="15%" halign="left" />
 						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
+						<col width="46%" halign="left" />
 						<row>
 							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
+							<cell><p><pf>x</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer</p></cell>
+							<cell><p>positive integer starting value</p></cell>
 						</row>
 						<row bottom="minor">
 							<cell>Outputs:</cell>
-							<cell><p><pf>ct</pf></p></cell>
+							<cell><p><pf>steps</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of digits in <pf>n</pf></p></cell>
+							<cell><p>Collatz steps needed to reach <m>1</m></p></cell>
 						</row>
 					</tabular>
 
@@ -2715,52 +2347,50 @@
 						<stack>
 							<p>Test Cases ⤵︎</p>
 							<program language="matlab">
-								ct = digitCount(123)
-								ct = digitCount(9999)
-								ct = digitCount(7)
-								ct = digitCount(10001)
+								steps = collatzSteps(6)
+								steps = collatzSteps(10)
+								steps = collatzSteps(1)
+								steps = collatzSteps(27)
 							</program>
 						</stack>
 						<stack>
 							<p>Expected ⤵︎</p>
 							<program language="matlab">
-								ct = 3
-								ct = 4
-								ct = 1
-								ct = 5
+								steps = 8
+								steps = 6
+								steps = 0
+								steps = 111
 							</program>
 						</stack>
 					</sidebyside>
 				</statement>
 				<solution component="exercise-solution">
 					<program language="matlab">
-						function ct = digitCount(n)
-							ct = 0;
+						function steps = collatzSteps(x)
+							steps = 0;
 
-							while n &gt; 0
-								ct = ct + 1;
-								n = floor(n / 10);
+							while x ~= 1
+								if mod(x, 2) == 0
+									x = x / 2;
+								else
+									x = 3 * x + 1;
+								end
+								steps = steps + 1;
 							end
 						end
 					</program>
 				</solution>
 			</task>
 
-			<task xml:id="hw-while-digit-sum">
+			<task label="hw-while-digit-sum">
 				<title>Digit Sum</title>
 				<statement>
 					<p>
-						Write a function called <pf>digitSum()</pf> that returns the sum of 
-						the digits of a positive integer <pf>n</pf>.
+						Write a function called <pf>digitSum</pf> that returns the sum of the digits of a positive integer <pf>n</pf>.
 					</p>
 
 					<p>
-						Use a <pf>while</pf>-loop performs the following for each iteration: 
-						<ul>
-							<li>Extract the rightmost digit as the remainder from dividing by 10.</li>
-							<li>Add that digit to a running total sum.</li>
-							<li>Remove the rightmost digit by dividing by 10 and rounding down.</li>
-						</ul>
+						Use a <pf>while</pf>-loop with two operations per iteration: extract the rightmost digit with <pf>mod(n, 10)</pf> and remove it with <pf>floor(n / 10)</pf>. Continue while <pf>n &gt; 0</pf>.
 					</p>
 
 					<tabular valign="top" top="minor">
@@ -2816,31 +2446,544 @@
 					</program>
 				</solution>
 			</task>
-	
-			<task xml:id="hw-while-reverse-digits">
-				<title>Reverse Digits</title>
+
+			<task label="hw-while-print-digits">
+			<title>Print Digits from Right to Left</title>
+			<statement>
+				<p>
+					Write a function called <pf>printDigits</pf> that prints the digits of a positive integer one at a time, starting with the ones digit and moving left.
+				</p>
+
+				<p>
+					Use the following two-step process inside a <pf>while</pf>-loop:
+					<ul marker="square">
+						<li>Extract the rightmost digit with <pf>mod(n,10)</pf>.</li>
+						<li>Remove that digit with <pf>floor(n/10)</pf>.</li>
+					</ul>
+				</p>
+
+				<p>
+					For example, <pf>printDigits(1234)</pf> should print <pf>4321</pf>. The function does not return a value; it prints directly to the Command Window.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p>none</p></cell>
+						<cell><p>—</p></cell>
+						<cell><p>prints the digits of <pf>n</pf> from right to left</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							printDigits(1234)
+							printDigits(50374254)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							4321
+							45247305
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function printDigits(n)
+						while n &gt; 0
+							digit = mod(n, 10);
+							fprintf('%i', digit);
+							n = floor(n / 10);
+						end
+						fprintf('\n');
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-fibonacci">
+				<title>Nearest Fibonacci</title>
+				
 				<statement>
 					<p>
-						Write a function called <pf>reverseDigits()</pf> that returns the 
-						same number as the input but with its digits are reversed. For 
-						example, if the input is <m>1234</m>, the output should be <m>4321</m>.
+						Write a function <pf>nearestFibonacci(n)</pf> that uses a <pf>while</pf>-loop to return the Fibonacci number that is closest to <m>n</m> (above, below, or equal).
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>fib_num</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>Fibonacci number closest to <pf>n</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="56% 44%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								result = nearestFibonacci(15)
+								result = nearestFibonacci(1)
+								result = nearestFibonacci(0)
+								result = nearestFibonacci(100)
+								result = nearestFibonacci(100000)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								result = 13
+								result = 1
+								result = 0
+								result = 89
+								result = 75025
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function result = nearestFibonacci(n)
+							prev2 = 0;
+							prev1 = 1;
+
+							while prev1 &lt;= n
+								current = prev1 + prev2;
+								prev2 = prev1;
+								prev1 = current;
+							end
+
+							if abs(prev2 - n) &lt;= abs(prev1 - n)
+								result = prev2;
+							else
+								result = prev1;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="hw-while-golden-ratio">
+			<statement>
+				<p>
+					The golden ratio <m>\varphi = \frac{1+\sqrt{5}}{2} \approx 1.6180339887\ldots</m> has the remarkable continued fraction representation
+					<me>
+						\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}
+					</me>.
+				</p>
+
+				<p>
+					This can be approximated by starting with <m>\varphi = 1</m> and repeatedly applying the identity:
+					<me>
+						\varphi = 1 + \frac{1}{\varphi}
+					</me>.
+					The more times we apply this identity, the closer the approximation gets to the true value of <m>\varphi</m>.
+				</p>
+
+				<p>
+					Write a function called <pf>goldenRatio</pf> that uses a <pf>while</pf>-loop to return the approximation of the golden ratio and the number of steps needed for the approximation to be within a given tolerance.
+				</p>
+
+				<p>
+					Let <m>\tau</m> be the tolerance. We say that <m>a</m> and <m>b</m> are within <m>\tau</m> of each other if the distance between them is less than <m>\tau</m>:
+					<me>|a - b| &lt; \tau</me>. 
+					Use this as your looping condition. Use <m>\varphi = \frac{1+\sqrt{5}}{2}</m> in your function.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>tol</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>tolerance for approximation</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>phi_n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>approximation of the golden ratio, <m>\varphi</m></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>steps</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of steps needed for <pf>phi_n</pf> to be within <pf>tol</pf> of <m>\varphi</m></p></cell>
+					</row>
+				</tabular>
+				
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							[val, n] = goldenRatio(0.5)
+							[val, n] = goldenRatio(1e-3)
+							[val, n] = goldenRatio(1e-8)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							val = 2.000000000000000   n = 1
+							val = 1.617647058823529   n = 8
+							val = 1.618033998521804   n = 19
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function [phi_n, steps] = goldenRatio(tol)
+						phi = (1 + sqrt(5)) / 2;
+						phi_n = 1;
+						steps = 0;
+
+						while abs(phi_n - phi) &gt; tol
+							phi_n = 1 + 1 / phi_n;
+							steps = steps + 1;
+						end
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-base-digits-to-number">
+				<title>Build a Number from Random Digits</title>
+				<statement>
+					<p>
+						Write a function called <pf>buildRandomNumber</pf> that constructs a number from <pf>n</pf> randomly generated digits. Use a <pf>while</pf>-loop and generate each digit with <pf>randi([0,9])</pf>.
 					</p>
 
 					<p>
-						First, get the number of digits in <pf>n</pf> using your 
-						<xref ref="hw-while-digit-counter" text="custom"><pf>digitCount</pf></xref>
-						function. 
-						Then, as in your 
-						<xref ref="hw-while-digit-sum" text="custom"><pf>digitSum</pf></xref> 
-						function, use a while loop to extract each digit from right to left, multiply it by the appropriate 
-						power of 10 and add it to a running total. 
+						Treat the first generated digit as the ones digit, the second as the tens digit, the third as the hundreds digit, and so on. For example, if <pf>n = 4</pf> and the generated digits are <m>7</m>, <m>3</m>, <m>0</m>, and <m>5</m>, then the final number is
+						<me>x = 7\cdot 10^0 + 3\cdot 10^1 + 0\cdot 10^2 + 5\cdot 10^3 = 5037.</me>
 					</p>
 
 					<p>
-						For example, if <m>n = 1234</m>, then compute the sum:
-						<me>
-							4 \cdot 10^3 + 3 \cdot 10^2 + 2 \cdot 10^1 + 1 \cdot 10^0 = 4321.
-						</me>
+						Print each step as the number is built. Use <pf>x</pf> for the current value, <pf>x0</pf> for the previous value, <pf>k</pf> for the place value index, and <pf>digit</pf> for the random digit generated at each step.
+					</p>
+
+					<p>
+						Because the digits are random, your exact result will vary from one run to the next. Also note that if the last digit generated is 0, the returned number may display with fewer than <pf>n</pf> digits.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of random digits to generate</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>x</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>constructed number</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="46% 52%">
+						<stack>
+							<p>Example Calls ⤵︎</p>
+							<program language="matlab">
+								x1 = buildRandomNumber(1)
+
+
+								x2 = buildRandomNumber(4)
+							</program>
+						</stack>
+						<stack>
+							<p>What to Expect ⤵︎</p>
+							<program language="matlab">
+								% x1 is an integer from 0-9.
+								% One line of output is printed.
+								
+								% x2 is an integer from 0-9999.
+								% Four lines of intermediate output are printed,
+								% followed by the final number.
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						function x = buildRandomNumber(n)
+							x = 0;
+							x0 = 0;
+							k = 0;
+
+							while k &lt; n
+								digit = randi([0, 9]);
+								fprintf('k = %i, digit = %i: ', k, digit);
+								x = x + digit * 10^k;
+								fprintf('x = %i + %i*10^%i = %i\n', x0, digit, k, x);
+								x0 = x;
+								k = k + 1;
+							end
+
+							fprintf('Final number: %i\n', x)
+						end
+					</program>
+				</solution>
+			</task>
+	
+			<task label="hw-while-digital-root">
+			<title>Digital Root</title>
+			<statement>
+				<p>
+					The <term>digital root</term> of a positive integer is found by repeatedly summing its digits until only one digit remains. For example, the digital root of <m>38</m> is <m>2</m> because <m>3+8=11</m> and <m>1+1=2</m>.
+				</p>
+
+				<p>
+					Write a function called <pf>digitalRoot</pf> that computes the digital root of a positive integer <pf>n</pf> using <pf>while</pf>-loops.
+				</p>
+
+				<p>
+					Use an outer loop that repeats while <pf>n &gt;= 10</pf>. Inside that loop, copy <pf>n</pf> to a temporary variable and use an inner loop to add its digits one at a time with <pf>mod(temp,10)</pf> and <pf>floor(temp/10)</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>d_root</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>single digit from 0 to 9</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							digitalRoot(38)
+							digitalRoot(987)
+							digitalRoot(7)
+							digitalRoot(12345)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							ans = 2
+							ans = 6
+							ans = 7
+							ans = 6
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function d_root = digitalRoot(n)
+						while n &gt;= 10
+							sum_digits = 0;
+							temp = n;
+
+							while temp &gt; 0
+								sum_digits = sum_digits + mod(temp, 10);
+								temp = floor(temp / 10);
+							end
+
+							n = sum_digits;
+						end
+
+						d_root = n;
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-to-binary">
+			<title>Putting It Together: Decimal to Binary</title>
+			<statement>
+				<p>
+					Write a function called <pf>toBinary</pf> that takes a positive integer <pf>n</pf> and returns its binary representation as an ordinary base-10 integer whose digits are the binary digits. For example, <pf>toBinary(13)</pf> should return <pf>1101</pf>.
+				</p>
+
+				<p>
+					This combines the two earlier ideas: repeatedly extract remainders with division by 2, and build the output one digit at a time using a <pf>place</pf> variable that is multiplied by 10 each iteration.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer to convert</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>result</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>base-10 integer whose digits are the binary digits of <pf>n</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							toBinary(1)
+							toBinary(10)
+							toBinary(255)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							ans = 1
+							ans = 1010
+							ans = 11111111
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function result = toBinary(n)
+						result = 0;
+						place = 1;
+
+						while n &gt; 0
+							remainder = mod(n, 2);
+							result = result + remainder * place;
+							n = floor(n / 2);
+							place = place * 10;
+						end
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-gcd">
+			<title>Greatest Common Divisor Function</title>
+			<statement>
+				<p>
+					Write a function called <pf>myGCD</pf> that takes two positive integers <pf>a</pf> and <pf>b</pf> and returns their greatest common divisor.
+				</p>
+
+				<p>
+					Use the Euclidean algorithm: while <pf>b ~= 0</pf>, replace <pf>(a,b)</pf> with <pf>(b, mod(a,b))</pf>. When the loop ends, <pf>a</pf> is the greatest common divisor.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>a</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>b</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>result</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>greatest common divisor of <pf>a</pf> and <pf>b</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							myGCD(270, 192)
+							myGCD(17, 13)
+							myGCD(84, 30)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							ans = 6
+							ans = 1
+							ans = 6
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<program language="matlab">
+					function result = myGCD(a, b)
+						while b ~= 0
+							r = mod(a, b);
+							a = b;
+							b = r;
+						end
+
+						result = a;
+					end
+				</program>
+			</solution>
+			</task>
+
+			<task label="hw-while-is-prime">
+				<title>Primality Test</title>
+				<statement>
+					<p>
+						A positive integer <m>n &gt; 1</m> is <term>prime</term> if its only positive divisors are 1 and itself.
+					</p>
+
+					<p>
+						Write a function called <pf>isPrime</pf> that returns <pf>1</pf> if <pf>n</pf> is prime and <pf>0</pf> otherwise. Use a <pf>while</pf>-loop that tests potential divisors <pf>d</pf> starting at 2. If any <pf>d</pf> divides <pf>n</pf> evenly, then <pf>n</pf> is not prime. You only need to test divisors while <pf>d * d &lt;= n</pf>.
+					</p>
+
+					<p>
+						If the loop ends without finding a divisor, <pf>n</pf> is prime. As a special case, <pf>n = 1</pf> is not considered prime.
 					</p>
 
 					<tabular valign="top" top="minor">
@@ -2856,90 +2999,9 @@
 						</row>
 						<row bottom="minor">
 							<cell>Outputs:</cell>
-							<cell><p>nReverse</p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>the number with its digits reversed</p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="54% 44%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								nReverse = reverseDigits(1234)
-								nReverse = reverseDigits(50374254)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								nReverse = 4321
-								nReverse = 45247305
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="exercise-solution">
-					<program language="matlab">
-						function nReverse = reverseDigits(n)
-							nReverse = 0;
-							place = 1;
-
-							while n &gt; 0
-								digit = mod(n, 10);
-								nReverse = nReverse + digit * place;
-								place = place * 10;
-								n = floor(n / 10);
-							end
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="hw-while-to-binary">
-				<title>Decimal to Binary</title>
-				<statement>
-					<p>
-						Write a function called <pf>toBinary()</pf> that takes a positive integer 
-						<pf>n</pf> and returns its binary representation as an ordinary base-<m>10</m> 
-						integer whose digits are the binary digits.
-					</p>
-
-					<p>
-						The approach is similar to previous digit extraction codes, but instead of 
-						extracting digits as remainders from dividing by <m>10</m>, you get them as 
-						remainders from dividing by <m>2</m>.
-					</p>
-
-					<p>
-						For example, if <m>n = 13</m>, then you get the first binary digit as 
-						the remainder from dividing by <m>2</m>, which is <m>1</m>. Dividing <m>n</m> by <m>2</m> 
-						and rounding down gives <m>6</m>. Repeat the process until <m>n</m> becomes <m>0</m>. 
-						The complete process gives the binary digits <m>1</m>, <m>0</m>, <m>1</m> and <m>1</m> (in reverse order).
-						The binary representation of <m>13</m> is <m>1101_2</m>, which your code will compute as:
-						<me>
-							1 \cdot 10^3 + 1 \cdot 10^2 + 0 \cdot 10^1 + 1 \cdot 10^0 = 1101.
-						</me>
-						Your function should return the base-<m>10</m> integer <m>1101</m>, which has the 
-						same digits as the binary representation <m>1101_2</m>.
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer to convert</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
 							<cell><p><pf>result</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>base-10 integer whose digits are the binary digits of <pf>n</pf></p></cell>
+							<cell><p><pf>1</pf> if <pf>n</pf> is prime, <pf>0</pf> otherwise</p></cell>
 						</row>
 					</tabular>
 
@@ -2947,64 +3009,74 @@
 						<stack>
 							<p>Test Cases ⤵︎</p>
 							<program language="matlab">
-								toBinary(1)
-								toBinary(10)
-								toBinary(255)
+								isPrime(2)
+								isPrime(7)
+								isPrime(15)
+								isPrime(97)
+								isPrime(1)
+								isPrime(49)
 							</program>
 						</stack>
 						<stack>
 							<p>Expected ⤵︎</p>
 							<program language="matlab">
 								ans = 1
-								ans = 1010
-								ans = 11111111
+								ans = 1
+								ans = 0
+								ans = 1
+								ans = 0
+								ans = 0
 							</program>
 						</stack>
 					</sidebyside>
 				</statement>
 				<solution component="exercise-solution">
 					<program language="matlab">
-						function result = toBinary(n)
-							result = 0;
-							place = 1;
+						function result = isPrime(n)
+							if n &lt; 2
+								result = 0;
+								return
+							end
 
-							while n &gt; 0
-								remainder = mod(n, 2);
-								result = result + remainder * place;
-								n = floor(n / 2);
-								place = place * 10;
+							d = 2;
+							result = 1;
+
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									result = 0;
+									return
+								end
+								d = d + 1;
 							end
 						end
 					</program>
 				</solution>
 			</task>
 
-			<task xml:id="hw-while-progress-bar">
-				<title>Progress Bar</title>
+			<task label="hw-while-factorization">
+				<title>Integer Factorization by Trial Division</title>
 				<statement>
 					<p>
-						Write a function <pf>progressBar()</pf> that uses <pf>fprintf</pf> to 
-						display a text-based progress bar showing how much of a task is 
-						complete. The bar should be 20 characters wide, using <pf>#</pf> for 
-						completed portions and a space for the remainder, enclosed in square 
-						brackets. After the closing bracket, print the percentage complete.
+						Every integer greater than 1 can be written as a product of prime factors. For example,
+						<me>
+							360 = 2^3 \cdot 3^2 \cdot 5.
+						</me>
+						A simple way to find these factors is <term>trial division</term>: test divisors starting at 2, divide them out when they work, and move on when they do not.
 					</p>
 
 					<p>
-						Since 20 <pf>#</pf> represents 100%, you'll need to scale the progress out 
-						of 20 and round it to the nearest integer to determine how many <pf>#</pf> 
-						characters to print. For example, if <pf>done</pf> is 2 and <pf>total</pf> 
-						is 8, then the progress is 25% and you will need 5 <pf>#</pf> characters.
+						As a warm-up, first write a <pf>while</pf>-loop that divides out all copies of 2 from a number <pf>n</pf>. For example, starting with <pf>n = 360</pf>, the values should change as follows:
+						<me>
+							360 \to 180 \to 90 \to 45.
+						</me>
 					</p>
 
 					<p>
-						Use a <pf>while</pf>-loop, <pf>fprintf</pf>, and <pf>round</pf> to code this. 
-						Don't use a newline character, <pf>"\n"</pf>, in any of your <pf>fprintf</pf> 
-						calls.
+						Then write a function <pf>primeFactors(n)</pf> that returns all prime factors of <pf>n</pf> as a row vector in nondecreasing order. Use a divisor <pf>d</pf> that starts at 2. While <pf>d * d &lt;= n</pf>, test whether <pf>d</pf> divides <pf>n</pf>. If it does, record the factor and divide it out. If it does not, increase <pf>d</pf> by 1. After the loop, if <pf>n &gt; 1</pf>, then the remaining value of <pf>n</pf> is the last prime factor.
 					</p>
 
 					<p>
-						Note: to print a <pf>%</pf> character with <pf>fprintf</pf>, use <pf>"%%"</pf>.
+						Finally, write a function <pf>smallestFactor(n)</pf> that returns the smallest prime factor of <pf>n</pf>. If <pf>n</pf> is prime, the function should return <pf>n</pf> itself.
 					</p>
 
 					<tabular valign="top" top="minor">
@@ -3014,202 +3086,91 @@
 						<col width="46%" halign="left" />
 						<row>
 							<cell>Inputs:</cell>
-							<cell><p><pf>done</pf></p></cell>
+							<cell><p><pf>n</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>amount of work completed</p></cell>
+							<cell><p>integer greater than 1</p></cell>
 						</row>
 						<row>
-							<cell></cell>
-							<cell><p><pf>total</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>total amount of work</p></cell>
+							<cell>Outputs:</cell>
+							<cell><p><pf>factors</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>row vector of prime factors returned by <pf>primeFactors</pf></p></cell>
 						</row>
 						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p>None</p></cell>
-							<cell colspan="2"><p>display to command window with <pf>fprintf</pf></p></cell>
+							<cell></cell>
+							<cell><p><pf>p</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>smallest prime factor returned by <pf>smallestFactor</pf></p></cell>
 						</row>
 					</tabular>
 
-					<sidebyside widths="49% 49%">
+					<sidebyside widths="48% 50%">
 						<stack>
 							<p>Test Cases ⤵︎</p>
 							<program language="matlab">
-								progressBar(0, 10)
-								progressBar(11, 50)
-								progressBar(58, 100)
-								progressBar(17, 17)
+								primeFactors(360)
+								primeFactors(97)
+								smallestFactor(91)
+								smallestFactor(9973)
 							</program>
 						</stack>
 						<stack>
 							<p>Expected ⤵︎</p>
 							<program language="matlab">
-								[                    ]   0%
-								[####                ]  22%
-								[############        ]  58%
-								[####################] 100%
+								ans = [2 2 2 3 3 5]
+								ans = [97]
+								ans = 7
+								ans = 9973
 							</program>
 						</stack>
 					</sidebyside>
 				</statement>
 				<solution component="exercise-solution">
 					<program language="matlab">
-						function progressBar(done, total)
-							filled = round(done / total * 20);
-							pct = round(done / total * 100);
-
-							fprintf('[')
-							k = 1;
-							while k &lt;= 20
-								if k &lt;= filled
-									fprintf('#')
-								else
-									fprintf(' ')
-								end
-								k = k + 1;
-							end
-							fprintf('] %3i%%\n', pct)
+						n = 360;
+						fprintf('Starting with n = %i\n', n)
+						while mod(n, 2) == 0
+							n = n / 2;
+							fprintf('  /2 -> %i\n', n)
 						end
+						fprintf('Remaining: n = %i\n', n)
 					</program>
-				</solution>
-			</task>
-
-			<task label="hw-while-simulated-download">
-				<title>Simulated Download</title>
-				<statement>
-					<p>
-						Write a function <pf>simDL()</pf> that simulates downloading a file of 
-						size <pf>fileSize</pf> (in MB). Use a <pf>while</pf>-loop to generate a 
-						random download chunk of size 1-15 MB using <pf>randi</pf>. The loop ends 
-						when the total download reaches <pf>fileSize</pf>. 
-					</p>
-
-					<p>
-						<em>Hint:</em> The last random chunk may push the total past 
-						<pf>fileSize</pf>. You can cap a value using the built-in 
-						function <pf>min</pf>, which returns the smaller of two values. 
-						For example, <pf>min(37, 50)</pf> returns <pf>37</pf>.
-					</p>
-
-					<p>
-						When the second input, <pf>animate</pf>, is false, your loop 
-						should display a stack of progress bars. When 
-						<pf>animate</pf> is true, each iteration should pause and clear 
-						the command window so that it looks like a single progress bar 
-						is updating in real-time. 
-					</p>
-
-					<p>
-						Call your 
-						<xref ref="hw-while-progress-bar" text="custom"><pf>progressBar()</pf></xref> 
-						code to display the progress bar. Use <pf>pause(0.4)</pf> to create the pause. 
-						Use <pf>fprintf</pf> to print a final message showing the file size and number 
-						of steps.
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="32%" halign="center" />
-						<col width="42%" halign="left" />
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>fileSize</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>total file size in MB</p></cell>
-						</row>
-						<row>
-							<cell></cell>
-							<cell><p><pf>animate</pf></p></cell>
-							<cell><p>(1x1) logical</p></cell>
-							<cell><p>shows animated progress if <pf>true</pf></p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>steps</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>steps to complete the download</p></cell>
-						</row>
-					</tabular>
-
-					<p>
-						Because of the randomness, outputs will differ each run. 
-						Below is one possible run; your exact numbers will vary.
-					</p>
-
-					<sbsgroup widths="38% 60%">
-						<sidebyside>
-							<stack>
-								<p>Test Cases ⤵︎</p>
-								<program language="matlab">
-									% Non-Animated
-									rng(71)
-									steps = simDL(80,false);
-								</program>
-							</stack>
-							<stack>
-								<p>Example Output ⤵︎</p>
-								<program language="plaintext">
-									[##                  ]  11%   9 / 80 MB
-									[###                 ]  14%  11 / 80 MB
-									[######              ]  31%  25 / 80 MB
-									[##########          ]  49%  39 / 80 MB
-									[#############       ]  65%  52 / 80 MB
-									[##############      ]  70%  56 / 80 MB
-									[################    ]  81%  65 / 80 MB
-									[#################   ]  83%  66 / 80 MB
-									[##################  ]  91%  73 / 80 MB
-									[####################]  98%  78 / 80 MB
-									[####################] 100%  80 / 80 MB
-									80 MB Download complete in 11 steps.
-								</program>
-							</stack>
-						</sidebyside>
-						<sidebyside>
-							<stack>
-								<program language="matlab">
-									% Animated
-									rng(17)
-									steps = simDL(80,true)
-								</program>
-							</stack>
-							<stack>
-								<image source="\figures\simDownload_demo.gif" width="95%"/>
-							</stack>
-						</sidebyside>
-					</sbsgroup>
-					
-					
-				</statement>
-				<solution component="exercise-solution">
 					<program language="matlab">
-						function steps = simDL(fileSize, animate)
-							downloaded = 0;
-							steps = 0;
+						function factors = primeFactors(n)
+							factors = [];
+							d = 2;
 
-							while downloaded &lt; fileSize
-								chunk = randi([1, 15]);
-								downloaded = min(downloaded + chunk, fileSize);
-								steps = steps + 1;
-								progressBar(downloaded, fileSize);
-								fprintf(' %3i / %i MB\n', downloaded, fileSize)
-								if animate
-									clc
-									pause(0.4)
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									factors(end + 1) = d; %#ok&lt;AGROW&gt;
+									n = n / d;
+								else
+									d = d + 1;
 								end
 							end
-							fprintf('%i MB Download complete in %i steps.\n', fileSize, steps)
+
+							if n &gt; 1
+								factors(end + 1) = n;
+							end
+						end
+					</program>
+					<program language="matlab">
+						function p = smallestFactor(n)
+							d = 2;
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									p = d;
+									return
+								end
+								d = d + 1;
+							end
+							p = n;
 						end
 					</program>
 				</solution>
 			</task>
 
-		</exercise>
-
-		<exercise label="coding-exercises-while-extended">
-			<title>Extended While-Loop Problems</title>
-
-			<task label="hw-collatz-siblings">
+			<task label="hw-collatz-conjecture-c">
 				<title>Collatz Siblings</title>
 				<statement>
 					<p>
@@ -3291,6 +3252,11 @@
 					</program>
 				</solution>
 			</task>
+
+		</exercise>
+
+		<exercise label="coding-exercises-while-extended">
+			<title>Extended While-Loop Problems</title>
 
 			<task label="hw-while-hailstone">
 			<title>Hailstone Sequence Analysis</title>
@@ -3981,179 +3947,7 @@
 			</solution>
 			</task>
 
-			<task label="hw-base-digits-to-number">
-				<title>Build a Number from Random Digits</title>
-				<statement>
-					<p>
-						Write a function called <pf>buildRandomNumber</pf> that constructs a number from <pf>n</pf> randomly generated digits. Use a <pf>while</pf>-loop and generate each digit with <pf>randi([0,9])</pf>.
-					</p>
-
-					<p>
-						Treat the first generated digit as the ones digit, the second as the tens digit, the third as the hundreds digit, and so on. For example, if <pf>n = 4</pf> and the generated digits are <m>7</m>, <m>3</m>, <m>0</m>, and <m>5</m>, then the final number is
-						<me>x = 7\cdot 10^0 + 3\cdot 10^1 + 0\cdot 10^2 + 5\cdot 10^3 = 5037.</me>
-					</p>
-
-					<p>
-						Print each step as the number is built. Use <pf>x</pf> for the current value, <pf>x0</pf> for the previous value, <pf>k</pf> for the place value index, and <pf>digit</pf> for the random digit generated at each step.
-					</p>
-
-					<p>
-						Because the digits are random, your exact result will vary from one run to the next. Also note that if the last digit generated is 0, the returned number may display with fewer than <pf>n</pf> digits.
-					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of random digits to generate</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>x</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>constructed number</p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="46% 52%">
-						<stack>
-							<p>Example Calls ⤵︎</p>
-							<program language="matlab">
-								x1 = buildRandomNumber(1)
-
-
-								x2 = buildRandomNumber(4)
-							</program>
-						</stack>
-						<stack>
-							<p>What to Expect ⤵︎</p>
-							<program language="matlab">
-								% x1 is an integer from 0-9.
-								% One line of output is printed.
-								
-								% x2 is an integer from 0-9999.
-								% Four lines of intermediate output are printed,
-								% followed by the final number.
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="exercise-solution">
-					<program language="matlab">
-						function x = buildRandomNumber(n)
-							x = 0;
-							x0 = 0;
-							k = 0;
-
-							while k &lt; n
-								digit = randi([0, 9]);
-								fprintf('k = %i, digit = %i: ', k, digit);
-								x = x + digit * 10^k;
-								fprintf('x = %i + %i*10^%i = %i\n', x0, digit, k, x);
-								x0 = x;
-								k = k + 1;
-							end
-
-							fprintf('Final number: %i\n', x)
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="hw-while-golden-ratio">
-			<statement>
-				<p>
-					The golden ratio <m>\varphi = \frac{1+\sqrt{5}}{2} \approx 1.6180339887\ldots</m> has the remarkable continued fraction representation
-					<me>
-						\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}
-					</me>.
-				</p>
-
-				<p>
-					This can be approximated by starting with <m>\varphi = 1</m> and repeatedly applying the identity:
-					<me>
-						\varphi = 1 + \frac{1}{\varphi}
-					</me>.
-					The more times we apply this identity, the closer the approximation gets to the true value of <m>\varphi</m>.
-				</p>
-
-				<p>
-					Write a function called <pf>goldenRatio</pf> that uses a <pf>while</pf>-loop to return the approximation of the golden ratio and the number of steps needed for the approximation to be within a given tolerance.
-				</p>
-
-				<p>
-					Let <m>\tau</m> be the tolerance. We say that <m>a</m> and <m>b</m> are within <m>\tau</m> of each other if the distance between them is less than <m>\tau</m>:
-					<me>|a - b| &lt; \tau</me>. 
-					Use this as your looping condition. Use <m>\varphi = \frac{1+\sqrt{5}}{2}</m> in your function.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>tol</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>tolerance for approximation</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>phi_n</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>approximation of the golden ratio, <m>\varphi</m></p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>steps</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of steps needed for <pf>phi_n</pf> to be within <pf>tol</pf> of <m>\varphi</m></p></cell>
-					</row>
-				</tabular>
-				
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							[val, n] = goldenRatio(0.5)
-							[val, n] = goldenRatio(1e-3)
-							[val, n] = goldenRatio(1e-8)
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							val = 2.000000000000000   n = 1
-							val = 1.617647058823529   n = 8
-							val = 1.618033998521804   n = 19
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution component="exercise-solution">
-				<program language="matlab">
-					function [phi_n, steps] = goldenRatio(tol)
-						phi = (1 + sqrt(5)) / 2;
-						phi_n = 1;
-						steps = 0;
-
-						while abs(phi_n - phi) &gt; tol
-							phi_n = 1 + 1 / phi_n;
-							steps = steps + 1;
-						end
-					end
-				</program>
-			</solution>
-			</task>
-
 		</exercise>
-
 		<exercise label="activity-while-root-hunter">
 			<title>Root Hunter</title>
 
@@ -4494,6 +4288,7 @@
 
 		</exercise>
 
+
 		<exercise label="activity-while-half-life">
 			<title>Half-Life, Drug Metabolism, and Steady State</title>
 
@@ -4679,6 +4474,7 @@
 			</task>
 
 		</exercise>
+
 
 		<exercise label="activity-while-escape-room">
 			<title>Escape Room</title>
