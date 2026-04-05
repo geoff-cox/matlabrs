@@ -1,0 +1,1161 @@
+<section xml:id="sec-continue-break-return">
+  <title>Continue, Break, &amp; Return</title>
+
+	<introduction>
+		<p>
+			MATLAB provides commands that modify the normal flow of code. In particular, you can skip the current loop iteration or even exit a loop entirely. It is also possible to end a function early if your code already knows the output.
+		</p>
+
+		<p>
+			These flow-control commands are known as <term>continue</term>, <term>break</term>, and <term>return</term>. They are used in specific contexts to alter the execution of loops and functions. The table below summarizes their effects:
+		</p>
+
+		<table xml:id="tab-loop-flow-control">
+			<title>Flow control commands for loops</title>
+			<tabular>
+				<row header="yes">
+					<cell>Command</cell>
+					<cell>Effect</cell>
+				</row>
+				<row>
+					<cell><pf>continue</pf></cell>
+					<cell>Skip the rest of the current iteration and move to the next iteration.</cell>
+				</row>
+				<row>
+					<cell><pf>break</pf></cell>
+					<cell>Exit the loop immediately and continue after <pf>end</pf>.</cell>
+				</row>
+				<row>
+					<cell><pf>return</pf></cell>
+					<cell>Exit the current script or function immediately.</cell>
+				</row>
+			</tabular>
+		</table>
+
+		<p>
+			Important notes:
+			<ul marker="square">
+				<li>These commands only execute if MATLAB reaches the line where they appear.</li>
+				<li><pf>continue</pf> and <pf>break</pf> may only be used inside a <xref ref="sec-for-loop" text="custom"><pf>for</pf>-loop</xref> or <xref ref="sec-while-loop" text="custom"><pf>while</pf>-loop</xref>; using them elsewhere causes an error.</li>
+				<li><pf>return</pf> can be used anywhere inside a script or function to exit early.</li>
+			</ul>
+		</p>
+
+	</introduction>
+
+	<subsection xml:id="subsec-continue-break-return-examples">
+		<title>👀 Examples</title>
+
+		<example>
+			<title>Searching with break</title>
+
+			<statement>
+				<p>
+					A loop can search for a target value and stop early when found. The <pf>break</pf> command exits the loop immediately.
+				</p>
+
+				<program language="matlab">
+				target = 10;
+
+				found = false;
+				location = -1;
+
+				for k = 1:50
+					value = randi([-20 20]);   % generate one random integer
+
+					if value == target
+						found = true;
+						location = k;
+						break
+					end
+				end
+
+				if found
+					fprintf('The number %i was found on iteration %i\n', target, location)
+				else
+					fprintf('The number %i was not found in 50 trials\n', target)
+				end
+				</program>
+
+				<p>
+					This pattern—test a condition, then exit early with <pf>break</pf>—is useful whenever you want to stop searching once you find what you need.
+				</p>
+			</statement>
+
+		</example>
+
+		<example xml:id="example-continue-skip-multiples">
+			<title>Skipping Multiples with continue</title>
+
+			<statement>
+				<p>
+					Sometimes you want to skip certain iterations in a loop without exiting early. The <pf>continue</pf> command jumps to the next iteration immediately, skipping any remaining code in the current iteration.
+				</p>
+
+				<p>
+					For example, suppose you want to print all numbers from 1 to 10, but skip multiples of 3:
+				</p>
+
+				<program language="matlab">
+					for num = 1:10
+						if mod(num, 3) == 0
+							continue
+						end
+						fprintf('%i ', num)
+					end
+					fprintf('\n')
+				</program>
+
+				<p>
+					Output: <c>1 2 4 5 7 8 10</c>
+				</p>
+
+				<p>
+					When <pf>num</pf> is 3, 6, or 9, the <pf>continue</pf> command skips the <pf>fprintf</pf> statement and moves directly to the next value. This is cleaner than nesting the print statement inside an <pf>else</pf> block.
+				</p>
+			</statement>
+
+		</example>
+
+		<example xml:id="example-return-early-exit">
+			<title>Early Exit with return</title>
+
+			<statement>
+				<p>
+					When writing a function that searches for something, you can use <pf>return</pf> to exit the function as soon as the answer is known. Unlike <pf>break</pf>, which only exits the loop, <pf>return</pf> exits the entire function.
+				</p>
+
+				<p>
+					For example, this function checks whether a positive integer is even by testing if it is divisible by 2:
+				</p>
+
+				<program language="matlab">
+					function result = isEven(n)
+						if mod(n, 2) == 0
+							result = 1;
+							return          % exit immediately; no need to continue
+						end
+						result = 0;
+					end
+				</program>
+
+				<p>
+					If <pf>n</pf> is even, MATLAB sets <pf>result = 1</pf> and exits immediately via <pf>return</pf>, skipping the line <pf>result = 0</pf>. If <pf>n</pf> is odd, MATLAB never enters the <pf>if</pf> block, so it reaches <pf>result = 0</pf> normally.
+				</p>
+
+				<p>
+					The <pf>return</pf> command is especially useful inside loops. Here is a function that finds the smallest divisor of <pf>n</pf> greater than 1:
+				</p>
+
+				<program language="matlab">
+					function d = smallestDivisor(n)
+						for d = 2:n
+							if mod(n, d) == 0
+								return      % d is already set; exit the function
+							end
+						end
+					end
+				</program>
+
+				<p>
+					The moment a divisor is found, <pf>return</pf> exits the function immediately. There is no need to continue checking the remaining values.
+				</p>
+			</statement>
+
+		</example>
+
+		<exercise label="continue-break-return-reading-ckpt-4">
+
+			<task label="continue-break-return-reading-ckpt-4a">
+				<title>What does continue do?</title>
+				<statement>
+					<p>
+						What does the <pf>continue</pf> command do in a loop?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>
+								Skips the rest of the current iteration and moves to the next iteration.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>continue</pf> command immediately jumps to the next iteration, skipping any remaining code in the current iteration.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Exits the loop completely.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>break</pf>, not <pf>continue</pf>. The <pf>continue</pf> command stays in the loop but skips to the next iteration.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Restarts the loop from the beginning.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>continue</pf> command moves to the next iteration, not back to the first one.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Exits the current function or script.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>return</pf>, not <pf>continue</pf>.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="continue-break-return-reading-ckpt-4b">
+				<title>Break exits the loop</title>
+				<statement correct="yes">
+					<p>
+						The <pf>break</pf> command exits the loop immediately and continues execution after the <pf>end</pf> statement.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Unlike <pf>continue</pf> which skips to the next iteration, <pf>break</pf> completely exits the loop.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="continue-break-return-reading-ckpt-4c">
+				<title>Where can continue and break be used?</title>
+				<statement>
+					<p>
+						Where can the <pf>continue</pf> and <pf>break</pf> commands be used?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>
+								Only inside <pf>for</pf>- or <pf>while</pf>-loops.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								These commands only make sense inside loops. Using them elsewhere causes an error.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Anywhere in a script or function.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>return</pf>. The <pf>continue</pf> and <pf>break</pf> commands require a loop context.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Only inside <pf>if</pf>-statements.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								While often used with <pf>if</pf>-statements, they must be inside a loop, not just an <pf>if</pf>-statement.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Only at the end of a loop.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								These commands can appear anywhere inside the loop body.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="continue-break-return-reading-ckpt-4d">
+				<title>When does return exit?</title>
+				<statement>
+					<p>
+						What does the <pf>return</pf> command do?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>
+								Exits only the current loop.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>break</pf>. The <pf>return</pf> command exits the entire script or function.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								Exits the current script or function immediately.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>return</pf> command stops execution of the entire script or function, not just a loop.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Returns to the start of the loop.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>return</pf> command doesn't return to any previous location; it exits completely.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								Skips to the next iteration.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								This describes <pf>continue</pf>, not <pf>return</pf>.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+	</subsection>
+
+	<subsection xml:id="subsec-continue-break-return-practice-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
+
+		<exercise label="activity-continue-control-flow">
+			<title>Using <pf>continue</pf> in a Loop</title>
+
+			<task label="activity-continue-control-flow-a">
+				<statement>
+					<p>
+						Write a <pf>for</pf>-loop from 1 to 20 that adds the loop index to a running total. Use an <pf>if</pf>-statement with <pf>mod</pf> and <pf>continue</pf> so that values divisible by 3 are skipped.
+					</p>
+					<sage language="octave">
+						<input>
+							total = 0;
+							for k = 1:20
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%=============
+								total = total + k;
+							end
+							fprintf('total = %i\n', total);
+						</input>
+					</sage>
+					<p>
+						When done, evaluate and confirm it prints <pf>total = 147</pf>. (The sum of integers 1–20 is 210, and the multiples of 3 from 1–20 sum to 63, so 210 − 63 = 147.)
+					</p>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						total = 0;
+						for k = 1:20
+							if mod(k, 3) == 0
+								continue
+							end
+							total = total + k;
+						end
+						fprintf('total = %i\n', total);
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-continue-control-flow-b">
+				<statement>
+					<p>
+						Modify your script to also count how many values were skipped. Print both the final total and the number of skipped values.
+					</p>
+					<sage language="octave">
+						<input>
+							total = 0;
+							skipped = 0;
+							for k = 1:20
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%=============
+								total = total + k;
+							end
+							fprintf('total = %i, skipped = %i\n', total, skipped);
+						</input>
+					</sage>
+					<p>
+						When done, evaluate and confirm it prints <pf>total = 147, skipped = 6</pf>.
+					</p>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						total = 0;
+						skipped = 0;
+						for k = 1:20
+							if mod(k, 3) == 0
+								skipped = skipped + 1;
+								continue
+							end
+							total = total + k;
+						end
+						fprintf('total = %i, skipped = %i\n', total, skipped);
+					</program>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise label="activity-break-control-flow">
+			<title>Using <pf>break</pf> in a Loop</title>
+
+			<task label="activity-break-control-flow-a">
+				<statement>
+					<p>
+						Write a <pf>for</pf>-loop that generates random integers with <pf>randi([1, 10])</pf> for up to 20 trials. Use an <pf>if</pf>-statement with <pf>break</pf> to stop as soon as the value is 7. Print the trial number where 7 was found, or report that it was not found.
+					</p>
+					<sage language="octave">
+						<input>
+							rng(42); % Set seed for reproducibility
+							found = false;
+							%─── TYPE YOUR CODE HERE ───%
+
+
+							%───────────────────────────%
+							if found
+								fprintf('Found 7 on trial %i\n', trial);
+							else
+								fprintf('7 was not found in 20 trials\n');
+							end
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						rng(42);
+						found = false;
+						for trial = 1:20
+							value = randi([1, 10]);
+							if value == 7
+								found = true;
+								break
+							end
+						end
+						if found
+							fprintf('Found 7 on trial %i\n', trial);
+						else
+							fprintf('7 was not found in 20 trials\n');
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-break-control-flow-b">
+				<statement>
+					<p>
+						Rewrite the previous task using a <pf>while</pf>-loop instead of a <pf>for</pf>-loop. Use a counter variable <pf>trial</pf> and stop when either the value is 7 or the counter reaches 15. Report whether the target was found and how many trials were used.
+					</p>
+					<sage language="octave">
+						<input>
+							rng(42); % Set seed for reproducibility
+							found = false;
+							trial = 0;
+							%─── TYPE YOUR CODE HERE ───%
+
+
+							%───────────────────────────%========
+							if found
+								fprintf('Found 7 on trial %i\n', trial);
+							else
+								fprintf('7 not found after %i trials\n', trial);
+							end
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						rng(42);
+						found = false;
+						trial = 0;
+						while trial &lt; 15
+							trial = trial + 1;
+							value = randi([1, 10]);
+							if value == 7
+								found = true;
+								break
+							end
+						end
+						if found
+							fprintf('Found 7 on trial %i\n', trial);
+						else
+							fprintf('7 not found after %i trials\n', trial);
+						end
+					</program>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise label="activity-return-control-flow">
+			<title>Using <pf>return</pf> in a Function</title>
+
+			<task label="activity-return-control-flow-a">
+				<statement>
+					<p>
+						Write a function named <pf>firstMultipleOf</pf> that takes inputs <pf>d</pf> and <pf>limit</pf> and uses a <pf>for</pf>-loop to find the first multiple of <pf>d</pf> between 1 and <pf>limit</pf>. Use <pf>return</pf> inside the loop to exit the function immediately when the first multiple is found.
+					</p>
+					<p>
+						If no multiple exists in the range, return <pf>-1</pf>.
+					</p>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							function result = firstMultipleOf(d, limit)
+								result = -1;
+								% your loop here
+
+							end
+							%───────────────────────────%======
+							fprintf('%i\n', firstMultipleOf(6, 20));   % expected: 6
+							fprintf('%i\n', firstMultipleOf(7, 5));    % expected: -1
+							fprintf('%i\n', firstMultipleOf(13, 100)); % expected: 13
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						function result = firstMultipleOf(d, limit)
+							result = -1;
+							for k = 1:limit
+								if mod(k, d) == 0
+									result = k;
+									return
+								end
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-return-control-flow-b">
+				<statement>
+					<p>
+						Write a function named <pf>hasRepeatedDigit</pf> that takes a positive integer <pf>n</pf> and returns <pf>1</pf> if any digit appears more than once, and <pf>0</pf> otherwise. Use <pf>return</pf> to exit early as soon as a repeated digit is found.
+					</p>
+					<p>
+						One approach: use a <pf>while</pf>-loop to extract digits. For each digit, use a second loop or a counter to check whether you have already seen it. If so, <pf>return</pf> immediately.
+					</p>
+
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+
+
+							%───────────────────────────%======
+							fprintf('%i\n', hasRepeatedDigit(1234));   % expected: 0
+							fprintf('%i\n', hasRepeatedDigit(1214));   % expected: 1
+							fprintf('%i\n', hasRepeatedDigit(11));     % expected: 1
+							fprintf('%i\n', hasRepeatedDigit(9));      % expected: 0
+						</input>
+					</sage>
+
+					<hint>
+						<p>
+							You can count occurrences of a specific digit <pf>d</pf> in <pf>n</pf> by looping through all digits of <pf>n</pf> and counting how many times <pf>mod(temp, 10) == d</pf>.
+						</p>
+					</hint>
+				</statement>
+				<solution component="example-solution">
+					<p>
+						One approach: extract each digit, then for each one, count how many times it appears in the full number.
+					</p>
+					<program language="matlab">
+						function result = hasRepeatedDigit(n)
+							temp = n;
+							while temp &gt; 0
+								d = mod(temp, 10);
+								% Count how many times d appears in n
+								count = 0;
+								check = n;
+								while check &gt; 0
+									if mod(check, 10) == d
+										count = count + 1;
+									end
+									check = floor(check / 10);
+								end
+								if count &gt; 1
+									result = 1;
+									return
+								end
+								temp = floor(temp / 10);
+							end
+							result = 0;
+						end
+					</program>
+				</solution>
+			</task>
+		</exercise>
+	</subsection>
+
+	<reading-questions xml:id="continue-break-return-reading-questions">
+		<title>📖 Reading Questions</title>
+
+		<exercise label="concepts-continue-break-return">
+
+			<task label="cqs-continue-break-return-5">
+				<statement>
+					<p>
+						Which situation is the best reason to use <pf>break</pf> inside a <pf>for</pf>-loop?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p>You want to stop early when you have found what you were looking for.</p></statement>
+						<feedback><p><pf>break</pf> is for ending the loop early once a goal is reached.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>You want to skip just one iteration but keep looping.</p></statement>
+						<feedback><p>Skipping a single iteration is what <pf>continue</pf> does.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>You want the loop variable to update automatically each iteration.</p></statement>
+						<feedback><p>The loop variable updates automatically without needing <pf>break</pf>.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>You want to print output on a new line.</p></statement>
+						<feedback><p>New lines depend on the format string (for example, including <pf>\n</pf>), not on <pf>break</pf>.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-continue-break-return-6">
+				<statement>
+					<p>
+						What is the difference between <pf>break</pf> and <pf>return</pf> when used inside a loop that is inside a function?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p><pf>break</pf> exits the loop but stays in the function; <pf>return</pf> exits the entire function.</p></statement>
+						<feedback><p>After <pf>break</pf>, MATLAB continues with code after the loop's <pf>end</pf>. After <pf>return</pf>, MATLAB goes back to whoever called the function.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>They do the same thing inside a function.</p></statement>
+						<feedback><p>They are different. <pf>break</pf> exits only the loop, while <pf>return</pf> exits the entire function.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>return</pf> exits the loop; <pf>break</pf> exits the function.</p></statement>
+						<feedback><p>This is backwards. <pf>break</pf> exits the loop, and <pf>return</pf> exits the function.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>break</pf> can only be used in <pf>for</pf>-loops, while <pf>return</pf> can only be used in <pf>while</pf>-loops.</p></statement>
+						<feedback><p>Both <pf>break</pf> and <pf>return</pf> can be used in either type of loop.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-continue-break-return-7">
+				<statement correct="no">
+					<p>
+						The <pf>continue</pf> command can be used inside an <pf>if</pf>-statement that is not inside a loop.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						The <pf>continue</pf> command can only be used inside a <pf>for</pf>- or <pf>while</pf>-loop. Using it inside an <pf>if</pf>-statement that is not within a loop causes an error.
+					</p>
+				</feedback>
+			</task>
+
+		</exercise>
+
+		<exercise label="drill-continue-break-return-trace-output">
+			<title>Trace the Output</title>
+
+			<task label="cqs-for-loop-fresh-output-1">
+				<statement>
+					<p>
+						What is printed?
+					</p>
+					<program language="matlab">
+						total = 0;
+						for k = 1:10
+								total = total + k;
+								if total &gt;= 15
+										break
+								end
+						end
+						fprintf('k = %d, total = %d\n', k, total)
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p><pf>k = 5, total = 15</pf></p></statement>
+						<feedback><p>The running total is 1, 3, 6, 10, 15. On iteration <pf>k = 5</pf>, total reaches 15 and the <pf>break</pf> fires.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>k = 4, total = 10</pf></p></statement>
+						<feedback><p>After <pf>k = 4</pf>, total is 10 which is less than 15, so the loop continues.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>k = 6, total = 21</pf></p></statement>
+						<feedback><p>The <pf>break</pf> fires as soon as <pf>total &gt;= 15</pf>. That happens at <pf>k = 5</pf>, so iteration 6 never runs.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>k = 10, total = 55</pf></p></statement>
+						<feedback><p>The <pf>break</pf> exits the loop early. Without it, the loop would reach <pf>k = 10</pf>.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-for-loop-fresh-output-2">
+				<statement>
+					<p>
+						What is printed?
+					</p>
+					<program language="matlab">
+						count = 0;
+						for k = 1:12
+								if mod(k,4) == 0
+										continue
+								end
+								count = count + 1;
+						end
+						fprintf('count = %d\n', count)
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p><pf>count = 9</pf></p></statement>
+						<feedback><p>Multiples of 4 in 1–12 are 4, 8, and 12 (three values). Those iterations skip the increment, so count = 12 − 3 = 9.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>count = 3</pf></p></statement>
+						<feedback><p>This would be the number of values <em>skipped</em>, not the number counted. The <pf>continue</pf> skips the increment, so 12 − 3 = 9 values are counted.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>count = 12</pf></p></statement>
+						<feedback><p>The <pf>continue</pf> skips the <pf>count = count + 1</pf> line for multiples of 4, so the count is less than 12.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>count = 8</pf></p></statement>
+						<feedback><p>There are 3 multiples of 4 in 1–12 (namely 4, 8, 12), so count = 12 − 3 = 9.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-looping-for-fundamentals-output-3">
+				<statement>
+					<p>
+						What is printed?
+					</p>
+					<program language="matlab">
+						total = 0;
+						for n = 1:8
+							if mod(n, 2) == 0
+								continue
+							end
+							total = total + n;
+						end
+						fprintf('total = %d\n', total)
+					</program>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement><p><pf>total = 16</pf></p></statement>
+						<feedback><p>Even values (2, 4, 6, 8) are skipped. The odd values 1 + 3 + 5 + 7 = 16 are summed.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>total = 20</pf></p></statement>
+						<feedback><p>The even values are skipped by <pf>continue</pf>. Only odd values are added: 1 + 3 + 5 + 7 = 16.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>total = 36</pf></p></statement>
+						<feedback><p>This would be the sum of all values 1–8 = 36. But the even values are skipped.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p><pf>total = 1</pf></p></statement>
+						<feedback><p>The loop does not stop at the first odd number. It continues through all values 1–8, only adding the odd ones.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+
+		<exercise label="drill-continue-break-return-code-build" language="octave" numbered="left" indentation="hide">
+			<title>Build the Code</title>
+
+			<task label="drill-continue-break-return-code-build-a" language="octave" numbered="left" indentation="hide">
+				<title>Find first multiple of 7</title>
+
+				<statement>
+					<p>
+						Put the blocks in order to print the first multiple of 7 between 1 and 50.
+					</p>
+					<p>
+						<em>Use correct indentation to show which lines are inside the loop and if statement.</em>
+					</p>
+				</statement>
+
+				<blocks>
+					<block><cline>first = NaN;			</cline></block>
+					<block><cline>for k = 1:50							</cline></block>
+					<block><cline>	if mod(k, 7) == 0				</cline></block>
+					<block><cline>		first = k;		</cline></block>
+					<block><cline>		break									</cline></block>
+					<block><cline>	end											</cline></block>
+					<block><cline>end												</cline>
+								<cline>fprintf('%i\n', first)	</cline></block>
+				</blocks>
+			</task>
+
+			<task label="drill-continue-break-return-code-build-b" language="octave" numbered="left" indentation="hide">
+				<title>Sum non-multiples of 5</title>
+
+				<statement>
+					<p>
+						Put the blocks in order to compute the sum of all integers from 1 to 30 that are <em>not</em> multiples of 5. Use <pf>continue</pf> to skip the multiples.
+					</p>
+					<p>
+						<em>Use correct indentation to show which lines are inside the loop and if statement.</em>
+					</p>
+				</statement>
+
+				<blocks>
+					<block><cline>total = 0;									</cline></block>
+					<block><cline>for k = 1:30								</cline></block>
+					<block><cline>	if mod(k, 5) == 0					</cline></block>
+					<block><cline>		continue							</cline></block>
+					<block><cline>	end											</cline></block>
+					<block><cline>	total = total + k;				</cline></block>
+					<block><cline>end												</cline>
+								<cline>fprintf('total = %i\n', total)</cline></block>
+				</blocks>
+			</task>
+
+		</exercise>
+
+	</reading-questions>
+
+	<exercises xml:id="continue-break-return-coding-exercises">
+		<title>💻 Coding Exercises</title>
+
+		<exercise label="coding-exercises-continue-break-return">
+			<title>Flow Control Exercises</title>
+
+			<task label="ex-continue-sum-non-divisible">
+				<title>Sum of Non-Divisible Values</title>
+
+				<statement>
+					<p>
+						Write a function called <pf>sumNonDivisible</pf> that computes the sum of all integers from 1 to <pf>n</pf> that are <em>not</em> divisible by <pf>d</pf>. Use a <pf>for</pf>-loop with <pf>continue</pf> to skip values that are divisible by <pf>d</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer upper limit</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>d</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer divisor to exclude</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>total</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>sum of values from 1 to <pf>n</pf> not divisible by <pf>d</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								sumNonDivisible(10, 3)
+								sumNonDivisible(20, 5)
+								sumNonDivisible(15, 1)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 37
+								ans = 160
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function total = sumNonDivisible(n, d)
+							total = 0;
+							for k = 1:n
+								if mod(k, d) == 0
+									continue
+								end
+								total = total + k;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="ex-break-first-above-threshold">
+				<title>First Value Above a Threshold</title>
+
+				<statement>
+					<p>
+						Write a function called <pf>firstAbove</pf> that uses a <pf>for</pf>-loop and <pf>break</pf> to find the smallest positive integer <pf>k</pf> such that <m>k^2 + 3k &gt; \texttt{threshold}</m>. If no such <pf>k</pf> exists in the range 1 to 1000, return <pf>-1</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>threshold</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive number to exceed</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>k</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>smallest integer where <m>k^2+3k</m> exceeds threshold, or <pf>-1</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								firstAbove(10)
+								firstAbove(100)
+								firstAbove(5000)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 2
+								ans = 8
+								ans = 69
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function k = firstAbove(threshold)
+							k = -1;
+							for i = 1:1000
+								if i^2 + 3*i &gt; threshold
+									k = i;
+									break
+								end
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="ex-return-is-prime">
+				<title>Primality Check with return</title>
+
+				<statement>
+					<p>
+						Write a function called <pf>checkPrime</pf> that takes a positive integer <pf>n</pf> and returns <pf>1</pf> if <pf>n</pf> is prime and <pf>0</pf> otherwise. Use a <pf>for</pf>-loop that tests potential divisors from 2 up to <pf>floor(sqrt(n))</pf>. If any divisor divides <pf>n</pf> evenly, set the result to <pf>0</pf> and use <pf>return</pf> to exit the function immediately.
+					</p>
+
+					<p>
+						As a special case, <pf>n = 1</pf> is not prime.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>positive integer</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>result</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if <pf>n</pf> is prime, <pf>0</pf> otherwise</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								checkPrime(2)
+								checkPrime(15)
+								checkPrime(97)
+								checkPrime(1)
+								checkPrime(49)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = 1
+								ans = 0
+								ans = 1
+								ans = 0
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function result = checkPrime(n)
+							if n &lt; 2
+								result = 0;
+								return
+							end
+
+							for d = 2:floor(sqrt(n))
+								if mod(n, d) == 0
+									result = 0;
+									return
+								end
+							end
+
+							result = 1;
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="ex-continue-count-valid">
+				<title>Count Valid Rolls</title>
+
+				<statement>
+					<p>
+						Write a function called <pf>countValidRolls</pf> that simulates rolling a six-sided die <pf>n</pf> times using <pf>randi([1, 6])</pf>. Count only rolls that are <em>not</em> equal to 1 (i.e., skip rolls of 1 using <pf>continue</pf>). Return the number of valid rolls and their sum.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of dice rolls</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>validCount</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of rolls that were not 1</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>validSum</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>sum of the valid rolls</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								rng(42);
+								[c, s] = countValidRolls(10)
+								rng(42);
+								[c, s] = countValidRolls(100)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+
+								c = 8    s = 32
+
+								c = 86   s = 316
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [validCount, validSum] = countValidRolls(n)
+							validCount = 0;
+							validSum = 0;
+
+							for k = 1:n
+								roll = randi([1, 6]);
+								if roll == 1
+									continue
+								end
+								validCount = validCount + 1;
+								validSum = validSum + roll;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+	</exercises>
+
+</section>

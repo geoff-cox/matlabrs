@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<chapter xml:id="chp-programming-logic" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<title>Programming Logic</title>
+
+	<introduction>
+		<p>
+			In the previous chapters, you learned how to store values in <xref ref="sec-variables" text="custom">variables</xref> and
+			experiment with expressions directly in the Command Window.
+			Until now, most of your code has been entered directly in the Command Window — one line at a time, discarded after each session.
+			This chapter introduces two tools that let you save and reuse your work: <term>scripts</term> and <term>functions</term>.
+		</p>
+
+		<p>
+			By the end of this chapter, you will be able to write scripts that organize a
+			sequence of computations into a clean, repeatable workflow, and write functions
+			that accept inputs and return outputs — the foundation of modular programming in MATLAB.
+		</p>
+	</introduction>
+
+	<xi:include href="sec-logical-values.ptx" />
+	<xi:include href="sec-logical-expressions.ptx" />
+
+	<conclusion>
+		<p>
+			<objectives xml:id="takeaways-logic-if-switch-statements">
+				<ul marker="square">
+					<li>
+						<term>Logical values are true and false</term>.
+						MATLAB has two special values for yes/no answers: <pf>true</pf> and <pf>false</pf>.
+						These are of type <pf>logical</pf>, which is different from the numeric type <pf>double</pf>.
+					</li>
+					<li>
+						<term>Single equals vs. double equals</term>.
+						A single equals sign (<pf>=</pf>) assigns a value to a variable, while a double equals sign (<pf>==</pf>) compares two values.
+					</li>
+					<li>
+						<p>
+							<term>Relational operators compare values</term>.
+							The relational operators are:
+						</p>
+						<program language="matlab">
+							<code>
+								==   % equal to
+								~=   % not equal to
+								&lt;    % less than
+								&lt;=   % less than or equal to
+								&gt;    % greater than
+								&gt;=   % greater than or equal to
+							</code>
+						</program>
+					</li>
+					<li>
+						<term>The NOT operator negates logical values</term>.
+						The tilde (<pf>~</pf>) flips <pf>true</pf> to <pf>false</pf> and vice versa. For example, <pf>~(x == y)</pf> is equivalent to <pf>x ~= y</pf>.
+					</li>
+					<li>
+						<p>
+							<term>Combining logical expressions with AND and OR</term>.
+							Use <pf>&amp;</pf> for AND (both must be true) and <pf>|</pf> for OR (at least one must be true).
+						</p>
+						<program language="matlab">
+							<code>
+								(age &gt;= 18) &amp; hasLicense  % true only if both are true
+								(x &lt; 0) | (x &gt; 100)       % true if either is true
+							</code>
+						</program>
+					</li>
+					<li>
+						<term>Operator precedence matters</term>.
+						When combining logical operators, NOT (<pf>~</pf>) is evaluated first, then AND (<pf>&amp;</pf>), then OR (<pf>|</pf>). Use parentheses to clarify complex expressions.
+					</li>
+					<li>
+						<p>
+							<term>if</term>.
+							If <pf>condition</pf> is true, run <pf>myCode</pf>:
+						</p>
+						<program language="matlab">
+							<code>
+								if condition
+									myCode
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>if-else</term>.
+							If <pf>condition</pf> is true, run <pf>myCodeA</pf>, otherwise run <pf>myCodeB</pf>.
+						</p>
+						<program language="matlab">
+							<code>
+								if condition
+									myCodeA
+								else
+									myCodeB
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>if-elseif-else</term>.
+							If <pf>conditionA</pf> is true, run <pf>myCodeA</pf>, otherwise if <pf>conditionB</pf> is true, run <pf>myCodeB</pf>.
+							If none are true, run <pf>myCodeC</pf>.
+						</p>
+						<program language="matlab">
+							<code>
+								if conditionA
+									myCodeA
+								elseif conditionB
+									myCodeB
+								else
+									myCodeC
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>switch</term>.
+							Compares <pf>value</pf> against a list of exact values.
+							If <pf>value</pf> is <pf>valueA</pf>, run <pf>myCodeA</pf>. If <pf>value</pf> is <pf>valueB</pf>, run <pf>myCodeB</pf>.
+							If no values match, <pf>myCodeC</pf> runs.
+						</p>
+						<program language="matlab">
+							<code>
+								switch value
+									case valueA
+										myCodeA
+									case valueB
+										myCodeB
+									otherwise
+										myCodeC
+								end
+							</code>
+						</program>
+					</li>
+					<li>
+						<p>
+							<term>Choosing between <pf>switch</pf> and <pf>if</pf>-<pf>elseif</pf></term>.
+							Use <pf>switch</pf> when you are comparing one variable against a small set of exact values (especially strings or integers).
+							Use <pf>if</pf>-<pf>elseif</pf> when your conditions involve ranges, inequalities, or multiple variables.
+						</p>
+					</li>
+				</ul>
+			</objectives>
+		</p>
+	</conclusion>
+</chapter>

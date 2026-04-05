@@ -7,7 +7,7 @@ Use these as starting points when requesting refactoring work from an AI agent. 
 ### Initial orientation prompt
 ```
 I am refactoring the chapter on [TOPIC] (see the attached project files) to align with the
-structure and quality of my for-while-loops chapter. The for-loops section (sec-4loops.txt)
+structure and quality of my for-while-loops chapter. The for-loops section (sec-for-loop.txt)
 is the canonical structural template. Please read all project files, then summarize:
 (A) the current state of the chapter being refactored,
 (B) which subsections exist vs. which are missing relative to the template, and
@@ -17,7 +17,7 @@ is the canonical structural template. Please read all project files, then summar
 ### Per-subsection refactoring prompt
 ```
 Please draft a new [Practice Activities / Reading Questions / Coding Exercises] subsection for
-[sec-TOPIC.txt]. Use the corresponding subsection in sec-4loops.txt as a structural template.
+[sec-TOPIC.txt]. Use the corresponding subsection in sec-for-loop.txt as a structural template.
 
 Key constraints:
 - Students have [not yet covered X / already covered Y].

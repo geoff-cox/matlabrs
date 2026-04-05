@@ -8,7 +8,7 @@ prompts is front-loading constraints and providing concrete examples of the targ
 ### New section from scratch
 ```
 I need a new section on [TOPIC] for my introductory MATLAB/Octave textbook authored in PreTeXt
-XML. The section should follow the same structure as sec-4loops.txt (attached): Structure →
+XML. The section should follow the same structure as sec-for-loop.txt (attached): Structure →
 Examples → Practice Activities → Reading Questions → Coding Exercises.
 
 Key constraints:
@@ -41,7 +41,7 @@ Requirements:
 ### New reading questions
 ```
 Please write [10–15] reading questions for [sec-TOPIC.txt]. Use the reading questions in
-sec-4loops.txt as a format template. Target these concept areas:
+sec-for-loop.txt as a format template. Target these concept areas:
 1. [Concept area 1, e.g., "syntax recall"]
 2. [Concept area 2, e.g., "tracing / output prediction"]
 3. [Concept area 3, e.g., "bug identification"]

@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<chapter xml:id="chp-for-while-loops" xmlns:xi="http://www.w3.org/2001/XInclude">
-	<title>For &amp; While Loops</title>
+<chapter xml:id="chp-looping-flow" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<title>Looping Flow</title>
 
+	<introduction>
+
+		<p>
+			So far, we've written code that runs step by step in a straight line. Real programs
+			need to react to data or user input, choosing different actions when conditions change.
+		</p>
+
+		<p>
+			For example, suppose <pf>gift_card_balance</pf> stores the amount of money on an Amazon
+			gift card and <pf>total_due</pf> stores the price of a purchase. Before completing the
+			purchase, your program needs to ask a yes-or-no question:
+			<q>Is <pf>gift_card_balance</pf> greater than or equal to <pf>total_due</pf>?</q>
+		</p>
+
+		<p>
+			Questions like this are called <term>logical expressions</term>, and their answers are
+			called <term>logical values</term> (i.e., <pf>true</pf> and <pf>false</pf>). Two types of
+			structures that let you ask questions and make decisions based on their answers are
+			<pf>if</pf>-statements and <pf>switch</pf>-statements. These structures allow you to
+			control the flow of your program, executing different blocks of code depending on the
+			conditions you specify.
+		</p>
+
+		<p>
+			In this section, we will learn how MATLAB evaluates logical expressions and how to use <pf>if</pf> and <pf>switch</pf> statements to create programs that can make decisions and respond to different situations.
+		</p>
+	</introduction>
 	<introduction>
 		<p>
 			In the previous chapter, <pf>if</pf>-statements gave your code the ability to choose between different paths based on conditions. Now we introduce a different kind of flow control: <term>repetition</term>. Loops let you repeat a block of code multiple times, either a known number of times or until some condition changes. Think of replacing dozens of copy-pasted lines with just a few representative lines.
@@ -33,13 +60,13 @@
 
 	</introduction>
 
-	<xi:include href="sec-4loops.ptx" />
-	<xi:include href="sec-wloops.ptx" />
+	<xi:include href="sec-for-loop.ptx" />
+	<xi:include href="sec-while-loop.ptx" />
 	<xi:include href="sec-continue-break-return.ptx" />
 
 	<conclusion>
 		<title>🗝️ Key Takeaways...</title>
-		<assemblage xml:id="takeaways-looping-statements">
+		<assemblage xml:id="takeaways-looping-flow">
 			<p>
 				<dl width="narrow">
 					<li>

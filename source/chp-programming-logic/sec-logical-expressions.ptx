@@ -1,10 +1,10 @@
-<section xml:id="sec-logical-statements">
-	<title>Logical Statements (Questions)</title>
+<section xml:id="sec-logical-expressions">
+	<title>Logical Expressions</title>
 
 	<p>
-		A <term>logical statement</term> is any MATLAB expression that produces a <pf>logical</pf> value, 
+		A <term>logical expression</term> is any MATLAB expression that produces a <pf>logical</pf> value, 
 		either <pf>true</pf> or <pf>false</pf>.
-		The most common logical statements come from comparing two values. These comparisons use
+		The most common logical expressions come from comparing two values. These comparisons use
 		<term>relational operators</term>.
 	</p>
 
@@ -17,7 +17,7 @@
 			<col width="50%" halign="left"/>
 			<row header="yes">
 				<cell>Relational operator</cell>
-				<cell>Logical statement</cell>
+				<cell>Logical expression</cell>
 				<cell>Question being asked</cell>
 			</row>
 			<row>
@@ -65,7 +65,7 @@
 		cost == 7.1     % Asking: compare a value
 	</program>
 
-	<exercise label="ckpt-logical-statements-1">
+	<exercise label="ckpt-logical-expressions-1">
 		<title>Assignment vs. Comparison</title>
 
 		<statement>
@@ -120,20 +120,20 @@
 		This code defines two <pf>double</pf> variables, <pf>a</pf> and <pf>b</pf>, and three <pf>logical</pf> variables:
 
 		<ul marker="square">
-			<li><pf>ans1 = 1</pf> since the logical statement <pf>a == 4</pf> is true.</li>
-			<li><pf>ans2 = 0</pf> since the logical statement <pf>a == b</pf> is false.</li>
-			<li><pf>ans3 = 1</pf> since the logical statement <pf>b &lt; a</pf> is true.</li>
+			<li><pf>ans1 = 1</pf> since the logical expression <pf>a == 4</pf> is true.</li>
+			<li><pf>ans2 = 0</pf> since the logical expression <pf>a == b</pf> is false.</li>
+			<li><pf>ans3 = 1</pf> since the logical expression <pf>b &lt; a</pf> is true.</li>
 		</ul>
 	</p>
 
-	<exercise label="ckpt-logical-statements-2">
-		<title>Check Your Understanding: Logical Statements</title>
+	<exercise label="ckpt-logical-expressions-2">
+		<title>Check Your Understanding: Logical Expressions</title>
 		
 		<task label="logic-ckpt-intro">
-			<title>Logical Statements</title>
+			<title>Logical Expressions</title>
 			<statement>
 				<p>
-					Let <pf>x</pf>, <pf>y</pf>, and <pf>z</pf> be numeric variables. Which of the following are valid logical statements in MATLAB?
+					Let <pf>x</pf>, <pf>y</pf>, and <pf>z</pf> be numeric variables. Which of the following are valid logical expressions in MATLAB?
 				</p>
 			</statement>
 			<choices randomize="yes">
@@ -149,7 +149,7 @@
 					<statement><p><pf>z &gt; y</pf></p></statement>
 					<feedback>
 						<p>
-							Correct! The expression <pf>z &gt; y</pf> is a valid logical statement that asks if <pf>z</pf> is greater than <pf>y</pf>.
+							Correct! The expression <pf>z &gt; y</pf> is a valid logical expression that asks if <pf>z</pf> is greater than <pf>y</pf>.
 						</p>
 					</feedback>
 				</choice>
@@ -165,7 +165,7 @@
 					<statement><p><pf>z ~= z</pf></p></statement>
 					<feedback>
 						<p>
-							Correct! The expression <pf>z ~= z</pf> is a valid logical statement that asks if <pf>z</pf> is not equal to <pf>z</pf>.
+							Correct! The expression <pf>z ~= z</pf> is a valid logical expression that asks if <pf>z</pf> is not equal to <pf>z</pf>.
 						</p>
 					</feedback>
 				</choice>
@@ -173,7 +173,7 @@
 					<statement><p><pf>x ~ z</pf></p></statement>
 					<feedback>
 						<p>
-							Incorrect. The expression <pf>x ~ z</pf> is not a valid logical statement because it lacks a proper relational operator.
+							Incorrect. The expression <pf>x ~ z</pf> is not a valid logical expression because it lacks a proper relational operator.
 						</p>
 					</feedback>
 				</choice>
@@ -274,10 +274,10 @@
 	</exercise>
 
 	<paragraphs xml:id="negating-statements">
-		<title>Negating Logical Statements</title>
+		<title>Negating Logical Expressions</title>
 
 		<p>
-			To ask the opposite of a logical statement, use the NOT operator <pf>~</pf>.
+			To ask the opposite of a logical expression, use the NOT operator <pf>~</pf>.
 			If an expression is true, its negation is false, and vice versa.
 		</p>
 
@@ -312,7 +312,7 @@
 		</p>
 
 		<exercise label="ckpt-negating-statements-1">
-			<title>Negating Logical Statements</title>
+			<title>Negating Logical Expressions</title>
 			<statement>
 				<p>
 					Which of the following expressions correctly asks "Is <pf>x</pf> NOT greater than 10?"
@@ -373,7 +373,7 @@
 			</p>
 
 			<p>
-				MATLAB joins logical statements with AND and OR using the operators <pf>&amp;</pf> (AND) and <pf>|</pf> (OR). 
+				MATLAB joins logical expressions with AND and OR using the operators <pf>&amp;</pf> (AND) and <pf>|</pf> (OR). 
 			</p>
 
 			<table xml:id="tab-logical-operators">
@@ -385,7 +385,7 @@
 					<col width="45%" halign="left"/>
 					<row>
 						<cell><p><m>\textbf{Logical}</m> <m>\textbf{operator}</m></p></cell>
-						<cell><p><m>\textbf{Logical statement}</m></p></cell>
+						<cell><p><m>\textbf{Logical expression}</m></p></cell>
 						<cell><p><m>\textbf{Question being asked}</m></p></cell>
 					</row>
 					<row>
@@ -402,7 +402,7 @@
 			</table>
 
 			<p>
-				The result of joining logical statements are exactly what you would expect from everyday language:
+				The result of joining logical expressions are exactly what you would expect from everyday language:
 				AND is true only when both sides are true, while OR is true when at least one side is true.
 			</p>
 
@@ -445,7 +445,7 @@
 			</p> -->
 
 		<exercise label="ckpt-joining-two-statements-1">
-			<title>Combining Logical Statements</title>
+			<title>Combining Logical Expressions</title>
 			<statement>
 				<p>
 					Given <pf>age = 25</pf> and <pf>hasLicense = true</pf>, which expression is the 
@@ -557,7 +557,7 @@
 		<title>Joining Many Statements</title>
 
 		<p>
-			You can combine more than two logical statements, and you can mix <pf>~</pf>, <pf>&amp;</pf>, and <pf>|</pf>
+			You can combine more than two logical expressions, and you can mix <pf>~</pf>, <pf>&amp;</pf>, and <pf>|</pf>
 			in the same expression. When you do, MATLAB evaluates operators in a fixed order.
 			Parentheses override everything, so you can always force the grouping you intend.
 		</p>
@@ -666,12 +666,12 @@
 
 	</paragraphs>
 
-	<exercises xml:id="conceptual-questions-logical-statements">
+	<exercises xml:id="conceptual-questions-logical-expressions">
 		<title>🤔💭 Conceptual Questions</title>
 
-		<exercise label="concepts-logical-statements">
+		<exercise label="concepts-logical-expressions">
 
-			<task label="cqs-logical-statements-data-types">
+			<task label="cqs-logical-expressions-data-types">
 				<title>Logical Data Types</title>
 				<statement correct="no">
 					<p>
@@ -687,7 +687,7 @@
 				</feedback>
 			</task>
 
-			<task label="cqs-logical-statements-relational-not-equal">
+			<task label="cqs-logical-expressions-relational-not-equal">
 				<title>Relational Operators: Inequality</title>
 
 				<statement>
@@ -710,11 +710,11 @@
 				</feedback>
 			</task>
 
-			<task label="cqs-logical-statements-translation-intro">
+			<task label="cqs-logical-expressions-translation-intro">
 				<title>Translating Relational Operators</title>
 				<statement>
 					<p>
-						Give the logical statement that is equivalent to the question:
+						Give the logical expression that is equivalent to the question:
 					</p>
 					<p>
 						Is <m>7</m> greater than <m>3</m>? ➜ <fillin mode="string" answer="7 &gt; 3" width="10"/>
@@ -739,7 +739,7 @@
 				</solution>
 			</task>
 
-			<task label="cqs-logical-statements-basic-ops-result">
+			<task label="cqs-logical-expressions-basic-ops-result">
 				<title>Basic Logical Operators</title>
 				<statement>
 					<p>
@@ -799,7 +799,7 @@
 				</choices>
 			</task>
 
-			<task label="cqs-logical-statements-basic-ops-explanation">
+			<task label="cqs-logical-expressions-basic-ops-explanation">
 				<title>Understanding AND</title>
 
 				<statement correct="no">
@@ -815,7 +815,7 @@
 				</feedback>
 			</task>
 
-			<task label="cqs-logical-statements-combined-1">
+			<task label="cqs-logical-expressions-combined-1">
 				<title>Is p positive?</title>
 				<statement>
 					<p>
@@ -844,7 +844,7 @@
 					</solution>
 			</task>
 
-			<task label="cqs-logical-statements-combined-2">
+			<task label="cqs-logical-expressions-combined-2">
 				<title>Is p equal to 4?</title>
 
 				<statement>
@@ -874,7 +874,7 @@
 				</solution>
 			</task>
 
-			<task label="cqs-logical-statements-combined-3">
+			<task label="cqs-logical-expressions-combined-3">
 				<title>Combining with AND</title>
 				<statement>
 					<p>
@@ -896,11 +896,11 @@
 				</feedback>
 			</task>
 
-			<task label="cqs-logical-statements-combined-4">
+			<task label="cqs-logical-expressions-combined-4">
 				<title>Negating with NOT</title>
 				<statement>
 					<p>
-						Which logical statements are equivalent to asking the question:
+						Which logical expressions are equivalent to asking the question:
 					</p>
 					<p>
 						Is <pf>p</pf> NOT positive?
@@ -920,7 +920,7 @@
 				</feedback>
 			</task>
 
-			<task label="cqs-logical-statements-combined-5">
+			<task label="cqs-logical-expressions-combined-5">
 				<title>Combining with OR</title>
 
 				<statement>
@@ -950,12 +950,12 @@
 				</solution>
 			</task>
 
-			<task label="cqs-logical-statements-precedence">
+			<task label="cqs-logical-expressions-precedence">
 				<title>Operator Precedence</title>
 
 				<statement>
 					<p>
-						Select the logical statement that is equivalent to the following:
+						Select the logical expression that is equivalent to the following:
 					</p>
 					<program>
 						~A &amp; B | C

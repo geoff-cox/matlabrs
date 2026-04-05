@@ -14,7 +14,7 @@ This is an interactive textbook built with [PreTeXt](https://pretextbook.org/) f
 
 1. **Welcome to MATLAB** — Installing MATLAB, the desktop environment, the command window, and variables
 2. **Scripts and Functions** — Writing scripts and defining functions
-3. **If and Switch Statements** — Logical values, logical statements, if statements, and switch statements
+3. **If and Switch Statements** — Logical values, logical expressions, if statements, and switch statements
 4. **For and While Loops** — For loops, while loops, comparing the two, and additional flow control
 5. **Arrays** *(incomplete)* — Array basics, creating arrays, indexing, operations, and array functions
 6. **Nested Loops** *(incomplete)* — Working with nested loop structures

@@ -1,6 +1,6 @@
-<section xml:id="sec-switch-statements">
+<section xml:id="sec-switch-statement">
 	<title>Switch Statement</title>
-	
+	<introduction>
 	<p>
 		The <pf>switch</pf> statement is another option for controlling flow in MATLAB. It is best when you are
 		comparing one value to a list of discrete, exact matches.
@@ -13,10 +13,17 @@
 
 	<aside>
 		<p>
-			Like the <xref ref="sec-if-statements" text="custom">if-statement</xref>, you can have as many branches as you like. You would just add additional <pf>case</pf> statements between the <pf>switch</pf> and <pf>otherwise</pf> statements.
+			Like the <xref ref="sec-if-statement" text="custom">if-statement</xref>, you can have as many branches as you like. You would just add additional <pf>case</pf> statements between the <pf>switch</pf> and <pf>otherwise</pf> statements.
 		</p>
 	</aside>
+	</introduction>
 
+	<subsection xml:id="switch-statement-description">
+		<title>🧱 Description &amp; Usage</title>
+
+
+		<subsubsection xml:id="switch-statement-structure">
+			<title><pf>for</pf>-Loop Structure</title>
 	<assemblage xml:id="switch-statement-def">
 		<title>The switch Statement Structure</title>
 
@@ -75,7 +82,7 @@
 	</assemblage>
 
 	<p>
-		The <pf>switch</pf>-<pf>case</pf> structure is similar to the <xref ref="sec-if-statements" text="custom"><pf>if</pf> structure</xref>, but offers a few advantages.	First, it is easier to read; second, it is better when comparing strings (of possibly different lengths).
+		The <pf>switch</pf>-<pf>case</pf> structure is similar to the <xref ref="sec-if-statement" text="custom"><pf>if</pf> structure</xref>, but offers a few advantages.	First, it is easier to read; second, it is better when comparing strings (of possibly different lengths).
 	</p>
 
 	<p>
@@ -212,16 +219,269 @@
 		</task>
 
 	</exercise>
+		</subsubsection>
+	</subsection>
 
-	<reading-questions xml:id="class-activities-if-switch-statements">
+	<reading-questions xml:id="switch-statement-reading-questions">
+		<title>📖 Reading Quiz</title>
+		<exercise label="concepts-switch-statement">
 
-		<introduction>
-			<p>
-				These in-class activities focus on writing small MATLAB functions that use <pf>if</pf> and <pf>switch</pf>
-				statements. Each activity includes multiple parts and asks you to reason about which branch executes.
-			</p>
-		</introduction>
+			<task label="cqs-switch-statement-switch-values">
+				<title>Switch Case Values</title>
+				<statement>
+					<p>
+						Which of the following statements about <pf>switch</pf> case values are true? Select all that apply.
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement>
+							<p>The <pf>otherwise</pf> block is optional.</p>
+						</statement>
+						<feedback>
+							<p>
+								In a <pf>switch</pf> statement the <pf>otherwise</pf> block is optional.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Case values can be numbers.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Switch cases can match numeric values.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Case values can be strings.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Switch cases work well with string comparisons.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Case values can use relational operators like <pf>&gt;</pf> or <pf>&lt;</pf>.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Switch statements only test for equality. Use <pf>if-elseif</pf> 
+								for range-based conditions.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Multiple case values can be grouped using curly braces <pf>{ }</pf>.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! You can use <pf>case {val1, val2, val3}</pf> to match multiple values.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
 
+			<task label="cqs-switch-statement-otherwise">
+				<title>Otherwise Branch Behavior</title>
+				<statement correct="yes">
+					<p>
+						In a <pf>switch</pf> statement, the <pf>otherwise</pf> block only runs when none 
+						of the <pf>case</pf> values match.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Correct! The <pf>otherwise</pf> branch is similar to the <pf>else</pf> in an 
+						<pf>if</pf> statement—it provides a default action when no cases match.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="cqs-switch-statement-case-sensitive">
+				<title>Switch Case Sensitivity</title>
+				<statement>
+					<p>
+						Consider this code:
+					</p>
+					<program language="matlab">
+						status = 'active';
+						switch status
+							case 'Active'
+								disp('User is active')
+							case 'active'
+								disp('User is online')
+							otherwise
+								disp('Unknown status')
+						end
+					</program>
+					<p>
+						What will be displayed?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice>
+						<statement>
+							<p><pf>User is active</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Case values are case-sensitive, so <pf>'Active'</pf> does not match <pf>'active'</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p><pf>User is online</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! The string <pf>'active'</pf> exactly matches the second case. 
+								Switch comparisons are case-sensitive.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>Unknown status</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. There is a case that matches: the second case <pf>'active'</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>An error will occur.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. This is valid code; the second case matches and executes.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-switch-statement-when-to-use-switch">
+				<title>When to Use Switch vs If</title>
+				<statement>
+					<p>
+						Which scenario is best suited for a <pf>switch</pf> statement rather than an <pf>if-elseif</pf> chain?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement>
+							<p>Comparing a variable to a list of specific string values.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Switch statements are ideal for testing exact matches against 
+								discrete values, especially strings.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Checking if a number falls within different ranges (e.g., 0-10, 10-20).</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Range-based conditions require relational operators like <pf>&gt;</pf> 
+								or <pf>&lt;=</pf>, which switch statements cannot handle. Use <pf>if-elseif</pf> instead.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Testing multiple logical conditions that use AND (<pf>&amp;</pf>) or OR (<pf>|</pf>).</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Switch statements only test for equality. Use <pf>if-elseif</pf> 
+								for complex logical conditions.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Checking if a value is greater than a threshold.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. This requires a relational operator (<pf>&gt;</pf>), which 
+								switch statements cannot use. Use an <pf>if</pf> statement.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-switch-statement-switch-duplicate">
+				<title>Duplicate Case Values</title>
+				<statement>
+					<p>
+						What happens if a <pf>switch</pf> statement contains duplicate case values?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice>
+						<statement>
+							<p>MATLAB runs both matching cases.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB will actually report an error if you try to use duplicate case values.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB runs the first matching case and ignores the duplicate.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB doesn't allow duplicate case values at all.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB uses the last duplicate case value.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB won't allow duplicate case values at all.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>MATLAB produces an error.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Duplicate case values are not allowed in MATLAB switch statements 
+								and will cause an error.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+	</reading-questions>
+
+	<subsection xml:id="switch-statement-practice-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
 		<exercise label="conditional-activity-7">
 			<title>Shipping Mode Switch</title>
 
@@ -434,267 +694,164 @@
 			</task>
 
 		</exercise>
+	</subsection>
 
-	</reading-questions>
+	<exercises xml:id="switch-statement-coding-exercises">
+		<title>💻 Coding Exercises</title>
+		<exercise xml:id="coding-exercises-switch-statement">
+			<title>Conditional Flow (switch statements)</title>
 
-	<exercises xml:id="conceptual-questions-switch-statements">
-		<title>🤔💭 Conceptual Questions</title>
+			<task xml:id="coding-rock-paper-scissors">
+				<title>Rock-Paper-Scissors Judge</title>
 
-		<exercise label="concepts-switch-statements">
-
-			<task label="cqs-switch-statements-switch-values">
-				<title>Switch Case Values</title>
 				<statement>
 					<p>
-						Which of the following statements about <pf>switch</pf> case values are true? Select all that apply.
+						Write a function named <pf>rps_winner</pf> that determines the winner of a rock-paper-scissors game.
+						Use a <pf>switch</pf> statement to handle the different move combinations.
 					</p>
-				</statement>
-				<choices randomize="no">
-					<choice correct="yes">
-						<statement>
-							<p>The <pf>otherwise</pf> block is optional.</p>
-						</statement>
-						<feedback>
-							<p>
-								In a <pf>switch</pf> statement the <pf>otherwise</pf> block is optional.
-							</p>
-						</feedback>
-					</choice>
-					<choice correct="yes">
-						<statement>
-							<p>Case values can be numbers.</p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! Switch cases can match numeric values.
-							</p>
-						</feedback>
-					</choice>
-					<choice correct="yes">
-						<statement>
-							<p>Case values can be strings.</p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! Switch cases work well with string comparisons.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>Case values can use relational operators like <pf>&gt;</pf> or <pf>&lt;</pf>.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. Switch statements only test for equality. Use <pf>if-elseif</pf> 
-								for range-based conditions.
-							</p>
-						</feedback>
-					</choice>
-					<choice correct="yes">
-						<statement>
-							<p>Multiple case values can be grouped using curly braces <pf>{ }</pf>.</p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! You can use <pf>case {val1, val2, val3}</pf> to match multiple values.
-							</p>
-						</feedback>
-					</choice>
-				</choices>
-			</task>
 
-			<task label="cqs-switch-statements-otherwise">
-				<title>Otherwise Branch Behavior</title>
-				<statement correct="yes">
 					<p>
-						In a <pf>switch</pf> statement, the <pf>otherwise</pf> block only runs when none 
-						of the <pf>case</pf> values match.
+						Rules:
+						<ul marker="square">
+							<li><p>Rock beats Scissors</p></li>
+							<li><p>Scissors beats Paper</p></li>
+							<li><p>Paper beats Rock</p></li>
+							<li><p>Same moves result in a tie</p></li>
+						</ul>
 					</p>
-				</statement>
-				<feedback>
-					<p>
-						Correct! The <pf>otherwise</pf> branch is similar to the <pf>else</pf> in an 
-						<pf>if</pf> statement—it provides a default action when no cases match.
-					</p>
-				</feedback>
-			</task>
 
-			<task label="cqs-switch-statements-case-sensitive">
-				<title>Switch Case Sensitivity</title>
-				<statement>
 					<p>
-						Consider this code:
+						Moves are represented as: 'R' for rock, 'P' for paper, 'S' for scissors.
 					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>player1</pf> (1x1) char — player 1's move ('R', 'P', or 'S')</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>player2</pf> (1x1) char — player 2's move ('R', 'P', or 'S')</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>result</pf> (1x1) string — "Player 1", "Player 2", or "Tie"</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
 					<program language="matlab">
-						status = 'active';
-						switch status
-							case 'Active'
-								disp('User is active')
-							case 'active'
-								disp('User is online')
-							otherwise
-								disp('Unknown status')
-						end
+						% Test 1: Rock beats Scissors
+						r1 = rps_winner('R', 'S')
+						% Expected: r1 = "Player 1"
+
+						% Test 2: Paper beats Rock
+						r2 = rps_winner('R', 'P')
+						% Expected: r2 = "Player 2"
+
+						% Test 3: Scissors beats Paper
+						r3 = rps_winner('S', 'P')
+						% Expected: r3 = "Player 1"
+
+						% Test 4: Tie
+						r4 = rps_winner('R', 'R')
+						% Expected: r4 = "Tie"
+
+						% Test 5: Another scenario
+						r5 = rps_winner('P', 'S')
+						% Expected: r5 = "Player 2"
 					</program>
-					<p>
-						What will be displayed?
-					</p>
-				</statement>
-				<choices randomize="no">
-					<choice>
-						<statement>
-							<p><pf>User is active</pf></p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. Case values are case-sensitive, so <pf>'Active'</pf> does not match <pf>'active'</pf>.
-							</p>
-						</feedback>
-					</choice>
-					<choice correct="yes">
-						<statement>
-							<p><pf>User is online</pf></p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! The string <pf>'active'</pf> exactly matches the second case. 
-								Switch comparisons are case-sensitive.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p><pf>Unknown status</pf></p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. There is a case that matches: the second case <pf>'active'</pf>.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>An error will occur.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. This is valid code; the second case matches and executes.
-							</p>
-						</feedback>
-					</choice>
-				</choices>
-			</task>
 
-			<task label="cqs-switch-statements-when-to-use-switch">
-				<title>When to Use Switch vs If</title>
+				</statement>
+
+			</task>
+			<task xml:id="coding-zodiac-sign">
+				<title>Zodiac Sign Finder</title>
+
 				<statement>
 					<p>
-						Which scenario is best suited for a <pf>switch</pf> statement rather than an <pf>if-elseif</pf> chain?
+						Write a function named <pf>zodiac_sign</pf> that determines a person's Western zodiac sign based on their 
+						birth month and day. Use a <pf>switch</pf> statement for the month, then <pf>if</pf> statements for the day ranges.
 					</p>
-				</statement>
-				<choices randomize="no">
-					<choice correct="yes">
-						<statement>
-							<p>Comparing a variable to a list of specific string values.</p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! Switch statements are ideal for testing exact matches against 
-								discrete values, especially strings.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>Checking if a number falls within different ranges (e.g., 0-10, 10-20).</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. Range-based conditions require relational operators like <pf>&gt;</pf> 
-								or <pf>&lt;=</pf>, which switch statements cannot handle. Use <pf>if-elseif</pf> instead.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>Testing multiple logical conditions that use AND (<pf>&amp;</pf>) or OR (<pf>|</pf>).</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. Switch statements only test for equality. Use <pf>if-elseif</pf> 
-								for complex logical conditions.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>Checking if a value is greater than a threshold.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. This requires a relational operator (<pf>&gt;</pf>), which 
-								switch statements cannot use. Use an <pf>if</pf> statement.
-							</p>
-						</feedback>
-					</choice>
-				</choices>
-			</task>
 
-			<task label="cqs-switch-statements-switch-duplicate">
-				<title>Duplicate Case Values</title>
-				<statement>
 					<p>
-						What happens if a <pf>switch</pf> statement contains duplicate case values?
+						Zodiac date ranges (using format: month number, day range):
+						<ul marker="square">
+							<li><p>Capricorn: 12/22-1/19</p></li>
+							<li><p>Aquarius: 1/20-2/18</p></li>
+							<li><p>Pisces: 2/19-3/20</p></li>
+							<li><p>Aries: 3/21-4/19</p></li>
+							<li><p>Taurus: 4/20-5/20</p></li>
+							<li><p>Gemini: 5/21-6/20</p></li>
+							<li><p>Cancer: 6/21-7/22</p></li>
+							<li><p>Leo: 7/23-8/22</p></li>
+							<li><p>Virgo: 8/23-9/22</p></li>
+							<li><p>Libra: 9/23-10/22</p></li>
+							<li><p>Scorpio: 10/23-11/21</p></li>
+							<li><p>Sagittarius: 11/22-12/21</p></li>
+						</ul>
 					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>month</pf> (1x1) double — birth month (1-12)</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>day</pf> (1x1) double — birth day (1-31)</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>sign</pf> (1x1) string — zodiac sign name</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Early January (Capricorn)
+						z1 = zodiac_sign(1, 10)
+						% Expected: z1 = "Capricorn"
+
+						% Test 2: Late January (Aquarius)
+						z2 = zodiac_sign(1, 25)
+						% Expected: z2 = "Aquarius"
+
+						% Test 3: Mid-year (Leo)
+						z3 = zodiac_sign(8, 5)
+						% Expected: z3 = "Leo"
+
+						% Test 4: Boundary case (Taurus/Gemini)
+						z4 = zodiac_sign(5, 20)
+						% Expected: z4 = "Taurus"
+
+						% Test 5: Late December (Capricorn - year boundary)
+						z5 = zodiac_sign(12, 25)
+						% Expected: z5 = "Capricorn"
+					</program>
+
 				</statement>
-				<choices randomize="no">
-					<choice>
-						<statement>
-							<p>MATLAB runs both matching cases.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. MATLAB will actually report an error if you try to use duplicate case values.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>MATLAB runs the first matching case and ignores the duplicate.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. MATLAB doesn't allow duplicate case values at all.
-							</p>
-						</feedback>
-					</choice>
-					<choice>
-						<statement>
-							<p>MATLAB uses the last duplicate case value.</p>
-						</statement>
-						<feedback>
-							<p>
-								Incorrect. MATLAB won't allow duplicate case values at all.
-							</p>
-						</feedback>
-					</choice>
-					<choice correct="yes">
-						<statement>
-							<p>MATLAB produces an error.</p>
-						</statement>
-						<feedback>
-							<p>
-								Correct! Duplicate case values are not allowed in MATLAB switch statements 
-								and will cause an error.
-							</p>
-						</feedback>
-					</choice>
-				</choices>
+
 			</task>
 
 		</exercise>
-
 	</exercises>
-
 </section>

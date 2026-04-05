@@ -1,0 +1,2342 @@
+<section xml:id="sec-if-statement">
+	<title>If Statements</title>
+
+	<subsection xml:id="subsec-if-statement">
+		<title>The if-Statement</title>
+
+		<p>
+			The simplest if-statement tests a single 
+			<xref ref="sec-logical-expressions" text="custom">logical expression</xref> 
+			and runs a block of code if the expression is true.
+		</p>
+
+		<assemblage xml:id="if-statement">
+
+			<p>
+				The basic structure of an if-statement is:
+			</p>
+
+			<program language="matlab" line-numbers="no">
+				if condition
+					block	% ⬅ runs if condition is true
+				end
+			</program>
+
+			<p>
+				where
+				<ul marker="square">
+					<li><pf>condition</pf> is a logical expression that evaluates to <pf>true</pf> or <pf>false</pf>.</li>
+					<li><pf>block</pf> is the block of code that runs if the condition is true.</li>
+					<li>If <pf>condition</pf> is <pf>false</pf>, MATLAB does nothing and skips to <pf>end</pf>.</li>
+				</ul>
+			</p>
+
+		</assemblage>
+
+		<p>
+			To see how this works, evaluate the code block, below. 
+			Then change the value of <pf>age</pf> to <pf>16</pf> and 
+			run it again.
+		</p>
+
+		<sage language="octave">
+			<input>
+				age = 23;
+
+				if age &gt;= 21
+					fprintf("Bouncer: You may enter the bar.\n");
+				end
+			</input>
+		</sage>
+
+		<p>
+			When <pf>age</pf> is <pf>23</pf>, the logical expression <pf>age &gt;= 21</pf> 
+			is true, so MATLAB executes the <pf>fprintf</pf> line and prints the message. 
+			When running the same code with <pf>age</pf> set to <pf>16</pf>, nothing is 
+			printed since the logical expression <pf>age &gt;= 21</pf> is false.
+		</p>
+
+		<exercise label="ckpt-the-if-statement">
+			<title>Understanding the <pf>if</pf>-Statement</title>
+
+			<introduction>
+				<p>
+					The following questions relate to the basic <pf>if</pf> statement:
+				</p>
+
+				<program language="matlab" line-numbers="no">
+					if statement
+						if_body
+					end
+				</program>
+			</introduction>
+
+			<task label="ckpt-the-if-statement-a">
+				<title>What happens when the logical expression is false?</title>
+				<statement>
+					<p>
+						What happens when the <pf>statement</pf> is false?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>
+								MATLAB runs the <pf>if_body</pf> once and then stops the script.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>if</pf> statement never stops execution by itself.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								MATLAB skips to the line after <pf>end</pf>.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								When the <pf>statement</pf> is false, MATLAB simply moves past the block.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								MATLAB runs both the <pf>if_body</pf> and the next line after <pf>end</pf>.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Only one path executes: either the block runs or it is skipped.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								MATLAB reports an error because the <pf>statement</pf> is false.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								False, a true or false <pf>statement</pf> is expected, so no error is raised.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="ckpt-the-if-statement-b">
+				<title>Required keyword to close an if statement</title>
+				<statement>
+					<p>
+						What keyword must appear at the end of every <pf>if</pf> statement?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>
+								<c>stop</c>
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								MATLAB does not use <pf>stop</pf> to close an <pf>if</pf> statement.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								<c>end</c>
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Every <pf>if</pf> statement must be closed with <pf>end</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								<c>endif</c>
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								MATLAB uses <pf>end</pf> instead of <pf>endif</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								<c>done</c>
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								MATLAB does not use <pf>done</pf> to close an <pf>if</pf> statement.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="ckpt-the-if-statement-c">
+				<title>If statement requires true or false condition</title>
+				<statement correct="yes">
+					<p>
+						The <pf>statement</pf> must evaluate to either <pf>true</pf> or <pf>false</pf>.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						The <pf>statement</pf> must evaluate to either <pf>true</pf> or <pf>false</pf>, which determines whether the <pf>if_body</pf> executes.
+					</p>
+				</feedback>
+			</task>
+
+		</exercise>
+	</subsection>
+
+	<subsection xml:id="subsec-if-else-statement">
+		<title>The if-else-Statement</title>
+
+		<p>
+			The previous example runs one code block when the condition is true, but 
+			what if you want to run a different block when the condition is false?
+			This behavior requires an additional <pf>else</pf> block.
+		</p>
+
+		<assemblage xml:id="if-else-statement">
+			<title>The if-else Statement</title>
+
+			<p>
+				The structure of an <pf>if-else</pf> statement is:
+			</p>
+
+			<program language="matlab" line-numbers="no">
+				if condition     
+					blockA	% ⬅ runs if condition is true
+				else
+					blockB	% ⬅ runs if condition is false
+				end
+			</program>
+
+			<p>
+				where
+				<ul marker="square">
+					<li><pf>condition</pf> is a logical expression that evaluates to <pf>true</pf> or <pf>false</pf>.</li>
+					<li><pf>blockA</pf> runs if the condition is true.</li>
+					<li><pf>blockB</pf> runs if the condition is false.</li>
+					<li>Exactly one of <pf>blockA</pf> or <pf>blockB</pf> runs, never both.</li>
+				</ul>
+			</p>
+
+		</assemblage>
+
+		<p>
+			Returning to the previous example, we can add an <pf>else</pf> block to handle the case when the person is under 21.
+			Evaluate the code cell as is, then change <pf>age</pf> to <pf>16</pf> and run it again. Notice which message is printed each time.
+		</p>
+
+		<sage language="octave">
+			<input>
+				age = 23;
+
+				if age &gt;= 21
+					fprintf("Bouncer: You may enter the bar.\n");
+				else
+					fprintf("Bouncer: Move along kid.\n");
+				end
+			</input>
+		</sage>
+
+		<exercise label="ckpt-if-else-statement">
+			<title>Understanding the <pf>if</pf>-<pf>else</pf> Statement</title>
+
+			<task label="ckpt-if-else-statement-a">
+				<title>If-else executes exactly one branch</title>
+				<statement correct="yes">
+					<p>
+						In an <pf>if-else</pf> statement, MATLAB executes exactly one of the two branches.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Because the statement is either true or false, MATLAB runs the matching branch and skips the other.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="ckpt-if-else-statement-b">
+				<title>When does the else branch run?</title>
+				<statement>
+					<p>
+						When does the <pf>else</pf> branch in an <pf>if-else</pf> statement execute?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>
+								The <pf>else</pf> branch runs before the <pf>if</pf> branch.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								MATLAB checks the <pf>if</pf> condition first, then decides which branch to run.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								The <pf>else</pf> branch runs when the condition is false.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>else</pf> branch is the alternative path that executes when the condition evaluates to false.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								The <pf>else</pf> branch runs after the <pf>if</pf> branch completes.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Only one branch runs; they never both execute in the same pass through the code.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								The <pf>else</pf> branch never runs.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>else</pf> branch runs whenever the condition is false.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="ckpt-if-else-statement-c">
+				<title>If-else provides two mutually exclusive paths</title>
+				<statement correct="yes">
+					<p>
+						An <pf>if-else</pf> statement is useful when you need to choose between two mutually exclusive actions.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						The <pf>if-else</pf> structure guarantees that exactly one of two code paths executes based on whether the condition is true or false.
+					</p>
+				</feedback>
+			</task>
+		</exercise>
+
+	</subsection>
+
+	<subsection xml:id="subsec-if-elseif-else-statement">
+		<title>The if-elseif-else Statement</title>
+
+		<p>
+			Sometime, you want to run one of several different blocks of code based on multiple conditions.
+			This requires the addition of one or more <pf>elseif</pf> blocks, depending on how many 
+			conditions you need to check. 
+		</p>
+
+		<assemblage xml:id="if-elseif-else-statement-structure">
+			<title>The if-elseif-else Statement Structure</title>
+
+			<p>
+				The structure of an <pf>if-elseif-else</pf> statement is:
+			</p>
+
+			<program language="matlab" line-numbers="no">
+				if conditionA
+					blockA	% ⬅ runs if conditionA is true
+				elseif conditionB
+					blockB	% ⬅ runs if conditionA is false &amp; conditionB is true
+				elseif conditionC
+					blockC 	% ⬅ runs if conditionA &amp; B are false &amp; conditionC is true
+				else
+					blockD	% ⬅ runs if all statements above are false (default)
+				end
+			</program>
+
+			<p>
+				where
+				<ul marker="square">
+					<li>each <pf>condition</pf> is a logical expression that evaluates to <pf>true</pf> or <pf>false</pf>.</li>
+					<li>each <pf>condition</pf> is checked in order from top to bottom.</li>
+					<li>exactly one of the blocks will run when the code executes.</li>
+					<li>the <pf>else</pf> block runs only when all previous conditions are false.</li>
+					<li>the <pf>else</pf> block is optional.</li>
+					<li>you may add as many <pf>elseif</pf> blocks as needed.</li>
+				</ul>
+			</p>
+
+		</assemblage>
+
+		<p>
+			Evaluate the code below with different <pf>x</pf> and <pf>y</pf> values such as
+			<pf>x = 0; y = 4;</pf>, <pf>x = 0; y = 3;</pf>, and <pf>x = 3; y = 3;</pf>.
+			Notice which block executes each time.
+		</p>
+
+		<sage language="octave">
+			<input>
+				x = 3;
+				y = 2;
+
+				if y ~= 3
+					z = 4;
+				elseif x &lt; y
+					z = 3;
+				else
+					z = 0;
+				end
+				fprintf("The value of z is: %d\n", z);
+			</input>
+		</sage>
+
+		<exercise label="ckpt-if-elseif-else-statement">
+			<title>Understanding the if-elseif-else Statement</title>
+
+			<task label="ckpt-if-elseif-else-statement-a">
+				<title>How elseif chains work</title>
+				<statement>
+					<p>
+						Which statements about an <pf>if-elseif-else</pf> chain are true? Select all that apply.
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>
+								Conditions are checked from top to bottom.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								MATLAB evaluates logical expressions in order and stops at the first true one.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								The <pf>else</pf> block runs even if a previous logical expression is true.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>else</pf> block is a fallback and only runs when all logical expressions are false.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								Only the first true logical expression's block executes.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Once MATLAB finds a true logical expression, it skips the remaining branches.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								You must include an <pf>else</pf> branch in every chain.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>else</pf> branch is optional, though it can be helpful as a default.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								You can include multiple <pf>elseif</pf> branches.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Add as many <pf>elseif</pf> tests as you need to cover different cases.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="ckpt-if-elseif-else-statement-b">
+				<title>Order matters in elseif chains</title>
+				<statement correct="yes">
+					<p>
+						In an <pf>if-elseif-else</pf> chain, changing the order of logical expressions can change which block executes.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Because MATLAB checks logical expressions from top to bottom and stops at the first true one, the order of statements matters. If multiple logical expressions could be true, only the first true statement's block will execute.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="ckpt-if-elseif-else-statement-c">
+				<title>Purpose of the else branch</title>
+				<statement>
+					<p>
+						What is the purpose of the <pf>else</pf> branch in an <pf>if-elseif-else</pf> chain?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice>
+						<statement>
+							<p>
+								To check one more logical expression before ending.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>else</pf> branch does not check a logical expression; use <pf>elseif</pf> to check additional logical expressions.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								To provide a default action when no logical expressions are true.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>else</pf> branch serves as a fallback that runs when all previous logical expressions evaluate to false.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								To close the <pf>if</pf> statement.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>end</pf> keyword closes the <pf>if</pf> statement, not <pf>else</pf>.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								To run code after all other branches have executed.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Only one branch executes; the <pf>else</pf> runs instead of the others, not after them.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+
+	</subsection>
+
+	<reading-questions xml:id="if-statement-reading-questions">
+		<title>📖 If-Statements Quiz</title>
+
+		<exercise label="concepts-if-statement">
+			<title>Answer the Following Questions Related to If-Statements</title>
+
+			<task label="cqs-if-statement-if-end">
+				<title>If Statement Requirements</title>
+				<statement correct="yes">
+					<p>
+						Every <pf>if</pf> statement in MATLAB must end with the keyword <pf>end</pf>.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Correct! The <pf>end</pf> keyword is required to close every <pf>if</pf> statement, 
+						whether it contains just an <pf>if</pf> block, an <pf>if-else</pf>, or an <pf>if-elseif-else</pf> chain.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="cqs-if-statement-else-optional">
+				<title>Else Branch Requirement</title>
+				<statement correct="no">
+					<p>
+						An <pf>else</pf> branch is required in every <pf>if</pf> statement.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						Incorrect. The <pf>else</pf> branch is optional. If you only need to run code when a logical expression 
+						is true, you can use just an <pf>if</pf> block without an <pf>else</pf>.
+					</p>
+				</feedback>
+			</task>
+
+			<task label="cqs-if-statement-logical expression-order">
+				<title>Elseif Chain Evaluation Order</title>
+				<statement>
+					<p>
+						In an <pf>if-elseif-else</pf> chain, how does MATLAB determine which block to execute?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice>
+						<statement>
+							<p>MATLAB checks all logical expressions and runs the block with the highest priority.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB evaluates logical expressions in order from top to bottom and stops 
+								at the first true statement.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>MATLAB checks logical expressions from top to bottom and runs the first true block.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Once MATLAB finds a true logical expression, it executes that block and skips all remaining branches.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB checks all logical expressions and runs all blocks whose statements are true.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Only one block executes in an <pf>if-elseif-else</pf> chain, 
+								even if multiple logical expressions are true.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>MATLAB evaluates logical expressions randomly.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Logical expressions are always evaluated in the order they appear in the code.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-if-statement-multiple-branches">
+				<title>How Many Blocks Execute?</title>
+				<statement>
+					<p>
+						Given this code:
+					</p>
+					<program language="matlab">
+						x = 10;
+						if x &gt; 5
+							y = 1;
+						elseif x &gt; 8
+							y = 2;
+						elseif x &gt; 3
+							y = 3;
+						else
+							y = 0;
+						end
+					</program>
+					<p>
+						What is the value of <pf>y</pf> after this code executes?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice>
+						<statement>
+							<p><pf>y = 2</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. The first logical expression (<pf>x &gt; 5</pf>) is true, so MATLAB 
+								never checks the second logical expression.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>y = 3</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. The first logical expression (<pf>x &gt; 5</pf>) is true, so MATLAB 
+								never checks the third logical expression.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>y = 6</pf> (sum of 1+2+3)</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Only one block executes in an <pf>if-elseif-else</pf> chain. 
+								The blocks don't accumulate.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p><pf>y = 1</pf></p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! Even though <pf>x &gt; 8</pf> and <pf>x &gt; 3</pf> are also true, 
+								MATLAB stops at the first true logical expression (<pf>x &gt; 5</pf>) and assigns <pf>y = 1</pf>.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-if-statement-nested-vs-chain">
+				<title>Nested If vs Elseif Chain</title>
+				<statement>
+					<p>
+						What is the main difference between using nested <pf>if</pf> statements and using an <pf>if-elseif</pf> chain?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice>
+						<statement>
+							<p>There is no difference; they are equivalent in all cases.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Nested <pf>if</pf> statements can check multiple conditions independently, 
+								while <pf>elseif</pf> chains are mutually exclusive.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Nested <pf>if</pf> statements run faster than <pf>elseif</pf> chains.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Performance is not the key difference; the distinction is in the logic structure 
+								and whether branches are mutually exclusive.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>Nested <pf>if</pf> statements can allow multiple blocks to execute; 
+							<pf>elseif</pf> chains execute only one block.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! In an <pf>if-elseif-else</pf> chain, only one block runs. 
+								With nested <pf>if</pf> statements, multiple independent conditions can be true.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>Elseif chains require more <pf>end</pf> keywords than nested <pf>if</pf> statements.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. Actually, nested <pf>if</pf> statements require more <pf>end</pf> keywords 
+								(one for each <pf>if</pf>), while an <pf>elseif</pf> chain needs only one.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="cqs-if-statement-condition-type">
+				<title>If Statement Condition Type</title>
+				<statement>
+					<p>
+						Consider this code:
+					</p>
+					<program language="matlab">
+						x = 5;
+						if x
+							disp('x is true')
+						else
+							disp('x is false')
+						end
+					</program>
+					<p>
+						What will be displayed, and why?
+					</p>
+				</statement>
+				<choices randomize="no">
+					<choice correct="yes">
+						<statement>
+							<p><pf>x is true</pf>, because any non-zero number is treated as true.</p>
+						</statement>
+						<feedback>
+							<p>
+								Correct! In MATLAB, non-zero values are treated as true in logical expressions, 
+								and zero is treated as false.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x is false</pf>, because <pf>x</pf> is not a logical value.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. While <pf>x</pf> is numeric, MATLAB automatically converts non-zero 
+								numbers to true in logical expressions.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>An error occurs because <pf>x</pf> is not a logical value.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB allows numeric values in <pf>if</pf> conditions and treats 
+								non-zero as true and zero as false.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p><pf>x is false</pf>, because <pf>5</pf> is not equal to <pf>true</pf>.</p>
+						</statement>
+						<feedback>
+							<p>
+								Incorrect. MATLAB doesn't compare <pf>x</pf> to <pf>true</pf>; it converts 
+								non-zero values to true.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+		</exercise>
+	</reading-questions>
+
+	<subsection xml:id="if-statement-practice-activities">
+		<title>🧑🏻‍💻 Practice Activities</title>
+
+		<p>
+			These in-class activities focus on writing small MATLAB functions that use <pf>if</pf> statements.
+		</p>
+
+		<exercise label="conditional-activity-1">
+			<title>Simple <pf>if</pf>-statement Drills</title>
+
+			<introduction>
+				<p>
+					Use the coding area to complete the each task. Some tasks build on the previous one, so copy and modify your code block as you go.
+				</p>
+			</introduction>
+
+			<task label="conditional-activity-1a">
+				<title>Define <pf>y</pf></title>
+				
+				<statement>
+					<p>
+						After completing each part, click <kbd>Evaluate</kbd> to see the results. For parts 3 &amp; 4, click <kbd>Evaluate</kbd> multiple times to see how the results change based on the random value of <pf>x</pf>.
+					</p>
+
+					<tabular valign="top">
+						<col width="30%"/>
+						<col width="70%"/>
+						<row>
+							<cell><p><em>Part 1</em></p></cell>
+							<cell><p>Define the variable <pf>x</pf> as <pf>6</pf>.</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell/>
+							<cell><p>Define the variable <pf>y</pf> as <pf>1</pf> if <pf>x</pf> is less than or equal to <pf>9</pf>, otherwise set <pf>y</pf> to 4.</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell><p><em>Part 2</em></p></cell>
+							<cell><p>Change <pf>x</pf> to <pf>16</pf>.</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell><p><em>Part 3</em></p></cell>
+							<cell><p>Change <pf>x</pf> to be a random integer between -5 and 15 using <pf>randi([-5, 15])</pf>.</p></cell>
+						</row>
+						<row>
+							<cell><p><em>Part 4</em></p></cell>
+							<cell><p>Update your if statement so that it sets <pf>y</pf> to <pf>1</pf> if</p></cell>
+						</row>
+						<row>
+							<cell/>
+							<cell><p><pf>x</pf> is between 1 and 9 (inclusive), otherwise set <pf>y</pf> to 4.</p></cell>
+						</row>
+					</tabular>
+
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							
+
+							%───────────────────────────%
+							fprintf('for x = %d, we set y to %d\n', x, y);
+						</input>
+					</sage>
+				</statement>
+
+				<solution component="example-solution">
+					<title>Part 1</title>
+					<program language="matlab">
+						%─── TYPE YOUR CODE HERE ───%
+						x = 6;
+						if x &lt;= 9
+							y = 1;
+						else
+							y = 4;
+						end
+						%───────────────────────────%
+						fprintf('for x = %d, we set y to %d\n', x, y);
+					</program>
+				</solution>
+				<solution component="example-solution">
+					<title>Part 4</title>
+					<program language="matlab">
+						%─── TYPE YOUR CODE HERE ───%
+						x = randi([-5, 15]);
+						if x &gt;= 1 &amp; x &lt;= 9
+							y = 1;
+						else
+							y = 4;
+						end
+						%───────────────────────────%
+						fprintf('for x = %d, we set y to %d\n', x, y);
+					</program>
+				</solution>
+			</task>
+
+			<task xml:id="conditional-activity-2a">
+				<title>Updating a Variable</title>
+
+				<statement>
+					<p>
+						Suppose <pf>n</pf> is a random integer between 0 and 20. 
+						Give the code that 
+						<ul>
+							<li>increases <pf>n</pf> by 5 if it is greater than 10,</li>
+							<li>decreases <pf>n</pf> by 5 if it is less than 10, and</li>
+							<li>sets <pf>n</pf> to 1 if it is equal to 10.</li>
+						</ul>
+					</p>
+
+					<sage language="octave">
+						<input>
+							n = randi([0, 20]);
+							fprintf('Random number n = %d\n', n);
+							%─── TYPE YOUR CODE HERE ───%
+							
+
+							%───────────────────────────%
+							fprintf('Updated n = %d\n', n);
+						</input>
+					</sage>
+				</statement>
+
+				<solution component="example-solution">
+					<program language="matlab">
+						<code>
+							n = randi([0, 20]);
+							fprintf('Starting n = %d\n', n);
+							%─── TYPE YOUR CODE HERE ───%
+							if n &gt; 10
+								n = n + 5;
+							elseif n &lt; 10
+								n = n - 5;
+							else
+								n = 1;
+							end
+							%───────────────────────────%
+							fprintf('Updated n = %d\n', n);
+						</code>
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+		<exercise xml:id="conditional-activity-3">
+			<title>Sign Label Function</title>
+
+			<introduction>
+				<p>
+					Write a function that classifies a single number as positive, negative, or zero.
+				</p>
+			</introduction>
+
+			<task label="conditional-activity-3a">
+				<statement>
+					<p>
+						Create a function named <pf>sign_label</pf> that takes one input <pf>x</pf> and returns one output
+						<pf>label</pf> with the value <pf>'positive'</pf>, <pf>'negative'</pf>, or <pf>'zero'</pf>.
+					</p>
+				</statement>
+				 <solution component="example-solution">
+					<program language="matlab">
+						function label = sign_label(x)
+							if x &gt; 0
+								label = 'positive';
+							elseif x &lt; 0
+								label = 'negative';
+							else
+								label = 'zero';
+							end
+						end
+					</program>
+				</solution> 
+			</task>
+
+			<task label="conditional-activity-3b">
+				<statement>
+					<p>
+						Modify the function so it returns a second output named <pf>code</pf> with values <pf>1</pf>, <pf>-1</pf>,
+						or <pf>0</pf> that match the sign.
+					</p>
+				</statement>
+				 <solution component="example-solution">
+					<program language="matlab">
+						function [label, code] = sign_label(x)
+							if x &gt; 0
+								label = 'positive';
+								code = 1;
+							elseif x &lt; 0
+								label = 'negative';
+								code = -1;
+							else
+								label = 'zero';
+								code = 0;
+							end
+						end
+					</program>
+				</solution> 
+			</task>
+
+		</exercise>
+
+		<exercise label="conditional-activity-4">
+			<title>Freeze Alert Function</title>
+
+			<introduction>
+				<p>
+					Use a simple <pf>if</pf>-statement to return a warning message from a temperature input.
+				</p>
+			</introduction>
+
+			<task label="conditional-activity-4a">
+				<statement>
+					<p>
+						Write a function named <pf>freeze_alert</pf> that takes <pf>tempC</pf> (a scalar temperature in
+						Celsius) and <pf>tempWarn</pf> (how close to freezing to warn) and returns <pf>message</pf>. 
+						If <pf>tempC</pf> is at or below <pf>tempWarn</pf>, return <pf>'Freeze warning'</pf>; otherwise return <pf>'No warning'</pf>.
+					</p>
+				</statement>
+				 <solution component="example-solution">
+					<program language="matlab">
+						function message = freeze_alert(tempC, tempWarn)
+							if tempC &lt;= tempWarn
+								message = 'Freeze warning';
+							else
+								message = 'No warning';
+							end
+						end
+					</program>
+				</solution> 
+			</task>
+
+			<task label="conditional-activity-4b">
+				<statement>
+					<p>
+						Update the function to return a second output <pf>isFreezing</pf> that is <pf>true</pf> or <pf>false</pf>
+						along with the message.
+					</p>
+				</statement>
+				 <solution component="example-solution">
+					<program language="matlab">
+						function [message, isFreezing] = freeze_alert(tempC, tempWarn)
+							
+							if tempC &lt;= 0
+								message = 'Freeze warning';
+								isFreezing = true;
+							elseif tempC &lt;= tempWarn
+								message = 'Freeze warning';
+								isFreezing = false;
+							else
+								message = 'No warning';
+								isFreezing = false;
+							end
+						end
+					</program>
+				</solution> 
+			</task>
+
+		</exercise>
+
+		<exercise label="conditional-activity-5">
+			<title>Ticket Price Function</title>
+
+			<introduction>
+				<p>
+					Write a function that uses <pf>if-elseif-else</pf> to choose among several price brackets.
+				</p>
+			</introduction>
+
+			<task label="conditional-activity-5a">
+				<statement>
+					<p>
+						Create a function named <pf>ticket_price</pf> that takes a scalar input <pf>age</pf> (a single person's age, in years) and returns
+						<pf>price</pf> using the rules below:
+					</p>
+					<ul marker="square">
+						<li>Age less than 13: <pf>price = 6</pf></li>
+						<li>Age from 13 to 64: <pf>price = 12</pf></li>
+						<li>Age 65 or older: <pf>price = 8</pf></li>
+					</ul>
+				</statement>
+				<solution component="solution">
+					<program language="matlab">
+						function price = ticket_price(age)
+							if age &lt; 13
+								price = 6;
+							elseif age &lt; 65
+								price = 12;
+							else
+								price = 8;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="conditional-activity-5b">
+				<statement>
+					<p>
+						Modify the function so it returns a second output <pf>group</pf> and handles invalid ages.
+						If <pf>age &lt; 0</pf>, return <pf>price = NaN</pf> and <pf>group = 'invalid'</pf>.
+					</p>
+				</statement>
+				<solution component="solution">
+					<program language="matlab">
+						function [price, group] = ticket_price(age)
+							if age &lt; 0
+								price = NaN;
+								group = 'invalid';
+							elseif age &lt; 13
+								price = 6;
+								group = 'child';
+							elseif age &lt; 65
+								price = 12;
+								group = 'adult';
+							else
+								price = 8;
+								group = 'senior';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+		<exercise label="conditional-activity-6">
+			<title>Letter Grade Function</title>
+
+			<introduction>
+				<p>
+					Convert a numeric score to a letter grade using range-based conditions.
+				</p>
+			</introduction>
+
+			<task label="conditional-activity-6a">
+				<statement>
+					<p>
+						Write a function named <pf>letter_grade</pf> that returns <pf>'A'</pf>, <pf>'B'</pf>, <pf>'C'</pf>,
+						<pf>'D'</pf>, or <pf>'F'</pf> for a scalar <pf>score</pf> using the standard 90/80/70/60 cutoffs.
+					</p>
+				</statement>
+				<solution component="solution">
+					<program language="matlab">
+						function letter = letter_grade(score)
+							if score &gt;= 90
+								letter = 'A';
+							elseif score &gt;= 80
+								letter = 'B';
+							elseif score &gt;= 70
+								letter = 'C';
+							elseif score &gt;= 60
+								letter = 'D';
+							else
+								letter = 'F';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="conditional-activity-6b">
+				<statement>
+					<p>
+						Add an input check so that scores outside <pf>0</pf> to <pf>100</pf> return <pf>'invalid'</pf>.
+					</p>
+				</statement>
+				<solution component="solution">
+					<program language="matlab">
+						function letter = letter_grade(score)
+							if score &lt; 0 || score &gt; 100
+								letter = 'invalid';
+							elseif score &gt;= 90
+								letter = 'A';
+							elseif score &gt;= 80
+								letter = 'B';
+							elseif score &gt;= 70
+								letter = 'C';
+							elseif score &gt;= 60
+								letter = 'D';
+							else
+								letter = 'F';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="conditional-activity-6c">
+				<statement>
+					<p>
+						Concept check: why must the <pf>score &gt;= 90</pf> test appear before the <pf>score &gt;= 80</pf> test?
+					</p>
+				</statement>
+				<solution component="solution">
+					<p>
+						Conditions are checked in order. If the <pf>score &gt;= 80</pf> test came first, scores of 90 or above
+						would already satisfy it and never reach the <pf>A</pf> branch.
+					</p>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise label="conditional-activity-10">
+			<title>Late Fee Function</title>
+
+			<introduction>
+				<p>
+					Use an <pf>if-elseif-else</pf> chain to assign a fee based on how late something is.
+				</p>
+			</introduction>
+
+			<task label="conditional-activity-10a">
+				<statement>
+					<p>
+						Write a function named <pf>late_fee</pf> that takes a single number <pf>daysLate</pf> (the number of days late) and returns <pf>fee</pf> according to the table below:
+					</p>
+					<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+						<row>
+							<cell><pf>daysLate</pf></cell><cell><pf>fee</pf></cell>
+						</row>
+						<row>
+							<cell>0 or less</cell><cell>0</cell>
+						</row>
+						<row>
+							<cell>1 to 3</cell><cell>5</cell>
+						</row>
+						<row>
+							<cell>3 to 7</cell><cell>15</cell>
+						</row>
+						<row>
+							<cell><m>\quad</m> more than 7<m>\quad</m></cell><cell><m>\quad</m>30<m>\quad</m></cell>
+						</row>
+					</tabular>
+				</statement>
+				<solution component="solution">
+					<program language="matlab">
+						function fee = late_fee(daysLate)
+							if daysLate &lt;= 0
+								fee = 0;
+							elseif daysLate &lt;= 3
+								fee = 5;
+							elseif daysLate &lt;= 7
+								fee = 15;
+							else
+								fee = 30;
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+			<task label="conditional-activity-10b">
+				<statement>
+					<p>
+						Modify the function to return a second output <pf>status</pf> with values according to the table below:
+					</p>
+					<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+						<row>
+							<cell><pf>daysLate</pf></cell><cell><pf>fee</pf></cell><cell><pf>status</pf></cell>
+						</row>
+						<row>
+							<cell>0 or less</cell><cell>0</cell><cell>on time</cell>
+						</row>
+						<row>
+							<cell>1 to 3</cell><cell>5</cell><cell>minor late</cell>
+						</row>
+						<row>
+							<cell>3 to 7</cell><cell>15</cell><cell>late</cell>
+						</row>
+						<row>
+							<cell><m>\quad</m> more than 7<m>\quad</m></cell><cell><m>\quad</m>30<m>\quad</m></cell><cell><m>\quad</m>very late<m>\quad</m></cell>
+						</row>
+					</tabular>
+				</statement>
+				<solution component="solution">
+					<program language="matlab">
+						function [fee, status] = late_fee(daysLate)
+							if daysLate &lt;= 0
+								fee = 0;
+								status = 'on time';
+							elseif daysLate &lt;= 3
+								fee = 5;
+								status = 'minor late';
+							elseif daysLate &lt;= 7
+								fee = 15;
+								status = 'late';
+							else
+								fee = 30;
+								status = 'very late';
+							end
+						end
+					</program>
+				</solution>
+			</task>
+
+		</exercise>
+
+		<!-- <assemblage>
+			<p>
+				<exercise xml:id="if-activity-2">
+					<title>Activity 2: Simple <pf>if</pf>-statement</title>
+
+					<statement>
+						<p>
+							Use the coding area, below, to set <pf>w</pf> according to the following rules:
+							<ul marker="square">
+								<li>if <pf>x</pf> is equal to 9, set <pf>w</pf> to 1</li>
+								<li>if <pf>x</pf> is between (but not equal to) -4 and 0, set <pf>w</pf> to 2</li>
+								<li>if <pf>x</pf> is not less than 3 or greater than 9, set <pf>w</pf> to 3</li>
+								<li>if none of the above are true, set <pf>w</pf> to 4</li>
+							</ul>
+						</p>
+
+						<sage language="octave">
+							<input>
+								x = randi([-5, 15]);
+								%─── TYPE YOUR CODE HERE ───%
+								
+
+								%───────────────────────────%
+								fprintf('for x = %d, we set w to %d\n', x, w);
+							</input>
+						</sage>
+
+					</statement>
+
+					<solution component="example-solution">
+						
+						<program language="matlab">
+							x = randi([-5, 15]);
+
+							if x == 9
+								w = 1;
+							elseif x &gt; -4 &amp;&amp; x &lt; 0
+								w = 2;
+							elseif ~(x &lt;= 3) || x &gt; 9
+								w = 3;
+							else
+								w = 4;
+							end
+
+							fprintf('for x = %d, we set w to %d\n', x, w);
+						</program>
+					</solution>
+
+				</exercise>
+			</p>
+		</assemblage> -->
+
+		<!-- <exercise xml:id="sec-quadratic-equation">
+			<title>Activity 4: Solving the Quadratic Equation in MATLAB</title>
+
+			<introduction>
+			<p>
+				A classic programming task is turning a familiar mathematical procedure into a reliable piece of code.
+				The quadratic equation is a great example because it combines algebra, branching logic, and careful handling
+				of special cases.
+			</p>
+
+			<p>
+				Consider the quadratic polynomial <m>a x^2 + b x + c</m>. Its roots satisfy
+				<me>x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.</me>
+				The expression <m>D = b^2 - 4ac</m> is called the <term>discriminant</term>, and its sign determines
+				the type of roots.
+			</p>
+			</introduction>
+
+			<task xml:id="subsec-quadratic-discriminant">
+				<title>The Discriminant and Root Types</title>
+
+				<p>
+					There are three common cases:
+					if <m>D &gt; 0</m> there are two distinct real roots, if <m>D = 0</m> there is one repeated real root,
+					and if <m>D &lt; 0</m> the roots are complex conjugates.
+				</p>
+
+				<program language="matlab">
+		a = 1; b = -3; c = 2;        % (x-1)(x-2) = 0
+
+		D = b^2 - 4*a*c;
+
+		x1 = (-b + sqrt(D)) / (2*a);
+		x2 = (-b - sqrt(D)) / (2*a);
+				</program>
+
+				<p>
+					MATLAB’s <code>sqrt</code> can produce complex results automatically when <m>D &lt; 0</m>,
+					so the computation above still works. But it is often useful to detect the case and present results clearly.
+				</p>
+			</task>
+
+			<task xml:id="subsec-quadratic-function">
+				<title>Packaging the Computation as a Function</title>
+
+				<p>
+					A function is the natural way to turn this idea into reusable code.
+					We also add input checks to catch the invalid case <m>a = 0</m>, which would not be a quadratic.
+				</p>
+
+				<program language="matlab">
+		function [r1, r2] = quadraticRoots(a,b,c)
+		%QUADRATICROOTS Return the roots of a*x^2 + b*x + c.
+		%
+		%   r1, r2 are the two roots (possibly equal or complex).
+
+				if a == 0
+						error("Input a must be nonzero for a quadratic polynomial.");
+				end
+
+				D = b^2 - 4*a*c;
+				r1 = (-b + sqrt(D)) / (2*a);
+				r2 = (-b - sqrt(D)) / (2*a);
+		end
+				</program>
+
+				<p>
+					A function like this becomes more valuable when paired with clear documentation and predictable output format.
+					In practice, you might also return the discriminant or a label indicating the root type.
+				</p>
+			</task>
+
+			<task xml:id="subsec-quadratic-numerics">
+				<title>A Numerical Note</title>
+
+				<p>
+					For some coefficient values, the quadratic formula can suffer from roundoff error.
+					This usually appears when <m>b^2</m> is much larger than <m>4ac</m>, causing subtractive cancellation.
+					For introductory programming, the standard formula is perfectly acceptable, but it is good to know that
+					numerical stability can matter even in “simple” algebra.
+				</p>
+			</task>
+		</exercise> -->
+
+	</subsection>
+
+	<exercises xml:id="if-statement-coding-exercises">
+		<title>💻 Coding Exercises</title>
+
+		<exercise xml:id="coding-exercises-if-statement">
+			<title>Conditional Flow (if and switch statements)</title>
+
+			<task xml:id="coding-check-range">
+				<title>Number in Range</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>is_in_range</pf> that determines whether a number falls within a specified range (inclusive).
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>value</pf> (1x1) double — the number to check</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>lower_bound</pf> (1x1) double — minimum value of the range</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>upper_bound</pf> (1x1) double — maximum value of the range</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>result</pf> (1x1) logical — true if value is in range [lower_bound, upper_bound], false otherwise</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Value in range
+						r1 = is_in_range(5, 1, 10)
+						% Expected: r1 = 1 (true)
+
+						% Test 2: Value at lower boundary
+						r2 = is_in_range(1, 1, 10)
+						% Expected: r2 = 1 (true)
+
+						% Test 3: Value at upper boundary
+						r3 = is_in_range(10, 1, 10)
+						% Expected: r3 = 1 (true)
+
+						% Test 4: Value below range
+						r4 = is_in_range(0, 1, 10)
+						% Expected: r4 = 0 (false)
+
+						% Test 5: Value above range
+						r5 = is_in_range(11, 1, 10)
+						% Expected: r5 = 0 (false)
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-tax-bracket">
+				<title>Tax Bracket Rate Finder</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>find_tax_rate</pf> that determines the marginal tax rate for a given income 
+						based on progressive tax brackets.
+					</p>
+
+					<p>
+						Tax bracket rates:
+						<ul marker="square">
+							<li><p>Income up to $10,000: 0% tax rate</p></li>
+							<li><p>Income from $10,001 to $40,000: 10% tax rate</p></li>
+							<li><p>Income from $40,001 to $85,000: 15% tax rate</p></li>
+							<li><p>Income above $85,000: 20% tax rate</p></li>
+						</ul>
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>income</pf> (1x1) double — annual income in dollars</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>tax_rate</pf> (1x1) double — the marginal tax rate (as a decimal, e.g., 0.10 for 10%)</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: No tax bracket
+						t1 = find_tax_rate(8000)
+						% Expected: t1 = 0
+
+						% Test 2: 10% bracket
+						t2 = find_tax_rate(25000)
+						% Expected: t2 = 0.10
+
+						% Test 3: 15% bracket
+						t3 = find_tax_rate(60000)
+						% Expected: t3 = 0.15
+
+						% Test 4: 20% bracket
+						t4 = find_tax_rate(100000)
+						% Expected: t4 = 0.20
+
+						% Test 5: Boundary case
+						t5 = find_tax_rate(40000)
+						% Expected: t5 = 0.10
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-water-state">
+				<title>Water Phase Identifier</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>water_phase</pf> that determines the physical state of water (ice, liquid, or steam) 
+						based on temperature in Celsius at standard atmospheric pressure.
+					</p>
+
+					<p>
+						Phase rules:
+						<ul marker="square">
+							<li><p>Below 0°C: ice</p></li>
+							<li><p>From 0°C to 100°C (inclusive): liquid</p></li>
+							<li><p>Above 100°C: steam</p></li>
+						</ul>
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>temp_celsius</pf> (1x1) double — temperature in Celsius</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>phase</pf> (1x1) string — "ice", "liquid", or "steam"</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Below freezing
+						p1 = water_phase(-10)
+						% Expected: p1 = "ice"
+
+						% Test 2: Freezing point
+						p2 = water_phase(0)
+						% Expected: p2 = "liquid"
+
+						% Test 3: Room temperature
+						p3 = water_phase(25)
+						% Expected: p3 = "liquid"
+
+						% Test 4: Boiling point
+						p4 = water_phase(100)
+						% Expected: p4 = "liquid"
+
+						% Test 5: Above boiling
+						p5 = water_phase(120)
+						% Expected: p5 = "steam"
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-bmi-category">
+				<title>BMI Category Classifier</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>bmi_category</pf> that calculates Body Mass Index (BMI) and classifies it into 
+						standard health categories.
+					</p>
+
+					<p>
+						BMI is calculated as: <m>\text{BMI} = \frac{\text{weight (kg)}}{\text{height (m)}^2}</m>
+					</p>
+
+					<p>
+						Categories:
+						<ul marker="square">
+							<li><p>BMI &lt; 18.5: "Underweight"</p></li>
+							<li><p>BMI 18.5 to 24.9: "Normal weight"</p></li>
+							<li><p>BMI 25 to 29.9: "Overweight"</p></li>
+							<li><p>BMI ≥ 30: "Obese"</p></li>
+						</ul>
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>weight_kg</pf> (1x1) double — weight in kilograms</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>height_m</pf> (1x1) double — height in meters</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>category</pf> (1x1) string — the BMI category</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Underweight
+						c1 = bmi_category(50, 1.75)
+						% Expected: c1 = "Underweight"
+
+						% Test 2: Normal weight
+						c2 = bmi_category(70, 1.75)
+						% Expected: c2 = "Normal weight"
+
+						% Test 3: Overweight
+						c3 = bmi_category(85, 1.75)
+						% Expected: c3 = "Overweight"
+
+						% Test 4: Obese
+						c4 = bmi_category(100, 1.75)
+						% Expected: c4 = "Obese"
+
+						% Test 5: Boundary case
+						c5 = bmi_category(75.5, 1.75)
+						% Expected: c5 = "Normal weight"
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-check-even-positive">
+				<title>Even and Positive</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>is_even_and_positive</pf> that determines whether a number is both even and positive.
+					</p>
+
+					<p>
+						A number is even if dividing it by 2 produces no remainder. You can use the <pf>mod</pf> function to find remainders.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>num</pf> (1x1) double — the number to check</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>result</pf> (1x1) logical — true if num is both even and positive, false otherwise</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Even and positive
+						r1 = is_even_and_positive(4)
+						% Expected: r1 = 1 (true)
+
+						% Test 2: Odd and positive
+						r2 = is_even_and_positive(7)
+						% Expected: r2 = 0 (false)
+
+						% Test 3: Even and negative
+						r3 = is_even_and_positive(-6)
+						% Expected: r3 = 0 (false)
+
+						% Test 4: Zero (even but not positive)
+						r4 = is_even_and_positive(0)
+						% Expected: r4 = 0 (false)
+
+						% Test 5: Large even positive
+						r5 = is_even_and_positive(100)
+						% Expected: r5 = 1 (true)
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-xor-function">
+				<title>Exclusive OR (XOR)</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>my_xor</pf> that implements the exclusive OR operation without using MATLAB's built-in <pf>xor</pf> function.
+					</p>
+
+					<p>
+						XOR returns true when exactly one (but not both) of the inputs is true. 
+						Think about how you can combine AND, OR, and NOT operators to achieve this behavior.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>a</pf> (1x1) logical — first logical value</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>b</pf> (1x1) logical — second logical value</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>result</pf> (1x1) logical — true if exactly one input is true, false otherwise</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Both false
+						r1 = my_xor(false, false)
+						% Expected: r1 = 0 (false)
+
+						% Test 2: First true, second false
+						r2 = my_xor(true, false)
+						% Expected: r2 = 1 (true)
+
+						% Test 3: First false, second true
+						r3 = my_xor(false, true)
+						% Expected: r3 = 1 (true)
+
+						% Test 4: Both true
+						r4 = my_xor(true, true)
+						% Expected: r4 = 0 (false)
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-parking-fee">
+				<title>Parking Fee Calculator</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>parking_fee</pf> that calculates the parking fee based on the number of hours parked.
+					</p>
+
+					<p>
+						Fee structure:
+						<ul marker="square">
+							<li><p>First hour: $3</p></li>
+							<li><p>Hours 2-4: $2 per hour</p></li>
+							<li><p>Hours 5+: $1.50 per hour</p></li>
+							<li><p>Maximum daily fee: $15</p></li>
+						</ul>
+					</p>
+
+					<p>
+						Note: Use the <pf>ceil</pf> function to round up partial hours. For example, <pf>ceil(2.3)</pf> returns <pf>3</pf>.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>hours</pf> (1x1) double — number of hours parked (may include fractions)</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>fee</pf> (1x1) double — total parking fee in dollars</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: First hour
+						f1 = parking_fee(0.5)
+						% Expected: f1 = 3
+
+						% Test 2: Two hours
+						f2 = parking_fee(2)
+						% Expected: f2 = 5 (3 + 2)
+
+						% Test 3: Four hours
+						f3 = parking_fee(4)
+						% Expected: f3 = 9 (3 + 2 + 2 + 2)
+
+						% Test 4: Six hours
+						f4 = parking_fee(6)
+						% Expected: f4 = 12 (3 + 2 + 2 + 2 + 1.5 + 1.5)
+
+						% Test 5: Exceeds maximum
+						f5 = parking_fee(12)
+						% Expected: f5 = 15
+					</program>
+
+				</statement>
+
+			</task>
+
+
+
+			<task xml:id="coding-hurricane-category">
+				<title>Hurricane Category Classifier</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>hurricane_category</pf> that classifies a hurricane based on its wind speed using 
+						the Saffir-Simpson scale.
+					</p>
+
+					<p>
+						Categories (based on sustained wind speed in mph):
+						<ul marker="square">
+							<li><p>&lt; 74: "Tropical Storm"</p></li>
+							<li><p>74-95: "Category 1"</p></li>
+							<li><p>96-110: "Category 2"</p></li>
+							<li><p>111-129: "Category 3"</p></li>
+							<li><p>130-156: "Category 4"</p></li>
+							<li><p>≥ 157: "Category 5"</p></li>
+						</ul>
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>wind_speed</pf> (1x1) double — sustained wind speed in mph</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>category</pf> (1x1) string — the hurricane category</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Tropical Storm
+						c1 = hurricane_category(60)
+						% Expected: c1 = "Tropical Storm"
+
+						% Test 2: Category 1
+						c2 = hurricane_category(85)
+						% Expected: c2 = "Category 1"
+
+						% Test 3: Category 3
+						c3 = hurricane_category(120)
+						% Expected: c3 = "Category 3"
+
+						% Test 4: Category 5
+						c4 = hurricane_category(160)
+						% Expected: c4 = "Category 5"
+
+						% Test 5: Boundary case
+						c5 = hurricane_category(74)
+						% Expected: c5 = "Category 1"
+					</program>
+
+				</statement>
+
+			</task>
+
+
+			<task xml:id="coding-leap-year">
+				<title>Leap Year Checker</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>is_leap_year</pf> that determines whether a given year is a leap year.
+					</p>
+
+					<p>
+						The rules for leap years are:
+						<ul marker="square">
+							<li><p>A year is a leap year if it is divisible by 4</p></li>
+							<li><p>EXCEPT years divisible by 100 are NOT leap years</p></li>
+							<li><p>EXCEPT years divisible by 400 ARE leap years</p></li>
+						</ul>
+						For example: 2000 is a leap year (divisible by 400), 1900 is not (divisible by 100 but not 400), 
+						2004 is a leap year (divisible by 4 but not 100).
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>year</pf> (1x1) double — the year to check</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>is_leap</pf> (1x1) logical — true if the year is a leap year, false otherwise</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Divisible by 400 (leap year)
+						r1 = is_leap_year(2000)
+						% Expected: r1 = 1 (true)
+
+						% Test 2: Divisible by 100 but not 400 (not a leap year)
+						r2 = is_leap_year(1900)
+						% Expected: r2 = 0 (false)
+
+						% Test 3: Divisible by 4 but not 100 (leap year)
+						r3 = is_leap_year(2024)
+						% Expected: r3 = 1 (true)
+
+						% Test 4: Not divisible by 4 (not a leap year)
+						r4 = is_leap_year(2023)
+						% Expected: r4 = 0 (false)
+
+						% Test 5: Another divisible by 100 case
+						r5 = is_leap_year(2100)
+						% Expected: r5 = 0 (false)
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-quadratic-solver">
+				<title>Quadratic Equation Solver</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>quadratic_solver</pf> that takes the coefficients <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> as inputs and returns the two solutions, <pf>x1</pf> and <pf>x2</pf> (if they exist), for a quadratic equation of the form 
+						<me>ax^2 + bx + c = 0</me>.
+					</p>
+
+					<p>
+						The function should handle different combinations of <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> being zero. Based on this there could be:
+						<ul marker="square">
+							<li><p>Two solutions (repeated, distinct, or complex),</p></li>
+							<li><p>One solution (set <pf>x2 = NaN</pf>),</p></li>
+							<li><p>No solutions (set <pf>x1 = NaN</pf> and <pf>x2 = NaN</pf>), or</p></li>
+							<li><p>Infinitely many solutions (set <pf>x1 = Inf</pf> and <pf>x2 = NaN</pf>).</p></li>
+						</ul>
+						Put on your math hat and think through the different cases to determine how to compute the solutions and what to return when there are no solutions or infinitely many solutions.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>a</pf> (1x1) double — coefficient of <m>x^2</m></p>
+								<p><pf>b</pf> (1x1) double — coefficient of <m>x</m></p>
+								<p><pf>c</pf> (1x1) double — constant term</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>x1</pf> (1x1) double — first solution of the quadratic equation</p>
+								<p><pf>x2</pf> (1x1) double — second solution of the quadratic equation</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Two Real Solutions
+						[x1, x2] = quadratic_solver(1, -3, 2)
+						% Expected: x1 = 2, x2 = 1
+
+						% Test 2: Repeated Solutions
+						[x1, x2] = quadratic_solver(1, 2, 1)
+						% Expected: x1 = -1, x2 = -1
+
+						% Test 3: Complex Solutions
+						[x1, x2] = quadratic_solver(1, 0, 4)
+						% Expected: x1 = 2i, x2 = -2i
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-quadrant-checker">
+				<title>Coordinate Quadrant Checker</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>find_quadrant</pf> that determines which quadrant or axis a point (x, y) is located in 
+						on a 2D coordinate system.
+					</p>
+
+					<p>
+						Rules:
+						<ul marker="square">
+							<li><p>Quadrant I: x &gt; 0 and y &gt; 0</p></li>
+							<li><p>Quadrant II: x &lt; 0 and y &gt; 0</p></li>
+							<li><p>Quadrant III: x &lt; 0 and y &lt; 0</p></li>
+							<li><p>Quadrant IV: x &gt; 0 and y &lt; 0</p></li>
+							<li><p>Origin: x = 0 and y = 0</p></li>
+							<li><p>X-axis: y = 0 (but x ≠ 0)</p></li>
+							<li><p>Y-axis: x = 0 (but y ≠ 0)</p></li>
+						</ul>
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>x</pf> (1x1) double — x-coordinate</p>
+							</cell>
+						</row>
+						<row>
+							<cell/>
+							<cell>
+								<p><pf>y</pf> (1x1) double — y-coordinate</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>location</pf> (1x1) string — "Quadrant I", "Quadrant II", "Quadrant III", "Quadrant IV", "Origin", "X-axis", or "Y-axis"</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Quadrant I
+						loc1 = find_quadrant(3, 4)
+						% Expected: loc1 = "Quadrant I"
+
+						% Test 2: Quadrant II
+						loc2 = find_quadrant(-2, 5)
+						% Expected: loc2 = "Quadrant II"
+
+						% Test 3: Origin
+						loc3 = find_quadrant(0, 0)
+						% Expected: loc3 = "Origin"
+
+						% Test 4: X-axis
+						loc4 = find_quadrant(7, 0)
+						% Expected: loc4 = "X-axis"
+
+						% Test 5: Quadrant III
+						loc5 = find_quadrant(-3, -8)
+						% Expected: loc5 = "Quadrant III"
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-is-valid-triangle">
+				<title>Valid Triangle Detector</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>is_valid_triangle</pf> that determines whether three side lengths form 
+						a valid triangle.
+					</p>
+
+					<p>
+						A triangle is valid if the sum of the two shortest sides is greater than the longest side and all sides are positive.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>is_valid</pf> (1x1) logical — true if sides form a valid triangle, false otherwise</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Equilateral triangle
+						v1 = is_valid_triangle(5, 5, 5)
+						% Expected: v1 = 1 (true)
+
+						% Test 2: Isosceles triangle
+						v2 = is_valid_triangle(5, 5, 8)
+						% Expected: v2 = 1 (true)
+
+						% Test 3: Scalene triangle
+						v3 = is_valid_triangle(3, 4, 5)
+						% Expected: v3 = 1 (true)
+
+						% Test 4: Invalid triangle
+						v4 = is_valid_triangle(1, 2, 10)
+						% Expected: v4 = 0 (false)
+
+						% Test 5: Another isosceles case
+						v5 = is_valid_triangle(7, 10, 7)
+						% Expected: v5 = 1 (true)
+					</program>
+
+				</statement>
+
+			</task>
+
+			<task xml:id="coding-triangle-type">
+				<title>Triangle Type Classifier</title>
+
+				<statement>
+					<p>
+						Write a function named <pf>classify_triangle</pf> that classifies a triangle as equilateral, isosceles, scalene, or invalid based on the lengths of its sides.
+					</p>
+
+					<p>
+						Rules:
+						<ul marker="square">
+							<li><p>Equilateral: all three sides are equal</p></li>
+							<li><p>Isosceles: exactly two sides are equal</p></li>
+							<li><p>Scalene: all three sides are different</p></li>
+							<li><p>Invalid: does not form a valid triangle</p></li>
+						</ul>
+					</p>
+
+					<p>
+						You must use the <pf>is_valid_triangle</pf> function you wrote in the previous exercise as a <q>helper</q> function. 
+						This means that your <pf>classify_triangle</pf> function should (i) contain a call to <pf>is_valid_triangle</pf> and 
+						(ii) have a copy of the <pf>is_valid_triangle</pf> function code below it in the same file.
+					</p>
+
+					<tabular valign="top" halign="right" top="minor">
+						<col width="12%"/>
+						<col width="88%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell>
+								<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+							</cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell>
+								<p><pf>type</pf> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"</p>
+							</cell>
+						</row>
+					</tabular>
+
+					<p>Test cases:</p>
+
+					<program language="matlab">
+						% Test 1: Equilateral triangle
+						t1 = classify_triangle(5, 5, 5)
+						% Expected: t1 = "Equilateral"
+
+						% Test 2: Isosceles triangle
+						t2 = classify_triangle(5, 5, 8)
+						% Expected: t2 = "Isosceles"
+
+						% Test 3: Scalene triangle
+						t3 = classify_triangle(3, 4, 5)
+						% Expected: t3 = "Scalene"
+
+						% Test 4: Invalid triangle
+						t4 = classify_triangle(1, 2, 10)
+						% Expected: t4 = "Invalid"
+
+						% Test 5: Another isosceles case
+						t5 = classify_triangle(7, 10, 7)
+						% Expected: t5 = "Isosceles"
+					</program>
+
+				</statement>
+
+			</task>
+
+		</exercise>
+
+	</exercises>
+
+</section>
