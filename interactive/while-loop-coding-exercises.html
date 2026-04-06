@@ -306,7 +306,7 @@ true);
 </li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-relational-operators.html" class="internal"><span class="title">Relational Operators</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-negating-expressions.html" class="internal"><span class="title">Negating Logical Expressions</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-joining-two-expressions.html" class="internal"><span class="title">Joining Logical Expressions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-combining-two-expressions.html" class="internal"><span class="title">Combining Logical Expressions</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="programming-logic-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="programming-logic-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
 </ul>
@@ -338,23 +338,9 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-for-loop.html" class="internal"><span class="codenumber">4.1</span> <span class="title">For Loops</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="for-loop-description.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-description.html#for-loop-structure" class="internal"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop Structure</span></a></div></li>
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-description.html#for-loop-examples" class="internal"><span class="title">👀 Examples</span></a></div></li>
-</ul>
-</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="for-loop-description.html" class="internal"><span class="title">The <code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-reading-questions.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="for-loop-practice-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-practice-activities.html#for-loop-drill-1" class="internal"><span class="title">Drills</span></a></div></li>
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-practice-activities.html#for-loop-drill-2" class="internal"><span class="title">Construct the Code Blocks</span></a></div></li>
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-practice-activities.html#for-loop-coding-practice" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="for-loop-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section contains-active">
@@ -522,37 +508,52 @@ steps = 111
 <article class="task exercise-like" id="hw-while-largest-fib-num"><h4 class="heading">
 <span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Largest Fibonacci.</span>
 </h4>
-<div class="para" id="hw-while-largest-fib-num-2-1">Write a function <code class="code-inline tex2jax_ignore language-matlab">largestFibNum()</code> that returns the largest Fibonacci number less than or equal to <span class="process-math">\(n\text{.}\)</span> Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para logical" id="hw-while-largest-fib-num-2-1">
+<div class="para">The Fibonacci sequence is defined by:</div>
+<div class="displaymath process-math" id="hw-while-largest-fib-num-2-1-1">
+\begin{equation*}
+F_k = F_{k-1} + F_{k-2},\qquad (k \ge 2)\text{,}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(F_0 = 0\)</span> and <span class="process-math">\(F_1 = 1\text{.}\)</span> The first few Fibonacci numbers are:</div>
+<div class="displaymath process-math" id="hw-while-largest-fib-num-2-1-4">
+\begin{equation*}
+0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para" id="hw-while-largest-fib-num-2-2">Write a function <code class="code-inline tex2jax_ignore language-matlab">largestFibNum()</code> that returns the largest Fibonacci number less than or equal to <span class="process-math">\(n\text{.}\)</span> Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="r t b0 r0 l0 t1 lines">Inputs:</td>
 <td class="l t b0 r0 l0 t1" style="max-width:90px;">
-<div class="para" id="hw-while-largest-fib-num-2-2-5-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-3-5-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </td>
 <td class="c t b0 r0 l0 t1" style="max-width:180px;">
-<div class="para" id="hw-while-largest-fib-num-2-2-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-2-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-3-5-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </td>
 <td class="l t b0 r0 l0 t1" style="max-width:264px;">
-<div class="para" id="hw-while-largest-fib-num-2-2-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-2-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-3-5-4-1">positive integer<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </td>
 </tr>
 <tr>
 <td class="r t b1 r0 l0 t0 lines">Outputs:</td>
 <td class="l t b1 r0 l0 t0" style="max-width:90px;">
-<div class="para" id="hw-while-largest-fib-num-2-2-6-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">fib_num</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-3-6-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">fib_num</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </td>
 <td class="c t b1 r0 l0 t0" style="max-width:180px;">
-<div class="para" id="hw-while-largest-fib-num-2-2-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-2-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-3-6-3-1">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </td>
 <td class="l t b1 r0 l0 t0" style="max-width:264px;">
-<div class="para" id="hw-while-largest-fib-num-2-2-6-4-1">largest Fibonacci number less than or equal to <code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-2-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-3-6-4-1">largest Fibonacci number less than or equal to <code class="code-inline tex2jax_ignore language-matlab">n</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </td>
 </tr>
@@ -560,7 +561,7 @@ steps = 111
 <div class="sidebyside">
 <div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:56% 44%;column-gap:0%;">
 <div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="hw-while-largest-fib-num-2-3-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-4-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <pre class="program clipboardable"><code class="language-matlab">result = largestFibNum(13)
 result = largestFibNum(11)
@@ -570,7 +571,7 @@ result = largestFibNum(100000)
 </code></pre>
 </div>
 <div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="hw-while-largest-fib-num-2-3-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="hw-while-largest-fib-num-2-4-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-largest-fib-num-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <pre class="program clipboardable"><code class="language-matlab">result = 13
 result = 8

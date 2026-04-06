@@ -306,7 +306,7 @@ true);
 </li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-relational-operators.html" class="internal"><span class="title">Relational Operators</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-negating-expressions.html" class="internal"><span class="title">Negating Logical Expressions</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-joining-two-expressions.html" class="internal"><span class="title">Joining Logical Expressions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-combining-two-expressions.html" class="internal"><span class="title">Combining Logical Expressions</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="programming-logic-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="programming-logic-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
 </ul>
@@ -338,23 +338,9 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-for-loop.html" class="internal"><span class="codenumber">4.1</span> <span class="title">For Loops</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="for-loop-description.html" class="internal"><span class="title">🧱 Description &amp; Usage</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-description.html#for-loop-structure" class="internal"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop Structure</span></a></div></li>
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-description.html#for-loop-examples" class="internal"><span class="title">👀 Examples</span></a></div></li>
-</ul>
-</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="for-loop-description.html" class="internal"><span class="title">The <code class="code-inline tex2jax_ignore language-matlab">for</code>-Loop</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-reading-questions.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
-<li class="toc-item toc-subsection">
-<div class="toc-title-box"><a href="for-loop-practice-activities.html" class="internal"><span class="title">🧑🏻‍💻 Practice Activities</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-practice-activities.html#for-loop-drill-1" class="internal"><span class="title">Drills</span></a></div></li>
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-practice-activities.html#for-loop-drill-2" class="internal"><span class="title">Construct the Code Blocks</span></a></div></li>
-<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="for-loop-practice-activities.html#for-loop-coding-practice" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="for-loop-coding-exercises.html" class="internal"><span class="title">💻 Coding Exercises</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section">
@@ -429,44 +415,35 @@ true);
 <span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Looping Flow</span>
 </h2>
 <section class="introduction" id="chp-looping-flow-2">
-<div class="para" id="chp-looping-flow-2-1">So far, we’ve written code that runs step by step in a straight line. Real programs need to react to data or user input, choosing different actions when conditions change.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="chp-looping-flow-2-1">In the previous chapter, <code class="code-inline tex2jax_ignore language-matlab">if</code>-statements gave your code the ability to choose between different paths based on conditions. Now we introduce a different kind of flow control: <dfn class="terminology">repetition</dfn>. Loops let you repeat a block of code multiple times, either a known number of times or until some condition changes. Think of replacing dozens of copy-pasted lines with just a few representative lines.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="chp-looping-flow-2-2">For example, suppose <code class="code-inline tex2jax_ignore language-matlab">gift_card_balance</code> stores the amount of money on an Amazon gift card and <code class="code-inline tex2jax_ignore language-matlab">total_due</code> stores the price of a purchase. Before completing the purchase, your program needs to ask a yes-or-no question: “Is <code class="code-inline tex2jax_ignore language-matlab">gift_card_balance</code> greater than or equal to <code class="code-inline tex2jax_ignore language-matlab">total_due</code>?”<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="chp-looping-flow-2-3">Questions like this are called <dfn class="terminology">logical expressions</dfn>, and their answers are called <dfn class="terminology">logical values</dfn> (i.e., <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>). Two types of structures that let you ask questions and make decisions based on their answers are <code class="code-inline tex2jax_ignore language-matlab">if</code>-statements and <code class="code-inline tex2jax_ignore language-matlab">switch</code>-statements. These structures allow you to control the flow of your program, executing different blocks of code depending on the conditions you specify.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="chp-looping-flow-2-4">In this section, we will learn how MATLAB evaluates logical expressions and how to use <code class="code-inline tex2jax_ignore language-matlab">if</code> and <code class="code-inline tex2jax_ignore language-matlab">switch</code> statements to create programs that can make decisions and respond to different situations.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></section>
-<section class="introduction" id="chp-looping-flow-3">
-<div class="para" id="chp-looping-flow-3-1">In the previous chapter, <code class="code-inline tex2jax_ignore language-matlab">if</code>-statements gave your code the ability to choose between different paths based on conditions. Now we introduce a different kind of flow control: <dfn class="terminology">repetition</dfn>. Loops let you repeat a block of code multiple times, either a known number of times or until some condition changes. Think of replacing dozens of copy-pasted lines with just a few representative lines.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para logical" id="chp-looping-flow-3-2">
+<div class="para logical" id="chp-looping-flow-2-2">
 <div class="para">MATLAB provides two primary looping structures:</div>
 <dl class="description-list narrow">
-<dt id="chp-looping-flow-3-2-1-1">for-loops<div class="autopermalink" data-description="Item: for-loops"><a href="#chp-looping-flow-3-2-1-1" title="Copy heading and permalink for Item: for-loops" aria-label="Copy heading and permalink for Item: for-loops">🔗</a></div>
+<dt id="chp-looping-flow-2-2-1-1">for-loops<div class="autopermalink" data-description="Item: for-loops"><a href="#chp-looping-flow-2-2-1-1" title="Copy heading and permalink for Item: for-loops" aria-label="Copy heading and permalink for Item: for-loops">🔗</a></div>
 </dt>
 <dd>
-<div class="para" id="chp-looping-flow-3-2-1-1-2">Repeat once for each value in a known list or range. Use these when you know how many iterations you need before the loop starts.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-3-2-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="chp-looping-flow-2-2-1-1-2">Repeat once for each value in a known list or range. Use these when you know how many iterations you need before the loop starts.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-2-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </dd>
-<dt id="chp-looping-flow-3-2-1-2">while-loops<div class="autopermalink" data-description="Item: while-loops"><a href="#chp-looping-flow-3-2-1-2" title="Copy heading and permalink for Item: while-loops" aria-label="Copy heading and permalink for Item: while-loops">🔗</a></div>
+<dt id="chp-looping-flow-2-2-1-2">while-loops<div class="autopermalink" data-description="Item: while-loops"><a href="#chp-looping-flow-2-2-1-2" title="Copy heading and permalink for Item: while-loops" aria-label="Copy heading and permalink for Item: while-loops">🔗</a></div>
 </dt>
 <dd>
-<div class="para" id="chp-looping-flow-3-2-1-2-2">Repeat as long as a condition remains true. Use these when the number of iterations depends on something that changes during execution.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-3-2-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="chp-looping-flow-2-2-1-2-2">Repeat as long as a condition remains true. Use these when the number of iterations depends on something that changes during execution.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-2-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </dd>
 </dl>
-<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="chp-looping-flow-3-3">The chapter also introduces three commands: <code class="code-inline tex2jax_ignore language-matlab">continue</code>, <code class="code-inline tex2jax_ignore language-matlab">break</code>, and <code class="code-inline tex2jax_ignore language-matlab">return</code>, which let you skip iterations, exit loops early, or exit functions immediately when the answer is already known.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="chp-looping-flow-2-3">The chapter also introduces three commands: <code class="code-inline tex2jax_ignore language-matlab">continue</code>, <code class="code-inline tex2jax_ignore language-matlab">break</code>, and <code class="code-inline tex2jax_ignore language-matlab">return</code>, which let you skip iterations, exit loops early, or exit functions immediately when the answer is already known.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="chp-looping-flow-3-4">By the end of this chapter, you will be able to automate repetitive calculations, accumulate running totals and products, search for values that satisfy conditions, and approximate mathematical quantities to any desired accuracy.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-3-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="chp-looping-flow-2-4">By the end of this chapter, you will be able to automate repetitive calculations, accumulate running totals and products, search for values that satisfy conditions, and approximate mathematical quantities to any desired accuracy.<div class="autopermalink" data-description="Paragraph"><a href="#chp-looping-flow-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div></section><nav class="summary-links"><ul>
 <li><a href="sec-for-loop.html" class="internal"><span class="codenumber">4.1</span> <span class="title">For Loops</span></a></li>
 <li><a href="sec-while-loop.html" class="internal"><span class="codenumber">4.2</span> <span class="title">While Loops</span></a></li>
 <li><a href="sec-continue-break-return.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Continue, Break, &amp; Return</span></a></li>
 </ul></nav>
-<section class="conclusion" id="chp-looping-flow-7"><h1 class="heading">🗝️ Key Takeaways....<span></span>
+<section class="conclusion" id="chp-looping-flow-6"><h1 class="heading">🗝️ Key Takeaways....<span></span>
 </h1>
 <article class="assemblage assemblage-like" id="takeaways-looping-flow">
 <div class="para logical" id="takeaways-looping-flow-1">
