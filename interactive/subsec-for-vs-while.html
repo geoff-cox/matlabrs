@@ -14,7 +14,7 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MATLAB-BOOK Useful Built-in Functions</title>
+<title>MATLAB-BOOK For vs. While Loops</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -165,7 +165,7 @@ var ggbApp = new GGBApplet({"appName": "classic",
     "autoHeight": true,
     "disableAutoScale": false},
 true);
-</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="up-button button" href="backmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="backmatter-3.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="subsec-while-loop.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="sec-while-loop.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="while-loop-reading-quiz.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\newcommand\DLGray{\color{Gray}}
 \newcommand\DLO{\color{BurntOrange}}
 \newcommand\DLRa{\color{WildStrawberry}}
@@ -320,9 +320,9 @@ true);
 <li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conditional-flow-exercises.html" class="internal"><span class="codenumber">3.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-chapter">
+<li class="toc-item toc-chapter contains-active">
 <div class="toc-title-box"><a href="chp-looping-flow.html" class="internal"><span class="codenumber">4</span> <span class="title">Looping Flow</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-for-loop.html" class="internal"><span class="codenumber">4.1</span> <span class="title">For Loops</span></a></div>
 <ul class="structural toc-item-list">
@@ -331,11 +331,11 @@ true);
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section">
+<li class="toc-item toc-section contains-active">
 <div class="toc-title-box"><a href="sec-while-loop.html" class="internal"><span class="codenumber">4.2</span> <span class="title">While Loops</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-while-loop.html" class="internal"><span class="title">The while-Loop</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">For vs. While Loops</span></a></div></li>
+<li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">For vs. While Loops</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="while-loop-reading-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
 <li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="while-loop-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
 </ul>
@@ -363,12 +363,12 @@ true);
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-input-functions.html" class="internal"><span class="codenumber">A.6</span> <span class="title">Input Functions</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-backmatter contains-active">
+<li class="toc-item toc-backmatter">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
-<ul class="structural toc-item-list contains-active">
-<li class="toc-item toc-appendix contains-active">
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix">
 <div class="toc-title-box"><a href="sec-useful-built-in-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Useful Built-in Functions</span></a></div>
-<ul class="structural toc-item-list active">
+<ul class="structural toc-item-list">
 <li class="toc-item toc-subsection">
 <div class="toc-title-box"><a href="subsec-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">The mod function</span></a></div>
 <ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
@@ -384,16 +384,232 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="appendix" id="sec-useful-built-in-functions">
-<h2 class="heading">
-<span class="type">Appendix</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">A</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Useful Built-in Functions</span>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="subsection" id="subsec-for-vs-while">
+<h2 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">For vs. While Loops</span>
 </h2>
-<nav class="summary-links"><ul>
-<li><a href="subsec-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">The mod function</span></a></li>
-<li><a href="subsec-floor-ceil-round.html" class="internal"><span class="codenumber">A.2</span> <span class="title">The floor, ceil, and round functions</span></a></li>
-</ul></nav><div class="autopermalink" data-description="Appendix A: Useful Built-in Functions"><a href="#sec-useful-built-in-functions" title="Copy heading and permalink for Appendix A: Useful Built-in Functions" aria-label="Copy heading and permalink for Appendix A: Useful Built-in Functions">🔗</a></div></section></div>
+<div class="para" id="subsec-for-vs-while-2">Both <a href="sec-for-loop.html" class="internal" title="Section 4.1: For Loops"><code class="code-inline tex2jax_ignore language-matlab">for</code>-loops</a> and <a href="sec-while-loop.html" class="internal" title="Section 4.2: While Loops"><code class="code-inline tex2jax_ignore language-matlab">while</code>-loops</a> repeat code, but they serve different purposes. Choose the loop that matches your situation to make your code easier to read and understand.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-for-vs-while-3" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">“Iteration”.</span>
+</h3></summary>
+<aside class="aside aside-like knowl__content">
+<div class="para" id="subsec-for-vs-while-3-2">The word <dfn class="terminology">iteration</dfn> refers to one complete run (execution) of the loop body. For example, if a loop repeats 5 times, it has 5 iterations.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</aside></details><div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="c t b1 r1 l1 t1" style="max-width:90px;">
+<div class="para" id="subsec-for-vs-while-4-4-1-1">Feature<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</th>
+<th scope="col" class="c t b1 r1 l0 t1" style="max-width:210px;">
+<div class="para" id="subsec-for-vs-while-4-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">for</code>-loops<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</th>
+<th scope="col" class="c t b1 r1 l0 t1" style="max-width:300px;">
+<div class="para" id="subsec-for-vs-while-4-4-3-1">
+<code class="code-inline tex2jax_ignore language-matlab">while</code>-loops<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</th>
+</tr>
+<tr>
+<td class="c t b1 r1 l1 t0" style="max-width:90px;">
+<div class="para" id="subsec-for-vs-while-4-5-1-1">Structure<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:210px;">
+<div class="para" id="subsec-for-vs-while-4-5-2-1">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">for k = k_values
+	loop_body
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:300px;">
+<div class="para" id="subsec-for-vs-while-4-5-3-1">
+<div class="code-box"><pre class="program clipboardable"><code class="language-matlab">while loop_condition
+	loop_body
+end
+</code></pre></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="c t b1 r1 l1 t0" style="max-width:90px;">
+<div class="para" id="subsec-for-vs-while-4-6-1-1">Repeats <code class="code-inline tex2jax_ignore language-matlab">loop_body</code><div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:210px;">
+<div class="para" id="subsec-for-vs-while-4-6-2-1">once for each <code class="code-inline tex2jax_ignore language-matlab">k</code> in <code class="code-inline tex2jax_ignore language-matlab">k_values</code><div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:300px;">
+<div class="para" id="subsec-for-vs-while-4-6-3-1">as long as <code class="code-inline tex2jax_ignore language-matlab">loop_condition</code> is true<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="c t b1 r1 l1 t0" style="max-width:90px;">
+<div class="para" id="subsec-for-vs-while-4-7-1-1">Ends<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:210px;">
+<div class="para" id="subsec-for-vs-while-4-7-2-1">after the last <code class="code-inline tex2jax_ignore language-matlab">k</code> is used<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:300px;">
+<div class="para" id="subsec-for-vs-while-4-7-3-1">when <code class="code-inline tex2jax_ignore language-matlab">loop_condition</code> becomes false<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="c t b1 r1 l1 t0" style="max-width:90px;">
+<div class="para" id="subsec-for-vs-while-4-8-1-1">Best when<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:210px;">
+<div class="para" id="subsec-for-vs-while-4-8-2-1">you know exactly how many iterations you need<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r1 l0 t0" style="max-width:300px;">
+<div class="para" id="subsec-for-vs-while-4-8-3-1">you do not know how many iterations you will need<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-4-8-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+</tr>
+</table></div>
+<div class="para" id="subsec-for-vs-while-5">Technically, <code class="code-inline tex2jax_ignore language-matlab">for</code> and <code class="code-inline tex2jax_ignore language-matlab">while</code>-loops are interchangable. However, using a loop that naturally fits the problem makes your code clearer.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-for-vs-while-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="for-vs-while-quiz" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">For vs. While Quiz.</span>
+</h3></summary>
+<article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-for-vs-while-quiz">
+<div data-component="tab" data-tabname="(a)">
+<article class="task exercise-like" id="for-vs-while-quiz-a"><h4 class="heading">
+<span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">When to use a for-loop.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="for-vs-while-quiz-a-2-1">When is it better to use a <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop instead of a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop?<div class="autopermalink" data-description="Paragraph"><a href="#for-vs-while-quiz-a-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-for-vs-while-quiz-a" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-for-vs-while-quiz-a_opt_a" data-correct="">
+<div class="para" id="for-vs-while-quiz-a-3-1-1-1">When you know how many times to repeat code.</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-a_opt_a">
+<div class="para" id="for-vs-while-quiz-a-3-1-2-1">A <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop works with a fixed list of values, making it ideal when you know the number of iterations in advance.</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-a_opt_b">
+<div class="para" id="for-vs-while-quiz-a-3-2-1-1">When you need to repeat until a condition becomes false.</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-a_opt_b">
+<div class="para" id="for-vs-while-quiz-a-3-2-2-1">This describes a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop, not a <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop.</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-a_opt_c">
+<div class="para" id="for-vs-while-quiz-a-3-3-1-1">When you need to skip certain iterations.</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-a_opt_c">
+<div class="para" id="for-vs-while-quiz-a-3-3-2-1">Both <code class="code-inline tex2jax_ignore language-matlab">for</code>-loops and <code class="code-inline tex2jax_ignore language-matlab">while</code>-loops can skip iterations using <code class="code-inline tex2jax_ignore language-matlab">continue</code>.</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-a_opt_d">
+<div class="para" id="for-vs-while-quiz-a-3-4-1-1">When you don’t know how many times to repeat code.</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-a_opt_d">
+<div class="para" id="for-vs-while-quiz-a-3-4-2-1">If the number of iterations is unknown, a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop is more appropriate.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task 4.8.a: When to use a for-loop"><a href="#for-vs-while-quiz-a" title="Copy heading and permalink for Task 4.8.a: When to use a for-loop" aria-label="Copy heading and permalink for Task 4.8.a: When to use a for-loop">🔗</a></div>
+</article>
+</div>
+<div data-component="tab" data-tabname="(b)">
+<article class="task exercise-like" id="for-vs-while-quiz-b"><h4 class="heading">
+<span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">For-loop requires a list of values.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-for-vs-while-quiz-b">
+<div class="para" id="for-vs-while-quiz-b-2-1">A <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop requires a fixed list of values to iterate through.<div class="autopermalink" data-description="Paragraph"><a href="#for-vs-while-quiz-b-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<li data-component="answer" id="rs-for-vs-while-quiz-b_opt_t" data-correct=""><p>True.</p></li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-b_opt_t">
+<div class="para" id="for-vs-while-quiz-b-3-1">Unlike <code class="code-inline tex2jax_ignore language-matlab">while</code>-loops which use a condition, <code class="code-inline tex2jax_ignore language-matlab">for</code>-loops need a list of values (like <code class="code-inline tex2jax_ignore language-matlab">1:10</code> or <code class="code-inline tex2jax_ignore language-matlab">[2, 4, 6, 8]</code>).</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-b_opt_f"><p>False.</p></li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-b_opt_f">
+<div class="para" id="for-vs-while-quiz-b-3-1">Unlike <code class="code-inline tex2jax_ignore language-matlab">while</code>-loops which use a condition, <code class="code-inline tex2jax_ignore language-matlab">for</code>-loops need a list of values (like <code class="code-inline tex2jax_ignore language-matlab">1:10</code> or <code class="code-inline tex2jax_ignore language-matlab">[2, 4, 6, 8]</code>).</div>
+</li>
+</ul></div></div>
+<div class="autopermalink" data-description="Task 4.8.b: For-loop requires a list of values"><a href="#for-vs-while-quiz-b" title="Copy heading and permalink for Task 4.8.b: For-loop requires a list of values" aria-label="Copy heading and permalink for Task 4.8.b: For-loop requires a list of values">🔗</a></div>
+</article>
+</div>
+<div data-component="tab" data-tabname="(c)">
+<article class="task exercise-like" id="for-vs-while-quiz-c"><h4 class="heading">
+<span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Choosing the right loop type.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="for-vs-while-quiz-c-2-1">Which loop should you use when you don’t know in advance how many iterations are needed?<div class="autopermalink" data-description="Paragraph"><a href="#for-vs-while-quiz-c-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-for-vs-while-quiz-c" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-for-vs-while-quiz-c_opt_a">
+<div class="para" id="for-vs-while-quiz-c-3-1-1-1">A <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-c_opt_a">
+<div class="para" id="for-vs-while-quiz-c-3-1-2-1">A <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop requires knowing the number of iterations (or a list of values) in advance.</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-c_opt_b" data-correct="">
+<div class="para" id="for-vs-while-quiz-c-3-2-1-1">A <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-c_opt_b">
+<div class="para" id="for-vs-while-quiz-c-3-2-2-1">A <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop is perfect when the number of iterations depends on a condition that changes during execution.</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-c_opt_c">
+<div class="para" id="for-vs-while-quiz-c-3-3-1-1">Either one works equally well</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-c_opt_c">
+<div class="para" id="for-vs-while-quiz-c-3-3-2-1">While technically interchangeable, a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop is clearer and more natural when the iteration count is unknown.</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-c_opt_d">
+<div class="para" id="for-vs-while-quiz-c-3-4-1-1">Neither, you need an <code class="code-inline tex2jax_ignore language-matlab">if</code>-statement</div>
+</li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-c_opt_d">
+<div class="para" id="for-vs-while-quiz-c-3-4-2-1">An <code class="code-inline tex2jax_ignore language-matlab">if</code>-statement doesn’t repeat code. You need a loop for repetition.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task 4.8.c: Choosing the right loop type"><a href="#for-vs-while-quiz-c" title="Copy heading and permalink for Task 4.8.c: Choosing the right loop type" aria-label="Copy heading and permalink for Task 4.8.c: Choosing the right loop type">🔗</a></div>
+</article>
+</div>
+<div data-component="tab" data-tabname="(d)">
+<article class="task exercise-like" id="for-vs-while-quiz-d"><h4 class="heading">
+<span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Loops are interchangeable.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-for-vs-while-quiz-d">
+<div class="para" id="for-vs-while-quiz-d-2-1">Technically, any <code class="code-inline tex2jax_ignore language-matlab">for</code>-loop can be rewritten as a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop and vice versa.<div class="autopermalink" data-description="Paragraph"><a href="#for-vs-while-quiz-d-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<li data-component="answer" id="rs-for-vs-while-quiz-d_opt_t" data-correct=""><p>True.</p></li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-d_opt_t">
+<div class="para" id="for-vs-while-quiz-d-3-1">Both loop types can accomplish the same tasks, but choosing the one that fits naturally makes your code easier to read and understand.</div>
+</li>
+<li data-component="answer" id="rs-for-vs-while-quiz-d_opt_f"><p>False.</p></li>
+<li data-component="feedback" id="rs-for-vs-while-quiz-d_opt_f">
+<div class="para" id="for-vs-while-quiz-d-3-1">Both loop types can accomplish the same tasks, but choosing the one that fits naturally makes your code easier to read and understand.</div>
+</li>
+</ul></div></div>
+<div class="autopermalink" data-description="Task 4.8.d: Loops are interchangeable"><a href="#for-vs-while-quiz-d" title="Copy heading and permalink for Task 4.8.d: Loops are interchangeable" aria-label="Copy heading and permalink for Task 4.8.d: Loops are interchangeable">🔗</a></div>
+</article>
+</div>
+</div></div></div>
+<div class="autopermalink" data-description="Checkpoint 4.8: For vs. While Quiz"><a href="#for-vs-while-quiz" title="Copy heading and permalink for Checkpoint 4.8: For vs. While Quiz" aria-label="Copy heading and permalink for Checkpoint 4.8: For vs. While Quiz">🔗</a></div>
+</article></details><div class="autopermalink" data-description="Subsection: For vs. While Loops"><a href="#subsec-for-vs-while" title="Copy heading and permalink for Subsection: For vs. While Loops" aria-label="Copy heading and permalink for Subsection: For vs. While Loops">🔗</a></div>
+</section>
+</div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="backmatter-3.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="subsec-while-loop.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="while-loop-reading-quiz.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
