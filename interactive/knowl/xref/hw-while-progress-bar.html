@@ -22,38 +22,59 @@
 <span class="type">Task</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.l</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Progress Bar.</span>
 </h4>
 <div class="para">Write a function <code class="code-inline tex2jax_ignore language-matlab">progressBar()</code> that uses <code class="code-inline tex2jax_ignore language-matlab">fprintf</code> to display a text-based progress bar showing how much of a task is complete. The bar should be 20 characters wide, using <code class="code-inline tex2jax_ignore language-matlab">#</code> for completed portions and a space for the remainder, enclosed in square brackets. After the closing bracket, print the percentage complete.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="para">Since 20 <code class="code-inline tex2jax_ignore language-matlab">#</code> represents 100%, you’ll need to scale the progress out of 20 and round it to the nearest integer to determine how many <code class="code-inline tex2jax_ignore language-matlab">#</code> characters to print. For example, if <code class="code-inline tex2jax_ignore language-matlab">done</code> is 2 and <code class="code-inline tex2jax_ignore language-matlab">total</code> is 8, then the progress is 25% and you will need 5 <code class="code-inline tex2jax_ignore language-matlab">#</code> characters.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="para">Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop, <code class="code-inline tex2jax_ignore language-matlab">fprintf</code>, and <code class="code-inline tex2jax_ignore language-matlab">round</code> to code this. Don’t use a newline character, <code class="code-inline tex2jax_ignore language-matlab">"\n"</code>, in any of your <code class="code-inline tex2jax_ignore language-matlab">fprintf</code> calls.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> <div class="para">Note: to print a <code class="code-inline tex2jax_ignore language-matlab">%</code> character with <code class="code-inline tex2jax_ignore language-matlab">fprintf</code>, use <code class="code-inline tex2jax_ignore language-matlab">"%%"</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para">Since 20 <code class="code-inline tex2jax_ignore language-matlab">#</code> represents 100%, you’ll need to scale the progress out of 20 and round it to the nearest integer to determine how many <code class="code-inline tex2jax_ignore language-matlab">#</code> characters to print. For example, if <code class="code-inline tex2jax_ignore language-matlab">done</code> is 2 and <code class="code-inline tex2jax_ignore language-matlab">total</code> is 8, then the progress is 25% and you will need 5 <code class="code-inline tex2jax_ignore language-matlab">#</code> characters.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para">Use a <code class="code-inline tex2jax_ignore language-matlab">while</code>-loop, <code class="code-inline tex2jax_ignore language-matlab">fprintf</code>, and <code class="code-inline tex2jax_ignore language-matlab">round</code> to code this. Don’t use a newline character, <code class="code-inline tex2jax_ignore language-matlab">"\n"</code>, in any of your <code class="code-inline tex2jax_ignore language-matlab">fprintf</code> calls.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para">Note: to print a <code class="code-inline tex2jax_ignore language-matlab">%</code> character with <code class="code-inline tex2jax_ignore language-matlab">fprintf</code>, use <code class="code-inline tex2jax_ignore language-matlab">"%%"</code>.<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="r t b0 r0 l0 t1 lines">Inputs:</td>
-<td class="l t b0 r0 l0 t1" style="max-width:90px;"><div class="para">
+<td class="l t b0 r0 l0 t1" style="max-width:90px;">
+<div class="para">
 <code class="code-inline tex2jax_ignore language-matlab">done</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="c t b0 r0 l0 t1" style="max-width:168px;"><div class="para">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="l t b0 r0 l0 t1" style="max-width:276px;"><div class="para">amount of work completed<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
+</div>
+</td>
+<td class="c t b0 r0 l0 t1" style="max-width:168px;">
+<div class="para">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="l t b0 r0 l0 t1" style="max-width:276px;">
+<div class="para">amount of work completed<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="r t b0 r0 l0 t0 lines"></td>
-<td class="l t b0 r0 l0 t0" style="max-width:90px;"><div class="para">
+<td class="l t b0 r0 l0 t0" style="max-width:90px;">
+<div class="para">
 <code class="code-inline tex2jax_ignore language-matlab">total</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="c t b0 r0 l0 t0" style="max-width:168px;"><div class="para">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="l t b0 r0 l0 t0" style="max-width:276px;"><div class="para">total amount of work<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
+</div>
+</td>
+<td class="c t b0 r0 l0 t0" style="max-width:168px;">
+<div class="para">(1x1) double<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="l t b0 r0 l0 t0" style="max-width:276px;">
+<div class="para">total amount of work<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="r t b1 r0 l0 t0 lines">Outputs:</td>
-<td class="l t b1 r0 l0 t0" style="max-width:90px;"><div class="para">None<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
-<td class="c t b1 r0 l0 t0" colspan="2" style="max-width:168px;"><div class="para">display to command window with <code class="code-inline tex2jax_ignore language-matlab">fprintf</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></td>
+<td class="l t b1 r0 l0 t0" style="max-width:90px;">
+<div class="para">None<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
+<td class="c t b1 r0 l0 t0" colspan="2" style="max-width:168px;">
+<div class="para">display to command window with <code class="code-inline tex2jax_ignore language-matlab">fprintf</code><div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-5-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</td>
 </tr>
-</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:49.4949494949495% 49.4949494949495%;column-gap:1%;">
+</table></div> 
+<div class="sidebyside">
+<div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:49.4949494949495% 49.4949494949495%;column-gap:1%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#hw-while-progress-bar-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -72,7 +93,9 @@ progressBar(17, 17)
 [####################] 100%
 </code></pre>
 </div>
-</div></div>
-<div class="autopermalink" data-description="Task 1.l: Progress Bar"><a href="#hw-while-progress-bar" title="Copy heading and permalink for Task 1.l: Progress Bar" aria-label="Copy heading and permalink for Task 1.l: Progress Bar">🔗</a></div></article><span class="incontext"><a class="internal" href="wloop-coding-exercises.html#hw-while-progress-bar">in-context</a></span>
+</div>
+</div>
+<div class="autopermalink" data-description="Task 1.l: Progress Bar"><a href="#hw-while-progress-bar" title="Copy heading and permalink for Task 1.l: Progress Bar" aria-label="Copy heading and permalink for Task 1.l: Progress Bar">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="while-loop-coding-exercises.html#hw-while-progress-bar">in-context</a></span>
 </body>
 </html>
