@@ -1,228 +1,203 @@
 <section xml:id="sec-switch-statement">
 	<title>Switch Statement</title>
-	<introduction>
-	<p>
-		The <pf>switch</pf> statement is another option for controlling flow in MATLAB. It is best when you are
-		comparing one value to a list of discrete, exact matches.
-	</p>
-
-	<p>
-		A <pf>switch</pf> statement compares a variable to the values listed in each <pf>case</pf>. The first match
-		runs, and MATLAB skips the rest.
-	</p>
-
-	<aside>
-		<p>
-			Like the <xref ref="sec-if-statement" text="custom">if-statement</xref>, you can have as many branches as you like. You would just add additional <pf>case</pf> statements between the <pf>switch</pf> and <pf>otherwise</pf> statements.
-		</p>
-	</aside>
-	</introduction>
 
 	<subsection xml:id="switch-statement-description">
-		<title>🧱 Description &amp; Usage</title>
+		<title>The switch Statement</title>
 
+		<p>
+			The <pf>switch</pf> statement is another option for controlling conditional flow in MATLAB. It is best when you are
+			comparing one value to a list of exact matches.
+		</p>
 
-		<subsubsection xml:id="switch-statement-structure">
-			<title><pf>for</pf>-Loop Structure</title>
-	<assemblage xml:id="switch-statement-def">
-		<title>The switch Statement Structure</title>
+		<assemblage xml:id="switch-statement">
+			<title>The switch Statement</title>
 
-		<sidebyside widths="15% 85%">
-			<p>Use Case: </p>
 			<p>
+				The general structure of a <pf>switch</pf> statement is:
+			</p>
+
+			<program language="matlab">
+				switch myVar
+					case val1
+						blockA	% ⬅ runs if myVar's value equals val1
+					case {val2, val3}
+						blockB	% ⬅ runs if myVar's value equals val2 OR val3
+					case val4
+						blockC	% ⬅ runs if myVar's value equals val4
+					otherwise
+						blockD	% ⬅ runs if no cases match (default)
+				end
+			</program>
+
+			<p>
+				where
 				<ul marker="square">
-					<li>if <pf>var</pf> is equal to <pf>val1</pf>, run <pf>blockA</pf>,</li>
-					<li>if <pf>var</pf> is equal to <pf>val2</pf> or <pf>val3</pf>, run <pf>blockB</pf>,</li>
-					<li>if <pf>var</pf> is equal to <pf>val4</pf>, run <pf>blockC</pf>,</li>
-					<li>if <pf>var</pf> was not matched, run <pf>blockD</pf> (default).</li>
+					<li>Case values are checked in order from top to bottom.</li>
+					<li>The <pf>otherwise</pf> block runs only when no cases match.</li>
+					<li>The <pf>otherwise</pf> block is optional.</li>
+					<li>When there is only one case value, curly braces <pf>{ }</pf> are optional.</li>
+					<li>Case values can be numbers, strings, or other data types that support equality comparisons.</li>
+					<li>Case values are case-sensitive when comparing strings.</li>
+					<li>Case values must be unique; duplicate case values will cause an error.</li>
+					<li>You may use as many case blocks as you like.</li>
 				</ul>
 			</p>
-		</sidebyside>
 
-		<program language="matlab">
-			switch var
+			<p>
+				Limitations:
+				<ul marker="square">
+					<li>Case values cannot use logical operators (e.g., <pf>&lt;</pf>, <pf>&gt;</pf>, <pf>==</pf>, <pf>&amp;</pf>, <pf>|</pf>).</li>
+					<li>Switch statements are not suitable for range-based conditions (e.g., checking if a value is between two numbers).</li>
+				</ul>
+			</p>
 
-				case val1	% var == val1? YES ➜ run blockA 
-							%              NO  ➜ check next case
-					blockA
-				case {val2, val3}	% var == val2 OR val3? Yes ➜ run blockB
-									%                      NO  ➜ check next case
-					blockB
-				case val4			% var == val4? Yes ➜ run blockC
-									%              NO  ➜ check next case
-					blockC
-				otherwise			% no matches? YES ➜ run blockD
-									%             NO  ➜ check next case
-					blockD
-			end
-		</program>
+		</assemblage>
 
 		<p>
-			Rules:
-			<ul marker="square">
-				<li>Case values are checked in order from top to bottom.</li>
-				<li>The <pf>otherwise</pf> block runs only when no cases match.</li>
-				<li>The <pf>otherwise</pf> (default) branch is optional.</li>
-				<li>When there is only one case value, curly braces <pf>{ }</pf> are optional.</li>
-				<li>Every <pf>switch</pf>-statement must end with <pf>end</pf>.</li>
-				<li>Case values can be numbers, strings, or other data types that support equality comparisons.</li>
-				<li>Case values are case-sensitive when comparing strings.</li>
-				<li>Case values must be unique; duplicate case values will cause an error.</li>
-			</ul>
+			The <pf>switch</pf> statement is similar to the 
+			<xref ref="sec-if-statement" text="custom"><pf>if</pf> statement</xref>, 
+			but offers a few advantages.	First, it is easier to read; second, 
+			it is better when comparing strings (of possibly different lengths).
 		</p>
 
 		<p>
-			Limitations:
-			<ul marker="square">
-				<li>Case values cannot use logical operators (e.g., <pf>&lt;</pf>, <pf>&gt;</pf>, <pf>==</pf>, <pf>&amp;</pf>, <pf>|</pf>).</li>
-				<li>Switch statements are not suitable for range-based conditions (e.g., checking if a value is between two numbers).</li>
-			</ul>
+			As an example, let's check whether a cadet is in their first two years at VMI.
 		</p>
 
-	</assemblage>
+		<sage language="octave">
+			<input>
+				year = 'second class';
 
-	<p>
-		The <pf>switch</pf>-<pf>case</pf> structure is similar to the <xref ref="sec-if-statement" text="custom"><pf>if</pf> structure</xref>, but offers a few advantages.	First, it is easier to read; second, it is better when comparing strings (of possibly different lengths).
-	</p>
+				switch year
+					case{'fourth class', 'third class'}
+						fprintf("You are in the first two years.\n");
+					case{'second class', 'first class'}
+						fprintf("You are in the last two years.\n");
+					otherwise
+						fprintf("You must be a fifth year.\n");
+				end
+			</input>
+		</sage>
 
-	<p>
-		As an example, let's check whether a cadet is in their first two years at VMI.
-	</p>
+		<p>
+			The cases are grouped by curly brackets so that a case will be satisfied if the value of Year is any of the values in a specific case. Once this code is executed, the switch command will attempt to match value of Year.
+		</p>
 
-	<sage language="octave">
-		<input>
-			year = 'second class';
+		<exercise label="ckpt-switch-statement">
 
-			switch year
-				case{'fourth class', 'third class'}
-					fprintf("You are in the first two years.\n");
-				case{'second class', 'first class'}
-					fprintf("You are in the last two years.\n");
-				otherwise
-					fprintf("You must be a fifth year.\n");
-			end
-		</input>
-	</sage>
+			<task label="ckpt-switch-statement-a">
+				<task>
+					<title>Switch keywords and roles</title>
+					<statement>
+						<p>
+							Match each <pf>switch</pf> keyword to its role.
+						</p>
+					</statement>
+					<cardsort>
+						<match>
+							<premise><pf>switch</pf></premise>
+							<response>Starts the block and names the expression to compare.</response>
+						</match>
+						<match>
+							<premise><pf>case</pf></premise>
+							<response>Runs when the expression matches a listed value.</response>
+						</match>
+						<match>
+							<premise><pf>otherwise</pf></premise>
+							<response>Runs when no <pf>case</pf> matches.</response>
+						</match>
+						<match>
+							<premise><pf>end</pf></premise>
+							<response>Closes the <pf>switch</pf> statement.</response>
+						</match>
+					</cardsort>
+					<feedback>
+						<p>
+							A <pf>switch</pf> block tests one expression, each <pf>case</pf> provides a value to match, and
+							<pf>otherwise</pf> provides the default path before <pf>end</pf> closes the block.
+						</p>
+					</feedback>
+				</task>
+			</task>
 
-	<p>
-		The cases are grouped by curly brackets so that a case will be satisfied if the value of Year is any of the values in a specific case. Once this code is executed, the switch command will attempt to match value of Year.
-	</p>
-
-	<exercise label="ckpt-switch-statement">
-
-		<task label="ckpt-switch-statement-a">
-			<task>
-				<title>Switch keywords and roles</title>
+			<task label="ckpt-switch-statement-b">
+				<title>Switch vs if-elseif for exact matches</title>
 				<statement>
 					<p>
-						Match each <pf>switch</pf> keyword to its role.
+						When is a <pf>switch</pf> statement more suitable than an <pf>if-elseif-else</pf> chain? Select all that apply.
 					</p>
 				</statement>
-				<cardsort>
-					<match>
-						<premise><pf>switch</pf></premise>
-						<response>Starts the block and names the expression to compare.</response>
-					</match>
-					<match>
-						<premise><pf>case</pf></premise>
-						<response>Runs when the expression matches a listed value.</response>
-					</match>
-					<match>
-						<premise><pf>otherwise</pf></premise>
-						<response>Runs when no <pf>case</pf> matches.</response>
-					</match>
-					<match>
-						<premise><pf>end</pf></premise>
-						<response>Closes the <pf>switch</pf> statement.</response>
-					</match>
-				</cardsort>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement>
+							<p>
+								When comparing a single variable to multiple exact values.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								The <pf>switch</pf> statement is designed for testing one variable against a list of specific values.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								When you need to test ranges like <pf>x &gt; 10</pf>.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Switch statements cannot use logical operators or ranges; use <pf>if-elseif</pf> for range-based conditions.
+							</p>
+						</feedback>
+					</choice>
+					<choice correct="yes">
+						<statement>
+							<p>
+								When comparing string values of different lengths.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Switch statements handle string comparisons cleanly, especially when strings have different lengths.
+							</p>
+						</feedback>
+					</choice>
+					<choice>
+						<statement>
+							<p>
+								When the case values need to be computed at runtime.
+							</p>
+						</statement>
+						<feedback>
+							<p>
+								Case values must be hard-coded constants, not variables or expressions.
+							</p>
+						</feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<task label="ckpt-switch-statement-c">
+				<title>Otherwise block is optional in switch</title>
+				<statement correct="yes">
+					<p>
+						The <pf>otherwise</pf> block in a <pf>switch</pf> statement is optional.
+					</p>
+				</statement>
 				<feedback>
 					<p>
-						A <pf>switch</pf> block tests one expression, each <pf>case</pf> provides a value to match, and
-						<pf>otherwise</pf> provides the default path before <pf>end</pf> closes the block.
+						While the <pf>otherwise</pf> block is optional, including it provides a default action when no cases match, which can help prevent unintended behavior.
 					</p>
 				</feedback>
 			</task>
-		</task>
 
-		<task label="ckpt-switch-statement-b">
-			<title>Switch vs if-elseif for exact matches</title>
-			<statement>
-				<p>
-					When is a <pf>switch</pf> statement more suitable than an <pf>if-elseif-else</pf> chain? Select all that apply.
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement>
-						<p>
-							When comparing a single variable to multiple exact values.
-						</p>
-					</statement>
-					<feedback>
-						<p>
-							The <pf>switch</pf> statement is designed for testing one variable against a list of specific values.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p>
-							When you need to test ranges like <pf>x &gt; 10</pf>.
-						</p>
-					</statement>
-					<feedback>
-						<p>
-							Switch statements cannot use logical operators or ranges; use <pf>if-elseif</pf> for range-based conditions.
-						</p>
-					</feedback>
-				</choice>
-				<choice correct="yes">
-					<statement>
-						<p>
-							When comparing string values of different lengths.
-						</p>
-					</statement>
-					<feedback>
-						<p>
-							Switch statements handle string comparisons cleanly, especially when strings have different lengths.
-						</p>
-					</feedback>
-				</choice>
-				<choice>
-					<statement>
-						<p>
-							When the case values need to be computed at runtime.
-						</p>
-					</statement>
-					<feedback>
-						<p>
-							Case values must be hard-coded constants, not variables or expressions.
-						</p>
-					</feedback>
-				</choice>
-			</choices>
-		</task>
+		</exercise>
 
-		<task label="ckpt-switch-statement-c">
-			<title>Otherwise branch is optional in switch</title>
-			<statement correct="yes">
-				<p>
-					The <pf>otherwise</pf> branch in a <pf>switch</pf> statement is optional.
-				</p>
-			</statement>
-			<feedback>
-				<p>
-					While the <pf>otherwise</pf> branch is optional, including it provides a default action when no cases match, which can help prevent unintended behavior.
-				</p>
-			</feedback>
-		</task>
-
-	</exercise>
-		</subsubsection>
 	</subsection>
 
-	<reading-questions xml:id="switch-statement-reading-questions">
+	<reading-questions xml:id="switch-statement-quiz">
 		<title>📖 Reading Quiz</title>
 		<exercise label="concepts-switch-statement">
 
@@ -289,7 +264,7 @@
 			</task>
 
 			<task label="cqs-switch-statement-otherwise">
-				<title>Otherwise Branch Behavior</title>
+				<title>Otherwise Block Behavior</title>
 				<statement correct="yes">
 					<p>
 						In a <pf>switch</pf> statement, the <pf>otherwise</pf> block only runs when none 
@@ -298,7 +273,7 @@
 				</statement>
 				<feedback>
 					<p>
-						Correct! The <pf>otherwise</pf> branch is similar to the <pf>else</pf> in an 
+						Correct! The <pf>otherwise</pf> block is similar to the <pf>else</pf> in an 
 						<pf>if</pf> statement—it provides a default action when no cases match.
 					</p>
 				</feedback>
@@ -480,18 +455,20 @@
 		</exercise>
 	</reading-questions>
 
-	<subsection xml:id="switch-statement-practice-activities">
-		<title>🧑🏻‍💻 Practice Activities</title>
-		<exercise label="conditional-activity-7">
-			<title>Shipping Mode Switch</title>
+	<reading-questions xml:id="switch-statement-coding-practice">
+		<title>🧑🏻‍💻 Coding Practice</title>
+
+		<exercise label="switch-statement-practice-functions">
+			<title>Writing Functions with switch Statements</title>
 
 			<introduction>
 				<p>
-					Use a <pf>switch</pf> statement to choose among discrete shipping options.
+					These coding activities focus on writing short MATLAB functions that use <pf>switch</pf> statements.
 				</p>
 			</introduction>
 
-			<task label="conditional-activity-7a">
+			<task xml:id="switch-statement-practice-functions-shipping-mode-pt-1">
+				<title>Shipping Mode Switch (part 1)</title>
 				<statement>
 					<p>
 						Create a function named <pf>shipping_cost</pf> that takes a <pf>mode</pf> input (<pf>'S'</pf>,
@@ -516,7 +493,8 @@
 				</solution> 
 			</task>
 
-			<task label="conditional-activity-7b">
+			<task xml:id="switch-statement-practice-functions-shipping-mode-pt-2">
+				<title>Shipping Mode Switch (part 2)</title>
 				<statement>
 					<p>
 						Extend the function so it also accepts full words (<pf>'standard'</pf>, <pf>'express'</pf>,
@@ -541,7 +519,8 @@
 				</solution> 
 			</task>
 
-			<task label="conditional-activity-7c">
+			<task xml:id="switch-statement-practice-functions-shipping-mode-pt-3">
+				<title>Shipping Mode Switch (part 3)</title>
 				<statement>
 					<p>
 						Concept check: what happens when <pf>mode = 'e'</pf> (lowercase), and why?
@@ -549,23 +528,14 @@
 				</statement>
 				<solution component="example-solution">
 					<p>
-						The <pf>otherwise</pf> branch runs and returns <pf>NaN</pf> because <pf>switch</pf> comparisons are
+						The <pf>otherwise</pf> block runs and returns <pf>NaN</pf> because <pf>switch</pf> comparisons are
 						case-sensitive, so <pf>'e'</pf> does not match <pf>'E'</pf>.
 					</p>
 				</solution> 
 			</task>
-		</exercise>
 
-		<exercise label="conditional-activity-8">
-			<title>Day Type Switch</title>
-
-			<introduction>
-				<p>
-					Map a day number to weekday or weekend status using a <pf>switch</pf>-statement.
-				</p>
-			</introduction>
-
-			<task label="conditional-activity-8a">
+			<task xml:id="switch-statement-practice-functions-day-type-pt-1">
+				<title>Day Type Switch (part 1)</title>
 				<statement>
 					<p>
 						Write a function named <pf>day_type</pf> that takes an integer <pf>dayNum</pf>
@@ -588,7 +558,8 @@
 				</solution>
 			</task>
 
-			<task label="conditional-activity-8b">
+			<task xml:id="switch-statement-practice-functions-day-type-pt-2">
+				<title>Day Type Switch (part 2)</title>
 				<statement>
 					<p>
 						Update the function to return a second output named <pf>isWeekend</pf> that is <pf>true</pf> or
@@ -614,31 +585,23 @@
 				</solution>
 			</task>
 
-			<task label="conditional-activity-8c">
+			<task xml:id="switch-statement-practice-functions-day-type-pt-3">
+				<title>Day Type Switch (part 3)</title>
 				<statement>
 					<p>
-						Concept check: what should the function return for <pf>dayNum = 0</pf>, and which branch handles it?
+						Concept check: what should the function return for <pf>dayNum = 0</pf>, and which block handles it?
 					</p>
 				</statement>
 				<solution component="solution">
 					<p>
 						It should return <pf>'invalid'</pf> (and <pf>isWeekend = false</pf>) because the <pf>otherwise</pf>
-						branch handles values outside 1 through 7.
+						block handles values outside 1 through 7.
 					</p>
 				</solution>
 			</task>
-		</exercise>
 
-		<exercise label="conditional-activity-9">
-			<title>Thermostat Mode Switch</title>
-
-			<introduction>
-				<p>
-					Use a discrete numeric code to select a thermostat mode.
-				</p>
-			</introduction>
-
-			<task label="conditional-activity-9a">
+			<task xml:id="switch-statement-practice-functions-thermostat-mode-pt-1">
+				<title>Thermostat Mode Switch (part 1)</title>
 				<statement>
 					<p>
 						Create a function named <pf>thermostat_mode</pf> that takes a numeric code:
@@ -664,7 +627,8 @@
 				</solution>
 			</task>
 
-			<task label="conditional-activity-9b">
+			<task xml:id="switch-statement-practice-functions-thermostat-mode-pt-2">
+				<title>Thermostat Mode Switch (part 2)</title>
 				<statement>
 					<p>
 						Extend the function to return a second output <pf>setPoint</pf>.
@@ -694,164 +658,6 @@
 			</task>
 
 		</exercise>
-	</subsection>
+	</reading-questions>
 
-	<exercises xml:id="switch-statement-coding-exercises">
-		<title>💻 Coding Exercises</title>
-		<exercise xml:id="coding-exercises-switch-statement">
-			<title>Conditional Flow (switch statements)</title>
-
-			<task xml:id="coding-rock-paper-scissors">
-				<title>Rock-Paper-Scissors Judge</title>
-
-				<statement>
-					<p>
-						Write a function named <pf>rps_winner</pf> that determines the winner of a rock-paper-scissors game.
-						Use a <pf>switch</pf> statement to handle the different move combinations.
-					</p>
-
-					<p>
-						Rules:
-						<ul marker="square">
-							<li><p>Rock beats Scissors</p></li>
-							<li><p>Scissors beats Paper</p></li>
-							<li><p>Paper beats Rock</p></li>
-							<li><p>Same moves result in a tie</p></li>
-						</ul>
-					</p>
-
-					<p>
-						Moves are represented as: 'R' for rock, 'P' for paper, 'S' for scissors.
-					</p>
-
-					<tabular valign="top" halign="right" top="minor">
-						<col width="12%"/>
-						<col width="88%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell>
-								<p><pf>player1</pf> (1x1) char — player 1's move ('R', 'P', or 'S')</p>
-							</cell>
-						</row>
-						<row>
-							<cell/>
-							<cell>
-								<p><pf>player2</pf> (1x1) char — player 2's move ('R', 'P', or 'S')</p>
-							</cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell>
-								<p><pf>result</pf> (1x1) string — "Player 1", "Player 2", or "Tie"</p>
-							</cell>
-						</row>
-					</tabular>
-
-					<p>Test cases:</p>
-
-					<program language="matlab">
-						% Test 1: Rock beats Scissors
-						r1 = rps_winner('R', 'S')
-						% Expected: r1 = "Player 1"
-
-						% Test 2: Paper beats Rock
-						r2 = rps_winner('R', 'P')
-						% Expected: r2 = "Player 2"
-
-						% Test 3: Scissors beats Paper
-						r3 = rps_winner('S', 'P')
-						% Expected: r3 = "Player 1"
-
-						% Test 4: Tie
-						r4 = rps_winner('R', 'R')
-						% Expected: r4 = "Tie"
-
-						% Test 5: Another scenario
-						r5 = rps_winner('P', 'S')
-						% Expected: r5 = "Player 2"
-					</program>
-
-				</statement>
-
-			</task>
-			<task xml:id="coding-zodiac-sign">
-				<title>Zodiac Sign Finder</title>
-
-				<statement>
-					<p>
-						Write a function named <pf>zodiac_sign</pf> that determines a person's Western zodiac sign based on their 
-						birth month and day. Use a <pf>switch</pf> statement for the month, then <pf>if</pf> statements for the day ranges.
-					</p>
-
-					<p>
-						Zodiac date ranges (using format: month number, day range):
-						<ul marker="square">
-							<li><p>Capricorn: 12/22-1/19</p></li>
-							<li><p>Aquarius: 1/20-2/18</p></li>
-							<li><p>Pisces: 2/19-3/20</p></li>
-							<li><p>Aries: 3/21-4/19</p></li>
-							<li><p>Taurus: 4/20-5/20</p></li>
-							<li><p>Gemini: 5/21-6/20</p></li>
-							<li><p>Cancer: 6/21-7/22</p></li>
-							<li><p>Leo: 7/23-8/22</p></li>
-							<li><p>Virgo: 8/23-9/22</p></li>
-							<li><p>Libra: 9/23-10/22</p></li>
-							<li><p>Scorpio: 10/23-11/21</p></li>
-							<li><p>Sagittarius: 11/22-12/21</p></li>
-						</ul>
-					</p>
-
-					<tabular valign="top" halign="right" top="minor">
-						<col width="12%"/>
-						<col width="88%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell>
-								<p><pf>month</pf> (1x1) double — birth month (1-12)</p>
-							</cell>
-						</row>
-						<row>
-							<cell/>
-							<cell>
-								<p><pf>day</pf> (1x1) double — birth day (1-31)</p>
-							</cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell>
-								<p><pf>sign</pf> (1x1) string — zodiac sign name</p>
-							</cell>
-						</row>
-					</tabular>
-
-					<p>Test cases:</p>
-
-					<program language="matlab">
-						% Test 1: Early January (Capricorn)
-						z1 = zodiac_sign(1, 10)
-						% Expected: z1 = "Capricorn"
-
-						% Test 2: Late January (Aquarius)
-						z2 = zodiac_sign(1, 25)
-						% Expected: z2 = "Aquarius"
-
-						% Test 3: Mid-year (Leo)
-						z3 = zodiac_sign(8, 5)
-						% Expected: z3 = "Leo"
-
-						% Test 4: Boundary case (Taurus/Gemini)
-						z4 = zodiac_sign(5, 20)
-						% Expected: z4 = "Taurus"
-
-						% Test 5: Late December (Capricorn - year boundary)
-						z5 = zodiac_sign(12, 25)
-						% Expected: z5 = "Capricorn"
-					</program>
-
-				</statement>
-
-			</task>
-
-		</exercise>
-	</exercises>
 </section>
