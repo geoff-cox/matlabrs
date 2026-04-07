@@ -141,6 +141,36 @@
 			</p>
 		</aside>
 
+		<exercise label="scripts-quiz">
+			<title>Script Quiz</title>
+
+			<task label="scripts-quiz-run">
+				<statement><p>How do you run a MATLAB script named <pf>myScript.m</pf> from the Command Window?</p></statement>
+				<choices>
+					<choice correct="yes"><statement><p>Type <pf>myScript</pf> and press Enter.</p></statement><feedback><p>Correct. Type the script name (without <pf>.m</pf>) to run it.</p></feedback></choice>
+					<choice><statement><p>Type <pf>run("myScript.m")</pf>.</p></statement><feedback><p>This syntax works but is not the most common way.</p></feedback></choice>
+					<choice><statement><p>Type <pf>myScript.m</pf> and press Enter.</p></statement><feedback><p>MATLAB does not include the extension when calling a script.</p></feedback></choice>
+					<choice><statement><p>Double-click the file in the Editor.</p></statement><feedback><p>That opens the file for editing, not running.</p></feedback></choice>
+				</choices>
+			</task>
+
+			<task label="scripts-quiz-workspace">
+				<statement correct="yes"><p>Variables created in a script remain in the base workspace after the script finishes.</p></statement>
+				<feedback><p>True. Scripts share the base workspace, so their variables persist.</p></feedback>
+			</task>
+
+			<task label="scripts-quiz-naming">
+				<statement><p>Which of the following is a valid MATLAB script filename?</p></statement>
+				<choices>
+					<choice><statement><p><pf>my script.m</pf></p></statement><feedback><p>Spaces are not allowed in MATLAB identifiers.</p></feedback></choice>
+					<choice><statement><p><pf>2ndScript.m</pf></p></statement><feedback><p>Names cannot begin with a digit.</p></feedback></choice>
+					<choice correct="yes"><statement><p><pf>calcArea.m</pf></p></statement><feedback><p>Correct. This starts with a letter and contains only letters and digits.</p></feedback></choice>
+					<choice><statement><p><pf>calc-area.m</pf></p></statement><feedback><p>Hyphens are not allowed in MATLAB names.</p></feedback></choice>
+				</choices>
+			</task>
+
+		</exercise>
+
 		<example xml:id="ex-scripts-basic">
 				<title>A Simple Script</title>
 				<statement>
