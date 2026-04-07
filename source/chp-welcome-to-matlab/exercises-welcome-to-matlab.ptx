@@ -395,41 +395,59 @@ balance   = principal * (1 + rate)^years
               perimeter using descriptively named variables.
           </p>
 
-          <tabular valign="top" top="minor">
-              <col width="11%" halign="right" />
-              <col width="15%" halign="left" />
-              <col width="28%" halign="center" />
-              <col width="46%" halign="left"/>
-              <row>
-                  <cell>Inputs:</cell>
-                  <cell><p><pf>rectLen</pf></p></cell>
-                  <cell><p>(1x1) double</p></cell>
-                  <cell><p>length of the rectangle</p></cell>
-              </row>
-              <row bottom="minor">
-                  <cell></cell>
-                  <cell><p><pf>rectWid</pf></p></cell>
-                  <cell><p>(1x1) double</p></cell>
-                  <cell><p>width of the rectangle</p></cell>
-              </row>
-              <row>
-                  <cell>Outputs:</cell>
-                  <cell><p><pf>rectArea</pf></p></cell>
-                  <cell><p>(1x1) double</p></cell>
-                  <cell><p>area of the rectangle</p></cell>
-              </row>
-              <row bottom="minor">
-                  <cell></cell>
-                  <cell><p><pf>rectPerim</pf></p></cell>
-                  <cell><p>(1x1) double</p></cell>
-                  <cell><p>perimeter of the rectangle</p></cell>
-              </row>
-          </tabular>
+          <sidebyside widths="65% 32%" valign="middle">
+            <stack>
+              <tabular valign="top" top="minor">
+                  <col width="14%" halign="right" />
+                  <col width="19%" halign="left" />
+                  <col width="28%" halign="center" />
+                  <col width="39%" halign="left"/>
+                  <row>
+                      <cell>Inputs:</cell>
+                      <cell><p><pf>rectLen</pf></p></cell>
+                      <cell><p>(1x1) double</p></cell>
+                      <cell><p>length of the rectangle</p></cell>
+                  </row>
+                  <row bottom="minor">
+                      <cell></cell>
+                      <cell><p><pf>rectWid</pf></p></cell>
+                      <cell><p>(1x1) double</p></cell>
+                      <cell><p>width of the rectangle</p></cell>
+                  </row>
+                  <row>
+                      <cell>Outputs:</cell>
+                      <cell><p><pf>rectArea</pf></p></cell>
+                      <cell><p>(1x1) double</p></cell>
+                      <cell><p>area of the rectangle</p></cell>
+                  </row>
+                  <row bottom="minor">
+                      <cell></cell>
+                      <cell><p><pf>rectPerim</pf></p></cell>
+                      <cell><p>(1x1) double</p></cell>
+                      <cell><p>perimeter of the rectangle</p></cell>
+                  </row>
+              </tabular>
 
-          <p>
-              Test with <pf>rectLen = 5</pf> and <pf>rectWid = 3</pf>; results should be
-              <pf>rectArea = 15</pf> and <pf>rectPerim = 16</pf>.
-          </p>
+              <p>
+                  Test with <pf>rectLen = 5</pf> and <pf>rectWid = 3</pf>; results should be
+                  <pf>rectArea = 15</pf> and <pf>rectPerim = 16</pf>.
+              </p>
+            </stack>
+            <image>
+              <latex-image>
+                \begin{tikzpicture}[scale=1.0]
+                  % rectangle
+                  \draw[thick] (0,0) rectangle (3,1);
+
+                  % length label \ell
+                  \node at (1.5,-0.3) {$\ell$};
+
+                  % width label w
+                  \node[right] at (3.05,0.5) {$w$};
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </sidebyside>
       </statement>
       <solution component="exercise-solution">
           <program language="matlab">
