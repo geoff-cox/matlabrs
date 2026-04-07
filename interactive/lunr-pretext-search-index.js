@@ -307,18 +307,36 @@ var ptx_lunr_docs = [
   "body": " Coding Exercises   Speed, Distance, and Time   Use the MATLAB command window to assign values to variables for a car's speed and travel time, then compute the distance traveled using .  Use the variable names speed , time , and distance .  Test your work with speed = 60 and time = 2.5 . Your result should be distance = 150 .    speed = 60; time = 2.5; distance = speed * time     Celsius to Fahrenheit   Use the MATLAB command window to assign a temperature in Celsius to a variable, then convert it to Fahrenheit using the formula .  Use the variable names tempC and tempF .  Test your work with tempC = 100 . Your result should be tempF = 212 .    tempC = 100; tempF = (9\/5) * tempC + 32     Compound Interest   Use the MATLAB command window to assign values for the principal, interest rate, and number of years, then compute the balance using .  Use the variable names principal , rate , years , and balance .  Test your work with principal = 1000 , rate = 0.05 , and years = 3 . Your result should be approximately balance = 1157.625 .    principal = 1000; rate = 0.05; years = 3; balance = principal * (1 + rate)^years     Area and Perimeter of a Rectangle   Use the MATLAB command window to assign values for the length and width of a rectangle, then compute both its area and perimeter.    Use descriptive variable names, like rectLen , rectWid , rectArea , and rectPerim .  Test your work with and .       Your results should be rectArea = 15 and rectPerim = 16 .    rectLen = 5; rectWid = 3; rectArea = rectLen * rectWid rectPerim = 2 * (rectLen + rectWid)     Volume & Surface Area of a Cylinder   Use the MATLAB command window to assign values for the radius and height of a cylinder, then compute its volume and surface area.    The volume and surface area of a cylinder is given by: Use pi for and use descriptive variable names.  Test your work with and .           radius = 1.2; height = 3.5; volume = pi * radius^2 * height surfaceArea = 2 * pi * radius * height + 2 * pi * radius^2      Kinetic Energy   Use the MATLAB command window to assign values for an object's mass and velocity, then compute its kinetic energy using .  Use the variable names mass , velocity , and kineticEnergy .  Test your work with mass = 2 and velocity = 3 . Your result should be kineticEnergy = 9 .    mass = 2; velocity = 3; kineticEnergy = 0.5 * mass * velocity^2    "
 },
 {
-  "id": "assemblage-scripts",
+  "id": "scripts-fprintf",
   "level": "1",
-  "url": "assemblage-scripts.html",
+  "url": "scripts-fprintf.html",
   "type": "Subsection",
   "number": "",
-  "title": "🧱 Description &amp; Usage",
-  "body": " 🧱 Description & Usage   A script is a saved .m file containing MATLAB commands that execute top to bottom that you can run repeatedly. Think of it as a recipe: you write the steps once, and MATLAB follows them every time you run the file. Scripts are ideal when you want to repeat the same sequence of calculations with different input values.    Key Rules    The filename must end in .m and match valid MATLAB naming rules.  Scripts share the base workspace — variables persist after the script runs.  Run a script by typing its name in the Command Window or pressing the Run button.  Scripts have no inputs or outputs — use functions for that.     Running a Script  When you run a script, MATLAB executes the commands in order, starting at the top and skipping over comments (i.e., lines that begin with % ). This is why the order of your commands matters.    Script Quiz   How do you run a MATLAB script named myScript.m from the Command Window?   Type myScript and press Enter. Correct. Type the script name (without .m ) to run it.  Type run(\"myScript.m\") . This syntax works but is not the most common way.  Type myScript.m and press Enter. MATLAB does not include the extension when calling a script.  Double-click the file in the Editor. That opens the file for editing, not running.     Variables created in a script remain in the base workspace after the script finishes.  True. Scripts share the base workspace, so their variables persist.    Which of the following is a valid MATLAB script filename?   my script.m Spaces are not allowed in MATLAB identifiers.  2ndScript.m Names cannot begin with a digit.  calcArea.m Correct. This starts with a letter and contains only letters and digits.  calc-area.m Hyphens are not allowed in MATLAB names.       Reporting Results from Scripts with fprintf  Scripts often need to communicate results to a user. The simplest way to do this is to leave the semi-colon off a variable assignment. For more polished output, use the fprintf command. The general pattern for fprintf is:   fprintf('text with placeholders', value1, value2, ...);   The placeholders start with a percent sign and indicate how MATLAB should display each value. The table below shows some common placeholders:    Placeholder  Description    %i  Integer (whole number)    %f  Decimal (fixed-point) number    %g  Compact numeric format    %s  Text    You can control rounding by specifying the number of digits after the decimal point. For example, %.2f prints two digits after the decimal.   r = 4.5; C = 2*pi*r; A = pi*r^2; fprintf('Radius r = %.2f\\n', r); fprintf('Circumference C = %.3f\\n', C); fprintf('Area A = %.3f\\n', A);   Two special characters are especially common in formatted output:  \\n starts a new line  \\t inserts a tab     x = 12; y = 3.4567; fprintf('x:\\t%d\\n', x); fprintf('y:\\t%.2f\\n', y);   You can also control spacing with a field width . For example, %8.2f uses a field that is 8 characters wide. This helps align columns.   a = 2; b = -4; c = -6; fprintf('Coefficients:\\n'); fprintf('%8s %8s %8s\\n', 'a', 'b', 'c'); fprintf('%8d %8d %8d\\n', a, b, c);   To print a percent sign, use %% .   p = 0.237; fprintf('Success rate: %.1f%%\\n', 100*p);   The activities below use fprintf . Before moving on, paste these examples into MATLAB to become more familiar with the command.    Examples   A Simple Script   The following script calculates and displays the area of a circle with radius 5.  % circleArea.m radius = 5; area = pi * radius^2; fprintf('Area = %.4f\\n', area)  Running circleArea in the Command Window prints: Area = 78.5398     Script with Multiple Calculations   This script converts a temperature from Celsius to Fahrenheit and Kelvin.  % tempConvert.m celsius = 100; fahrenheit = (9\/5) * celsius + 32; kelvin = celsius + 273.15; fprintf('%g C = %g F = %g K\\n', celsius, fahrenheit, kelvin)     Using Comments in Scripts   Comments (lines starting with % ) document your script without affecting execution.  % projectile.m -- models vertical launch % Input values v0 = 20; % initial speed (m\/s) g = 9.81; % gravity (m\/s^2) % Time to peak t_peak = v0 \/ g; % Maximum height h_max = v0^2 \/ (2 * g); fprintf('Peak time: %.2f s, Max height: %.2f m\\n', t_peak, h_max)     "
+  "title": "Reporting Results with fprintf",
+  "body": " Reporting Results with fprintf  Scripts often need to communicate results to a user. The simplest way to do this is to leave the semi-colon off a variable assignment. For more polished output, use the fprintf command. The general pattern for fprintf is:   fprintf('text with placeholders', value1, value2, ...);   The placeholders start with a percent sign and indicate how MATLAB should display each value. The table below shows some common placeholders:    Placeholder  Description    %i  Integer (whole number)    %f  Decimal (fixed-point) number    %g  Compact numeric format    %s  Text    You can control rounding by specifying the number of digits after the decimal point. For example, %.2f prints two digits after the decimal.   r = 4.5; C = 2*pi*r; A = pi*r^2; fprintf('Radius r = %.2f\\n', r); fprintf('Circumference C = %.3f\\n', C); fprintf('Area A = %.3f\\n', A);   Two special characters are especially common in formatted output:  \\n starts a new line  \\t inserts a tab     x = 12; y = 3.4567; fprintf('x:\\t%d\\n', x); fprintf('y:\\t%.2f\\n', y);   You can also control spacing with a field width . For example, %8.2f uses a field that is 8 characters wide. This helps align columns.   a = 2; b = -4; c = -6; fprintf('Coefficients:\\n'); fprintf('%8s %8s %8s\\n', 'a', 'b', 'c'); fprintf('%8d %8d %8d\\n', a, b, c);   To print a percent sign, use %% .   p = 0.237; fprintf('Success rate: %.1f%%\\n', 100*p);   The activities below use fprintf . Before moving on, paste these examples into MATLAB to become more familiar with the command.  "
 },
 {
-  "id": "assemblage-scripts-2-1",
+  "id": "scripts-fprintf-10",
   "level": "2",
-  "url": "assemblage-scripts.html#assemblage-scripts-2-1",
+  "url": "scripts-fprintf.html#scripts-fprintf-10",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "field width "
+},
+{
+  "id": "subsec-scripts",
+  "level": "1",
+  "url": "subsec-scripts.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Writing Simple Scripts",
+  "body": " Writing Simple Scripts  Scripts are a first step toward thinking programmatically: instead of typing commands one at a time in the Command Window, you save a file that you can run repeatedly.  A script is a saved .m file containing MATLAB commands that execute top to bottom that you can run repeatedly. Think of it as a recipe: you write the steps once, and MATLAB follows them every time you run the file. Scripts are ideal when you want to repeat the same sequence of calculations with different input values.    The filename must end in .m and match valid MATLAB naming rules.  Scripts share the base workspace — variables persist after the script runs.  Run a script by typing its name in the Command Window or pressing the Run button.  Scripts have no inputs or outputs — use functions for that.     Running a Script  When you run a script, MATLAB executes the commands in order, starting at the top and skipping over comments (i.e., lines that begin with % ). This is why the order of your commands matters.    Script Quiz   How do you run a MATLAB script named myScript.m from the Command Window?   Type myScript and press Enter. Correct. Type the script name (without .m ) to run it.  Type run(\"myScript.m\") . This syntax works but is not the most common way.  Type myScript.m and press Enter. MATLAB does not include the extension when calling a script.  Double-click the file in the Editor. That opens the file for editing, not running.     Variables created in a script remain in the base workspace after the script finishes.  True. Scripts share the base workspace, so their variables persist.    Which of the following is a valid MATLAB script filename?   my script.m Spaces are not allowed in MATLAB identifiers.  2ndScript.m Names cannot begin with a digit.  calcArea.m Correct. This starts with a letter and contains only letters and digits.  calc-area.m Hyphens are not allowed in MATLAB names.      A Simple Script   The following script calculates and displays the area of a circle with radius 5.  % circleArea.m radius = 5; area = pi * radius^2; fprintf('Area = %.4f\\n', area)  Running circleArea in the Command Window prints: Area = 78.5398     Script with Multiple Calculations   This script converts a temperature from Celsius to Fahrenheit and Kelvin.  % tempConvert.m celsius = 100; fahrenheit = (9\/5) * celsius + 32; kelvin = celsius + 273.15; fprintf('%g C = %g F = %g K\\n', celsius, fahrenheit, kelvin)     Using Comments in Scripts   Comments (lines starting with % ) document your script without affecting execution.  % projectile.m -- models vertical launch % Input values v0 = 20; % initial speed (m\/s) g = 9.81; % gravity (m\/s^2) % Time to peak t_peak = v0 \/ g; % Maximum height h_max = v0^2 \/ (2 * g); fprintf('Peak time: %.2f s, Max height: %.2f m\\n', t_peak, h_max)    "
+},
+{
+  "id": "subsec-scripts-3",
+  "level": "2",
+  "url": "subsec-scripts.html#subsec-scripts-3",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
@@ -327,25 +345,16 @@ var ptx_lunr_docs = [
 {
   "id": "scripts-quiz",
   "level": "2",
-  "url": "assemblage-scripts.html#scripts-quiz",
+  "url": "subsec-scripts.html#scripts-quiz",
   "type": "Checkpoint",
   "number": "2.1",
   "title": "Script Quiz.",
   "body": " Script Quiz   How do you run a MATLAB script named myScript.m from the Command Window?   Type myScript and press Enter. Correct. Type the script name (without .m ) to run it.  Type run(\"myScript.m\") . This syntax works but is not the most common way.  Type myScript.m and press Enter. MATLAB does not include the extension when calling a script.  Double-click the file in the Editor. That opens the file for editing, not running.     Variables created in a script remain in the base workspace after the script finishes.  True. Scripts share the base workspace, so their variables persist.    Which of the following is a valid MATLAB script filename?   my script.m Spaces are not allowed in MATLAB identifiers.  2ndScript.m Names cannot begin with a digit.  calcArea.m Correct. This starts with a letter and contains only letters and digits.  calc-area.m Hyphens are not allowed in MATLAB names.    "
 },
 {
-  "id": "scripts-fprintf-10",
-  "level": "2",
-  "url": "assemblage-scripts.html#scripts-fprintf-10",
-  "type": "Paragraph (with a defined term)",
-  "number": "",
-  "title": "",
-  "body": "field width "
-},
-{
   "id": "ex-scripts-basic",
   "level": "2",
-  "url": "assemblage-scripts.html#ex-scripts-basic",
+  "url": "subsec-scripts.html#ex-scripts-basic",
   "type": "🌌 Example",
   "number": "2.2",
   "title": "A Simple Script.",
@@ -354,7 +363,7 @@ var ptx_lunr_docs = [
 {
   "id": "ex-scripts-multiple",
   "level": "2",
-  "url": "assemblage-scripts.html#ex-scripts-multiple",
+  "url": "subsec-scripts.html#ex-scripts-multiple",
   "type": "🌌 Example",
   "number": "2.3",
   "title": "Script with Multiple Calculations.",
@@ -363,124 +372,88 @@ var ptx_lunr_docs = [
 {
   "id": "ex-scripts-comments",
   "level": "2",
-  "url": "assemblage-scripts.html#ex-scripts-comments",
+  "url": "subsec-scripts.html#ex-scripts-comments",
   "type": "🌌 Example",
   "number": "2.4",
   "title": "Using Comments in Scripts.",
   "body": " Using Comments in Scripts   Comments (lines starting with % ) document your script without affecting execution.  % projectile.m -- models vertical launch % Input values v0 = 20; % initial speed (m\/s) g = 9.81; % gravity (m\/s^2) % Time to peak t_peak = v0 \/ g; % Maximum height h_max = v0^2 \/ (2 * g); fprintf('Peak time: %.2f s, Max height: %.2f m\\n', t_peak, h_max)   "
 },
 {
-  "id": "scripts-rqs",
+  "id": "scripts-reading-quiz",
   "level": "1",
-  "url": "scripts-rqs.html",
+  "url": "scripts-reading-quiz.html",
   "type": "Reading Questions",
   "number": "",
-  "title": "📖 Reading Questions",
-  "body": " 📖 Reading Questions    A script named compute.m assigns x = 42 . After running the script, what happens to the variable x ?   It remains in the base workspace. Correct. Scripts share the base workspace.  It is deleted automatically. Variables in scripts persist unless you call clear .  It is stored inside the script file. Variables live in the workspace, not inside the file.  It causes an error because scripts cannot create variables. Scripts can create variables; they go into the base workspace.     What is the main difference between a script and a function?   Functions accept inputs and return outputs; scripts do not. Correct. That is the defining distinction.  Scripts can only run once; functions can run many times. Both can run any number of times.  Functions are saved as .mat files; scripts are saved as .m files. Both scripts and functions are saved as .m files.  Scripts are faster than functions. Speed difference is negligible; the distinction is about inputs\/outputs and workspace.     In MATLAB, the character used to start a comment is:   % Correct. Everything after % on a line is a comment.  # That is the comment character in Python and other languages, not MATLAB.  \/\/ That is used in C, C++, and Java.  -- That is used in SQL and Lua.     A MATLAB script must be saved with the .m file extension.  True. MATLAB recognizes code files by the .m extension.    Adding a semicolon ( ; ) at the end of a line in a script:   Suppresses the automatic display of that line's result. Correct. Without a semicolon, MATLAB prints the result; with one, it does not.  Ends the script. The semicolon does not end execution — it only suppresses output.  Creates a comment. Comments start with % , not ; .  Has no effect in scripts. Semicolons work the same in scripts as in the Command Window.     A MATLAB script can be named 3dPlot.m .  False. MATLAB names must begin with a letter, not a digit.    Which of the following correctly runs a script named analysis.m ?   Type analysis in the Command Window. Correct. Omit the extension when calling a script.  Type analysis.m in the Command Window. MATLAB expects the name without the extension.  Type call analysis in the Command Window. There is no call keyword in MATLAB.  Type execute('analysis') in the Command Window. There is no execute function in MATLAB.     To remove all variables from the workspace before running a script, you would add as the first line of the script.    MATLAB executes script commands in order from top to bottom.  True. Scripts execute sequentially unless control structures change the flow.    The command clc placed at the top of a script will:   Clear the Command Window display. Correct. clc clears the Command Window but does not affect variables.  Clear all workspace variables. Use clear to remove variables.  Close all open figures. Use close all to close figures.  Delete the script file. clc only clears the Command Window display.     "
+  "title": "📖 Reading Quiz",
+  "body": " 📖 Reading Quiz    A script named compute.m assigns x = 42 . After running the script, what happens to the variable x ?   It remains in the base workspace. Correct. Scripts share the base workspace.  It is deleted automatically. Variables in scripts persist unless you call clear .  It is stored inside the script file. Variables live in the workspace, not inside the file.  It causes an error because scripts cannot create variables. Scripts can create variables; they go into the base workspace.     What is the main difference between a script and a function?   Functions accept inputs and return outputs; scripts do not. Correct. That is the defining distinction.  Scripts can only run once; functions can run many times. Both can run any number of times.  Functions are saved as .mat files; scripts are saved as .m files. Both scripts and functions are saved as .m files.  Scripts are faster than functions. Speed difference is negligible; the distinction is about inputs\/outputs and workspace.     In MATLAB, the character used to start a comment is:   % Correct. Everything after % on a line is a comment.  # That is the comment character in Python and other languages, not MATLAB.  \/\/ That is used in C, C++, and Java.  -- That is used in SQL and Lua.     A MATLAB script must be saved with the .m file extension.  True. MATLAB recognizes code files by the .m extension.    Adding a semicolon ( ; ) at the end of a line in a script:   Suppresses the automatic display of that line's result. Correct. Without a semicolon, MATLAB prints the result; with one, it does not.  Ends the script. The semicolon does not end execution — it only suppresses output.  Creates a comment. Comments start with % , not ; .  Has no effect in scripts. Semicolons work the same in scripts as in the Command Window.     A MATLAB script can be named 3dPlot.m .  False. MATLAB names must begin with a letter, not a digit.    Which of the following correctly runs a script named analysis.m ?   Type analysis in the Command Window. Correct. Omit the extension when calling a script.  Type analysis.m in the Command Window. MATLAB expects the name without the extension.  Type call analysis in the Command Window. There is no call keyword in MATLAB.  Type execute('analysis') in the Command Window. There is no execute function in MATLAB.     To remove all variables from the workspace before running a script, you would add as the first line of the script.    MATLAB executes script commands in order from top to bottom.  True. Scripts execute sequentially unless control structures change the flow.    The command clc placed at the top of a script will:   Clear the Command Window display. Correct. clc clears the Command Window but does not affect variables.  Clear all workspace variables. Use clear to remove variables.  Close all open figures. Use close all to close figures.  Delete the script file. clc only clears the Command Window display.     "
 },
 {
-  "id": "scripts-rqs-2",
+  "id": "scripts-reading-quiz-2",
   "level": "2",
-  "url": "scripts-rqs.html#scripts-rqs-2",
+  "url": "scripts-reading-quiz.html#scripts-reading-quiz-2",
   "type": "Reading Question",
   "number": "1",
   "title": "",
   "body": "  A script named compute.m assigns x = 42 . After running the script, what happens to the variable x ?   It remains in the base workspace. Correct. Scripts share the base workspace.  It is deleted automatically. Variables in scripts persist unless you call clear .  It is stored inside the script file. Variables live in the workspace, not inside the file.  It causes an error because scripts cannot create variables. Scripts can create variables; they go into the base workspace.     What is the main difference between a script and a function?   Functions accept inputs and return outputs; scripts do not. Correct. That is the defining distinction.  Scripts can only run once; functions can run many times. Both can run any number of times.  Functions are saved as .mat files; scripts are saved as .m files. Both scripts and functions are saved as .m files.  Scripts are faster than functions. Speed difference is negligible; the distinction is about inputs\/outputs and workspace.     In MATLAB, the character used to start a comment is:   % Correct. Everything after % on a line is a comment.  # That is the comment character in Python and other languages, not MATLAB.  \/\/ That is used in C, C++, and Java.  -- That is used in SQL and Lua.     A MATLAB script must be saved with the .m file extension.  True. MATLAB recognizes code files by the .m extension.    Adding a semicolon ( ; ) at the end of a line in a script:   Suppresses the automatic display of that line's result. Correct. Without a semicolon, MATLAB prints the result; with one, it does not.  Ends the script. The semicolon does not end execution — it only suppresses output.  Creates a comment. Comments start with % , not ; .  Has no effect in scripts. Semicolons work the same in scripts as in the Command Window.     A MATLAB script can be named 3dPlot.m .  False. MATLAB names must begin with a letter, not a digit.    Which of the following correctly runs a script named analysis.m ?   Type analysis in the Command Window. Correct. Omit the extension when calling a script.  Type analysis.m in the Command Window. MATLAB expects the name without the extension.  Type call analysis in the Command Window. There is no call keyword in MATLAB.  Type execute('analysis') in the Command Window. There is no execute function in MATLAB.     To remove all variables from the workspace before running a script, you would add as the first line of the script.    MATLAB executes script commands in order from top to bottom.  True. Scripts execute sequentially unless control structures change the flow.    The command clc placed at the top of a script will:   Clear the Command Window display. Correct. clc clears the Command Window but does not affect variables.  Clear all workspace variables. Use clear to remove variables.  Close all open figures. Use close all to close figures.  Delete the script file. clc only clears the Command Window display.    "
 },
 {
-  "id": "subsec-scripts-exercises",
+  "id": "scripts-coding-practice",
   "level": "1",
-  "url": "subsec-scripts-exercises.html",
-  "type": "Subsection",
+  "url": "scripts-coding-practice.html",
+  "type": "Reading Questions",
   "number": "",
-  "title": "🧑🏻‍💻 Exercises",
-  "body": " 🧑🏻‍💻 Exercises   These questions and activities help you practice the concepts covered in this section. Try to answer each question on your own before checking the provided solutions.    Drills    Cylinder Volume Script   Write a script that computes the volume of a cylinder ( ) with r = 3 and h = 7 . Display the result with fprintf .     r = 3; h = 7; V = pi * r^2 * h; fprintf('Volume = %.4f\\n', V)     Speed Calculation   In the code cell below, write commands to compute the speed ( ) for distance d = 150 km and time t = 2.5 hours. Print the speed in km\/h.     d = 150; t = 2.5; v = d \/ t; fprintf('Speed = %.1f km\/h\\n', v)     BMI Calculator   In the code cell below, write a script that computes BMI ( ) for mass = 70 kg and height = 1.75 m.     mass = 70; height = 1.75; bmi = mass \/ height^2; fprintf('BMI = %.2f\\n', bmi)     Hypotenuse Calculation   In the code cell below, write a script that computes the hypotenuse of a right triangle with legs a = 3 and b = 4 , then prints the result.     % hypotenuse.m a = 3; b = 4; c = sqrt(a^2 + b^2); fprintf('Hypotenuse = %g\\n', c)       Scaffolded Activities  These activities guide you through writing scripts step-by-step. They are designed to build confidence and reinforce the concepts covered in this section. Try completing each task on your own before checking the provided solutions.   Circle Report Script   Write a script that computes the circumference and area of a circle from its radius, then prints a formatted report.     Create a new script and add clc and clear at the top.     clc; clear;       Define a radius variable r (starting with ).     % Selected Value r = 4.5;       Compute the circumference and area .     % Computations C = 2*pi*r; A = pi*r^2;       Print a clean report with three decimal places.     % Display Results fprintf('Circle report\\n'); fprintf('Radius: %.3f\\n', r); fprintf('Circumference: %.3f\\n', C); fprintf('Area: %.3f\\n', A);       Change r to a new value (such as ) and run again.    Your script should automatically update the report whenever you change the input.      Temperature Conversion Script   The conversion formula between Fahrenheit and Celsius is: Write a script that converts a temperature from Fahrenheit to Celsius and use fprintf to print some relevant messages to the command window.     Create a new script and add clc and clear at the top.     clc; clear;       Define a variable tempF for the temperature in Fahrenheit and start it at F.     % Selected Values tempF = 77;       Compute the corresponding Celsius temperature and print both values using fprintf , rounding to one decimal place.     % Computation tempC = (tempF - 32) * (5\/9); % Display results fprintf('Temperature: %.1f F = %.1f C\\n', tempF, tempC);       Rerun the script with different temperatures (e.g., F, F).    Your output should show F corresponds to approximately C, and F corresponds to approximately C.      Projectile Height Script   A projectile's height at time seconds is given by the formula: , with parameters:  is the initial height (in meters),  is the initial velocity (in meters per second), and  m\/s 2 is the acceleration due to gravity.    Write a script that computes the height of a projectile at any given time.     Create a new script and add clc and clear at the top.     clc; clear;       Define the model parameters. Use an initial height of meters and an initial velocity of m\/s.     % Selected Values h0 = 1.5; v0 = 12; g = 9.81;       Compute the height h at time t = 0.8 .     % Computation (height formula) t = 0.8; h = h0 + v0*t - 0.5*g*t^2;       Compute the time of maximum height and the maximum height .  Recall that the peak occurs when the velocity is zero, i.e., when . Do the calculus to find the formula for .     % compute tPeak and h(tPeak) tPeak = v0\/g; hMax = h0 + v0*tPeak - 0.5*g*tPeak^2;       Print a report showing t , h , tPeak , and hMax (2-decimal places).     % Display Results fprintf('Projectile report\\n'); fprintf('At t = %.2f s, height h = %.2f m\\n', t, h); fprintf('Peak occurs at t = %.2f s, max height = %.2f m\\n', tPeak, hMax);   Running this should display the following in the Command Window:   Projectile report At t = 0.80 s, height h = 7.96 m Peak occurs at t = 1.22 s, max height = 8.84 m       Rerun your script with (i) t = 0 and (ii) t = tPeak .    Part (i) should display:   Projectile report At t = 0.00 s, height h = 1.50 m Peak occurs at t = 1.22 s, max height = 8.84 m   Part (ii) should display:   Projectile report At t = 1.22 s, height h = 8.84 m Peak occurs at t = 1.22 s, max height = 8.84 m       Piggy Bank Script   Create a script that performs the following tasks.     Create a new script. At the very top, add clc and clear so each run starts with a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace       Suppose your piggy bank has the following number of coins:  87 pennies  113 nickels  13 dimes  233 quarters  Inside the script, define a variable for the quantity of each type of coin.    Add the following lines to your script:   % (b) Inputs: quantity of each type of coin nPennies = 87; nNickels = 113; nDimes = 13; nQuarters = 233;       In the same script, compute the worth (in cents) of each type of coin, and then compute the total value of all the coins.    Add the following lines to your script:   % (c) Computations: values in cents pValue = nPennies; % 1 cent each nValue = 5 * nNickels; dValue = 10 * nDimes; qValue = 25 * nQuarters; totalCents = pValue + nValue + dValue + qValue;       Display the total value of all the coins using the fprintf command.    Add the following lines to your script:   % (d) Display the total value in cents fprintf('Total value (in cents): %i cents\\n', totalCents);       Save the script as piggy_bank_counter.m . Run the script to test it and see the output.    The output in the Command Window should be:   Total value (in cents): 6607 cents       Finally, compute  the total value (in dollars)  the number of dollars  the left-over cents  and run the script again to display these values.   Hint: After getting the total value in dollars, use MATLAB's floor function to round the dollar amount down to the nearest whole number to get the number of dollars.     Add the following lines to your script:   % (f) Convert to dollars and print the dollars and cents totalDollars = totalCents\/100; nDollars = floor(totalDollars); nCents = totalCents - nDollars * 100; fprintf('Total value (in dollars): %i dollars and %i cents\\n', nDollars, nCents);   The output in the Command Window should be:   Total value (in dollars): 66 dollars and 7 cents       Solving a Quadratic Equation   The solution to the quadratic equation of the form: is given by the quadratic formula: .  An important part of this formula is the value under the square root, called the discriminant , given by: . Knowing the discriminant tells you the nature of the solutions:  If is positive, there are two distinct real solutions.  If is zero, there is exactly one real (repeated) solution.  If is negative, the solutions are complex numbers.  For example, the equation has  coefficients , , and , and  discriminant , which is positive.  So there are two distinct real solutions given by: . Write a script that uses the quadratic formula to solve a quadratic equation.     Create a new script file and add the following to the top:  % This script uses the quadratic formula to solve an equation of the form: % % a*x^2 + b*x + c = 0 % % where a, b, and c are given. clc; clear;  This ensures each run starts from a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace       Define variables a , b , and c in your script to represent the coefficients of any possible quadratic equation.  As a starting point, use the values in the example above.    Add the following lines to your script:   % (b) Set a, b, and c (example: x^2 + x - 6 = 0) a = 1; b = 1; c = -6;       Using these variables, compute  the discriminant and  the solutions to the quadratic equation.      Add the following lines to your script:   % (c) Compute the discriminant and the two solutions discriminant = b^2 - 4*a*c; x1 = (-b + sqrt(discriminant)) \/ (2*a); x2 = (-b - sqrt(discriminant)) \/ (2*a);       Display the two solutions using fprintf and disp (for the solutions).    Add the following lines to your script:   % (d) Print a short report fprintf('\\n'); fprintf('Solving the equation:\\n'); fprintf(' %g x^2 + %g x + %g = 0\\n\\n', a, b, c); fprintf('Discriminant: %g\\n', discriminant); fprintf('Solutions:\\n'); fprintf(' x1 = '); disp(x1); fprintf(' x2 = '); disp(x2);       Save the script as quadratic_solver.m and run it to make sure it works.    The output in the Command Window should be:   Solutions: x1 = 2 x2 = -3       Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (f) Update coefficients for new equation a = 2; b = -4; c = -6;   The output in the Command Window should be:   Solutions: x1 = 3 x2 = -1       Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (g) Update coefficients for new equation a = 1; b = 2; c = 5;   The output in the Command Window should be:   Solutions: x1 = -1.0000 + 2.0000i x2 = -1.0000 - 2.0000i       The previous example shows that our script can handle complex solutions.  Are there any quadratic equations that our script cannot handle? If so, give an example and explain why the script fails.    The script fails when a = 0 , because the quadratic formula divides by . For example, the equation corresponds to a = 0 , and then the expressions (2*a) in the denominator become zero.  A more robust solver would first check whether a is zero, and if so, switch to solving a linear equation. Making that kind of decision requires flow control, which we will study later.       💻 Coding Exercises    Rectangle Properties   Write a script that computes both the area and perimeter of a rectangle.  Use descriptive variable names and report the result using fprintf .  For example, if the width is and the height is , the script should print something like:  Width: 4 Height: 6 Area: 24 Perimeter: 20    w = 4; h = 6; A = w * h; P = 2 * (w + h); fprintf('Width: %g\\n', w) fprintf('Height: %g\\n', h) fprintf('Area: %g\\n', A) fprintf('Perimeter: %g\\n', P)     Distance Traveled   Write a script called distance_traveled.m that computes the distance ( ) traveled by an object moving at constant velocity ( ).  Use descriptive variable names and report the result using fprintf .  For example, if the velocity is m\/s and the time is seconds, the script should print something like:  Velocity: 30 m\/s Time: 5 seconds Distance traveled: 150 meters    v = 30; t = 5; d = v * t; fprintf('Velocity: %g m\/s\\n', v) fprintf('Time: %g seconds\\n', t) fprintf('Distance traveled: %g meters\\n', d)     Celsius to Fahrenheit   Write a script that converts a temperature in Celsius to Fahrenheit using .  Use descriptive variable names and report the result using fprintf .  For example, if the Celsius temperature is , the script should print something like:  Celsius: 100 C Fahrenheit: 212 F    C = 0; F = (9\/5) * C + 32; fprintf('Celsius: %g C\\n', C) fprintf('Fahrenheit: %g F\\n', F)     Compound Interest   Write a script to compute the final value of an investment using .  Use descriptive variable names and report the result using fprintf .  For example, if the principal is , the interest rate is , and the number of years is , the script should print something like:  Principal: 1000 Interest Rate: 0.05 Years: 10 Final Amount: 1628.89    P = 1000; r = 0.05; n = 10; A = P * (1 + r)^n; fprintf('Principal: %g\\n', P) fprintf('Interest Rate: %g\\n', r) fprintf('Years: %g\\n', n) fprintf('Final Amount: %g\\n', A)      "
+  "title": "🧑🏻‍💻 Coding Practice",
+  "body": " 🧑🏻‍💻 Coding Practice   These questions and activities help you practice the concepts covered in this section. Try to answer each question on your own before checking the provided solutions.    Script Drills   Cylinder Volume Script   Write a script that computes the volume of a cylinder ( ) with r = 3 and h = 7 . Display the result with fprintf .     r = 3; h = 7; V = pi * r^2 * h; fprintf('Volume = %.4f\\n', V)     Speed Calculation   In the code cell below, write commands to compute the speed ( ) for distance d = 150 km and time t = 2.5 hours. Print the speed in km\/h.     d = 150; t = 2.5; v = d \/ t; fprintf('Speed = %.1f km\/h\\n', v)     BMI Calculator   In the code cell below, write a script that computes BMI ( ) for mass = 70 kg and height = 1.75 m.     mass = 70; height = 1.75; bmi = mass \/ height^2; fprintf('BMI = %.2f\\n', bmi)     Hypotenuse Calculation   In the code cell below, write a script that computes the hypotenuse of a right triangle with legs a = 3 and b = 4 , then prints the result.     % hypotenuse.m a = 3; b = 4; c = sqrt(a^2 + b^2); fprintf('Hypotenuse = %g\\n', c)      Writing Scripts   These activities guide you through writing scripts step-by-step. They are designed to build confidence and reinforce the concepts covered in this section. Try completing each task on your own before checking the provided solutions.    Circle Report 1   Write a script that computes the circumference and area of a circle from its radius, then prints a formatted report.  Create a new script and add clc and clear at the top.     clc; clear;      Circle Report 2   Define a radius variable r (starting with ).     % Selected Value r = 4.5;      Circle Report 3   Compute the circumference and area .     % Computations C = 2*pi*r; A = pi*r^2;      Circle Report 4   Print a clean report with three decimal places.     % Display Results fprintf('Circle report\\n'); fprintf('Radius: %.3f\\n', r); fprintf('Circumference: %.3f\\n', C); fprintf('Area: %.3f\\n', A);      Circle Report 5   Change r to a new value (such as ) and run again.    Your script should automatically update the report whenever you change the input.     Temperature Conversion 1   The conversion formula between Fahrenheit and Celsius is: Write a script that converts a temperature from Fahrenheit to Celsius and use fprintf to print some relevant messages to the command window.  Create a new script and add clc and clear at the top.     clc; clear;      Temperature Conversion 2   Define a variable tempF for the temperature in Fahrenheit and start it at F.     % Selected Values tempF = 77;      Temperature Conversion 3   Compute the corresponding Celsius temperature and print both values using fprintf , rounding to one decimal place.     % Computation tempC = (tempF - 32) * (5\/9); % Display results fprintf('Temperature: %.1f F = %.1f C\\n', tempF, tempC);      Temperature Conversion 4   Rerun the script with different temperatures (e.g., F, F).    Your output should show F corresponds to approximately C, and F corresponds to approximately C.     Projectile Height 1   A projectile's height at time seconds is given by the formula: , with parameters:  is the initial height (in meters),  is the initial velocity (in meters per second), and  m\/s 2 is the acceleration due to gravity.    Write a script that computes the height of a projectile at any given time.  Create a new script and add clc and clear at the top.     clc; clear;      Projectile Height 2   Define the model parameters. Use an initial height of meters and an initial velocity of m\/s.     % Selected Values h0 = 1.5; v0 = 12; g = 9.81;      Projectile Height 3   Compute the height h at time t = 0.8 .     % Computation (height formula) t = 0.8; h = h0 + v0*t - 0.5*g*t^2;      Projectile Height 4   Compute the time of maximum height and the maximum height .  Recall that the peak occurs when the velocity is zero, i.e., when . Do the calculus to find the formula for .     % compute tPeak and h(tPeak) tPeak = v0\/g; hMax = h0 + v0*tPeak - 0.5*g*tPeak^2;      Projectile Height 5   Print a report showing t , h , tPeak , and hMax (2-decimal places).     % Display Results fprintf('Projectile report\\n'); fprintf('At t = %.2f s, height h = %.2f m\\n', t, h); fprintf('Peak occurs at t = %.2f s, max height = %.2f m\\n', tPeak, hMax);   Running this should display the following in the Command Window:   Projectile report At t = 0.80 s, height h = 7.96 m Peak occurs at t = 1.22 s, max height = 8.84 m      Projectile Height 6   Rerun your script with (i) t = 0 and (ii) t = tPeak .    Part (i) should display:   Projectile report At t = 0.00 s, height h = 1.50 m Peak occurs at t = 1.22 s, max height = 8.84 m   Part (ii) should display:   Projectile report At t = 1.22 s, height h = 8.84 m Peak occurs at t = 1.22 s, max height = 8.84 m      Piggy Bank 1   Create a script that performs the following tasks.  Create a new script. At the very top, add clc and clear so each run starts with a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace      Piggy Bank 2   Suppose your piggy bank has the following number of coins:  87 pennies  113 nickels  13 dimes  233 quarters  Inside the script, define a variable for the quantity of each type of coin.    Add the following lines to your script:   % (b) Inputs: quantity of each type of coin nPennies = 87; nNickels = 113; nDimes = 13; nQuarters = 233;      Piggy Bank 3   In the same script, compute the worth (in cents) of each type of coin, and then compute the total value of all the coins.    Add the following lines to your script:   % (c) Computations: values in cents pValue = nPennies; % 1 cent each nValue = 5 * nNickels; dValue = 10 * nDimes; qValue = 25 * nQuarters; totalCents = pValue + nValue + dValue + qValue;      Piggy Bank 4   Display the total value of all the coins using the fprintf command.    Add the following lines to your script:   % (d) Display the total value in cents fprintf('Total value (in cents): %i cents\\n', totalCents);      Piggy Bank 5   Save the script as piggy_bank_counter.m . Run the script to test it and see the output.    The output in the Command Window should be:   Total value (in cents): 6607 cents      Piggy Bank 6   Finally, compute  the total value (in dollars)  the number of dollars  the left-over cents  and run the script again to display these values.   Hint: After getting the total value in dollars, use MATLAB's floor function to round the dollar amount down to the nearest whole number to get the number of dollars.     Add the following lines to your script:   % (f) Convert to dollars and print the dollars and cents totalDollars = totalCents\/100; nDollars = floor(totalDollars); nCents = totalCents - nDollars * 100; fprintf('Total value (in dollars): %i dollars and %i cents\\n', nDollars, nCents);   The output in the Command Window should be:   Total value (in dollars): 66 dollars and 7 cents      Quadratic Equation 1   The solution to the quadratic equation of the form: is given by the quadratic formula: .  An important part of this formula is the value under the square root, called the discriminant , given by: . Knowing the discriminant tells you the nature of the solutions:  If is positive, there are two distinct real solutions.  If is zero, there is exactly one real (repeated) solution.  If is negative, the solutions are complex numbers.  For example, the equation has  coefficients , , and , and  discriminant , which is positive.  So there are two distinct real solutions given by: . Write a script that uses the quadratic formula to solve a quadratic equation.  Create a new script file and add the following to the top:  % This script uses the quadratic formula to solve an equation of the form: % % a*x^2 + b*x + c = 0 % % where a, b, and c are given. clc; clear;  This ensures each run starts from a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace      Quadratic Equation 2   Define variables a , b , and c in your script to represent the coefficients of any possible quadratic equation.  As a starting point, use the values in the example above.    Add the following lines to your script:   % (b) Set a, b, and c (example: x^2 + x - 6 = 0) a = 1; b = 1; c = -6;      Quadratic Equation 3   Using these variables, compute  the discriminant and  the solutions to the quadratic equation.      Add the following lines to your script:   % (c) Compute the discriminant and the two solutions discriminant = b^2 - 4*a*c; x1 = (-b + sqrt(discriminant)) \/ (2*a); x2 = (-b - sqrt(discriminant)) \/ (2*a);      Quadratic Equation 4   Display the two solutions using fprintf and disp (for the solutions).    Add the following lines to your script:   % (d) Print a short report fprintf('\\n'); fprintf('Solving the equation:\\n'); fprintf(' %g x^2 + %g x + %g = 0\\n\\n', a, b, c); fprintf('Discriminant: %g\\n', discriminant); fprintf('Solutions:\\n'); fprintf(' x1 = '); disp(x1); fprintf(' x2 = '); disp(x2);      Quadratic Equation 5   Save the script as quadratic_solver.m and run it to make sure it works.    The output in the Command Window should be:   Solutions: x1 = 2 x2 = -3      Quadratic Equation 6   Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (f) Update coefficients for new equation a = 2; b = -4; c = -6;   The output in the Command Window should be:   Solutions: x1 = 3 x2 = -1      Quadratic Equation 7   Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (g) Update coefficients for new equation a = 1; b = 2; c = 5;   The output in the Command Window should be:   Solutions: x1 = -1.0000 + 2.0000i x2 = -1.0000 - 2.0000i      Quadratic Equation 8   The previous example shows that our script can handle complex solutions.  Are there any quadratic equations that our script cannot handle? If so, give an example and explain why the script fails.    The script fails when a = 0 , because the quadratic formula divides by . For example, the equation corresponds to a = 0 , and then the expressions (2*a) in the denominator become zero.  A more robust solver would first check whether a is zero, and if so, switch to solving a linear equation. Making that kind of decision requires flow control, which we will study later.     "
 },
 {
-  "id": "scripts-activities",
+  "id": "script-drills",
   "level": "2",
-  "url": "subsec-scripts-exercises.html#scripts-activities",
-  "type": "Checkpoint",
-  "number": "2.5",
-  "title": "",
-  "body": "  Cylinder Volume Script   Write a script that computes the volume of a cylinder ( ) with r = 3 and h = 7 . Display the result with fprintf .     r = 3; h = 7; V = pi * r^2 * h; fprintf('Volume = %.4f\\n', V)     Speed Calculation   In the code cell below, write commands to compute the speed ( ) for distance d = 150 km and time t = 2.5 hours. Print the speed in km\/h.     d = 150; t = 2.5; v = d \/ t; fprintf('Speed = %.1f km\/h\\n', v)     BMI Calculator   In the code cell below, write a script that computes BMI ( ) for mass = 70 kg and height = 1.75 m.     mass = 70; height = 1.75; bmi = mass \/ height^2; fprintf('BMI = %.2f\\n', bmi)     Hypotenuse Calculation   In the code cell below, write a script that computes the hypotenuse of a right triangle with legs a = 3 and b = 4 , then prints the result.     % hypotenuse.m a = 3; b = 4; c = sqrt(a^2 + b^2); fprintf('Hypotenuse = %g\\n', c)    "
-},
-{
-  "id": "script-circle-report",
-  "level": "2",
-  "url": "subsec-scripts-exercises.html#script-circle-report",
-  "type": "Checkpoint",
-  "number": "2.6",
-  "title": "Circle Report Script.",
-  "body": " Circle Report Script   Write a script that computes the circumference and area of a circle from its radius, then prints a formatted report.     Create a new script and add clc and clear at the top.     clc; clear;       Define a radius variable r (starting with ).     % Selected Value r = 4.5;       Compute the circumference and area .     % Computations C = 2*pi*r; A = pi*r^2;       Print a clean report with three decimal places.     % Display Results fprintf('Circle report\\n'); fprintf('Radius: %.3f\\n', r); fprintf('Circumference: %.3f\\n', C); fprintf('Area: %.3f\\n', A);       Change r to a new value (such as ) and run again.    Your script should automatically update the report whenever you change the input.    "
-},
-{
-  "id": "script-temp-converter",
-  "level": "2",
-  "url": "subsec-scripts-exercises.html#script-temp-converter",
-  "type": "Checkpoint",
-  "number": "2.7",
-  "title": "Temperature Conversion Script.",
-  "body": " Temperature Conversion Script   The conversion formula between Fahrenheit and Celsius is: Write a script that converts a temperature from Fahrenheit to Celsius and use fprintf to print some relevant messages to the command window.     Create a new script and add clc and clear at the top.     clc; clear;       Define a variable tempF for the temperature in Fahrenheit and start it at F.     % Selected Values tempF = 77;       Compute the corresponding Celsius temperature and print both values using fprintf , rounding to one decimal place.     % Computation tempC = (tempF - 32) * (5\/9); % Display results fprintf('Temperature: %.1f F = %.1f C\\n', tempF, tempC);       Rerun the script with different temperatures (e.g., F, F).    Your output should show F corresponds to approximately C, and F corresponds to approximately C.    "
-},
-{
-  "id": "script-projectile-height",
-  "level": "2",
-  "url": "subsec-scripts-exercises.html#script-projectile-height",
-  "type": "Checkpoint",
-  "number": "2.8",
-  "title": "Projectile Height Script.",
-  "body": " Projectile Height Script   A projectile's height at time seconds is given by the formula: , with parameters:  is the initial height (in meters),  is the initial velocity (in meters per second), and  m\/s 2 is the acceleration due to gravity.    Write a script that computes the height of a projectile at any given time.     Create a new script and add clc and clear at the top.     clc; clear;       Define the model parameters. Use an initial height of meters and an initial velocity of m\/s.     % Selected Values h0 = 1.5; v0 = 12; g = 9.81;       Compute the height h at time t = 0.8 .     % Computation (height formula) t = 0.8; h = h0 + v0*t - 0.5*g*t^2;       Compute the time of maximum height and the maximum height .  Recall that the peak occurs when the velocity is zero, i.e., when . Do the calculus to find the formula for .     % compute tPeak and h(tPeak) tPeak = v0\/g; hMax = h0 + v0*tPeak - 0.5*g*tPeak^2;       Print a report showing t , h , tPeak , and hMax (2-decimal places).     % Display Results fprintf('Projectile report\\n'); fprintf('At t = %.2f s, height h = %.2f m\\n', t, h); fprintf('Peak occurs at t = %.2f s, max height = %.2f m\\n', tPeak, hMax);   Running this should display the following in the Command Window:   Projectile report At t = 0.80 s, height h = 7.96 m Peak occurs at t = 1.22 s, max height = 8.84 m       Rerun your script with (i) t = 0 and (ii) t = tPeak .    Part (i) should display:   Projectile report At t = 0.00 s, height h = 1.50 m Peak occurs at t = 1.22 s, max height = 8.84 m   Part (ii) should display:   Projectile report At t = 1.22 s, height h = 8.84 m Peak occurs at t = 1.22 s, max height = 8.84 m     "
-},
-{
-  "id": "script-piggy-bank",
-  "level": "2",
-  "url": "subsec-scripts-exercises.html#script-piggy-bank",
-  "type": "Checkpoint",
-  "number": "2.9",
-  "title": "Piggy Bank Script.",
-  "body": " Piggy Bank Script   Create a script that performs the following tasks.     Create a new script. At the very top, add clc and clear so each run starts with a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace       Suppose your piggy bank has the following number of coins:  87 pennies  113 nickels  13 dimes  233 quarters  Inside the script, define a variable for the quantity of each type of coin.    Add the following lines to your script:   % (b) Inputs: quantity of each type of coin nPennies = 87; nNickels = 113; nDimes = 13; nQuarters = 233;       In the same script, compute the worth (in cents) of each type of coin, and then compute the total value of all the coins.    Add the following lines to your script:   % (c) Computations: values in cents pValue = nPennies; % 1 cent each nValue = 5 * nNickels; dValue = 10 * nDimes; qValue = 25 * nQuarters; totalCents = pValue + nValue + dValue + qValue;       Display the total value of all the coins using the fprintf command.    Add the following lines to your script:   % (d) Display the total value in cents fprintf('Total value (in cents): %i cents\\n', totalCents);       Save the script as piggy_bank_counter.m . Run the script to test it and see the output.    The output in the Command Window should be:   Total value (in cents): 6607 cents       Finally, compute  the total value (in dollars)  the number of dollars  the left-over cents  and run the script again to display these values.   Hint: After getting the total value in dollars, use MATLAB's floor function to round the dollar amount down to the nearest whole number to get the number of dollars.     Add the following lines to your script:   % (f) Convert to dollars and print the dollars and cents totalDollars = totalCents\/100; nDollars = floor(totalDollars); nCents = totalCents - nDollars * 100; fprintf('Total value (in dollars): %i dollars and %i cents\\n', nDollars, nCents);   The output in the Command Window should be:   Total value (in dollars): 66 dollars and 7 cents     "
-},
-{
-  "id": "script-quadratic",
-  "level": "2",
-  "url": "subsec-scripts-exercises.html#script-quadratic",
-  "type": "Checkpoint",
-  "number": "2.10",
-  "title": "Solving a Quadratic Equation.",
-  "body": " Solving a Quadratic Equation   The solution to the quadratic equation of the form: is given by the quadratic formula: .  An important part of this formula is the value under the square root, called the discriminant , given by: . Knowing the discriminant tells you the nature of the solutions:  If is positive, there are two distinct real solutions.  If is zero, there is exactly one real (repeated) solution.  If is negative, the solutions are complex numbers.  For example, the equation has  coefficients , , and , and  discriminant , which is positive.  So there are two distinct real solutions given by: . Write a script that uses the quadratic formula to solve a quadratic equation.     Create a new script file and add the following to the top:  % This script uses the quadratic formula to solve an equation of the form: % % a*x^2 + b*x + c = 0 % % where a, b, and c are given. clc; clear;  This ensures each run starts from a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace       Define variables a , b , and c in your script to represent the coefficients of any possible quadratic equation.  As a starting point, use the values in the example above.    Add the following lines to your script:   % (b) Set a, b, and c (example: x^2 + x - 6 = 0) a = 1; b = 1; c = -6;       Using these variables, compute  the discriminant and  the solutions to the quadratic equation.      Add the following lines to your script:   % (c) Compute the discriminant and the two solutions discriminant = b^2 - 4*a*c; x1 = (-b + sqrt(discriminant)) \/ (2*a); x2 = (-b - sqrt(discriminant)) \/ (2*a);       Display the two solutions using fprintf and disp (for the solutions).    Add the following lines to your script:   % (d) Print a short report fprintf('\\n'); fprintf('Solving the equation:\\n'); fprintf(' %g x^2 + %g x + %g = 0\\n\\n', a, b, c); fprintf('Discriminant: %g\\n', discriminant); fprintf('Solutions:\\n'); fprintf(' x1 = '); disp(x1); fprintf(' x2 = '); disp(x2);       Save the script as quadratic_solver.m and run it to make sure it works.    The output in the Command Window should be:   Solutions: x1 = 2 x2 = -3       Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (f) Update coefficients for new equation a = 2; b = -4; c = -6;   The output in the Command Window should be:   Solutions: x1 = 3 x2 = -1       Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (g) Update coefficients for new equation a = 1; b = 2; c = 5;   The output in the Command Window should be:   Solutions: x1 = -1.0000 + 2.0000i x2 = -1.0000 - 2.0000i       The previous example shows that our script can handle complex solutions.  Are there any quadratic equations that our script cannot handle? If so, give an example and explain why the script fails.    The script fails when a = 0 , because the quadratic formula divides by . For example, the equation corresponds to a = 0 , and then the expressions (2*a) in the denominator become zero.  A more robust solver would first check whether a is zero, and if so, switch to solving a linear equation. Making that kind of decision requires flow control, which we will study later.    "
-},
-{
-  "id": "scripts-coding-exercise-1",
-  "level": "2",
-  "url": "subsec-scripts-exercises.html#scripts-coding-exercise-1",
-  "type": "Exercise",
+  "url": "scripts-coding-practice.html#script-drills",
+  "type": "Reading Question",
   "number": "1",
-  "title": "",
-  "body": "  Rectangle Properties   Write a script that computes both the area and perimeter of a rectangle.  Use descriptive variable names and report the result using fprintf .  For example, if the width is and the height is , the script should print something like:  Width: 4 Height: 6 Area: 24 Perimeter: 20    w = 4; h = 6; A = w * h; P = 2 * (w + h); fprintf('Width: %g\\n', w) fprintf('Height: %g\\n', h) fprintf('Area: %g\\n', A) fprintf('Perimeter: %g\\n', P)     Distance Traveled   Write a script called distance_traveled.m that computes the distance ( ) traveled by an object moving at constant velocity ( ).  Use descriptive variable names and report the result using fprintf .  For example, if the velocity is m\/s and the time is seconds, the script should print something like:  Velocity: 30 m\/s Time: 5 seconds Distance traveled: 150 meters    v = 30; t = 5; d = v * t; fprintf('Velocity: %g m\/s\\n', v) fprintf('Time: %g seconds\\n', t) fprintf('Distance traveled: %g meters\\n', d)     Celsius to Fahrenheit   Write a script that converts a temperature in Celsius to Fahrenheit using .  Use descriptive variable names and report the result using fprintf .  For example, if the Celsius temperature is , the script should print something like:  Celsius: 100 C Fahrenheit: 212 F    C = 0; F = (9\/5) * C + 32; fprintf('Celsius: %g C\\n', C) fprintf('Fahrenheit: %g F\\n', F)     Compound Interest   Write a script to compute the final value of an investment using .  Use descriptive variable names and report the result using fprintf .  For example, if the principal is , the interest rate is , and the number of years is , the script should print something like:  Principal: 1000 Interest Rate: 0.05 Years: 10 Final Amount: 1628.89    P = 1000; r = 0.05; n = 10; A = P * (1 + r)^n; fprintf('Principal: %g\\n', P) fprintf('Interest Rate: %g\\n', r) fprintf('Years: %g\\n', n) fprintf('Final Amount: %g\\n', A)    "
+  "title": "Script Drills.",
+  "body": " Script Drills   Cylinder Volume Script   Write a script that computes the volume of a cylinder ( ) with r = 3 and h = 7 . Display the result with fprintf .     r = 3; h = 7; V = pi * r^2 * h; fprintf('Volume = %.4f\\n', V)     Speed Calculation   In the code cell below, write commands to compute the speed ( ) for distance d = 150 km and time t = 2.5 hours. Print the speed in km\/h.     d = 150; t = 2.5; v = d \/ t; fprintf('Speed = %.1f km\/h\\n', v)     BMI Calculator   In the code cell below, write a script that computes BMI ( ) for mass = 70 kg and height = 1.75 m.     mass = 70; height = 1.75; bmi = mass \/ height^2; fprintf('BMI = %.2f\\n', bmi)     Hypotenuse Calculation   In the code cell below, write a script that computes the hypotenuse of a right triangle with legs a = 3 and b = 4 , then prints the result.     % hypotenuse.m a = 3; b = 4; c = sqrt(a^2 + b^2); fprintf('Hypotenuse = %g\\n', c)    "
 },
 {
-  "id": "functions-description-usage",
+  "id": "writing-scripts",
+  "level": "2",
+  "url": "scripts-coding-practice.html#writing-scripts",
+  "type": "Reading Question",
+  "number": "2",
+  "title": "Writing Scripts.",
+  "body": " Writing Scripts   These activities guide you through writing scripts step-by-step. They are designed to build confidence and reinforce the concepts covered in this section. Try completing each task on your own before checking the provided solutions.    Circle Report 1   Write a script that computes the circumference and area of a circle from its radius, then prints a formatted report.  Create a new script and add clc and clear at the top.     clc; clear;      Circle Report 2   Define a radius variable r (starting with ).     % Selected Value r = 4.5;      Circle Report 3   Compute the circumference and area .     % Computations C = 2*pi*r; A = pi*r^2;      Circle Report 4   Print a clean report with three decimal places.     % Display Results fprintf('Circle report\\n'); fprintf('Radius: %.3f\\n', r); fprintf('Circumference: %.3f\\n', C); fprintf('Area: %.3f\\n', A);      Circle Report 5   Change r to a new value (such as ) and run again.    Your script should automatically update the report whenever you change the input.     Temperature Conversion 1   The conversion formula between Fahrenheit and Celsius is: Write a script that converts a temperature from Fahrenheit to Celsius and use fprintf to print some relevant messages to the command window.  Create a new script and add clc and clear at the top.     clc; clear;      Temperature Conversion 2   Define a variable tempF for the temperature in Fahrenheit and start it at F.     % Selected Values tempF = 77;      Temperature Conversion 3   Compute the corresponding Celsius temperature and print both values using fprintf , rounding to one decimal place.     % Computation tempC = (tempF - 32) * (5\/9); % Display results fprintf('Temperature: %.1f F = %.1f C\\n', tempF, tempC);      Temperature Conversion 4   Rerun the script with different temperatures (e.g., F, F).    Your output should show F corresponds to approximately C, and F corresponds to approximately C.     Projectile Height 1   A projectile's height at time seconds is given by the formula: , with parameters:  is the initial height (in meters),  is the initial velocity (in meters per second), and  m\/s 2 is the acceleration due to gravity.    Write a script that computes the height of a projectile at any given time.  Create a new script and add clc and clear at the top.     clc; clear;      Projectile Height 2   Define the model parameters. Use an initial height of meters and an initial velocity of m\/s.     % Selected Values h0 = 1.5; v0 = 12; g = 9.81;      Projectile Height 3   Compute the height h at time t = 0.8 .     % Computation (height formula) t = 0.8; h = h0 + v0*t - 0.5*g*t^2;      Projectile Height 4   Compute the time of maximum height and the maximum height .  Recall that the peak occurs when the velocity is zero, i.e., when . Do the calculus to find the formula for .     % compute tPeak and h(tPeak) tPeak = v0\/g; hMax = h0 + v0*tPeak - 0.5*g*tPeak^2;      Projectile Height 5   Print a report showing t , h , tPeak , and hMax (2-decimal places).     % Display Results fprintf('Projectile report\\n'); fprintf('At t = %.2f s, height h = %.2f m\\n', t, h); fprintf('Peak occurs at t = %.2f s, max height = %.2f m\\n', tPeak, hMax);   Running this should display the following in the Command Window:   Projectile report At t = 0.80 s, height h = 7.96 m Peak occurs at t = 1.22 s, max height = 8.84 m      Projectile Height 6   Rerun your script with (i) t = 0 and (ii) t = tPeak .    Part (i) should display:   Projectile report At t = 0.00 s, height h = 1.50 m Peak occurs at t = 1.22 s, max height = 8.84 m   Part (ii) should display:   Projectile report At t = 1.22 s, height h = 8.84 m Peak occurs at t = 1.22 s, max height = 8.84 m      Piggy Bank 1   Create a script that performs the following tasks.  Create a new script. At the very top, add clc and clear so each run starts with a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace      Piggy Bank 2   Suppose your piggy bank has the following number of coins:  87 pennies  113 nickels  13 dimes  233 quarters  Inside the script, define a variable for the quantity of each type of coin.    Add the following lines to your script:   % (b) Inputs: quantity of each type of coin nPennies = 87; nNickels = 113; nDimes = 13; nQuarters = 233;      Piggy Bank 3   In the same script, compute the worth (in cents) of each type of coin, and then compute the total value of all the coins.    Add the following lines to your script:   % (c) Computations: values in cents pValue = nPennies; % 1 cent each nValue = 5 * nNickels; dValue = 10 * nDimes; qValue = 25 * nQuarters; totalCents = pValue + nValue + dValue + qValue;      Piggy Bank 4   Display the total value of all the coins using the fprintf command.    Add the following lines to your script:   % (d) Display the total value in cents fprintf('Total value (in cents): %i cents\\n', totalCents);      Piggy Bank 5   Save the script as piggy_bank_counter.m . Run the script to test it and see the output.    The output in the Command Window should be:   Total value (in cents): 6607 cents      Piggy Bank 6   Finally, compute  the total value (in dollars)  the number of dollars  the left-over cents  and run the script again to display these values.   Hint: After getting the total value in dollars, use MATLAB's floor function to round the dollar amount down to the nearest whole number to get the number of dollars.     Add the following lines to your script:   % (f) Convert to dollars and print the dollars and cents totalDollars = totalCents\/100; nDollars = floor(totalDollars); nCents = totalCents - nDollars * 100; fprintf('Total value (in dollars): %i dollars and %i cents\\n', nDollars, nCents);   The output in the Command Window should be:   Total value (in dollars): 66 dollars and 7 cents      Quadratic Equation 1   The solution to the quadratic equation of the form: is given by the quadratic formula: .  An important part of this formula is the value under the square root, called the discriminant , given by: . Knowing the discriminant tells you the nature of the solutions:  If is positive, there are two distinct real solutions.  If is zero, there is exactly one real (repeated) solution.  If is negative, the solutions are complex numbers.  For example, the equation has  coefficients , , and , and  discriminant , which is positive.  So there are two distinct real solutions given by: . Write a script that uses the quadratic formula to solve a quadratic equation.  Create a new script file and add the following to the top:  % This script uses the quadratic formula to solve an equation of the form: % % a*x^2 + b*x + c = 0 % % where a, b, and c are given. clc; clear;  This ensures each run starts from a clean state.    Add the following lines to the top of your script:   % (a) Add clc and clear clc; % Clear the Command Window clear; % Clear the workspace      Quadratic Equation 2   Define variables a , b , and c in your script to represent the coefficients of any possible quadratic equation.  As a starting point, use the values in the example above.    Add the following lines to your script:   % (b) Set a, b, and c (example: x^2 + x - 6 = 0) a = 1; b = 1; c = -6;      Quadratic Equation 3   Using these variables, compute  the discriminant and  the solutions to the quadratic equation.      Add the following lines to your script:   % (c) Compute the discriminant and the two solutions discriminant = b^2 - 4*a*c; x1 = (-b + sqrt(discriminant)) \/ (2*a); x2 = (-b - sqrt(discriminant)) \/ (2*a);      Quadratic Equation 4   Display the two solutions using fprintf and disp (for the solutions).    Add the following lines to your script:   % (d) Print a short report fprintf('\\n'); fprintf('Solving the equation:\\n'); fprintf(' %g x^2 + %g x + %g = 0\\n\\n', a, b, c); fprintf('Discriminant: %g\\n', discriminant); fprintf('Solutions:\\n'); fprintf(' x1 = '); disp(x1); fprintf(' x2 = '); disp(x2);      Quadratic Equation 5   Save the script as quadratic_solver.m and run it to make sure it works.    The output in the Command Window should be:   Solutions: x1 = 2 x2 = -3      Quadratic Equation 6   Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (f) Update coefficients for new equation a = 2; b = -4; c = -6;   The output in the Command Window should be:   Solutions: x1 = 3 x2 = -1      Quadratic Equation 7   Change the values of a , b , and c to solve the equation . Run the script again to see the new solutions.    Update the coefficient definitions in your script as follows:   % (g) Update coefficients for new equation a = 1; b = 2; c = 5;   The output in the Command Window should be:   Solutions: x1 = -1.0000 + 2.0000i x2 = -1.0000 - 2.0000i      Quadratic Equation 8   The previous example shows that our script can handle complex solutions.  Are there any quadratic equations that our script cannot handle? If so, give an example and explain why the script fails.    The script fails when a = 0 , because the quadratic formula divides by . For example, the equation corresponds to a = 0 , and then the expressions (2*a) in the denominator become zero.  A more robust solver would first check whether a is zero, and if so, switch to solving a linear equation. Making that kind of decision requires flow control, which we will study later.    "
+},
+{
+  "id": "subsec-functions",
   "level": "1",
-  "url": "functions-description-usage.html",
+  "url": "subsec-functions.html",
   "type": "Subsection",
   "number": "",
-  "title": "🧱 Description &amp; Usage",
-  "body": " 🧱 Description & Usage   A MATLAB function is a .m file that stores a sequence of MATLAB commands. Like a script, MATLAB executes those commands from top to bottom. The key difference is that a function is designed to accept inputs (known information) and return outputs (desired information).  You have already used many built-in MATLAB functions (such as sqrt , abs , and floor ). The functions you write in this course work the same way: MATLAB only cares about the inputs you provide and the outputs the function returns.    Function Structure  A MATLAB function is a .m file that stores a sequence of MATLAB commands. Like a script, MATLAB executes those commands from top to bottom. The key difference is that a function is designed to accept inputs (known information) and return outputs (desired information).  You have already used many built-in MATLAB functions (such as sqrt , abs , and floor ). The functions you write in this course work the same way: MATLAB only cares about the inputs you provide and the outputs the function returns.   MATLAB Function Syntax  Syntax: function output = functionName(input)   The file must be saved as functionName.m — the file name must match the function name exactly.  Functions use a private workspace : internal variables are not visible outside the function after it finishes.  Inputs are listed in parentheses; multiple inputs are separated by commas: functionName(a, b, c) .  A single output is written to the left of the = ; multiple outputs use square brackets: [out1, out2] = functionName(in) .  The function body contains the commands that compute the output(s) from the input(s).  The function ends with the keyword end .     A MATLAB function named triangle_area must be saved in a file called:    triangle_area.m  The file name must match the function name exactly (without the .m extension in the header).    function.m  The file name must match the function name, not just the keyword function .    triangle.m  The file name must be the complete function name: triangle_area.m .    Any name ending in .m  MATLAB requires the file name to match the function name so it can locate the function.      True or False: Variables created inside a MATLAB function automatically appear in the base Workspace after the function finishes.    True  Functions use a private workspace. Internal variables disappear when the function ends; only the declared outputs are returned.    False  Correct. Functions use a private workspace, so their internal variables do not appear in the base Workspace.      Which syntax correctly captures two outputs from a function f ?    a, b = f(x)  This is not valid MATLAB syntax.    [a, b] = f(x)  Square brackets on the left side of the assignment are used to capture multiple outputs.    (a, b) = f(x)  Parentheses are not used on the left side for capturing outputs.    a = f(x), b  This is not valid MATLAB syntax for capturing two outputs.      In the function header function y = f(x) , which symbol represents the output?    f  f is the function name, not the output.    x  x is the input, listed inside the parentheses.    y  Correct. The output variable appears between function and the = sign.    function  function is the keyword that begins every function definition.       One Input, One Output  Functions help you package a useful calculation into a reusable tool. Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.  Here is an example of a simple function that computes the perimeter of a square given its side length.   MATLAB Function with 1 Input and 1 Output   function perimeter = square_perimeter(side) % Use the input (side) to compute the output (perimeter) perimeter = 4 * side; end    To use this function, save it in a file named square_perimeter.m . Then, in the Command Window (or in another script), call the function by providing an input value inside parentheses. For example, to compute the perimeter of a square with side length 5, type:   p = square_perimeter(5) % returns 20 and stores it in variable p   MATLAB will run the commands inside the function, using the input value you provided ( 5 ) to compute the output value ( 20 ). The result is then returned to the Command Window and stored in the variable p .    Two Inputs, One Output  To create a function in MATLAB, you start by opening a new function file. Here is an example of a function that computes the perimeter of a rectangle given its two sides.   MATLAB Function with 2 Inputs and 1 Output   function perimeter = rectangle_perimeter(side1, side2) % Use the inputs (side1 and side2) % to compute the output (perimeter) perimeter = 2 * side1 + 2 * side2; end    The first line of the function file is the function header , which defines the function's name, inputs, and outputs. For example, in the function above, the line   function perimeter = rectangle_perimeter(side1, side2)   declares a function named rectangle_perimeter that takes two inputs ( side1 and side2 ) and returns one output ( perimeter ).  When you save the function, the function name should match the file name (without the .m extension). In this example, the function is named rectangle_perimeter , so the file should be saved as rectangle_perimeter.m .   Where to save your function file  For MATLAB to find your function, save the .m file in the Current Folder (or in a folder on the MATLAB path). If MATLAB says it cannot find your function, this is the first thing to check.   Inside the function, you can use the input variables to perform calculations and assign values to the output variable. When the function is called, MATLAB executes the commands in the function file and returns the output value. Unlike scripts, intermediate variables stay inside the function unless you return them.  To call this function, provide two input values inside parentheses. For example, to compute the perimeter of a rectangle with side lengths 4 and 7, type:   p = rectangle_perimeter(4, 7) % returns 22 & stores it in p   MATLAB will run the commands inside the function, using the input values you provided ( 4 and 7 ) to compute the output value ( 22 ). The result is then returned to the Command Window and stored in the variable p .    Two Inputs, Two Outputs  Functions can return multiple outputs. To specify multiple outputs, list them in square brackets in the function header. Here is an example of a function that computes both the perimeter and area of a rectangle given the lengths of its two sides.   MATLAB Function with 2 Inputs and 2 Outputs   function [perimeter, area] = rectangle_properties(side1, side2) % Use the inputs (side1 and side2) % to compute the outputs (perimeter and area) perimeter = 2 * side1 + 2 * side2; area = side1 * side2; end    To call this function and capture both outputs, use square brackets on the left side of the assignment. For example, to compute the perimeter and area of a rectangle with side lengths 4 and 7, type:   [p, a] = rectangle_properties(4, 7) % returns p = 22 and a = 28   MATLAB will run the commands inside the function, using the input values you provided ( 4 and 7 ) to compute the output values ( 22 and 28 ). The results are then returned to the Command Window and stored in the variables p and a .   Ignoring Outputs  If you only want some of the outputs from a function, you can ignore the others by using a tilde ( ~ ) as a placeholder. For example, to compute only the area of a rectangle and ignore the perimeter, type:   % returns a = 28, ignores perimeter [~, a] = rectangle_properties(4, 7)      Examples   One Input, One Output   Functions help you package a useful calculation into a reusable tool. Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.  Here is a function that computes the perimeter of a square given its side length. Save it in a file named square_perimeter.m .   function perimeter = square_perimeter(side) % Use the input (side) to compute the output (perimeter) perimeter = 4 * side; end   To call this function, type the following in the Command Window or in a script:   p = square_perimeter(5) % returns 20 and stores it in variable p   MATLAB runs the commands inside the function using the provided input ( 5 ), computes the output ( 20 ), and stores it in p .     Two Inputs, One Output   A function can accept more than one input. Here is a function that computes the perimeter of a rectangle given its two side lengths.   function perimeter = rectangle_perimeter(side1, side2) % Use the inputs (side1 and side2) % to compute the output (perimeter) perimeter = 2 * side1 + 2 * side2; end   The first line is the function header : it declares the function name ( rectangle_perimeter ), the inputs ( side1 , side2 ), and the output ( perimeter ). Save the file as rectangle_perimeter.m so that MATLAB can find it.  To call this function with side lengths 4 and 7:   p = rectangle_perimeter(4, 7) % returns 22 and stores it in p      Two Inputs, Two Outputs   Functions can return multiple outputs. List them in square brackets in the function header. The function below computes both the perimeter and area of a rectangle.   function [perimeter, area] = rectangle_properties(side1, side2) % Use the inputs (side1 and side2) % to compute the outputs (perimeter and area) perimeter = 2 * side1 + 2 * side2; area = side1 * side2; end   Capture both outputs using square brackets on the left side:   [p, a] = rectangle_properties(4, 7) % returns p = 22 and a = 28   If you only need one output, use a tilde ( ~ ) to ignore the other:   % returns a = 28, ignores perimeter [~, a] = rectangle_properties(4, 7)      "
+  "title": "Writing Simple Functions",
+  "body": " Writing Simple Functions  Scripts execute statements from top to bottom by default, and functions bundle a sequence of tasks you can reuse (see xref ref=\"script-function-diffs\" for a comparison). However, most programs need to make decisions and repeat actions based on conditions. This section discusses the different flow patterns of code and the ways you can control them.  A function goes one step further: it accepts inputs , performs a calculation, and returns outputs . Functions let you package a useful computation into a reusable tool, just like MATLAB's built-in commands sqrt , abs , and floor . This chapter covers two major concepts:  Scripts  A sequence of MATLAB commands saved in a .m file. Scripts share the base workspace, run top to bottom, and are ideal for one-time tasks or structured computations with no inputs or outputs.   Functions  A named, reusable block of code that accepts inputs and returns outputs. Functions use their own private workspace, keeping internal variables separate from the Command Window.     A MATLAB function is a .m file that stores a sequence of MATLAB commands. Like a script, MATLAB executes those commands from top to bottom. The key difference is that a function is designed to accept inputs (known information) and return outputs (desired information).  You have already used many built-in MATLAB functions (such as sqrt , abs , and floor ). The functions you write in this course work the same way: MATLAB only cares about the inputs you provide and the outputs the function returns.  A MATLAB function is a .m file that stores a sequence of MATLAB commands. Like a script, MATLAB executes those commands from top to bottom. The key difference is that a function is designed to accept inputs (known information) and return outputs (desired information).  You have already used many built-in MATLAB functions (such as sqrt , abs , and floor ). The functions you write in this course work the same way: MATLAB only cares about the inputs you provide and the outputs the function returns.   MATLAB Function Syntax  Syntax: function output = functionName(input)   The file must be saved as functionName.m — the file name must match the function name exactly.  Functions use a private workspace : internal variables are not visible outside the function after it finishes.  Inputs are listed in parentheses; multiple inputs are separated by commas: functionName(a, b, c) .  A single output is written to the left of the = ; multiple outputs use square brackets: [out1, out2] = functionName(in) .  The function body contains the commands that compute the output(s) from the input(s).  The function ends with the keyword end .     A MATLAB function named triangle_area must be saved in a file called:    triangle_area.m  The file name must match the function name exactly (without the .m extension in the header).    function.m  The file name must match the function name, not just the keyword function .    triangle.m  The file name must be the complete function name: triangle_area.m .    Any name ending in .m  MATLAB requires the file name to match the function name so it can locate the function.      True or False: Variables created inside a MATLAB function automatically appear in the base Workspace after the function finishes.    True  Functions use a private workspace. Internal variables disappear when the function ends; only the declared outputs are returned.    False  Correct. Functions use a private workspace, so their internal variables do not appear in the base Workspace.      Which syntax correctly captures two outputs from a function f ?    a, b = f(x)  This is not valid MATLAB syntax.    [a, b] = f(x)  Square brackets on the left side of the assignment are used to capture multiple outputs.    (a, b) = f(x)  Parentheses are not used on the left side for capturing outputs.    a = f(x), b  This is not valid MATLAB syntax for capturing two outputs.      In the function header function y = f(x) , which symbol represents the output?    f  f is the function name, not the output.    x  x is the input, listed inside the parentheses.    y  Correct. The output variable appears between function and the = sign.    function  function is the keyword that begins every function definition.     "
 },
 {
-  "id": "functions-description-usage-2-1",
+  "id": "subsec-functions-3",
   "level": "2",
-  "url": "functions-description-usage.html#functions-description-usage-2-1",
+  "url": "subsec-functions.html#subsec-functions-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "inputs outputs "
+},
+{
+  "id": "subsec-functions-4",
+  "level": "2",
+  "url": "subsec-functions.html#subsec-functions-4",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
   "body": "function inputs outputs "
 },
 {
-  "id": "subsubsec-function-structure-2",
+  "id": "subsec-functions-6",
   "level": "2",
-  "url": "functions-description-usage.html#subsubsec-function-structure-2",
+  "url": "subsec-functions.html#subsec-functions-6",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
@@ -489,7 +462,7 @@ var ptx_lunr_docs = [
 {
   "id": "assemblage-functions-3-2-1",
   "level": "2",
-  "url": "functions-description-usage.html#assemblage-functions-3-2-1",
+  "url": "subsec-functions.html#assemblage-functions-3-2-1",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
@@ -498,99 +471,126 @@ var ptx_lunr_docs = [
 {
   "id": "chk-functions-file-name",
   "level": "2",
-  "url": "functions-description-usage.html#chk-functions-file-name",
+  "url": "subsec-functions.html#chk-functions-file-name",
   "type": "Checkpoint",
-  "number": "2.11",
+  "number": "2.5",
   "title": "",
   "body": " A MATLAB function named triangle_area must be saved in a file called:    triangle_area.m  The file name must match the function name exactly (without the .m extension in the header).    function.m  The file name must match the function name, not just the keyword function .    triangle.m  The file name must be the complete function name: triangle_area.m .    Any name ending in .m  MATLAB requires the file name to match the function name so it can locate the function.    "
 },
 {
   "id": "chk-functions-workspace",
   "level": "2",
-  "url": "functions-description-usage.html#chk-functions-workspace",
+  "url": "subsec-functions.html#chk-functions-workspace",
   "type": "Checkpoint",
-  "number": "2.12",
+  "number": "2.6",
   "title": "",
   "body": " True or False: Variables created inside a MATLAB function automatically appear in the base Workspace after the function finishes.    True  Functions use a private workspace. Internal variables disappear when the function ends; only the declared outputs are returned.    False  Correct. Functions use a private workspace, so their internal variables do not appear in the base Workspace.    "
 },
 {
   "id": "chk-functions-multiple-outputs",
   "level": "2",
-  "url": "functions-description-usage.html#chk-functions-multiple-outputs",
+  "url": "subsec-functions.html#chk-functions-multiple-outputs",
   "type": "Checkpoint",
-  "number": "2.13",
+  "number": "2.7",
   "title": "",
   "body": " Which syntax correctly captures two outputs from a function f ?    a, b = f(x)  This is not valid MATLAB syntax.    [a, b] = f(x)  Square brackets on the left side of the assignment are used to capture multiple outputs.    (a, b) = f(x)  Parentheses are not used on the left side for capturing outputs.    a = f(x), b  This is not valid MATLAB syntax for capturing two outputs.    "
 },
 {
   "id": "chk-functions-header-output",
   "level": "2",
-  "url": "functions-description-usage.html#chk-functions-header-output",
+  "url": "subsec-functions.html#chk-functions-header-output",
   "type": "Checkpoint",
-  "number": "2.14",
+  "number": "2.8",
   "title": "",
   "body": " In the function header function y = f(x) , which symbol represents the output?    f  f is the function name, not the output.    x  x is the input, listed inside the parentheses.    y  Correct. The output variable appears between function and the = sign.    function  function is the keyword that begins every function definition.    "
 },
 {
+  "id": "one-input-one-output",
+  "level": "1",
+  "url": "one-input-one-output.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "One Input, One Output",
+  "body": " One Input, One Output  Functions help you package a useful calculation into a reusable tool. Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.  Here is an example of a simple function that computes the perimeter of a square given its side length.   MATLAB Function with 1 Input and 1 Output   function perimeter = square_perimeter(side) % Use the input (side) to compute the output (perimeter) perimeter = 4 * side; end    To use this function, save it in a file named square_perimeter.m . Then, in the Command Window (or in another script), call the function by providing an input value inside parentheses. For example, to compute the perimeter of a square with side length 5, type:   p = square_perimeter(5) % returns 20 and stores it in variable p   MATLAB will run the commands inside the function, using the input value you provided ( 5 ) to compute the output value ( 20 ). The result is then returned to the Command Window and stored in the variable p .   One Input, One Output   Functions help you package a useful calculation into a reusable tool. Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.  Here is a function that computes the perimeter of a square given its side length. Save it in a file named square_perimeter.m .   function perimeter = square_perimeter(side) % Use the input (side) to compute the output (perimeter) perimeter = 4 * side; end   To call this function, type the following in the Command Window or in a script:   p = square_perimeter(5) % returns 20 and stores it in variable p   MATLAB runs the commands inside the function using the provided input ( 5 ), computes the output ( 20 ), and stores it in p .    "
+},
+{
   "id": "one-input-one-output-4",
   "level": "2",
-  "url": "functions-description-usage.html#one-input-one-output-4",
+  "url": "one-input-one-output.html#one-input-one-output-4",
   "type": "Listing",
-  "number": "2.15",
+  "number": "2.9",
   "title": "MATLAB Function with 1 Input and 1 Output",
   "body": " MATLAB Function with 1 Input and 1 Output   function perimeter = square_perimeter(side) % Use the input (side) to compute the output (perimeter) perimeter = 4 * side; end   "
 },
 {
+  "id": "example-function-one-input-one-output",
+  "level": "2",
+  "url": "one-input-one-output.html#example-function-one-input-one-output",
+  "type": "🌌 Example",
+  "number": "2.10",
+  "title": "One Input, One Output.",
+  "body": " One Input, One Output   Functions help you package a useful calculation into a reusable tool. Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.  Here is a function that computes the perimeter of a square given its side length. Save it in a file named square_perimeter.m .   function perimeter = square_perimeter(side) % Use the input (side) to compute the output (perimeter) perimeter = 4 * side; end   To call this function, type the following in the Command Window or in a script:   p = square_perimeter(5) % returns 20 and stores it in variable p   MATLAB runs the commands inside the function using the provided input ( 5 ), computes the output ( 20 ), and stores it in p .   "
+},
+{
+  "id": "two-inputs-one-output",
+  "level": "1",
+  "url": "two-inputs-one-output.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Two Inputs, One Output",
+  "body": " Two Inputs, One Output  To create a function in MATLAB, you start by opening a new function file. Here is an example of a function that computes the perimeter of a rectangle given its two sides.   MATLAB Function with 2 Inputs and 1 Output   function perimeter = rectangle_perimeter(side1, side2) % Use the inputs (side1 and side2) % to compute the output (perimeter) perimeter = 2 * side1 + 2 * side2; end    The first line of the function file is the function header , which defines the function's name, inputs, and outputs. For example, in the function above, the line   function perimeter = rectangle_perimeter(side1, side2)   declares a function named rectangle_perimeter that takes two inputs ( side1 and side2 ) and returns one output ( perimeter ).  When you save the function, the function name should match the file name (without the .m extension). In this example, the function is named rectangle_perimeter , so the file should be saved as rectangle_perimeter.m .   Where to save your function file  For MATLAB to find your function, save the .m file in the Current Folder (or in a folder on the MATLAB path). If MATLAB says it cannot find your function, this is the first thing to check.   Inside the function, you can use the input variables to perform calculations and assign values to the output variable. When the function is called, MATLAB executes the commands in the function file and returns the output value. Unlike scripts, intermediate variables stay inside the function unless you return them.  To call this function, provide two input values inside parentheses. For example, to compute the perimeter of a rectangle with side lengths 4 and 7, type:   p = rectangle_perimeter(4, 7) % returns 22 & stores it in p   MATLAB will run the commands inside the function, using the input values you provided ( 4 and 7 ) to compute the output value ( 22 ). The result is then returned to the Command Window and stored in the variable p .   Two Inputs, One Output   A function can accept more than one input. Here is a function that computes the perimeter of a rectangle given its two side lengths.   function perimeter = rectangle_perimeter(side1, side2) % Use the inputs (side1 and side2) % to compute the output (perimeter) perimeter = 2 * side1 + 2 * side2; end   The first line is the function header : it declares the function name ( rectangle_perimeter ), the inputs ( side1 , side2 ), and the output ( perimeter ). Save the file as rectangle_perimeter.m so that MATLAB can find it.  To call this function with side lengths 4 and 7:   p = rectangle_perimeter(4, 7) % returns 22 and stores it in p     "
+},
+{
   "id": "two-inputs-one-output-3",
   "level": "2",
-  "url": "functions-description-usage.html#two-inputs-one-output-3",
+  "url": "two-inputs-one-output.html#two-inputs-one-output-3",
   "type": "Listing",
-  "number": "2.16",
+  "number": "2.11",
   "title": "MATLAB Function with 2 Inputs and 1 Output",
   "body": " MATLAB Function with 2 Inputs and 1 Output   function perimeter = rectangle_perimeter(side1, side2) % Use the inputs (side1 and side2) % to compute the output (perimeter) perimeter = 2 * side1 + 2 * side2; end   "
 },
 {
   "id": "two-inputs-one-output-4",
   "level": "2",
-  "url": "functions-description-usage.html#two-inputs-one-output-4",
+  "url": "two-inputs-one-output.html#two-inputs-one-output-4",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
   "body": "function header "
 },
 {
-  "id": "two-inputs-two-outputs-3",
-  "level": "2",
-  "url": "functions-description-usage.html#two-inputs-two-outputs-3",
-  "type": "Listing",
-  "number": "2.17",
-  "title": "MATLAB Function with 2 Inputs and 2 Outputs",
-  "body": " MATLAB Function with 2 Inputs and 2 Outputs   function [perimeter, area] = rectangle_properties(side1, side2) % Use the inputs (side1 and side2) % to compute the outputs (perimeter and area) perimeter = 2 * side1 + 2 * side2; area = side1 * side2; end   "
-},
-{
-  "id": "example-function-one-input-one-output",
-  "level": "2",
-  "url": "functions-description-usage.html#example-function-one-input-one-output",
-  "type": "🌌 Example",
-  "number": "2.18",
-  "title": "One Input, One Output.",
-  "body": " One Input, One Output   Functions help you package a useful calculation into a reusable tool. Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.  Here is a function that computes the perimeter of a square given its side length. Save it in a file named square_perimeter.m .   function perimeter = square_perimeter(side) % Use the input (side) to compute the output (perimeter) perimeter = 4 * side; end   To call this function, type the following in the Command Window or in a script:   p = square_perimeter(5) % returns 20 and stores it in variable p   MATLAB runs the commands inside the function using the provided input ( 5 ), computes the output ( 20 ), and stores it in p .   "
-},
-{
   "id": "example-function-two-inputs-one-output",
   "level": "2",
-  "url": "functions-description-usage.html#example-function-two-inputs-one-output",
+  "url": "two-inputs-one-output.html#example-function-two-inputs-one-output",
   "type": "🌌 Example",
-  "number": "2.19",
+  "number": "2.12",
   "title": "Two Inputs, One Output.",
   "body": " Two Inputs, One Output   A function can accept more than one input. Here is a function that computes the perimeter of a rectangle given its two side lengths.   function perimeter = rectangle_perimeter(side1, side2) % Use the inputs (side1 and side2) % to compute the output (perimeter) perimeter = 2 * side1 + 2 * side2; end   The first line is the function header : it declares the function name ( rectangle_perimeter ), the inputs ( side1 , side2 ), and the output ( perimeter ). Save the file as rectangle_perimeter.m so that MATLAB can find it.  To call this function with side lengths 4 and 7:   p = rectangle_perimeter(4, 7) % returns 22 and stores it in p    "
 },
 {
+  "id": "two-inputs-two-outputs",
+  "level": "1",
+  "url": "two-inputs-two-outputs.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Two Inputs, Two Outputs",
+  "body": " Two Inputs, Two Outputs  Functions can return multiple outputs. To specify multiple outputs, list them in square brackets in the function header. Here is an example of a function that computes both the perimeter and area of a rectangle given the lengths of its two sides.   MATLAB Function with 2 Inputs and 2 Outputs   function [perimeter, area] = rectangle_properties(side1, side2) % Use the inputs (side1 and side2) % to compute the outputs (perimeter and area) perimeter = 2 * side1 + 2 * side2; area = side1 * side2; end    To call this function and capture both outputs, use square brackets on the left side of the assignment. For example, to compute the perimeter and area of a rectangle with side lengths 4 and 7, type:   [p, a] = rectangle_properties(4, 7) % returns p = 22 and a = 28   MATLAB will run the commands inside the function, using the input values you provided ( 4 and 7 ) to compute the output values ( 22 and 28 ). The results are then returned to the Command Window and stored in the variables p and a .   Ignoring Outputs  If you only want some of the outputs from a function, you can ignore the others by using a tilde ( ~ ) as a placeholder. For example, to compute only the area of a rectangle and ignore the perimeter, type:   % returns a = 28, ignores perimeter [~, a] = rectangle_properties(4, 7)     Two Inputs, Two Outputs   Functions can return multiple outputs. List them in square brackets in the function header. The function below computes both the perimeter and area of a rectangle.   function [perimeter, area] = rectangle_properties(side1, side2) % Use the inputs (side1 and side2) % to compute the outputs (perimeter and area) perimeter = 2 * side1 + 2 * side2; area = side1 * side2; end   Capture both outputs using square brackets on the left side:   [p, a] = rectangle_properties(4, 7) % returns p = 22 and a = 28   If you only need one output, use a tilde ( ~ ) to ignore the other:   % returns a = 28, ignores perimeter [~, a] = rectangle_properties(4, 7)     "
+},
+{
+  "id": "two-inputs-two-outputs-3",
+  "level": "2",
+  "url": "two-inputs-two-outputs.html#two-inputs-two-outputs-3",
+  "type": "Listing",
+  "number": "2.13",
+  "title": "MATLAB Function with 2 Inputs and 2 Outputs",
+  "body": " MATLAB Function with 2 Inputs and 2 Outputs   function [perimeter, area] = rectangle_properties(side1, side2) % Use the inputs (side1 and side2) % to compute the outputs (perimeter and area) perimeter = 2 * side1 + 2 * side2; area = side1 * side2; end   "
+},
+{
   "id": "example-function-two-inputs-two-outputs",
   "level": "2",
-  "url": "functions-description-usage.html#example-function-two-inputs-two-outputs",
+  "url": "two-inputs-two-outputs.html#example-function-two-inputs-two-outputs",
   "type": "🌌 Example",
-  "number": "2.20",
+  "number": "2.14",
   "title": "Two Inputs, Two Outputs.",
   "body": " Two Inputs, Two Outputs   Functions can return multiple outputs. List them in square brackets in the function header. The function below computes both the perimeter and area of a rectangle.   function [perimeter, area] = rectangle_properties(side1, side2) % Use the inputs (side1 and side2) % to compute the outputs (perimeter and area) perimeter = 2 * side1 + 2 * side2; area = side1 * side2; end   Capture both outputs using square brackets on the left side:   [p, a] = rectangle_properties(4, 7) % returns p = 22 and a = 28   If you only need one output, use a tilde ( ~ ) to ignore the other:   % returns a = 28, ignores perimeter [~, a] = rectangle_properties(4, 7)    "
 },
@@ -736,14 +736,14 @@ var ptx_lunr_docs = [
   "type": "Subsection",
   "number": "",
   "title": "🧑🏻‍💻 Exercises",
-  "body": " 🧑🏻‍💻 Exercises     Trace a Function   Run the code below and trace through it manually before pressing Evaluate. Predict what value is printed.     The function doubles its input, so double_it(7) returns . The output is y = 14 .     Modify a Function   The function below computes the area of a square. Modify it so that it instead returns both the area and the perimeter.     function [area, perimeter] = square_area(side) area = side^2; perimeter = 4 * side; end [a, p] = square_area(5); fprintf('Area = %g, Perimeter = %g\\n', a, p);     Write a Function from Scratch   Write a function named bmi that computes body mass index given a person's weight (kg) and height (m). The formula is: . Then call it with weight = 70 and height = 1.75 and print the result with two decimal places.     function b = bmi(weight, height) b = weight \/ height^2; end result = bmi(70, 1.75); fprintf('BMI = %.2f\\n', result);     Hello Function   Write a function named hello that accepts one input ( name ) and displays a greeting such as 'Hello Alice, nice to meet you!' . Test it with a name of your choice.     function hello(name) fprintf('Hello %s, nice to meet you!\\n', name); end hello('Alice');     Drills    Scaffolded Activities    💻 Coding Exercises   Temperature Conversion   Write a function named celsius_to_fahrenheit that converts a temperature from Celsius to Fahrenheit. The conversion formula is: .     Inputs: celsius (1x1) double temperature in degrees Celsius  Outputs: fahrenheit (1x1) double temperature in degrees Fahrenheit   Test cases:   f1 = celsius_to_fahrenheit(0) % Expected: f1 = 32 f2 = celsius_to_fahrenheit(100) % Expected: f2 = 212 f3 = celsius_to_fahrenheit(20) % Expected: f3 = 68      function fahrenheit = celsius_to_fahrenheit(celsius) fahrenheit = (9\/5) * celsius + 32; end      Triangle Area   Write a function named triangle_area that computes the area of a triangle given its base and height. The formula is: .     Inputs: base (1x1) double length of the triangle's base  height (1x1) double height of the triangle  Outputs: area (1x1) double area of the triangle   Test cases:   a1 = triangle_area(6, 4) % Expected: a1 = 12 a2 = triangle_area(5, 12) % Expected: a2 = 30 a3 = triangle_area(7.5, 3.2) % Expected: a3 = 12      function area = triangle_area(base, height) area = 0.5 * base * height; end      Sphere Properties   Write a function named sphere_properties that computes both the surface area and volume of a sphere given its radius.  The formulas are:  Surface area:  Volume:       Inputs: radius (1x1) double radius of the sphere  Outputs: surface_area (1x1) double surface area of the sphere  volume (1x1) double volume of the sphere   Test cases:   [A1, V1] = sphere_properties(1) % Expected: A1 ≈ 12.5664, V1 ≈ 4.1888 [A2, V2] = sphere_properties(2) % Expected: A2 ≈ 50.2655, V2 ≈ 33.5103 [A3, V3] = sphere_properties(5) % Expected: A3 ≈ 314.1593, V3 ≈ 523.5988      function [surface_area, volume] = sphere_properties(radius) surface_area = 4 * pi * radius^2; volume = (4\/3) * pi * radius^3; end      Compound Interest Calculator   Write a function named compound_interest that calculates the future value of an investment with compound interest, and also returns the total interest earned and the effective annual rate.  The compound interest formula is: , where is the principal, is the annual rate (decimal), is compounding frequency per year, and is time in years. The effective annual rate (EAR) is: .     Inputs: principal (1x1) double initial investment amount  rate (1x1) double annual interest rate (as decimal)  compounds_per_year (1x1) double compounding frequency (e.g., 12 for monthly)  years (1x1) double time period in years  Outputs: final_amount (1x1) double total amount after compound interest  interest_earned (1x1) double total interest earned  effective_rate (1x1) double effective annual rate   Test cases:   % $1000 at 5% monthly for 10 years [final1, int1, effRate1] = compound_interest(1000, 0.05, 12, 10) % Expected: final1 ≈ 1647.01, int1 ≈ 647.01, effRate1 ≈ 0.0512      function [final_amount, interest_earned, effective_rate] = ... compound_interest(principal, rate, compounds_per_year, years) final_amount = principal * (1 + rate\/compounds_per_year)^(compounds_per_year*years); interest_earned = final_amount - principal; effective_rate = (1 + rate\/compounds_per_year)^compounds_per_year - 1; end      Triangle Perimeter and Area in 3D Space   Write a function named triangle_3d that computes the perimeter and area of a triangle in 3D space given the coordinates of its three vertices.  Hints:   The distance between two points and is:     Use Heron's formula with semi-perimeter :         Inputs: x1, y1, z1 (1x1) double coordinates of first vertex  x2, y2, z2 (1x1) double coordinates of second vertex  x3, y3, z3 (1x1) double coordinates of third vertex  Outputs: perimeter (1x1) double perimeter of the triangle  area (1x1) double area of the triangle   Test cases:   [p1, a1] = triangle_3d(0, 0, 0, 4, 0, 0, 0, 3, 0) % Expected: p1 = 12, a1 = 6 (3-4-5 right triangle) [p2, a2] = triangle_3d(0, 0, 0, 1, 0, 0, 0.5, sqrt(3)\/2, 0) % Expected: p2 = 3, a2 ≈ 0.4330 (equilateral)      function [perimeter, area] = triangle_3d(x1,y1,z1, x2,y2,z2, x3,y3,z3) a = sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2); b = sqrt((x3-x2)^2 + (y3-y2)^2 + (z3-z2)^2); c = sqrt((x1-x3)^2 + (y1-y3)^2 + (z1-z3)^2); perimeter = a + b + c; s = perimeter \/ 2; area = sqrt(s*(s-a)*(s-b)*(s-c)); end      "
+  "body": " 🧑🏻‍💻 Exercises     Trace a Function   Run the code below and trace through it manually before pressing Evaluate. Predict what value is printed.     The function doubles its input, so double_it(7) returns . The output is y = 14 .     Modify a Function   The function below computes the area of a square. Modify it so that it instead returns both the area and the perimeter.     function [area, perimeter] = square_area(side) area = side^2; perimeter = 4 * side; end [a, p] = square_area(5); fprintf('Area = %g, Perimeter = %g\\n', a, p);     Write a Function from Scratch   Write a function named bmi that computes body mass index given a person's weight (kg) and height (m). The formula is: . Then call it with weight = 70 and height = 1.75 and print the result with two decimal places.     function b = bmi(weight, height) b = weight \/ height^2; end result = bmi(70, 1.75); fprintf('BMI = %.2f\\n', result);     Hello Function   Write a function named hello that accepts one input ( name ) and displays a greeting such as 'Hello Alice, nice to meet you!' . Test it with a name of your choice.     function hello(name) fprintf('Hello %s, nice to meet you!\\n', name); end hello('Alice');     Drills    Scaffolded Activities   "
 },
 {
   "id": "act-functions-trace",
   "level": "2",
   "url": "subsec-functions-exercises.html#act-functions-trace",
   "type": "Checkpoint",
-  "number": "2.21",
+  "number": "2.15",
   "title": "Trace a Function.",
   "body": " Trace a Function   Run the code below and trace through it manually before pressing Evaluate. Predict what value is printed.     The function doubles its input, so double_it(7) returns . The output is y = 14 .   "
 },
@@ -752,7 +752,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "subsec-functions-exercises.html#act-functions-modify",
   "type": "Checkpoint",
-  "number": "2.22",
+  "number": "2.16",
   "title": "Modify a Function.",
   "body": " Modify a Function   The function below computes the area of a square. Modify it so that it instead returns both the area and the perimeter.     function [area, perimeter] = square_area(side) area = side^2; perimeter = 4 * side; end [a, p] = square_area(5); fprintf('Area = %g, Perimeter = %g\\n', a, p);   "
 },
@@ -761,7 +761,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "subsec-functions-exercises.html#act-functions-write-scratch",
   "type": "Checkpoint",
-  "number": "2.23",
+  "number": "2.17",
   "title": "Write a Function from Scratch.",
   "body": " Write a Function from Scratch   Write a function named bmi that computes body mass index given a person's weight (kg) and height (m). The formula is: . Then call it with weight = 70 and height = 1.75 and print the result with two decimal places.     function b = bmi(weight, height) b = weight \/ height^2; end result = bmi(70, 1.75); fprintf('BMI = %.2f\\n', result);   "
 },
@@ -770,54 +770,9 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "subsec-functions-exercises.html#act-functions-hello-greet",
   "type": "Checkpoint",
-  "number": "2.24",
+  "number": "2.18",
   "title": "Hello Function.",
   "body": " Hello Function   Write a function named hello that accepts one input ( name ) and displays a greeting such as 'Hello Alice, nice to meet you!' . Test it with a name of your choice.     function hello(name) fprintf('Hello %s, nice to meet you!\\n', name); end hello('Alice');   "
-},
-{
-  "id": "coding-celsius-to-fahrenheit",
-  "level": "2",
-  "url": "subsec-functions-exercises.html#coding-celsius-to-fahrenheit",
-  "type": "Exercise",
-  "number": "1",
-  "title": "Temperature Conversion.",
-  "body": " Temperature Conversion   Write a function named celsius_to_fahrenheit that converts a temperature from Celsius to Fahrenheit. The conversion formula is: .     Inputs: celsius (1x1) double temperature in degrees Celsius  Outputs: fahrenheit (1x1) double temperature in degrees Fahrenheit   Test cases:   f1 = celsius_to_fahrenheit(0) % Expected: f1 = 32 f2 = celsius_to_fahrenheit(100) % Expected: f2 = 212 f3 = celsius_to_fahrenheit(20) % Expected: f3 = 68      function fahrenheit = celsius_to_fahrenheit(celsius) fahrenheit = (9\/5) * celsius + 32; end    "
-},
-{
-  "id": "coding-triangle-area",
-  "level": "2",
-  "url": "subsec-functions-exercises.html#coding-triangle-area",
-  "type": "Exercise",
-  "number": "2",
-  "title": "Triangle Area.",
-  "body": " Triangle Area   Write a function named triangle_area that computes the area of a triangle given its base and height. The formula is: .     Inputs: base (1x1) double length of the triangle's base  height (1x1) double height of the triangle  Outputs: area (1x1) double area of the triangle   Test cases:   a1 = triangle_area(6, 4) % Expected: a1 = 12 a2 = triangle_area(5, 12) % Expected: a2 = 30 a3 = triangle_area(7.5, 3.2) % Expected: a3 = 12      function area = triangle_area(base, height) area = 0.5 * base * height; end    "
-},
-{
-  "id": "coding-sphere-properties",
-  "level": "2",
-  "url": "subsec-functions-exercises.html#coding-sphere-properties",
-  "type": "Exercise",
-  "number": "3",
-  "title": "Sphere Properties.",
-  "body": " Sphere Properties   Write a function named sphere_properties that computes both the surface area and volume of a sphere given its radius.  The formulas are:  Surface area:  Volume:       Inputs: radius (1x1) double radius of the sphere  Outputs: surface_area (1x1) double surface area of the sphere  volume (1x1) double volume of the sphere   Test cases:   [A1, V1] = sphere_properties(1) % Expected: A1 ≈ 12.5664, V1 ≈ 4.1888 [A2, V2] = sphere_properties(2) % Expected: A2 ≈ 50.2655, V2 ≈ 33.5103 [A3, V3] = sphere_properties(5) % Expected: A3 ≈ 314.1593, V3 ≈ 523.5988      function [surface_area, volume] = sphere_properties(radius) surface_area = 4 * pi * radius^2; volume = (4\/3) * pi * radius^3; end    "
-},
-{
-  "id": "coding-compound-interest",
-  "level": "2",
-  "url": "subsec-functions-exercises.html#coding-compound-interest",
-  "type": "Exercise",
-  "number": "4",
-  "title": "Compound Interest Calculator.",
-  "body": " Compound Interest Calculator   Write a function named compound_interest that calculates the future value of an investment with compound interest, and also returns the total interest earned and the effective annual rate.  The compound interest formula is: , where is the principal, is the annual rate (decimal), is compounding frequency per year, and is time in years. The effective annual rate (EAR) is: .     Inputs: principal (1x1) double initial investment amount  rate (1x1) double annual interest rate (as decimal)  compounds_per_year (1x1) double compounding frequency (e.g., 12 for monthly)  years (1x1) double time period in years  Outputs: final_amount (1x1) double total amount after compound interest  interest_earned (1x1) double total interest earned  effective_rate (1x1) double effective annual rate   Test cases:   % $1000 at 5% monthly for 10 years [final1, int1, effRate1] = compound_interest(1000, 0.05, 12, 10) % Expected: final1 ≈ 1647.01, int1 ≈ 647.01, effRate1 ≈ 0.0512      function [final_amount, interest_earned, effective_rate] = ... compound_interest(principal, rate, compounds_per_year, years) final_amount = principal * (1 + rate\/compounds_per_year)^(compounds_per_year*years); interest_earned = final_amount - principal; effective_rate = (1 + rate\/compounds_per_year)^compounds_per_year - 1; end    "
-},
-{
-  "id": "coding-triangle-3d",
-  "level": "2",
-  "url": "subsec-functions-exercises.html#coding-triangle-3d",
-  "type": "Exercise",
-  "number": "5",
-  "title": "Triangle Perimeter and Area in 3D Space.",
-  "body": " Triangle Perimeter and Area in 3D Space   Write a function named triangle_3d that computes the perimeter and area of a triangle in 3D space given the coordinates of its three vertices.  Hints:   The distance between two points and is:     Use Heron's formula with semi-perimeter :         Inputs: x1, y1, z1 (1x1) double coordinates of first vertex  x2, y2, z2 (1x1) double coordinates of second vertex  x3, y3, z3 (1x1) double coordinates of third vertex  Outputs: perimeter (1x1) double perimeter of the triangle  area (1x1) double area of the triangle   Test cases:   [p1, a1] = triangle_3d(0, 0, 0, 4, 0, 0, 0, 3, 0) % Expected: p1 = 12, a1 = 6 (3-4-5 right triangle) [p2, a2] = triangle_3d(0, 0, 0, 1, 0, 0, 0.5, sqrt(3)\/2, 0) % Expected: p2 = 3, a2 ≈ 0.4330 (equilateral)      function [perimeter, area] = triangle_3d(x1,y1,z1, x2,y2,z2, x3,y3,z3) a = sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2); b = sqrt((x3-x2)^2 + (y3-y2)^2 + (z3-z2)^2); c = sqrt((x1-x3)^2 + (y1-y3)^2 + (z1-z3)^2); perimeter = a + b + c; s = perimeter \/ 2; area = sqrt(s*(s-a)*(s-b)*(s-c)); end    "
 },
 {
   "id": "subsec-logical-values",
@@ -1648,40 +1603,1579 @@ var ptx_lunr_docs = [
   "body": " Continue, Break, and Return Exercises   Sum of Non-Divisible Values   Write a function called sumNonDivisible that computes the sum of all integers from 1 to n that are not divisible by d . Use a for -loop with continue to skip values that are divisible by d .        Inputs:  n  (1x1) double  positive integer upper limit     d  (1x1) double  positive integer divisor to exclude    Outputs:  total  (1x1) double  sum of values from 1 to n not divisible by d      Test Cases ⤵︎  sumNonDivisible(10, 3) sumNonDivisible(20, 5) sumNonDivisible(15, 1)    Expected ⤵︎  ans = 37 ans = 160 ans = 0       First Value Above a Threshold   Write a function called firstAbove that uses a for -loop and break to find the smallest positive integer k such that . If no such k exists in the range 1 to 1000, return -1 .        Inputs:  threshold  (1x1) double  positive number to exceed    Outputs:  k  (1x1) double  smallest integer where exceeds threshold, or -1      Test Cases ⤵︎  firstAbove(10) firstAbove(100) firstAbove(5000)    Expected ⤵︎  ans = 2 ans = 8 ans = 69       Primality Check with return   Write a function called checkPrime that takes a positive integer n and returns 1 if n is prime and 0 otherwise. Use a for -loop that tests potential divisors from 2 up to floor(sqrt(n)) . If any divisor divides n evenly, set the result to 0 and use return to exit the function immediately.  As a special case, n = 1 is not prime.        Inputs:  n  (1x1) double  positive integer    Outputs:  result  (1x1) double  1 if n is prime, 0 otherwise      Test Cases ⤵︎  checkPrime(2) checkPrime(15) checkPrime(97) checkPrime(1) checkPrime(49)    Expected ⤵︎  ans = 1 ans = 0 ans = 1 ans = 0 ans = 0       Count Valid Rolls   Write a function called countValidRolls that simulates rolling a six-sided die n times using randi([1, 6]) . Count only rolls that are not equal to 1 (i.e., skip rolls of 1 using continue ). Return the number of valid rolls and their sum.        Inputs:  n  (1x1) double  number of dice rolls    Outputs:  validCount  (1x1) double  number of rolls that were not 1     validSum  (1x1) double  sum of the valid rolls      Test Cases ⤵︎  rng(42); [c, s] = countValidRolls(10) rng(42); [c, s] = countValidRolls(100)    Expected ⤵︎  c = 8 s = 32 c = 86 s = 316      "
 },
 {
-  "id": "chp-arrays",
+  "id": "array-basics-scalars",
   "level": "1",
-  "url": "chp-arrays.html",
-  "type": "Chapter",
-  "number": "5",
-  "title": "Arrays: Vectors &amp; Matrices",
-  "body": " Arrays: Vectors & Matrices   In the previous chapters, you learned how to work with individual numbers and basic calculations in MATLAB. While scalar values are useful, much of MATLAB's power comes from its ability to work efficiently with collections of numbers called arrays . In fact, the name MATLAB stands for Matrix Laboratory , emphasizing the language's focus on array-based computing.  Arrays allow you to store multiple related values in a single variable and perform operations on all elements simultaneously. This approach, known as vectorization , is not only more efficient computationally but also leads to cleaner, more readable code. Understanding how to create, access, and manipulate arrays is fundamental to effective MATLAB programming.  This chapter introduces arrays systematically. You will learn how to create arrays using different methods, how to access individual elements or groups of elements through indexing, and how to perform mathematical operations on arrays. By the end of this chapter, you will be comfortable working with one-dimensional vectors and two-dimensional matrices, and you will understand how MATLAB's array operations enable you to write concise, powerful programs.              Arrays are MATLAB's fundamental data structure . All numeric values in MATLAB are stored as arrays, even single numbers (which are 1-by-1 arrays).   Vectors vs. matrices . A vector is a one-dimensional array (either a row or column), while a matrix is a two-dimensional array with multiple rows and columns.   Creating arrays . Arrays can be created explicitly using square brackets [ ] , with functions like zeros , ones , and linspace , or using the colon operator : for sequences.   Indexing starts at 1 . Unlike many programming languages, MATLAB uses 1-based indexing, meaning the first element of an array is accessed with index 1, not 0.   Element-wise vs. matrix operations . Operators like .* , .\/ , and .^ perform element-wise operations, while * , \/ , and ^ perform matrix operations following linear algebra rules.   Array dimensions matter . Many operations require arrays to have compatible dimensions. Understanding row vectors vs. column vectors and how to transpose arrays with ' is essential.   Built-in functions operate on arrays . Functions like sum , mean , max , and length can process entire arrays efficiently, often eliminating the need for explicit loops.   Vectorization improves code . Writing code that operates on entire arrays at once is typically faster and more readable than using loops to process individual elements.      "
+  "url": "array-basics-scalars.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Scalars, Vectors, and Matrices",
+  "body": " Scalars, Vectors, and Matrices  MATLAB distinguishes between different types of arrays based on their dimensions:     Scalar : A single number (technically a 1-by-1 array).   a = 5; % A scalar value      Row vector : A 1-by-n array (one row, n columns).   v = [1 2 3 4 5]; % A row vector with 5 elements      Column vector : An n-by-1 array (n rows, one column).   w = [1; 2; 3; 4; 5]; % A column vector with 5 elements      Matrix : An m-by-n array (m rows, n columns).   A = [1 2 3; 4 5 6; 7 8 9]; % A 3-by-3 matrix     Notice that semicolons separate rows in an array, while spaces (or commas) separate elements within a row.  "
 },
 {
-  "id": "chp-arrays-2-1",
+  "id": "array-basics-scalars-3-1-1",
   "level": "2",
-  "url": "chp-arrays.html#chp-arrays-2-1",
+  "url": "array-basics-scalars.html#array-basics-scalars-3-1-1",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
-  "body": "arrays "
+  "body": "Scalar "
 },
 {
-  "id": "chp-arrays-2-2",
+  "id": "array-basics-scalars-3-2-1",
   "level": "2",
-  "url": "chp-arrays.html#chp-arrays-2-2",
+  "url": "array-basics-scalars.html#array-basics-scalars-3-2-1",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
-  "body": "vectorization "
+  "body": "Row vector "
 },
 {
-  "id": "chp-arrays-3-1",
+  "id": "array-basics-scalars-3-3-1",
   "level": "2",
-  "url": "chp-arrays.html#chp-arrays-3-1",
+  "url": "array-basics-scalars.html#array-basics-scalars-3-3-1",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
-  "body": "Arrays are MATLAB's fundamental data structure Vectors vs. matrices Creating arrays Indexing starts at 1 Element-wise vs. matrix operations Array dimensions matter Built-in functions operate on arrays Vectorization improves code "
+  "body": "Column vector "
+},
+{
+  "id": "array-basics-scalars-3-4-1",
+  "level": "2",
+  "url": "array-basics-scalars.html#array-basics-scalars-3-4-1",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "Matrix "
+},
+{
+  "id": "array-basics-dimensions",
+  "level": "1",
+  "url": "array-basics-dimensions.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Array Dimensions and Size",
+  "body": " Array Dimensions and Size  Every array in MATLAB has a size , which describes how many rows and columns it contains. You can check an array's size using the size function:   A = [1 2 3; 4 5 6]; % Create a 2-by-3 matrix size(A) % Returns [2 3]   For vectors, you might also use the length function, which returns the number of elements in the longest dimension:   v = [1 2 3 4 5]; length(v) % Returns 5    Why Dimensions Matter  Many MATLAB operations require arrays to have compatible dimensions. Understanding an array's size helps you avoid dimension mismatch errors and write correct code.   "
+},
+{
+  "id": "array-basics-dimensions-2",
+  "level": "2",
+  "url": "array-basics-dimensions.html#array-basics-dimensions-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "size "
+},
+{
+  "id": "array-basics-why",
+  "level": "1",
+  "url": "array-basics-why.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Why Use Arrays?",
+  "body": " Why Use Arrays?  Arrays enable you to:  Store related data together (e.g., a list of temperatures, test scores, or coordinates)  Perform operations on many values simultaneously  Write more concise and efficient code  Take advantage of MATLAB's optimized array processing capabilities    Instead of creating separate variables temp1 , temp2 , temp3 , etc., you can store all temperatures in a single array and process them together. This approach is not only more organized but also much more powerful when working with large datasets.    What is the difference between a row vector and a column vector in MATLAB?     A row vector uses commas to separate elements, while a column vector uses spaces.    A row vector has one row and multiple columns, while a column vector has multiple rows and one column.    A row vector is stored horizontally in memory, while a column vector is stored vertically.    There is no difference; they are interchangeable in all MATLAB operations.     "
+},
+{
+  "id": "array-basics-chkpt-1",
+  "level": "2",
+  "url": "array-basics-why.html#array-basics-chkpt-1",
+  "type": "Checkpoint",
+  "number": "5.1",
+  "title": "",
+  "body": "  What is the difference between a row vector and a column vector in MATLAB?     A row vector uses commas to separate elements, while a column vector uses spaces.    A row vector has one row and multiple columns, while a column vector has multiple rows and one column.    A row vector is stored horizontally in memory, while a column vector is stored vertically.    There is no difference; they are interchangeable in all MATLAB operations.    "
+},
+{
+  "id": "array-basics-6",
+  "level": "1",
+  "url": "array-basics-6.html",
+  "type": "Reading Questions",
+  "number": "",
+  "title": "Reading Questions",
+  "body": "  These questions check your understanding of basic array concepts.    Array Terminology   Match each MATLAB array type with its correct description.     "
+},
+{
+  "id": "array-basics-rq-1",
+  "level": "2",
+  "url": "array-basics-6.html#array-basics-rq-1",
+  "type": "Reading Question",
+  "number": "1",
+  "title": "Array Terminology.",
+  "body": " Array Terminology   Match each MATLAB array type with its correct description.    "
+},
+{
+  "id": "array-basics-exercises",
+  "level": "1",
+  "url": "array-basics-exercises.html",
+  "type": "Exercises",
+  "number": "",
+  "title": "Practice Problems",
+  "body": " Practice Problems   These exercises help you practice identifying and working with different array types.    Identifying Array Types   For each of the following MATLAB expressions, determine whether the result is a scalar, row vector, column vector, or matrix:   x = 7;  y = [1 2 3 4];  z = [1; 2; 3; 4];  A = [1 2; 3 4; 5 6];      Determining Array Size   What will size(B) return for the following matrix?   B = [10 20 30; 40 50 60];     "
+},
+{
+  "id": "array-basics-exercises-3",
+  "level": "2",
+  "url": "array-basics-exercises.html#array-basics-exercises-3",
+  "type": "Exercise",
+  "number": "1",
+  "title": "Identifying Array Types.",
+  "body": " Identifying Array Types   For each of the following MATLAB expressions, determine whether the result is a scalar, row vector, column vector, or matrix:   x = 7;  y = [1 2 3 4];  z = [1; 2; 3; 4];  A = [1 2; 3 4; 5 6];    "
+},
+{
+  "id": "array-basics-exercises-4",
+  "level": "2",
+  "url": "array-basics-exercises.html#array-basics-exercises-4",
+  "type": "Exercise",
+  "number": "2",
+  "title": "Determining Array Size.",
+  "body": " Determining Array Size   What will size(B) return for the following matrix?   B = [10 20 30; 40 50 60];    "
+},
+{
+  "id": "creating-arrays-explicit",
+  "level": "1",
+  "url": "creating-arrays-explicit.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Explicit Construction with Square Brackets",
+  "body": " Explicit Construction with Square Brackets  The most direct way to create an array is to list its elements inside square brackets [ ] . Spaces (or commas) separate elements in a row, and semicolons separate rows.   Creating Arrays Explicitly    % Row vector v = [1 2 3 4 5]; % Column vector w = [1; 2; 3; 4; 5]; % Matrix A = [1 2 3; 4 5 6; 7 8 9];     You can also include expressions inside the brackets:   x = [1+2 3*4 5\/2]; % Result: [3 12 2.5]   "
+},
+{
+  "id": "creating-arrays-explicit-3",
+  "level": "2",
+  "url": "creating-arrays-explicit.html#creating-arrays-explicit-3",
+  "type": "🌌 Example",
+  "number": "5.2",
+  "title": "Creating Arrays Explicitly.",
+  "body": " Creating Arrays Explicitly    % Row vector v = [1 2 3 4 5]; % Column vector w = [1; 2; 3; 4; 5]; % Matrix A = [1 2 3; 4 5 6; 7 8 9];    "
+},
+{
+  "id": "creating-arrays-colon",
+  "level": "1",
+  "url": "creating-arrays-colon.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Using the Colon Operator",
+  "body": " Using the Colon Operator  The colon operator  : creates row vectors containing regularly spaced values. The basic syntax is:   start:increment:end   If you omit the increment, MATLAB assumes an increment of 1.   Creating Sequences with the Colon Operator    % Create 1 through 10 v1 = 1:10; % [1 2 3 4 5 6 7 8 9 10] % Create 0 through 1 in steps of 0.1 v2 = 0:0.1:1; % [0 0.1 0.2 ... 0.9 1.0] % Create decreasing sequence v3 = 10:-1:1; % [10 9 8 7 6 5 4 3 2 1]     The colon operator is particularly useful for creating index ranges, which you will use frequently when accessing array elements.  "
+},
+{
+  "id": "creating-arrays-colon-2",
+  "level": "2",
+  "url": "creating-arrays-colon.html#creating-arrays-colon-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "colon operator "
+},
+{
+  "id": "creating-arrays-colon-5",
+  "level": "2",
+  "url": "creating-arrays-colon.html#creating-arrays-colon-5",
+  "type": "🌌 Example",
+  "number": "5.3",
+  "title": "Creating Sequences with the Colon Operator.",
+  "body": " Creating Sequences with the Colon Operator    % Create 1 through 10 v1 = 1:10; % [1 2 3 4 5 6 7 8 9 10] % Create 0 through 1 in steps of 0.1 v2 = 0:0.1:1; % [0 0.1 0.2 ... 0.9 1.0] % Create decreasing sequence v3 = 10:-1:1; % [10 9 8 7 6 5 4 3 2 1]    "
+},
+{
+  "id": "creating-arrays-functions",
+  "level": "1",
+  "url": "creating-arrays-functions.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Using Built-in Functions",
+  "body": " Using Built-in Functions  MATLAB provides several functions for creating arrays with specific patterns:   zeros(m,n) creates an m-by-n array of zeros  ones(m,n) creates an m-by-n array of ones  eye(n) creates an n-by-n identity matrix  linspace(start,end,n) creates n evenly spaced values between start and end  rand(m,n) creates an m-by-n array of random numbers between 0 and 1    Creating Arrays with Functions    % 3-by-4 matrix of zeros Z = zeros(3,4); % 2-by-2 matrix of ones O = ones(2,2); % 3-by-3 identity matrix I = eye(3); % 5 evenly spaced values from 0 to 10 x = linspace(0,10,5); % [0 2.5 5 7.5 10]      linspace vs. Colon Operator  Use linspace when you know how many points you need. Use the colon operator when you know the spacing between points.   "
+},
+{
+  "id": "creating-arrays-functions-4",
+  "level": "2",
+  "url": "creating-arrays-functions.html#creating-arrays-functions-4",
+  "type": "🌌 Example",
+  "number": "5.4",
+  "title": "Creating Arrays with Functions.",
+  "body": " Creating Arrays with Functions    % 3-by-4 matrix of zeros Z = zeros(3,4); % 2-by-2 matrix of ones O = ones(2,2); % 3-by-3 identity matrix I = eye(3); % 5 evenly spaced values from 0 to 10 x = linspace(0,10,5); % [0 2.5 5 7.5 10]    "
+},
+{
+  "id": "creating-arrays-concatenation",
+  "level": "1",
+  "url": "creating-arrays-concatenation.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Combining Arrays",
+  "body": " Combining Arrays  You can create larger arrays by combining smaller ones, a process called concatenation . The same bracket notation works:   % Horizontal concatenation v1 = [1 2 3]; v2 = [4 5 6]; v = [v1 v2]; % [1 2 3 4 5 6] % Vertical concatenation A = [1 2; 3 4]; B = [5 6; 7 8]; C = [A; B]; % 4-by-2 matrix   For concatenation to work, the arrays must have compatible dimensions: matching number of columns for vertical concatenation, and matching number of rows for horizontal concatenation.    What does the MATLAB expression 1:3:10 create?     The numbers 1, 3, and 10    The numbers 1, 4, 7, and 10    All integers from 1 to 10    An error because the increment must be 1     "
+},
+{
+  "id": "creating-arrays-concatenation-2",
+  "level": "2",
+  "url": "creating-arrays-concatenation.html#creating-arrays-concatenation-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "concatenation "
+},
+{
+  "id": "creating-arrays-chkpt-1",
+  "level": "2",
+  "url": "creating-arrays-concatenation.html#creating-arrays-chkpt-1",
+  "type": "Checkpoint",
+  "number": "5.5",
+  "title": "",
+  "body": "  What does the MATLAB expression 1:3:10 create?     The numbers 1, 3, and 10    The numbers 1, 4, 7, and 10    All integers from 1 to 10    An error because the increment must be 1    "
+},
+{
+  "id": "creating-arrays-7",
+  "level": "1",
+  "url": "creating-arrays-7.html",
+  "type": "Reading Questions",
+  "number": "",
+  "title": "Reading Questions",
+  "body": "  These questions check your understanding of array creation methods.    Array Creation Methods   When would you use linspace instead of the colon operator?     "
+},
+{
+  "id": "creating-arrays-rq-1",
+  "level": "2",
+  "url": "creating-arrays-7.html#creating-arrays-rq-1",
+  "type": "Reading Question",
+  "number": "1",
+  "title": "Array Creation Methods.",
+  "body": " Array Creation Methods   When would you use linspace instead of the colon operator?    "
+},
+{
+  "id": "creating-arrays-exercises",
+  "level": "1",
+  "url": "creating-arrays-exercises.html",
+  "type": "Exercises",
+  "number": "",
+  "title": "Practice Problems",
+  "body": " Practice Problems   Practice creating arrays using different methods.    Creating Specific Arrays   Write MATLAB commands to create the following arrays:   A row vector containing the integers from 5 to 15  A column vector containing the values 2, 4, 6, 8, 10  A 4-by-3 matrix of zeros  A row vector of 100 evenly spaced values between 0 and 2π      Array Concatenation   Given A = [1 2; 3 4] and B = [5; 6] , create a 2-by-3 matrix C by concatenating A and B horizontally.    "
+},
+{
+  "id": "creating-arrays-exercises-3",
+  "level": "2",
+  "url": "creating-arrays-exercises.html#creating-arrays-exercises-3",
+  "type": "Exercise",
+  "number": "1",
+  "title": "Creating Specific Arrays.",
+  "body": " Creating Specific Arrays   Write MATLAB commands to create the following arrays:   A row vector containing the integers from 5 to 15  A column vector containing the values 2, 4, 6, 8, 10  A 4-by-3 matrix of zeros  A row vector of 100 evenly spaced values between 0 and 2π    "
+},
+{
+  "id": "creating-arrays-exercises-4",
+  "level": "2",
+  "url": "creating-arrays-exercises.html#creating-arrays-exercises-4",
+  "type": "Exercise",
+  "number": "2",
+  "title": "Array Concatenation.",
+  "body": " Array Concatenation   Given A = [1 2; 3 4] and B = [5; 6] , create a 2-by-3 matrix C by concatenating A and B horizontally.   "
+},
+{
+  "id": "indexing-single",
+  "level": "1",
+  "url": "indexing-single.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Single Element Indexing",
+  "body": " Single Element Indexing  To access a single element of a vector, use parentheses with the element's position:   v = [10 20 30 40 50]; x = v(3); % x is 30 (the third element)    MATLAB Uses 1-Based Indexing  Unlike many programming languages (such as Python or C), MATLAB starts counting at 1, not 0. The first element of an array is accessed with index 1.   For matrices, you need two indices: one for the row and one for the column. The syntax is A(row,column) :   A = [1 2 3; 4 5 6; 7 8 9]; x = A(2,3); % x is 6 (row 2, column 3)   You can also modify array elements using indexing:   v(3) = 100; % Changes the third element to 100 A(1,2) = -5; % Changes element at row 1, column 2 to -5   "
+},
+{
+  "id": "indexing-ranges",
+  "level": "1",
+  "url": "indexing-ranges.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Indexing Multiple Elements",
+  "body": " Indexing Multiple Elements  You can access multiple elements at once by providing a vector of indices or using the colon operator:   v = [10 20 30 40 50 60 70 80 90 100]; % Access elements 2, 4, and 6 subset1 = v([2 4 6]); % [20 40 60] % Access elements 3 through 7 subset2 = v(3:7); % [30 40 50 60 70] % Access every other element subset3 = v(1:2:end); % [10 30 50 70 90]   The keyword end represents the last index in that dimension, making it easy to access elements relative to the end of an array.  "
+},
+{
+  "id": "indexing-matrices",
+  "level": "1",
+  "url": "indexing-matrices.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Indexing Rows and Columns",
+  "body": " Indexing Rows and Columns  For matrices, you can extract entire rows or columns by using a colon in place of an index:   A = [1 2 3; 4 5 6; 7 8 9]; % Extract the second row row2 = A(2,:); % [4 5 6] % Extract the third column col3 = A(:,3); % [3; 6; 9] (column vector) % Extract a submatrix (rows 1-2, columns 2-3) B = A(1:2, 2:3); % [2 3; 5 6]   The colon by itself means all indices in this dimension .    Given v = [5 10 15 20 25] , what does v(end-1) return?     15    20    25    An error because end-1 is not a valid index     "
+},
+{
+  "id": "indexing-chkpt-1",
+  "level": "2",
+  "url": "indexing-matrices.html#indexing-chkpt-1",
+  "type": "Checkpoint",
+  "number": "5.6",
+  "title": "",
+  "body": "  Given v = [5 10 15 20 25] , what does v(end-1) return?     15    20    25    An error because end-1 is not a valid index    "
+},
+{
+  "id": "indexing-logical",
+  "level": "1",
+  "url": "indexing-logical.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Logical Indexing",
+  "body": " Logical Indexing  A powerful feature of MATLAB is logical indexing , where you use a logical array (containing true and false values) to select elements that meet a condition:   v = [10 -5 30 -15 20]; % Find positive values positive_values = v(v > 0); % [10 30 20] % Set all negative values to zero v(v < 0) = 0; % v becomes [10 0 30 0 20]   This technique is extremely useful for filtering data and performing conditional operations on arrays without explicit loops.  "
+},
+{
+  "id": "indexing-logical-2",
+  "level": "2",
+  "url": "indexing-logical.html#indexing-logical-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "logical indexing "
+},
+{
+  "id": "array-indexing-7",
+  "level": "1",
+  "url": "array-indexing-7.html",
+  "type": "Reading Questions",
+  "number": "",
+  "title": "Reading Questions",
+  "body": "  These questions check your understanding of array indexing.    Matrix Indexing   Given a matrix M , explain what M(:,1) returns.     "
+},
+{
+  "id": "indexing-rq-1",
+  "level": "2",
+  "url": "array-indexing-7.html#indexing-rq-1",
+  "type": "Reading Question",
+  "number": "1",
+  "title": "Matrix Indexing.",
+  "body": " Matrix Indexing   Given a matrix M , explain what M(:,1) returns.    "
+},
+{
+  "id": "indexing-exercises",
+  "level": "1",
+  "url": "indexing-exercises.html",
+  "type": "Exercises",
+  "number": "",
+  "title": "Practice Problems",
+  "body": " Practice Problems   Practice accessing and modifying array elements.    Vector Indexing Practice   Given v = [3 6 9 12 15 18 21 24] , write MATLAB expressions to:   Access the fourth element  Access the last element  Access elements 2 through 5  Access every third element      Matrix Indexing Practice   Given the matrix:   A = [10 20 30; 40 50 60; 70 80 90];   Write MATLAB expressions to:   Access the element in row 2, column 3  Extract the first row  Extract the last column  Create a 2-by-2 submatrix from the bottom-right corner      Logical Indexing   Given temps = [72 85 68 91 77 88 65] , write a MATLAB command to find all temperatures greater than 80.    "
+},
+{
+  "id": "indexing-exercises-3",
+  "level": "2",
+  "url": "indexing-exercises.html#indexing-exercises-3",
+  "type": "Exercise",
+  "number": "1",
+  "title": "Vector Indexing Practice.",
+  "body": " Vector Indexing Practice   Given v = [3 6 9 12 15 18 21 24] , write MATLAB expressions to:   Access the fourth element  Access the last element  Access elements 2 through 5  Access every third element    "
+},
+{
+  "id": "indexing-exercises-4",
+  "level": "2",
+  "url": "indexing-exercises.html#indexing-exercises-4",
+  "type": "Exercise",
+  "number": "2",
+  "title": "Matrix Indexing Practice.",
+  "body": " Matrix Indexing Practice   Given the matrix:   A = [10 20 30; 40 50 60; 70 80 90];   Write MATLAB expressions to:   Access the element in row 2, column 3  Extract the first row  Extract the last column  Create a 2-by-2 submatrix from the bottom-right corner    "
+},
+{
+  "id": "indexing-exercises-5",
+  "level": "2",
+  "url": "indexing-exercises.html#indexing-exercises-5",
+  "type": "Exercise",
+  "number": "3",
+  "title": "Logical Indexing.",
+  "body": " Logical Indexing   Given temps = [72 85 68 91 77 88 65] , write a MATLAB command to find all temperatures greater than 80.   "
+},
+{
+  "id": "array-operations-elementwise",
+  "level": "1",
+  "url": "array-operations-elementwise.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Element-wise Operations",
+  "body": " Element-wise Operations   Element-wise operations apply an operation to corresponding elements of arrays. For this to work, the arrays must have the same dimensions (or one must be a scalar).  The element-wise operators in MATLAB use a dot before the operator:  .* for element-wise multiplication  .\/ for element-wise division  .^ for element-wise exponentiation     Element-wise Operations    v1 = [1 2 3 4]; v2 = [10 20 30 40]; % Element-wise multiplication result1 = v1 .* v2; % [10 40 90 160] % Element-wise division result2 = v2 .\/ v1; % [10 10 10 10] % Element-wise exponentiation result3 = v1 .^ 2; % [1 4 9 16]      When to Use the Dot  Addition and subtraction work element-wise by default, so + and - do not need a dot. Only multiplication, division, and exponentiation require the dot for element-wise behavior.   "
+},
+{
+  "id": "array-operations-elementwise-2",
+  "level": "2",
+  "url": "array-operations-elementwise.html#array-operations-elementwise-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "Element-wise operations "
+},
+{
+  "id": "array-operations-elementwise-4",
+  "level": "2",
+  "url": "array-operations-elementwise.html#array-operations-elementwise-4",
+  "type": "🌌 Example",
+  "number": "5.7",
+  "title": "Element-wise Operations.",
+  "body": " Element-wise Operations    v1 = [1 2 3 4]; v2 = [10 20 30 40]; % Element-wise multiplication result1 = v1 .* v2; % [10 40 90 160] % Element-wise division result2 = v2 .\/ v1; % [10 10 10 10] % Element-wise exponentiation result3 = v1 .^ 2; % [1 4 9 16]    "
+},
+{
+  "id": "array-operations-arithmetic",
+  "level": "1",
+  "url": "array-operations-arithmetic.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Arithmetic with Scalars",
+  "body": " Arithmetic with Scalars  When you perform an operation between an array and a scalar, the scalar is applied to every element of the array:   v = [1 2 3 4 5]; % Add 10 to every element w = v + 10; % [11 12 13 14 15] % Multiply every element by 2 x = v * 2; % [2 4 6 8 10] % Square every element y = v .^ 2; % [1 4 9 16 25]   This scalar expansion happens automatically and is called broadcasting in some other programming languages.  "
+},
+{
+  "id": "array-operations-arithmetic-4",
+  "level": "2",
+  "url": "array-operations-arithmetic.html#array-operations-arithmetic-4",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "broadcasting "
+},
+{
+  "id": "array-operations-matrix",
+  "level": "1",
+  "url": "array-operations-matrix.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Matrix Operations",
+  "body": " Matrix Operations  Without the dot, the operators * , \/ , and ^ perform matrix operations according to the rules of linear algebra. These operations have different dimension requirements than element-wise operations.  Matrix multiplication requires the number of columns in the first matrix to equal the number of rows in the second:   A = [1 2; 3 4]; % 2-by-2 matrix B = [5; 6]; % 2-by-1 column vector % Matrix multiplication C = A * B; % Result: [17; 39] (2-by-1 vector)   For most programming tasks involving element-by-element calculations, you will use element-wise operators. Matrix operations are important when working with linear algebra problems.    What is the difference between v .* w and v * w when v and w are vectors?     There is no difference; they produce the same result.    v .* w multiplies corresponding elements, while v * w attempts matrix multiplication and may produce an error depending on dimensions.    v .* w is slower but more accurate.    v * w only works with column vectors.     "
+},
+{
+  "id": "array-operations-matrix-2",
+  "level": "2",
+  "url": "array-operations-matrix.html#array-operations-matrix-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "matrix operations "
+},
+{
+  "id": "array-operations-chkpt-1",
+  "level": "2",
+  "url": "array-operations-matrix.html#array-operations-chkpt-1",
+  "type": "Checkpoint",
+  "number": "5.8",
+  "title": "",
+  "body": "  What is the difference between v .* w and v * w when v and w are vectors?     There is no difference; they produce the same result.    v .* w multiplies corresponding elements, while v * w attempts matrix multiplication and may produce an error depending on dimensions.    v .* w is slower but more accurate.    v * w only works with column vectors.    "
+},
+{
+  "id": "array-operations-functions",
+  "level": "1",
+  "url": "array-operations-functions.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Applying Functions to Arrays",
+  "body": " Applying Functions to Arrays  Most MATLAB mathematical functions operate element-wise when applied to arrays:   v = [0 pi\/4 pi\/2 pi]; % Sin of each element s = sin(v); % [0 0.7071 1 0] % Square root of each element x = [1 4 9 16]; sqrts = sqrt(x); % [1 2 3 4]   This means you can apply trigonometric functions, exponentials, logarithms, and other mathematical operations to entire arrays at once.  "
+},
+{
+  "id": "array-operations-7",
+  "level": "1",
+  "url": "array-operations-7.html",
+  "type": "Reading Questions",
+  "number": "",
+  "title": "Reading Questions",
+  "body": "  These questions check your understanding of array operations.    Choosing Operations   When should you use .* instead of * ?     "
+},
+{
+  "id": "array-operations-rq-1",
+  "level": "2",
+  "url": "array-operations-7.html#array-operations-rq-1",
+  "type": "Reading Question",
+  "number": "1",
+  "title": "Choosing Operations.",
+  "body": " Choosing Operations   When should you use .* instead of * ?    "
+},
+{
+  "id": "array-operations-exercises",
+  "level": "1",
+  "url": "array-operations-exercises.html",
+  "type": "Exercises",
+  "number": "",
+  "title": "Practice Problems",
+  "body": " Practice Problems   Practice performing operations on arrays.    Element-wise Calculations   Given x = [1 2 3 4 5] and y = [2 4 6 8 10] , compute:   z1 = x + y  z2 = y .\/ x  z3 = x .^ 3      Temperature Conversion   Write a MATLAB command to convert the temperatures [32 68 86 104 212] from Fahrenheit to Celsius using the formula .     Computing Multiple Function Values   Create a vector theta containing 100 evenly spaced angles from 0 to , then compute y = sin(theta) . What is the size and shape of the result?    "
+},
+{
+  "id": "array-operations-exercises-3",
+  "level": "2",
+  "url": "array-operations-exercises.html#array-operations-exercises-3",
+  "type": "Exercise",
+  "number": "1",
+  "title": "Element-wise Calculations.",
+  "body": " Element-wise Calculations   Given x = [1 2 3 4 5] and y = [2 4 6 8 10] , compute:   z1 = x + y  z2 = y .\/ x  z3 = x .^ 3    "
+},
+{
+  "id": "array-operations-exercises-4",
+  "level": "2",
+  "url": "array-operations-exercises.html#array-operations-exercises-4",
+  "type": "Exercise",
+  "number": "2",
+  "title": "Temperature Conversion.",
+  "body": " Temperature Conversion   Write a MATLAB command to convert the temperatures [32 68 86 104 212] from Fahrenheit to Celsius using the formula .   "
+},
+{
+  "id": "array-operations-exercises-5",
+  "level": "2",
+  "url": "array-operations-exercises.html#array-operations-exercises-5",
+  "type": "Exercise",
+  "number": "3",
+  "title": "Computing Multiple Function Values.",
+  "body": " Computing Multiple Function Values   Create a vector theta containing 100 evenly spaced angles from 0 to , then compute y = sin(theta) . What is the size and shape of the result?   "
+},
+{
+  "id": "array-functions-statistical",
+  "level": "1",
+  "url": "array-functions-statistical.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Statistical Functions",
+  "body": " Statistical Functions  Common statistical functions that operate on arrays include:  sum(v) - Sum of all elements  mean(v) - Average of all elements  median(v) - Median value  std(v) - Standard deviation  var(v) - Variance     Computing Statistics    scores = [85 92 78 90 88]; total = sum(scores); % 433 average = mean(scores); % 86.6 mid = median(scores); % 88     For matrices, these functions operate on each column by default, returning a row vector of results. You can specify a dimension to change this behavior:   A = [1 2 3; 4 5 6]; % Sum of each column (default) col_sums = sum(A); % [5 7 9] % Sum of each row row_sums = sum(A, 2); % [6; 15]   "
+},
+{
+  "id": "array-functions-statistical-3",
+  "level": "2",
+  "url": "array-functions-statistical.html#array-functions-statistical-3",
+  "type": "🌌 Example",
+  "number": "5.9",
+  "title": "Computing Statistics.",
+  "body": " Computing Statistics    scores = [85 92 78 90 88]; total = sum(scores); % 433 average = mean(scores); % 86.6 mid = median(scores); % 88    "
+},
+{
+  "id": "array-functions-extrema",
+  "level": "1",
+  "url": "array-functions-extrema.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Finding Maximum and Minimum Values",
+  "body": " Finding Maximum and Minimum Values  The max and min functions find extreme values:   v = [45 23 67 89 34]; % Maximum value largest = max(v); % 89 % Minimum value smallest = min(v); % 23   You can also get the index (position) of the extreme value using two outputs:   [maxVal, maxIdx] = max(v); % maxVal = 89, maxIdx = 4 [minVal, minIdx] = min(v); % minVal = 23, minIdx = 2    Multiple Outputs  Many MATLAB functions can return multiple values. Use square brackets on the left side of an assignment to capture multiple outputs.   "
+},
+{
+  "id": "array-functions-size-shape",
+  "level": "1",
+  "url": "array-functions-size-shape.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Size and Shape Functions",
+  "body": " Size and Shape Functions  Functions that provide information about array dimensions:  length(v) - Number of elements in longest dimension  size(A) - Returns [rows, columns]  numel(A) - Total number of elements    Functions for reshaping arrays:  transpose(A) or A' - Transpose rows and columns  reshape(A,m,n) - Reorganize elements into m-by-n array  flipud(A) - Flip array up-down  fliplr(A) - Flip array left-right     Transposing Arrays    % Row vector v = [1 2 3 4]; % Convert to column vector w = v'; % [1; 2; 3; 4] % Transpose a matrix A = [1 2 3; 4 5 6]; % 2-by-3 B = A'; % 3-by-2: [1 4; 2 5; 3 6]     "
+},
+{
+  "id": "array-functions-size-shape-4",
+  "level": "2",
+  "url": "array-functions-size-shape.html#array-functions-size-shape-4",
+  "type": "🌌 Example",
+  "number": "5.10",
+  "title": "Transposing Arrays.",
+  "body": " Transposing Arrays    % Row vector v = [1 2 3 4]; % Convert to column vector w = v'; % [1; 2; 3; 4] % Transpose a matrix A = [1 2 3; 4 5 6]; % 2-by-3 B = A'; % 3-by-2: [1 4; 2 5; 3 6]    "
+},
+{
+  "id": "array-functions-searching",
+  "level": "1",
+  "url": "array-functions-searching.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Finding and Counting Elements",
+  "body": " Finding and Counting Elements  The find function returns the indices of elements that satisfy a condition:   v = [10 -5 30 -15 20 -25]; % Find indices of positive values pos_indices = find(v > 0); % [1 3 5] % Use these indices to access elements pos_values = v(pos_indices); % [10 30 20]   To count how many elements satisfy a condition, use sum with a logical expression:   count = sum(v > 0); % 3 (three positive values)     Given data = [15 22 18 30 25] , what does mean(data) > 20 return?     A vector of logical values    A single logical value (true or false)    The number of elements greater than 20    An error     "
+},
+{
+  "id": "array-functions-chkpt-1",
+  "level": "2",
+  "url": "array-functions-searching.html#array-functions-chkpt-1",
+  "type": "Checkpoint",
+  "number": "5.11",
+  "title": "",
+  "body": "  Given data = [15 22 18 30 25] , what does mean(data) > 20 return?     A vector of logical values    A single logical value (true or false)    The number of elements greater than 20    An error    "
+},
+{
+  "id": "array-functions-sorting",
+  "level": "1",
+  "url": "array-functions-sorting.html",
+  "type": "Subsection",
+  "number": "",
+  "title": "Sorting Arrays",
+  "body": " Sorting Arrays  The sort function arranges array elements in order:   v = [45 12 67 23 89]; % Sort in ascending order (default) v_asc = sort(v); % [12 23 45 67 89] % Sort in descending order v_desc = sort(v, 'descend'); % [89 67 45 23 12]   Like max and min , sort can return both the sorted values and the indices showing where each element came from:   [sorted_vals, order] = sort(v); % sorted_vals = [12 23 45 67 89] % order = [2 4 1 3 5]   "
+},
+{
+  "id": "array-functions-8",
+  "level": "1",
+  "url": "array-functions-8.html",
+  "type": "Reading Questions",
+  "number": "",
+  "title": "Reading Questions",
+  "body": "  These questions check your understanding of built-in array functions.    Function Selection   Which function would you use to find the total number of elements in a matrix?     "
+},
+{
+  "id": "array-functions-rq-1",
+  "level": "2",
+  "url": "array-functions-8.html#array-functions-rq-1",
+  "type": "Reading Question",
+  "number": "1",
+  "title": "Function Selection.",
+  "body": " Function Selection   Which function would you use to find the total number of elements in a matrix?    "
+},
+{
+  "id": "array-functions-exercises",
+  "level": "1",
+  "url": "array-functions-exercises.html",
+  "type": "Exercises",
+  "number": "",
+  "title": "Practice Problems",
+  "body": " Practice Problems   Practice using MATLAB's built-in array functions.    Data Analysis   Given the test scores [78 85 92 88 76 95 84] , write MATLAB commands to find:   The average score  The highest score  The number of scores above 85      Array Manipulation   Given A = [1 2 3; 4 5 6] , write commands to:   Find the sum of each column  Find the sum of each row  Transpose the matrix      Finding Values   Given temps = [68 72 75 71 80 78 73] , write a command to find the indices of all days where the temperature was at least 75 degrees.    "
+},
+{
+  "id": "array-functions-exercises-3",
+  "level": "2",
+  "url": "array-functions-exercises.html#array-functions-exercises-3",
+  "type": "Exercise",
+  "number": "1",
+  "title": "Data Analysis.",
+  "body": " Data Analysis   Given the test scores [78 85 92 88 76 95 84] , write MATLAB commands to find:   The average score  The highest score  The number of scores above 85    "
+},
+{
+  "id": "array-functions-exercises-4",
+  "level": "2",
+  "url": "array-functions-exercises.html#array-functions-exercises-4",
+  "type": "Exercise",
+  "number": "2",
+  "title": "Array Manipulation.",
+  "body": " Array Manipulation   Given A = [1 2 3; 4 5 6] , write commands to:   Find the sum of each column  Find the sum of each row  Transpose the matrix    "
+},
+{
+  "id": "array-functions-exercises-5",
+  "level": "2",
+  "url": "array-functions-exercises.html#array-functions-exercises-5",
+  "type": "Exercise",
+  "number": "3",
+  "title": "Finding Values.",
+  "body": " Finding Values   Given temps = [68 72 75 71 80 78 73] , write a command to find the indices of all days where the temperature was at least 75 degrees.   "
+},
+{
+  "id": "exercises-arrays",
+  "level": "1",
+  "url": "exercises-arrays.html",
+  "type": "Exercises",
+  "number": "5.6",
+  "title": "Chapter Exercises",
+  "body": " Chapter Exercises   These exercises integrate concepts from throughout the chapter. They require you to combine array creation, indexing, operations, and built-in functions to solve problems.    Random Walk to a Boundary   A random walk changes position by a sequence of steps. In a live simulation, each step could be generated with randi([0,1]) * 2 - 1 , which produces either or with equal probability.  To make the exercise testable, write a function called walkToBoundary that takes a starting position, a lower boundary, an upper boundary, and a vector of moves whose entries are -1 or 1 . Use a while -loop to apply moves one at a time until the position reaches either boundary or there are no moves left.  Return the final position, the number of moves actually used, and the highest and lowest positions reached. This models both a walk that starts at 0 and stops at or , and the Gambler's Ruin version that starts at 5 and stops at 0 or 10.        Inputs:  startPos  (1x1) double  starting position     lowerBound  (1x1) double  lower stopping value     upperBound  (1x1) double  upper stopping value     moves  (1xn) double  vector of steps, each equal to -1 or 1    Outputs:  finalPos  (1x1) double  position where the walk stops     steps  (1x1) double  number of moves used     maxPos  (1x1) double  highest position reached     minPos  (1x1) double  lowest position reached      Test Cases ⤵︎  % Test 1 [finalPos, n, hi, lo] = walkToBoundary(0, -3, 3, [1 1 -1 1 1]) % Test 2 [finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [-1 -1 1 -1 -1 -1 -1]) % Test 3 [finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [1 1 -1 1 1 1 1])    Expected ⤵︎  % Test 1 finalPos = 3 n = 5 hi = 3 lo = 0 % Test 2 finalPos = 0 n = 7 hi = 5 lo = 0 % Test 3 finalPos = 10 n = 7 hi = 10 lo = 5       Number Guessing Game   The original version of this activity uses randi to choose a secret number and input to collect guesses from the player. To make the behavior testable, write a function called guessNumber that takes the secret number and a vector of guesses as input.  Process the guesses in order with a while -loop until the correct guess is found or the list of guesses runs out. Return won as 1 if the player guessed correctly and 0 otherwise, along with attempts , the number of guesses that were actually used.  In an interactive version, you would print Too low! or Too high! after each incorrect guess.        Inputs:  secret  (1x1) double  secret number to guess     guesses  (1xn) double  guesses to process in order    Outputs:  won  (1x1) double  1 if the secret number is guessed, otherwise 0     attempts  (1x1) double  number of guesses used      Test Cases ⤵︎  % Test 1 [won, n] = guessNumber(42, [50 25 40 42]) % Test 2 [won, n] = guessNumber(17, [10 20 17]) % Test 3 [won, n] = guessNumber(8, [1 2 3])    Expected ⤵︎  % Test 1 won = 1 n = 4 % Test 2 won = 1 n = 3 % Test 3 won = 0 n = 3       Limited Guesses   Write a function called guessNumberLimited that works like the previous exercise, but stops after at most maxAttempts guesses. Process the guesses in order with a while -loop.  Return won as 1 if the player guesses the secret number before the limit is reached and 0 otherwise. Also return attempts , the number of guesses actually used.  In the interactive version, if the player loses, you would reveal the secret number after the loop ends.        Inputs:  secret  (1x1) double  secret number to guess     guesses  (1xn) double  guesses to process in order     maxAttempts  (1x1) double  maximum number of guesses allowed    Outputs:  won  (1x1) double  1 if the player guesses correctly in time, otherwise 0     attempts  (1x1) double  number of guesses used before stopping      Test Cases ⤵︎  % Test 1 [won, n] = guessNumberLimited(42, [50 25 40 42], 4) % Test 2 [won, n] = guessNumberLimited(42, [50 25 40 35 44], 3) % Test 3 [won, n] = guessNumberLimited(7, [7 1 2], 7)    Expected ⤵︎  % Test 1 won = 1 n = 4 % Test 2 won = 0 n = 3 % Test 3 won = 1 n = 1       Multiplication Streak   The original version of this activity generates random multiplication questions and stops as soon as the player gives one incorrect answer. To make the logic testable, write a function called multiplicationStreak that takes three equally sized vectors: the first factors, the second factors, and the player's answers.  Use a while -loop to process the questions in order. Stop at the first incorrect answer or when all questions have been checked. Return the number of consecutive correct answers from the start.        Inputs:  aVals  (1xn) double  first factors     bVals  (1xn) double  second factors     answers  (1xn) double  player answers    Outputs:  streak  (1x1) double  number of consecutive correct answers from the start      Test Cases ⤵︎  % Test 1 multiplicationStreak([3 7 2], [4 5 9], [12 35 18]) % Test 2 multiplicationStreak([3 7 2], [4 5 9], [12 34 18]) % Test 3 multiplicationStreak([9 8], [9 7], [80 56])    Expected ⤵︎  % Test 1 ans = 3 % Test 2 ans = 1 % Test 3 ans = 0       Mixed Operations Streak   Write a function called mixedMathStreak that checks a sequence of arithmetic questions. Use operation codes 1 for addition, 2 for subtraction, and 3 for multiplication.  The inputs ops , aVals , bVals , and answers should all have the same length. Use a while -loop and a switch -statement to compute the correct answer for each round. Stop at the first incorrect answer and return the number of consecutive correct answers from the start.  Assume every subtraction round is written so that aVals(k) >= bVals(k) .        Inputs:  ops  (1xn) double  operation codes: 1 add, 2 subtract, 3 multiply     aVals  (1xn) double  first numbers     bVals  (1xn) double  second numbers     answers  (1xn) double  player answers    Outputs:  streak  (1x1) double  number of consecutive correct answers from the start      Test Cases ⤵︎  % Test 1 mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 42 42]) % Test 2 mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 41 42]) % Test 3 mixedMathStreak([2], [10], [3], [8])    Expected ⤵︎  % Test 1 ans = 4 % Test 2 ans = 2 % Test 3 ans = 0       Rock, Paper, Scissors Round   In Rock, Paper, Scissors, the choices are encoded as 1 = Rock , 2 = Paper , and 3 = Scissors . A player wins if Rock beats Scissors, Paper beats Rock, or Scissors beats Paper.  To make the activity testable, write a function called rpsRound that takes the player's choice and the computer's choice as input and returns the result of the round.  Return winner as 1 if the player wins, 0 if the round is a tie, and -1 if the computer wins. In an interactive version, the computer's move could be generated with randi([1,3]) .        Inputs:  player  (1x1) double  player's choice: 1 for Rock, 2 for Paper, 3 for Scissors     comp  (1x1) double  computer's choice: 1 for Rock, 2 for Paper, 3 for Scissors    Outputs:  winner  (1x1) double  1 if the player wins, 0 for a tie, and -1 if the computer wins      Test Cases ⤵︎  % Test 1 rpsRound(1, 3) % Test 2 rpsRound(2, 2) % Test 3 rpsRound(3, 1) % Test 4 rpsRound(2, 1)    Expected ⤵︎  % Test 1 ans = 1 % Test 2 ans = 0 % Test 3 ans = -1 % Test 4 ans = 1       Rock, Paper, Scissors First to 3 Wins   Write a function called rpsFirstToThree that plays a match using predetermined moves for the player and the computer. This makes the activity testable without input or random numbers.  The vectors playerMoves and compMoves contain choices encoded as 1 = Rock , 2 = Paper , and 3 = Scissors . Use a while -loop to process moves in order until either the player reaches 3 wins, the computer reaches 3 wins, or one of the move lists runs out.  Return the final scores, the number of rounds actually played, and winner , where 1 means the player won the match, -1 means the computer won the match, and 0 means no one reached 3 wins before the moves ended. Ties count as rounds played but do not increase either score.        Inputs:  playerMoves  (1xn) double  player choices to process in order     compMoves  (1xm) double  computer choices to process in order    Outputs:  playerScore  (1x1) double  number of rounds won by the player     compScore  (1x1) double  number of rounds won by the computer     rounds  (1x1) double  number of rounds actually played     winner  (1x1) double  1 if the player wins the match, -1 if the computer wins, and 0 otherwise      Test Cases ⤵︎  % Test 1 [p, c, n, w] = rpsFirstToThree([1 2 3 1], [3 1 2 2]) % Test 2 [p, c, n, w] = rpsFirstToThree([1 1 1 2 2], [2 2 1 3 3]) % Test 3 [p, c, n, w] = rpsFirstToThree([1 2 3], [1 3 2])    Expected ⤵︎  % Test 1 p = 3 c = 0 n = 3 w = 1 % Test 2 p = 0 c = 3 n = 4 w = -1 % Test 3 p = 1 c = 1 n = 3 w = 0       Rock, Paper, Scissors Match Statistics   Write a function called rpsMatchStats that tracks the full summary of a Rock, Paper, Scissors match. Use the same move encoding as before: 1 = Rock , 2 = Paper , and 3 = Scissors .  Use a while -loop to process the moves in order until either player reaches 3 wins or one of the move lists runs out. Track the total number of rounds played, the player's wins, the computer's wins, and the number of ties.  Return winner as 1 if the player wins the match, -1 if the computer wins, and 0 if no one reaches 3 wins.        Inputs:  playerMoves  (1xn) double  player choices to process in order     compMoves  (1xm) double  computer choices to process in order    Outputs:  playerWins  (1x1) double  number of rounds won by the player     compWins  (1x1) double  number of rounds won by the computer     ties  (1x1) double  number of tied rounds     rounds  (1x1) double  number of rounds actually played     winner  (1x1) double  1 if the player wins the match, -1 if the computer wins, and 0 otherwise      Test Cases ⤵︎  % Test 1 [p, c, t, n, w] = rpsMatchStats([1 2 3 1], [1 1 1 3]) % Test 2 [p, c, t, n, w] = rpsMatchStats([1 2 3 1], [3 1 2 2]) % Test 3 [p, c, t, n, w] = rpsMatchStats([1 1 1 2 2], [2 2 1 3 3])    Expected ⤵︎  % Test 1 p = 2 c = 1 t = 1 n = 4 w = 0 % Test 2 p = 3 c = 0 t = 0 n = 3 w = 1 % Test 3 p = 0 c = 3 t = 1 n = 4 w = -1       Counting Quarters   A vending machine often makes change by repeatedly taking the largest coin that still fits. This strategy is called a greedy algorithm .  Write a function called countQuarters that takes an amount in cents and uses a while -loop to count how many quarters fit into that amount. Do not use division or floor . Instead, subtract 25 repeatedly until fewer than 25 cents remain.  Return the number of quarters used and the remaining number of cents.        Inputs:  amount  (1x1) double  nonnegative integer amount in cents    Outputs:  quarters  (1x1) double  number of quarters used     remainder  (1x1) double  cents left after removing all possible quarters      Test Cases ⤵︎  % Test 1 [q, r] = countQuarters(87) % Test 2 [q, r] = countQuarters(19) % Test 3 [q, r] = countQuarters(100)    Expected ⤵︎  % Test 1 q = 3 r = 12 % Test 2 q = 0 r = 19 % Test 3 q = 4 r = 0       PIN Check with Repeated Guesses   In a live version of this activity, a program could use input to keep asking for a PIN until the correct value is entered.  To make the behavior testable, write a function called checkPin that takes the secret PIN and a vector of guesses. Use a while -loop to process guesses in order until the correct PIN is found or the guess list runs out.  Return granted as 1 if the PIN is entered correctly and 0 otherwise. Also return attempts , the number of guesses that were actually used.        Inputs:  pin  (1x1) double  secret PIN value     guesses  (1xn) double  PIN guesses to process in order    Outputs:  granted  (1x1) double  1 if the correct PIN is found, otherwise 0     attempts  (1x1) double  number of guesses used      Test Cases ⤵︎  % Test 1 [g, n] = checkPin(1234, [1111 9999 1234]) % Test 2 [g, n] = checkPin(2468, [1111 2222 3333 4444]) % Test 3 [g, n] = checkPin(4321, [4321])    Expected ⤵︎  % Test 1 g = 1 n = 3 % Test 2 g = 0 n = 4 % Test 3 g = 1 n = 1       PIN Lockout After Three Strikes   Write a function called checkPinThreeStrikes that limits the user to at most three guesses.  Use a while -loop with a compound condition so the loop continues only while the correct PIN has not been entered and fewer than 3 attempts have been used. Process guesses in order from the input vector.  Return granted as 1 if the correct PIN is entered and 0 otherwise. Also return attempts , the number of guesses that were actually used, and lockedOut , which should be 1 only when all three attempts are used without entering the correct PIN. In an interactive version, after the second failed guess you could display the warning 1 attempt remaining before lockout.         Inputs:  pin  (1x1) double  secret PIN value     guesses  (1xn) double  PIN guesses to process in order    Outputs:  granted  (1x1) double  1 if the correct PIN is entered, otherwise 0     attempts  (1x1) double  number of guesses used, up to a maximum of 3     lockedOut  (1x1) double  1 if three incorrect guesses are used, otherwise 0      Test Cases ⤵︎  % Test 1 [g, n, locked] = checkPinThreeStrikes(1234, [1111 1234 9999]) % Test 2 [g, n, locked] = checkPinThreeStrikes(1234, [1111 2222 3333 1234]) % Test 3 [g, n, locked] = checkPinThreeStrikes(2468, [2468])    Expected ⤵︎  % Test 1 g = 1 n = 2 locked = 0 % Test 2 g = 0 n = 3 locked = 1 % Test 3 g = 1 n = 1 locked = 0       Temperature Data Analysis   A weather station records daily high temperatures for a week: [72 75 78 74 80 82 79] .   Calculate the average temperature for the week.  Find the hottest day's temperature.  Determine how many days had temperatures above 75 degrees.  Create a new array showing the difference from the average for each day.      Grading Multiple Students   A class has three students with test scores stored in a matrix where each row represents a student and each column represents a test:   scores = [85 92 88; 78 84 90; 92 95 89];    Calculate each student's average score (hint: use row sums).  Calculate the class average for each test (hint: use column means).  Find the highest score in the entire class.      Vector Operations   Given two vectors x = 1:10 and y = linspace(0,1,10) :   Compute z = x.^2 + 5*y  Find the indices where z is greater than 20  Calculate the sum of all elements in z that are greater than 20      Matrix Construction   Create a 5-by-5 matrix where:   The first column contains the numbers 1 through 5  The second column contains the squares of those numbers  The third column contains the cubes  The fourth and fifth columns contain zeros      Data Filtering   Given a vector of measurements data = [12 -5 18 -3 25 -8 30 15] :   Create a new vector containing only the positive values  Replace all negative values with zero (in the original vector)  Count how many values are greater than 15      Array Reshaping Challenge   Create a row vector v = 1:12 . Then:   Reshape it into a 3-by-4 matrix  Extract the second row of that matrix  Compute the sum of the last column      Function Evaluation   Create a vector t of 50 evenly spaced values from 0 to . Then compute y = sin(t) + 0.5*cos(2*t) . Find:   The maximum value of y  The index at which this maximum occurs  The corresponding value of t at that index      Comparing Arrays   Two sensors measure the same quantity and produce slightly different readings:   sensor1 = [10.2 10.5 10.1 10.4 10.3]; sensor2 = [10.1 10.6 10.0 10.5 10.2];   Calculate:   The element-wise difference between the sensors  The absolute value of these differences  The average absolute difference       Write a function named snakeEyesCount that counts the number of times you roll two 1 's in a row in n rolls.        Inputs:  n  (1x1) double  number of die rolls    Outputs:  count  (1x1) double  the number of times two 1 s are rolled      Test Cases ⤵︎  rng(123); % Set seed snakeEyesCount(10) snakeEyesCount(100) snakeEyesCount(600)    Expected ⤵︎  󠀠 % count = 1 % count = 10 % count = 52       Integer Factorization by Trial Division   Every integer greater than 1 can be written as a product of prime factors. For example, A simple way to find these factors is trial division : test divisors starting at 2, divide them out when they work, and move on when they do not.  As a warm-up, first write a while -loop that divides out all copies of 2 from a number n . For example, starting with n = 360 , the values should change as follows:   Then write a function primeFactors(n) that returns all prime factors of n as a row vector in nondecreasing order. Use a divisor d that starts at 2. While d * d <= n , test whether d divides n . If it does, record the factor and divide it out. If it does not, increase d by 1. After the loop, if n > 1 , then the remaining value of n is the last prime factor.  Finally, write a function smallestFactor(n) that returns the smallest prime factor of n . If n is prime, the function should return n itself.        Inputs:  n  (1x1) double  integer greater than 1    Outputs:  factors  (1xn) double  row vector of prime factors returned by primeFactors     p  (1x1) double  smallest prime factor returned by smallestFactor      Test Cases ⤵︎  primeFactors(360) primeFactors(97) smallestFactor(91) smallestFactor(9973)    Expected ⤵︎  ans = [2 2 2 3 3 5] ans = [97] ans = 7 ans = 9973      "
+},
+{
+  "id": "hw-random-walk-a",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-random-walk-a",
+  "type": "Exercise",
+  "number": "5.6.1",
+  "title": "Random Walk to a Boundary.",
+  "body": " Random Walk to a Boundary   A random walk changes position by a sequence of steps. In a live simulation, each step could be generated with randi([0,1]) * 2 - 1 , which produces either or with equal probability.  To make the exercise testable, write a function called walkToBoundary that takes a starting position, a lower boundary, an upper boundary, and a vector of moves whose entries are -1 or 1 . Use a while -loop to apply moves one at a time until the position reaches either boundary or there are no moves left.  Return the final position, the number of moves actually used, and the highest and lowest positions reached. This models both a walk that starts at 0 and stops at or , and the Gambler's Ruin version that starts at 5 and stops at 0 or 10.        Inputs:  startPos  (1x1) double  starting position     lowerBound  (1x1) double  lower stopping value     upperBound  (1x1) double  upper stopping value     moves  (1xn) double  vector of steps, each equal to -1 or 1    Outputs:  finalPos  (1x1) double  position where the walk stops     steps  (1x1) double  number of moves used     maxPos  (1x1) double  highest position reached     minPos  (1x1) double  lowest position reached      Test Cases ⤵︎  % Test 1 [finalPos, n, hi, lo] = walkToBoundary(0, -3, 3, [1 1 -1 1 1]) % Test 2 [finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [-1 -1 1 -1 -1 -1 -1]) % Test 3 [finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [1 1 -1 1 1 1 1])    Expected ⤵︎  % Test 1 finalPos = 3 n = 5 hi = 3 lo = 0 % Test 2 finalPos = 0 n = 7 hi = 5 lo = 0 % Test 3 finalPos = 10 n = 7 hi = 10 lo = 5     "
+},
+{
+  "id": "hw-guessing-game-a",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-guessing-game-a",
+  "type": "Exercise",
+  "number": "5.6.2",
+  "title": "Number Guessing Game.",
+  "body": " Number Guessing Game   The original version of this activity uses randi to choose a secret number and input to collect guesses from the player. To make the behavior testable, write a function called guessNumber that takes the secret number and a vector of guesses as input.  Process the guesses in order with a while -loop until the correct guess is found or the list of guesses runs out. Return won as 1 if the player guessed correctly and 0 otherwise, along with attempts , the number of guesses that were actually used.  In an interactive version, you would print Too low! or Too high! after each incorrect guess.        Inputs:  secret  (1x1) double  secret number to guess     guesses  (1xn) double  guesses to process in order    Outputs:  won  (1x1) double  1 if the secret number is guessed, otherwise 0     attempts  (1x1) double  number of guesses used      Test Cases ⤵︎  % Test 1 [won, n] = guessNumber(42, [50 25 40 42]) % Test 2 [won, n] = guessNumber(17, [10 20 17]) % Test 3 [won, n] = guessNumber(8, [1 2 3])    Expected ⤵︎  % Test 1 won = 1 n = 4 % Test 2 won = 1 n = 3 % Test 3 won = 0 n = 3     "
+},
+{
+  "id": "hw-guessing-game-c",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-guessing-game-c",
+  "type": "Exercise",
+  "number": "5.6.3",
+  "title": "Limited Guesses.",
+  "body": " Limited Guesses   Write a function called guessNumberLimited that works like the previous exercise, but stops after at most maxAttempts guesses. Process the guesses in order with a while -loop.  Return won as 1 if the player guesses the secret number before the limit is reached and 0 otherwise. Also return attempts , the number of guesses actually used.  In the interactive version, if the player loses, you would reveal the secret number after the loop ends.        Inputs:  secret  (1x1) double  secret number to guess     guesses  (1xn) double  guesses to process in order     maxAttempts  (1x1) double  maximum number of guesses allowed    Outputs:  won  (1x1) double  1 if the player guesses correctly in time, otherwise 0     attempts  (1x1) double  number of guesses used before stopping      Test Cases ⤵︎  % Test 1 [won, n] = guessNumberLimited(42, [50 25 40 42], 4) % Test 2 [won, n] = guessNumberLimited(42, [50 25 40 35 44], 3) % Test 3 [won, n] = guessNumberLimited(7, [7 1 2], 7)    Expected ⤵︎  % Test 1 won = 1 n = 4 % Test 2 won = 0 n = 3 % Test 3 won = 1 n = 1     "
+},
+{
+  "id": "hw-mental-math-a",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-mental-math-a",
+  "type": "Exercise",
+  "number": "5.6.4",
+  "title": "Multiplication Streak.",
+  "body": " Multiplication Streak   The original version of this activity generates random multiplication questions and stops as soon as the player gives one incorrect answer. To make the logic testable, write a function called multiplicationStreak that takes three equally sized vectors: the first factors, the second factors, and the player's answers.  Use a while -loop to process the questions in order. Stop at the first incorrect answer or when all questions have been checked. Return the number of consecutive correct answers from the start.        Inputs:  aVals  (1xn) double  first factors     bVals  (1xn) double  second factors     answers  (1xn) double  player answers    Outputs:  streak  (1x1) double  number of consecutive correct answers from the start      Test Cases ⤵︎  % Test 1 multiplicationStreak([3 7 2], [4 5 9], [12 35 18]) % Test 2 multiplicationStreak([3 7 2], [4 5 9], [12 34 18]) % Test 3 multiplicationStreak([9 8], [9 7], [80 56])    Expected ⤵︎  % Test 1 ans = 3 % Test 2 ans = 1 % Test 3 ans = 0     "
+},
+{
+  "id": "hw-mental-math-b",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-mental-math-b",
+  "type": "Exercise",
+  "number": "5.6.5",
+  "title": "Mixed Operations Streak.",
+  "body": " Mixed Operations Streak   Write a function called mixedMathStreak that checks a sequence of arithmetic questions. Use operation codes 1 for addition, 2 for subtraction, and 3 for multiplication.  The inputs ops , aVals , bVals , and answers should all have the same length. Use a while -loop and a switch -statement to compute the correct answer for each round. Stop at the first incorrect answer and return the number of consecutive correct answers from the start.  Assume every subtraction round is written so that aVals(k) >= bVals(k) .        Inputs:  ops  (1xn) double  operation codes: 1 add, 2 subtract, 3 multiply     aVals  (1xn) double  first numbers     bVals  (1xn) double  second numbers     answers  (1xn) double  player answers    Outputs:  streak  (1x1) double  number of consecutive correct answers from the start      Test Cases ⤵︎  % Test 1 mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 42 42]) % Test 2 mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 41 42]) % Test 3 mixedMathStreak([2], [10], [3], [8])    Expected ⤵︎  % Test 1 ans = 4 % Test 2 ans = 2 % Test 3 ans = 0     "
+},
+{
+  "id": "hw-rps-a",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-rps-a",
+  "type": "Exercise",
+  "number": "5.6.6",
+  "title": "Rock, Paper, Scissors Round.",
+  "body": " Rock, Paper, Scissors Round   In Rock, Paper, Scissors, the choices are encoded as 1 = Rock , 2 = Paper , and 3 = Scissors . A player wins if Rock beats Scissors, Paper beats Rock, or Scissors beats Paper.  To make the activity testable, write a function called rpsRound that takes the player's choice and the computer's choice as input and returns the result of the round.  Return winner as 1 if the player wins, 0 if the round is a tie, and -1 if the computer wins. In an interactive version, the computer's move could be generated with randi([1,3]) .        Inputs:  player  (1x1) double  player's choice: 1 for Rock, 2 for Paper, 3 for Scissors     comp  (1x1) double  computer's choice: 1 for Rock, 2 for Paper, 3 for Scissors    Outputs:  winner  (1x1) double  1 if the player wins, 0 for a tie, and -1 if the computer wins      Test Cases ⤵︎  % Test 1 rpsRound(1, 3) % Test 2 rpsRound(2, 2) % Test 3 rpsRound(3, 1) % Test 4 rpsRound(2, 1)    Expected ⤵︎  % Test 1 ans = 1 % Test 2 ans = 0 % Test 3 ans = -1 % Test 4 ans = 1     "
+},
+{
+  "id": "hw-rps-b",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-rps-b",
+  "type": "Exercise",
+  "number": "5.6.7",
+  "title": "Rock, Paper, Scissors First to 3 Wins.",
+  "body": " Rock, Paper, Scissors First to 3 Wins   Write a function called rpsFirstToThree that plays a match using predetermined moves for the player and the computer. This makes the activity testable without input or random numbers.  The vectors playerMoves and compMoves contain choices encoded as 1 = Rock , 2 = Paper , and 3 = Scissors . Use a while -loop to process moves in order until either the player reaches 3 wins, the computer reaches 3 wins, or one of the move lists runs out.  Return the final scores, the number of rounds actually played, and winner , where 1 means the player won the match, -1 means the computer won the match, and 0 means no one reached 3 wins before the moves ended. Ties count as rounds played but do not increase either score.        Inputs:  playerMoves  (1xn) double  player choices to process in order     compMoves  (1xm) double  computer choices to process in order    Outputs:  playerScore  (1x1) double  number of rounds won by the player     compScore  (1x1) double  number of rounds won by the computer     rounds  (1x1) double  number of rounds actually played     winner  (1x1) double  1 if the player wins the match, -1 if the computer wins, and 0 otherwise      Test Cases ⤵︎  % Test 1 [p, c, n, w] = rpsFirstToThree([1 2 3 1], [3 1 2 2]) % Test 2 [p, c, n, w] = rpsFirstToThree([1 1 1 2 2], [2 2 1 3 3]) % Test 3 [p, c, n, w] = rpsFirstToThree([1 2 3], [1 3 2])    Expected ⤵︎  % Test 1 p = 3 c = 0 n = 3 w = 1 % Test 2 p = 0 c = 3 n = 4 w = -1 % Test 3 p = 1 c = 1 n = 3 w = 0     "
+},
+{
+  "id": "hw-rps-c",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-rps-c",
+  "type": "Exercise",
+  "number": "5.6.8",
+  "title": "Rock, Paper, Scissors Match Statistics.",
+  "body": " Rock, Paper, Scissors Match Statistics   Write a function called rpsMatchStats that tracks the full summary of a Rock, Paper, Scissors match. Use the same move encoding as before: 1 = Rock , 2 = Paper , and 3 = Scissors .  Use a while -loop to process the moves in order until either player reaches 3 wins or one of the move lists runs out. Track the total number of rounds played, the player's wins, the computer's wins, and the number of ties.  Return winner as 1 if the player wins the match, -1 if the computer wins, and 0 if no one reaches 3 wins.        Inputs:  playerMoves  (1xn) double  player choices to process in order     compMoves  (1xm) double  computer choices to process in order    Outputs:  playerWins  (1x1) double  number of rounds won by the player     compWins  (1x1) double  number of rounds won by the computer     ties  (1x1) double  number of tied rounds     rounds  (1x1) double  number of rounds actually played     winner  (1x1) double  1 if the player wins the match, -1 if the computer wins, and 0 otherwise      Test Cases ⤵︎  % Test 1 [p, c, t, n, w] = rpsMatchStats([1 2 3 1], [1 1 1 3]) % Test 2 [p, c, t, n, w] = rpsMatchStats([1 2 3 1], [3 1 2 2]) % Test 3 [p, c, t, n, w] = rpsMatchStats([1 1 1 2 2], [2 2 1 3 3])    Expected ⤵︎  % Test 1 p = 2 c = 1 t = 1 n = 4 w = 0 % Test 2 p = 3 c = 0 t = 0 n = 3 w = 1 % Test 3 p = 0 c = 3 t = 1 n = 4 w = -1     "
+},
+{
+  "id": "hw-change-machine-a",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-change-machine-a",
+  "type": "Exercise",
+  "number": "5.6.9",
+  "title": "Counting Quarters.",
+  "body": " Counting Quarters   A vending machine often makes change by repeatedly taking the largest coin that still fits. This strategy is called a greedy algorithm .  Write a function called countQuarters that takes an amount in cents and uses a while -loop to count how many quarters fit into that amount. Do not use division or floor . Instead, subtract 25 repeatedly until fewer than 25 cents remain.  Return the number of quarters used and the remaining number of cents.        Inputs:  amount  (1x1) double  nonnegative integer amount in cents    Outputs:  quarters  (1x1) double  number of quarters used     remainder  (1x1) double  cents left after removing all possible quarters      Test Cases ⤵︎  % Test 1 [q, r] = countQuarters(87) % Test 2 [q, r] = countQuarters(19) % Test 3 [q, r] = countQuarters(100)    Expected ⤵︎  % Test 1 q = 3 r = 12 % Test 2 q = 0 r = 19 % Test 3 q = 4 r = 0     "
+},
+{
+  "id": "hw-password-a",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-password-a",
+  "type": "Exercise",
+  "number": "5.6.10",
+  "title": "PIN Check with Repeated Guesses.",
+  "body": " PIN Check with Repeated Guesses   In a live version of this activity, a program could use input to keep asking for a PIN until the correct value is entered.  To make the behavior testable, write a function called checkPin that takes the secret PIN and a vector of guesses. Use a while -loop to process guesses in order until the correct PIN is found or the guess list runs out.  Return granted as 1 if the PIN is entered correctly and 0 otherwise. Also return attempts , the number of guesses that were actually used.        Inputs:  pin  (1x1) double  secret PIN value     guesses  (1xn) double  PIN guesses to process in order    Outputs:  granted  (1x1) double  1 if the correct PIN is found, otherwise 0     attempts  (1x1) double  number of guesses used      Test Cases ⤵︎  % Test 1 [g, n] = checkPin(1234, [1111 9999 1234]) % Test 2 [g, n] = checkPin(2468, [1111 2222 3333 4444]) % Test 3 [g, n] = checkPin(4321, [4321])    Expected ⤵︎  % Test 1 g = 1 n = 3 % Test 2 g = 0 n = 4 % Test 3 g = 1 n = 1     "
+},
+{
+  "id": "hw-password-b",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-password-b",
+  "type": "Exercise",
+  "number": "5.6.11",
+  "title": "PIN Lockout After Three Strikes.",
+  "body": " PIN Lockout After Three Strikes   Write a function called checkPinThreeStrikes that limits the user to at most three guesses.  Use a while -loop with a compound condition so the loop continues only while the correct PIN has not been entered and fewer than 3 attempts have been used. Process guesses in order from the input vector.  Return granted as 1 if the correct PIN is entered and 0 otherwise. Also return attempts , the number of guesses that were actually used, and lockedOut , which should be 1 only when all three attempts are used without entering the correct PIN. In an interactive version, after the second failed guess you could display the warning 1 attempt remaining before lockout.         Inputs:  pin  (1x1) double  secret PIN value     guesses  (1xn) double  PIN guesses to process in order    Outputs:  granted  (1x1) double  1 if the correct PIN is entered, otherwise 0     attempts  (1x1) double  number of guesses used, up to a maximum of 3     lockedOut  (1x1) double  1 if three incorrect guesses are used, otherwise 0      Test Cases ⤵︎  % Test 1 [g, n, locked] = checkPinThreeStrikes(1234, [1111 1234 9999]) % Test 2 [g, n, locked] = checkPinThreeStrikes(1234, [1111 2222 3333 1234]) % Test 3 [g, n, locked] = checkPinThreeStrikes(2468, [2468])    Expected ⤵︎  % Test 1 g = 1 n = 2 locked = 0 % Test 2 g = 0 n = 3 locked = 1 % Test 3 g = 1 n = 1 locked = 0     "
+},
+{
+  "id": "exercises-arrays-14",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-14",
+  "type": "Exercise",
+  "number": "5.6.12",
+  "title": "Temperature Data Analysis.",
+  "body": " Temperature Data Analysis   A weather station records daily high temperatures for a week: [72 75 78 74 80 82 79] .   Calculate the average temperature for the week.  Find the hottest day's temperature.  Determine how many days had temperatures above 75 degrees.  Create a new array showing the difference from the average for each day.    "
+},
+{
+  "id": "exercises-arrays-15",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-15",
+  "type": "Exercise",
+  "number": "5.6.13",
+  "title": "Grading Multiple Students.",
+  "body": " Grading Multiple Students   A class has three students with test scores stored in a matrix where each row represents a student and each column represents a test:   scores = [85 92 88; 78 84 90; 92 95 89];    Calculate each student's average score (hint: use row sums).  Calculate the class average for each test (hint: use column means).  Find the highest score in the entire class.    "
+},
+{
+  "id": "exercises-arrays-16",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-16",
+  "type": "Exercise",
+  "number": "5.6.14",
+  "title": "Vector Operations.",
+  "body": " Vector Operations   Given two vectors x = 1:10 and y = linspace(0,1,10) :   Compute z = x.^2 + 5*y  Find the indices where z is greater than 20  Calculate the sum of all elements in z that are greater than 20    "
+},
+{
+  "id": "exercises-arrays-17",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-17",
+  "type": "Exercise",
+  "number": "5.6.15",
+  "title": "Matrix Construction.",
+  "body": " Matrix Construction   Create a 5-by-5 matrix where:   The first column contains the numbers 1 through 5  The second column contains the squares of those numbers  The third column contains the cubes  The fourth and fifth columns contain zeros    "
+},
+{
+  "id": "exercises-arrays-18",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-18",
+  "type": "Exercise",
+  "number": "5.6.16",
+  "title": "Data Filtering.",
+  "body": " Data Filtering   Given a vector of measurements data = [12 -5 18 -3 25 -8 30 15] :   Create a new vector containing only the positive values  Replace all negative values with zero (in the original vector)  Count how many values are greater than 15    "
+},
+{
+  "id": "exercises-arrays-19",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-19",
+  "type": "Exercise",
+  "number": "5.6.17",
+  "title": "Array Reshaping Challenge.",
+  "body": " Array Reshaping Challenge   Create a row vector v = 1:12 . Then:   Reshape it into a 3-by-4 matrix  Extract the second row of that matrix  Compute the sum of the last column    "
+},
+{
+  "id": "exercises-arrays-20",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-20",
+  "type": "Exercise",
+  "number": "5.6.18",
+  "title": "Function Evaluation.",
+  "body": " Function Evaluation   Create a vector t of 50 evenly spaced values from 0 to . Then compute y = sin(t) + 0.5*cos(2*t) . Find:   The maximum value of y  The index at which this maximum occurs  The corresponding value of t at that index    "
+},
+{
+  "id": "exercises-arrays-21",
+  "level": "2",
+  "url": "exercises-arrays.html#exercises-arrays-21",
+  "type": "Exercise",
+  "number": "5.6.19",
+  "title": "Comparing Arrays.",
+  "body": " Comparing Arrays   Two sensors measure the same quantity and produce slightly different readings:   sensor1 = [10.2 10.5 10.1 10.4 10.3]; sensor2 = [10.1 10.6 10.0 10.5 10.2];   Calculate:   The element-wise difference between the sensors  The absolute value of these differences  The average absolute difference    "
+},
+{
+  "id": "coding-for-loop-snakeEyesCount",
+  "level": "2",
+  "url": "exercises-arrays.html#coding-for-loop-snakeEyesCount",
+  "type": "Exercise",
+  "number": "5.6.20",
+  "title": "",
+  "body": "  Write a function named snakeEyesCount that counts the number of times you roll two 1 's in a row in n rolls.        Inputs:  n  (1x1) double  number of die rolls    Outputs:  count  (1x1) double  the number of times two 1 s are rolled      Test Cases ⤵︎  rng(123); % Set seed snakeEyesCount(10) snakeEyesCount(100) snakeEyesCount(600)    Expected ⤵︎  󠀠 % count = 1 % count = 10 % count = 52     "
+},
+{
+  "id": "hw-while-factorization-2-1",
+  "level": "2",
+  "url": "exercises-arrays.html#hw-while-factorization-2-1",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "trial division "
+},
+{
+  "id": "matrix-types",
+  "level": "1",
+  "url": "matrix-types.html",
+  "type": "Section",
+  "number": "6.1",
+  "title": "Matrix Types",
+  "body": " Matrix Types    By the end of this section, you will be able to ...    Explain the difference between a matrix, vector, array, and number\/scalar as it pertains to MATLAB.  Define a matrix in MATLAB.    In this section, we introduce what a matrix is and how you can manually create one in MATLAB.   Matrix\/Vector  A matrix is a rectangular list of numbers arranged in rows and columns. The size of such a matrix is said to be .   is pronounced by     Special types of matrices, depending on the size of the matrix, are described below:  a matrix of size (one row) is called a row vector , similarly,  a matrix of size (one column) is called a column vector , and  a matrix of size is called a number . a number is also called a scalar    It may be helpful to think of a matrix as a table or excel spreadsheet.   In MATLAB, all numeric variables are stored as a matrix . A matrix is also commonly known as an array . In fact, many other programming languages prefer to use \"array\" to describe a matrix.    Some examples of matrices are given in the following table:      Matrix Size Other Names       2d array       2d array       1d array or row vector           1d array or column vector           number      Defining a row vector   A row vector is defined by enclosing a list of values inside brackets, [  ] . The list of values should be separated by commas or spaces. row_vector = [ value 1, value 2, value 3, ... ]      Give the MATLAB command that defines the variable, x , as the row vector,     Type the commands in the box above and click the Run MATLAB button or press Shift + Enter on your keyboard to see the output.     There are two options, with commas, or with spaces.   >> x = [1,0,3,1,5] >> x = [1 0 3 1 5]        Defining a matrix   A matrix is defined by enclosing a list of rows inside brackets, [  ] . The list of rows must be separated by semicolons. matrix = [ row 1; row 2; row 3; ... ] where each row is a row vector whose values are separated by commas or spaces.    To summarize:   matrices and vectors are enclosed in square brackets, [ and ] ,  each comma (or space) separates entries on the same row, and  each semicolon indicates a new row.      Give the MATLAB command that defines the variable, A , as the matrix,     As before, we have the option to use commas or spaces.    >> A = [1,2,3,4;5,6,7,8] >> A = [1 2 3 4;5 6 7 8]        Give the MATLAB command that defines the variable, B , as the column vector,       >> B = [1; 6; 0; 9]      You may have noticed, in the last two examples, that the semicolon is used in a new way. It is perhaps unfortunate, but there are symbols including the semicolon, colon and comma that are reused throughout Matlab code and the meaning of a particular symbol will depend on context. Semicolons are used inside matrix definitions to indicate a new row while semicolons are also used at the end of a line to suppress output.    Give the MATLAB command that defines the variable, C , as the number 3.    In this case, we have the option to use brackets, or not, like so   >> C = [3] >> C = 3     however, while MATLAB does view numbers as matrices, the brackets are unnecessary and you are encouraged not to use them with numbers.     Try it!  Give the MATLAB command that defines A as the matrix  Enter your answer below and click \"Evaluate\" to check the MATLAB output.      A = [0,3;6,1;4,4] % with commas or A = [0 3;6 1;4 4] % without commas     Feel free to copy and paste one of these to the code area above.      "
+},
+{
+  "id": "matrix-types-2",
+  "level": "2",
+  "url": "matrix-types.html#matrix-types-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.1",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Explain the difference between a matrix, vector, array, and number\/scalar as it pertains to MATLAB.  Define a matrix in MATLAB.   "
+},
+{
+  "id": "matrix-def",
+  "level": "2",
+  "url": "matrix-types.html#matrix-def",
+  "type": "📙 Definition",
+  "number": "6.1",
+  "title": "<em class=\"emphasis\">Matrix\/Vector<\/em>.",
+  "body": " Matrix\/Vector  A matrix is a rectangular list of numbers arranged in rows and columns. The size of such a matrix is said to be .   is pronounced by     Special types of matrices, depending on the size of the matrix, are described below:  a matrix of size (one row) is called a row vector , similarly,  a matrix of size (one column) is called a column vector , and  a matrix of size is called a number . a number is also called a scalar    "
+},
+{
+  "id": "matrix-types-6-1",
+  "level": "2",
+  "url": "matrix-types.html#matrix-types-6-1",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "matrix array "
+},
+{
+  "id": "matrix-types-8",
+  "level": "2",
+  "url": "matrix-types.html#matrix-types-8",
+  "type": "👀 Quick Review",
+  "number": "6.2",
+  "title": "<em class=\"emphasis\">Defining a row vector<\/em>.",
+  "body": " Defining a row vector   A row vector is defined by enclosing a list of values inside brackets, [  ] . The list of values should be separated by commas or spaces. row_vector = [ value 1, value 2, value 3, ... ]   "
+},
+{
+  "id": "example-row_vector",
+  "level": "2",
+  "url": "matrix-types.html#example-row_vector",
+  "type": "🌌 Example",
+  "number": "6.3",
+  "title": "",
+  "body": "  Give the MATLAB command that defines the variable, x , as the row vector,     Type the commands in the box above and click the Run MATLAB button or press Shift + Enter on your keyboard to see the output.     There are two options, with commas, or with spaces.   >> x = [1,0,3,1,5] >> x = [1 0 3 1 5]      "
+},
+{
+  "id": "matrix-types-10",
+  "level": "2",
+  "url": "matrix-types.html#matrix-types-10",
+  "type": "👀 Quick Review",
+  "number": "6.4",
+  "title": "<em class=\"emphasis\">Defining a matrix<\/em>.",
+  "body": " Defining a matrix   A matrix is defined by enclosing a list of rows inside brackets, [  ] . The list of rows must be separated by semicolons. matrix = [ row 1; row 2; row 3; ... ] where each row is a row vector whose values are separated by commas or spaces.  "
+},
+{
+  "id": "example-define_basic_matrix_1",
+  "level": "2",
+  "url": "matrix-types.html#example-define_basic_matrix_1",
+  "type": "🌌 Example",
+  "number": "6.5",
+  "title": "",
+  "body": "  Give the MATLAB command that defines the variable, A , as the matrix,     As before, we have the option to use commas or spaces.    >> A = [1,2,3,4;5,6,7,8] >> A = [1 2 3 4;5 6 7 8]     "
+},
+{
+  "id": "example-define_basic_matrix_2",
+  "level": "2",
+  "url": "matrix-types.html#example-define_basic_matrix_2",
+  "type": "🌌 Example",
+  "number": "6.6",
+  "title": "",
+  "body": "  Give the MATLAB command that defines the variable, B , as the column vector,       >> B = [1; 6; 0; 9]     "
+},
+{
+  "id": "example-define_basic_matrix_3",
+  "level": "2",
+  "url": "matrix-types.html#example-define_basic_matrix_3",
+  "type": "🌌 Example",
+  "number": "6.7",
+  "title": "",
+  "body": "  Give the MATLAB command that defines the variable, C , as the number 3.    In this case, we have the option to use brackets, or not, like so   >> C = [3] >> C = 3     however, while MATLAB does view numbers as matrices, the brackets are unnecessary and you are encouraged not to use them with numbers.   "
+},
+{
+  "id": "matrix-operations",
+  "level": "1",
+  "url": "matrix-operations.html",
+  "type": "Section",
+  "number": "6.2",
+  "title": "Matrix Operations",
+  "body": " Matrix Operations    By the end of this section, you will be able to ...    Perform standard and element-wise operations with matrix variables.  Identify when an element-wise operation is appropriate to use.     Once you have defined one or more matrices, you typically need to perform some operations with them. In MATLAB, matrix operations, generally, fall into the one of the following categories:   Standard Operations: These operations follow the strict mathematical rules of matrices (as in a matrix algebra textbook).  examples: +  -  *  ^ The ^ symbol represents exponent\/power.    Element-Wise Operations: These operations apply to single values (i.e. elements) of a matrix.  examples: .*  .\/  .^     Let's see how these operations are used and how they differ from each other.    Standard Matrix Operations  We assume you have some familiarity with basic matrix algebra, but we will do a quick review in the next example.   Basic Matrix Algebra Review  Let Compute the resulting matrix from the following operations:  scalar multiplication :  matrix addition :  matrix multiplication :  squaring a matrix :                                We will now see how easily the same operations are performed in MATLAB.   Basic Matrix Algebra in MATLAB  Let Define A and B as MATLAB variables and give the commands that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5        Element-Wise Matrix Operations  By now, you should be comfortable with the idea that matrices are very different from numbers. Properties that work with numbers do not necessarily work with matrices. The operations, +  -  *  ^ , are consistent with the special rules of matrices. However, there are times when you want to think of a matrix as just an object to store numbers, and all you really care about is working with the numbers inside. Element-wise operations help you do this and are denoted with a . to the left of the operation (e.g. .* ).   .^ Operator   Let A denote the variable of a matrix, of any size, defined in MATLAB. The element-wise exponential (power) operation is given below.    Command Effect          A.^n                  Operator  Let Define A and B as MATLAB variables and give the command that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5       .* and .\/ Operators (same size)   Let A and B denote the variables of two matrices, of the same size, defined in MATLAB. The element-wise operations are summarized below.   You may be wondering why we have not listed the element-wise operations for addition and subtraction. Since matrix addition and subtraction are already element-wise, by definition, MATLAB did not include a .+ or a .- operator.     Command Effect          A.*B                     A.\/B                  and Operators (same size)  Let Define A and B as MATLAB variables and give the command that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5       Element-Wise Operations (different size)   Let A , B and C denote the MATLAB variables for the matrices   You can compute A.*B and A.*C , as long as B and C are vectors that have the same size as either a row or column of A .    Computing A.*B when B is the same size as A 's rows.                               Computing A.*C when C is the same size as A 's columns.                               Note: .\/ works the same way.    and Operators (different size)  Let Define A and B as MATLAB variables and give the command that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5       Shoe Sales Data  Suppose you have sales data for a particular brand of shoe. The retail price is $34.99, but customers can use a coupon or get a bulk discount. Here is a snippet of the data,  Qty Unit Price ($)  3 34.99  2 34.99  17 29.99  bulk discount applied  1 32.49  coupon applied  2 34.99    where each row correspond to the quantity and unit price for one customer.  Give the MATLAB commands that  defines the variable, shoe_data , as the values provided in the table.  defines the variable, qty , as the first column of shoe_data .  defines the variable, unit_price , as the second column of shoe_data .  defines the variable, customer_cost , as element-wise product of qty and unit_price vectors.     Don't use dollar units, $ , in your matrix.         shoe_data = [3 34.99; 2 34.99; 17 29.99; 1 32.49; 2 34.99] qty = shoe_data(:,1) unit_price = shoe_data(:,2) customer_cost = qty.*unit_price        "
+},
+{
+  "id": "matrix-operations-2",
+  "level": "2",
+  "url": "matrix-operations.html#matrix-operations-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.2",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Perform standard and element-wise operations with matrix variables.  Identify when an element-wise operation is appropriate to use.   "
+},
+{
+  "id": "example-matrix-algebra-review",
+  "level": "2",
+  "url": "matrix-operations.html#example-matrix-algebra-review",
+  "type": "🌌 Example",
+  "number": "6.8",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">Basic Matrix Algebra Review<\/dfn><\/em>.",
+  "body": " Basic Matrix Algebra Review  Let Compute the resulting matrix from the following operations:  scalar multiplication :  matrix addition :  matrix multiplication :  squaring a matrix :                               "
+},
+{
+  "id": "example-matrix-algebra-review-matlab",
+  "level": "2",
+  "url": "matrix-operations.html#example-matrix-algebra-review-matlab",
+  "type": "🌌 Example",
+  "number": "6.9",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">Basic Matrix Algebra in MATLAB<\/dfn><\/em>.",
+  "body": " Basic Matrix Algebra in MATLAB  Let Define A and B as MATLAB variables and give the commands that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5     "
+},
+{
+  "id": "element-wise-operations-4",
+  "level": "2",
+  "url": "matrix-operations.html#element-wise-operations-4",
+  "type": "👀 Quick Review",
+  "number": "6.10",
+  "title": "<code class=\"code-inline tex2jax_ignore\">.^<\/code> Operator.",
+  "body": " .^ Operator   Let A denote the variable of a matrix, of any size, defined in MATLAB. The element-wise exponential (power) operation is given below.    Command Effect          A.^n                "
+},
+{
+  "id": "example-dot-power-operation",
+  "level": "2",
+  "url": "matrix-operations.html#example-dot-power-operation",
+  "type": "🌌 Example",
+  "number": "6.11",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\"><span class=\"process-math\">\\(\\fbox{$\\texttt{.}^{\\wedge}$}\\)<\/span> Operator<\/dfn><\/em>.",
+  "body": " Operator  Let Define A and B as MATLAB variables and give the command that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5     "
+},
+{
+  "id": "element-wise-operations-6",
+  "level": "2",
+  "url": "matrix-operations.html#element-wise-operations-6",
+  "type": "👀 Quick Review",
+  "number": "6.12",
+  "title": "<code class=\"code-inline tex2jax_ignore\">.*<\/code> and <code class=\"code-inline tex2jax_ignore\">.\/<\/code> Operators (same size).",
+  "body": " .* and .\/ Operators (same size)   Let A and B denote the variables of two matrices, of the same size, defined in MATLAB. The element-wise operations are summarized below.   You may be wondering why we have not listed the element-wise operations for addition and subtraction. Since matrix addition and subtraction are already element-wise, by definition, MATLAB did not include a .+ or a .- operator.     Command Effect          A.*B                     A.\/B                "
+},
+{
+  "id": "example-dot-prod-div-1",
+  "level": "2",
+  "url": "matrix-operations.html#example-dot-prod-div-1",
+  "type": "🌌 Example",
+  "number": "6.13",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\"><span class=\"process-math\">\\(\\fbox{$\\,\\texttt{.*}\\,$}\\)<\/span> and <span class=\"process-math\">\\(\\fbox{$\\,\\texttt{.\/}\\,$}\\)<\/span> Operators (same size)<\/dfn><\/em>.",
+  "body": " and Operators (same size)  Let Define A and B as MATLAB variables and give the command that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5     "
+},
+{
+  "id": "element-wise-operations-8",
+  "level": "2",
+  "url": "matrix-operations.html#element-wise-operations-8",
+  "type": "👀 Quick Review",
+  "number": "6.14",
+  "title": "Element-Wise Operations (different size).",
+  "body": " Element-Wise Operations (different size)   Let A , B and C denote the MATLAB variables for the matrices   You can compute A.*B and A.*C , as long as B and C are vectors that have the same size as either a row or column of A .    Computing A.*B when B is the same size as A 's rows.                               Computing A.*C when C is the same size as A 's columns.                               Note: .\/ works the same way.  "
+},
+{
+  "id": "example-dot-prod-div-2",
+  "level": "2",
+  "url": "matrix-operations.html#example-dot-prod-div-2",
+  "type": "🌌 Example",
+  "number": "6.15",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\"><span class=\"process-math\">\\(\\fbox{$\\,\\texttt{.*}\\,$}\\)<\/span> and <span class=\"process-math\">\\(\\fbox{$\\,\\texttt{.\/}\\,$}\\)<\/span> Operators (different size)<\/dfn><\/em>.",
+  "body": " and Operators (different size)  Let Define A and B as MATLAB variables and give the command that  defines ans_1 as ,  defines ans_2 as ,  defines ans_3 as , and  defines ans_4 as .      The commands for these operations transfer, nicely to MATLAB, as    A = [1 2 3; 5 6 7; 1 2 3]; B = [0 1 2; 1 0 1; 2 1 0]; ans_1 = 3*A ans_2 = A+B ans_3 = A*B ans_4 = B^2    with output    ans_1 = 3 6 9 15 18 21 3 6 9 ans_2 = 1 3 5 6 6 8 3 3 3 ans_3 = 8 4 4 20 12 16 8 4 4 ans_4 = 5 2 1 2 2 2 1 2 5     "
+},
+{
+  "id": "example-shoe-sales",
+  "level": "2",
+  "url": "matrix-operations.html#example-shoe-sales",
+  "type": "🌌 Example",
+  "number": "6.16",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">Shoe Sales Data<\/dfn><\/em>.",
+  "body": " Shoe Sales Data  Suppose you have sales data for a particular brand of shoe. The retail price is $34.99, but customers can use a coupon or get a bulk discount. Here is a snippet of the data,  Qty Unit Price ($)  3 34.99  2 34.99  17 29.99  bulk discount applied  1 32.49  coupon applied  2 34.99    where each row correspond to the quantity and unit price for one customer.  Give the MATLAB commands that  defines the variable, shoe_data , as the values provided in the table.  defines the variable, qty , as the first column of shoe_data .  defines the variable, unit_price , as the second column of shoe_data .  defines the variable, customer_cost , as element-wise product of qty and unit_price vectors.     Don't use dollar units, $ , in your matrix.         shoe_data = [3 34.99; 2 34.99; 17 29.99; 1 32.49; 2 34.99] qty = shoe_data(:,1) unit_price = shoe_data(:,2) customer_cost = qty.*unit_price      "
+},
+{
+  "id": "matrix-size",
+  "level": "1",
+  "url": "matrix-size.html",
+  "type": "Section",
+  "number": "6.3",
+  "title": "Matrix Size",
+  "body": " Matrix Size    By the end of this section, you will be able to ...    Find the size and number of elements of a matrix.     A recurring theme in programming is the idea of \"scanning\" through values in some matrix, A , and \"doing\" something with these values. Before you \"scan\" through A , however, you usually need the answer to one or more of the following questions:  \"What is the size of A ?\",  \"How many rows does A have?\",  \"How many columns does A have?\",  \"How many elements does A have?\".  This section covers the some of the built-in MATLAB functions that answer these types of questions.    The size function  We begin with the MATLAB function that is used to answer question: \"What is the size of A ?\"   size function        Let A be a matrix variable.    Command  result = size(A)    Output Details  result is a matrix     result = [ number of rows of A , number of columns of A ]    Command  result = size(A,1)    Output Details  result is a matrix (number)     result = number of rows of A    Command  result = size(A,2)    Output Details  result is a matrix (number)     result = number of columns of A         Number of Rows and Columns (option 1)   Variable reference:  A = 1 2 3 4 5 6 7 8 B = 1 6 0 9 A_size = 2 4 B_size = 4 1 A_number_of_rows = 2 A_number_of_cols = 4 B_number_of_rows = 4 B_number_of_cols = 1     First define two matrices, A and B , as  >> A = [1 2 3 4; 5 6 7 8]; >> B = [1; 6; 0; 9];    and define the variables, A_size and B_size , as  >> A_size = size(A); >> B_size = size(B);    Finally, get the rows and columns of A and B , with  >> A_number_of_rows = A_size(1); >> A_number_of_cols = A_size(2); >> B_number_of_rows = B_size(1); >> B_number_of_cols = B_size(2);     The previous example shows that we had to get the size of the matrix before we could get the rows and columns. However, the size command has an additional input that allows us to get the rows and columns directly, as the next example shows.   Number of Rows and Columns (option 2)  Assuming A is defined as in the previous example, we can get the rows and columns of A by typing the commands  >> A_number_of_rows = size(A,1) >> A_number_of_cols = size(A,2)    which produces   A_number_of_rows = 2 A_number_of_cols = 4     Including the 1 or 2 as an input to the size function tells MATLAB that you only want the rows or columns, respectively.     The numel function  Another common question you may have is \"how many values are in A ?\". This is handled using the numel function.  The observative reader may notice that this question could be indirectly answered using the size function (just multiply the number of rows by the number of columns). However, being able to ask specific questions makes you code more consise and easier to read.     numel function   number of rows number of columns       Let A be a matrix variable with size .    Command  result = numel(A)    Output Details  result is a matrix (number)     result = number of elements of A (i.e. )         number of elements of a matrix and a vector    >> A = [1 2 3 4; 5 6 7 8]; >> A_elements = numel(A)    A_elements = 8      >> B = [1; 6; 0; 9]; >> B_elements = numel(B)    B_elements = 4       The length function  Another common way to get information about the size of a matrix is with the length function.   length function        Let A be a matrix variable with size .    Command  result = length(A)    Output Details  result is a matrix (number)     result = number of rows of A (if )     result = number of columns of A (if )         \"length\" of a matrix and a vector    >> A = [1 2 3 4; 5 6 7 8]; >> A_len = length(A)    A_len = 4      >> B = [1; 6; 0; 9]; >> B_len = length(B)    B_len = 4    When length is used on a vector (or a row or column of a matrix) you simply get the number of elements in the vector.    "
+},
+{
+  "id": "matrix-size-2",
+  "level": "2",
+  "url": "matrix-size.html#matrix-size-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.3",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Find the size and number of elements of a matrix.   "
+},
+{
+  "id": "size-syntax",
+  "level": "2",
+  "url": "matrix-size.html#size-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.17",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">size<\/code> function<\/em>.",
+  "body": " size function        Let A be a matrix variable.    Command  result = size(A)    Output Details  result is a matrix     result = [ number of rows of A , number of columns of A ]    Command  result = size(A,1)    Output Details  result is a matrix (number)     result = number of rows of A    Command  result = size(A,2)    Output Details  result is a matrix (number)     result = number of columns of A       "
+},
+{
+  "id": "example-rows-cols-op1",
+  "level": "2",
+  "url": "matrix-size.html#example-rows-cols-op1",
+  "type": "🌌 Example",
+  "number": "6.18",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">Number of Rows and Columns (option 1)<\/dfn><\/em>.",
+  "body": " Number of Rows and Columns (option 1)   Variable reference:  A = 1 2 3 4 5 6 7 8 B = 1 6 0 9 A_size = 2 4 B_size = 4 1 A_number_of_rows = 2 A_number_of_cols = 4 B_number_of_rows = 4 B_number_of_cols = 1     First define two matrices, A and B , as  >> A = [1 2 3 4; 5 6 7 8]; >> B = [1; 6; 0; 9];    and define the variables, A_size and B_size , as  >> A_size = size(A); >> B_size = size(B);    Finally, get the rows and columns of A and B , with  >> A_number_of_rows = A_size(1); >> A_number_of_cols = A_size(2); >> B_number_of_rows = B_size(1); >> B_number_of_cols = B_size(2);    "
+},
+{
+  "id": "ex_rowcolsize",
+  "level": "2",
+  "url": "matrix-size.html#ex_rowcolsize",
+  "type": "🌌 Example",
+  "number": "6.19",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">Number of Rows and Columns (option 2)<\/dfn><\/em>.",
+  "body": " Number of Rows and Columns (option 2)  Assuming A is defined as in the previous example, we can get the rows and columns of A by typing the commands  >> A_number_of_rows = size(A,1) >> A_number_of_cols = size(A,2)    which produces   A_number_of_rows = 2 A_number_of_cols = 4     Including the 1 or 2 as an input to the size function tells MATLAB that you only want the rows or columns, respectively.  "
+},
+{
+  "id": "length-numel-syntax",
+  "level": "2",
+  "url": "matrix-size.html#length-numel-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.20",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">numel<\/code> function<\/em>.",
+  "body": " numel function   number of rows number of columns       Let A be a matrix variable with size .    Command  result = numel(A)    Output Details  result is a matrix (number)     result = number of elements of A (i.e. )       "
+},
+{
+  "id": "example_numel",
+  "level": "2",
+  "url": "matrix-size.html#example_numel",
+  "type": "🌌 Example",
+  "number": "6.21",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">number of elements of a matrix and a vector<\/dfn><\/em>.",
+  "body": " number of elements of a matrix and a vector    >> A = [1 2 3 4; 5 6 7 8]; >> A_elements = numel(A)    A_elements = 8      >> B = [1; 6; 0; 9]; >> B_elements = numel(B)    B_elements = 4    "
+},
+{
+  "id": "length-syntax",
+  "level": "2",
+  "url": "matrix-size.html#length-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.22",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">length<\/code> function<\/em>.",
+  "body": " length function        Let A be a matrix variable with size .    Command  result = length(A)    Output Details  result is a matrix (number)     result = number of rows of A (if )     result = number of columns of A (if )       "
+},
+{
+  "id": "example_length",
+  "level": "2",
+  "url": "matrix-size.html#example_length",
+  "type": "🌌 Example",
+  "number": "6.23",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">\"length\" of a matrix and a vector<\/dfn><\/em>.",
+  "body": " \"length\" of a matrix and a vector    >> A = [1 2 3 4; 5 6 7 8]; >> A_len = length(A)    A_len = 4      >> B = [1; 6; 0; 9]; >> B_len = length(B)    B_len = 4    When length is used on a vector (or a row or column of a matrix) you simply get the number of elements in the vector.  "
+},
+{
+  "id": "accessing-matrix-values",
+  "level": "1",
+  "url": "accessing-matrix-values.html",
+  "type": "Section",
+  "number": "6.4",
+  "title": "Accessing Multiple Values",
+  "body": " Accessing Multiple Values    By the end of this section, you will be able to ...    Access an entire row and\/or column of a matrix.  Access a partial row and\/or column of a matrix.  Access a values from multiple row and columns.    Additional Resources:  Matrix Indexing in MATLAB  In the previous section, we introduced two ways to access a single value inside of a matrix using either row\/column or absolute indexing. In this section, we will explore how you can access multiple values inside of a matrix using the colon operator , : , that we introduced in the \"Evenly-Spaced Matrices\" section.   It is important to understand that the colon-operator can be used to either create a new matrix or index an already defined matrix . In the \"Evenly-Spaced Matrices\" section we used the colon operator to create a vector. In this section, we will be using the colon-operator to index an already defined matrix . We will address some of the subtle differences.   For the following discussion, we will be using row\/column indexing . Also, recall that rows are always listed first when using this type of indexing.   Accessing an entire row or column  Suppose we want the -th row of some matrix. Visually, we want    all columns        one row               If A is the matrix, then we access the i -th row of A , using either,  A(i,1:end)  or  A(i,:)    This command warrants a few important comments:  i must be between 1 and the number of rows of A ,  1:end means start at 1 and go as far as possible. Since 1:end is located where the columns should go, MATLAB interprets end as the last column index of A , and  when accessing values in a matrix, A(i,:) is short hand for A(:,1:end) .    Similarly, if we want the -th column of some matrix, A , visualized as   one column       all rows            we would use the command A(1:end,j) or A(:,j) .    Consider the matrix Give the MATLAB commands that  defines the variable, firstrow , as the 1st row of A .  defines the variable, thirdcol , as the 3rd column of A .     In the box, below, replace the '?' with the appropriate commands.      There a few correct answers.   firstrow = A(1,:) thirdcol = A(:,3)     or  Technically,   firstrow = A([1],[1:end]) thirdcol = A([1:end],[3])    is also correct, but   firstrow = A([1],[:]) thirdcol = A([:],[3])    is not.     firstrow = A(1,1:end) thirdcol = A(1:end,3)     In either case, you should receive the output   firstrow = 5 0 6 3 thirdcol = 6 3 7         Accessing a partial row or column  Our goal, now, is to discuss how to get a part of a row or column of some matrix, A . That is, suppose we want the boxed values    some columns           one row                 Informally, you index the rows and columns using the idea,  A( specific row , [vector of columns you want] ) ,    and the actual MATLAB command is  A(i,[j,k,l])    The same idea extends to accessing a partial column of A .    Consider the matrix Give the MATLAB commands that  defines the variable, blue_boxed , as the blue-boxed values of A .  defines the variable, red_boxed , as the red-boxed values of A .     In the box, below, replace the '?' with the appropriate commands.      Since  the blue-boxed values are in row 2 and columns 1, 2 , 4, and  the red-boxed values are in column 3 and rows 2, 3,  the following commands get the job done:   A = [5 0 6 3; 8 1 3 0; 2 9 7 4]; blue_boxed = A(2,[1 2 4]) red_boxed = A([2 3],3)     and the output you should receive is   blue_boxed = 8 1 0 red_boxed = 3 7         Accessing Values from Multiple Rows and Columns  So far, we have discussed how to get values from a single row or column of a matrix, however, there is nothing stopping us from getting values from multiple rows or columns. For example, suppose we wanted the folowing boxed values:    some columns           some rows                As before, the idea is  A( [vector of rows you want] , [vector of columns you want] ) ,    and the actual MATLAB command is  A([i,j,k],[p,q,r,s])    NEED AN EXAMPLE OR TWO    "
+},
+{
+  "id": "accessing-matrix-values-2",
+  "level": "2",
+  "url": "accessing-matrix-values.html#accessing-matrix-values-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.4",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Access an entire row and\/or column of a matrix.  Access a partial row and\/or column of a matrix.  Access a values from multiple row and columns.   "
+},
+{
+  "id": "accessing-matrix-values-6",
+  "level": "2",
+  "url": "accessing-matrix-values.html#accessing-matrix-values-6",
+  "type": "⚠️",
+  "number": "6.24",
+  "title": "",
+  "body": " It is important to understand that the colon-operator can be used to either create a new matrix or index an already defined matrix . In the \"Evenly-Spaced Matrices\" section we used the colon operator to create a vector. In this section, we will be using the colon-operator to index an already defined matrix . We will address some of the subtle differences.  "
+},
+{
+  "id": "example-access_row_01",
+  "level": "2",
+  "url": "accessing-matrix-values.html#example-access_row_01",
+  "type": "🌌 Example",
+  "number": "6.25",
+  "title": "",
+  "body": "  Consider the matrix Give the MATLAB commands that  defines the variable, firstrow , as the 1st row of A .  defines the variable, thirdcol , as the 3rd column of A .     In the box, below, replace the '?' with the appropriate commands.      There a few correct answers.   firstrow = A(1,:) thirdcol = A(:,3)     or  Technically,   firstrow = A([1],[1:end]) thirdcol = A([1:end],[3])    is also correct, but   firstrow = A([1],[:]) thirdcol = A([:],[3])    is not.     firstrow = A(1,1:end) thirdcol = A(1:end,3)     In either case, you should receive the output   firstrow = 5 0 6 3 thirdcol = 6 3 7      "
+},
+{
+  "id": "example-access_row_02",
+  "level": "2",
+  "url": "accessing-matrix-values.html#example-access_row_02",
+  "type": "🌌 Example",
+  "number": "6.26",
+  "title": "",
+  "body": "  Consider the matrix Give the MATLAB commands that  defines the variable, blue_boxed , as the blue-boxed values of A .  defines the variable, red_boxed , as the red-boxed values of A .     In the box, below, replace the '?' with the appropriate commands.      Since  the blue-boxed values are in row 2 and columns 1, 2 , 4, and  the red-boxed values are in column 3 and rows 2, 3,  the following commands get the job done:   A = [5 0 6 3; 8 1 3 0; 2 9 7 4]; blue_boxed = A(2,[1 2 4]) red_boxed = A([2 3],3)     and the output you should receive is   blue_boxed = 8 1 0 red_boxed = 3 7      "
+},
+{
+  "id": "access-multiple-rows-columns-6",
+  "level": "2",
+  "url": "accessing-matrix-values.html#access-multiple-rows-columns-6",
+  "type": "📝",
+  "number": "6.27",
+  "title": "",
+  "body": "NEED AN EXAMPLE OR TWO "
+},
+{
+  "id": "matrix-indexing",
+  "level": "1",
+  "url": "matrix-indexing.html",
+  "type": "Section",
+  "number": "6.5",
+  "title": "Accessing a Single Value",
+  "body": " Accessing a Single Value    By the end of this section, you will be able to ...    Explain the difference between an index and value of a matrix.  Explain the difference between row\/column indexing and absolute indexing.  Use matrix indexing to access a single value from a matrix.     The act of \"accessing values\" in a matrix is also called \"referencing\" a matrix. In this section, we look at ways to access values in a matrix using two different types of indexing.   Indices & Values  All matrices contain values . Sometimes it makes sense to list the values in a straight line (i.e. with a vector) and other times it makes sense to list them in a rectangular grid (i.e. with a matrix). Either way, you need some way to get to these values. The location of these values is called the index . In MATLAB, an index must be a counting number (i.e. ).   To give an analogy, suppose there is a line of four students and you say \"The third student in line is Troy\". Here, \"Troy\" would be the specified value and \"third\" (or 3) would be the index of this value.   For example, consider the following vector, : We can summarize the values and indices of as follows:  The 1 st value is and it has an index of 1 .  The 2 nd value is and it has an index of 2 .  The 3 rd value is and it has an index of 3 .    For matrices, the idea of index needs some adjustment. To see this, consider the following matrix, : Since the values are listed in a rectangular grid, it is not so clear which value is the third value since you cannot just count them left to right as you could with .  The next few sections aim to clarify this idea.    Row\/Column Indexing  The most common way to locate a value in a matrix is to specify the row and column that the value is in. Remember, rows are counted from top to bottom and columns are counted from left to right, as shown here:      columns           rows           For example, the value, , is in row and column .   Row\/Column Indexing   To access the value in row and column of matrix , use the command:  A(i,j)   Important:  the row and column index must be separated by a comma, and  rows are indexed first.    Visually, the command, , will give you the value located at .                        Consider the matrix Give the MATLAB commands that  defines the variable, A , as this matrix above, and  defines the variable, x , as the boxed value in A . Get the value from the variable A .     In the box, below, replace the '?' with the appropriate commands.      Defining A should be a review. As for x , notice that boxed value is in row 1 and column 3 of A , so you should use the commands:   >> A = [5 0 6 3;8 1 3 0;2 9 7 4] >> x = A(1,3)     and the output you should receive is   A = 5 0 6 3 8 1 3 0 2 9 7 4 x = 6         Absolute Indexing  MATLAB provides another way to locate a value in a matrix using just one index called the absolute index . This method locates the value by counting downward through each column from left to right until the value is found.  For example, suppose we wanted to the absolute index to access (3rd column) in the following matrix:    Starting with the top-left value, count downward until you reach the bottom, then count down the next column, and continue this way until all the values have been counted.   To clarify, we've added subscripts to the values to illustrate the counting order:   Counting this way, we see that the value has an absolute index of 8 .   Absolute Indexing   To access the value with absolute index of matrix , use the command:  A(i) Visually, the command, , will give you the value located at .  where the subscript indicates the absolute index using the counting pattern: Starting with top-left value, count downward through each column until the last value is counted.      Consider the matrix Give the MATLAB commands that  defines the variable, x_rc , as the boxed value in A using row\/column indexing.  defines the variable, x_ab , as the boxed value in A using absolute indexing.     In the box, below, replace the '?' with the appropriate commands.      Note that the boxed value is in row 2 and column 3 of A , so to access 7 using row\/column indexing, the command is   >> x_rc = A(2,3)     Counting down each column, you get   So to access 7 using the absolute index, the command is   >> x_ab = A(6)     Running all three commands,   A = [1 2 3 4; 5 6 7 8]; x_rc = A(2,3) x_ab = A(6)     gives the output   x_rc = 7 x_ab = 7     Recall, the matrix, A , does not display in the output since we ended the first line with a semicolon.     For completeness, in the last example, we can list out all the values of, A , in a row\/column index grid:    A(1,1) = 1 A(1,2) = 2 A(1,3) = 3 A(1,4) = 4 A(2,1) = 5 A(2,2) = 6 A(2,3) = 7 A(2,4) = 8    or, an absolute index grid:    A(1) = 1 A(3) = 2 A(5) = 3 A(7) = 4 A(2) = 5 A(4) = 6 A(6) = 7 A(8) = 8    "
+},
+{
+  "id": "matrix-indexing-2",
+  "level": "2",
+  "url": "matrix-indexing.html#matrix-indexing-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.5",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Explain the difference between an index and value of a matrix.  Explain the difference between row\/column indexing and absolute indexing.  Use matrix indexing to access a single value from a matrix.   "
+},
+{
+  "id": "index-value-3",
+  "level": "2",
+  "url": "matrix-indexing.html#index-value-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "values index "
+},
+{
+  "id": "row-column-indexing-def",
+  "level": "2",
+  "url": "matrix-indexing.html#row-column-indexing-def",
+  "type": "👀 Quick Review",
+  "number": "6.28",
+  "title": "<em class=\"emphasis\">Row\/Column Indexing<\/em>.",
+  "body": " Row\/Column Indexing   To access the value in row and column of matrix , use the command:  A(i,j)   Important:  the row and column index must be separated by a comma, and  rows are indexed first.    Visually, the command, , will give you the value located at .                     "
+},
+{
+  "id": "example-access_values_01",
+  "level": "2",
+  "url": "matrix-indexing.html#example-access_values_01",
+  "type": "🌌 Example",
+  "number": "6.29",
+  "title": "",
+  "body": "  Consider the matrix Give the MATLAB commands that  defines the variable, A , as this matrix above, and  defines the variable, x , as the boxed value in A . Get the value from the variable A .     In the box, below, replace the '?' with the appropriate commands.      Defining A should be a review. As for x , notice that boxed value is in row 1 and column 3 of A , so you should use the commands:   >> A = [5 0 6 3;8 1 3 0;2 9 7 4] >> x = A(1,3)     and the output you should receive is   A = 5 0 6 3 8 1 3 0 2 9 7 4 x = 6      "
+},
+{
+  "id": "absolute-indexing-3",
+  "level": "2",
+  "url": "matrix-indexing.html#absolute-indexing-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "absolute index "
+},
+{
+  "id": "absolute-indexing-def",
+  "level": "2",
+  "url": "matrix-indexing.html#absolute-indexing-def",
+  "type": "👀 Quick Review",
+  "number": "6.30",
+  "title": "<em class=\"emphasis\">Absolute Indexing<\/em>.",
+  "body": " Absolute Indexing   To access the value with absolute index of matrix , use the command:  A(i) Visually, the command, , will give you the value located at .  where the subscript indicates the absolute index using the counting pattern: Starting with top-left value, count downward through each column until the last value is counted.   "
+},
+{
+  "id": "example-access_values_02",
+  "level": "2",
+  "url": "matrix-indexing.html#example-access_values_02",
+  "type": "🌌 Example",
+  "number": "6.31",
+  "title": "",
+  "body": "  Consider the matrix Give the MATLAB commands that  defines the variable, x_rc , as the boxed value in A using row\/column indexing.  defines the variable, x_ab , as the boxed value in A using absolute indexing.     In the box, below, replace the '?' with the appropriate commands.      Note that the boxed value is in row 2 and column 3 of A , so to access 7 using row\/column indexing, the command is   >> x_rc = A(2,3)     Counting down each column, you get   So to access 7 using the absolute index, the command is   >> x_ab = A(6)     Running all three commands,   A = [1 2 3 4; 5 6 7 8]; x_rc = A(2,3) x_ab = A(6)     gives the output   x_rc = 7 x_ab = 7     Recall, the matrix, A , does not display in the output since we ended the first line with a semicolon.   "
+},
+{
+  "id": "evenly-spaced-matrices",
+  "level": "1",
+  "url": "evenly-spaced-matrices.html",
+  "type": "Section",
+  "number": "6.6",
+  "title": "Evenly-Spaced Matrices",
+  "body": " Evenly-Spaced Matrices    By the end of this section, you will be able to ...    Use the \"colon operator\" and linspace command to create a row vector of equally spaced values.  Explain the difference between the \"colon operator\" and linspace command.    It is common to work with lists (i.e. arrays or row vectors) of values that have some sort of pattern. When your values are equally spaced, you will typically create your list using one of the following two options:  colon operator, or  linspace command.  In this section, we will explore both of these options.   Colon Operator   Colon Operator   Note: when you use the colon operator, the enclosing brackets [  ] are optional.  To define an equally spaced row vector with a specific start value, step size, and end value, use the command:  [ start value : step size : end value ] or when the step size is 1, the step size term is optional, like so  [ start value : end value ]  Click here for the MATLAB documentation.      Suppose we wanted a matrix with the values 1 through 19 in a single (row) vector. We could enter this as    >> M = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19]    Redefine M using the colon operator.    For this list, we have:  start value = 1, step size = 1, and end value = 19.    So we use either of the commands    >> M = [1:19] >> M = [1:1:19]      In the last example, we can think of the colon as a \"range operator.\" Note that Matlab also accepts the slightly shorter M = 1:19 as well, which will be useful when we come to loops. In fact, the colon is more flexible (pun intended?) as we see in the next example.    Use the colon operator to define the variable, N , as the row vector     In this case, we have:  start value = 7, step size = 2, and end value = 21.    So we use the command    >> N = [7:2:21]       What is going on in this last example?   In N , the 2 means to simply count \"by twos\" starting at 7 and ending at 21.    What happens if our step size does not get us to the exact end value?  That is, what would the following command produce?   >> P = [1:3:5]     Think about it in your head first, then try it out in the box below.    If you ran the command you see that you get   P = 1 4     The 5 was not included even though it was the specified end value. So where's the 5 ?  Well, the syntax of start:step:end actually means to begin at start , add the step one at a time and then stop at the point where adding one more step size would take us past the end value. So, in the matrix P , we have to stop at 4 since adding 3 more would take us to 7 (past the end value of 5 ).     This example illustrates how our end value may not actually be present in our matrix depending on the step size. But, what if we wanted to guarantee the end value is included? That's where the linspace command is used instead.   linspace command   linspace command   To define an equally spaced row vector, v , with a specific start value, end value, and number_of_values use the command:  v = linspace( start, end, number_of_values )  Click here for the MATLAB documentation.      Give the command that defines the variable, Q , as the equally spaced vector with 4 values starting at 1 and ending at 6.    The fact that we are not given a step size tells us that we cannot use the \"colon operator\". Instead, we are given the number of values the vector should have. This information almost always indicates the use of linspace . So the command we use is   >> Q = linspace(1,6,4)     and the output you should get is    Q = 1.0000 2.6667 4.3333 6.0000        The linspace requires a start and end value, but the last input, number_of_values , is optional. Re-run the command from the previous example without the 4 to see what you get.    Running the command   >> Q = linspace(1,6)     gives a long nasty output, but it makes sense. When you leave off the number_of_values , MATLAB chooses this value to be 100 by default.  In fact, all MATLAB commands will have both required values, as well as default values for the ones you do not specify. The only way to know the exact behavior of a command is to look it up on MATLAB's documentation page.     "
+},
+{
+  "id": "evenly-spaced-matrices-2",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#evenly-spaced-matrices-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.6",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Use the \"colon operator\" and linspace command to create a row vector of equally spaced values.  Explain the difference between the \"colon operator\" and linspace command.   "
+},
+{
+  "id": "colon-operator-def",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#colon-operator-def",
+  "type": "👀 Quick Review",
+  "number": "6.32",
+  "title": "Colon Operator.",
+  "body": " Colon Operator   Note: when you use the colon operator, the enclosing brackets [  ] are optional.  To define an equally spaced row vector with a specific start value, step size, and end value, use the command:  [ start value : step size : end value ] or when the step size is 1, the step size term is optional, like so  [ start value : end value ]  Click here for the MATLAB documentation.   "
+},
+{
+  "id": "example-colon_operator_1",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#example-colon_operator_1",
+  "type": "🌌 Example",
+  "number": "6.33",
+  "title": "",
+  "body": "  Suppose we wanted a matrix with the values 1 through 19 in a single (row) vector. We could enter this as    >> M = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19]    Redefine M using the colon operator.    For this list, we have:  start value = 1, step size = 1, and end value = 19.    So we use either of the commands    >> M = [1:19] >> M = [1:1:19]     "
+},
+{
+  "id": "example-colon_operator_2",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#example-colon_operator_2",
+  "type": "🌌 Example",
+  "number": "6.34",
+  "title": "",
+  "body": "  Use the colon operator to define the variable, N , as the row vector     In this case, we have:  start value = 7, step size = 2, and end value = 21.    So we use the command    >> N = [7:2:21]     "
+},
+{
+  "id": "example-colon_operator_3",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#example-colon_operator_3",
+  "type": "🌌 Example",
+  "number": "6.35",
+  "title": "",
+  "body": "  What happens if our step size does not get us to the exact end value?  That is, what would the following command produce?   >> P = [1:3:5]     Think about it in your head first, then try it out in the box below.    If you ran the command you see that you get   P = 1 4     The 5 was not included even though it was the specified end value. So where's the 5 ?  Well, the syntax of start:step:end actually means to begin at start , add the step one at a time and then stop at the point where adding one more step size would take us past the end value. So, in the matrix P , we have to stop at 4 since adding 3 more would take us to 7 (past the end value of 5 ).   "
+},
+{
+  "id": "linspace-3",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#linspace-3",
+  "type": "👀 Quick Review",
+  "number": "6.36",
+  "title": "<code class=\"code-inline tex2jax_ignore\">linspace<\/code> command.",
+  "body": " linspace command   To define an equally spaced row vector, v , with a specific start value, end value, and number_of_values use the command:  v = linspace( start, end, number_of_values )  Click here for the MATLAB documentation.   "
+},
+{
+  "id": "example-linspace_1",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#example-linspace_1",
+  "type": "🌌 Example",
+  "number": "6.37",
+  "title": "",
+  "body": "  Give the command that defines the variable, Q , as the equally spaced vector with 4 values starting at 1 and ending at 6.    The fact that we are not given a step size tells us that we cannot use the \"colon operator\". Instead, we are given the number of values the vector should have. This information almost always indicates the use of linspace . So the command we use is   >> Q = linspace(1,6,4)     and the output you should get is    Q = 1.0000 2.6667 4.3333 6.0000     "
+},
+{
+  "id": "example-linspace_2",
+  "level": "2",
+  "url": "evenly-spaced-matrices.html#example-linspace_2",
+  "type": "🌌 Example",
+  "number": "6.38",
+  "title": "",
+  "body": "  The linspace requires a start and end value, but the last input, number_of_values , is optional. Re-run the command from the previous example without the 4 to see what you get.    Running the command   >> Q = linspace(1,6)     gives a long nasty output, but it makes sense. When you leave off the number_of_values , MATLAB chooses this value to be 100 by default.  In fact, all MATLAB commands will have both required values, as well as default values for the ones you do not specify. The only way to know the exact behavior of a command is to look it up on MATLAB's documentation page.   "
+},
+{
+  "id": "common-matrix-commands",
+  "level": "1",
+  "url": "common-matrix-commands.html",
+  "type": "Section",
+  "number": "6.7",
+  "title": "Common Matrix Functions",
+  "body": " Common Matrix Functions    By the end of this section, you will be able to ...    Apply various scientific functions to the values of a matrix,  Compute the maximum or minimum of the values in a matrix, and  Compute the sum or product of the values in a matrix.     In this section, we will list some common built-in functions that apply to either each value of a matrix (element-wise) or on the rows or columns of the matrix (row\/column-wise).    Common Scientific Functions  MATLAB also contains a large library of functions you might find on a scienfic\/graphing calculator. Most of the common functions (e.g. etc.) require a single number input. However, MATLAB, has designed these common functions to take a matrix as an input. In particular, MATLAB applies these functions element-wise, as shown below for the function.         Trigonometric Functions        Let A be an matrix variable containing values in radians.    Command  result = sin(A) , result = cos(A) , result = tan(A)   result = csc(A) , result = sec(A) , result = cot(A)   Output    result ( ) matrix containing the chosen trig function applied to each value in A .     Notes   If A contains degree values instead of radians, use the functions:    result = sind(A) , result = cosd(A) , result = tand(A)  result = cscd(A) , result = secd(A) , result = cotd(A)          Let and be given by   where contains radian values and contains degree values.  Give the MATLAB command that  defines, sin_A , as the matrix containing the of all the values in A .  defines, cos_B , as the matrix containing the of all the values in B .  Recall, the MATLAB constant for is pi .    Since the values in A are in radians and the values in B are in degrees, we use the commands   A = [pi 0 2;2*pi pi\/2 4]; sin_A = sin(A) B = [0 30 60 90]; cos_B = cosd(A)     Running these commands, gives the output   sin_A = 0.0000 0 0.9093 -0.0000 1.0000 -0.7568 cos_B = 0.9985 1.0000 0.9994 0.9940 0.9996 0.9976        exp , log , and sqrt functions        Let A be an matrix variable.    Command  result = exp(A) (exponential function, ),    Output  result ( ) matrix containing the exponent of each value in A .    Command  result = log(A) (natural logarithm function, ),    Output  result ( ) matrix containing the natural log of each value in A .    Command  result = sqrt(A) (square root function, ),    Output  result ( ) matrix containing the square root of each value in A .           Let   Give the command that computes the square root of all the values in A .    Running the commands   A = [9 0;16 4;25 1]; sqrt(A)     gives the output   sqrt_A = 3 0 4 2 5 1         Row\/Column-Wise Functions  MATLAB also contains a huge library of functions that perform common programming tasks on a list of numbers. For example, we may want the find the sum or maximum value of this list. It is natural to think of a list as a row or column vector and MATLAB can easily sum a list of such values. However, MATLAB goes a bit further by allowing you to sum several lists at once. Let's take a closer look at this idea.  A fundamental concept needed in many applications is to find the sum or product of a list of numbers.   sum and prod functions (vector)        Let v be a row vector ( ) or column vector ( ).    Command  result = sum(v)    Output    result is equal to the sum of all the elements in v .     Command  result = prod(v)    Output    result isequal to the product of all the elements in v .         Another common task is to get the maximum or minimum from a list of values.   min and max functions (vector)        Let v be a row vector ( ) or column vector ( ).    Command  result = min(v)    Output    result is equal to the minimum of all the elements in v .     Command  result = max(v)    Output    result is equal to the maximum of all the elements in v .           Let   Give the command that  defines sum_v as the sum of the values in v .  defines prod_v as the product of the values in v .  defines min_v as the minimum of the values in v .  defines max_v as the maximum of the values in v .      Running the commands   v = [10; 6; -1]; sum_v = sum(v) prod_v = prod(v) min_v = min(v) max_v = max(v)     produces the output   sum_v = 15 prod_v = -60 min_v = -1 max_v = 10       The above example shows how common functions apply to a vector, but what about a matrix? It turns out that MATLAB treats a matrix as a list of column vectors and applies the function to each column. The output is a row vector containing the result of the function applied to each column. Visually, if then the sum(A) and max(A) would be computed, column-wise, like so,                This is the default behavior, but you can easily tell MATLAB to apply the function to the rows instead of the columns.   sum and prod functions (matrix)       Let A be a matrix ( ).    Command  result = sum(A) or result = sum(A,1)    Output    result is a matrix (row vector) that contains the sum of the elements in each column of A .     Command  result = sum(A,2)    Output    result is a matrix (column vector) that contains the sum of the elements in each row of A .     Command  result = sum(sum(A))    Output    result is a matrix (number) that contains the sum of all elements in A .     Command  result = prod(v) or result = prod(A,1)    Output    result is a matrix (row vector) that contains the product of the elements in each column of A .     Command  result = prod(A,2)    Output    result is a matrix (column vector) that contains the product of the elements in each row of A .     Command  result = prod(prod(A))    Output    result is a matrix (number) that contains the product of all elements in A .         Let   Give the command that  defines c_sum as the sum of the values in each column of A .  defines r_sum as the sum of the values in each row of A .  defines t_sum as the sum of all the values in A .      Define A first, of course   >> A = [1 2 3 4;5 6 7 8];     For the column sums, use  Command:  >> c_sum = sum(A) % or >> c_sum = sum(A,1)    Output:  c_sum = 6 8 10 12    For the row sums, use  Command:  >> r_sum = sum(A,2)    Output:  r_sum = 10 26    Finally, we have a few options for the sum of all the elements. We can use the  Command:  >> t_sum = sum(c_sum) % or >> t_sum = sum(r_sum) % or >> t_sum = sum(sum(A))    Output:  t_sum = 36         min and max functions (matrix)        Let A be a matrix ( ).    Command  result = min(A) or result = min(A,1)    Output    result is a matrix (row vector) that contains the minimum element in each column of A      Command  result = min(A,2)    Output    result is a matrix (column vector) that contains the minimum element in each row of A      Command  result = min(min(A))    Output    result is a matrix (number) that contains the minimum of all elements in A      Command  result = max(v) or result = max(A,1)    Output    result is a matrix (row vector) that contains the maximum element in each column of A      Command  result = max(A,2)    Output    result is a matrix (column vector) that contains the maximum element in each row of A      Command  result = max(max(A))    Output    result is a matrix (number) that contains the maximum of all elements in A            Let   Give the command that  defines c_min as the minimum of the values in each column of A .  defines r_min as the minimum of the values in each row of A .  defines t_min as the minimum of all the values in A .      Define A first, of course   >> A = [1 0 3; 8 -1 3; 1 7 3; 5 16 8];     For the column mins, use  Command:  >> c_min = min(A) % or >> c_min = min(A,[],1)    Output:  c_min = 1 -1 3    For the row mins, use  Command:  >> r_min = min(A,[],2)    Output:  r_min = 0 -1 1 5    Finally, we have a few options for the min of all the elements. We can use the  Command:  >> t_min = min(c_min) % or >> t_min = min(r_min) % or >> t_min = min(min(A))    Output:  t_min = -1         "
+},
+{
+  "id": "common-matrix-commands-2",
+  "level": "2",
+  "url": "common-matrix-commands.html#common-matrix-commands-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.7",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Apply various scientific functions to the values of a matrix,  Compute the maximum or minimum of the values in a matrix, and  Compute the sum or product of the values in a matrix.   "
+},
+{
+  "id": "trig-radians-syntax",
+  "level": "2",
+  "url": "common-matrix-commands.html#trig-radians-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.39",
+  "title": "<em class=\"emphasis\">Trigonometric Functions<\/em>.",
+  "body": " Trigonometric Functions        Let A be an matrix variable containing values in radians.    Command  result = sin(A) , result = cos(A) , result = tan(A)   result = csc(A) , result = sec(A) , result = cot(A)   Output    result ( ) matrix containing the chosen trig function applied to each value in A .     Notes   If A contains degree values instead of radians, use the functions:    result = sind(A) , result = cosd(A) , result = tand(A)  result = cscd(A) , result = secd(A) , result = cotd(A)      "
+},
+{
+  "id": "example-matrix-computations",
+  "level": "2",
+  "url": "common-matrix-commands.html#example-matrix-computations",
+  "type": "🌌 Example",
+  "number": "6.40",
+  "title": "",
+  "body": "   Let and be given by   where contains radian values and contains degree values.  Give the MATLAB command that  defines, sin_A , as the matrix containing the of all the values in A .  defines, cos_B , as the matrix containing the of all the values in B .  Recall, the MATLAB constant for is pi .    Since the values in A are in radians and the values in B are in degrees, we use the commands   A = [pi 0 2;2*pi pi\/2 4]; sin_A = sin(A) B = [0 30 60 90]; cos_B = cosd(A)     Running these commands, gives the output   sin_A = 0.0000 0 0.9093 -0.0000 1.0000 -0.7568 cos_B = 0.9985 1.0000 0.9994 0.9940 0.9996 0.9976      "
+},
+{
+  "id": "exp-log-sqrt-syntax",
+  "level": "2",
+  "url": "common-matrix-commands.html#exp-log-sqrt-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.41",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">exp<\/code>,<code class=\"code-inline tex2jax_ignore\">log<\/code>, and <code class=\"code-inline tex2jax_ignore\">sqrt<\/code> functions<\/em>.",
+  "body": " exp , log , and sqrt functions        Let A be an matrix variable.    Command  result = exp(A) (exponential function, ),    Output  result ( ) matrix containing the exponent of each value in A .    Command  result = log(A) (natural logarithm function, ),    Output  result ( ) matrix containing the natural log of each value in A .    Command  result = sqrt(A) (square root function, ),    Output  result ( ) matrix containing the square root of each value in A .       "
+},
+{
+  "id": "example-sqrt",
+  "level": "2",
+  "url": "common-matrix-commands.html#example-sqrt",
+  "type": "🌌 Example",
+  "number": "6.42",
+  "title": "",
+  "body": "   Let   Give the command that computes the square root of all the values in A .    Running the commands   A = [9 0;16 4;25 1]; sqrt(A)     gives the output   sqrt_A = 3 0 4 2 5 1      "
+},
+{
+  "id": "sum-prod-vector-syntax",
+  "level": "2",
+  "url": "common-matrix-commands.html#sum-prod-vector-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.43",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">sum<\/code> and <code class=\"code-inline tex2jax_ignore\">prod<\/code> functions (vector)<\/em>.",
+  "body": " sum and prod functions (vector)        Let v be a row vector ( ) or column vector ( ).    Command  result = sum(v)    Output    result is equal to the sum of all the elements in v .     Command  result = prod(v)    Output    result isequal to the product of all the elements in v .        "
+},
+{
+  "id": "min-max-vector-syntax",
+  "level": "2",
+  "url": "common-matrix-commands.html#min-max-vector-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.44",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">min<\/code> and <code class=\"code-inline tex2jax_ignore\">max<\/code> functions (vector)<\/em>.",
+  "body": " min and max functions (vector)        Let v be a row vector ( ) or column vector ( ).    Command  result = min(v)    Output    result is equal to the minimum of all the elements in v .     Command  result = max(v)    Output    result is equal to the maximum of all the elements in v .        "
+},
+{
+  "id": "example-vector-sum-min-max",
+  "level": "2",
+  "url": "common-matrix-commands.html#example-vector-sum-min-max",
+  "type": "🌌 Example",
+  "number": "6.45",
+  "title": "",
+  "body": "  Let   Give the command that  defines sum_v as the sum of the values in v .  defines prod_v as the product of the values in v .  defines min_v as the minimum of the values in v .  defines max_v as the maximum of the values in v .      Running the commands   v = [10; 6; -1]; sum_v = sum(v) prod_v = prod(v) min_v = min(v) max_v = max(v)     produces the output   sum_v = 15 prod_v = -60 min_v = -1 max_v = 10      "
+},
+{
+  "id": "sum-prod-matrix-syntax",
+  "level": "2",
+  "url": "common-matrix-commands.html#sum-prod-matrix-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.46",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">sum<\/code> and <code class=\"code-inline tex2jax_ignore\">prod<\/code> functions (matrix)<\/em>.",
+  "body": " sum and prod functions (matrix)       Let A be a matrix ( ).    Command  result = sum(A) or result = sum(A,1)    Output    result is a matrix (row vector) that contains the sum of the elements in each column of A .     Command  result = sum(A,2)    Output    result is a matrix (column vector) that contains the sum of the elements in each row of A .     Command  result = sum(sum(A))    Output    result is a matrix (number) that contains the sum of all elements in A .     Command  result = prod(v) or result = prod(A,1)    Output    result is a matrix (row vector) that contains the product of the elements in each column of A .     Command  result = prod(A,2)    Output    result is a matrix (column vector) that contains the product of the elements in each row of A .     Command  result = prod(prod(A))    Output    result is a matrix (number) that contains the product of all elements in A .      "
+},
+{
+  "id": "example-matrix-sum",
+  "level": "2",
+  "url": "common-matrix-commands.html#example-matrix-sum",
+  "type": "🌌 Example",
+  "number": "6.47",
+  "title": "",
+  "body": "  Let   Give the command that  defines c_sum as the sum of the values in each column of A .  defines r_sum as the sum of the values in each row of A .  defines t_sum as the sum of all the values in A .      Define A first, of course   >> A = [1 2 3 4;5 6 7 8];     For the column sums, use  Command:  >> c_sum = sum(A) % or >> c_sum = sum(A,1)    Output:  c_sum = 6 8 10 12    For the row sums, use  Command:  >> r_sum = sum(A,2)    Output:  r_sum = 10 26    Finally, we have a few options for the sum of all the elements. We can use the  Command:  >> t_sum = sum(c_sum) % or >> t_sum = sum(r_sum) % or >> t_sum = sum(sum(A))    Output:  t_sum = 36       "
+},
+{
+  "id": "min-max-matrix-syntax",
+  "level": "2",
+  "url": "common-matrix-commands.html#min-max-matrix-syntax",
+  "type": "👀 Quick Review",
+  "number": "6.48",
+  "title": "<em class=\"emphasis\"><code class=\"code-inline tex2jax_ignore\">min<\/code> and <code class=\"code-inline tex2jax_ignore\">max<\/code> functions (matrix)<\/em>.",
+  "body": " min and max functions (matrix)        Let A be a matrix ( ).    Command  result = min(A) or result = min(A,1)    Output    result is a matrix (row vector) that contains the minimum element in each column of A      Command  result = min(A,2)    Output    result is a matrix (column vector) that contains the minimum element in each row of A      Command  result = min(min(A))    Output    result is a matrix (number) that contains the minimum of all elements in A      Command  result = max(v) or result = max(A,1)    Output    result is a matrix (row vector) that contains the maximum element in each column of A      Command  result = max(A,2)    Output    result is a matrix (column vector) that contains the maximum element in each row of A      Command  result = max(max(A))    Output    result is a matrix (number) that contains the maximum of all elements in A         "
+},
+{
+  "id": "example-matrix-min-max",
+  "level": "2",
+  "url": "common-matrix-commands.html#example-matrix-min-max",
+  "type": "🌌 Example",
+  "number": "6.49",
+  "title": "",
+  "body": "  Let   Give the command that  defines c_min as the minimum of the values in each column of A .  defines r_min as the minimum of the values in each row of A .  defines t_min as the minimum of all the values in A .      Define A first, of course   >> A = [1 0 3; 8 -1 3; 1 7 3; 5 16 8];     For the column mins, use  Command:  >> c_min = min(A) % or >> c_min = min(A,[],1)    Output:  c_min = 1 -1 3    For the row mins, use  Command:  >> r_min = min(A,[],2)    Output:  r_min = 0 -1 1 5    Finally, we have a few options for the min of all the elements. We can use the  Command:  >> t_min = min(c_min) % or >> t_min = min(r_min) % or >> t_min = min(min(A))    Output:  t_min = -1       "
+},
+{
+  "id": "manipulating-matrices",
+  "level": "1",
+  "url": "manipulating-matrices.html",
+  "type": "Section",
+  "number": "6.8",
+  "title": "Manipulating Matrices",
+  "body": " Manipulating Matrices    By the end of this section, you will be able to ...    Compute the transpose of a matrix,  Convert a matrix into a vector.  Merge\/Stack two or more matrices into a single matrix.     In this section, we will look at ways you can manipulate matrices by changing there structure or combining multiple matrices into one.    Matrix Transpose  One special operation for matrices is the matrix transpose , given by either transpose(A) or the shorter A' . The transpose of a matrix is another matrix with the rows and columns interchanged.   Transpose   >> A = [1 2 3 4; 5 6 7 8]; A'     ans = 1 5 2 6 3 7 4 8    and    >> B = [1; 6; 0; 9]; B' ans = 1 6 0 9       Convert a Matrix into a Column Vector  Depending on the application, it may be required to work with vectors rather than matrices. If your variables are matrices ...   To add   matrix to column vector using abs index.      Stacking Matrices  Finally, we can create \"block\" matrices from smaller matrices by treating them as elements themselves and using the comma (or space) and the semicolon to create rows and columns. We just have to make sure the dimensions of the matrices line up properly. For example, we can stack two matrices.   Stacking Matrices    >> A = [1 2 3 4; 5 6 7 8]; B = [1; 6; 0; 9]; >> AoverBprime = [A ; B']      AoverBprime = 1 2 3 4 5 6 7 8 1 6 0 9      "
+},
+{
+  "id": "manipulating-matrices-2",
+  "level": "2",
+  "url": "manipulating-matrices.html#manipulating-matrices-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.8",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Compute the transpose of a matrix,  Convert a matrix into a vector.  Merge\/Stack two or more matrices into a single matrix.   "
+},
+{
+  "id": "transpose-3",
+  "level": "2",
+  "url": "manipulating-matrices.html#transpose-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "transpose "
+},
+{
+  "id": "ex_transpose",
+  "level": "2",
+  "url": "manipulating-matrices.html#ex_transpose",
+  "type": "🌌 Example",
+  "number": "6.50",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">Transpose<\/dfn><\/em>.",
+  "body": " Transpose   >> A = [1 2 3 4; 5 6 7 8]; A'     ans = 1 5 2 6 3 7 4 8    and    >> B = [1; 6; 0; 9]; B' ans = 1 6 0 9    "
+},
+{
+  "id": "matrix-to-vector----4",
+  "level": "2",
+  "url": "manipulating-matrices.html#matrix-to-vector----4",
+  "type": "📝",
+  "number": "6.51",
+  "title": "To add.",
+  "body": " To add   matrix to column vector using abs index.   "
+},
+{
+  "id": "ex_stackmatrices",
+  "level": "2",
+  "url": "manipulating-matrices.html#ex_stackmatrices",
+  "type": "🌌 Example",
+  "number": "6.52",
+  "title": "<em class=\"emphasis\"><dfn class=\"terminology\">Stacking Matrices<\/dfn><\/em>.",
+  "body": " Stacking Matrices    >> A = [1 2 3 4; 5 6 7 8]; B = [1; 6; 0; 9]; >> AoverBprime = [A ; B']      AoverBprime = 1 2 3 4 5 6 7 8 1 6 0 9    "
+},
+{
+  "id": "special-matrices",
+  "level": "1",
+  "url": "special-matrices.html",
+  "type": "Section",
+  "number": "6.9",
+  "title": "Special Matrices",
+  "body": " Special Matrices    By the end of this section, you will be able to ...    Define a matrix of all zeros or ones using the zeros and ones commands, respectively.  Define a matrix with ones down the diagonal and zeros everywhere else using the eye command.    MATLAB also has a many commands to build special types of matrices for different applications. A few that we will consider in this section are the ones , zeros , and eye commands.   ones Command   ones Command   To define a matrix, A , of size m n conatining all ones, use:  A = ones(m,n)      Give the MATLAB command that defines the variable, G , as the matrix,     Since G is a 3 4 matrix of all ones, we use the command    >> G = ones(3,4)        zeros Command   zeros Command   To define a matrix, A , of size m n conatining all zeros, use:  A = zeros(m,n)      Give the MATLAB command that defines the variable, H , as the matrix,     Since H is a 2 5 matrix of all zeros, we use the command    >> H = zeros(2,5)        eye Command   eye Command   To define a matrix, A , of size m n , containing ones down the diagonal and zeros everywhere else, use:  A = eye(m,n)  The diagonal of a matrix starts in the leftmost value of the first row and continues diagonally downward until the last row.     Give the MATLAB command that defines the variable, J , as the 3 4 matrix with ones down the diagonal and zeros everywhere else. That is,       >> J = eye(3,4)        Final Remarks  We will finish by exploring what happens when you use only one input value with the commands from this section.    Using the command box below, explore what happens if you use only one input value for each of ones , zeros , and eye commands.    Running the command    >> ones(3)    you would see that the following 3 3 matrix of ones:    1 1 1 1 1 1 1 1 1    Whereas, running  If you are familiar with the identity matrix, this example should shed some light on how the eye command got its name.    >> eye(5)    produces the following 5 5 matrix:    1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1    In general, using one input for each of the commands in this section will produce a corresponding \"square\" matrix (i.e. number rows = number of columns)     "
+},
+{
+  "id": "special-matrices-2",
+  "level": "2",
+  "url": "special-matrices.html#special-matrices-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.9",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Define a matrix of all zeros or ones using the zeros and ones commands, respectively.  Define a matrix with ones down the diagonal and zeros everywhere else using the eye command.   "
+},
+{
+  "id": "ones-3",
+  "level": "2",
+  "url": "special-matrices.html#ones-3",
+  "type": "👀 Quick Review",
+  "number": "6.53",
+  "title": "<code class=\"code-inline tex2jax_ignore\">ones<\/code> Command.",
+  "body": " ones Command   To define a matrix, A , of size m n conatining all ones, use:  A = ones(m,n)   "
+},
+{
+  "id": "example-ones",
+  "level": "2",
+  "url": "special-matrices.html#example-ones",
+  "type": "🌌 Example",
+  "number": "6.54",
+  "title": "",
+  "body": "  Give the MATLAB command that defines the variable, G , as the matrix,     Since G is a 3 4 matrix of all ones, we use the command    >> G = ones(3,4)     "
+},
+{
+  "id": "zeros-3",
+  "level": "2",
+  "url": "special-matrices.html#zeros-3",
+  "type": "👀 Quick Review",
+  "number": "6.55",
+  "title": "<code class=\"code-inline tex2jax_ignore\">zeros<\/code> Command.",
+  "body": " zeros Command   To define a matrix, A , of size m n conatining all zeros, use:  A = zeros(m,n)   "
+},
+{
+  "id": "example-zeros",
+  "level": "2",
+  "url": "special-matrices.html#example-zeros",
+  "type": "🌌 Example",
+  "number": "6.56",
+  "title": "",
+  "body": "  Give the MATLAB command that defines the variable, H , as the matrix,     Since H is a 2 5 matrix of all zeros, we use the command    >> H = zeros(2,5)     "
+},
+{
+  "id": "eye-3",
+  "level": "2",
+  "url": "special-matrices.html#eye-3",
+  "type": "👀 Quick Review",
+  "number": "6.57",
+  "title": "<code class=\"code-inline tex2jax_ignore\">eye<\/code> Command.",
+  "body": " eye Command   To define a matrix, A , of size m n , containing ones down the diagonal and zeros everywhere else, use:  A = eye(m,n)  The diagonal of a matrix starts in the leftmost value of the first row and continues diagonally downward until the last row.  "
+},
+{
+  "id": "example-eye",
+  "level": "2",
+  "url": "special-matrices.html#example-eye",
+  "type": "🌌 Example",
+  "number": "6.58",
+  "title": "",
+  "body": "  Give the MATLAB command that defines the variable, J , as the 3 4 matrix with ones down the diagonal and zeros everywhere else. That is,       >> J = eye(3,4)     "
+},
+{
+  "id": "example-one_eye_special_case",
+  "level": "2",
+  "url": "special-matrices.html#example-one_eye_special_case",
+  "type": "🌌 Example",
+  "number": "6.59",
+  "title": "",
+  "body": "  Using the command box below, explore what happens if you use only one input value for each of ones , zeros , and eye commands.    Running the command    >> ones(3)    you would see that the following 3 3 matrix of ones:    1 1 1 1 1 1 1 1 1    Whereas, running  If you are familiar with the identity matrix, this example should shed some light on how the eye command got its name.    >> eye(5)    produces the following 5 5 matrix:    1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1    In general, using one input for each of the commands in this section will produce a corresponding \"square\" matrix (i.e. number rows = number of columns)   "
+},
+{
+  "id": "sec-Matlab_systems_equations",
+  "level": "1",
+  "url": "sec-Matlab_systems_equations.html",
+  "type": "Section",
+  "number": "6.10",
+  "title": "Systems of Equations",
+  "body": " Systems of Equations    By the end of this section, you will be able to ...    Define a system of linear equations in terms of matrix variables.  Solve a system of linear equations in MATLAB in three different ways.     We can use matrices to solve systems of linear equations. Here it is a good idea to read up a bit on some matrix algebra.  Suppose we have the following system of equations:   We will solve this system, i.e. find the values of the variables that satisfy all of the equations simultaneously, in three ways: using reduced row echelon form, using matrix inverses, and using \"left division.\"    Method 1: Reduced Row Echelon Form  Here we create the \"augmented matrix\" of the coefficients of the variables with the constants to the right of the equals signs.    >> AugmentedMatrix = [3 2 -1 10; -1 3 2 5; 1 -1 -1 -1|; >> rref(AugmentedMatrix)      ans = 1 0 0 -2 0 1 0 5 0 0 1 -6    This tells us that there is only one way to solve this system, i.e. only one solution, namely x = -2, y = 5, z = -6 . You can check that is correct by substituting these values back into the system of equations:  and verifying that they are all correct.   Method 2: Using the matrix inverse  Here we create two matrices, one for the coefficients of the variables and one for the constants to the right of the equals signs. Note that we can define these on the same line to save space:    >> Coeffs = [3 2 -1; -1 3 2; 1 -1 -1]; Constants=[10; 5; -1];    Since the determinant of Coeffs is non-zero (check!) we can solve the system with the inverse:    >> inv(Coeffs)*Constants      ans = -2 5 -6    This also tells us that the only solution is x = -2, y = 5, z = -6 .    Method 3: Using left division  The motivation for this method is complicated. We suggest that you read the Matlab documentation on left (and right) division of matrices. Again we create the two matrices, Coeffs and Constants     >> Coeffs = [3 2 -1; -1 3 2; 1 -1 -1]; Constants=[10; 5; -1];    and use the backslash (be careful to use the correct slash):    >> Coeffs\\Constants      ans = -2 5 -6    This also tells us that the only solution is x = -2, y = 5, z = -6 .   "
+},
+{
+  "id": "sec-Matlab_systems_equations-2",
+  "level": "2",
+  "url": "sec-Matlab_systems_equations.html#sec-Matlab_systems_equations-2",
+  "type": "🗝️ Key Takeaways...",
+  "number": "6.10",
+  "title": "",
+  "body": "  By the end of this section, you will be able to ...    Define a system of linear equations in terms of matrix variables.  Solve a system of linear equations in MATLAB in three different ways.   "
 },
 {
   "id": "appdx-math-functions",
