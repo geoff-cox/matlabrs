@@ -7,141 +7,133 @@
 		</p>
 	</introduction>
 
-	<subsection xml:id="subsec-installing-matlab-structure">
-		<title>🧱 Structure</title>
+	<assemblage xml:id="installing-matlab-overview">
+		<title>What You Need to Install MATLAB</title>
 
-		<assemblage xml:id="installing-matlab-overview">
-			<title>What You Need to Install MATLAB</title>
+		<p>
+			Before starting, make sure you have:
+			<ul>
+				<li>A computer running Windows, macOS, or Linux.</li>
+				<li>A MathWorks account linked to a valid license (your institution typically provides this).</li>
+				<li>A reliable internet connection for downloading the installer.</li>
+			</ul>
+		</p>
 
-			<p>
-				Before starting, make sure you have:
-				<ul>
-					<li>A computer running Windows, macOS, or Linux.</li>
-					<li>A MathWorks account linked to a valid license (your institution typically provides this).</li>
-					<li>A reliable internet connection for downloading the installer.</li>
-				</ul>
-			</p>
+		<p>
+			Key terms:
+			<ul>
+				<li>A <term>MathWorks account</term> is the login you use to access MathWorks software and your license.</li>
+				<li>A <term>license</term> is the agreement that grants you permission to use MATLAB. Student and institutional licenses are the most common.</li>
+				<li>The <term>installer</term> is the program you download from mathworks.com that places MATLAB on your computer.</li>
+			</ul>
+		</p>
+	</assemblage>
 
-			<p>
-				Key terms:
-				<ul>
-					<li>A <term>MathWorks account</term> is the login you use to access MathWorks software and your license.</li>
-					<li>A <term>license</term> is the agreement that grants you permission to use MATLAB. Student and institutional licenses are the most common.</li>
-					<li>The <term>installer</term> is the program you download from mathworks.com that places MATLAB on your computer.</li>
-				</ul>
-			</p>
-		</assemblage>
-
-		<exercise label="installing-matlab-reading-ckpt-1">
-			<task label="installing-matlab-reading-ckpt-1a">
-				<statement correct="yes">
-					<p>
-						You need a licensed MathWorks account to install MATLAB.
-					</p>
-				</statement>
-				<feedback>
-					<p>
-						Correct. MATLAB requires a valid license linked to a MathWorks account. Your institution typically provides access to a license.
-					</p>
-				</feedback>
-			</task>
-
-			<task label="installing-matlab-reading-ckpt-1b">
-				<statement>
-					<p>
-						Where do you go to download the MATLAB installer?
-					</p>
-				</statement>
-				<choices randomize="yes">
-					<choice correct="yes">
-						<statement><p><url href="https://www.mathworks.com/">mathworks.com</url></p></statement>
-						<feedback><p>Correct. The official MathWorks website is the source for downloading MATLAB.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p>matlab.com</p></statement>
-						<feedback><p>This is not the MathWorks website. Always download from mathworks.com.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p>Your institution's general software portal</p></statement>
-						<feedback><p>Some institutions host links there, but the installer itself comes from mathworks.com.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p>The MATLAB App Store</p></statement>
-						<feedback><p>There is no MATLAB App Store. Download MATLAB from mathworks.com.</p></feedback>
-					</choice>
-				</choices>
-			</task>
-
-			<task label="installing-matlab-reading-ckpt-1c">
-				<statement correct="no">
-					<p>
-						You must reinstall MATLAB every time you start a new project.
-					</p>
-				</statement>
-				<feedback>
-					<p>
-						Installation is a one-time process. Once MATLAB is installed, you simply launch it to start working on any project.
-					</p>
-				</feedback>
-			</task>
-		</exercise>
-	</subsection>
-
-	<subsection xml:id="subsec-installing-matlab-examples">
-		<title>👀 Examples</title>
-
-		<example xml:id="ex-matlab-install-steps">
-			<title>Step-by-Step Installation</title>
-
-			<statement>
+	<exercise label="installing-matlab-reading-ckpt-1">
+		<task label="installing-matlab-reading-ckpt-1a">
+			<statement correct="yes">
 				<p>
-					The following steps describe a typical MATLAB installation. Screens and options may vary slightly depending on your operating system.
-				</p>
-
-				<ol>
-					<li>Go to <url href="https://www.mathworks.com/">mathworks.com</url>.</li>
-					<li>Click <q>Sign In</q> in the top-right corner.</li>
-					<li>If you do not already have an account, create one using your institution's email address.</li>
-					<li>After signing in, click <q>MATLAB</q> and then <q>Install MATLAB</q>.</li>
-					<li>Select your operating system from the dropdown menu.</li>
-					<li>Download and launch the installer.</li>
-					<li>When prompted, sign in using the same MathWorks account.</li>
-					<li>Accept the license agreement.</li>
-					<li>Select your institution's MATLAB license when it appears.</li>
-					<li>Use the default installation location and pre-selected products unless instructed otherwise.</li>
-					<li>Choose whether to create desktop shortcuts and allow data collection.</li>
-					<li>Click <q>Begin Install</q> and wait for the installation to complete.</li>
-				</ol>
-
-				<p>
-					Once installation is complete, you can launch MATLAB from your applications menu or desktop shortcut. The first launch may ask you to sign in again to verify your license.
+					You need a licensed MathWorks account to install MATLAB.
 				</p>
 			</statement>
-		</example>
+			<feedback>
+				<p>
+					Correct. MATLAB requires a valid license linked to a MathWorks account. Your institution typically provides access to a license.
+				</p>
+			</feedback>
+		</task>
 
-		<example xml:id="ex-matlab-first-launch">
-			<title>Verifying Your Installation</title>
-
+		<task label="installing-matlab-reading-ckpt-1b">
 			<statement>
 				<p>
-					After installation, confirm MATLAB is working correctly by launching it and typing a simple command in the Command Window:
-				</p>
-
-				<program language="matlab">
-					2 + 3
-				</program>
-
-				<p>
-					If MATLAB displays the result <c>ans = 5</c>, your installation is working correctly. If MATLAB does not launch or shows a license error, verify that:
-					<ul>
-						<li>Your MathWorks account is linked to a valid license.</li>
-						<li>You are connected to the internet (some licenses require periodic online verification).</li>
-						<li>You selected the correct license during installation.</li>
-					</ul>
+					Where do you go to download the MATLAB installer?
 				</p>
 			</statement>
-		</example>
-	</subsection>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><url href="https://www.mathworks.com/">mathworks.com</url></p></statement>
+					<feedback><p>Correct. The official MathWorks website is the source for downloading MATLAB.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>matlab.com</p></statement>
+					<feedback><p>This is not the MathWorks website. Always download from mathworks.com.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Your institution's general software portal</p></statement>
+					<feedback><p>Some institutions host links there, but the installer itself comes from mathworks.com.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>The MATLAB App Store</p></statement>
+					<feedback><p>There is no MATLAB App Store. Download MATLAB from mathworks.com.</p></feedback>
+				</choice>
+			</choices>
+		</task>
+
+		<task label="installing-matlab-reading-ckpt-1c">
+			<statement correct="no">
+				<p>
+					You must reinstall MATLAB every time you start a new project.
+				</p>
+			</statement>
+			<feedback>
+				<p>
+					Installation is a one-time process. Once MATLAB is installed, you simply launch it to start working on any project.
+				</p>
+			</feedback>
+		</task>
+	</exercise>
+
+	<example xml:id="ex-matlab-install-steps">
+		<title>Step-by-Step Installation</title>
+
+		<statement>
+			<p>
+				The following steps describe a typical MATLAB installation. Screens and options may vary slightly depending on your operating system.
+			</p>
+
+			<ol>
+				<li>Go to <url href="https://www.mathworks.com/">mathworks.com</url>.</li>
+				<li>Click <q>Sign In</q> in the top-right corner.</li>
+				<li>If you do not already have an account, create one using your institution's email address.</li>
+				<li>After signing in, click <q>MATLAB</q> and then <q>Install MATLAB</q>.</li>
+				<li>Select your operating system from the dropdown menu.</li>
+				<li>Download and launch the installer.</li>
+				<li>When prompted, sign in using the same MathWorks account.</li>
+				<li>Accept the license agreement.</li>
+				<li>Select your institution's MATLAB license when it appears.</li>
+				<li>Use the default installation location and pre-selected products unless instructed otherwise.</li>
+				<li>Choose whether to create desktop shortcuts and allow data collection.</li>
+				<li>Click <q>Begin Install</q> and wait for the installation to complete.</li>
+			</ol>
+
+			<p>
+				Once installation is complete, you can launch MATLAB from your applications menu or desktop shortcut. The first launch may ask you to sign in again to verify your license.
+			</p>
+		</statement>
+	</example>
+
+	<example xml:id="ex-matlab-first-launch">
+		<title>Verifying Your Installation</title>
+
+		<statement>
+			<p>
+				After installation, confirm MATLAB is working correctly by launching it and typing a simple command in the Command Window:
+			</p>
+
+			<program language="matlab">
+				2 + 3
+			</program>
+
+			<p>
+				If MATLAB displays the result <c>ans = 5</c>, your installation is working correctly. If MATLAB does not launch or shows a license error, verify that:
+				<ul>
+					<li>Your MathWorks account is linked to a valid license.</li>
+					<li>You are connected to the internet (some licenses require periodic online verification).</li>
+					<li>You selected the correct license during installation.</li>
+				</ul>
+			</p>
+		</statement>
+	</example>
 
 	<reading-questions xml:id="installing-matlab-reading-questions">
 		<title>Reading Questions</title>
