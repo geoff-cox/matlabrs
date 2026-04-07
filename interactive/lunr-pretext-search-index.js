@@ -2152,9 +2152,9 @@ var ptx_lunr_docs = [
   "body": "  What does continue do?   What does the continue command do in a loop?      Skips the rest of the current iteration and moves to the next iteration.    The continue command immediately jumps to the next iteration, skipping any remaining code in the current iteration.      Exits the loop completely.    This describes break , not continue . The continue command stays in the loop but skips to the next iteration.      Restarts the loop from the beginning.    The continue command moves to the next iteration, not back to the first one.      Exits the current function or script.    This describes return , not continue .       Break exits the loop   The break command exits the loop immediately and continues execution after the end statement.    Unlike continue which skips to the next iteration, break completely exits the loop.     Where can continue and break be used?   Where can the continue and break commands be used?      Only inside for - or while -loops.    These commands only make sense inside loops. Using them elsewhere causes an error.      Anywhere in a script or function.    This describes return . The continue and break commands require a loop context.      Only inside if -statements.    While often used with if -statements, they must be inside a loop, not just an if -statement.      Only at the end of a loop.    These commands can appear anywhere inside the loop body.       When does return exit?   What does the return command do?      Exits only the current loop.    This describes break . The return command exits the entire script or function.      Exits the current script or function immediately.    The return command stops execution of the entire script or function, not just a loop.      Returns to the start of the loop.    The return command doesn't return to any previous location; it exits completely.      Skips to the next iteration.    This describes continue , not return .      "
 },
 {
-  "id": "additional-loop-control-reading-quiz",
+  "id": "early-stopping-control-reading-quiz",
   "level": "1",
-  "url": "additional-loop-control-reading-quiz.html",
+  "url": "early-stopping-control-reading-quiz.html",
   "type": "Reading Questions",
   "number": "",
   "title": "📖 Reading Quiz",
@@ -2163,7 +2163,7 @@ var ptx_lunr_docs = [
 {
   "id": "concepts-continue-break-return",
   "level": "2",
-  "url": "additional-loop-control-reading-quiz.html#concepts-continue-break-return",
+  "url": "early-stopping-control-reading-quiz.html#concepts-continue-break-return",
   "type": "Reading Question",
   "number": "1",
   "title": "",
@@ -2172,7 +2172,7 @@ var ptx_lunr_docs = [
 {
   "id": "drill-continue-break-return-trace-output",
   "level": "2",
-  "url": "additional-loop-control-reading-quiz.html#drill-continue-break-return-trace-output",
+  "url": "early-stopping-control-reading-quiz.html#drill-continue-break-return-trace-output",
   "type": "Reading Question",
   "number": "2",
   "title": "Trace the Output.",
@@ -2181,16 +2181,16 @@ var ptx_lunr_docs = [
 {
   "id": "drill-continue-break-return-code-build",
   "level": "2",
-  "url": "additional-loop-control-reading-quiz.html#drill-continue-break-return-code-build",
+  "url": "early-stopping-control-reading-quiz.html#drill-continue-break-return-code-build",
   "type": "Reading Question",
   "number": "3",
   "title": "Build the Code.",
   "body": " Build the Code   Find first multiple of 7   Put the blocks in order to print the first multiple of 7 between 1 and 50.   Use correct indentation to show which lines are inside the loop and if statement.     first = NaN;  for k = 1:50  if mod(k, 7) == 0  first = k;  break  end  end  fprintf('%i\\n', first)     Sum non-multiples of 5   Put the blocks in order to compute the sum of all integers from 1 to 30 that are not multiples of 5. Use continue to skip the multiples.   Use correct indentation to show which lines are inside the loop and if statement.     total = 0;  for k = 1:30  if mod(k, 5) == 0  continue  end  total = total + k;  end  fprintf('total = %i\\n', total)    "
 },
 {
-  "id": "additional-loop-control-coding-practice",
+  "id": "early-stopping-control-control-coding-practice",
   "level": "1",
-  "url": "additional-loop-control-coding-practice.html",
+  "url": "early-stopping-control-control-coding-practice.html",
   "type": "Reading Questions",
   "number": "",
   "title": "🧑🏻‍💻 Coding Practice",
@@ -2199,7 +2199,7 @@ var ptx_lunr_docs = [
 {
   "id": "continue-drills",
   "level": "2",
-  "url": "additional-loop-control-coding-practice.html#continue-drills",
+  "url": "early-stopping-control-control-coding-practice.html#continue-drills",
   "type": "Reading Question",
   "number": "1",
   "title": "Using <code class=\"code-inline tex2jax_ignore language-matlab\">continue<\/code> in a Loop.",
@@ -2208,7 +2208,7 @@ var ptx_lunr_docs = [
 {
   "id": "break-drills",
   "level": "2",
-  "url": "additional-loop-control-coding-practice.html#break-drills",
+  "url": "early-stopping-control-control-coding-practice.html#break-drills",
   "type": "Reading Question",
   "number": "2",
   "title": "Using <code class=\"code-inline tex2jax_ignore language-matlab\">break<\/code> in a Loop.",
@@ -2217,7 +2217,7 @@ var ptx_lunr_docs = [
 {
   "id": "return-drills",
   "level": "2",
-  "url": "additional-loop-control-coding-practice.html#return-drills",
+  "url": "early-stopping-control-control-coding-practice.html#return-drills",
   "type": "Reading Question",
   "number": "3",
   "title": "Using <code class=\"code-inline tex2jax_ignore language-matlab\">return<\/code> in a Function.",
