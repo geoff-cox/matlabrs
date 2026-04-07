@@ -3,30 +3,34 @@
 	<title>Conditional Flow</title>
 
 	<introduction>
-
 		<p>
-			So far, we've written code that runs step by step in a straight line. Real programs
-			need to react to data or user input, choosing different actions when conditions change.
+				In the previous chapter, you learned to organize MATLAB commands into scripts and
+				functions. While a script runs top to bottom without deviation, most real programs
+				need to make decisions: take one action when a condition is true, and a different
+				action when it is false. This chapter introduces the two primary decision-making
+				tools in MATLAB: <term>if statements</term> and <term>switch statements</term>.
 		</p>
-
 		<p>
-			For example, suppose <pf>gift_card_balance</pf> stores the amount of money on an Amazon
-			gift card and <pf>total_due</pf> stores the price of a purchase. Before completing the
-			purchase, your program needs to ask a yes-or-no question:
-			<q>Is <pf>gift_card_balance</pf> greater than or equal to <pf>total_due</pf>?</q>
+				Before writing if statements, you need to understand the values they test.
+				This chapter builds from the ground up:
+				<dl width="narrow">
+						<li><title>Logical Values</title>
+								<p>The building blocks of decisions — <pf>true</pf> and <pf>false</pf> (stored as 1 and 0).</p>
+						</li>
+						<li><title>Logical Statements</title>
+								<p>Comparisons and compound conditions formed with operators like <pf>==</pf>, <pf>&amp;&amp;</pf>, and <pf>||</pf>.</p>
+						</li>
+						<li><title>If Statements</title>
+								<p>Conditional execution using <pf>if</pf>, <pf>elseif</pf>, and <pf>else</pf>.</p>
+						</li>
+						<li><title>Switch Statements</title>
+								<p>Cleaner multi-way branching when selecting among exact values.</p>
+						</li>
+				</dl>
 		</p>
-
 		<p>
-			Questions like this are called <term>logical expressions</term>, and their answers are
-			called <term>logical values</term> (i.e., <pf>true</pf> and <pf>false</pf>). Two types of
-			structures that let you ask questions and make decisions based on their answers are
-			<pf>if</pf>-statements and <pf>switch</pf>-statements. These structures allow you to
-			control the flow of your program, executing different blocks of code depending on the
-			conditions you specify.
-		</p>
-
-		<p>
-			In this section, we will learn how MATLAB evaluates logical expressions and how to use <pf>if</pf> and <pf>switch</pf> statements to create programs that can make decisions and respond to different situations.
+				By the end of this chapter you will be able to evaluate logical expressions,
+				write if/elseif/else chains, and choose between if and switch based on the problem at hand.
 		</p>
 	</introduction>
 
@@ -42,28 +46,24 @@
 				<ul marker="square">
 					<li>
 						<term>Logical values</term>.
-						MATLAB has two special values for yes/no answers: <pf>true</pf> and <pf>false</pf>.
-						These are of type <pf>logical</pf>, which is different from the numeric type <pf>double</pf>.
+						MATLAB stores logical values as <pf>1</pf> (true) or <pf>0</pf> (false).
 					</li>
 					<li>
-						<term>Logical Expressions</term>.
-						A logical expression is a command that evaluates to true or false.
-					</li>
-					<li>
-						<p><term>Relational operators</term>. The relational operators are:</p>
+						<p><term>Relational operators</term>. Use relational operators</p>
 						<tabular>
 							<row><cell><pf>==</pf></cell><cell>equal to</cell><cell><pf>~=</pf></cell><cell>not equal to</cell></row>
 							<row><cell><pf>&lt;</pf></cell><cell>less than</cell><cell><pf>&lt;=</pf></cell><cell>less than or equal to</cell></row>
 							<row><cell><pf>&gt;</pf></cell><cell>greater than</cell><cell><pf>&gt;=</pf></cell><cell>greater than or equal to</cell></row>
 						</tabular>
+						<p>to create <term>logical expressions</term> that evaluate to <pf>1</pf> (true) or <pf>0</pf> (false).</p>
 					</li>
 					<li>
 						<term>Single equals vs. double equals</term>.
 						A single equals (<pf>=</pf>) assigns a value to a variable, while a double equals (<pf>==</pf>) compares two values.
 					</li>
 					<li>
-						<term>The NOT operator</term>.
-						The tilde (<pf>~</pf>) flips <pf>true</pf> to <pf>false</pf> and vice versa. For example, <pf>~(x == y)</pf> is equivalent to <pf>x ~= y</pf>.
+						<term>NOT operator</term>.
+						Use <pf>~</pf> to negate a logical value or expression. For example, <pf>~(x &gt; 0)</pf> evaluates to true when x is not greater than 0.
 					</li>
 					<li>
 						<p>

@@ -6,7 +6,7 @@
 		A <term>variable</term> in MATLAB is a named location in memory that stores a value.
 		Variables allow you to save data so that it can be reused, modified, and combined with
 		other data as a program runs. Every calculation you perform in the
-		<xref ref="sec-command-window" text="custom">Command Window</xref> produces values,
+		<xref ref="sec-cmdwin" text="custom">Command Window</xref> produces values,
 		and variables allow you to store those values for later use.
 	</p>
 
@@ -19,23 +19,224 @@
 	<assemblage xml:id="assemblage-variables">
 		<title>Variable Assignment in MATLAB</title>
 
+	  <p>
+      You create a variable using the <term>assignment operator</term>, written as
+      <c>=</c>.
+    </p>
+
 		<p>Syntax: <pf>variable_name = expression</pf></p>
 
+    <p>
+      When MATLAB executes an assignment:
+      <ul>
+        <li>The expression on the right-hand side is evaluated first.</li>
+        <li>The resulting value is stored under the name on the left-hand side.</li>
+      </ul>
+      The variable name appears in the Workspace after the line runs.
+    </p>
+
 		<p>
-			Key rules:
+			Naming Variables:
 			<ul marker="square">
-				<li>The expression on the right-hand side is evaluated first; the result is stored under the name on the left-hand side.</li>
 				<li>Variable names must start with a letter, may contain letters, digits, and underscores, and cannot be a MATLAB keyword.</li>
 				<li>Names are case-sensitive: <pf>Area</pf> and <pf>area</pf> are different variables.</li>
-				<li>Ending a line with a semicolon <pf>;</pf> suppresses output in the Command Window but still creates the variable.</li>
-				<li>MATLAB stores the computed value, <em>not</em> the formula; changing one variable does not automatically update others that were computed from it.</li>
 			</ul>
 		</p>
-	</assemblage>
 
-	<!-- ============================================================ -->
-	<!--	2. Examples													-->
-	<!-- ============================================================ -->
+		<p>
+			MATLAB imposes specific rules on variable names:
+			<ol>
+				<li><p>The name must start with a letter.</p></li>
+				<li><p>It may contain letters, digits, and underscores.</p></li>
+				<li><p>It cannot be a MATLAB keyword.</p></li>
+				<li><p>It cannot exceed 2048 characters.</p></li>
+			</ol>
+		</p>
+
+		<p>
+			Things to note about MATLAB variables:
+			<ul marker="square">
+				<li>Variable names are case sensitive, so <pf>A</pf> and <pf>a</pf> are different variables.</li>
+				<li>There are <xref ref="matlab-keywords" text="custom">20 keywords</xref> that can be listed with the <pf>iskeyword</pf> command.</li>
+			</ul>
+		</p>
+
+	</assemblage>
+	
+	<table xml:id="matlab-keywords">
+		<title>MATLAB keywords listed from <pf>iskeyword</pf></title>
+		<tabular>
+			<row>
+				<cell><pf>function</pf></cell>
+				<cell><pf>if</pf></cell>
+				<cell><pf>else</pf></cell>
+				<cell><pf>elseif</pf></cell>
+				<cell><pf>end</pf></cell>
+			</row>
+			<row>
+				<cell><pf>try</pf></cell>
+				<cell><pf>switch</pf></cell>
+				<cell><pf>case</pf></cell>
+				<cell><pf>otherwise</pf></cell>
+				<cell><pf>catch</pf></cell>
+			</row>
+			<row>
+				<cell><pf>for</pf></cell>
+				<cell><pf>while</pf></cell>
+				<cell><pf>break</pf></cell>
+				<cell><pf>continue</pf></cell>
+				<cell><pf>return</pf></cell>
+			</row>
+			<row>
+				<cell><pf>classdef</pf></cell>
+				<cell><pf>parfor</pf></cell>
+				<cell><pf>persistent</pf></cell>
+				<cell><pf>spmd</pf></cell>
+				<cell><pf>global</pf></cell>
+			</row>
+		</tabular>
+	</table>
+
+	<exercise label="vars-chkpt-4">
+		<statement>
+			<p>Select all the <em>valid</em> variable names.</p>
+		</statement>
+		
+		<areas>
+			<tabular>
+				<row>
+					<cell><area correct="yes"><pf>x6</pf></area></cell><cell/>
+					<cell><area correct="no"> <pf>6x</pf></area></cell><cell/>
+					<cell><area correct="yes"><pf>x_6</pf></area></cell><cell/>
+					<cell><area correct="no"> <pf>x.6</pf></area></cell>
+				</row>
+				<row>
+					<cell><area correct="no"> <pf>_lastValue</pf></area></cell><cell/>
+					<cell><area correct="yes"><pf>lastValue_</pf></area></cell><cell/>
+					<cell><area correct="yes"><pf>n_factorial</pf></area></cell><cell/>
+					<cell><area correct="no"> <pf>n!</pf></area></cell>
+				</row>
+				<row>
+					<cell><area correct="yes"><pf>iskeyword</pf></area></cell><cell/>
+					<cell><area correct="yes"><pf>pi</pf></area></cell><cell/>
+					<cell><area correct="no"> <pf>end</pf></area></cell>
+				</row>
+				<row><cell><m/></cell></row>
+			</tabular>
+		</areas>
+	</exercise>
+
+	<p>
+		Ending a command with a semicolon suppresses output in the Command Window, but still
+		creates the variable.
+		This keeps intermediate calculations from cluttering your screen.
+	</p>
+
+	<exercise label="vars-struct-ckpts">
+		<title>Understanding Variables</title>
+
+		<task label="vars-chkpt-1">
+			<statement>
+				<p>
+					What effect does ending a MATLAB assignment with a semicolon have?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="no">
+					<statement><p>The variable is not created in the workspace.</p></statement>
+				</choice>
+				<choice correct="yes">
+					<statement><p>The variable is created, but its value is not displayed in the Command Window.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>The variable is created with no value.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>The assignment only applies to the current line of code.</p></statement>
+				</choice>
+			</choices>
+		</task>
+
+		<task label="vars-struct-ckpt-1">
+			<statement correct="no">
+				<p>
+					In MATLAB, the symbol <c>=</c> means the same thing as in a math equation.
+				</p>
+			</statement>
+			<feedback>
+					<p>
+							In MATLAB, <c>=</c> is the <em>assignment operator</em>. It instructs MATLAB to
+							evaluate the right-hand side and store the result under the left-hand name. It
+							does not represent a mathematical equality.
+					</p>
+			</feedback>
+		</task>
+
+		<task label="vars-struct-ckpt-2">
+				<statement>
+						<p>
+								What happens when you end a MATLAB assignment statement with a semicolon?
+						</p>
+				</statement>
+				<choices randomize="yes">
+						<choice correct="no">
+								<statement><p>The variable is not created in the workspace.</p></statement>
+								<feedback><p>The variable is still created; the semicolon only affects display.</p></feedback>
+						</choice>
+						<choice correct="yes">
+								<statement><p>The variable is created, but its value is not printed in the Command Window.</p></statement>
+								<feedback><p>Correct! The semicolon suppresses Command Window output while the variable is still stored.</p></feedback>
+						</choice>
+						<choice correct="no">
+								<statement><p>The variable is created with an empty value.</p></statement>
+								<feedback><p>The expression is fully evaluated; the semicolon only suppresses display.</p></feedback>
+						</choice>
+						<choice correct="no">
+								<statement><p>The assignment applies only to the current session and is not saved.</p></statement>
+								<feedback><p>Variables persist in the workspace until cleared or MATLAB is closed, regardless of semicolons.</p></feedback>
+						</choice>
+				</choices>
+		</task>
+
+		<task label="vars-struct-ckpt-3">
+				<statement>
+						<p>
+							After running 
+						</p>
+						<program language="matlab">
+							<code>area = 0.5 * base * height;</code>
+						</program>
+						<p>
+							you reassign <pf>base</pf> with:
+						</p>
+						<program language="matlab">
+							<code>base = 10;</code>
+						</program>
+						<p>
+							What is the new value of <pf>area</pf>?
+						</p>
+				</statement>
+				<choices randomize="yes">
+						<choice correct="yes">
+								<statement><p>It stays the same — MATLAB does not recompute <pf>area</pf> automatically.</p></statement>
+								<feedback><p>Correct! MATLAB stored the numeric result, not the formula. Changing <pf>base</pf> has no effect on <pf>area</pf>.</p></feedback>
+						</choice>
+						<choice correct="no">
+								<statement><p>It is updated automatically because <pf>base</pf> changed.</p></statement>
+								<feedback><p>MATLAB stores values, not formulas. Reassigning <pf>base</pf> does not trigger a recomputation of <pf>area</pf>.</p></feedback>
+						</choice>
+						<choice correct="no">
+								<statement><p>MATLAB throws an error because <pf>base</pf> was already used.</p></statement>
+								<feedback><p>Variables can be freely reassigned. No error occurs.</p></feedback>
+						</choice>
+						<choice correct="no">
+								<statement><p>The value of <pf>area</pf> becomes undefined.</p></statement>
+								<feedback><p><pf>area</pf> retains the value computed from the original <pf>base</pf> and <pf>height</pf>.</p></feedback>
+						</choice>
+				</choices>
+		</task>
+	</exercise>
 
 	<example xml:id="example-variables-basic-assignment">
 		<title>Basic Variable Assignment</title>
@@ -46,10 +247,10 @@
 			</p>
 
 			<program language="matlab">
-<code>
-a = 1
-b = 7.8;
-</code>
+				<code>
+					a = 1
+					b = 7.8;
+				</code>
 			</program>
 
 			<p>
@@ -61,6 +262,11 @@ b = 7.8;
 			</p>
 		</statement>
 	</example>
+
+	<p>
+		Variables are typically used to build expressions that depend on previously defined
+		values. This lets you update one input and quickly recompute the output.
+	</p>
 
 	<example xml:id="example-variables-multiple">
 		<title>Using Multiple Variables in a Computation</title>
@@ -79,13 +285,114 @@ b = 7.8;
 			</program>
 
 			<p>
-				MATLAB displays <pf>area = 20</pf>. The variables <pf>base</pf> and
-				<pf>height</pf> remain in the workspace unchanged. If you now run
-				<pf>base = 6;</pf> the value of <pf>area</pf> stays at <pf>20</pf>
-				because MATLAB stored the result, not the formula.
+				Running these commands display <pf>area = 20</pf>.
+			</p>
+
+			<p>
+				Variables can be reassigned at any time. When this happens, the previous value is
+				overwritten. For example, running the command
+			</p>
+
+			<program language="matlab">
+				<code>
+					base = height;
+				</code>
+			</program>
+
+			<p>
+				assigns <pf>base</pf> to the value of <pf>height</pf> (10).
+				The values of <pf>height</pf> and <pf>area</pf> are unchanged.
 			</p>
 		</statement>
 	</example>
+
+	<exercise>
+		<task label="vars-chkpt-2">
+			<statement>
+				<p>
+					After computing a variable using other variables, why does changing one of those original variables not automatically update the result?
+				</p>
+			</statement>
+
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>MATLAB stores the computed value, not the formula used to compute it.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>MATLAB only updates variables when semicolons are omitted.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>MATLAB prevents dependent variables from changing.</p></statement>
+				</choice>
+				<choice correct="no">
+					<statement><p>MATLAB assumes variables represent algebraic equations.</p></statement>
+				</choice>
+			</choices>
+		</task>
+
+		<task label="vars-chkpt-3">
+			<statement>
+				<p>
+					Suppose you run the following commands in MATLAB:
+				</p>
+
+				<program language="matlab">
+					<code>
+						base = 4;
+						height = 10;
+						area = 0.5 * base * height;
+					</code>
+				</program>
+
+				<p>
+					Next, you run the commands:
+				</p>
+
+				<program language="matlab">
+					<code>
+						height = base;
+						height = 6;
+					</code>
+				</program>
+
+				<p>
+					Give the resulting value of each variable:
+				</p>
+
+				<p>
+					<ul>
+						<li><pf>base = </pf> <fillin mode="number" answer="4"/></li>
+						<li><pf>height = </pf> <fillin mode="number" answer="6"/></li>
+						<li><pf>area = </pf> <fillin mode="number" answer="20"/></li>
+					</ul>
+				</p>
+			</statement>
+
+			<evaluation>
+				<evaluate>
+					<test><numcmp use-answer="yes"/></test>
+					<test><strcmp>.*</strcmp><feedback><p>Incorrect</p></feedback></test>
+				</evaluate>
+				<evaluate>
+					<test><numcmp use-answer="yes"/></test>
+					<test><strcmp>.*</strcmp><feedback><p>Incorrect</p></feedback></test>
+				</evaluate>
+				<evaluate>
+					<test><numcmp use-answer="yes"/></test>
+					<test><strcmp>.*</strcmp><feedback><p>Incorrect</p></feedback></test>
+				</evaluate>
+			</evaluation>
+		</task>
+	</exercise>
+
+	<p>
+		In practice, variable names should clearly describe the data they store.
+		Descriptive names improve readability and reduce errors.
+	</p>
+
+	<p>
+		Once you begin writing scripts, good names make your code easier to read later and share with others.
+	</p>
 
 	<example xml:id="example-variables-naming">
 		<title>Valid and Descriptive Variable Names</title>
@@ -105,7 +412,7 @@ b = 7.8;
 
 			<p>
 				Each name starts with a letter, uses only letters and digits (mixed case),
-				avoids MATLAB keywords, and clearly describes the stored value.
+				avoids MATLAB keywords and clearly describes the stored value.
 				Compare this to naming the variables <pf>x</pf>, <pf>y</pf>, <pf>z</pf>:
 				the descriptive version is far easier to read and debug.
 			</p>
@@ -121,80 +428,497 @@ b = 7.8;
 		</statement>
 	</example>
 
-	<!-- ============================================================ -->
-	<!--	3. Practice Activities										 -->
-	<!-- ============================================================ -->
+	<exercise label="vars-chkpt-5">
+		<statement>
+			<p>
+				What is the primary advantage of using descriptive variable names in MATLAB code?
+			</p>
+		</statement>
 
-	<exercise>
-		<title>Working With Variables</title>
-		
-		<task label="vars-practice-1">
-			<statement>
-				<p>
-					In the code cell below, create three variables:
-					<ul marker="square">
-						<li><pf>x</pf> with value <pf>5</pf> (suppressed)</li>
-						<li><pf>y</pf> with value <pf>-2.5</pf> (suppressed)</li>
-						<li><pf>z</pf> equal to <pf>x + y</pf> (displayed)</li>
-					</ul>
-					Verify that <pf>z</pf> displays as <pf>2.5</pf>.
-				</p>
-				<sage language="octave">
-					<input>
-						%─── TYPE YOUR CODE HERE ───%
-						
-						%───────────────────────────%
-					</input>
-				</sage>
-			</statement>
-			<solution component="example-solution">
-				<program language="matlab">
-					<code>
-					x = 5;
-					y = -2.5;
-					z = x + y
-					</code>
-				</program>
-			</solution>
-		</task>
+		<choices randomize="yes">
+			<choice correct="yes">
+				<statement><p>They make code easier to read, understand, and debug.</p></statement>
+			</choice>
+			<choice correct="no">
+				<statement><p>They make MATLAB run faster.</p></statement>
+			</choice>
+			<choice correct="no">
+				<statement><p>They prevent variables from being overwritten.</p></statement>
+			</choice>
+			<choice correct="no">
+				<statement><p>They allow MATLAB to automatically document the code.</p></statement>
+			</choice>
+		</choices>
+	</exercise>
 
-		<task label="vars-practice-2">
-			<statement>
-				<p>
-					Predict each displayed value from the commands below, then run the code to check your predictions.
-				</p>
-				<sage language="octave">
-					<input>
-						n = 10
-						n = n + 5
-						n = n * 2
-					</input>
-				</sage>
-			</statement>
-			<solution component="example-solution">
-				<p>Expected output: <pf>10</pf>, then <pf>15</pf>, then <pf>30</pf>.</p>
-			</solution>
-		</task>
+	<reading-questions xml:id="variables-reading-quiz">
+		<title>📖 Reading Quiz</title>
+		<exercise label="vars-quiz-questions">
+			<title>Variable Concepts</title>
 
-		<task label="vars-practice-3">
-			<statement>
-				<p>
-					Given <pf>a = 3</pf> and <pf>b = 7</pf>, write code that swaps their values
-					so that afterwards <pf>a = 7</pf> and <pf>b = 3</pf>.
-					You will need a temporary variable.
-				</p>
-				<sage language="octave">
-					<input>
-						a = 3;
-						b = 7;
-						%─── TYPE YOUR CODE HERE ───%
-						
-						%───────────────────────────%
-					</input>
-				</sage>
-			</statement>
-			<solution component="example-solution">
-				<program language="matlab">
+			<task label="rq-command-window-8">
+				<statement>
+					<p>
+						A student types the following:
+					</p>
+					<program language="matlab">
+						result = 8 * 3;
+					</program>
+					<p>
+						What is true about this command?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p>The variable <pf>result</pf> is created with value 24, but nothing is displayed in the Command Window.</p></statement>
+						<feedback><p>Correct. The semicolon suppresses output. The variable is created and stored, but the display is silent.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>The variable <pf>result</pf> is not created because of the semicolon.</p></statement>
+						<feedback><p>A semicolon does not prevent variable creation. It only suppresses the display.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>The variable <pf>result</pf> is created and <c>result = 24</c> is displayed.</p></statement>
+						<feedback><p>The semicolon suppresses the display. The variable is created but not shown.</p></feedback>
+					</choice>
+					<choice>
+						<statement><p>MATLAB displays an error because of the missing output.</p></statement>
+						<feedback><p>A semicolon is valid MATLAB syntax. No error is produced.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<!-- Q1 MC -->
+			<task label="vars-rq-1">
+				<statement>
+					<p>Which of the following is a valid MATLAB variable name?</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="no">
+						<statement><p><pf>2ndValue</pf></p></statement>
+						<feedback><p>Variable names must start with a letter, not a digit.</p></feedback>
+					</choice>
+					<choice correct="yes">
+						<statement><p><pf>value2nd</pf></p></statement>
+						<feedback><p>Correct! It starts with a letter and contains only letters and digits.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p><pf>end</pf></p></statement>
+						<feedback><p><pf>end</pf> is a reserved MATLAB keyword and cannot be used as a variable name.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p><pf>my-value</pf></p></statement>
+						<feedback><p>Hyphens are not allowed in variable names; MATLAB would interpret <pf>-</pf> as subtraction.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<!-- Q2 MC -->
+			<task label="vars-rq-2">
+				<statement>
+					<p>
+						After running the two lines below, what is the value of <pf>result</pf>?
+					</p>
+					<program language="matlab">
+	<code>
+	x = 4;
+	result = x * 3;
+	x = 10;
+	</code>
+					</program>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p><pf>12</pf></p></statement>
+						<feedback><p>Correct! <pf>result</pf> was computed when <pf>x = 4</pf>. Changing <pf>x</pf> afterward has no effect.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p><pf>30</pf></p></statement>
+						<feedback><p>MATLAB does not recompute <pf>result</pf> when <pf>x</pf> changes later.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p><pf>10</pf></p></statement>
+						<feedback><p><pf>result</pf> stores the product <pf>x * 3</pf> evaluated at the time of the assignment.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>An error occurs.</p></statement>
+						<feedback><p>No error; all three lines are valid MATLAB assignments.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<!-- Q3 MC -->
+			<task label="vars-rq-3">
+				<statement>
+					<p>What is the purpose of the MATLAB workspace?</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p>It stores all currently defined variables and their values.</p></statement>
+						<feedback><p>Correct! The workspace is MATLAB's in-memory record of all active variables.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>It saves MATLAB scripts to disk automatically.</p></statement>
+						<feedback><p>The workspace holds variables in memory; saving scripts requires explicit file operations.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>It displays Command Window output history.</p></statement>
+						<feedback><p>That is the role of the Command Window itself, not the workspace panel.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>It manages MATLAB's toolbox licenses.</p></statement>
+						<feedback><p>License management is handled elsewhere. The workspace stores variables.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<!-- Q4 MC -->
+			<task label="vars-rq-4">
+				<statement>
+					<p>Which command lists all MATLAB reserved keywords?</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p><pf>iskeyword</pf></p></statement>
+						<feedback><p>Correct! Running <pf>iskeyword</pf> with no argument returns the full list of reserved keywords.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p><pf>keywords</pf></p></statement>
+						<feedback><p>This is not a standard MATLAB command. Use <pf>iskeyword</pf>.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p><pf>whos</pf></p></statement>
+						<feedback><p><pf>whos</pf> lists workspace variables, not keywords.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p><pf>help reserved</pf></p></statement>
+						<feedback><p>There is no <pf>reserved</pf> help topic. Use <pf>iskeyword</pf>.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<!-- Q5 MC -->
+			<task label="vars-rq-5">
+				<statement>
+					<p>
+						Which of the following best describes <em>why</em> descriptive variable names are
+						recommended?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="yes">
+						<statement><p>They make code easier to read, understand, and debug.</p></statement>
+						<feedback><p>Correct! Names like <pf>tankRadius</pf> immediately convey meaning; names like <pf>r</pf> do not.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>They make MATLAB execute code faster.</p></statement>
+						<feedback><p>Variable name length has no effect on execution speed.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>They prevent accidental reassignment of variables.</p></statement>
+						<feedback><p>MATLAB does not restrict reassignment based on name style.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>They allow MATLAB to auto-generate documentation.</p></statement>
+						<feedback><p>MATLAB does not automatically generate documentation from variable names.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<!-- Q6 MC -->
+			<task label="vars-rq-6">
+				<statement>
+					<p>
+						Are <pf>Temperature</pf> and <pf>temperature</pf> the same variable in MATLAB?
+					</p>
+				</statement>
+				<choices randomize="yes">
+					<choice correct="no">
+						<statement><p>Yes, MATLAB ignores capitalization in variable names.</p></statement>
+						<feedback><p>MATLAB is case-sensitive; capitalization matters.</p></feedback>
+					</choice>
+					<choice correct="yes">
+						<statement><p>No, MATLAB variable names are case-sensitive.</p></statement>
+						<feedback><p>Correct! <pf>Temperature</pf> and <pf>temperature</pf> are two distinct variables.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>It depends on the operating system.</p></statement>
+						<feedback><p>Case sensitivity is a MATLAB language rule, independent of the OS.</p></feedback>
+					</choice>
+					<choice correct="no">
+						<statement><p>They are the same if they hold the same value.</p></statement>
+						<feedback><p>Names are compared character by character; values are irrelevant to naming.</p></feedback>
+					</choice>
+				</choices>
+			</task>
+
+			<!-- Q7 T/F -->
+			<task label="vars-rq-7">
+				<statement correct="yes">
+					<p>
+						A variable created with a semicolon at the end of the line still appears in
+						the MATLAB workspace.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						True. The semicolon only suppresses Command Window output; the variable is
+						fully created and stored in the workspace.
+					</p>
+				</feedback>
+			</task>
+
+			<!-- Q8 T/F -->
+			<task label="vars-rq-8">
+				<statement correct="no">
+					<p>
+						In MATLAB, writing <pf>area = base * height</pf> creates a dynamic link so
+						that <pf>area</pf> updates automatically whenever <pf>base</pf> or
+						<pf>height</pf> changes.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						False. MATLAB evaluates the right-hand side once at the time of the assignment
+						and stores the resulting number. No dynamic link is maintained.
+					</p>
+				</feedback>
+			</task>
+
+			<!-- Q9 T/F -->
+			<task label="vars-rq-9">
+				<statement correct="no">
+					<p>
+						A variable name in MATLAB can begin with an underscore.
+					</p>
+				</statement>
+				<feedback>
+					<p>
+						False. MATLAB variable names must begin with a letter. An underscore is allowed
+						within the name but not as the first character.
+					</p>
+				</feedback>
+			</task>
+
+			<!-- Q10 Fill-in -->
+			<task label="vars-rq-10">
+				<statement>
+					<p>
+						After running the three commands below, what value is stored in <pf>p</pf>?
+						Enter the number only.
+					</p>
+					<program language="matlab">
+						<code>
+							p = 5;
+							q = p + 3;
+							p = 2;
+						</code>
+					</program>
+					<p><fillin mode="number" answer="2"/></p>
+				</statement>
+				<evaluation>
+					<evaluate>
+						<test><numcmp use-answer="yes"/></test>
+						<test><strcmp>.*</strcmp><feedback><p>Incorrect. The last assignment <pf>p = 2</pf> overwrites the earlier value.</p></feedback></test>
+					</evaluate>
+				</evaluation>
+			</task>
+		</exercise>
+	</reading-questions>
+
+	<exercises xml:id="variables-coding-practice">
+		<title>🧑🏻‍💻 Coding Practice</title>
+
+		<exercise>
+			<title>Working With Variables</title>
+			
+			<task label="vars-practice-10">
+				<statement>
+					<p>
+						In the code cell below, create three variables:
+						<ul marker="square">
+							<li><pf>x</pf> with value <pf>5</pf> (suppressed)</li>
+							<li><pf>y</pf> with value <pf>-2.5</pf> (suppressed)</li>
+							<li><pf>z</pf> equal to <pf>x + y</pf> (displayed)</li>
+						</ul>
+						Verify that <pf>z</pf> displays as <pf>2.5</pf>.
+					</p>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							
+							%───────────────────────────%
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						<code>
+						x = 5;
+						y = -2.5;
+						z = x + y
+						</code>
+					</program>
+				</solution>
+			</task>
+
+			<task label="vars-practice-20">
+				<statement>
+					<p>
+						Predict each displayed value from the commands below, then run the code to check your predictions.
+					</p>
+					<sage language="octave">
+						<input>
+							n = 10
+							n = n + 5
+							n = n * 2
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<p>Expected output: <pf>10</pf>, then <pf>15</pf>, then <pf>30</pf>.</p>
+				</solution>
+			</task>
+
+			<task label="vars-practice-30">
+				<statement>
+					<p>
+						Given <pf>a = 3</pf> and <pf>b = 7</pf>, write code that swaps their values
+						so that afterwards <pf>a = 7</pf> and <pf>b = 3</pf>.
+						You will need a temporary variable.
+					</p>
+					<sage language="octave">
+						<input>
+							a = 3;
+							b = 7;
+							%─── TYPE YOUR CODE HERE ───%
+							
+							%───────────────────────────%
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+	<code>
+	a = 3;
+	b = 7;
+	temp = a;
+	a = b;
+	b = temp;
+	a
+	b
+	</code>
+					</program>
+				</solution>
+			</task>
+
+			<task label="vars-practice-1">
+				<title>Assigning and Displaying Variables</title>
+				<statement>
+					<p>
+						In the code cell below, create three variables:
+						<ul>
+								<li><pf>x</pf> with value <pf>5</pf></li>
+								<li><pf>y</pf> with value <pf>-2.5</pf> (suppressed)</li>
+								<li><pf>z</pf> equal to <pf>x + y</pf> (displayed)</li>
+						</ul>
+						Verify that <pf>z</pf> displays as <pf>2.5</pf>.
+					</p>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							
+							%───────────────────────────%
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+						<program language="matlab">
+<code>
+x = 5
+y = -2.5;
+z = x + y
+</code>
+						</program>
+				</solution>
+			</task>
+
+			<task label="vars-practice-2">
+				<title>Reassigning a Variable</title>
+				<statement>
+					<p>
+						Run the following sequence and predict each displayed value before checking:
+						<ol>
+							<li>Assign <pf>n = 10</pf> (display it).</li>
+							<li>Assign <pf>n = n + 5</pf> (display it).</li>
+							<li>Assign <pf>n = n * 2</pf> (display it).</li>
+						</ol>
+					</p>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							
+							%───────────────────────────%
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+						<program language="matlab">
+<code>
+n = 10
+n = n + 5
+n = n * 2
+</code>
+						</program>
+						<p>Expected output: <pf>10</pf>, then <pf>15</pf>, then <pf>30</pf>.</p>
+				</solution>
+			</task>
+
+			<task label="vars-practice-3">
+				<title>Descriptive Names and Workspace</title>
+				<statement>
+					<p>
+						A cylindrical water tank has a radius of <pf>1.2</pf> meters and a height of
+						<pf>3.5</pf> meters. Using descriptive variable names, compute its volume
+						<m>V = \pi r^2 h</m>. Use <pf>pi</pf> for <m>\pi</m>.
+					</p>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							
+							%───────────────────────────%
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+						<program language="matlab">
+<code>
+radius = 1.2;
+height = 3.5;
+volume = pi * radius^2 * height
+</code>
+						</program>
+				</solution>
+			</task>
+
+			<task label="vars-practice-4">
+				<title>Swap Two Variables</title>
+				<statement>
+					<p>
+						Given <pf>a = 3</pf> and <pf>b = 7</pf>, write code that swaps their values
+						so that afterwards <pf>a = 7</pf> and <pf>b = 3</pf>.
+						You will need a temporary variable.
+					</p>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							
+							%───────────────────────────%
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+						<program language="matlab">
 <code>
 a = 3;
 b = 7;
@@ -204,564 +928,11 @@ b = temp;
 a
 b
 </code>
-				</program>
-			</solution>
-		</task>
-	</exercise>
+						</program>
+				</solution>
+			</task>
+		</exercise>
 
-	<!-- ============================================================ -->
-	<!--	4. Reading Questions										 -->
-	<!-- ============================================================ -->
-
-	<exercise label="vars-struct-ckpts">
-		<title>Reading Questions</title>
-
-		<task label="vars-struct-ckpt-1">
-			<statement correct="no">
-				<p>
-					In MATLAB, the symbol <c>=</c> means the same thing as in a math equation.
-				</p>
-			</statement>
-			<feedback>
-				<p>
-					In MATLAB, <c>=</c> is the <em>assignment operator</em>. It instructs MATLAB to
-					evaluate the right-hand side and store the result under the left-hand name. It
-					does not represent a mathematical equality.
-				</p>
-			</feedback>
-		</task>
-
-		<task label="vars-struct-ckpt-2">
-			<statement>
-				<p>
-					What happens when you end a MATLAB assignment statement with a semicolon?
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="no">
-					<statement><p>The variable is not created in the workspace.</p></statement>
-					<feedback><p>The variable is still created; the semicolon only affects display.</p></feedback>
-				</choice>
-				<choice correct="yes">
-					<statement><p>The variable is created, but its value is not printed in the Command Window.</p></statement>
-					<feedback><p>Correct! The semicolon suppresses Command Window output while the variable is still stored.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>The variable is created with an empty value.</p></statement>
-					<feedback><p>The expression is fully evaluated; the semicolon only suppresses display.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>The assignment applies only to the current session and is not saved.</p></statement>
-					<feedback><p>Variables persist in the workspace until cleared or MATLAB is closed, regardless of semicolons.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<task label="vars-struct-ckpt-3">
-			<statement>
-				<p>
-					After running <pf>area = 0.5 * base * height;</pf>, you reassign <pf>base = 10</pf>.
-					What is the new value of <pf>area</pf>?
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p>It stays the same — MATLAB does not recompute <pf>area</pf> automatically.</p></statement>
-					<feedback><p>Correct! MATLAB stored the numeric result, not the formula. Changing <pf>base</pf> has no effect on <pf>area</pf>.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>It is updated automatically because <pf>base</pf> changed.</p></statement>
-					<feedback><p>MATLAB stores values, not formulas. Reassigning <pf>base</pf> does not trigger a recomputation of <pf>area</pf>.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>MATLAB throws an error because <pf>base</pf> was already used.</p></statement>
-					<feedback><p>Variables can be freely reassigned. No error occurs.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>The value of <pf>area</pf> becomes undefined.</p></statement>
-					<feedback><p><pf>area</pf> retains the value computed from the original <pf>base</pf> and <pf>height</pf>.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<task label="rq-command-window-8">
-			<statement>
-				<p>
-					A student types the following:
-				</p>
-				<program language="matlab">
-					result = 8 * 3;
-				</program>
-				<p>
-					What is true about this command?
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p>The variable <pf>result</pf> is created with value 24, but nothing is displayed in the Command Window.</p></statement>
-					<feedback><p>Correct. The semicolon suppresses output. The variable is created and stored, but the display is silent.</p></feedback>
-				</choice>
-				<choice>
-					<statement><p>The variable <pf>result</pf> is not created because of the semicolon.</p></statement>
-					<feedback><p>A semicolon does not prevent variable creation. It only suppresses the display.</p></feedback>
-				</choice>
-				<choice>
-					<statement><p>The variable <pf>result</pf> is created and <c>result = 24</c> is displayed.</p></statement>
-					<feedback><p>The semicolon suppresses the display. The variable is created but not shown.</p></feedback>
-				</choice>
-				<choice>
-					<statement><p>MATLAB displays an error because of the missing output.</p></statement>
-					<feedback><p>A semicolon is valid MATLAB syntax. No error is produced.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<!-- Q1 MC -->
-		<task label="vars-rq-1">
-			<statement>
-				<p>Which of the following is a valid MATLAB variable name?</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="no">
-					<statement><p><pf>2ndValue</pf></p></statement>
-					<feedback><p>Variable names must start with a letter, not a digit.</p></feedback>
-				</choice>
-				<choice correct="yes">
-					<statement><p><pf>value2nd</pf></p></statement>
-					<feedback><p>Correct! It starts with a letter and contains only letters and digits.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p><pf>end</pf></p></statement>
-					<feedback><p><pf>end</pf> is a reserved MATLAB keyword and cannot be used as a variable name.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p><pf>my-value</pf></p></statement>
-					<feedback><p>Hyphens are not allowed in variable names; MATLAB would interpret <pf>-</pf> as subtraction.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<!-- Q2 MC -->
-		<task label="vars-rq-2">
-			<statement>
-				<p>
-					After running the two lines below, what is the value of <pf>result</pf>?
-				</p>
-				<program language="matlab">
-<code>
-x = 4;
-result = x * 3;
-x = 10;
-</code>
-				</program>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p><pf>12</pf></p></statement>
-					<feedback><p>Correct! <pf>result</pf> was computed when <pf>x = 4</pf>. Changing <pf>x</pf> afterward has no effect.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p><pf>30</pf></p></statement>
-					<feedback><p>MATLAB does not recompute <pf>result</pf> when <pf>x</pf> changes later.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p><pf>10</pf></p></statement>
-					<feedback><p><pf>result</pf> stores the product <pf>x * 3</pf> evaluated at the time of the assignment.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>An error occurs.</p></statement>
-					<feedback><p>No error; all three lines are valid MATLAB assignments.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<!-- Q3 MC -->
-		<task label="vars-rq-3">
-			<statement>
-				<p>What is the purpose of the MATLAB workspace?</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p>It stores all currently defined variables and their values.</p></statement>
-					<feedback><p>Correct! The workspace is MATLAB's in-memory record of all active variables.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>It saves MATLAB scripts to disk automatically.</p></statement>
-					<feedback><p>The workspace holds variables in memory; saving scripts requires explicit file operations.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>It displays Command Window output history.</p></statement>
-					<feedback><p>That is the role of the Command Window itself, not the workspace panel.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>It manages MATLAB's toolbox licenses.</p></statement>
-					<feedback><p>License management is handled elsewhere. The workspace stores variables.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<!-- Q4 MC -->
-		<task label="vars-rq-4">
-			<statement>
-				<p>Which command lists all MATLAB reserved keywords?</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p><pf>iskeyword</pf></p></statement>
-					<feedback><p>Correct! Running <pf>iskeyword</pf> with no argument returns the full list of reserved keywords.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p><pf>keywords</pf></p></statement>
-					<feedback><p>This is not a standard MATLAB command. Use <pf>iskeyword</pf>.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p><pf>whos</pf></p></statement>
-					<feedback><p><pf>whos</pf> lists workspace variables, not keywords.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p><pf>help reserved</pf></p></statement>
-					<feedback><p>There is no <pf>reserved</pf> help topic. Use <pf>iskeyword</pf>.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<!-- Q5 MC -->
-		<task label="vars-rq-5">
-			<statement>
-				<p>
-					Which of the following best describes <em>why</em> descriptive variable names are
-					recommended?
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="yes">
-					<statement><p>They make code easier to read, understand, and debug.</p></statement>
-					<feedback><p>Correct! Names like <pf>tankRadius</pf> immediately convey meaning; names like <pf>r</pf> do not.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>They make MATLAB execute code faster.</p></statement>
-					<feedback><p>Variable name length has no effect on execution speed.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>They prevent accidental reassignment of variables.</p></statement>
-					<feedback><p>MATLAB does not restrict reassignment based on name style.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>They allow MATLAB to auto-generate documentation.</p></statement>
-					<feedback><p>MATLAB does not automatically generate documentation from variable names.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<!-- Q6 MC -->
-		<task label="vars-rq-6">
-			<statement>
-				<p>
-					Are <pf>Temperature</pf> and <pf>temperature</pf> the same variable in MATLAB?
-				</p>
-			</statement>
-			<choices randomize="yes">
-				<choice correct="no">
-					<statement><p>Yes, MATLAB ignores capitalization in variable names.</p></statement>
-					<feedback><p>MATLAB is case-sensitive; capitalization matters.</p></feedback>
-				</choice>
-				<choice correct="yes">
-					<statement><p>No, MATLAB variable names are case-sensitive.</p></statement>
-					<feedback><p>Correct! <pf>Temperature</pf> and <pf>temperature</pf> are two distinct variables.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>It depends on the operating system.</p></statement>
-					<feedback><p>Case sensitivity is a MATLAB language rule, independent of the OS.</p></feedback>
-				</choice>
-				<choice correct="no">
-					<statement><p>They are the same if they hold the same value.</p></statement>
-					<feedback><p>Names are compared character by character; values are irrelevant to naming.</p></feedback>
-				</choice>
-			</choices>
-		</task>
-
-		<!-- Q7 T/F -->
-		<task label="vars-rq-7">
-			<statement correct="yes">
-				<p>
-					A variable created with a semicolon at the end of the line still appears in
-					the MATLAB workspace.
-				</p>
-			</statement>
-			<feedback>
-				<p>
-					True. The semicolon only suppresses Command Window output; the variable is
-					fully created and stored in the workspace.
-				</p>
-			</feedback>
-		</task>
-
-		<!-- Q8 T/F -->
-		<task label="vars-rq-8">
-			<statement correct="no">
-				<p>
-					In MATLAB, writing <pf>area = base * height</pf> creates a dynamic link so
-					that <pf>area</pf> updates automatically whenever <pf>base</pf> or
-					<pf>height</pf> changes.
-				</p>
-			</statement>
-			<feedback>
-				<p>
-					False. MATLAB evaluates the right-hand side once at the time of the assignment
-					and stores the resulting number. No dynamic link is maintained.
-				</p>
-			</feedback>
-		</task>
-
-		<!-- Q9 T/F -->
-		<task label="vars-rq-9">
-			<statement correct="no">
-				<p>
-					A variable name in MATLAB can begin with an underscore.
-				</p>
-			</statement>
-			<feedback>
-				<p>
-					False. MATLAB variable names must begin with a letter. An underscore is allowed
-					within the name but not as the first character.
-				</p>
-			</feedback>
-		</task>
-
-		<!-- Q10 Fill-in -->
-		<task label="vars-rq-10">
-			<statement>
-				<p>
-					After running the three commands below, what value is stored in <pf>p</pf>?
-					Enter the number only.
-				</p>
-				<program language="matlab">
-<code>
-p = 5;
-q = p + 3;
-p = 2;
-</code>
-				</program>
-				<p><fillin mode="number" answer="2"/></p>
-			</statement>
-			<evaluation>
-				<evaluate>
-					<test><numcmp use-answer="yes"/></test>
-					<test><strcmp>.*</strcmp><feedback><p>Incorrect. The last assignment <pf>p = 2</pf> overwrites the earlier value.</p></feedback></test>
-				</evaluate>
-			</evaluation>
-		</task>
-	</exercise>
-
-	<!-- ============================================================ -->
-	<!--	5. Coding Exercises											-->
-	<!-- ============================================================ -->
-<exercise xml:id="variables-coding-exercises">
-	<title>Coding Exercises</title>
-
-	<task xml:id="vars-ex-1">
-		<title>Speed, Distance, and Time</title>
-		<statement>
-			<p>
-				Use the MATLAB command window to assign values to variables for a car's speed and travel time, then compute the distance traveled using <m>d = s \cdot t</m>.
-			</p>
-
-			<p>
-				Use the variable names <pf>speed</pf>, <pf>time</pf>, and <pf>distance</pf>.
-			</p>
-
-			<p>
-				Test your work with <pf>speed = 60</pf> and <pf>time = 2.5</pf>. Your result should be <pf>distance = 150</pf>.
-			</p>
-		</statement>
-		<solution component="example-solution">
-			<program language="matlab">
-				speed = 60;
-				time = 2.5;
-				distance = speed * time
-			</program>
-		</solution>
-	</task>
-
-	<task xml:id="vars-ex-2">
-		<title>Celsius to Fahrenheit</title>
-		<statement>
-			<p>
-				Use the MATLAB command window to assign a temperature in Celsius to a variable, then convert it to Fahrenheit using the formula <m>F = \frac{9}{5}C + 32</m>.
-			</p>
-
-			<p>
-				Use the variable names <pf>tempC</pf> and <pf>tempF</pf>.
-			</p>
-
-			<p>
-				Test your work with <pf>tempC = 100</pf>. Your result should be <pf>tempF = 212</pf>.
-			</p>
-		</statement>
-		<solution component="example-solution">
-			<program language="matlab">
-				tempC = 100;
-				tempF = (9/5) * tempC + 32
-			</program>
-		</solution>
-	</task>
-
-	<task xml:id="vars-ex-3">
-		<title>Compound Interest</title>
-		<statement>
-			<p>
-				Use the MATLAB command window to assign values for the principal, interest rate, and number of years, then compute the balance using <m>A = P(1 + r)^n</m>.
-			</p>
-
-			<p>
-				Use the variable names <pf>principal</pf>, <pf>rate</pf>, <pf>years</pf>, and <pf>balance</pf>.
-			</p>
-
-			<p>
-				Test your work with <pf>principal = 1000</pf>, <pf>rate = 0.05</pf>, and <pf>years = 3</pf>. Your result should be approximately <pf>balance = 1157.625</pf>.
-			</p>
-		</statement>
-		<solution component="example-solution">
-			<program language="matlab">
-				principal = 1000;
-				rate = 0.05;
-				years = 3;
-				balance = principal * (1 + rate)^years
-			</program>
-		</solution>
-	</task>
-
-	<task xml:id="vars-ex-4">
-		<title>Area and Perimeter of a Rectangle</title>
-		<statement>
-			<p>
-				Use the MATLAB command window to assign values for the length and width of a rectangle, then compute both its area and perimeter.
-			</p>
-
-			<sidebyside widths="65% 32%" valign="middle">
-				<stack>
-					<p>
-						Use descriptive variable names, like <pf>rectLen</pf>, <pf>rectWid</pf>, <pf>rectArea</pf>, and <pf>rectPerim</pf>.
-					</p>
-					<p>
-						Test your work with <m>\ell = 5</m> and <m>w = 3</m>.
-					</p>
-				</stack>
-				<image>
-					<latex-image>
-						\begin{tikzpicture}[scale=1.0]
-							% rectangle
-							\draw[thick] (0,0) rectangle (3,1);
-
-							% length label \ell
-							%\draw[&lt;-&gt;] (0,-0.1) -- (3,-0.1);
-							\node at (1.5,-0.3) {$\ell$};
-
-							% width label w
-							%\draw[&lt;-&gt;] (3.05,0) -- (3.05,1);
-							\node[right] at (3.05,0.5) {$w$};
-						\end{tikzpicture}
-					</latex-image>
-				</image>
-			</sidebyside>
-
-			<p>
-				Your results should be <pf>rectArea = 15</pf> and <pf>rectPerim = 16</pf>.
-			</p>
-		</statement>
-		<solution component="example-solution">
-			<program language="matlab">
-				rectLen = 5;
-				rectWid = 3;
-				rectArea = rectLen * rectWid
-				rectPerim = 2 * (rectLen + rectWid)
-			</program>
-		</solution>
-	</task>
-
-	<task label="vars-ex-5">
-		<title>Volume &amp; Surface Area of a Cylinder</title>
-		<statement>
-			<p>
-				Use the MATLAB command window to assign values for the radius and height of a cylinder, then compute its volume and surface area.
-			</p>
-
-			<sidebyside widths="82% 5% 13%" valign="middle">
-				<stack>
-					<p>
-						The volume and surface area of a cylinder is given by:
-						<me>V = \pi r^2 h, \qquad S = 2\pi r h + 2\pi r^2</me>
-						Use <pf>pi</pf> for <m>\pi</m> and
-						use descriptive variable names.
-					</p>
-					<p>
-						Test your work with <m>r = 1.2</m> and <m>h = 3.5</m>.
-					</p>
-				</stack>
-				<p/>
-				<image>
-					<latex-image>
-						\begin{tikzpicture}[scale=1.1]
-							\def\rad{0.6}
-							\def\height{1.3}
-							\def\ellh{0.28}
-
-							% cylinder
-							\draw[thick] (0,0) ellipse [x radius=\rad, y radius=\ellh];
-							\draw[thick] (-\rad,0) -- (-\rad,\height);
-							\draw[thick] (\rad,0) -- (\rad,\height);
-							\draw[thick] (0,\height) ellipse [x radius=\rad, y radius=\ellh];
-
-							% hidden back half of bottom ellipse
-							\draw[dashed] (-\rad,0) arc[start angle=180,end angle=360,x radius=\rad,y radius=\ellh];
-
-							% height marker
-							\draw[] (0,0) -- (0,\height);
-							\node[right, font=\small] at (-0.1,0.5*\height) {$h$};
-
-							% radius marker on top
-							\draw[] (0,\height) -- (\rad,\height);
-							\node[above] at (0.5*\rad,\height-0.1) {$r$};
-						\end{tikzpicture}
-					</latex-image>
-				</image>
-			</sidebyside>
-		</statement>
-		<solution component="example-solution">
-			<program language="matlab">
-				<code>
-					radius = 1.2;
-					height = 3.5;
-					volume = pi * radius^2 * height
-					surfaceArea = 2 * pi * radius * height + 2 * pi * radius^2
-				</code>
-			</program>
-		</solution>
-	</task>
-
-	<task xml:id="vars-ex-6">
-		<title>Kinetic Energy</title>
-		<statement>
-			<p>
-				Use the MATLAB command window to assign values for an object's mass and velocity, then compute its kinetic energy using <m>KE = \frac{1}{2}mv^2</m>.
-			</p>
-
-			<p>
-				Use the variable names <pf>mass</pf>, <pf>velocity</pf>, and <pf>kineticEnergy</pf>.
-			</p>
-
-			<p>
-				Test your work with <pf>mass = 2</pf> and <pf>velocity = 3</pf>. Your result should be <pf>kineticEnergy = 9</pf>.
-			</p>
-		</statement>
-		<solution component="example-solution">
-			<program language="matlab">
-				mass = 2;
-				velocity = 3;
-				kineticEnergy = 0.5 * mass * velocity^2
-			</program>
-		</solution>
-	</task>
-</exercise>
+	</exercises>
 
 </section>

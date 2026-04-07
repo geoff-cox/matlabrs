@@ -1,263 +1,265 @@
-<section xml:id="sec-command-window">
+<section xml:id="sec-cmdwin">
 	<title>Command Window</title>
 
+	<p>
+		Software applications require a way for users to interact with them. This interaction occurs through a <term>User Interface</term> (UI), which is typically either a command-line or graphical interface:
+		<dl>
+			<li>
+				<title>Command Line Interface (CLI)</title>
+				<p>
+					Users type commands at a prompt to control the application. MATLAB calls this the Command Window.
+				</p>
+			</li>
+			<li>
+				<title>Graphical User Interface (GUI)</title>
+				<p>
+					Users interact through visual elements such as buttons, menus, and windows.
+				</p>
+			</li>
+		</dl>
+	</p>
+
+	<p>
+		MATLAB is unusual in that it provides a CLI directly inside its GUI. This embedded CLI is the <xref ref="cmdwin-structure" text="custom">Command Window</xref>. You type commands at the <pf>&gt;&gt;</pf> prompt and press <kbd>Enter</kbd> to evaluate them.
+	</p>
+
+	<assemblage xml:id="cmdwin-structure">
+		<title>Using the Command Window</title>
+
 		<p>
-			Software applications require a way for users to interact with them. This interaction occurs through a <term>User Interface</term> (UI), which is typically either a command-line or graphical interface:
-			<dl>
-				<li>
-					<title>Command Line Interface (CLI)</title>
-					<p>
-						Users type commands at a prompt to control the application. MATLAB calls this the Command Window.
-					</p>
-				</li>
-				<li>
-					<title>Graphical User Interface (GUI)</title>
-					<p>
-						Users interact through visual elements such as buttons, menus, and windows.
-					</p>
-				</li>
-			</dl>
+			The basic pattern for using the Command Window is:
+		</p>
+
+		<program language="matlab">
+			>> expression_or_command
+		</program>
+
+		<p>
+			Key rules:
+			<ul marker="square">
+				<li>Type a mathematical expression or command at the <pf>&gt;&gt;</pf> prompt and press <kbd>Enter</kbd>.</li>
+				<li>If you do not assign the result to a variable, MATLAB stores it in the special variable <pf>ans</pf>.</li>
+				<li>End a command with a <term>semicolon</term> <pf>;</pf> to suppress output display; the result is still computed and stored.</li>
+				<li>MATLAB includes built-in constants such as <pf>pi</pf>, and functions such as <pf>sin(x)</pf>, <pf>exp(x)</pf>, <pf>sqrt(x)</pf>, and <pf>abs(x)</pf>.</li>
+			</ul>
 		</p>
 
 		<p>
-			MATLAB is unusual in that it provides a CLI directly inside its GUI. This embedded CLI is the <xref ref="command-window" text="custom">Command Window</xref>. You type commands at the <pf>&gt;&gt;</pf> prompt and press <kbd>Enter</kbd> to evaluate them.
+			Session management commands:
+			<ul marker="square">
+				<li><pf>clear</pf> — removes all variables from the workspace.</li>
+				<li><pf>clc</pf> — clears the Command Window display (does not delete variables).</li>
+				<li><pf>format</pf> — controls how numerical output is displayed.</li>
+			</ul>
 		</p>
+	</assemblage>
 
-		<assemblage xml:id="command-window-structure">
-			<title>Using the Command Window</title>
+	<exercise label="cmdwin-reading-ckpt-1">
 
-			<p>
-				The basic pattern for using the Command Window is:
-			</p>
-
-			<program language="matlab">
-				>> expression_or_command
-			</program>
-
-			<p>
-				Key rules:
-				<ul marker="square">
-					<li>Type a mathematical expression or command at the <pf>&gt;&gt;</pf> prompt and press <kbd>Enter</kbd>.</li>
-					<li>If you do not assign the result to a variable, MATLAB stores it in the special variable <pf>ans</pf>.</li>
-					<li>End a command with a <term>semicolon</term> <pf>;</pf> to suppress output display; the result is still computed and stored.</li>
-					<li>MATLAB includes built-in constants such as <pf>pi</pf>, and functions such as <pf>sin(x)</pf>, <pf>exp(x)</pf>, <pf>sqrt(x)</pf>, and <pf>abs(x)</pf>.</li>
-				</ul>
-			</p>
-
-			<p>
-				Session management commands:
-				<ul marker="square">
-					<li><pf>clear</pf> — removes all variables from the workspace.</li>
-					<li><pf>clc</pf> — clears the Command Window display (does not delete variables).</li>
-					<li><pf>format</pf> — controls how numerical output is displayed.</li>
-				</ul>
-			</p>
-		</assemblage>
-
-		<exercise label="cmdwin-reading-ckpt-1">
-
-			<task label="cmdwin-reading-ckpt-1a">
-				<statement>
-					<p>
-						When you enter an expression in the Command Window without assigning it to a variable, how does MATLAB store the result?
-					</p>
-				</statement>
-				<choices randomize="yes">
-					<choice correct="yes">
-						<statement><p>It stores the result in the special variable <pf>ans</pf>.</p></statement>
-						<feedback><p>Correct. MATLAB always stores the last unassigned result in <pf>ans</pf>, which appears in the Workspace.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p>It permanently saves the result to a file.</p></statement>
-						<feedback><p>Results are stored in memory (the workspace), not automatically saved to a file.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p>It discards the result immediately.</p></statement>
-						<feedback><p>MATLAB always stores the result; unassigned results go into <pf>ans</pf>.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p>It replaces the entire contents of the workspace.</p></statement>
-						<feedback><p>Only the value of <pf>ans</pf> is updated. Other variables in the workspace are not affected.</p></feedback>
-					</choice>
-				</choices>
-			</task>
-
-			<task label="cmdwin-reading-ckpt-1b">
-				<statement>
-					<p>
-						Which command clears variables from memory without closing MATLAB?
-					</p>
-				</statement>
-				<choices randomize="yes">
-					<choice correct="yes">
-						<statement><p><pf>clear</pf></p></statement>
-						<feedback><p>Correct. <pf>clear</pf> removes all variables from the workspace without closing MATLAB or clearing the Command Window display.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>clc</pf></p></statement>
-						<feedback><p><pf>clc</pf> clears the Command Window display but does not remove variables from memory.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>format</pf></p></statement>
-						<feedback><p><pf>format</pf> controls how numbers are displayed, not memory management.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>exit</pf></p></statement>
-						<feedback><p><pf>exit</pf> closes MATLAB entirely. To clear just variables, use <pf>clear</pf>.</p></feedback>
-					</choice>
-				</choices>
-			</task>
-
-			<task label="cmdwin-reading-ckpt-1c">
-				<statement correct="no">
-					<p>
-						Adding a semicolon at the end of a MATLAB command prevents the variable from being created.
-					</p>
-				</statement>
-				<feedback>
-					<p>
-						Incorrect. A semicolon only suppresses the output display in the Command Window. The variable is still created and stored in the workspace.
-					</p>
-				</feedback>
-			</task>
-
-		</exercise>
-
-		<p>
-			Here are concrete examples of using the Command Window as an interactive calculator.
-		</p>
-
-		<example xml:id="ex-command-window-arithmetic">
-			<title>Arithmetic in the Command Window</title>
-
+		<task label="cmdwin-reading-ckpt-1a">
 			<statement>
 				<p>
-					You can use the Command Window like a scientific calculator. MATLAB evaluates the expression and displays the result:
-				</p>
-
-				<sidebyside widths="48% 48%">
-					<stack>
-						<p>Commands ⤵︎</p>
-						<program language="matlab">
-							2 + 3
-							10 / 4
-							2^8
-							sqrt(144)
-						</program>
-					</stack>
-					<stack>
-						<p>Output ⤵︎</p>
-						<pre>
-ans =
-     5
-
-ans =
-    2.5000
-
-ans =
-   256
-
-ans =
-    12
-						</pre>
-					</stack>
-				</sidebyside>
-
-				<p>
-					Each result is stored in <pf>ans</pf> and displayed. Notice that <pf>ans</pf> is overwritten each time a new unassigned expression is evaluated.
+					When you enter an expression in the Command Window without assigning it to a variable, how does MATLAB store the result?
 				</p>
 			</statement>
-		</example>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p>It stores the result in the special variable <pf>ans</pf>.</p></statement>
+					<feedback><p>Correct. MATLAB always stores the last unassigned result in <pf>ans</pf>, which appears in the Workspace.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>It permanently saves the result to a file.</p></statement>
+					<feedback><p>Results are stored in memory (the workspace), not automatically saved to a file.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>It discards the result immediately.</p></statement>
+					<feedback><p>MATLAB always stores the result; unassigned results go into <pf>ans</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>It replaces the entire contents of the workspace.</p></statement>
+					<feedback><p>Only the value of <pf>ans</pf> is updated. Other variables in the workspace are not affected.</p></feedback>
+				</choice>
+			</choices>
+		</task>
 
-		<example xml:id="ex-command-window-builtin">
-			<title>Built-in Constants and Functions</title>
-
+		<task label="cmdwin-reading-ckpt-1b">
 			<statement>
 				<p>
-					MATLAB includes many built-in mathematical constants and functions. Here are some common ones:
-				</p>
-
-				<sidebyside widths="48% 48%">
-					<stack>
-						<p>Commands ⤵︎</p>
-						<program language="matlab">
-							pi
-							sin(pi/6)
-							abs(-7.5)
-							round(3.7)
-						</program>
-					</stack>
-					<stack>
-						<p>Output ⤵︎</p>
-						<pre>
-ans =
-    3.1416
-
-ans =
-    0.5000
-
-ans =
-    7.5000
-
-ans =
-     4
-						</pre>
-					</stack>
-				</sidebyside>
-
-				<p>
-					MATLAB displays <pf>pi</pf> rounded to 4 decimal places by default, but internally stores the full double-precision value.
+					Which command clears variables from memory without closing MATLAB?
 				</p>
 			</statement>
-		</example>
+			<choices randomize="yes">
+				<choice correct="yes">
+					<statement><p><pf>clear</pf></p></statement>
+					<feedback><p>Correct. <pf>clear</pf> removes all variables from the workspace without closing MATLAB or clearing the Command Window display.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>clc</pf></p></statement>
+					<feedback><p><pf>clc</pf> clears the Command Window display but does not remove variables from memory.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>format</pf></p></statement>
+					<feedback><p><pf>format</pf> controls how numbers are displayed, not memory management.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>exit</pf></p></statement>
+					<feedback><p><pf>exit</pf> closes MATLAB entirely. To clear just variables, use <pf>clear</pf>.</p></feedback>
+				</choice>
+			</choices>
+		</task>
 
-		<example xml:id="ex-command-window-session-mgmt">
-			<title>Managing Your Session</title>
-
-			<statement>
+		<task label="cmdwin-reading-ckpt-1c">
+			<statement correct="no">
 				<p>
-					As you work, the Command Window fills up with output and the Workspace accumulates variables. Use these commands to stay organized:
-				</p>
-
-				<sidebyside widths="36% 60%">
-					<stack>
-						<p>Commands ⤵︎</p>
-						<program language="matlab" line-numbers="yes">
-							x = 5;
-							y = 10;
-							clear
-							clc
-							format short
-							sqrt(2)
-							format long
-							pi
-						</program>
-					</stack>
-					<stack>
-						<p>What happens ⤵︎</p>
-						<program line-numbers="yes">
-							x created silently (semicolon)
-							y created silently (semicolon)
-							workspace cleared: x, y removed
-							Command Window display cleared
-							sets short display format
-							ans = 1.4142
-							sets long display format
-							ans = 3.141592653589793
-						</program>
-					</stack>
-				</sidebyside>
-
-				<p>
-					Note that <pf>clc</pf> only clears the display — it does not remove variables. And <pf>clear</pf> removes variables but does not clear the display.
+					Adding a semicolon at the end of a MATLAB command prevents the variable from being created.
 				</p>
 			</statement>
-		</example>
+			<feedback>
+				<p>
+					Incorrect. A semicolon only suppresses the output display in the Command Window. The variable is still created and stored in the workspace.
+				</p>
+			</feedback>
+		</task>
 
-		<exercise xml:id="command-window-reading-questions">
-			<title>Reading Questions &amp; Practice Activities</title>
+	</exercise>
 
-			<task label="rq-command-window-1">
+	<p>
+		Here are concrete examples of using the Command Window as an interactive calculator.
+	</p>
+
+	<example xml:id="ex-cmdwin-arithmetic">
+		<title>Arithmetic in the Command Window</title>
+
+		<statement>
+			<p>
+				You can use the Command Window like a scientific calculator. MATLAB evaluates the expression and displays the result:
+			</p>
+
+			<sidebyside widths="48% 48%">
+				<stack>
+					<p>Commands ⤵︎</p>
+					<program language="matlab">
+						2 + 3
+						10 / 4
+						2^8
+						sqrt(144)
+					</program>
+				</stack>
+				<stack>
+					<p>Output ⤵︎</p>
+					<pre>
+ans =
+		5
+
+ans =
+	2.5000
+
+ans =
+	256
+
+ans =
+	12
+					</pre>
+				</stack>
+			</sidebyside>
+
+			<p>
+				Each result is stored in <pf>ans</pf> and displayed. Notice that <pf>ans</pf> is overwritten each time a new unassigned expression is evaluated.
+			</p>
+		</statement>
+	</example>
+
+	<example xml:id="ex-cmdwin-builtin">
+		<title>Built-in Constants and Functions</title>
+
+		<statement>
+			<p>
+				MATLAB includes many built-in mathematical constants and functions. Here are some common ones:
+			</p>
+
+			<sidebyside widths="48% 48%">
+				<stack>
+					<p>Commands ⤵︎</p>
+					<program language="matlab">
+						pi
+						sin(pi/6)
+						abs(-7.5)
+						round(3.7)
+					</program>
+				</stack>
+				<stack>
+					<p>Output ⤵︎</p>
+					<pre>
+ans =
+	3.1416
+
+ans =
+	0.5000
+
+ans =
+	7.5000
+
+ans =
+		4
+					</pre>
+				</stack>
+			</sidebyside>
+
+			<p>
+				MATLAB displays <pf>pi</pf> rounded to 4 decimal places by default, but internally stores the full double-precision value.
+			</p>
+		</statement>
+	</example>
+
+	<example xml:id="ex-cmdwin-session-mgmt">
+		<title>Managing Your Session</title>
+
+		<statement>
+			<p>
+				As you work, the Command Window fills up with output and the Workspace accumulates variables. Use these commands to stay organized:
+			</p>
+
+			<sidebyside widths="36% 60%">
+				<stack>
+					<p>Commands ⤵︎</p>
+					<program language="matlab" line-numbers="yes">
+						x = 5;
+						y = 10;
+						clear
+						clc
+						format short
+						sqrt(2)
+						format long
+						pi
+					</program>
+				</stack>
+				<stack>
+					<p>What happens ⤵︎</p>
+					<program line-numbers="yes">
+						x created silently (semicolon)
+						y created silently (semicolon)
+						workspace cleared: x, y removed
+						Command Window display cleared
+						sets short display format
+						ans = 1.4142
+						sets long display format
+						ans = 3.141592653589793
+					</program>
+				</stack>
+			</sidebyside>
+
+			<p>
+				Note that <pf>clc</pf> only clears the display — it does not remove variables. And <pf>clear</pf> removes variables but does not clear the display.
+			</p>
+		</statement>
+	</example>
+
+	<reading-questions xml:id="cmdwin-reading-quiz">
+		<title>📖 Reading Quiz</title>
+		<exercise label="cmdwin-quiz-questions">
+			<title>Command Window Concepts</title>
+
+			<task label="rq-cmdwin-1">
 				<statement>
 					<p>
 						What happens when you type an expression in the Command Window without assigning it to a variable?
@@ -283,7 +285,7 @@ ans =
 				</choices>
 			</task>
 
-			<task label="rq-command-window-2">
+			<task label="rq-cmdwin-2">
 				<statement correct="no">
 					<p>
 						Adding a semicolon to the end of a MATLAB command prevents the variable from being stored in the workspace.
@@ -296,7 +298,7 @@ ans =
 				</feedback>
 			</task>
 
-			<task label="rq-command-window-3">
+			<task label="rq-cmdwin-3">
 				<statement>
 					<p>
 						What is the difference between <pf>clear</pf> and <pf>clc</pf>?
@@ -322,7 +324,7 @@ ans =
 				</choices>
 			</task>
 
-			<task label="rq-command-window-4">
+			<task label="rq-cmdwin-4">
 				<statement correct="yes">
 					<p>
 						The <pf>format</pf> command changes how numbers are displayed but does not change how they are stored internally.
@@ -335,7 +337,7 @@ ans =
 				</feedback>
 			</task>
 
-			<task label="rq-command-window-5">
+			<task label="rq-cmdwin-5">
 				<statement>
 					<p>
 						A student runs the following commands:
@@ -368,7 +370,7 @@ ans =
 				</choices>
 			</task>
 
-			<task label="rq-command-window-6">
+			<task label="rq-cmdwin-6">
 				<statement>
 					<p>
 						Which of the following correctly describes what happens when you type <pf>pi</pf> in the Command Window?
@@ -394,7 +396,7 @@ ans =
 				</choices>
 			</task>
 
-			<task label="rq-command-window-7">
+			<task label="rq-cmdwin-7">
 				<statement correct="no">
 					<p>
 						Running <pf>clc</pf> in the Command Window also removes all variables from the workspace.
@@ -407,7 +409,7 @@ ans =
 				</feedback>
 			</task>
 
-			<task label="rq-command-window-10">
+			<task label="rq-cmdwin-10">
 				<statement>
 					<p>
 						After running <pf>format long</pf>, what changes about how MATLAB displays numbers?
@@ -432,7 +434,13 @@ ans =
 					</choice>
 				</choices>
 			</task>
+		</exercise>
+	</reading-questions>
 
+	<exercises xml:id="cmdwin-coding-practice">
+		<title>🧑🏻‍💻 Coding Practice</title>
+		<exercise>
+			<title>Working in the Command Window</title>
 			<task label="cmdwin-activity-evaluate-a">
 				<statement>
 					<p>
@@ -857,7 +865,6 @@ ans =
 					</program>
 				</solution>
 			</task>
-
 		</exercise>
-
+	</exercises>
 </section>

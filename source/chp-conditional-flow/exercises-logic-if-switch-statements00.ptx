@@ -1,0 +1,1001 @@
+<exercises xml:id="exercises-logic-if-switch-statements">
+	<title>💻 Coding Exercises</title>
+
+	<exercise xml:id="coding-exercises-if-statements">
+		<title>Conditional Flow (if and switch statements)</title>
+
+		<task xml:id="coding-check-range">
+			<title>Number in Range</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>is_in_range</pf> that determines whether a number falls within a specified range (inclusive).
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>value</pf> (1x1) double — the number to check</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>lower_bound</pf> (1x1) double — minimum value of the range</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>upper_bound</pf> (1x1) double — maximum value of the range</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>result</pf> (1x1) logical — true if value is in range [lower_bound, upper_bound], false otherwise</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Value in range
+					r1 = is_in_range(5, 1, 10)
+					% Expected: r1 = 1 (true)
+
+					% Test 2: Value at lower boundary
+					r2 = is_in_range(1, 1, 10)
+					% Expected: r2 = 1 (true)
+
+					% Test 3: Value at upper boundary
+					r3 = is_in_range(10, 1, 10)
+					% Expected: r3 = 1 (true)
+
+					% Test 4: Value below range
+					r4 = is_in_range(0, 1, 10)
+					% Expected: r4 = 0 (false)
+
+					% Test 5: Value above range
+					r5 = is_in_range(11, 1, 10)
+					% Expected: r5 = 0 (false)
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-tax-bracket">
+			<title>Tax Bracket Rate Finder</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>find_tax_rate</pf> that determines the marginal tax rate for a given income 
+					based on progressive tax brackets.
+				</p>
+
+				<p>
+					Tax bracket rates:
+					<ul>
+						<li><p>Income up to $10,000: 0% tax rate</p></li>
+						<li><p>Income from $10,001 to $40,000: 10% tax rate</p></li>
+						<li><p>Income from $40,001 to $85,000: 15% tax rate</p></li>
+						<li><p>Income above $85,000: 20% tax rate</p></li>
+					</ul>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>income</pf> (1x1) double — annual income in dollars</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>tax_rate</pf> (1x1) double — the marginal tax rate (as a decimal, e.g., 0.10 for 10%)</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: No tax bracket
+					t1 = find_tax_rate(8000)
+					% Expected: t1 = 0
+
+					% Test 2: 10% bracket
+					t2 = find_tax_rate(25000)
+					% Expected: t2 = 0.10
+
+					% Test 3: 15% bracket
+					t3 = find_tax_rate(60000)
+					% Expected: t3 = 0.15
+
+					% Test 4: 20% bracket
+					t4 = find_tax_rate(100000)
+					% Expected: t4 = 0.20
+
+					% Test 5: Boundary case
+					t5 = find_tax_rate(40000)
+					% Expected: t5 = 0.10
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-water-state">
+			<title>Water Phase Identifier</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>water_phase</pf> that determines the physical state of water (ice, liquid, or steam) 
+					based on temperature in Celsius at standard atmospheric pressure.
+				</p>
+
+				<p>
+					Phase rules:
+					<ul>
+						<li><p>Below 0°C: ice</p></li>
+						<li><p>From 0°C to 100°C (inclusive): liquid</p></li>
+						<li><p>Above 100°C: steam</p></li>
+					</ul>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>temp_celsius</pf> (1x1) double — temperature in Celsius</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>phase</pf> (1x1) string — "ice", "liquid", or "steam"</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Below freezing
+					p1 = water_phase(-10)
+					% Expected: p1 = "ice"
+
+					% Test 2: Freezing point
+					p2 = water_phase(0)
+					% Expected: p2 = "liquid"
+
+					% Test 3: Room temperature
+					p3 = water_phase(25)
+					% Expected: p3 = "liquid"
+
+					% Test 4: Boiling point
+					p4 = water_phase(100)
+					% Expected: p4 = "liquid"
+
+					% Test 5: Above boiling
+					p5 = water_phase(120)
+					% Expected: p5 = "steam"
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-bmi-category">
+			<title>BMI Category Classifier</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>bmi_category</pf> that calculates Body Mass Index (BMI) and classifies it into 
+					standard health categories.
+				</p>
+
+				<p>
+					BMI is calculated as: <m>\text{BMI} = \frac{\text{weight (kg)}}{\text{height (m)}^2}</m>
+				</p>
+
+				<p>
+					Categories:
+					<ul>
+						<li><p>BMI &lt; 18.5: "Underweight"</p></li>
+						<li><p>BMI 18.5 to 24.9: "Normal weight"</p></li>
+						<li><p>BMI 25 to 29.9: "Overweight"</p></li>
+						<li><p>BMI ≥ 30: "Obese"</p></li>
+					</ul>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>weight_kg</pf> (1x1) double — weight in kilograms</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>height_m</pf> (1x1) double — height in meters</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>category</pf> (1x1) string — the BMI category</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Underweight
+					c1 = bmi_category(50, 1.75)
+					% Expected: c1 = "Underweight"
+
+					% Test 2: Normal weight
+					c2 = bmi_category(70, 1.75)
+					% Expected: c2 = "Normal weight"
+
+					% Test 3: Overweight
+					c3 = bmi_category(85, 1.75)
+					% Expected: c3 = "Overweight"
+
+					% Test 4: Obese
+					c4 = bmi_category(100, 1.75)
+					% Expected: c4 = "Obese"
+
+					% Test 5: Boundary case
+					c5 = bmi_category(75.5, 1.75)
+					% Expected: c5 = "Normal weight"
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-check-even-positive">
+			<title>Even and Positive</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>is_even_and_positive</pf> that determines whether a number is both even and positive.
+				</p>
+
+				<p>
+					A number is even if dividing it by 2 produces no remainder. You can use the <pf>mod</pf> function to find remainders.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>num</pf> (1x1) double — the number to check</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>result</pf> (1x1) logical — true if num is both even and positive, false otherwise</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Even and positive
+					r1 = is_even_and_positive(4)
+					% Expected: r1 = 1 (true)
+
+					% Test 2: Odd and positive
+					r2 = is_even_and_positive(7)
+					% Expected: r2 = 0 (false)
+
+					% Test 3: Even and negative
+					r3 = is_even_and_positive(-6)
+					% Expected: r3 = 0 (false)
+
+					% Test 4: Zero (even but not positive)
+					r4 = is_even_and_positive(0)
+					% Expected: r4 = 0 (false)
+
+					% Test 5: Large even positive
+					r5 = is_even_and_positive(100)
+					% Expected: r5 = 1 (true)
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-xor-function">
+			<title>Exclusive OR (XOR)</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>my_xor</pf> that implements the exclusive OR operation without using MATLAB's built-in <pf>xor</pf> function.
+				</p>
+
+				<p>
+					XOR returns true when exactly one (but not both) of the inputs is true. 
+					Think about how you can combine AND, OR, and NOT operators to achieve this behavior.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>a</pf> (1x1) logical — first logical value</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>b</pf> (1x1) logical — second logical value</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>result</pf> (1x1) logical — true if exactly one input is true, false otherwise</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Both false
+					r1 = my_xor(false, false)
+					% Expected: r1 = 0 (false)
+
+					% Test 2: First true, second false
+					r2 = my_xor(true, false)
+					% Expected: r2 = 1 (true)
+
+					% Test 3: First false, second true
+					r3 = my_xor(false, true)
+					% Expected: r3 = 1 (true)
+
+					% Test 4: Both true
+					r4 = my_xor(true, true)
+					% Expected: r4 = 0 (false)
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-parking-fee">
+			<title>Parking Fee Calculator</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>parking_fee</pf> that calculates the parking fee based on the number of hours parked.
+				</p>
+
+				<p>
+					Fee structure:
+					<ul>
+						<li><p>First hour: $3</p></li>
+						<li><p>Hours 2-4: $2 per hour</p></li>
+						<li><p>Hours 5+: $1.50 per hour</p></li>
+						<li><p>Maximum daily fee: $15</p></li>
+					</ul>
+				</p>
+
+				<p>
+					Note: Use the <pf>ceil</pf> function to round up partial hours. For example, <pf>ceil(2.3)</pf> returns <pf>3</pf>.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>hours</pf> (1x1) double — number of hours parked (may include fractions)</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>fee</pf> (1x1) double — total parking fee in dollars</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: First hour
+					f1 = parking_fee(0.5)
+					% Expected: f1 = 3
+
+					% Test 2: Two hours
+					f2 = parking_fee(2)
+					% Expected: f2 = 5 (3 + 2)
+
+					% Test 3: Four hours
+					f3 = parking_fee(4)
+					% Expected: f3 = 9 (3 + 2 + 2 + 2)
+
+					% Test 4: Six hours
+					f4 = parking_fee(6)
+					% Expected: f4 = 12 (3 + 2 + 2 + 2 + 1.5 + 1.5)
+
+					% Test 5: Exceeds maximum
+					f5 = parking_fee(12)
+					% Expected: f5 = 15
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-rock-paper-scissors">
+			<title>Rock-Paper-Scissors Judge</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>rps_winner</pf> that determines the winner of a rock-paper-scissors game.
+					Use a <pf>switch</pf> statement to handle the different move combinations.
+				</p>
+
+				<p>
+					Rules:
+					<ul>
+						<li><p>Rock beats Scissors</p></li>
+						<li><p>Scissors beats Paper</p></li>
+						<li><p>Paper beats Rock</p></li>
+						<li><p>Same moves result in a tie</p></li>
+					</ul>
+				</p>
+
+				<p>
+					Moves are represented as: 'R' for rock, 'P' for paper, 'S' for scissors.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>player1</pf> (1x1) char — player 1's move ('R', 'P', or 'S')</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>player2</pf> (1x1) char — player 2's move ('R', 'P', or 'S')</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>result</pf> (1x1) string — "Player 1", "Player 2", or "Tie"</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Rock beats Scissors
+					r1 = rps_winner('R', 'S')
+					% Expected: r1 = "Player 1"
+
+					% Test 2: Paper beats Rock
+					r2 = rps_winner('R', 'P')
+					% Expected: r2 = "Player 2"
+
+					% Test 3: Scissors beats Paper
+					r3 = rps_winner('S', 'P')
+					% Expected: r3 = "Player 1"
+
+					% Test 4: Tie
+					r4 = rps_winner('R', 'R')
+					% Expected: r4 = "Tie"
+
+					% Test 5: Another scenario
+					r5 = rps_winner('P', 'S')
+					% Expected: r5 = "Player 2"
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-hurricane-category">
+			<title>Hurricane Category Classifier</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>hurricane_category</pf> that classifies a hurricane based on its wind speed using 
+					the Saffir-Simpson scale.
+				</p>
+
+				<p>
+					Categories (based on sustained wind speed in mph):
+					<ul>
+						<li><p>&lt; 74: "Tropical Storm"</p></li>
+						<li><p>74-95: "Category 1"</p></li>
+						<li><p>96-110: "Category 2"</p></li>
+						<li><p>111-129: "Category 3"</p></li>
+						<li><p>130-156: "Category 4"</p></li>
+						<li><p>≥ 157: "Category 5"</p></li>
+					</ul>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>wind_speed</pf> (1x1) double — sustained wind speed in mph</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>category</pf> (1x1) string — the hurricane category</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Tropical Storm
+					c1 = hurricane_category(60)
+					% Expected: c1 = "Tropical Storm"
+
+					% Test 2: Category 1
+					c2 = hurricane_category(85)
+					% Expected: c2 = "Category 1"
+
+					% Test 3: Category 3
+					c3 = hurricane_category(120)
+					% Expected: c3 = "Category 3"
+
+					% Test 4: Category 5
+					c4 = hurricane_category(160)
+					% Expected: c4 = "Category 5"
+
+					% Test 5: Boundary case
+					c5 = hurricane_category(74)
+					% Expected: c5 = "Category 1"
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-zodiac-sign">
+			<title>Zodiac Sign Finder</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>zodiac_sign</pf> that determines a person's Western zodiac sign based on their 
+					birth month and day. Use a <pf>switch</pf> statement for the month, then <pf>if</pf> statements for the day ranges.
+				</p>
+
+				<p>
+					Zodiac date ranges (using format: month number, day range):
+					<ul>
+						<li><p>Capricorn: 12/22-1/19</p></li>
+						<li><p>Aquarius: 1/20-2/18</p></li>
+						<li><p>Pisces: 2/19-3/20</p></li>
+						<li><p>Aries: 3/21-4/19</p></li>
+						<li><p>Taurus: 4/20-5/20</p></li>
+						<li><p>Gemini: 5/21-6/20</p></li>
+						<li><p>Cancer: 6/21-7/22</p></li>
+						<li><p>Leo: 7/23-8/22</p></li>
+						<li><p>Virgo: 8/23-9/22</p></li>
+						<li><p>Libra: 9/23-10/22</p></li>
+						<li><p>Scorpio: 10/23-11/21</p></li>
+						<li><p>Sagittarius: 11/22-12/21</p></li>
+					</ul>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>month</pf> (1x1) double — birth month (1-12)</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>day</pf> (1x1) double — birth day (1-31)</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>sign</pf> (1x1) string — zodiac sign name</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Early January (Capricorn)
+					z1 = zodiac_sign(1, 10)
+					% Expected: z1 = "Capricorn"
+
+					% Test 2: Late January (Aquarius)
+					z2 = zodiac_sign(1, 25)
+					% Expected: z2 = "Aquarius"
+
+					% Test 3: Mid-year (Leo)
+					z3 = zodiac_sign(8, 5)
+					% Expected: z3 = "Leo"
+
+					% Test 4: Boundary case (Taurus/Gemini)
+					z4 = zodiac_sign(5, 20)
+					% Expected: z4 = "Taurus"
+
+					% Test 5: Late December (Capricorn - year boundary)
+					z5 = zodiac_sign(12, 25)
+					% Expected: z5 = "Capricorn"
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-leap-year">
+			<title>Leap Year Checker</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>is_leap_year</pf> that determines whether a given year is a leap year.
+				</p>
+
+				<p>
+					The rules for leap years are:
+					<ul>
+						<li><p>A year is a leap year if it is divisible by 4</p></li>
+						<li><p>EXCEPT years divisible by 100 are NOT leap years</p></li>
+						<li><p>EXCEPT years divisible by 400 ARE leap years</p></li>
+					</ul>
+					For example: 2000 is a leap year (divisible by 400), 1900 is not (divisible by 100 but not 400), 
+					2004 is a leap year (divisible by 4 but not 100).
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>year</pf> (1x1) double — the year to check</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>is_leap</pf> (1x1) logical — true if the year is a leap year, false otherwise</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Divisible by 400 (leap year)
+					r1 = is_leap_year(2000)
+					% Expected: r1 = 1 (true)
+
+					% Test 2: Divisible by 100 but not 400 (not a leap year)
+					r2 = is_leap_year(1900)
+					% Expected: r2 = 0 (false)
+
+					% Test 3: Divisible by 4 but not 100 (leap year)
+					r3 = is_leap_year(2024)
+					% Expected: r3 = 1 (true)
+
+					% Test 4: Not divisible by 4 (not a leap year)
+					r4 = is_leap_year(2023)
+					% Expected: r4 = 0 (false)
+
+					% Test 5: Another divisible by 100 case
+					r5 = is_leap_year(2100)
+					% Expected: r5 = 0 (false)
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-quadratic-solver">
+			<title>Quadratic Equation Solver</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>quadratic_solver</pf> that takes the coefficients <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> as inputs and returns the two solutions, <pf>x1</pf> and <pf>x2</pf> (if they exist), for a quadratic equation of the form 
+					<me>ax^2 + bx + c = 0</me>.
+				</p>
+
+				<p>
+					The function should handle different combinations of <pf>a</pf>, <pf>b</pf>, and <pf>c</pf> being zero. Based on this there could be:
+					<ul>
+						<li><p>Two solutions (repeated, distinct, or complex),</p></li>
+						<li><p>One solution (set <pf>x2 = NaN</pf>),</p></li>
+						<li><p>No solutions (set <pf>x1 = NaN</pf> and <pf>x2 = NaN</pf>), or</p></li>
+						<li><p>Infinitely many solutions (set <pf>x1 = Inf</pf> and <pf>x2 = NaN</pf>).</p></li>
+					</ul>
+					Put on your math hat and think through the different cases to determine how to compute the solutions and what to return when there are no solutions or infinitely many solutions.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>a</pf> (1x1) double — coefficient of <m>x^2</m></p>
+							<p><pf>b</pf> (1x1) double — coefficient of <m>x</m></p>
+							<p><pf>c</pf> (1x1) double — constant term</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>x1</pf> (1x1) double — first solution of the quadratic equation</p>
+							<p><pf>x2</pf> (1x1) double — second solution of the quadratic equation</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Two Real Solutions
+					[x1, x2] = quadratic_solver(1, -3, 2)
+					% Expected: x1 = 2, x2 = 1
+
+					% Test 2: Repeated Solutions
+					[x1, x2] = quadratic_solver(1, 2, 1)
+					% Expected: x1 = -1, x2 = -1
+
+					% Test 3: Complex Solutions
+					[x1, x2] = quadratic_solver(1, 0, 4)
+					% Expected: x1 = 2i, x2 = -2i
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-quadrant-checker">
+			<title>Coordinate Quadrant Checker</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>find_quadrant</pf> that determines which quadrant or axis a point (x, y) is located in 
+					on a 2D coordinate system.
+				</p>
+
+				<p>
+					Rules:
+					<ul>
+						<li><p>Quadrant I: x &gt; 0 and y &gt; 0</p></li>
+						<li><p>Quadrant II: x &lt; 0 and y &gt; 0</p></li>
+						<li><p>Quadrant III: x &lt; 0 and y &lt; 0</p></li>
+						<li><p>Quadrant IV: x &gt; 0 and y &lt; 0</p></li>
+						<li><p>Origin: x = 0 and y = 0</p></li>
+						<li><p>X-axis: y = 0 (but x ≠ 0)</p></li>
+						<li><p>Y-axis: x = 0 (but y ≠ 0)</p></li>
+					</ul>
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>x</pf> (1x1) double — x-coordinate</p>
+						</cell>
+					</row>
+					<row>
+						<cell/>
+						<cell>
+							<p><pf>y</pf> (1x1) double — y-coordinate</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>location</pf> (1x1) string — "Quadrant I", "Quadrant II", "Quadrant III", "Quadrant IV", "Origin", "X-axis", or "Y-axis"</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Quadrant I
+					loc1 = find_quadrant(3, 4)
+					% Expected: loc1 = "Quadrant I"
+
+					% Test 2: Quadrant II
+					loc2 = find_quadrant(-2, 5)
+					% Expected: loc2 = "Quadrant II"
+
+					% Test 3: Origin
+					loc3 = find_quadrant(0, 0)
+					% Expected: loc3 = "Origin"
+
+					% Test 4: X-axis
+					loc4 = find_quadrant(7, 0)
+					% Expected: loc4 = "X-axis"
+
+					% Test 5: Quadrant III
+					loc5 = find_quadrant(-3, -8)
+					% Expected: loc5 = "Quadrant III"
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-is-valid-triangle">
+			<title>Valid Triangle Detector</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>is_valid_triangle</pf> that determines whether three side lengths form 
+					a valid triangle.
+				</p>
+
+				<p>
+					A triangle is valid if the sum of the two shortest sides is greater than the longest side and all sides are positive.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>is_valid</pf> (1x1) logical — true if sides form a valid triangle, false otherwise</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Equilateral triangle
+					v1 = is_valid_triangle(5, 5, 5)
+					% Expected: v1 = 1 (true)
+
+					% Test 2: Isosceles triangle
+					v2 = is_valid_triangle(5, 5, 8)
+					% Expected: v2 = 1 (true)
+
+					% Test 3: Scalene triangle
+					v3 = is_valid_triangle(3, 4, 5)
+					% Expected: v3 = 1 (true)
+
+					% Test 4: Invalid triangle
+					v4 = is_valid_triangle(1, 2, 10)
+					% Expected: v4 = 0 (false)
+
+					% Test 5: Another isosceles case
+					v5 = is_valid_triangle(7, 10, 7)
+					% Expected: v5 = 1 (true)
+				</program>
+
+			</statement>
+
+		</task>
+
+		<task xml:id="coding-triangle-type">
+			<title>Triangle Type Classifier</title>
+
+			<statement>
+				<p>
+					Write a function named <pf>classify_triangle</pf> that classifies a triangle as equilateral, isosceles, scalene, or invalid based on the lengths of its sides.
+				</p>
+
+				<p>
+					Rules:
+					<ul>
+						<li><p>Equilateral: all three sides are equal</p></li>
+						<li><p>Isosceles: exactly two sides are equal</p></li>
+						<li><p>Scalene: all three sides are different</p></li>
+						<li><p>Invalid: does not form a valid triangle</p></li>
+					</ul>
+				</p>
+
+				<p>
+					You must use the <pf>is_valid_triangle</pf> function you wrote in the previous exercise as a <q>helper</q> function. 
+					This means that your <pf>classify_triangle</pf> function should (i) contain a call to <pf>is_valid_triangle</pf> and 
+					(ii) have a copy of the <pf>is_valid_triangle</pf> function code below it in the same file.
+				</p>
+
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%"/>
+					<col width="88%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell>
+							<p><pf>a, b, c</pf> (1x1) double — side lengths of the triangle</p>
+						</cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell>
+							<p><pf>type</pf> (1x1) string — "Equilateral", "Isosceles", "Scalene", or "Invalid"</p>
+						</cell>
+					</row>
+				</tabular>
+
+				<p>Test cases:</p>
+
+				<program language="matlab">
+					% Test 1: Equilateral triangle
+					t1 = classify_triangle(5, 5, 5)
+					% Expected: t1 = "Equilateral"
+
+					% Test 2: Isosceles triangle
+					t2 = classify_triangle(5, 5, 8)
+					% Expected: t2 = "Isosceles"
+
+					% Test 3: Scalene triangle
+					t3 = classify_triangle(3, 4, 5)
+					% Expected: t3 = "Scalene"
+
+					% Test 4: Invalid triangle
+					t4 = classify_triangle(1, 2, 10)
+					% Expected: t4 = "Invalid"
+
+					% Test 5: Another isosceles case
+					t5 = classify_triangle(7, 10, 7)
+					% Expected: t5 = "Isosceles"
+				</program>
+
+			</statement>
+
+		</task>
+
+	</exercise>
+
+</exercises>
