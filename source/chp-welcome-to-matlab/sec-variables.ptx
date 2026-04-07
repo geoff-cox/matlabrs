@@ -135,29 +135,6 @@
 	<exercise label="vars-struct-ckpts">
 		<title>Understanding Variables</title>
 
-		<task label="vars-chkpt-1">
-			<statement>
-				<p>
-					What effect does ending a MATLAB assignment with a semicolon have?
-				</p>
-			</statement>
-
-			<choices randomize="yes">
-				<choice correct="no">
-					<statement><p>The variable is not created in the workspace.</p></statement>
-				</choice>
-				<choice correct="yes">
-					<statement><p>The variable is created, but its value is not displayed in the Command Window.</p></statement>
-				</choice>
-				<choice correct="no">
-					<statement><p>The variable is created with no value.</p></statement>
-				</choice>
-				<choice correct="no">
-					<statement><p>The assignment only applies to the current line of code.</p></statement>
-				</choice>
-			</choices>
-		</task>
-
 		<task label="vars-struct-ckpt-1">
 			<statement correct="no">
 				<p>
@@ -285,7 +262,7 @@
 			</program>
 
 			<p>
-				Running these commands display <pf>area = 20</pf>.
+				Running these commands displays <pf>area = 20</pf>.
 			</p>
 
 			<p>
@@ -427,29 +404,6 @@
 			</p>
 		</statement>
 	</example>
-
-	<exercise label="vars-chkpt-5">
-		<statement>
-			<p>
-				What is the primary advantage of using descriptive variable names in MATLAB code?
-			</p>
-		</statement>
-
-		<choices randomize="yes">
-			<choice correct="yes">
-				<statement><p>They make code easier to read, understand, and debug.</p></statement>
-			</choice>
-			<choice correct="no">
-				<statement><p>They make MATLAB run faster.</p></statement>
-			</choice>
-			<choice correct="no">
-				<statement><p>They prevent variables from being overwritten.</p></statement>
-			</choice>
-			<choice correct="no">
-				<statement><p>They allow MATLAB to automatically document the code.</p></statement>
-			</choice>
-		</choices>
-	</exercise>
 
 	<reading-questions xml:id="variables-reading-quiz">
 		<title>📖 Reading Quiz</title>
@@ -732,86 +686,6 @@
 		<exercise>
 			<title>Working With Variables</title>
 			
-			<task label="vars-practice-10">
-				<statement>
-					<p>
-						In the code cell below, create three variables:
-						<ul marker="square">
-							<li><pf>x</pf> with value <pf>5</pf> (suppressed)</li>
-							<li><pf>y</pf> with value <pf>-2.5</pf> (suppressed)</li>
-							<li><pf>z</pf> equal to <pf>x + y</pf> (displayed)</li>
-						</ul>
-						Verify that <pf>z</pf> displays as <pf>2.5</pf>.
-					</p>
-					<sage language="octave">
-						<input>
-							%─── TYPE YOUR CODE HERE ───%
-							
-							%───────────────────────────%
-						</input>
-					</sage>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						<code>
-						x = 5;
-						y = -2.5;
-						z = x + y
-						</code>
-					</program>
-				</solution>
-			</task>
-
-			<task label="vars-practice-20">
-				<statement>
-					<p>
-						Predict each displayed value from the commands below, then run the code to check your predictions.
-					</p>
-					<sage language="octave">
-						<input>
-							n = 10
-							n = n + 5
-							n = n * 2
-						</input>
-					</sage>
-				</statement>
-				<solution component="example-solution">
-					<p>Expected output: <pf>10</pf>, then <pf>15</pf>, then <pf>30</pf>.</p>
-				</solution>
-			</task>
-
-			<task label="vars-practice-30">
-				<statement>
-					<p>
-						Given <pf>a = 3</pf> and <pf>b = 7</pf>, write code that swaps their values
-						so that afterwards <pf>a = 7</pf> and <pf>b = 3</pf>.
-						You will need a temporary variable.
-					</p>
-					<sage language="octave">
-						<input>
-							a = 3;
-							b = 7;
-							%─── TYPE YOUR CODE HERE ───%
-							
-							%───────────────────────────%
-						</input>
-					</sage>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-	<code>
-	a = 3;
-	b = 7;
-	temp = a;
-	a = b;
-	b = temp;
-	a
-	b
-	</code>
-					</program>
-				</solution>
-			</task>
-
 			<task label="vars-practice-1">
 				<title>Assigning and Displaying Variables</title>
 				<statement>
