@@ -1,0 +1,146 @@
+
+<!--********************************************************************-->
+
+<section xml:id="defining-matrices-exercises" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Exercises</title> 
+
+	<ol>
+		<li>
+			<p>Basic calculations</p>
+			<ol>
+				<li>
+					Using colons, create the matrix that contains the numbers from 1 to 491 by steps of 10.
+				</li>
+				<li>
+					Using linspace, create the matrix that contains the numbers from 1 to 491 by steps of 10.
+				</li>
+				<li>
+					Using colons, create a <m>1 \times 50</m> matrix containing evenly spaced numbers from 1 to 32 (inclusive).
+				</li>
+				<li>
+					Using linspace, create a <m>1 \times 50</m> matrix containing evenly spaced numbers from 1 to 32 (inclusive).
+					<!-- 	\item[e.] -->
+					<!-- 	\item[f.] -->
+				</li>
+			</ol>
+		</li>
+		<li>
+			<p>
+				Consider the <m>5 \times 5</m> "Hilbert matrix"
+				<me>
+					H_5 =
+					\left[
+					\begin{array}{ccccc}
+					1 &amp; 1/2 &amp; 1/3 &amp; 1/4 &amp; 1/5\\
+					1/2 &amp; 1/3 &amp; 1/4 &amp; 1/5 &amp; 1/6\\
+					1/3 &amp; 1/4 &amp; 1/5 &amp; 1/6 &amp;  1/7\\
+					1/4 &amp; 1/5 &amp; 1/6 &amp; 1/7 &amp; 1/8\\
+					1/5 &amp; 1/6 &amp; 1/7 &amp; 1/8 &amp; 1/9\\
+					\end{array}
+					\right].
+				</me>
+				Using the commands in the text, complete the following:
+				<ol>
+					<li>
+						Define a MATLAB variable, <c>H_5</c>, as the Hilbert matrix, <m>H_5</m>, above.
+					</li>
+					<li>
+						Find the determinant of <m>H_5</m>.
+					</li>
+					<li>
+						Find the transpose and inverse of <m>H_5</m>.
+					</li>
+					<li>
+						Find the number of rows and columns of <m>H_5</m>.
+					</li>
+					<li>
+						Find the column sums, and the row sums of <m>H_5</m>.
+					</li>
+					<li>
+						Find the maximum value in the <m>H_5</m> matrix.
+					</li>
+					<li>
+						Find the eigenvalues and eigenvectors of <m>H_5</m>.
+					</li>
+					<li>
+						Find the matrices <m>H_5^2, H_5.\land 2</m> and <m>H_5./H_5</m> and explain your answers.
+					</li>
+					<li>
+						By referencing <m>H_5</m>, find the 2nd and 3rd rows of <m>H_5</m> (do not simply retype the entries).
+					</li>
+				</ol>
+			</p>
+		</li>
+		<li>
+			<p>
+				Counterclockwise rotation in two dimensions (about the origin) can be done through matrix multiplication (multiplying on the left) by the matrix
+				<me>
+					\left[
+					\begin{array}{rr}
+						\cos \theta &amp; - \sin \theta \\
+						\sin \theta &amp; \cos \theta
+					\end{array}
+					\right]	
+				</me>
+				Rotate the point <m>(x,y) = (-2,3)</m> counterclockwise about the origin by each of <m>\theta = 30^{\circ}, 90^\circ</m> and <m>200^\circ</m> and give the final positions in each case.
+			</p>
+		</li>
+		<li>
+			<p>
+				Counterclockwise rotation in two dimensions about an arbitrary point, <m>P</m>, can be done by a translation (moving <m>P</m> to the origin), rotation about the origin (through matrix multiplication as in the last problem), and then retranslation (of the origin back to <m>P</m>) .
+				Rotate the point <m>(x,y) = (-2,3)</m> counterclockwise about the point <m>(1,3)</m> by each of <m>\theta = 30^{\circ}, 90^\circ</m> and <m>200^\circ</m> and give the final positions in each case.
+			</p>
+		</li>
+		<li>
+			<p>
+				Rotation in 3-dimensions is a more difficult process.  For example, if you rotate the point <m>(1,0,0)</m> counterclockwise around the <m>z</m> axis, you will arrive at the point <m>(0,1,0)</m>.  Look up (online) for the matrix that corresponds how to rotate by an angle <m>\theta</m> around the <m>z</m> axis in 3D and make sure you cite the online source.  Implement this matrix to indicate the rotation of <m>(1,0,0)</m> about the <m>z</m> axis by <m>\theta</m> radians for <m>\theta=\pi/4, \pi/2</m> and <m>\pi/8</m>.
+			</p>
+		</li>
+		<li>
+			<p>
+				In computing an approximating function for a set of data, a spline is often used.  The theory of splines is covered in numerical analysis, but for a specific data set, the following system of equations must be solved.
+				<me>
+					\begin{array}{rrrrrl}
+					0.28\ S_1 \, +	&amp; \!\! 0.1 \ S_2 \, \phantom{+}	&amp; \!\!           								&amp; \!\!         										&amp; \!\!	         	&amp;= -64.65\\
+					0.1 \ S_1 \, +	&amp; \!\! 0.34\ S_2 \, 				 +	&amp; \!\! 0.07\ S_3 \,	\phantom{+}	&amp; \!\!        										&amp; \!\!  	       	&amp;= -54.81\\
+											  	&amp; \!\! 0.07\ S_2 \, 				 +	&amp; \!\! 2.16\ S_3 \,					 +	&amp; \!\! 1.01\ S_4	\, \phantom{+}	&amp; \!\!    	     	&amp;= -8.43\\
+										  		&amp; \!\!		          						&amp; \!\! 1.01\ S_3 \,					 +	&amp; \!\! 2.58\ S_4 \,				  	+		&amp; \!\! 0.28\ S_5	&amp;= -7.92\\
+										  		&amp; \!\!		          						&amp; \!\!        									&amp; \!\! 0.28\ S_4 \, 				  +		&amp; \!\! 1.42\ S_5	&amp;= -2.78
+					\end{array}	
+				</me>
+				Find the values for <m>S_1</m> through <m>S_5</m> by solving this system in three ways:
+				<ol>
+					<li>
+						Using the command <c>rref</c>.
+					</li>
+					<li>
+						Using left division.
+					</li>
+					<li>
+						Using the matrix inverse.
+					</li>
+				</ol>
+			</p>
+		</li>
+	</ol>
+	<!-- \begin{adjustwidth}{-60pt}{-60pt} -->
+	<!-- \sffamily -->
+	<!-- \exinput{exercises/02_ex_02} -->
+	<!-- \rmfamily -->
+	<!-- \end{adjustwidth} -->
+
+	<!-- %% \verb|clc} clears the command window
+ -->
+	<!-- %%\hspace{-1.5in}\includegraphics[scale=.9]{figures/matlab_editor}
+ -->
+	<!-- %%hi -->
+
+	<!-- \definition{def:lineintegral}{<term>TITLE</term>} -->
+	<!--  -->
+	<!-- \keyidea{idea:lineintprops}{<term>TITLE</term>} -->
+	<!--  -->
+	<!-- \printexercises{exercises/mathcad_introduction_exercises} -->
+
+</section>
+
+

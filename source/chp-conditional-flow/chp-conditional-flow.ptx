@@ -29,36 +29,6 @@
 			In this section, we will learn how MATLAB evaluates logical expressions and how to use <pf>if</pf> and <pf>switch</pf> statements to create programs that can make decisions and respond to different situations.
 		</p>
 	</introduction>
-	<introduction>
-		<p>
-			In the previous chapter, <pf>if</pf>-statements gave your code the ability to choose between different paths based on conditions. Now we introduce a different kind of flow control: <term>repetition</term>. Loops let you repeat a block of code multiple times, either a known number of times or until some condition changes. Think of replacing dozens of copy-pasted lines with just a few representative lines.
-		</p>
-
-		<p>
-			MATLAB provides two primary looping structures:
-			<dl width="narrow">
-				<li><title>for-loops</title>
-					<p>
-						Repeat once for each value in a known list or range. Use these when you know how many iterations you need before the loop starts.
-					</p>
-				</li>
-				<li><title>while-loops</title>
-					<p>
-						Repeat as long as a condition remains true. Use these when the number of iterations depends on something that changes during execution.
-					</p>
-				</li>
-			</dl>
-		</p>
-
-		<p>
-			The chapter also introduces three commands: <pf>continue</pf>, <pf>break</pf>, and <pf>return</pf>, which let you skip iterations, exit loops early, or exit functions immediately when the answer is already known.
-		</p>
-
-		<p>
-			By the end of this chapter, you will be able to automate repetitive calculations, accumulate running totals and products, search for values that satisfy conditions, and approximate mathematical quantities to any desired accuracy.
-		</p>
-
-	</introduction>
 
 	<xi:include href="sec-logical-expressions.ptx" />
 	<xi:include href="sec-if-statement.ptx" /> 
@@ -66,85 +36,90 @@
 	<xi:include href="exercises-conditional-flow.ptx" />
 
 	<conclusion>
-		<p>
-			<objectives xml:id="takeaways-conditional-flow">
+		<title>🗝️ Key Takeaways...</title>
+		<assemblage xml:id="takeaways-conditional-flow">
+			<p>
 				<ul marker="square">
 					<li>
+						<term>Logical values</term>.
+						MATLAB has two special values for yes/no answers: <pf>true</pf> and <pf>false</pf>.
+						These are of type <pf>logical</pf>, which is different from the numeric type <pf>double</pf>.
+					</li>
+					<li>
+						<term>Logical Expressions</term>.
+						A logical expression is a command that evaluates to true or false.
+					</li>
+					<li>
+						<p><term>Relational operators</term>. The relational operators are:</p>
+						<tabular>
+							<row><cell><pf>==</pf></cell><cell>equal to</cell><cell><pf>~=</pf></cell><cell>not equal to</cell></row>
+							<row><cell><pf>&lt;</pf></cell><cell>less than</cell><cell><pf>&lt;=</pf></cell><cell>less than or equal to</cell></row>
+							<row><cell><pf>&gt;</pf></cell><cell>greater than</cell><cell><pf>&gt;=</pf></cell><cell>greater than or equal to</cell></row>
+						</tabular>
+					</li>
+					<li>
+						<term>Single equals vs. double equals</term>.
+						A single equals (<pf>=</pf>) assigns a value to a variable, while a double equals (<pf>==</pf>) compares two values.
+					</li>
+					<li>
+						<term>The NOT operator</term>.
+						The tilde (<pf>~</pf>) flips <pf>true</pf> to <pf>false</pf> and vice versa. For example, <pf>~(x == y)</pf> is equivalent to <pf>x ~= y</pf>.
+					</li>
+					<li>
 						<p>
-							<term>if</term>.
-							If <pf>condition</pf> is true, run <pf>myCode</pf>:
+							<term>Combining logical expressions</term>.
+							Use <pf>&amp;</pf> for AND (both must be true) and <pf>|</pf> for OR (at least one must be true). For example:
 						</p>
 						<program language="matlab">
 							<code>
-								if condition
-									myCode
-								end
+								(age &gt;= 18) &amp; hasLicense  % true only if both are true
+								(x &lt; 0) | (x &gt; 100)       % true if either is true
 							</code>
 						</program>
 					</li>
 					<li>
-						<p>
-							<term>if-else</term>.
-							If <pf>condition</pf> is true, run <pf>myCodeA</pf>, otherwise run <pf>myCodeB</pf>.
-						</p>
+						<term>Operator precedence</term>.
+						When combining logical operators, NOT (<pf>~</pf>) is evaluated first, then AND (<pf>&amp;</pf>), then OR (<pf>|</pf>). Use parentheses to clarify complex expressions.
+					</li>
+					<li>
+						<p><term>If statement</term>.</p>
 						<program language="matlab">
 							<code>
-								if condition
-									myCodeA
+								if condA
+									blockA	% ⬅ runs if condA is true
+								elseif condB
+									blockB	% ⬅ runs if condB is true and condA is false
 								else
-									myCodeB
+									blockC	% ⬅ runs if condA and condB are both false
 								end
 							</code>
 						</program>
 					</li>
 					<li>
-						<p>
-							<term>if-elseif-else</term>.
-							If <pf>conditionA</pf> is true, run <pf>myCodeA</pf>, otherwise if <pf>conditionB</pf> is true, run <pf>myCodeB</pf>.
-							If none are true, run <pf>myCodeC</pf>.
-						</p>
+						<p><term>Switch statement</term>.</p>
 						<program language="matlab">
 							<code>
-								if conditionA
-									myCodeA
-								elseif conditionB
-									myCodeB
-								else
-									myCodeC
-								end
-							</code>
-						</program>
-					</li>
-					<li>
-						<p>
-							<term>switch</term>.
-							Compares <pf>value</pf> against a list of exact values.
-							If <pf>value</pf> is <pf>valueA</pf>, run <pf>myCodeA</pf>. If <pf>value</pf> is <pf>valueB</pf>, run <pf>myCodeB</pf>.
-							If no values match, <pf>myCodeC</pf> runs.
-						</p>
-						<program language="matlab">
-							<code>
-								switch value
+								switch var
 									case valueA
-										myCodeA
+										blockA	% ⬅ runs if var matches valueA exactly
 									case valueB
-										myCodeB
+										blockB	% ⬅ runs if var matches valueB exactly
 									otherwise
-										myCodeC
+										blockC	% ⬅ runs if no cases above match
 								end
 							</code>
 						</program>
 					</li>
 					<li>
 						<p>
-							<term>Choosing between <pf>switch</pf> and <pf>if</pf>-<pf>elseif</pf></term>.
-							Use <pf>switch</pf> when you are comparing one variable against a small set of exact values (especially strings or integers).
-							Use <pf>if</pf>-<pf>elseif</pf> when your conditions involve ranges, inequalities, or multiple variables.
+							<term>If vs. Switch</term>.
+							Use <pf>switch</pf> to compare one variable against a small set of exact values (especially strings or integers).
+							Use <pf>if</pf> when your conditions involve ranges, inequalities, or multiple variables.
 						</p>
 					</li>
 				</ul>
-			</objectives>
-		</p>
+			</p>
+		</assemblage>
 	</conclusion>
 
 </chapter>

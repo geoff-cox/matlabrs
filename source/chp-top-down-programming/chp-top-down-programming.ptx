@@ -22,44 +22,44 @@
 	<xi:include href="sec-functions.ptx" />
 
 	<conclusion>
-		<title><e component="emoji">🗝️</e> Key Takeaways...</title>
+		<title>🗝️ Key Takeaways...</title>
 		<assemblage xml:id="takeaways-top-down-programming">
 			<p>
-			<dl width="narrow">
-				<li>
-					<title>Scripts</title>
-					<p>
-						A script is a <pf>.m</pf> file containing a sequence of MATLAB commands that run
-						top-to-bottom each time the script is executed.
-						<ul marker="square">
-							<li>Use <pf>clc; clear;</pf> at the top so every run starts from a clean state.</li>
-							<li>Scripts share the base workspace — variables created in a script appear in the Workspace panel.</li>
-							<li>Use <pf>fprintf</pf> to produce formatted, readable output.</li>
-						</ul>
-					</p>
-				</li>
-				<li>
-					<title>Functions</title>
-					<p>
-						A function is a reusable tool that accepts inputs and returns outputs.
-						<ul marker="square">
-							<li>The <term>function header</term> declares the name, inputs, and outputs: <pf>function out = name(in)</pf>.</li>
-							<li>The file name must match the function name (e.g., <pf>coin_total.m</pf>).</li>
-							<li>Functions use their own private workspace — internal variables do not appear in the Workspace after the function runs.</li>
-							<li>To capture multiple outputs, use square brackets: <pf>[a, b] = f(x)</pf>.</li>
-						</ul>
-					</p>
-				</li>
-				<li>
-					<title>Scripts vs. Functions</title>
-					<p>Both are <pf>.m</pf> files that execute commands top-to-bottom, but functions emphasize reusable input/output behavior and an isolated workspace.</p>
-				</li>
-				<li>
-					<title>Functions Can Call Functions</title>
-					<p>A function may call other functions, including ones you write yourself. This lets you build complex programs from simple, tested pieces.</p>
-				</li>
-			</dl>
-		</p>
+				<dl width="narrow">
+					<li>
+						<title>Scripts</title>
+						<p>
+							A script is a <pf>.m</pf> file containing a sequence of MATLAB commands that run
+							top-to-bottom each time the script is executed.
+							<ul marker="square">
+								<li>Use <pf>clc; clear;</pf> at the top so every run starts from a clean state.</li>
+								<li>Scripts share the base workspace — variables created in a script appear in the Workspace panel.</li>
+								<li>Use <pf>fprintf</pf> to produce formatted, readable output.</li>
+							</ul>
+						</p>
+					</li>
+					<li>
+						<title>Functions</title>
+						<p>
+							A function is a reusable tool that accepts inputs and returns outputs.
+							<ul marker="square">
+								<li>The <term>function header</term> declares the name, inputs, and outputs: <pf>function out = name(in)</pf>.</li>
+								<li>The file name must match the function name (e.g., <pf>coin_total.m</pf>).</li>
+								<li>Functions use their own private workspace — internal variables do not appear in the Workspace after the function runs.</li>
+								<li>To capture multiple outputs, use square brackets: <pf>[a, b] = f(x)</pf>.</li>
+							</ul>
+						</p>
+					</li>
+					<li>
+						<title>Scripts vs. Functions</title>
+						<p>Both are <pf>.m</pf> files that execute commands top-to-bottom, but functions emphasize reusable input/output behavior and an isolated workspace.</p>
+					</li>
+					<li>
+						<title>Functions Can Call Functions</title>
+						<p>A function may call other functions, including ones you write yourself. This lets you build complex programs from simple, tested pieces.</p>
+					</li>
+				</dl>
+			</p>
 		</assemblage>
 	</conclusion>
 

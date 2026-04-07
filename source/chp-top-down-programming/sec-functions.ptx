@@ -2,10 +2,13 @@
 <section xml:id="sec-functions" xmlns:xi="http://www.w3.org/2001/XInclude">
 	<title>Functions</title>
 
-	<introduction>
+	<subsection xml:id="subsec-functions">
+		<title>Writing Simple Functions</title>
+
 		<p>
 			Scripts execute statements from top to bottom by default, and functions bundle a sequence of tasks you can reuse (see xref ref="script-function-diffs" for a comparison). However, most programs need to make decisions and repeat actions based on conditions. This section discusses the different flow patterns of code and the ways you can control them.
 		</p>
+
 		<p>
 			A function goes one step further: it accepts <term>inputs</term>, performs a calculation, and returns <term>outputs</term>.
 			Functions let you package a useful computation into a reusable tool, just like MATLAB's built-in commands
@@ -28,147 +31,167 @@
 				</li>
 			</dl>
 		</p>
-	</introduction>
 
-	<subsection xml:id="functions-description-usage">
-		<title>🧱 Description &amp; Usage</title>
+		<p>
+			A MATLAB <term>function</term> is a <pf>.m</pf> file that stores a sequence of MATLAB commands.
+			Like a script, MATLAB executes those commands from top to bottom.
+			The key difference is that a function is designed to accept <term>inputs</term> (known information) and return <term>outputs</term> (desired information).
+		</p>
 
-		<introduction>
-			<p>
-				A MATLAB <term>function</term> is a <pf>.m</pf> file that stores a sequence of MATLAB commands.
-				Like a script, MATLAB executes those commands from top to bottom.
-				The key difference is that a function is designed to accept <term>inputs</term> (known information) and return <term>outputs</term> (desired information).
-			</p>
+		<p>
+			You have already used many built-in MATLAB functions (such as <pf>sqrt</pf>, <pf>abs</pf>, and <pf>floor</pf>).
+			The functions you write in this course work the same way: MATLAB only cares about the inputs you provide and the outputs the function returns.
+		</p>
 
-			<p>
-				You have already used many built-in MATLAB functions (such as <pf>sqrt</pf>, <pf>abs</pf>, and <pf>floor</pf>).
-				The functions you write in this course work the same way: MATLAB only cares about the inputs you provide and the outputs the function returns.
-			</p>
-		</introduction>
+		<assemblage xml:id="assemblage-functions">
+			<title>MATLAB Function Syntax</title>
+			<p>Syntax: <pf>function output = functionName(input)</pf></p>
+			<ul marker="square">
+				<li><p>The file must be saved as <pf>functionName.m</pf> — the file name must match the function name exactly.</p></li>
+				<li><p>Functions use a <term>private workspace</term>: internal variables are not visible outside the function after it finishes.</p></li>
+				<li><p>Inputs are listed in parentheses; multiple inputs are separated by commas: <pf>functionName(a, b, c)</pf>.</p></li>
+				<li><p>A single output is written to the left of the <pf>=</pf>; multiple outputs use square brackets: <pf>[out1, out2] = functionName(in)</pf>.</p></li>
+				<li><p>The function body contains the commands that compute the output(s) from the input(s).</p></li>
+				<li><p>The function ends with the keyword <pf>end</pf>.</p></li>
+			</ul>
+		</assemblage>
 
-		<subsubsection xml:id="subsubsec-function-structure">
-			<title>Function Structure</title>
+		<exercise label="chk-functions-file-name">
+			<statement><p>A MATLAB function named <pf>triangle_area</pf> must be saved in a file called:</p></statement>
+			<choices>
+				<choice correct="yes">
+					<statement><p><pf>triangle_area.m</pf></p></statement>
+					<feedback><p>The file name must match the function name exactly (without the <pf>.m</pf> extension in the header).</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>function.m</pf></p></statement>
+					<feedback><p>The file name must match the function name, not just the keyword <pf>function</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>triangle.m</pf></p></statement>
+					<feedback><p>The file name must be the complete function name: <pf>triangle_area.m</pf>.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p>Any name ending in <pf>.m</pf></p></statement>
+					<feedback><p>MATLAB requires the file name to match the function name so it can locate the function.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
 
-			<p>
-				A MATLAB <term>function</term> is a <pf>.m</pf> file that stores a sequence of MATLAB commands.
-				Like a script, MATLAB executes those commands from top to bottom.
-				The key difference is that a function is designed to accept <term>inputs</term> (known information) and return <term>outputs</term> (desired information).
-			</p>
+		<exercise label="chk-functions-workspace">
+			<statement><p>True or False: Variables created inside a MATLAB function automatically appear in the base Workspace after the function finishes.</p></statement>
+			<choices>
+				<choice>
+					<statement><p>True</p></statement>
+					<feedback><p>Functions use a private workspace. Internal variables disappear when the function ends; only the declared outputs are returned.</p></feedback>
+				</choice>
+				<choice correct="yes">
+					<statement><p>False</p></statement>
+					<feedback><p>Correct. Functions use a private workspace, so their internal variables do not appear in the base Workspace.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
 
-			<p>
-				You have already used many built-in MATLAB functions (such as <pf>sqrt</pf>, <pf>abs</pf>, and <pf>floor</pf>).
-				The functions you write in this course work the same way: MATLAB only cares about the inputs you provide and the outputs the function returns.
-			</p>
+		<exercise label="chk-functions-multiple-outputs">
+			<statement><p>Which syntax correctly captures two outputs from a function <pf>f</pf>?</p></statement>
+			<choices>
+				<choice>
+					<statement><p><pf>a, b = f(x)</pf></p></statement>
+					<feedback><p>This is not valid MATLAB syntax.</p></feedback>
+				</choice>
+				<choice correct="yes">
+					<statement><p><pf>[a, b] = f(x)</pf></p></statement>
+					<feedback><p>Square brackets on the left side of the assignment are used to capture multiple outputs.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>(a, b) = f(x)</pf></p></statement>
+					<feedback><p>Parentheses are not used on the left side for capturing outputs.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>a = f(x), b</pf></p></statement>
+					<feedback><p>This is not valid MATLAB syntax for capturing two outputs.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
 
-			<assemblage xml:id="assemblage-functions">
-				<title>MATLAB Function Syntax</title>
-				<p>Syntax: <pf>function output = functionName(input)</pf></p>
-				<ul marker="square">
-					<li><p>The file must be saved as <pf>functionName.m</pf> — the file name must match the function name exactly.</p></li>
-					<li><p>Functions use a <term>private workspace</term>: internal variables are not visible outside the function after it finishes.</p></li>
-					<li><p>Inputs are listed in parentheses; multiple inputs are separated by commas: <pf>functionName(a, b, c)</pf>.</p></li>
-					<li><p>A single output is written to the left of the <pf>=</pf>; multiple outputs use square brackets: <pf>[out1, out2] = functionName(in)</pf>.</p></li>
-					<li><p>The function body contains the commands that compute the output(s) from the input(s).</p></li>
-					<li><p>The function ends with the keyword <pf>end</pf>.</p></li>
-				</ul>
-			</assemblage>
+		<exercise label="chk-functions-header-output">
+			<statement><p>In the function header <pf>function y = f(x)</pf>, which symbol represents the output?</p></statement>
+			<choices>
+				<choice>
+					<statement><p><pf>f</pf></p></statement>
+					<feedback><p><pf>f</pf> is the function name, not the output.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>x</pf></p></statement>
+					<feedback><p><pf>x</pf> is the input, listed inside the parentheses.</p></feedback>
+				</choice>
+				<choice correct="yes">
+					<statement><p><pf>y</pf></p></statement>
+					<feedback><p>Correct. The output variable appears between <pf>function</pf> and the <pf>=</pf> sign.</p></feedback>
+				</choice>
+				<choice>
+					<statement><p><pf>function</pf></p></statement>
+					<feedback><p><pf>function</pf> is the keyword that begins every function definition.</p></feedback>
+				</choice>
+			</choices>
+		</exercise>
 
-			<exercise label="chk-functions-file-name">
-				<statement><p>A MATLAB function named <pf>triangle_area</pf> must be saved in a file called:</p></statement>
-				<choices>
-					<choice correct="yes">
-						<statement><p><pf>triangle_area.m</pf></p></statement>
-						<feedback><p>The file name must match the function name exactly (without the <pf>.m</pf> extension in the header).</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>function.m</pf></p></statement>
-						<feedback><p>The file name must match the function name, not just the keyword <pf>function</pf>.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>triangle.m</pf></p></statement>
-						<feedback><p>The file name must be the complete function name: <pf>triangle_area.m</pf>.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p>Any name ending in <pf>.m</pf></p></statement>
-						<feedback><p>MATLAB requires the file name to match the function name so it can locate the function.</p></feedback>
-					</choice>
-				</choices>
-			</exercise>
+	</subsection>
 
-			<exercise label="chk-functions-workspace">
-				<statement><p>True or False: Variables created inside a MATLAB function automatically appear in the base Workspace after the function finishes.</p></statement>
-				<choices>
-					<choice>
-						<statement><p>True</p></statement>
-						<feedback><p>Functions use a private workspace. Internal variables disappear when the function ends; only the declared outputs are returned.</p></feedback>
-					</choice>
-					<choice correct="yes">
-						<statement><p>False</p></statement>
-						<feedback><p>Correct. Functions use a private workspace, so their internal variables do not appear in the base Workspace.</p></feedback>
-					</choice>
-				</choices>
-			</exercise>
+	<subsection xml:id="one-input-one-output">
+		<title>One Input, One Output</title>
 
-			<exercise label="chk-functions-multiple-outputs">
-				<statement><p>Which syntax correctly captures two outputs from a function <pf>f</pf>?</p></statement>
-				<choices>
-					<choice>
-						<statement><p><pf>a, b = f(x)</pf></p></statement>
-						<feedback><p>This is not valid MATLAB syntax.</p></feedback>
-					</choice>
-					<choice correct="yes">
-						<statement><p><pf>[a, b] = f(x)</pf></p></statement>
-						<feedback><p>Square brackets on the left side of the assignment are used to capture multiple outputs.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>(a, b) = f(x)</pf></p></statement>
-						<feedback><p>Parentheses are not used on the left side for capturing outputs.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>a = f(x), b</pf></p></statement>
-						<feedback><p>This is not valid MATLAB syntax for capturing two outputs.</p></feedback>
-					</choice>
-				</choices>
-			</exercise>
+		<p>
+			Functions help you package a useful calculation into a reusable tool.
+			Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.
+		</p>
 
-			<exercise label="chk-functions-header-output">
-				<statement><p>In the function header <pf>function y = f(x)</pf>, which symbol represents the output?</p></statement>
-				<choices>
-					<choice>
-						<statement><p><pf>f</pf></p></statement>
-						<feedback><p><pf>f</pf> is the function name, not the output.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>x</pf></p></statement>
-						<feedback><p><pf>x</pf> is the input, listed inside the parentheses.</p></feedback>
-					</choice>
-					<choice correct="yes">
-						<statement><p><pf>y</pf></p></statement>
-						<feedback><p>Correct. The output variable appears between <pf>function</pf> and the <pf>=</pf> sign.</p></feedback>
-					</choice>
-					<choice>
-						<statement><p><pf>function</pf></p></statement>
-						<feedback><p><pf>function</pf> is the keyword that begins every function definition.</p></feedback>
-					</choice>
-				</choices>
-			</exercise>
+		<p>
+			Here is an example of a simple function that computes the perimeter of a square given its side length.
+		</p>
 
-		</subsubsection>
+		<listing>
+			<title>MATLAB Function with 1 Input and 1 Output</title>
+			<program language="matlab">
+				<code>
+					function perimeter = square_perimeter(side)
 
-		<subsubsection xml:id="one-input-one-output">
+						% Use the input (side) to compute the output (perimeter)
+						perimeter = 4 * side;
+
+					end
+				</code>
+			</program>
+		</listing>
+
+		<p>
+			To use this function, save it in a file named <pf>square_perimeter.m</pf>.
+			Then, in the Command Window (or in another script), call the function by providing an input value inside parentheses.
+			For example, to compute the perimeter of a square with side length 5, type:
+		</p>
+
+		<program language="matlab">
+			<code>
+				p = square_perimeter(5)	% returns 20 and stores it in variable p
+			</code>
+		</program>
+
+		<p>
+			MATLAB will run the commands inside the function, using the input value you provided (<pf>5</pf>) to compute the output value (<pf>20</pf>).
+			The result is then returned to the Command Window and stored in the variable <pf>p</pf>.
+		</p>
+
+		<example xml:id="example-function-one-input-one-output">
 			<title>One Input, One Output</title>
-
-			<p>
-				Functions help you package a useful calculation into a reusable tool.
-				Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.
-			</p>
-
-			<p>
-				Here is an example of a simple function that computes the perimeter of a square given its side length.
-			</p>
-
-			<listing>
-				<title>MATLAB Function with 1 Input and 1 Output</title>
+			<statement>
+				<p>
+					Functions help you package a useful calculation into a reusable tool.
+					Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.
+				</p>
+				<p>
+					Here is a function that computes the perimeter of a square given its side length.
+					Save it in a file named <pf>square_perimeter.m</pf>.
+				</p>
 				<program language="matlab">
 					<code>
 						function perimeter = square_perimeter(side)
@@ -179,117 +202,196 @@
 						end
 					</code>
 				</program>
-			</listing>
+				<p>
+					To call this function, type the following in the Command Window or in a script:
+				</p>
+				<program language="matlab">
+					<code>
+						p = square_perimeter(5)   % returns 20 and stores it in variable p
+					</code>
+				</program>
+				<p>
+					MATLAB runs the commands inside the function using the provided input (<pf>5</pf>), computes the output (<pf>20</pf>), and stores it in <pf>p</pf>.
+				</p>
+			</statement>
+		</example>
 
-			<p>
-				To use this function, save it in a file named <pf>square_perimeter.m</pf>.
-				Then, in the Command Window (or in another script), call the function by providing an input value inside parentheses.
-				For example, to compute the perimeter of a square with side length 5, type:
-			</p>
+	</subsection>
 
+	<subsection xml:id="two-inputs-one-output">
+		<title>Two Inputs, One Output</title>
+
+		<p>
+			To create a function in MATLAB, you start by opening a new function file.
+			Here is an example of a function that computes the perimeter of a rectangle given its two sides.
+		</p>
+
+		<listing>
+			<title>MATLAB Function with 2 Inputs and 1 Output</title>
 			<program language="matlab">
 				<code>
-					p = square_perimeter(5)	% returns 20 and stores it in variable p
+					function perimeter = rectangle_perimeter(side1, side2)
+
+						% Use the inputs (side1 and side2) 
+						% to compute the output (perimeter)
+						perimeter = 2 * side1 + 2 * side2;
+
+					end
 				</code>
 			</program>
+		</listing>
 
+		<p>
+			The first line of the function file is the <term>function header</term>, which defines the function's name, inputs, and outputs. For example, in the function above, the line
+		</p>
+
+		<program language="matlab">
+			<code>
+				function perimeter = rectangle_perimeter(side1, side2)
+			</code>
+		</program>
+
+		<p>
+			declares a function named <pf>rectangle_perimeter</pf> that takes two inputs (<pf>side1</pf> and <pf>side2</pf>) and returns one output (<pf>perimeter</pf>).
+		</p>
+
+		<p>
+			When you save the function, the function name should match the file name (without the <pf>.m</pf> extension).
+			In this example, the function is named <pf>rectangle_perimeter</pf>, so the file should be saved as <pf>rectangle_perimeter.m</pf>.
+		</p>
+
+		<aside>
+			<title>Where to save your function file</title>
 			<p>
-				MATLAB will run the commands inside the function, using the input value you provided (<pf>5</pf>) to compute the output value (<pf>20</pf>).
-				The result is then returned to the Command Window and stored in the variable <pf>p</pf>.
+				For MATLAB to find your function, save the <pf>.m</pf> file in the Current Folder (or in a folder on the MATLAB path).
+				If MATLAB says it cannot find your function, this is the first thing to check.
 			</p>
-			
-		</subsubsection>
+		</aside>
 
-		<subsubsection xml:id="two-inputs-one-output">
+		<p>
+			Inside the function, you can use the input variables to perform calculations and assign values to the output variable.
+			When the function is called, MATLAB executes the commands in the function file and returns the output value.
+			Unlike scripts, intermediate variables stay inside the function unless you return them.
+		</p>
+
+		<p>
+			To call this function, provide two input values inside parentheses.
+			For example, to compute the perimeter of a rectangle with side lengths 4 and 7, type:
+		</p>
+
+		<program language="matlab">
+			<code>
+				p = rectangle_perimeter(4, 7)	% returns 22 &amp; stores it in p
+			</code>
+		</program>
+
+		<p>
+			MATLAB will run the commands inside the function, using the input values you provided (<pf>4</pf> and <pf>7</pf>) to compute the output value (<pf>22</pf>).
+			The result is then returned to the Command Window and stored in the variable <pf>p</pf>.
+		</p>
+
+		<example xml:id="example-function-two-inputs-one-output">
 			<title>Two Inputs, One Output</title>
-
-			<p>
-				To create a function in MATLAB, you start by opening a new function file.
-				Here is an example of a function that computes the perimeter of a rectangle given its two sides.
-			</p>
-
-			<listing>
-				<title>MATLAB Function with 2 Inputs and 1 Output</title>
+			<statement>
+				<p>
+					A function can accept more than one input.
+					Here is a function that computes the perimeter of a rectangle given its two side lengths.
+				</p>
 				<program language="matlab">
 					<code>
 						function perimeter = rectangle_perimeter(side1, side2)
 
-							% Use the inputs (side1 and side2) 
+							% Use the inputs (side1 and side2)
 							% to compute the output (perimeter)
 							perimeter = 2 * side1 + 2 * side2;
 
 						end
 					</code>
 				</program>
-			</listing>
-
-			<p>
-				The first line of the function file is the <term>function header</term>, which defines the function's name, inputs, and outputs. For example, in the function above, the line
-			</p>
-
-			<program language="matlab">
-				<code>
-					function perimeter = rectangle_perimeter(side1, side2)
-				</code>
-			</program>
-
-			<p>
-				declares a function named <pf>rectangle_perimeter</pf> that takes two inputs (<pf>side1</pf> and <pf>side2</pf>) and returns one output (<pf>perimeter</pf>).
-			</p>
-
-			<p>
-				When you save the function, the function name should match the file name (without the <pf>.m</pf> extension).
-				In this example, the function is named <pf>rectangle_perimeter</pf>, so the file should be saved as <pf>rectangle_perimeter.m</pf>.
-			</p>
-
-			<aside>
-				<title>Where to save your function file</title>
 				<p>
-					For MATLAB to find your function, save the <pf>.m</pf> file in the Current Folder (or in a folder on the MATLAB path).
-					If MATLAB says it cannot find your function, this is the first thing to check.
+					The first line is the <term>function header</term>: it declares the function name (<pf>rectangle_perimeter</pf>), the inputs (<pf>side1</pf>, <pf>side2</pf>), and the output (<pf>perimeter</pf>).
+					Save the file as <pf>rectangle_perimeter.m</pf> so that MATLAB can find it.
 				</p>
-			</aside>
+				<p>
+					To call this function with side lengths 4 and 7:
+				</p>
+				<program language="matlab">
+					<code>
+						p = rectangle_perimeter(4, 7)   % returns 22 and stores it in p
+					</code>
+				</program>
+			</statement>
+		</example>
+	</subsection>
 
-			<p>
-				Inside the function, you can use the input variables to perform calculations and assign values to the output variable.
-				When the function is called, MATLAB executes the commands in the function file and returns the output value.
-				Unlike scripts, intermediate variables stay inside the function unless you return them.
-			</p>
+	<subsection xml:id="two-inputs-two-outputs">
+		<title>Two Inputs, Two Outputs</title>
 
-			<p>
-				To call this function, provide two input values inside parentheses.
-				For example, to compute the perimeter of a rectangle with side lengths 4 and 7, type:
-			</p>
+		<p>
+			Functions can return multiple outputs.
+			To specify multiple outputs, list them in square brackets in the function header.
+			Here is an example of a function that computes both the perimeter and area of a rectangle given the lengths of its two sides.
+		</p>
 
+		<listing>
+			<title>MATLAB Function with 2 Inputs and 2 Outputs</title>
 			<program language="matlab">
 				<code>
-					p = rectangle_perimeter(4, 7)	% returns 22 &amp; stores it in p
+					function [perimeter, area] = rectangle_properties(side1, side2)
+
+						% Use the inputs (side1 and side2) 
+						% to compute the outputs (perimeter and area)
+						perimeter = 2 * side1 + 2 * side2;
+						area = side1 * side2;
+
+					end
 				</code>
 			</program>
+		</listing>
 
+		<p>
+			To call this function and capture both outputs, use square brackets on the left side of the assignment.
+			For example, to compute the perimeter and area of a rectangle with side lengths 4 and 7, type:
+		</p>
+
+		<program language="matlab">
+			<code>
+				[p, a] = rectangle_properties(4, 7)	% returns p = 22 and a = 28
+			</code>
+		</program>
+
+		<p>
+			MATLAB will run the commands inside the function, using the input values you provided (<pf>4</pf> and <pf>7</pf>) to compute the output values (<pf>22</pf> and <pf>28</pf>).
+			The results are then returned to the Command Window and stored in the variables <pf>p</pf> and <pf>a</pf>.
+		</p>
+
+		<aside>
+			<title>Ignoring Outputs</title>
 			<p>
-				MATLAB will run the commands inside the function, using the input values you provided (<pf>4</pf> and <pf>7</pf>) to compute the output value (<pf>22</pf>).
-				The result is then returned to the Command Window and stored in the variable <pf>p</pf>.
+				If you only want some of the outputs from a function, you can ignore the others by using a tilde (<pf>~</pf>) as a placeholder.
+				For example, to compute only the area of a rectangle and ignore the perimeter, type:
 			</p>
+			<program language="matlab">
+				<code>
+					% returns a = 28, ignores perimeter
+					[~, a] = rectangle_properties(4, 7)
+				</code>
+			</program>
+		</aside>
 
-		</subsubsection>
-
-		<subsubsection xml:id="two-inputs-two-outputs">
+		<example xml:id="example-function-two-inputs-two-outputs">
 			<title>Two Inputs, Two Outputs</title>
-
-			<p>
-				Functions can return multiple outputs.
-				To specify multiple outputs, list them in square brackets in the function header.
-				Here is an example of a function that computes both the perimeter and area of a rectangle given the lengths of its two sides.
-			</p>
-
-			<listing>
-				<title>MATLAB Function with 2 Inputs and 2 Outputs</title>
+			<statement>
+				<p>
+					Functions can return multiple outputs.
+					List them in square brackets in the function header.
+					The function below computes both the perimeter and area of a rectangle.
+				</p>
 				<program language="matlab">
 					<code>
 						function [perimeter, area] = rectangle_properties(side1, side2)
 
-							% Use the inputs (side1 and side2) 
+							% Use the inputs (side1 and side2)
 							% to compute the outputs (perimeter and area)
 							perimeter = 2 * side1 + 2 * side2;
 							area = side1 * side2;
@@ -297,29 +399,16 @@
 						end
 					</code>
 				</program>
-			</listing>
-
-			<p>
-				To call this function and capture both outputs, use square brackets on the left side of the assignment.
-				For example, to compute the perimeter and area of a rectangle with side lengths 4 and 7, type:
-			</p>
-
-			<program language="matlab">
-				<code>
-					[p, a] = rectangle_properties(4, 7)	% returns p = 22 and a = 28
-				</code>
-			</program>
-
-			<p>
-				MATLAB will run the commands inside the function, using the input values you provided (<pf>4</pf> and <pf>7</pf>) to compute the output values (<pf>22</pf> and <pf>28</pf>).
-				The results are then returned to the Command Window and stored in the variables <pf>p</pf> and <pf>a</pf>.
-			</p>
-
-			<aside>
-				<title>Ignoring Outputs</title>
 				<p>
-					If you only want some of the outputs from a function, you can ignore the others by using a tilde (<pf>~</pf>) as a placeholder.
-					For example, to compute only the area of a rectangle and ignore the perimeter, type:
+					Capture both outputs using square brackets on the left side:
+				</p>
+				<program language="matlab">
+					<code>
+						[p, a] = rectangle_properties(4, 7)   % returns p = 22 and a = 28
+					</code>
+				</program>
+				<p>
+					If you only need one output, use a tilde (<pf>~</pf>) to ignore the other:
 				</p>
 				<program language="matlab">
 					<code>
@@ -327,122 +416,8 @@
 						[~, a] = rectangle_properties(4, 7)
 					</code>
 				</program>
-			</aside>
-
-		</subsubsection>
-
-		<subsubsection xml:id="functions-examples">
-			<title>Examples</title>
-
-			<example xml:id="example-function-one-input-one-output">
-				<title>One Input, One Output</title>
-				<statement>
-					<p>
-						Functions help you package a useful calculation into a reusable tool.
-						Instead of rewriting the same computations in many scripts, you write them once as a function and then call that function whenever you need it.
-					</p>
-					<p>
-						Here is a function that computes the perimeter of a square given its side length.
-						Save it in a file named <pf>square_perimeter.m</pf>.
-					</p>
-					<program language="matlab">
-						<code>
-							function perimeter = square_perimeter(side)
-
-								% Use the input (side) to compute the output (perimeter)
-								perimeter = 4 * side;
-
-							end
-						</code>
-					</program>
-					<p>
-						To call this function, type the following in the Command Window or in a script:
-					</p>
-					<program language="matlab">
-						<code>
-							p = square_perimeter(5)   % returns 20 and stores it in variable p
-						</code>
-					</program>
-					<p>
-						MATLAB runs the commands inside the function using the provided input (<pf>5</pf>), computes the output (<pf>20</pf>), and stores it in <pf>p</pf>.
-					</p>
-				</statement>
-			</example>
-
-			<example xml:id="example-function-two-inputs-one-output">
-				<title>Two Inputs, One Output</title>
-				<statement>
-					<p>
-						A function can accept more than one input.
-						Here is a function that computes the perimeter of a rectangle given its two side lengths.
-					</p>
-					<program language="matlab">
-						<code>
-							function perimeter = rectangle_perimeter(side1, side2)
-
-								% Use the inputs (side1 and side2)
-								% to compute the output (perimeter)
-								perimeter = 2 * side1 + 2 * side2;
-
-							end
-						</code>
-					</program>
-					<p>
-						The first line is the <term>function header</term>: it declares the function name (<pf>rectangle_perimeter</pf>), the inputs (<pf>side1</pf>, <pf>side2</pf>), and the output (<pf>perimeter</pf>).
-						Save the file as <pf>rectangle_perimeter.m</pf> so that MATLAB can find it.
-					</p>
-					<p>
-						To call this function with side lengths 4 and 7:
-					</p>
-					<program language="matlab">
-						<code>
-							p = rectangle_perimeter(4, 7)   % returns 22 and stores it in p
-						</code>
-					</program>
-				</statement>
-			</example>
-
-			<example xml:id="example-function-two-inputs-two-outputs">
-				<title>Two Inputs, Two Outputs</title>
-				<statement>
-					<p>
-						Functions can return multiple outputs.
-						List them in square brackets in the function header.
-						The function below computes both the perimeter and area of a rectangle.
-					</p>
-					<program language="matlab">
-						<code>
-							function [perimeter, area] = rectangle_properties(side1, side2)
-
-								% Use the inputs (side1 and side2)
-								% to compute the outputs (perimeter and area)
-								perimeter = 2 * side1 + 2 * side2;
-								area = side1 * side2;
-
-							end
-						</code>
-					</program>
-					<p>
-						Capture both outputs using square brackets on the left side:
-					</p>
-					<program language="matlab">
-						<code>
-							[p, a] = rectangle_properties(4, 7)   % returns p = 22 and a = 28
-						</code>
-					</program>
-					<p>
-						If you only need one output, use a tilde (<pf>~</pf>) to ignore the other:
-					</p>
-					<program language="matlab">
-						<code>
-							% returns a = 28, ignores perimeter
-							[~, a] = rectangle_properties(4, 7)
-						</code>
-					</program>
-				</statement>
-			</example>
-		</subsubsection>
-
+			</statement>
+		</example>
 	</subsection>
 
 	<reading-questions xml:id="functions-reading-questions">
@@ -764,225 +739,6 @@
 			<title>Scaffolded Activities</title>
 
 		</subsubsection>
-
-		<exercises xml:id="functions-coding-exercises">
-			<title>💻 Coding Exercises</title>
-
-			<exercise xml:id="coding-celsius-to-fahrenheit">
-				<title>Temperature Conversion</title>
-				<statement>
-					<p>
-						Write a function named <pf>celsius_to_fahrenheit</pf> that converts a temperature from Celsius to Fahrenheit.
-						The conversion formula is: <m>F = \frac{9}{5}C + 32</m>.
-					</p>
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" /><col width="15%" halign="left" />
-						<col width="28%" halign="center" /><col width="46%" halign="left"/>
-						<row><cell>Inputs:</cell><cell><p><pf>celsius</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>temperature in degrees Celsius</p></cell></row>
-						<row bottom="minor"><cell>Outputs:</cell><cell><p><pf>fahrenheit</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>temperature in degrees Fahrenheit</p></cell></row>
-					</tabular>
-					<p>Test cases:</p>
-					<program language="matlab">
-						<code>
-	f1 = celsius_to_fahrenheit(0)	% Expected: f1 = 32
-	f2 = celsius_to_fahrenheit(100)  % Expected: f2 = 212
-	f3 = celsius_to_fahrenheit(20)   % Expected: f3 = 68
-						</code>
-					</program>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						<code>
-	function fahrenheit = celsius_to_fahrenheit(celsius)
-		fahrenheit = (9/5) * celsius + 32;
-	end
-						</code>
-					</program>
-				</solution>
-			</exercise>
-
-			<exercise xml:id="coding-triangle-area">
-				<title>Triangle Area</title>
-				<statement>
-					<p>
-						Write a function named <pf>triangle_area</pf> that computes the area of a triangle given its base and height.
-						The formula is: <m>A = \frac{1}{2} \times \text{base} \times \text{height}</m>.
-					</p>
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" /><col width="15%" halign="left" />
-						<col width="28%" halign="center" /><col width="46%" halign="left"/>
-						<row><cell>Inputs:</cell><cell><p><pf>base</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>length of the triangle's base</p></cell></row>
-						<row><cell></cell><cell><p><pf>height</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>height of the triangle</p></cell></row>
-						<row bottom="minor"><cell>Outputs:</cell><cell><p><pf>area</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>area of the triangle</p></cell></row>
-					</tabular>
-					<p>Test cases:</p>
-					<program language="matlab">
-						<code>
-	a1 = triangle_area(6, 4)	% Expected: a1 = 12
-	a2 = triangle_area(5, 12)   % Expected: a2 = 30
-	a3 = triangle_area(7.5, 3.2) % Expected: a3 = 12
-						</code>
-					</program>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						<code>
-	function area = triangle_area(base, height)
-		area = 0.5 * base * height;
-	end
-						</code>
-					</program>
-				</solution>
-			</exercise>
-
-			<exercise xml:id="coding-sphere-properties">
-				<title>Sphere Properties</title>
-				<statement>
-					<p>
-						Write a function named <pf>sphere_properties</pf> that computes both the surface area and volume of a sphere given its radius.
-					</p>
-					<p>
-						The formulas are:
-						<ul marker="square">
-							<li><p>Surface area: <m>A = 4\pi r^2</m></p></li>
-							<li><p>Volume: <m>V = \frac{4}{3}\pi r^3</m></p></li>
-						</ul>
-					</p>
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" /><col width="15%" halign="left" />
-						<col width="28%" halign="center" /><col width="46%" halign="left"/>
-						<row><cell>Inputs:</cell><cell><p><pf>radius</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>radius of the sphere</p></cell></row>
-						<row><cell>Outputs:</cell><cell><p><pf>surface_area</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>surface area of the sphere</p></cell></row>
-						<row bottom="minor"><cell></cell><cell><p><pf>volume</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>volume of the sphere</p></cell></row>
-					</tabular>
-					<p>Test cases:</p>
-					<program language="matlab">
-						<code>
-	[A1, V1] = sphere_properties(1)  % Expected: A1 ≈ 12.5664, V1 ≈ 4.1888
-	[A2, V2] = sphere_properties(2)  % Expected: A2 ≈ 50.2655, V2 ≈ 33.5103
-	[A3, V3] = sphere_properties(5)  % Expected: A3 ≈ 314.1593, V3 ≈ 523.5988
-						</code>
-					</program>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						<code>
-	function [surface_area, volume] = sphere_properties(radius)
-		surface_area = 4 * pi * radius^2;
-		volume = (4/3) * pi * radius^3;
-	end
-						</code>
-					</program>
-				</solution>
-			</exercise>
-
-			<exercise xml:id="coding-compound-interest">
-				<title>Compound Interest Calculator</title>
-				<statement>
-					<p>
-						Write a function named <pf>compound_interest</pf> that calculates the future value of an investment with compound interest,
-						and also returns the total interest earned and the effective annual rate.
-					</p>
-					<p>
-						The compound interest formula is: <m>A = P\left(1 + \frac{r}{n}\right)^{nt}</m>,
-						where <m>P</m> is the principal, <m>r</m> is the annual rate (decimal), <m>n</m> is compounding frequency per year, and <m>t</m> is time in years.
-						The effective annual rate (EAR) is: <m>\text{EAR} = \left(1 + \frac{r}{n}\right)^n - 1</m>.
-					</p>
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" /><col width="22%" halign="left" />
-						<col width="21%" halign="center" /><col width="46%" halign="left"/>
-						<row><cell>Inputs:</cell><cell><p><pf>principal</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>initial investment amount</p></cell></row>
-						<row><cell></cell><cell><p><pf>rate</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>annual interest rate (as decimal)</p></cell></row>
-						<row><cell></cell><cell><p><pf>compounds_per_year</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>compounding frequency (e.g., 12 for monthly)</p></cell></row>
-						<row><cell></cell><cell><p><pf>years</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>time period in years</p></cell></row>
-						<row><cell>Outputs:</cell><cell><p><pf>final_amount</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>total amount after compound interest</p></cell></row>
-						<row><cell></cell><cell><p><pf>interest_earned</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>total interest earned</p></cell></row>
-						<row bottom="minor"><cell></cell><cell><p><pf>effective_rate</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>effective annual rate</p></cell></row>
-					</tabular>
-					<p>Test cases:</p>
-					<program language="matlab">
-						<code>
-	% $1000 at 5% monthly for 10 years
-	[final1, int1, effRate1] = compound_interest(1000, 0.05, 12, 10)
-	% Expected: final1 ≈ 1647.01, int1 ≈ 647.01, effRate1 ≈ 0.0512
-						</code>
-					</program>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						<code>
-	function [final_amount, interest_earned, effective_rate] = ...
-			compound_interest(principal, rate, compounds_per_year, years)
-		final_amount = principal * (1 + rate/compounds_per_year)^(compounds_per_year*years);
-		interest_earned = final_amount - principal;
-		effective_rate = (1 + rate/compounds_per_year)^compounds_per_year - 1;
-	end
-						</code>
-					</program>
-				</solution>
-			</exercise>
-
-			<exercise xml:id="coding-triangle-3d">
-				<title>Triangle Perimeter and Area in 3D Space</title>
-				<statement>
-					<p>
-						Write a function named <pf>triangle_3d</pf> that computes the perimeter and area of a triangle in 3D space
-						given the coordinates of its three vertices.
-					</p>
-					<p>
-						Hints:
-						<ol>
-							<li>
-								<p>
-									The distance between two points <m>(x_1, y_1, z_1)</m> and <m>(x_2, y_2, z_2)</m> is:
-									<me>d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}</me>
-								</p>
-							</li>
-							<li>
-								<p>
-									Use Heron's formula with semi-perimeter <m>s = \frac{a+b+c}{2}</m>:
-									<me>A = \sqrt{s(s-a)(s-b)(s-c)}</me>
-								</p>
-							</li>
-						</ol>
-					</p>
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" /><col width="22%" halign="left" />
-						<col width="21%" halign="center" /><col width="46%" halign="left"/>
-						<row><cell>Inputs:</cell><cell><p><pf>x1, y1, z1</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>coordinates of first vertex</p></cell></row>
-						<row><cell></cell><cell><p><pf>x2, y2, z2</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>coordinates of second vertex</p></cell></row>
-						<row><cell></cell><cell><p><pf>x3, y3, z3</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>coordinates of third vertex</p></cell></row>
-						<row><cell>Outputs:</cell><cell><p><pf>perimeter</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>perimeter of the triangle</p></cell></row>
-						<row bottom="minor"><cell></cell><cell><p><pf>area</pf></p></cell><cell><p>(1x1) double</p></cell><cell><p>area of the triangle</p></cell></row>
-					</tabular>
-					<p>Test cases:</p>
-					<program language="matlab">
-						<code>
-	[p1, a1] = triangle_3d(0, 0, 0, 4, 0, 0, 0, 3, 0)
-	% Expected: p1 = 12, a1 = 6  (3-4-5 right triangle)
-
-	[p2, a2] = triangle_3d(0, 0, 0, 1, 0, 0, 0.5, sqrt(3)/2, 0)
-	% Expected: p2 = 3, a2 ≈ 0.4330  (equilateral)
-						</code>
-					</program>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						<code>
-	function [perimeter, area] = triangle_3d(x1,y1,z1, x2,y2,z2, x3,y3,z3)
-		a = sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2);
-		b = sqrt((x3-x2)^2 + (y3-y2)^2 + (z3-z2)^2);
-		c = sqrt((x1-x3)^2 + (y1-y3)^2 + (z1-z3)^2);
-		perimeter = a + b + c;
-		s = perimeter / 2;
-		area = sqrt(s*(s-a)*(s-b)*(s-c));
-	end
-						</code>
-					</program>
-				</solution>
-			</exercise>
-
-		</exercises>
 
 	</subsection>
 

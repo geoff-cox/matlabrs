@@ -1,7 +1,8 @@
-<section xml:id="sec-continue-break-return">
-  <title>Continue, Break, &amp; Return</title>
+<section xml:id="sec-additional-loop-control">
+  <title>Additional Loop Control</title>
 
-	<introduction>
+	<subsection xml:id="subsec-continue-break-return">
+		<title>Continue, Break, &amp; Return</title>
 		<p>
 			MATLAB provides commands that modify the normal flow of code. In particular, you can skip the current loop iteration or even exit a loop entirely. It is also possible to end a function early if your code already knows the output.
 		</p>
@@ -40,11 +41,6 @@
 				<li><pf>return</pf> can be used anywhere inside a script or function to exit early.</li>
 			</ul>
 		</p>
-
-	</introduction>
-
-	<subsection xml:id="subsec-continue-break-return-examples">
-		<title>👀 Examples</title>
 
 		<example>
 			<title>Searching with break</title>
@@ -360,280 +356,8 @@
 		</exercise>
 	</subsection>
 
-	<subsection xml:id="subsec-continue-break-return-practice-activities">
-		<title>🧑🏻‍💻 Practice Activities</title>
-
-		<exercise label="activity-continue-control-flow">
-			<title>Using <pf>continue</pf> in a Loop</title>
-
-			<task label="activity-continue-control-flow-a">
-				<statement>
-					<p>
-						Write a <pf>for</pf>-loop from 1 to 20 that adds the loop index to a running total. Use an <pf>if</pf>-statement with <pf>mod</pf> and <pf>continue</pf> so that values divisible by 3 are skipped.
-					</p>
-					<sage language="octave">
-						<input>
-							total = 0;
-							for k = 1:20
-								%─── TYPE YOUR CODE HERE ───%
-
-
-								%───────────────────────────%=============
-								total = total + k;
-							end
-							fprintf('total = %i\n', total);
-						</input>
-					</sage>
-					<p>
-						When done, evaluate and confirm it prints <pf>total = 147</pf>. (The sum of integers 1–20 is 210, and the multiples of 3 from 1–20 sum to 63, so 210 − 63 = 147.)
-					</p>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						total = 0;
-						for k = 1:20
-							if mod(k, 3) == 0
-								continue
-							end
-							total = total + k;
-						end
-						fprintf('total = %i\n', total);
-					</program>
-				</solution>
-			</task>
-
-			<task label="activity-continue-control-flow-b">
-				<statement>
-					<p>
-						Modify your script to also count how many values were skipped. Print both the final total and the number of skipped values.
-					</p>
-					<sage language="octave">
-						<input>
-							total = 0;
-							skipped = 0;
-							for k = 1:20
-								%─── TYPE YOUR CODE HERE ───%
-
-
-								%───────────────────────────%=============
-								total = total + k;
-							end
-							fprintf('total = %i, skipped = %i\n', total, skipped);
-						</input>
-					</sage>
-					<p>
-						When done, evaluate and confirm it prints <pf>total = 147, skipped = 6</pf>.
-					</p>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						total = 0;
-						skipped = 0;
-						for k = 1:20
-							if mod(k, 3) == 0
-								skipped = skipped + 1;
-								continue
-							end
-							total = total + k;
-						end
-						fprintf('total = %i, skipped = %i\n', total, skipped);
-					</program>
-				</solution>
-			</task>
-		</exercise>
-
-		<exercise label="activity-break-control-flow">
-			<title>Using <pf>break</pf> in a Loop</title>
-
-			<task label="activity-break-control-flow-a">
-				<statement>
-					<p>
-						Write a <pf>for</pf>-loop that generates random integers with <pf>randi([1, 10])</pf> for up to 20 trials. Use an <pf>if</pf>-statement with <pf>break</pf> to stop as soon as the value is 7. Print the trial number where 7 was found, or report that it was not found.
-					</p>
-					<sage language="octave">
-						<input>
-							rng(42); % Set seed for reproducibility
-							found = false;
-							%─── TYPE YOUR CODE HERE ───%
-
-
-							%───────────────────────────%
-							if found
-								fprintf('Found 7 on trial %i\n', trial);
-							else
-								fprintf('7 was not found in 20 trials\n');
-							end
-						</input>
-					</sage>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						rng(42);
-						found = false;
-						for trial = 1:20
-							value = randi([1, 10]);
-							if value == 7
-								found = true;
-								break
-							end
-						end
-						if found
-							fprintf('Found 7 on trial %i\n', trial);
-						else
-							fprintf('7 was not found in 20 trials\n');
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="activity-break-control-flow-b">
-				<statement>
-					<p>
-						Rewrite the previous task using a <pf>while</pf>-loop instead of a <pf>for</pf>-loop. Use a counter variable <pf>trial</pf> and stop when either the value is 7 or the counter reaches 15. Report whether the target was found and how many trials were used.
-					</p>
-					<sage language="octave">
-						<input>
-							rng(42); % Set seed for reproducibility
-							found = false;
-							trial = 0;
-							%─── TYPE YOUR CODE HERE ───%
-
-
-							%───────────────────────────%========
-							if found
-								fprintf('Found 7 on trial %i\n', trial);
-							else
-								fprintf('7 not found after %i trials\n', trial);
-							end
-						</input>
-					</sage>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						rng(42);
-						found = false;
-						trial = 0;
-						while trial &lt; 15
-							trial = trial + 1;
-							value = randi([1, 10]);
-							if value == 7
-								found = true;
-								break
-							end
-						end
-						if found
-							fprintf('Found 7 on trial %i\n', trial);
-						else
-							fprintf('7 not found after %i trials\n', trial);
-						end
-					</program>
-				</solution>
-			</task>
-		</exercise>
-
-		<exercise label="activity-return-control-flow">
-			<title>Using <pf>return</pf> in a Function</title>
-
-			<task label="activity-return-control-flow-a">
-				<statement>
-					<p>
-						Write a function named <pf>firstMultipleOf</pf> that takes inputs <pf>d</pf> and <pf>limit</pf> and uses a <pf>for</pf>-loop to find the first multiple of <pf>d</pf> between 1 and <pf>limit</pf>. Use <pf>return</pf> inside the loop to exit the function immediately when the first multiple is found.
-					</p>
-					<p>
-						If no multiple exists in the range, return <pf>-1</pf>.
-					</p>
-					<sage language="octave">
-						<input>
-							%─── TYPE YOUR CODE HERE ───%
-							function result = firstMultipleOf(d, limit)
-								result = -1;
-								% your loop here
-
-							end
-							%───────────────────────────%======
-							fprintf('%i\n', firstMultipleOf(6, 20));   % expected: 6
-							fprintf('%i\n', firstMultipleOf(7, 5));    % expected: -1
-							fprintf('%i\n', firstMultipleOf(13, 100)); % expected: 13
-						</input>
-					</sage>
-				</statement>
-				<solution component="example-solution">
-					<program language="matlab">
-						function result = firstMultipleOf(d, limit)
-							result = -1;
-							for k = 1:limit
-								if mod(k, d) == 0
-									result = k;
-									return
-								end
-							end
-						end
-					</program>
-				</solution>
-			</task>
-
-			<task label="activity-return-control-flow-b">
-				<statement>
-					<p>
-						Write a function named <pf>hasRepeatedDigit</pf> that takes a positive integer <pf>n</pf> and returns <pf>1</pf> if any digit appears more than once, and <pf>0</pf> otherwise. Use <pf>return</pf> to exit early as soon as a repeated digit is found.
-					</p>
-					<p>
-						One approach: use a <pf>while</pf>-loop to extract digits. For each digit, use a second loop or a counter to check whether you have already seen it. If so, <pf>return</pf> immediately.
-					</p>
-
-					<sage language="octave">
-						<input>
-							%─── TYPE YOUR CODE HERE ───%
-
-
-							%───────────────────────────%======
-							fprintf('%i\n', hasRepeatedDigit(1234));   % expected: 0
-							fprintf('%i\n', hasRepeatedDigit(1214));   % expected: 1
-							fprintf('%i\n', hasRepeatedDigit(11));     % expected: 1
-							fprintf('%i\n', hasRepeatedDigit(9));      % expected: 0
-						</input>
-					</sage>
-
-					<hint>
-						<p>
-							You can count occurrences of a specific digit <pf>d</pf> in <pf>n</pf> by looping through all digits of <pf>n</pf> and counting how many times <pf>mod(temp, 10) == d</pf>.
-						</p>
-					</hint>
-				</statement>
-				<solution component="example-solution">
-					<p>
-						One approach: extract each digit, then for each one, count how many times it appears in the full number.
-					</p>
-					<program language="matlab">
-						function result = hasRepeatedDigit(n)
-							temp = n;
-							while temp &gt; 0
-								d = mod(temp, 10);
-								% Count how many times d appears in n
-								count = 0;
-								check = n;
-								while check &gt; 0
-									if mod(check, 10) == d
-										count = count + 1;
-									end
-									check = floor(check / 10);
-								end
-								if count &gt; 1
-									result = 1;
-									return
-								end
-								temp = floor(temp / 10);
-							end
-							result = 0;
-						end
-					</program>
-				</solution>
-			</task>
-		</exercise>
-	</subsection>
-
-	<reading-questions xml:id="continue-break-return-reading-questions">
-		<title>📖 Reading Questions</title>
+	<reading-questions xml:id="additional-loop-control-reading-quiz">
+		<title>📖 Reading Quiz</title>
 
 		<exercise label="concepts-continue-break-return">
 
@@ -707,7 +431,7 @@
 		<exercise label="drill-continue-break-return-trace-output">
 			<title>Trace the Output</title>
 
-			<task label="cqs-for-loop-fresh-output-1">
+			<task label="additional-loop-control-trace-1">
 				<statement>
 					<p>
 						What is printed?
@@ -715,10 +439,10 @@
 					<program language="matlab">
 						total = 0;
 						for k = 1:10
-								total = total + k;
-								if total &gt;= 15
-										break
-								end
+							total = total + k;
+							if total &gt;= 15
+								break
+							end
 						end
 						fprintf('k = %d, total = %d\n', k, total)
 					</program>
@@ -743,7 +467,7 @@
 				</choices>
 			</task>
 
-			<task label="cqs-for-loop-fresh-output-2">
+			<task label="additional-loop-control-trace-2">
 				<statement>
 					<p>
 						What is printed?
@@ -751,10 +475,10 @@
 					<program language="matlab">
 						count = 0;
 						for k = 1:12
-								if mod(k,4) == 0
-										continue
-								end
-								count = count + 1;
+							if mod(k,4) == 0
+								continue
+							end
+							count = count + 1;
 						end
 						fprintf('count = %d\n', count)
 					</program>
@@ -779,7 +503,7 @@
 				</choices>
 			</task>
 
-			<task label="cqs-looping-for-fundamentals-output-3">
+			<task label="additional-loop-control-trace-3">
 				<statement>
 					<p>
 						What is printed?
@@ -872,290 +596,276 @@
 
 	</reading-questions>
 
-	<exercises xml:id="continue-break-return-coding-exercises">
-		<title>💻 Coding Exercises</title>
+	<reading-questions xml:id="additional-loop-control-coding-practice">
+		<title>🧑🏻‍💻 Coding Practice</title>
 
-		<exercise label="coding-exercises-continue-break-return">
-			<title>Flow Control Exercises</title>
+		<exercise label="continue-drills">
+			<title>Using <pf>continue</pf> in a Loop</title>
 
-			<task label="ex-continue-sum-non-divisible">
-				<title>Sum of Non-Divisible Values</title>
-
+			<task label="activity-continue-control-flow-a">
 				<statement>
 					<p>
-						Write a function called <pf>sumNonDivisible</pf> that computes the sum of all integers from 1 to <pf>n</pf> that are <em>not</em> divisible by <pf>d</pf>. Use a <pf>for</pf>-loop with <pf>continue</pf> to skip values that are divisible by <pf>d</pf>.
+						Write a <pf>for</pf>-loop from 1 to 20 that adds the loop index to a running total. Use an <pf>if</pf>-statement with <pf>mod</pf> and <pf>continue</pf> so that values divisible by 3 are skipped.
 					</p>
-
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer upper limit</p></cell>
-						</row>
-						<row>
-							<cell></cell>
-							<cell><p><pf>d</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer divisor to exclude</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>total</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>sum of values from 1 to <pf>n</pf> not divisible by <pf>d</pf></p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="48% 50%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								sumNonDivisible(10, 3)
-								sumNonDivisible(20, 5)
-								sumNonDivisible(15, 1)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								ans = 37
-								ans = 160
-								ans = 0
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="example-solution-dev">
-					<program language="matlab">
-						function total = sumNonDivisible(n, d)
+					<sage language="octave">
+						<input>
 							total = 0;
-							for k = 1:n
-								if mod(k, d) == 0
-									continue
-								end
+							for k = 1:20
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%=============
 								total = total + k;
 							end
+							fprintf('total = %i\n', total);
+						</input>
+					</sage>
+					<p>
+						When done, evaluate and confirm it prints <pf>total = 147</pf>. (The sum of integers 1–20 is 210, and the multiples of 3 from 1–20 sum to 63, so 210 − 63 = 147.)
+					</p>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						total = 0;
+						for k = 1:20
+							if mod(k, 3) == 0
+								continue
+							end
+							total = total + k;
+						end
+						fprintf('total = %i\n', total);
+					</program>
+				</solution>
+			</task>
+
+			<task label="activity-continue-control-flow-b">
+				<statement>
+					<p>
+						Modify your script to also count how many values were skipped. Print both the final total and the number of skipped values.
+					</p>
+					<sage language="octave">
+						<input>
+							total = 0;
+							skipped = 0;
+							for k = 1:20
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%=============
+								total = total + k;
+							end
+							fprintf('total = %i, skipped = %i\n', total, skipped);
+						</input>
+					</sage>
+					<p>
+						When done, evaluate and confirm it prints <pf>total = 147, skipped = 6</pf>.
+					</p>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						total = 0;
+						skipped = 0;
+						for k = 1:20
+							if mod(k, 3) == 0
+								skipped = skipped + 1;
+								continue
+							end
+							total = total + k;
+						end
+						fprintf('total = %i, skipped = %i\n', total, skipped);
+					</program>
+				</solution>
+			</task>
+		</exercise>
+
+		<exercise label="break-drills">
+			<title>Using <pf>break</pf> in a Loop</title>
+
+			<task label="activity-break-control-flow-a">
+				<statement>
+					<p>
+						Write a <pf>for</pf>-loop that generates random integers with <pf>randi([1, 10])</pf> for up to 20 trials. Use an <pf>if</pf>-statement with <pf>break</pf> to stop as soon as the value is 7. Print the trial number where 7 was found, or report that it was not found.
+					</p>
+					<sage language="octave">
+						<input>
+							rng(42); % Set seed for reproducibility
+							found = false;
+							%─── TYPE YOUR CODE HERE ───%
+
+
+							%───────────────────────────%
+							if found
+								fprintf('Found 7 on trial %i\n', trial);
+							else
+								fprintf('7 was not found in 20 trials\n');
+							end
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						rng(42);
+						found = false;
+						for trial = 1:20
+							value = randi([1, 10]);
+							if value == 7
+								found = true;
+								break
+							end
+						end
+						if found
+							fprintf('Found 7 on trial %i\n', trial);
+						else
+							fprintf('7 was not found in 20 trials\n');
 						end
 					</program>
 				</solution>
 			</task>
 
-			<task label="ex-break-first-above-threshold">
-				<title>First Value Above a Threshold</title>
-
+			<task label="activity-break-control-flow-b">
 				<statement>
 					<p>
-						Write a function called <pf>firstAbove</pf> that uses a <pf>for</pf>-loop and <pf>break</pf> to find the smallest positive integer <pf>k</pf> such that <m>k^2 + 3k &gt; \texttt{threshold}</m>. If no such <pf>k</pf> exists in the range 1 to 1000, return <pf>-1</pf>.
+						Rewrite the previous task using a <pf>while</pf>-loop instead of a <pf>for</pf>-loop. Use a counter variable <pf>trial</pf> and stop when either the value is 7 or the counter reaches 15. Report whether the target was found and how many trials were used.
 					</p>
+					<sage language="octave">
+						<input>
+							rng(42); % Set seed for reproducibility
+							found = false;
+							trial = 0;
+							%─── TYPE YOUR CODE HERE ───%
 
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>threshold</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive number to exceed</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>k</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>smallest integer where <m>k^2+3k</m> exceeds threshold, or <pf>-1</pf></p></cell>
-						</row>
-					</tabular>
 
-					<sidebyside widths="48% 50%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								firstAbove(10)
-								firstAbove(100)
-								firstAbove(5000)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								ans = 2
-								ans = 8
-								ans = 69
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="example-solution-dev">
-					<program language="matlab">
-						function k = firstAbove(threshold)
-							k = -1;
-							for i = 1:1000
-								if i^2 + 3*i &gt; threshold
-									k = i;
-									break
-								end
+							%───────────────────────────%========
+							if found
+								fprintf('Found 7 on trial %i\n', trial);
+							else
+								fprintf('7 not found after %i trials\n', trial);
 							end
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						rng(42);
+						found = false;
+						trial = 0;
+						while trial &lt; 15
+							trial = trial + 1;
+							value = randi([1, 10]);
+							if value == 7
+								found = true;
+								break
+							end
+						end
+						if found
+							fprintf('Found 7 on trial %i\n', trial);
+						else
+							fprintf('7 not found after %i trials\n', trial);
 						end
 					</program>
 				</solution>
 			</task>
+		</exercise>
 
-			<task label="ex-return-is-prime">
-				<title>Primality Check with return</title>
+		<exercise label="return-drills">
+			<title>Using <pf>return</pf> in a Function</title>
 
+			<task label="return-drills-a">
 				<statement>
 					<p>
-						Write a function called <pf>checkPrime</pf> that takes a positive integer <pf>n</pf> and returns <pf>1</pf> if <pf>n</pf> is prime and <pf>0</pf> otherwise. Use a <pf>for</pf>-loop that tests potential divisors from 2 up to <pf>floor(sqrt(n))</pf>. If any divisor divides <pf>n</pf> evenly, set the result to <pf>0</pf> and use <pf>return</pf> to exit the function immediately.
+						Write a function named <pf>firstMultipleOf</pf> that takes inputs <pf>d</pf> and <pf>limit</pf> and uses a <pf>for</pf>-loop to find the first multiple of <pf>d</pf> between 1 and <pf>limit</pf>. Use <pf>return</pf> inside the loop to exit the function immediately when the first multiple is found.
 					</p>
-
 					<p>
-						As a special case, <pf>n = 1</pf> is not prime.
+						If no multiple exists in the range, return <pf>-1</pf>.
 					</p>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
+							function result = firstMultipleOf(d, limit)
+								result = -1;
+								% your loop here
 
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>positive integer</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell>Outputs:</cell>
-							<cell><p><pf>result</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p><pf>1</pf> if <pf>n</pf> is prime, <pf>0</pf> otherwise</p></cell>
-						</row>
-					</tabular>
-
-					<sidebyside widths="48% 50%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								checkPrime(2)
-								checkPrime(15)
-								checkPrime(97)
-								checkPrime(1)
-								checkPrime(49)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
-								ans = 1
-								ans = 0
-								ans = 1
-								ans = 0
-								ans = 0
-							</program>
-						</stack>
-					</sidebyside>
-				</statement>
-				<solution component="example-solution-dev">
-					<program language="matlab">
-						function result = checkPrime(n)
-							if n &lt; 2
-								result = 0;
-								return
 							end
-
-							for d = 2:floor(sqrt(n))
-								if mod(n, d) == 0
-									result = 0;
+							%───────────────────────────%======
+							fprintf('%i\n', firstMultipleOf(6, 20));   % expected: 6
+							fprintf('%i\n', firstMultipleOf(7, 5));    % expected: -1
+							fprintf('%i\n', firstMultipleOf(13, 100)); % expected: 13
+						</input>
+					</sage>
+				</statement>
+				<solution component="example-solution">
+					<program language="matlab">
+						function result = firstMultipleOf(d, limit)
+							result = -1;
+							for k = 1:limit
+								if mod(k, d) == 0
+									result = k;
 									return
 								end
 							end
-
-							result = 1;
 						end
 					</program>
 				</solution>
 			</task>
 
-			<task label="ex-continue-count-valid">
-				<title>Count Valid Rolls</title>
-
+			<task label="return-drills-b">
 				<statement>
 					<p>
-						Write a function called <pf>countValidRolls</pf> that simulates rolling a six-sided die <pf>n</pf> times using <pf>randi([1, 6])</pf>. Count only rolls that are <em>not</em> equal to 1 (i.e., skip rolls of 1 using <pf>continue</pf>). Return the number of valid rolls and their sum.
+						Write a function named <pf>hasRepeatedDigit</pf> that takes a positive integer <pf>n</pf> and returns <pf>1</pf> if any digit appears more than once, and <pf>0</pf> otherwise. Use <pf>return</pf> to exit early as soon as a repeated digit is found.
+					</p>
+					<p>
+						One approach: use a <pf>while</pf>-loop to extract digits. For each digit, use a second loop or a counter to check whether you have already seen it. If so, <pf>return</pf> immediately.
 					</p>
 
-					<tabular valign="top" top="minor">
-						<col width="11%" halign="right" />
-						<col width="15%" halign="left" />
-						<col width="28%" halign="center" />
-						<col width="46%" halign="left"/>
-						<row>
-							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of dice rolls</p></cell>
-						</row>
-						<row>
-							<cell>Outputs:</cell>
-							<cell><p><pf>validCount</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>number of rolls that were not 1</p></cell>
-						</row>
-						<row bottom="minor">
-							<cell></cell>
-							<cell><p><pf>validSum</pf></p></cell>
-							<cell><p>(1x1) double</p></cell>
-							<cell><p>sum of the valid rolls</p></cell>
-						</row>
-					</tabular>
+					<sage language="octave">
+						<input>
+							%─── TYPE YOUR CODE HERE ───%
 
-					<sidebyside widths="48% 50%">
-						<stack>
-							<p>Test Cases ⤵︎</p>
-							<program language="matlab">
-								rng(42);
-								[c, s] = countValidRolls(10)
-								rng(42);
-								[c, s] = countValidRolls(100)
-							</program>
-						</stack>
-						<stack>
-							<p>Expected ⤵︎</p>
-							<program language="matlab">
 
-								c = 8    s = 32
+							%───────────────────────────%======
+							fprintf('%i\n', hasRepeatedDigit(1234));   % expected: 0
+							fprintf('%i\n', hasRepeatedDigit(1214));   % expected: 1
+							fprintf('%i\n', hasRepeatedDigit(11));     % expected: 1
+							fprintf('%i\n', hasRepeatedDigit(9));      % expected: 0
+						</input>
+					</sage>
 
-								c = 86   s = 316
-							</program>
-						</stack>
-					</sidebyside>
+					<hint>
+						<p>
+							You can count occurrences of a specific digit <pf>d</pf> in <pf>n</pf> by looping through all digits of <pf>n</pf> and counting how many times <pf>mod(temp, 10) == d</pf>.
+						</p>
+					</hint>
 				</statement>
-				<solution component="example-solution-dev">
+				<solution component="example-solution">
+					<p>
+						One approach: extract each digit, then for each one, count how many times it appears in the full number.
+					</p>
 					<program language="matlab">
-						function [validCount, validSum] = countValidRolls(n)
-							validCount = 0;
-							validSum = 0;
-
-							for k = 1:n
-								roll = randi([1, 6]);
-								if roll == 1
-									continue
+						function result = hasRepeatedDigit(n)
+							temp = n;
+							while temp &gt; 0
+								d = mod(temp, 10);
+								% Count how many times d appears in n
+								count = 0;
+								check = n;
+								while check &gt; 0
+									if mod(check, 10) == d
+										count = count + 1;
+									end
+									check = floor(check / 10);
 								end
-								validCount = validCount + 1;
-								validSum = validSum + roll;
+								if count &gt; 1
+									result = 1;
+									return
+								end
+								temp = floor(temp / 10);
 							end
+							result = 0;
 						end
 					</program>
 				</solution>
 			</task>
-
 		</exercise>
-
-	</exercises>
+	</reading-questions>
 
 </section>
