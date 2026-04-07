@@ -197,7 +197,7 @@
       <statement>
         <p>
           Write a function named <pf>prob3HeadsInARow</pf> that estimates the probability of flipping 3 heads when flipping a coin 3 times.
-          Inside the loop, simulate three coin flips using three separate calls to <pf>randi([0,1])</pf>. Let <pf>1</pf> represents heads and <pf>0</pf> represents tails.
+          Inside the loop, simulate three coin flips using three separate calls to <pf>randi([0,1])</pf>. Let <pf>1</pf> represent heads and <pf>0</pf> represent tails.
         </p>
         <tabular top="minor">
           <col width="12%"/>
@@ -350,7 +350,7 @@
           Use a <pf>for</pf> loop and the <pf>mod</pf> function.
         </p>
         <p>
-          As a comment in your code (below HR statement), explain why it is enough to check divisors up to the square root of the number you are testing. 
+          As a comment in your code (below your function header), explain why it is enough to check divisors up to the square root of the number you are testing. 
           Give an example to support your explanation.
         </p>
         <tabular valign="top" halign="right" top="minor">
@@ -708,7 +708,7 @@
         </p>
         <program language="matlab">
           function approx = approxEofx(x, N)
-            approx = 1;
+            approx = 0;
             factorial = 1; % To keep track of k!
             for k = 0:N
               if k &gt; 0
@@ -946,7 +946,7 @@
             for k = 1:n
               coin = randi([0, 1]);
               if coin == 1
-                currentLen = currentLen + 1; % increase the steak count
+                currentLen = currentLen + 1; % increase the streak count
                 if currentLen > maxLen  % Update max length, if needed
                   maxLen = currentLen;
                 end
@@ -1302,7 +1302,7 @@
               prev1 = current;
             end
 
-            result = prev1;
+            result = prev2;
           end
         </program>
       </solution>
@@ -1434,9 +1434,9 @@
           <stack>
             <p>Expected ⤵︎</p>
             <program language="matlab">
-              b = 4   % 10→5→2.5→...→0.0098
-              b = 11  % 100→75→56.25→...→0.0075
-              b = 4   % 5→1.5→0.45→...→0.0036
+              b = 10  % 10→5→2.5→...→0.0098
+              b = 33  % 100→75→56.25→...→0.0075
+              b = 6   % 5→1.5→0.45→...→0.0036
             </program>
           </stack>
         </sidebyside>
@@ -1647,7 +1647,7 @@
         </p>
 
         <p>
-          For examples, took at the test cases below.
+          For example, look at the test cases below.
         </p>
 
         <p>
@@ -1716,7 +1716,7 @@
         </p>
 
         <p>
-          Use a <pf>while</pf>-loop performs the following for each iteration: 
+          Use a <pf>while</pf>-loop that performs the following for each iteration: 
           <ul>
             <li>Extract the rightmost digit as the remainder from dividing by 10.</li>
             <li>Remove the rightmost digit by dividing by 10 and rounding down.</li>
@@ -1787,7 +1787,7 @@
         </p>
 
         <p>
-          Use a <pf>while</pf>-loop performs the following for each iteration: 
+          Use a <pf>while</pf>-loop that performs the following for each iteration: 
           <ul>
             <li>Extract the rightmost digit as the remainder from dividing by 10.</li>
             <li>Add that digit to a running total sum.</li>
@@ -1854,25 +1854,27 @@
       <statement>
         <p>
           Write a function called <pf>reverseDigits()</pf> that returns the 
-          same number as the input but with its digits are reversed. For 
+          same number as the input but with its digits reversed. For 
           example, if the input is <m>1234</m>, the output should be <m>4321</m>.
         </p>
 
         <p>
-          First, get the number of digits in <pf>n</pf> using your 
-          <xref ref="hw-while-digit-counter" text="custom"><pf>digitCount</pf></xref>
-          function. 
-          Then, as in your 
+          As in your 
           <xref ref="hw-while-digit-sum" text="custom"><pf>digitSum</pf></xref> 
-          function, use a while loop to extract each digit from right to left, multiply it by the appropriate 
-          power of 10 and add it to a running total. 
+          function, use a while loop to extract each digit from right to left 
+          using <pf>mod(n, 10)</pf> and <pf>floor(n / 10)</pf>. To build the 
+          reversed number, multiply the current result by <m>10</m> and add the 
+          extracted digit at each step.
         </p>
 
         <p>
-          For example, if <m>n = 1234</m>, then compute the sum:
-          <me>
-            4 \cdot 10^3 + 3 \cdot 10^2 + 2 \cdot 10^1 + 1 \cdot 10^0 = 4321.
-          </me>
+          For example, if <m>n = 1234</m>, then the loop proceeds as follows:
+          <md>
+            <mrow>\text{step 1:} \quad 0 \cdot 10 + 4 \amp= 4</mrow>
+            <mrow>\text{step 2:} \quad 4 \cdot 10 + 3 \amp= 43</mrow>
+            <mrow>\text{step 3:} \quad 43 \cdot 10 + 2 \amp= 432</mrow>
+            <mrow>\text{step 4:} \quad 432 \cdot 10 + 1 \amp= 4321</mrow>
+          </md>
         </p>
 
         <tabular valign="top" top="minor">
@@ -1915,12 +1917,10 @@
         <program language="matlab">
           function nReverse = reverseDigits(n)
             nReverse = 0;
-            place = 1;
 
             while n &gt; 0
               digit = mod(n, 10);
-              nReverse = nReverse + digit * place;
-              place = place * 10;
+              nReverse = nReverse * 10 + digit;
               n = floor(n / 10);
             end
           end
@@ -2909,7 +2909,7 @@
     <title>Egyptian Fraction Decomposition</title>
     <statement>
       <p>
-        An <term>unit fraction</term> is a fraction with numerator 1. The ancient Egyptians wrote every positive fraction as a sum of distinct unit fractions. For example,
+        A <term>unit fraction</term> is a fraction with numerator 1. The ancient Egyptians wrote every positive fraction as a sum of distinct unit fractions. For example,
         <me>
           \frac{5}{7} = \frac{1}{2} + \frac{1}{5} + \frac{1}{70}.
         </me>
@@ -3295,9 +3295,9 @@
           <stack>
             <p>Expected ⤵︎</p>
             <program language="matlab">
-              ans = 2
-              ans = 8
-              ans = 69
+              ans = 3
+              ans = 9
+              ans = 70
             </program>
           </stack>
         </sidebyside>
@@ -3312,81 +3312,6 @@
                 break
               end
             end
-          end
-        </program>
-      </solution>
-    </task>
-
-    <task label="ex-return-is-prime">
-      <title>Primality Check with return</title>
-
-      <statement>
-        <p>
-          Write a function called <pf>checkPrime</pf> that takes a positive integer <pf>n</pf> and returns <pf>1</pf> if <pf>n</pf> is prime and <pf>0</pf> otherwise. Use a <pf>for</pf>-loop that tests potential divisors from 2 up to <pf>floor(sqrt(n))</pf>. If any divisor divides <pf>n</pf> evenly, set the result to <pf>0</pf> and use <pf>return</pf> to exit the function immediately.
-        </p>
-
-        <p>
-          As a special case, <pf>n = 1</pf> is not prime.
-        </p>
-
-        <tabular valign="top" top="minor">
-          <col width="11%" halign="right" />
-          <col width="15%" halign="left" />
-          <col width="28%" halign="center" />
-          <col width="46%" halign="left"/>
-          <row>
-            <cell>Inputs:</cell>
-            <cell><p><pf>n</pf></p></cell>
-            <cell><p>(1x1) double</p></cell>
-            <cell><p>positive integer</p></cell>
-          </row>
-          <row bottom="minor">
-            <cell>Outputs:</cell>
-            <cell><p><pf>result</pf></p></cell>
-            <cell><p>(1x1) double</p></cell>
-            <cell><p><pf>1</pf> if <pf>n</pf> is prime, <pf>0</pf> otherwise</p></cell>
-          </row>
-        </tabular>
-
-        <sidebyside widths="48% 50%">
-          <stack>
-            <p>Test Cases ⤵︎</p>
-            <program language="matlab">
-              checkPrime(2)
-              checkPrime(15)
-              checkPrime(97)
-              checkPrime(1)
-              checkPrime(49)
-            </program>
-          </stack>
-          <stack>
-            <p>Expected ⤵︎</p>
-            <program language="matlab">
-              ans = 1
-              ans = 0
-              ans = 1
-              ans = 0
-              ans = 0
-            </program>
-          </stack>
-        </sidebyside>
-      </statement>
-      <solution component="example-solution-dev">
-        <program language="matlab">
-          function result = checkPrime(n)
-            if n &lt; 2
-              result = 0;
-              return
-            end
-
-            for d = 2:floor(sqrt(n))
-              if mod(n, d) == 0
-                result = 0;
-                return
-              end
-            end
-
-            result = 1;
           end
         </program>
       </solution>
