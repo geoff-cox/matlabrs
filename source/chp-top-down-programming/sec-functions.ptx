@@ -6,7 +6,7 @@
 		<title>Writing Simple Functions</title>
 
 		<p>
-			Scripts execute statements from top to bottom by default, and functions bundle a sequence of tasks you can reuse (see xref ref="script-function-diffs" for a comparison). However, most programs need to make decisions and repeat actions based on conditions. This section discusses the different flow patterns of code and the ways you can control them.
+			Scripts execute statements from top to bottom, and functions bundle a sequence of tasks you can reuse. This section focuses on how to write simple MATLAB functions and how they differ from scripts.
 		</p>
 
 		<p>
@@ -481,69 +481,6 @@
 					<feedback><p>Functions use variables heavily — both for inputs and intermediate calculations.</p></feedback>
 				</choice>
 			</choices>
-		</exercise>
-
-		<exercise label="rq-functions-file-name-match">
-			<statement correct="yes">
-				<p>If a function is named <pf>coin_total</pf>, then its file should be saved as <pf>coin_total.m</pf>.</p>
-			</statement>
-			<feedback>
-				<p>Matching the file name to the function name prevents "function not found" errors.</p>
-			</feedback>
-		</exercise>
-
-		<exercise label="rq-functions-private-workspace">
-			<statement correct="no">
-				<p>Variables created inside a function automatically appear in the Workspace after the function finishes.</p>
-			</statement>
-			<feedback>
-				<p>A function uses its own private workspace, so its internal variables do not become Workspace variables.</p>
-			</feedback>
-		</exercise>
-
-		<exercise label="rq-functions-call-three-inputs">
-			<statement>
-				<p>Which of the following is a valid function call with three inputs?</p>
-			</statement>
-			<choices randomize="yes">
-				<choice><statement><p><pf>f = 2, 3, 4</pf></p></statement><feedback><p>This is an assignment, not a function call.</p></feedback></choice>
-				<choice><statement><p><pf>f(2; 3; 4)</pf></p></statement><feedback><p>Semicolons are not used to separate function arguments.</p></feedback></choice>
-				<choice correct="yes"><statement><p><pf>f(2, 3, 4)</pf></p></statement><feedback><p>Correct. Inputs are listed inside parentheses separated by commas.</p></feedback></choice>
-				<choice><statement><p><pf>f = (2, 3, 4)</pf></p></statement><feedback><p>This is not valid MATLAB syntax.</p></feedback></choice>
-			</choices>
-		</exercise>
-
-		<exercise label="rq-functions-two-output-syntax">
-			<statement>
-				<p>To store two outputs from a function, you should write:</p>
-			</statement>
-			<choices randomize="yes">
-				<choice><statement><p><pf>a, b = f(x)</pf></p></statement><feedback><p>This is not valid MATLAB syntax.</p></feedback></choice>
-				<choice><statement><p><pf>(a, b) = f(x)</pf></p></statement><feedback><p>Parentheses are not used on the left side for capturing outputs.</p></feedback></choice>
-				<choice correct="yes"><statement><p><pf>[a, b] = f(x)</pf></p></statement><feedback><p>Correct. Square brackets on the left side capture multiple outputs.</p></feedback></choice>
-				<choice><statement><p><pf>a = f(x), b</pf></p></statement><feedback><p>This does not capture both outputs correctly.</p></feedback></choice>
-			</choices>
-		</exercise>
-
-		<exercise label="rq-functions-header-output-symbol">
-			<statement>
-				<p>In the header <pf>function y = f(x)</pf>, which symbol represents the output?</p>
-			</statement>
-			<choices randomize="yes">
-				<choice><statement><p><pf>f</pf></p></statement><feedback><p><pf>f</pf> is the function name.</p></feedback></choice>
-				<choice><statement><p><pf>x</pf></p></statement><feedback><p><pf>x</pf> is the input.</p></feedback></choice>
-				<choice correct="yes"><statement><p><pf>y</pf></p></statement><feedback><p>Correct. The output variable appears between <pf>function</pf> and the <pf>=</pf>.</p></feedback></choice>
-				<choice><statement><p><pf>function</pf></p></statement><feedback><p><pf>function</pf> is the keyword that begins every function definition.</p></feedback></choice>
-			</choices>
-		</exercise>
-
-		<exercise label="rq-functions-calling-from-script">
-			<statement correct="yes">
-				<p>A script can call a function you wrote (for example, <pf>coin_total</pf>), as long as the function file is available in the Current Folder or on the path.</p>
-			</statement>
-			<feedback>
-				<p>This is one of the main benefits of functions: they simplify scripts by packaging common computations.</p>
-			</feedback>
 		</exercise>
 
 		<exercise label="rq-functions-tilde-ignore">
