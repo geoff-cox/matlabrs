@@ -571,21 +571,6 @@ end
 
 		</exercise>
 
-        <exercise label="rq-switch-end">
-            <statement><p>What keyword closes a switch block?</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct.</p></feedback></choice>
-                <choice><statement><p><pf>endswitch</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>.</p></feedback></choice>
-                <choice><statement><p><pf>break</pf></p></statement><feedback><p><pf>break</pf> exits loops.</p></feedback></choice>
-                <choice><statement><p><pf>close</pf></p></statement><feedback><p><pf>close</pf> is for figures.</p></feedback></choice>
-            </choices>
-        </exercise>
-
-        <exercise label="rq-switch-otherwise-optional">
-            <statement correct="yes"><p>The <pf>otherwise</pf> clause in a switch statement is optional.</p></statement>
-            <feedback><p>True. Without it, no code runs when no case matches.</p></feedback>
-        </exercise>
-
         <exercise label="rq-switch-trace-1">
             <statement><p>What does this code print?</p>
             <program language="matlab">n = 2;
@@ -628,21 +613,6 @@ end</program></statement>
                 <choice><statement><p><pf>case 'cat', 'dog'</pf></p></statement><feedback><p>Values must be wrapped in <pf>{}</pf>.</p></feedback></choice>
                 <choice><statement><p><pf>case ('cat', 'dog')</pf></p></statement><feedback><p>Parentheses do not create a match list; use <pf>{}</pf>.</p></feedback></choice>
             </choices>
-        </exercise>
-
-        <exercise label="rq-switch-vs-if">
-            <statement><p>When is a switch statement preferable to an if-elseif chain?</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p>When selecting among many exact values of a single variable.</p></statement><feedback><p>Correct. Switch is cleaner when you have many equality checks on one variable.</p></feedback></choice>
-                <choice><statement><p>When checking ranges like <pf>x &gt; 10</pf>.</p></statement><feedback><p>Switch only checks equality, not ranges. Use if for range conditions.</p></feedback></choice>
-                <choice><statement><p>When you need nested conditions.</p></statement><feedback><p>Nested conditions are better handled with if statements.</p></feedback></choice>
-                <choice><statement><p>Switch is always faster than if-elseif.</p></statement><feedback><p>Performance is not the reason to prefer switch over if.</p></feedback></choice>
-            </choices>
-        </exercise>
-
-        <exercise label="rq-switch-fall-through">
-            <statement correct="no"><p>In MATLAB, execution falls through from one matching case to the next case automatically.</p></statement>
-            <feedback><p>False. Only the first matching case executes; there is no fall-through.</p></feedback>
         </exercise>
 
         <exercise label="rq-switch-fill">
@@ -966,7 +936,6 @@ end
                 </program>
             </solution>
         </exercise>
-
 
 	</reading-questions>
 

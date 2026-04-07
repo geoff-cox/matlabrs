@@ -44,7 +44,7 @@
 						<li>Set <pf>age = 16</pf> and run it again.</li>
 					</ol>
 				</p>
-					
+
 				<sage language="octave">
 					<input>
 						age = 23;
@@ -256,7 +256,7 @@
 				<p>
 					Adding an <pf>else</pf> block to the
 					<xref ref="ex-if-simple" text="custom">previous example</xref>
-					allows the bouncer to respond to paterons of any age.
+					allows the bouncer to respond to patrons of any age.
 					<ol>
 						<li>Run the code below, as is, to see the displayed message. </li>
 						<li>Set <pf>age = 16</pf> and run it again.</li>
@@ -373,7 +373,7 @@
 		<title>If-ElseIf-Else Statement</title>
 
 		<p>
-			Sometime, you want to run one of several different blocks of code based on multiple conditions.
+			Sometimes, you want to run one of several different blocks of code based on multiple conditions.
 			This requires the addition of one or more <pf>elseif</pf> blocks, depending on how many 
 			conditions you need to check. 
 		</p>
@@ -873,11 +873,6 @@
 					</choices>
 			</task>
 
-			<task label="chk-if-elseif-count">
-					<statement correct="no"><p>A MATLAB if statement can have at most one <pf>elseif</pf> clause.</p></statement>
-					<feedback><p>False. You may have as many <pf>elseif</pf> clauses as needed.</p></feedback>
-			</task>
-
 			<task label="chk-if-branches">
 					<statement><p>In an if/elseif/else chain, how many branches execute when the first condition is true?</p></statement>
 					<choices>
@@ -897,21 +892,6 @@
 							<choice><statement><p>A negative number.</p></statement><feedback><p>Any nonzero number — positive or negative — is true in MATLAB.</p></feedback></choice>
 					</choices>
 			</task>
-
-        <task label="rq-if-structure-end">
-            <statement><p>Which keyword closes an <pf>if</pf> block in MATLAB?</p></statement>
-            <choices>
-                <choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct.</p></feedback></choice>
-                <choice><statement><p><pf>endif</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>, not <pf>endif</pf>.</p></feedback></choice>
-                <choice><statement><p><pf>fi</pf></p></statement><feedback><p>That is a bash shell keyword, not MATLAB.</p></feedback></choice>
-                <choice><statement><p><pf>close</pf></p></statement><feedback><p><pf>close</pf> closes figure windows in MATLAB.</p></feedback></choice>
-            </choices>
-        </task>
-
-        <task label="rq-if-else-optional">
-            <statement correct="yes"><p>The <pf>else</pf> clause in a MATLAB <pf>if</pf> statement is optional.</p></statement>
-            <feedback><p>True. An if statement may consist of just <pf>if ... end</pf>.</p></feedback>
-        </task>
 
         <task label="rq-if-trace-1">
             <statement><p>What is printed by the following code?</p>
@@ -1002,7 +982,7 @@ end</program></statement>
 				These coding activities focus on writing short MATLAB functions that use <pf>if</pf> statements.
 			</p>
 		</introduction>
-		
+
 		<exercise xml:id="if-statement-drills">
 			<title><pf>if</pf>-statement Drills</title>
 
@@ -1051,7 +1031,6 @@ end</program></statement>
 					<sage language="octave">
 						<input>
 							%─── TYPE YOUR CODE HERE ───%
-							
 
 							%───────────────────────────%
 							fprintf('for x = %d, we set y to %d\n', x, y);
@@ -1107,7 +1086,6 @@ end</program></statement>
 							n = randi([0, 20]);
 							fprintf('Random number n = %d\n', n);
 							%─── TYPE YOUR CODE HERE ───%
-							
 
 							%───────────────────────────%
 							fprintf('Updated n = %d\n', n);
@@ -1228,7 +1206,7 @@ end</program></statement>
 				 <solution component="example-solution">
 					<program language="matlab">
 						function [message, isFreezing] = freeze_alert(tempC, tempWarn)
-							
+
 							if tempC &lt;= 0
 								message = 'Freeze warning';
 								isFreezing = true;
@@ -1611,7 +1589,6 @@ end
 							<input>
 								x = randi([-5, 15]);
 								%─── TYPE YOUR CODE HERE ───%
-								
 
 								%───────────────────────────%
 								fprintf('for x = %d, we set w to %d\n', x, w);
@@ -1621,7 +1598,7 @@ end
 					</statement>
 
 					<solution component="example-solution">
-						
+
 						<program language="matlab">
 							x = randi([-5, 15]);
 
