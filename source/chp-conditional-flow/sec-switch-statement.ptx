@@ -194,6 +194,123 @@
 			</task>
 
 		</exercise>
+        <exercise label="chk-switch-end">
+            <statement><p>Every <pf>switch</pf> block in MATLAB must be closed with which keyword?</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct. All MATLAB control structures close with <pf>end</pf>.</p></feedback></choice>
+                <choice><statement><p><pf>endswitch</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>, not <pf>endswitch</pf>.</p></feedback></choice>
+                <choice><statement><p><pf>break</pf></p></statement><feedback><p><pf>break</pf> exits loops, not switch blocks.</p></feedback></choice>
+                <choice><statement><p><pf>return</pf></p></statement><feedback><p><pf>return</pf> exits a function, not a switch block.</p></feedback></choice>
+            </choices>
+        </exercise>
+
+        <exercise label="chk-switch-otherwise">
+            <statement correct="no"><p>The <pf>otherwise</pf> clause in a switch statement is required.</p></statement>
+            <feedback><p>False. <pf>otherwise</pf> is optional. If omitted and no case matches, nothing executes.</p></feedback>
+        </exercise>
+
+        <exercise label="chk-switch-fallthrough">
+            <statement correct="no"><p>In MATLAB, if one case matches, execution continues into the next case automatically.</p></statement>
+            <feedback><p>False. MATLAB switch statements do not fall through. Only the first matching case executes.</p></feedback>
+        </exercise>
+
+        <exercise label="chk-switch-multi">
+            <statement><p>To match a switch expression against either 2 or 4, you would write:</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p><pf>case {2, 4}</pf></p></statement><feedback><p>Correct. A cell array groups multiple match values in one case.</p></feedback></choice>
+                <choice><statement><p><pf>case 2 || 4</pf></p></statement><feedback><p>Logical OR is not used inside a case statement.</p></feedback></choice>
+                <choice><statement><p><pf>case 2 or 4</pf></p></statement><feedback><p><pf>or</pf> is not valid syntax inside a case clause.</p></feedback></choice>
+                <choice><statement><p><pf>case 2, 4</pf></p></statement><feedback><p>The values must be wrapped in a cell array <pf>{}</pf>.</p></feedback></choice>
+            </choices>
+        </exercise>
+
+        <example xml:id="ex-switch-day">
+            <title>Day Name from Number</title>
+            <statement>
+                <p>Display the name of the day corresponding to a day number.</p>
+                <program language="matlab">
+day = 3;
+switch day
+    case 1
+        disp('Monday')
+    case 2
+        disp('Tuesday')
+    case 3
+        disp('Wednesday')
+    case 4
+        disp('Thursday')
+    case 5
+        disp('Friday')
+    otherwise
+        disp('Weekend')
+end
+                </program>
+                <p>Output: <c>Wednesday</c></p>
+            </statement>
+        </example>
+
+        <example xml:id="ex-switch-string">
+            <title>Switch on a String</title>
+            <statement>
+                <p>Switch statements work on strings as well as numbers.</p>
+                <program language="matlab">
+color = 'red';
+switch color
+    case 'red'
+        disp('Stop')
+    case 'yellow'
+        disp('Caution')
+    case 'green'
+        disp('Go')
+    otherwise
+        disp('Unknown color')
+end
+                </program>
+                <p>Output: <c>Stop</c></p>
+            </statement>
+        </example>
+
+        <example xml:id="ex-switch-cell">
+            <title>Grouping Cases with a Cell Array</title>
+            <statement>
+                <p>Classify a month number as belonging to a season.</p>
+                <program language="matlab">
+month = 4;
+switch month
+    case {12, 1, 2}
+        disp('Winter')
+    case {3, 4, 5}
+        disp('Spring')
+    case {6, 7, 8}
+        disp('Summer')
+    case {9, 10, 11}
+        disp('Fall')
+end
+                </program>
+                <p>Output: <c>Spring</c></p>
+            </statement>
+        </example>
+
+        <exercise label="ex-switch-practice-1">
+            <statement><p>What does the following code print when <pf>x = 7</pf>?</p>
+            <program language="matlab">
+x = 7;
+switch x
+    case {1, 3, 5, 7, 9}
+        disp('odd')
+    case {2, 4, 6, 8, 10}
+        disp('even')
+    otherwise
+        disp('out of range')
+end
+            </program></statement>
+            <choices>
+                <choice correct="yes"><statement><p><c>odd</c></p></statement><feedback><p>Correct. 7 is in the first case list.</p></feedback></choice>
+                <choice><statement><p><c>even</c></p></statement><feedback><p>7 is not in the even list.</p></feedback></choice>
+                <choice><statement><p><c>out of range</c></p></statement><feedback><p>7 matches the first case, so otherwise does not run.</p></feedback></choice>
+                <choice><statement><p>Nothing is printed.</p></statement><feedback><p>The first case matches, so it executes.</p></feedback></choice>
+            </choices>
+        </exercise>
 
 	</subsection>
 
@@ -453,6 +570,103 @@
 			</task>
 
 		</exercise>
+
+        <exercise label="rq-switch-end">
+            <statement><p>What keyword closes a switch block?</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct.</p></feedback></choice>
+                <choice><statement><p><pf>endswitch</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>.</p></feedback></choice>
+                <choice><statement><p><pf>break</pf></p></statement><feedback><p><pf>break</pf> exits loops.</p></feedback></choice>
+                <choice><statement><p><pf>close</pf></p></statement><feedback><p><pf>close</pf> is for figures.</p></feedback></choice>
+            </choices>
+        </exercise>
+
+        <exercise label="rq-switch-otherwise-optional">
+            <statement correct="yes"><p>The <pf>otherwise</pf> clause in a switch statement is optional.</p></statement>
+            <feedback><p>True. Without it, no code runs when no case matches.</p></feedback>
+        </exercise>
+
+        <exercise label="rq-switch-trace-1">
+            <statement><p>What does this code print?</p>
+            <program language="matlab">n = 2;
+switch n
+    case 1
+        disp('one')
+    case 2
+        disp('two')
+    case 3
+        disp('three')
+end</program></statement>
+            <choices>
+                <choice correct="yes"><statement><p><c>two</c></p></statement><feedback><p>Correct. <pf>n = 2</pf> matches the second case.</p></feedback></choice>
+                <choice><statement><p><c>one</c></p></statement><feedback><p><pf>n</pf> is 2, not 1.</p></feedback></choice>
+                <choice><statement><p><c>two</c> and <c>three</c></p></statement><feedback><p>No fall-through; only the matching case runs.</p></feedback></choice>
+                <choice><statement><p>Nothing is printed.</p></statement><feedback><p>Case 2 matches.</p></feedback></choice>
+            </choices>
+        </exercise>
+
+        <exercise label="rq-switch-no-match">
+            <statement correct="no"><p>If no case matches and there is no <pf>otherwise</pf>, MATLAB throws an error.</p></statement>
+            <feedback><p>False. The switch block is simply skipped with no error.</p></feedback>
+        </exercise>
+
+        <exercise label="rq-switch-string">
+            <statement><p>Which data types can be used as the switch expression?</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p>Numbers and strings.</p></statement><feedback><p>Correct. MATLAB switch works with both.</p></feedback></choice>
+                <choice><statement><p>Numbers only.</p></statement><feedback><p>Strings are also valid switch expressions.</p></feedback></choice>
+                <choice><statement><p>Strings only.</p></statement><feedback><p>Numbers are also valid.</p></feedback></choice>
+                <choice><statement><p>Logical values only.</p></statement><feedback><p>Logical values work (as 0 or 1), but numbers and strings are the primary types.</p></feedback></choice>
+            </choices>
+        </exercise>
+
+        <exercise label="rq-switch-cell-array">
+            <statement><p>To match a switch expression against either <pf>'cat'</pf> or <pf>'dog'</pf>, you write:</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p><pf>case {'cat', 'dog'}</pf></p></statement><feedback><p>Correct. A cell array groups multiple values in one case.</p></feedback></choice>
+                <choice><statement><p><pf>case 'cat' || 'dog'</pf></p></statement><feedback><p>Logical OR is not used in case clauses.</p></feedback></choice>
+                <choice><statement><p><pf>case 'cat', 'dog'</pf></p></statement><feedback><p>Values must be wrapped in <pf>{}</pf>.</p></feedback></choice>
+                <choice><statement><p><pf>case ('cat', 'dog')</pf></p></statement><feedback><p>Parentheses do not create a match list; use <pf>{}</pf>.</p></feedback></choice>
+            </choices>
+        </exercise>
+
+        <exercise label="rq-switch-vs-if">
+            <statement><p>When is a switch statement preferable to an if-elseif chain?</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p>When selecting among many exact values of a single variable.</p></statement><feedback><p>Correct. Switch is cleaner when you have many equality checks on one variable.</p></feedback></choice>
+                <choice><statement><p>When checking ranges like <pf>x &gt; 10</pf>.</p></statement><feedback><p>Switch only checks equality, not ranges. Use if for range conditions.</p></feedback></choice>
+                <choice><statement><p>When you need nested conditions.</p></statement><feedback><p>Nested conditions are better handled with if statements.</p></feedback></choice>
+                <choice><statement><p>Switch is always faster than if-elseif.</p></statement><feedback><p>Performance is not the reason to prefer switch over if.</p></feedback></choice>
+            </choices>
+        </exercise>
+
+        <exercise label="rq-switch-fall-through">
+            <statement correct="no"><p>In MATLAB, execution falls through from one matching case to the next case automatically.</p></statement>
+            <feedback><p>False. Only the first matching case executes; there is no fall-through.</p></feedback>
+        </exercise>
+
+        <exercise label="rq-switch-fill">
+            <statement><p>To handle all unmatched values in a switch, use the keyword <fillin answer="otherwise" mode="string" width="12"/>.</p></statement>
+        </exercise>
+
+        <exercise label="rq-switch-trace-2">
+            <statement><p>What is printed when <pf>x = 15</pf>?</p>
+            <program language="matlab">x = 15;
+switch x
+    case {1, 3, 5}
+        disp('small odd')
+    case {2, 4, 6}
+        disp('small even')
+    otherwise
+        disp('large')
+end</program></statement>
+            <choices>
+                <choice correct="yes"><statement><p><c>large</c></p></statement><feedback><p>Correct. 15 does not match either case list, so otherwise runs.</p></feedback></choice>
+                <choice><statement><p><c>small odd</c></p></statement><feedback><p>15 is not in <pf>{1, 3, 5}</pf>.</p></feedback></choice>
+                <choice><statement><p><c>small even</c></p></statement><feedback><p>15 is not in <pf>{2, 4, 6}</pf>.</p></feedback></choice>
+                <choice><statement><p>Nothing is printed.</p></statement><feedback><p>The <pf>otherwise</pf> clause catches unmatched values.</p></feedback></choice>
+            </choices>
+        </exercise>
 	</reading-questions>
 
 	<reading-questions xml:id="switch-statement-coding-practice">
@@ -658,6 +872,102 @@
 			</task>
 
 		</exercise>
+
+        <exercise label="pa-switch-season">
+            <title>Season Classifier</title>
+            <statement>
+                <p>Write a switch statement that prints the season for <pf>month = 7</pf> (1=Jan, ..., 12=Dec). Group months into seasons using cell arrays. Confirm it prints <c>Summer</c>.</p>
+                <sage language="octave">
+                    <input>
+month = 7;
+% ==== Type your code here ====
+
+                    </input>
+                </sage>
+            </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+month = 7;
+switch month
+    case {12, 1, 2}
+        disp('Winter')
+    case {3, 4, 5}
+        disp('Spring')
+    case {6, 7, 8}
+        disp('Summer')
+    case {9, 10, 11}
+        disp('Fall')
+    otherwise
+        disp('Invalid month')
+end
+                </program>
+            </solution>
+        </exercise>
+
+        <exercise label="pa-switch-grade">
+            <title>Grade to GPA Points</title>
+            <statement>
+                <p>Write a switch statement that assigns GPA points for a letter grade: A→4, B→3, C→2, D→1, F→0. Use <pf>grade = 'B'</pf>. Print the points.</p>
+                <sage language="octave">
+                    <input>
+grade = 'B';
+% ==== Type your code here ====
+
+                    </input>
+                </sage>
+            </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+grade = 'B';
+switch grade
+    case 'A'
+        points = 4;
+    case 'B'
+        points = 3;
+    case 'C'
+        points = 2;
+    case 'D'
+        points = 1;
+    case 'F'
+        points = 0;
+    otherwise
+        points = -1;
+end
+fprintf('GPA points: %d\n', points)
+                </program>
+            </solution>
+        </exercise>
+
+        <exercise label="pa-switch-traffic">
+            <title>Traffic Light</title>
+            <statement>
+                <p>Write a switch statement for <pf>light = 'yellow'</pf> that prints <c>Slow down</c> for yellow, <c>Stop</c> for red, <c>Go</c> for green, and <c>Unknown</c> otherwise.</p>
+                <sage language="octave">
+                    <input>
+light = 'yellow';
+% ==== Type your code here ====
+
+                    </input>
+                </sage>
+            </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+light = 'yellow';
+switch light
+    case 'red'
+        disp('Stop')
+    case 'yellow'
+        disp('Slow down')
+    case 'green'
+        disp('Go')
+    otherwise
+        disp('Unknown')
+end
+                </program>
+            </solution>
+        </exercise>
+
+
 	</reading-questions>
 
 </section>

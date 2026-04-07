@@ -2,7 +2,7 @@
 	<title>If Statements</title>
 
 	<subsection xml:id="subsec-if-statement">
-		<title>The if-Statement</title>
+		<title>If Statement</title>
 
 		<p>
 			The simplest if-statement tests a single 
@@ -11,6 +11,7 @@
 		</p>
 
 		<assemblage xml:id="if-statement">
+			<title>If Statement Syntax</title>
 
 			<p>
 				The basic structure of an if-statement is:
@@ -33,28 +34,35 @@
 
 		</assemblage>
 
-		<p>
-			To see how this works, evaluate the code block, below. 
-			Then change the value of <pf>age</pf> to <pf>16</pf> and 
-			run it again.
-		</p>
+		<example xml:id="ex-if-simple">
+			<title>ID, Please</title>
+			<statement>
+				<p>
+					This script checks the age of a person entering a bar.
+					<ol>
+						<li>Run the code below, as is, to see the displayed message. </li>
+						<li>Set <pf>age = 16</pf> and run it again.</li>
+					</ol>
+				</p>
+					
+				<sage language="octave">
+					<input>
+						age = 23;
 
-		<sage language="octave">
-			<input>
-				age = 23;
+						if age &gt;= 21
+						  fprintf("Bouncer: You may enter the bar.\n");
+						end
+					</input>
+				</sage>
 
-				if age &gt;= 21
-					fprintf("Bouncer: You may enter the bar.\n");
-				end
-			</input>
-		</sage>
-
-		<p>
-			When <pf>age</pf> is <pf>23</pf>, the logical expression <pf>age &gt;= 21</pf> 
-			is true, so MATLAB executes the <pf>fprintf</pf> line and prints the message. 
-			When running the same code with <pf>age</pf> set to <pf>16</pf>, nothing is 
-			printed since the logical expression <pf>age &gt;= 21</pf> is false.
-		</p>
+				<p>
+					Notice that when <pf>age = 23</pf>, the logical expression <pf>age &gt;= 21</pf> 
+					is true, so MATLAB executes the <pf>fprintf</pf> message. 
+					When <pf>age = 16</pf>, the logical expression <pf>age &gt;= 21</pf> 
+					is false, so MATLAB skips the <pf>fprintf</pf> message entirely. 
+				</p>
+			</statement>
+		</example>
 
 		<exercise label="ckpt-the-if-statement">
 			<title>Understanding the <pf>if</pf>-Statement</title>
@@ -207,7 +215,7 @@
 	</subsection>
 
 	<subsection xml:id="subsec-if-else-statement">
-		<title>The if-else-Statement</title>
+		<title>If-Else Statement</title>
 
 		<p>
 			The previous example runs one code block when the condition is true, but 
@@ -216,7 +224,7 @@
 		</p>
 
 		<assemblage xml:id="if-else-statement">
-			<title>The if-else Statement</title>
+			<title>If-Else Statement Syntax</title>
 
 			<p>
 				The structure of an <pf>if-else</pf> statement is:
@@ -242,22 +250,31 @@
 
 		</assemblage>
 
-		<p>
-			Returning to the previous example, we can add an <pf>else</pf> block to handle the case when the person is under 21.
-			Evaluate the code cell as is, then change <pf>age</pf> to <pf>16</pf> and run it again. Notice which message is printed each time.
-		</p>
+		<example xml:id="ex-if-else">
+			<title>ID, Please continued..</title>
+			<statement>
+				<p>
+					Adding an <pf>else</pf> block to the
+					<xref ref="ex-if-simple" text="custom">previous example</xref>
+					allows the bouncer to respond to paterons of any age.
+					<ol>
+						<li>Run the code below, as is, to see the displayed message. </li>
+						<li>Set <pf>age = 16</pf> and run it again.</li>
+					</ol>
+				</p>
+				<sage language="octave">
+					<input>
+						age = 23;
 
-		<sage language="octave">
-			<input>
-				age = 23;
-
-				if age &gt;= 21
-					fprintf("Bouncer: You may enter the bar.\n");
-				else
-					fprintf("Bouncer: Move along kid.\n");
-				end
-			</input>
-		</sage>
+						if age &gt;= 21
+							fprintf("Bouncer: You may enter the bar.\n");
+						else
+							fprintf("Bouncer: You are not getting in.\n");
+						end
+					</input>
+				</sage>
+			</statement>
+		</example>
 
 		<exercise label="ckpt-if-else-statement">
 			<title>Understanding the <pf>if</pf>-<pf>else</pf> Statement</title>
@@ -353,7 +370,7 @@
 	</subsection>
 
 	<subsection xml:id="subsec-if-elseif-else-statement">
-		<title>The if-elseif-else Statement</title>
+		<title>If-ElseIf-Else Statement</title>
 
 		<p>
 			Sometime, you want to run one of several different blocks of code based on multiple conditions.
@@ -362,7 +379,7 @@
 		</p>
 
 		<assemblage xml:id="if-elseif-else-statement-structure">
-			<title>The if-elseif-else Statement Structure</title>
+			<title>If-ElseIf-Else Statement Syntax</title>
 
 			<p>
 				The structure of an <pf>if-elseif-else</pf> statement is:
@@ -394,27 +411,26 @@
 
 		</assemblage>
 
-		<p>
-			Evaluate the code below with different <pf>x</pf> and <pf>y</pf> values such as
-			<pf>x = 0; y = 4;</pf>, <pf>x = 0; y = 3;</pf>, and <pf>x = 3; y = 3;</pf>.
-			Notice which block executes each time.
-		</p>
-
-		<sage language="octave">
-			<input>
-				x = 3;
-				y = 2;
-
-				if y ~= 3
-					z = 4;
-				elseif x &lt; y
-					z = 3;
-				else
-					z = 0;
-				end
-				fprintf("The value of z is: %d\n", z);
-			</input>
-		</sage>
+		<example xml:id="ex-if-elseif">
+			<title>If-ElseIf-Else Statement</title>
+			<statement>
+				<p>Assign a letter grade based on a numeric score.</p>
+				<program language="matlab">
+					score = 82;
+					if score >= 90
+					grade = 'A';
+					elseif score >= 80
+					grade = 'B';
+					elseif score >= 70
+					grade = 'C';
+					else
+					grade = 'F';
+					end
+					fprintf('Grade: %s\n', grade)
+				</program>
+				<p>Since 82 falls in the 80–89 range, the output is: <c>Grade: B</c></p>
+			</statement>
+		</example>
 
 		<exercise label="ckpt-if-elseif-else-statement">
 			<title>Understanding the if-elseif-else Statement</title>
@@ -569,7 +585,6 @@
 
 	<reading-questions xml:id="if-statement-quiz">
 		<title>📖 Reading Quiz</title>
-
 		<exercise label="concepts-if-statement">
 			<title>Answer the Following Questions Related to If-Statements</title>
 
@@ -847,6 +862,134 @@
 					</choice>
 				</choices>
 			</task>
+
+			<task label="chk-if-end">
+					<statement><p>Every MATLAB <pf>if</pf> block must be closed with which keyword?</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct. <pf>end</pf> closes the if block.</p></feedback></choice>
+							<choice><statement><p><pf>endif</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>, not <pf>endif</pf>.</p></feedback></choice>
+							<choice><statement><p><pf>stop</pf></p></statement><feedback><p><pf>stop</pf> is not a MATLAB keyword for closing blocks.</p></feedback></choice>
+							<choice><statement><p><pf>done</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf> to close all control structures.</p></feedback></choice>
+					</choices>
+			</task>
+
+			<task label="chk-if-elseif-count">
+					<statement correct="no"><p>A MATLAB if statement can have at most one <pf>elseif</pf> clause.</p></statement>
+					<feedback><p>False. You may have as many <pf>elseif</pf> clauses as needed.</p></feedback>
+			</task>
+
+			<task label="chk-if-branches">
+					<statement><p>In an if/elseif/else chain, how many branches execute when the first condition is true?</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p>Only the first true branch executes.</p></statement><feedback><p>Correct. MATLAB evaluates top to bottom and executes only the first matching branch.</p></feedback></choice>
+							<choice><statement><p>All true branches execute.</p></statement><feedback><p>No — once a true branch is found, the rest are skipped.</p></feedback></choice>
+							<choice><statement><p>The last matching branch executes.</p></statement><feedback><p>MATLAB takes the first match, not the last.</p></feedback></choice>
+							<choice><statement><p>Both the matching branch and the else branch execute.</p></statement><feedback><p>The else branch only runs when no condition is true.</p></feedback></choice>
+					</choices>
+			</task>
+
+			<task label="chk-if-false">
+					<statement><p>In MATLAB, a condition is considered false when it evaluates to:</p></statement>
+					<choices>
+							<choice correct="yes"><statement><p>Zero (0).</p></statement><feedback><p>Correct. Zero is false; any nonzero value is true.</p></feedback></choice>
+							<choice><statement><p>The string <pf>'false'</pf>.</p></statement><feedback><p>MATLAB uses numeric 0/1 for logical values, not strings.</p></feedback></choice>
+							<choice><statement><p>An empty matrix <pf>[]</pf>.</p></statement><feedback><p>An empty matrix is also treated as false, but the most common false value is 0.</p></feedback></choice>
+							<choice><statement><p>A negative number.</p></statement><feedback><p>Any nonzero number — positive or negative — is true in MATLAB.</p></feedback></choice>
+					</choices>
+			</task>
+
+        <task label="rq-if-structure-end">
+            <statement><p>Which keyword closes an <pf>if</pf> block in MATLAB?</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct.</p></feedback></choice>
+                <choice><statement><p><pf>endif</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>, not <pf>endif</pf>.</p></feedback></choice>
+                <choice><statement><p><pf>fi</pf></p></statement><feedback><p>That is a bash shell keyword, not MATLAB.</p></feedback></choice>
+                <choice><statement><p><pf>close</pf></p></statement><feedback><p><pf>close</pf> closes figure windows in MATLAB.</p></feedback></choice>
+            </choices>
+        </task>
+
+        <task label="rq-if-else-optional">
+            <statement correct="yes"><p>The <pf>else</pf> clause in a MATLAB <pf>if</pf> statement is optional.</p></statement>
+            <feedback><p>True. An if statement may consist of just <pf>if ... end</pf>.</p></feedback>
+        </task>
+
+        <task label="rq-if-trace-1">
+            <statement><p>What is printed by the following code?</p>
+            <program language="matlab">x = 5;
+if x &gt; 10
+    disp('big')
+elseif x &gt; 3
+    disp('medium')
+else
+    disp('small')
+end</program></statement>
+            <choices>
+                <choice correct="yes"><statement><p><c>medium</c></p></statement><feedback><p>Correct. <pf>x = 5</pf> is not greater than 10, but is greater than 3.</p></feedback></choice>
+                <choice><statement><p><c>big</c></p></statement><feedback><p><pf>5 &gt; 10</pf> is false.</p></feedback></choice>
+                <choice><statement><p><c>small</c></p></statement><feedback><p>The <pf>else</pf> only runs when both conditions are false.</p></feedback></choice>
+                <choice><statement><p>Both <c>medium</c> and <c>small</c> are printed.</p></statement><feedback><p>Only the first true branch executes.</p></feedback></choice>
+            </choices>
+        </task>
+
+        <task label="rq-if-true-value">
+            <statement correct="no"><p>In MATLAB, only the value <pf>1</pf> is treated as true in an if condition.</p></statement>
+            <feedback><p>False. Any nonzero value is treated as true.</p></feedback>
+        </task>
+
+        <task label="rq-if-multiple-elseif">
+            <statement><p>How many <pf>elseif</pf> clauses may appear in a single if statement?</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p>Any number.</p></statement><feedback><p>Correct. There is no limit on <pf>elseif</pf> clauses.</p></feedback></choice>
+                <choice><statement><p>At most one.</p></statement><feedback><p>You may chain as many <pf>elseif</pf> clauses as needed.</p></feedback></choice>
+                <choice><statement><p>At most two.</p></statement><feedback><p>No such limit exists.</p></feedback></choice>
+                <choice><statement><p>Zero.</p></statement><feedback><p><pf>elseif</pf> is optional but you may include many.</p></feedback></choice>
+            </choices>
+        </task>
+
+        <task label="rq-if-no-match">
+            <statement><p>What happens if none of the conditions in an if/elseif chain are true and there is no <pf>else</pf> clause?</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p>No code in the if block executes; execution continues after <pf>end</pf>.</p></statement><feedback><p>Correct. The block is simply skipped.</p></feedback></choice>
+                <choice><statement><p>MATLAB throws an error.</p></statement><feedback><p>No error occurs; the block is just skipped.</p></feedback></choice>
+                <choice><statement><p>The first branch executes by default.</p></statement><feedback><p>Branches only execute when their condition is true.</p></feedback></choice>
+                <choice><statement><p>The last branch executes by default.</p></statement><feedback><p>Without an <pf>else</pf>, nothing runs if all conditions are false.</p></feedback></choice>
+            </choices>
+        </task>
+
+        <task label="rq-if-keyword">
+            <statement><p>The correct MATLAB spelling for a secondary condition in an if chain is:</p></statement>
+            <choices>
+                <choice correct="yes"><statement><p><pf>elseif</pf></p></statement><feedback><p>Correct. Written as one word in MATLAB.</p></feedback></choice>
+                <choice><statement><p><pf>else if</pf></p></statement><feedback><p>Two words creates a nested if rather than an elseif chain.</p></feedback></choice>
+                <choice><statement><p><pf>elif</pf></p></statement><feedback><p>That is Python syntax, not MATLAB.</p></feedback></choice>
+                <choice><statement><p><pf>elsif</pf></p></statement><feedback><p>That is Ruby syntax, not MATLAB.</p></feedback></choice>
+            </choices>
+        </task>
+
+        <task label="rq-if-else-if-vs-elseif">
+            <statement correct="no"><p><pf>else if</pf> (two words) and <pf>elseif</pf> (one word) are interchangeable in MATLAB.</p></statement>
+            <feedback><p>False. <pf>else if</pf> opens a nested if block requiring its own <pf>end</pf>; <pf>elseif</pf> is part of the same block.</p></feedback>
+        </task>
+
+        <task label="rq-if-fill-end">
+            <statement><p>Complete the if statement: <pf>if x &gt; 0 / disp('pos') / </pf><fillin answer="end" mode="string" width="6"/></p></statement>
+        </task>
+
+        <task label="rq-if-trace-2">
+            <statement><p>What is the value of <pf>y</pf> after this code runs with <pf>x = -2</pf>?</p>
+            <program language="matlab">x = -2;
+if x &gt;= 0
+    y = x;
+else
+    y = -x;
+end</program></statement>
+            <choices>
+                <choice correct="yes"><statement><p><c>2</c></p></statement><feedback><p>Correct. The else branch assigns <pf>y = -(-2) = 2</pf> (absolute value).</p></feedback></choice>
+                <choice><statement><p><c>-2</c></p></statement><feedback><p>The condition <pf>x &gt;= 0</pf> is false for <pf>x = -2</pf>, so the else runs.</p></feedback></choice>
+                <choice><statement><p><c>0</c></p></statement><feedback><p>Neither branch assigns 0.</p></feedback></choice>
+                <choice><statement><p>An error occurs.</p></statement><feedback><p>No error; the else branch handles negative values.</p></feedback></choice>
+            </choices>
+        </task>
 
 		</exercise>
 	</reading-questions>
@@ -1316,6 +1459,138 @@
 
 		</exercise>
 
+		<exercise label="ex-if-practice-1">
+			<statement>
+				<p>What does the following code print when <pf>n = 0</pf>?</p>
+				<program language="matlab">
+					n = 0;
+					if n > 0
+					disp('positive')
+					elseif n &lt; 0
+					disp('negative')
+					else
+					disp('zero')
+					end
+				</program>
+			</statement>
+			<choices>
+				<choice correct="yes"><statement><p><c>zero</c></p></statement><feedback><p>Correct. Both conditions are false, so the else branch runs.</p></feedback></choice>
+				<choice><statement><p><c>positive</c></p></statement><feedback><p><pf>0 &gt; 0</pf> is false.</p></feedback></choice>
+				<choice><statement><p><c>negative</c></p></statement><feedback><p><pf>0 &lt; 0</pf> is also false.</p></feedback></choice>
+				<choice><statement><p>Nothing is printed.</p></statement><feedback><p>The else branch runs when all conditions are false.</p></feedback></choice>
+			</choices>
+		</exercise>
+        <exercise label="pa-if-classify-number">
+            <title>Classify a Number</title>
+            <statement>
+                <p>Write an if/elseif/else block that classifies <pf>x = 15</pf> as <c>positive</c>, <c>negative</c>, or <c>zero</c>. When done, evaluate and confirm it prints <c>positive</c>.</p>
+                <sage language="octave">
+                    <input>
+x = 15;
+% ==== Type your code here ====
+
+                    </input>
+                </sage>
+            </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+x = 15;
+if x > 0
+    disp('positive')
+elseif x &lt; 0
+    disp('negative')
+else
+    disp('zero')
+end
+                </program>
+            </solution>
+        </exercise>
+
+        <exercise label="pa-if-grade">
+            <title>Letter Grade</title>
+            <statement>
+                <p>Write an if/elseif/else block to assign a letter grade for <pf>score = 74</pf>: A (≥90), B (≥80), C (≥70), D (≥60), F (otherwise). Print the grade.</p>
+                <sage language="octave">
+                    <input>
+score = 74;
+% ==== Type your code here ====
+
+                    </input>
+                </sage>
+            </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+score = 74;
+if score >= 90
+    grade = 'A';
+elseif score >= 80
+    grade = 'B';
+elseif score >= 70
+    grade = 'C';
+elseif score >= 60
+    grade = 'D';
+else
+    grade = 'F';
+end
+fprintf('Grade: %s\n', grade)
+                </program>
+            </solution>
+        </exercise>
+
+        <exercise label="pa-if-max">
+            <title>Larger of Two Numbers</title>
+            <statement>
+                <p>Write an if/else block that stores the larger of <pf>a = 17</pf> and <pf>b = 9</pf> in a variable <pf>larger</pf>, then prints it.</p>
+                <sage language="octave">
+                    <input>
+a = 17;
+b = 9;
+% ==== Type your code here ====
+
+                    </input>
+                </sage>
+            </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+a = 17;
+b = 9;
+if a > b
+    larger = a;
+else
+    larger = b;
+end
+fprintf('larger = %g\n', larger)
+                </program>
+            </solution>
+        </exercise>
+
+        <exercise label="pa-if-fizzbuzz">
+            <title>FizzBuzz (Single Number)</title>
+            <statement>
+                <p>For <pf>n = 15</pf>, print <c>FizzBuzz</c> if divisible by both 3 and 5, <c>Fizz</c> if divisible by 3 only, <c>Buzz</c> if by 5 only, otherwise print the number. Use <pf>mod(n, k)</pf> to test divisibility.</p>
+                <sage language="octave">
+                    <input>
+n = 15;
+% ==== Type your code here ====
+
+                    </input>
+                </sage>
+            </statement>
+            <solution component="example-solution">
+                <program language="matlab">
+n = 15;
+if mod(n,3) == 0 &amp;&amp; mod(n,5) == 0
+    disp('FizzBuzz')
+elseif mod(n,3) == 0
+    disp('Fizz')
+elseif mod(n,5) == 0
+    disp('Buzz')
+else
+    disp(n)
+end
+                </program>
+            </solution>
+        </exercise>
 		<!-- <assemblage>
 			<p>
 				<exercise xml:id="if-activity-2">
