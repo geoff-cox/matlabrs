@@ -1859,20 +1859,22 @@
         </p>
 
         <p>
-          First, get the number of digits in <pf>n</pf> using your 
-          <xref ref="hw-while-digit-counter" text="custom"><pf>digitCount</pf></xref>
-          function. 
-          Then, as in your 
+          As in your 
           <xref ref="hw-while-digit-sum" text="custom"><pf>digitSum</pf></xref> 
-          function, use a while loop to extract each digit from right to left, multiply it by the appropriate 
-          power of 10 and add it to a running total. 
+          function, use a while loop to extract each digit from right to left 
+          using <pf>mod(n, 10)</pf> and <pf>floor(n / 10)</pf>. To build the 
+          reversed number, multiply the current result by <m>10</m> and add the 
+          extracted digit at each step.
         </p>
 
         <p>
-          For example, if <m>n = 1234</m>, then compute the sum:
-          <me>
-            4 \cdot 10^3 + 3 \cdot 10^2 + 2 \cdot 10^1 + 1 \cdot 10^0 = 4321.
-          </me>
+          For example, if <m>n = 1234</m>, then the loop proceeds as follows:
+          <md>
+            <mrow>\text{step 1:} \quad 0 \cdot 10 + 4 \amp= 4</mrow>
+            <mrow>\text{step 2:} \quad 4 \cdot 10 + 3 \amp= 43</mrow>
+            <mrow>\text{step 3:} \quad 43 \cdot 10 + 2 \amp= 432</mrow>
+            <mrow>\text{step 4:} \quad 432 \cdot 10 + 1 \amp= 4321</mrow>
+          </md>
         </p>
 
         <tabular valign="top" top="minor">
