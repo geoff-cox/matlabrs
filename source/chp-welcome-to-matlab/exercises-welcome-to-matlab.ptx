@@ -176,130 +176,7 @@
 
   </exercise>
 
-  <exercise xml:id="variables-coding-exercises">
-    <title>Coding Exercises</title>
-
-    <task xml:id="vars-ex-10">
-      <title>Speed, Distance, and Time</title>
-      <statement>
-        <p>
-          Use the MATLAB command window to assign values to variables for a car's speed and travel time, then compute the distance traveled using <m>d = s \cdot t</m>.
-        </p>
-
-        <p>
-          Use the variable names <pf>speed</pf>, <pf>time</pf>, and <pf>distance</pf>.
-        </p>
-
-        <p>
-          Test your work with <pf>speed = 60</pf> and <pf>time = 2.5</pf>. Your result should be <pf>distance = 150</pf>.
-        </p>
-      </statement>
-      <solution component="exercise-solution">
-        <program language="matlab">
-          speed = 60;
-          time = 2.5;
-          distance = speed * time
-        </program>
-      </solution>
-    </task>
-
-    <task xml:id="vars-ex-20">
-      <title>Celsius to Fahrenheit</title>
-      <statement>
-        <p>
-          Use the MATLAB command window to assign a temperature in Celsius to a variable, then convert it to Fahrenheit using the formula <m>F = \frac{9}{5}C + 32</m>.
-        </p>
-
-        <p>
-          Use the variable names <pf>tempC</pf> and <pf>tempF</pf>.
-        </p>
-
-        <p>
-          Test your work with <pf>tempC = 100</pf>. Your result should be <pf>tempF = 212</pf>.
-        </p>
-      </statement>
-      <solution component="exercise-solution">
-        <program language="matlab">
-          tempC = 100;
-          tempF = (9/5) * tempC + 32
-        </program>
-      </solution>
-    </task>
-
-    <task xml:id="vars-ex-30">
-      <title>Compound Interest</title>
-      <statement>
-        <p>
-          Use the MATLAB command window to assign values for the principal, interest rate, and number of years, then compute the balance using <m>A = P(1 + r)^n</m>.
-        </p>
-
-        <p>
-          Use the variable names <pf>principal</pf>, <pf>rate</pf>, <pf>years</pf>, and <pf>balance</pf>.
-        </p>
-
-        <p>
-          Test your work with <pf>principal = 1000</pf>, <pf>rate = 0.05</pf>, and <pf>years = 3</pf>. Your result should be approximately <pf>balance = 1157.625</pf>.
-        </p>
-      </statement>
-      <solution component="exercise-solution">
-        <program language="matlab">
-          principal = 1000;
-          rate = 0.05;
-          years = 3;
-          balance = principal * (1 + rate)^years
-        </program>
-      </solution>
-    </task>
-
-    <task xml:id="vars-ex-40">
-      <title>Area and Perimeter of a Rectangle</title>
-      <statement>
-        <p>
-          Use the MATLAB command window to assign values for the length and width of a rectangle, then compute both its area and perimeter.
-        </p>
-
-        <sidebyside widths="65% 32%" valign="middle">
-          <stack>
-            <p>
-              Use descriptive variable names, like <pf>rectLen</pf>, <pf>rectWid</pf>, <pf>rectArea</pf>, and <pf>rectPerim</pf>.
-            </p>
-            <p>
-              Test your work with <m>\ell = 5</m> and <m>w = 3</m>.
-            </p>
-          </stack>
-          <image>
-            <latex-image>
-              \begin{tikzpicture}[scale=1.0]
-                % rectangle
-                \draw[thick] (0,0) rectangle (3,1);
-
-                % length label \ell
-                %\draw[&lt;-&gt;] (0,-0.1) -- (3,-0.1);
-                \node at (1.5,-0.3) {$\ell$};
-
-                % width label w
-                %\draw[&lt;-&gt;] (3.05,0) -- (3.05,1);
-                \node[right] at (3.05,0.5) {$w$};
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </sidebyside>
-
-        <p>
-          Your results should be <pf>rectArea = 15</pf> and <pf>rectPerim = 16</pf>.
-        </p>
-      </statement>
-      <solution component="exercise-solution">
-        <program language="matlab">
-          rectLen = 5;
-          rectWid = 3;
-          rectArea = rectLen * rectWid
-          rectPerim = 2 * (rectLen + rectWid)
-        </program>
-      </solution>
-    </task>
-
-    <task label="vars-ex-5">
+  <exercise xml:id="vars-ex-6">
       <title>Volume &amp; Surface Area of a Cylinder</title>
       <statement>
         <p>
@@ -357,31 +234,6 @@
           </code>
         </program>
       </solution>
-    </task>
-
-    <task xml:id="vars-ex-6">
-      <title>Kinetic Energy</title>
-      <statement>
-        <p>
-          Use the MATLAB command window to assign values for an object's mass and velocity, then compute its kinetic energy using <m>KE = \frac{1}{2}mv^2</m>.
-        </p>
-
-        <p>
-          Use the variable names <pf>mass</pf>, <pf>velocity</pf>, and <pf>kineticEnergy</pf>.
-        </p>
-
-        <p>
-          Test your work with <pf>mass = 2</pf> and <pf>velocity = 3</pf>. Your result should be <pf>kineticEnergy = 9</pf>.
-        </p>
-      </statement>
-      <solution component="exercise-solution">
-        <program language="matlab">
-          mass = 2;
-          velocity = 3;
-          kineticEnergy = 0.5 * mass * velocity^2
-        </program>
-      </solution>
-    </task>
   </exercise>
 
   <exercise xml:id="vars-ex-1">
@@ -475,10 +327,10 @@ tempF = (9/5) * tempC + 32
   </exercise>
 
   <exercise xml:id="vars-ex-3">
-      <title>Compound Interest — One Period</title>
+      <title>Compound Interest</title>
       <statement>
           <p>
-              Compute the balance after one year of compound interest using
+              Compute the balance after compound interest using
               <m>A = P(1 + r)^n</m>, where <m>P</m> is the principal, <m>r</m> is the
               annual interest rate, and <m>n</m> is the number of years.
           </p>
@@ -517,7 +369,7 @@ tempF = (9/5) * tempC + 32
           <p>
               Test with <pf>principal = 1000</pf>, <pf>rate = 0.05</pf>,
               <pf>years = 3</pf>; the result should be approximately
-              <pf>balance = 1157.6</pf>.
+              <pf>balance = 1157.625</pf>.
           </p>
       </statement>
       <solution component="exercise-solution">
