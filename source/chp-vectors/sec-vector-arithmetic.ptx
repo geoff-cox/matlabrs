@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-vector-arithmetic">
+	<title>Vector Arithmetic</title>
+
+<subsection xml:id="subsec-scalar-vector-ops">
+		<title>Scalar and Vector Operations</title>
+
+		<p>
+			Now that you can build and index a vector, the next question is what you can <em>do</em> with one. The simplest case is combining a vector with a single number — a scalar. MATLAB applies the operation to every element of the vector automatically, with no loop required.
+		</p>
+
+		<p>
+			Suppose <pf>temps</pf> holds seven temperatures in Fahrenheit, and you want to add a 2-degree correction to every reading. You can write this as a single line:
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+				temps = temps + 2
+			</input>
+		</sage>
+
+		<p>
+			MATLAB adds <pf>2</pf> to every element of <pf>temps</pf> and returns a new vector of the same size. The same pattern works for subtraction, multiplication, and division:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					v = [1, 2, 3, 4, 5]
+					v + 10
+					v - 1
+					2 * v
+					v / 2
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					v  = [1, 2, 3, 4, 5]
+					   = [11, 12, 13, 14, 15]
+					   = [0, 1, 2, 3, 4]
+					   = [2, 4, 6, 8, 10]
+					   = [0.5, 1.0, 1.5, 2.0, 2.5]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			The order of the operands does not matter for addition or multiplication: <pf>v + 10</pf> and <pf>10 + v</pf> produce the same result, and so do <pf>2 * v</pf> and <pf>v * 2</pf>. For subtraction and division, the order matters in the usual mathematical sense — <pf>10 - v</pf> is not the same as <pf>v - 10</pf>.
+		</p>
+
+		<aside>
+			<title>Replacing loops with vector operations</title>
+			<p>
+				In most languages, applying an operation to every element of a collection requires an explicit loop. MATLAB — along with NumPy in Python, Julia, R, and others — lets you write the operation once and have it apply to the whole vector. This style is called <term>vectorization</term>, and it is one of the reasons MATLAB code for numerical work tends to be short and readable.
+			</p>
+		</aside>
+
+		<p>
+			Notice that none of these operations changed the original vector unless you assigned the result back to it. Writing <pf>v + 10</pf> produces a new vector but leaves <pf>v</pf> alone; writing <pf>v = v + 10</pf> replaces <pf>v</pf> with the shifted version. This is the same rule that applies to scalar assignment — it is easy to forget when a whole vector is involved.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-elementwise-ops">
+		<title>Element-wise Operations</title>
+
+		<p>
+			The same idea extends to combining two vectors. If <pf>v</pf> and <pf>w</pf> are vectors of the same length, MATLAB can add them, subtract them, multiply them, or divide them element by element — meaning the operation is applied to matching pairs of values, one from each vector.
+		</p>
+
+		<p>
+			Addition and subtraction look exactly like you would expect:
+		</p>
+
+		<sage language="octave">
+			<input>
+				v = [1, 2, 3, 4]
+				w = [10, 20, 30, 40]
+				v + w
+				w - v
+			</input>
+		</sage>
+
+		<p>
+			The first call returns <pf>[11, 22, 33, 44]</pf> — the first element of <pf>v</pf> paired with the first element of <pf>w</pf>, the second with the second, and so on. Subtraction works the same way.
+		</p>
+
+		<p>
+			Multiplication, division, and exponentiation are where MATLAB does something that will look unusual at first. To multiply two vectors element by element, you have to write <pf>.*</pf> — a period in front of the asterisk — instead of plain <pf>*</pf>:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					v = [1, 2, 3, 4]
+					w = [10, 20, 30, 40]
+					v .* w
+					w ./ v
+					v .^ 2
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					v = [1, 2, 3, 4]
+					w = [10, 20, 30, 40]
+					  = [10, 40, 90, 160]
+					  = [10, 10, 10, 10]
+					  = [1, 4, 9, 16]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			The dotted versions <pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> are called <term>element-wise operators</term>. Each one pairs up matching positions and performs the operation independently on each pair.
+		</p>
+
+		<p>
+			Why the extra period? The short answer is that the plain versions <pf>*</pf>, <pf>/</pf>, and <pf>^</pf> are reserved for matrix operations, which follow very different rules. We will come back to this in the matrices chapter. For now, the rule is:
+			<ul marker="square">
+				<li><pf>+</pf> and <pf>-</pf> work element-wise on vectors without a dot.</li>
+				<li><pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> need the dot to signal element-wise.</li>
+			</ul>
+		</p>
+
+		<aside>
+			<title>A point of cross-language friction</title>
+			<p>
+				Most other languages use plain <pf>*</pf> for element-wise multiplication and provide a separate function for matrix multiplication — NumPy, for example, uses <pf>*</pf> for element-wise and <pf>@</pf> for matrix multiplication. MATLAB makes the opposite choice: plain <pf>*</pf> is matrix multiplication, and element-wise requires the dot. Neither convention is more correct, but forgetting the dot is one of the most common mistakes when writing MATLAB code.
+			</p>
+		</aside>
+
+		<p>
+			One more thing to watch for: element-wise operations require the two vectors to be the <em>same size</em>. Trying to add a 4-element vector to a 5-element vector is an error, because there is no matching element to pair with. The same rule applies to <pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> when both sides are vectors.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-broadcasting-functions">
+		<title>Functions That Work on Whole Vectors</title>
+
+		<p>
+			The vectorization idea extends beyond arithmetic operators. Most of MATLAB's built-in math functions also accept a vector as input and return a vector of the same size, with the function applied to each element.
+		</p>
+
+		<p>
+			You have already used functions like <pf>sqrt</pf>, <pf>sin</pf>, and <pf>abs</pf> on scalars. The same calls work on vectors without any change to the syntax:
+		</p>
+
+		<sage language="octave">
+			<input>
+				v = [1, 4, 9, 16, 25]
+				sqrt(v)
+			</input>
+		</sage>
+
+		<p>
+			The result is <pf>[1, 2, 3, 4, 5]</pf> — the square root of each element. No loop, no dot operator, no special syntax. You call the function exactly the way you would call it on a single number, and MATLAB handles the rest.
+		</p>
+
+		<p>
+			Here are a few more examples using functions you have seen before:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					x = [0, pi/2, pi, 3*pi/2, 2*pi]
+					sin(x)
+					v = [-3, -1, 0, 2, 5]
+					abs(v)
+					w = [1.2, 2.7, 3.5, 4.9]
+					round(w)
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					x = [0, 1.5708, 3.1416, 4.7124, 6.2832]
+					  = [0, 1, 0, -1, 0]
+					v = [-3, -1, 0, 2, 5]
+					  = [3, 1, 0, 2, 5]
+					w = [1.2, 2.7, 3.5, 4.9]
+					  = [1, 3, 4, 5]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			Each function is applied independently to every element, and the result is a vector of the same size as the input. This behavior is not special to a handful of functions — it is the default for nearly every built-in math function in MATLAB, including <pf>cos</pf>, <pf>tan</pf>, <pf>exp</pf>, <pf>log</pf>, <pf>floor</pf>, <pf>ceil</pf>, and many more.
+		</p>
+
+		<aside>
+			<title>What about functions you write yourself?</title>
+			<p>
+				A function you wrote in the previous chapter to operate on a scalar will <em>sometimes</em> work on a vector without any changes, and sometimes not — it depends entirely on what operators you used inside. A function whose body is <pf>y = x^2 + 1</pf> will fail on a vector because of the plain <pf>^</pf>; rewriting it as <pf>y = x.^2 + 1</pf> makes it work on both scalars and vectors. Writing functions that work on both is a useful habit, and most of the exercises in this chapter will ask you to do exactly that.
+			</p>
+		</aside>
+
+		<p>
+			Between scalar–vector operations, element-wise operations, and broadcasting functions, you now have three different ways to apply a calculation to every element of a vector without writing a loop. In the next section, we will see how vectors and for-loops fit together for the situations where you do still want a loop.
+		</p>
+
+	</subsection>
+
+</section>

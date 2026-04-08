@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-vectors-and-loops">
+	<title>Vectors and Loops</title>
+
+	<subsection xml:id="subsec-loop-by-index">
+		<title>Looping Over a Vector by Index</title>
+
+		<p>
+			Vectorization covers a lot of ground, but not everything. Some calculations depend on earlier results, some need to compare an element with its neighbor, and some just do not fit cleanly into a single expression. For those cases, you still need a for-loop — and now that loop has something new to iterate over: a vector of data.
+		</p>
+
+		<p>
+			The most common pattern is to loop over the <em>positions</em> of a vector, visiting each element by its index. To do this, you need to know how many elements the vector has. MATLAB provides two built-in functions for that:
+			<dl width="narrow">
+				<li>
+					<title><pf>length(v)</pf></title>
+					<p>Returns the number of elements in the vector.</p>
+				</li>
+				<li>
+					<title><pf>numel(v)</pf></title>
+					<p>Returns the same thing — the total number of elements. The two are interchangeable for vectors.</p>
+				</li>
+			</dl>
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+				length(temps)
+				numel(temps)
+			</input>
+		</sage>
+
+		<p>
+			Both calls return <pf>7</pf>. With <pf>length</pf> in hand, you can write a for-loop that visits every position in the vector:
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+				for i = 1:length(temps)
+					fprintf('Day %d: %d degrees\n', i, temps(i))
+				end
+			</input>
+		</sage>
+
+		<p>
+			The loop variable <pf>i</pf> takes the values <pf>1, 2, 3, ..., 7</pf>, one per iteration. Inside the loop body, <pf>temps(i)</pf> pulls out the value at the current position. This is the workhorse pattern for looping over a vector, and it shows up in essentially every language — the syntax changes, but the shape is always the same: count from the first position to the last, and use the counter to index into the collection.
+		</p>
+
+		<aside>
+			<title>Why <pf>1:length(v)</pf> and not <pf>1:7</pf>?</title>
+			<p>
+				You could write <pf>for i = 1:7</pf> and it would work for this particular vector. But the moment <pf>temps</pf> changes size — maybe you add an eighth day of data — the hard-coded <pf>7</pf> becomes wrong, and the loop either skips elements or crashes with an out-of-bounds error. Writing <pf>1:length(temps)</pf> makes the loop adapt automatically to whatever size the vector happens to be. Hard-coded sizes are a common source of bugs; asking the vector how long it is avoids the problem entirely.
+			</p>
+		</aside>
+
+		<p>
+			Here is a slightly more interesting example. Suppose you want to find the largest temperature in the vector. You cannot do this with a single vectorized expression using only what you know so far — you have to walk the vector one element at a time and keep track of the biggest value you have seen:
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+
+				biggest = temps(1);
+				for i = 2:length(temps)
+					if temps(i) > biggest
+						biggest = temps(i);
+					end
+				end
+
+				fprintf('Largest temperature: %d\n', biggest)
+			</input>
+		</sage>
+
+		<p>
+			The loop starts at position <pf>2</pf> rather than <pf>1</pf> because <pf>biggest</pf> is initialized to the first element — there is no need to compare it with itself. Each iteration compares the current element with the running maximum and updates <pf>biggest</pf> if a larger value is found. This is the same accumulation pattern from the for-loops chapter, just applied to data stored in a vector.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-loop-over-values">
+		<title>Looping Over a Vector by Value</title>
+
+		<p>
+			There is a second way to loop over a vector that skips the index entirely. If you write a for-loop whose range is the vector itself, the loop variable takes on each <em>value</em> of the vector in turn:
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+				for t = temps
+					fprintf('%d degrees\n', t)
+				end
+			</input>
+		</sage>
+
+		<p>
+			On the first iteration, <pf>t</pf> is <pf>68</pf>. On the second, it is <pf>71</pf>. And so on through the last value, <pf>70</pf>. The loop variable is no longer a position — it is the value stored at that position.
+		</p>
+
+		<p>
+			This pattern is actually the one you saw first in the for-loops chapter, back when you wrote things like <pf>for k = [10, 20, 30]</pf>. At the time, the list was written out directly in the loop header; now you know that it works just as well when the list is stored in a variable.
+		</p>
+
+		<aside>
+			<title>The same idea in other languages</title>
+			<p>
+				Most modern languages offer this exact pattern under a different name. Python calls it a <q>for-each</q> loop and writes it as <pf>for t in temps:</pf>. Java and C++ have similar syntax. The idea is identical: hand the loop a collection, and let it walk through the values one at a time without any explicit index.
+			</p>
+		</aside>
+
+		<p>
+			So when should you use each style? The two forms are not interchangeable — each one is missing something the other has.
+		</p>
+
+		<sidebyside widths="48% 48%">
+			<stack>
+				<p>Loop by index ⤵︎</p>
+				<program language="matlab">
+					for i = 1:length(temps)
+						temps(i)
+					end
+				</program>
+			</stack>
+			<stack>
+				<p>Loop by value ⤵︎</p>
+				<program language="matlab">
+					for t = temps
+						t
+					end
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			Looping by value is cleaner when all you need is the element itself — printing each value, adding them up, checking whether any of them satisfy some condition. Looping by index is necessary when you also need to know <em>where</em> you are in the vector: storing results back into another vector at matching positions, comparing each element with its neighbor, or reporting which day had the highest temperature rather than just what that temperature was.
+		</p>
+
+		<p>
+			A useful rule of thumb: if the loop body ever writes <pf>temps(i)</pf>, you need the index. If it only ever reads the current value, looping by value is usually the clearer choice.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-building-result-vectors">
+		<title>Building a Result Vector Inside a Loop</title>
+
+		<p>
+			So far the loops in this section have <em>read</em> from a vector — pulling values out and doing something with them. Loops are just as useful for <em>writing</em> to a vector, building up a result one element at a time. This is the pattern to reach for when each output depends on the corresponding input in a way that cannot be handled with a single vectorized expression, or when you want a function to return a whole collection of answers rather than just one.
+		</p>
+
+		<p>
+			Recall the temperature-conversion example from the for-loops chapter, which printed a Fahrenheit-to-Celsius table one line at a time. That version threw the converted values away as soon as they were printed. With a result vector, you can keep them:
+		</p>
+
+		<sage language="octave">
+			<input>
+				fahrenheit = [32, 50, 68, 86, 104];
+				celsius = zeros(1, length(fahrenheit));
+
+				for i = 1:length(fahrenheit)
+					celsius(i) = (fahrenheit(i) - 32) * 5/9;
+				end
+
+				celsius
+			</input>
+		</sage>
+
+		<p>
+			Three things are worth noticing about this pattern:
+			<ul marker="square">
+				<li>
+					The result vector <pf>celsius</pf> is created <em>before</em> the loop, using <pf>zeros</pf> to make a placeholder of the right size.
+				</li>
+				<li>
+					Inside the loop, <pf>celsius(i) = ...</pf> fills in one element per iteration. The index <pf>i</pf> is used on both sides — to read from <pf>fahrenheit</pf> and to write into <pf>celsius</pf> at the matching position.
+				</li>
+				<li>
+					After the loop finishes, <pf>celsius</pf> holds all five converted values, and you can use it just like any other vector — pass it to a function, index into it, or return it from a function.
+				</li>
+			</ul>
+		</p>
+
+		<p>
+			Because the input and output vectors have the same length and matching positions, this is exactly the kind of problem that could also be written with a single vectorized expression:
+		</p>
+
+		<program language="matlab">
+			celsius = (fahrenheit - 32) * 5/9;
+		</program>
+
+		<p>
+			Both versions produce the same result. For a straightforward element-by-element calculation like this one, the vectorized version is shorter and clearer, and you should prefer it. The loop version becomes necessary when the calculation for each element is more complicated — for example, when it depends on a condition, involves a helper function, or needs to look at more than one input value at a time.
+		</p>
+
+		<p>
+			Here is an example where the loop version really does pay its way. Suppose you want to build a new vector where each element is the running total of the input vector up to that position — the first element is just the first input, the second is the sum of the first two, the third is the sum of the first three, and so on.
+		</p>
+
+		<sage language="octave">
+			<input>
+				v = [3, 1, 4, 1, 5, 9, 2, 6];
+				running = zeros(1, length(v));
+
+				running(1) = v(1);
+				for i = 2:length(v)
+					running(i) = running(i - 1) + v(i);
+				end
+
+				running
+			</input>
+		</sage>
+
+		<p>
+			Each element of <pf>running</pf> depends on the <em>previous</em> element of <pf>running</pf>, which means you cannot compute them independently of one another — there is no single vectorized expression that produces this result using only the tools from the previous section. The loop is doing real work here, and the index-based pattern is the only way to express it.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-preallocation">
+		<title>Preallocating Result Vectors</title>
+
+		<p>
+			In the previous subsection, every result vector was created with <pf>zeros</pf> before the loop started. This step is called <term>preallocation</term> — setting aside a vector of the right size up front, so the loop can fill it in without changing its size at each step. Preallocation is a habit worth forming early, and this subsection explains why.
+		</p>
+
+		<p>
+			You already know an alternative: growing a vector one element at a time using <pf>v(end + 1) = ...</pf>. The Fahrenheit-to-Celsius example could have been written that way instead:
+		</p>
+
+		<sidebyside widths="48% 48%">
+			<stack>
+				<p>Preallocated ⤵︎</p>
+				<program language="matlab">
+					fahrenheit = [32, 50, 68, 86, 104];
+					celsius = zeros(1, length(fahrenheit));
+
+					for i = 1:length(fahrenheit)
+						celsius(i) = (fahrenheit(i) - 32) * 5/9;
+					end
+				</program>
+			</stack>
+			<stack>
+				<p>Grown one at a time ⤵︎</p>
+				<program language="matlab">
+					fahrenheit = [32, 50, 68, 86, 104];
+					celsius = [];
+
+					for i = 1:length(fahrenheit)
+						celsius(end + 1) = (fahrenheit(i) - 32) * 5/9;
+					end
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			Both versions produce the same <pf>celsius</pf> vector. So why prefer the preallocated version?
+		</p>
+
+		<p>
+			The reason is what happens behind the scenes. When you grow a vector by writing <pf>celsius(end + 1) = ...</pf>, MATLAB has to find a new spot in memory that is one element larger than the current vector, copy all of the existing values into the new spot, and then add the new value at the end. For a five-element vector, this is invisible. For a vector with thousands or millions of elements, the copying adds up — every single iteration of the loop is doing more and more work as the vector grows.
+		</p>
+
+		<p>
+			Preallocating with <pf>zeros</pf> avoids this entirely. MATLAB sets aside the full block of memory once, before the loop starts, and the loop just writes into slots that are already there. No copying, no resizing, no extra work per iteration.
+		</p>
+
+		<aside>
+			<title>A general programming habit</title>
+			<p>
+				This is not a MATLAB quirk. The same advice applies in NumPy, Julia, C++, Java, and most other languages: if you know how big a collection needs to be, create it at full size up front rather than growing it incrementally. The vocabulary is the same across languages, too — you will hear about <q>preallocating</q> or <q>reserving capacity</q> regardless of which language you find yourself in.
+			</p>
+		</aside>
+
+		<p>
+			Of course, preallocation is only possible when you know the final size of the result vector before the loop starts. In the Fahrenheit example, the answer is obvious: the output vector needs one element for each input element, so <pf>zeros(1, length(fahrenheit))</pf> is exactly the right size. Most loops that build a result vector follow this pattern, and preallocation is straightforward.
+		</p>
+
+		<p>
+			When the final size genuinely is not known ahead of time — for example, when the loop is searching for matches and you do not know how many it will find — growing the vector with <pf>end + 1</pf> is still the right tool. The advice is not <q>never grow vectors,</q> but <q>preallocate when you can.</q>
+		</p>
+
+	</subsection>
+
+</section>
