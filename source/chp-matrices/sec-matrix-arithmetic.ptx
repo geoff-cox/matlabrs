@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-matrix-arithmetic">
+	<title>Matrix Arithmetic</title>
+
+	<subsection xml:id="subsec-scalar-matrix-ops">
+		<title>Scalar and Element-wise Operations</title>
+
+		<p>
+			Almost everything you learned about vector arithmetic in the previous chapter carries over to matrices without any changes. Operators apply to every element automatically, the dot operators do exactly what they did before, and most built-in math functions work on a whole matrix the same way they worked on a whole vector. This subsection is mostly a tour confirming that nothing surprising happens when you go from one dimension to two.
+		</p>
+
+		<p>
+			Combining a matrix with a scalar applies the operation to every element:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					A = [1, 2, 3; 4, 5, 6]
+					A + 10
+					2 * A
+					A / 2
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					A = [1, 2, 3;
+					     4, 5, 6]
+					  = [11, 12, 13;
+					     14, 15, 16]
+					  = [2, 4,  6;
+					     8, 10, 12]
+					  = [0.5, 1.0, 1.5;
+					     2.0, 2.5, 3.0]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			Combining two matrices of the same shape works element by element, just like it did for vectors. Addition and subtraction use the plain operators; multiplication, division, and exponentiation need the dot:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					A = [1, 2; 3, 4]
+					B = [10, 20; 30, 40]
+					A + B
+					A .* B
+					B ./ A
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					A = [1, 2;
+					     3, 4]
+					B = [10, 20;
+					     30, 40]
+					  = [11, 22;
+					     33, 44]
+					  = [10, 40;
+					     90, 160]
+					  = [10, 10;
+					     10, 10]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			The same shape-matching rule applies as before: the two matrices must have the same number of rows and the same number of columns. Trying to add a 2-by-3 matrix to a 3-by-2 matrix is an error, even though both have six elements — the shapes have to match exactly, not just the totals.
+		</p>
+
+		<aside>
+			<title>The dot, finally explained</title>
+			<p>
+				Back in the vectors chapter, the dot in <pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> was introduced with the explanation that the plain versions <pf>*</pf>, <pf>/</pf>, and <pf>^</pf> are <q>reserved for matrix operations</q> — but at the time there were no matrices around to make sense of the rule. Now there are. When MATLAB sees <pf>A * B</pf> for two matrices, it performs <term>matrix multiplication</term>, which is a completely different operation from element-wise multiplication and follows different rules about what shapes are allowed. The same is true of <pf>A \ B</pf>, which solves a system of equations, and <pf>A^2</pf>, which means <pf>A * A</pf> as matrix multiplication. These operations come from linear algebra, and you will see them in math classes if you have not already. For programming purposes, the rule from the vectors chapter is unchanged: if you want the operation to apply element by element, use the dot.
+			</p>
+		</aside>
+
+	</subsection>
+
+  <subsection xml:id="subsec-broadcasting-matrix-functions">
+		<title>Functions That Work on Whole Matrices</title>
+
+		<p>
+			The story for built-in math functions is just as simple. Functions like <pf>sqrt</pf>, <pf>sin</pf>, <pf>abs</pf>, and <pf>round</pf> accept a matrix as input and return a matrix of the same shape, with the function applied to each element independently. The syntax is identical to what you used on scalars and vectors:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [1, 4, 9; 16, 25, 36]
+				sqrt(A)
+			</input>
+		</sage>
+
+		<p>
+			The result is a 2-by-3 matrix containing the square root of each entry of <pf>A</pf>. No loop, no special syntax, no two-dimensional version of the function. The same call that worked on a single number works on a matrix.
+		</p>
+
+		<p>
+			Here are a few more examples using functions you have already used:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					A = [-3, -1, 0; 2, 5, -7]
+					abs(A)
+					B = [1.2, 2.7; 3.5, 4.9]
+					round(B)
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					A = [-3, -1,  0;
+					      2,  5, -7]
+					  = [3, 1, 0;
+					     2, 5, 7]
+					B = [1.2, 2.7;
+					     3.5, 4.9]
+					  = [1, 3;
+					     4, 5]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			This is the default behavior for nearly every built-in math function in MATLAB, including <pf>cos</pf>, <pf>tan</pf>, <pf>exp</pf>, <pf>log</pf>, <pf>floor</pf>, and <pf>ceil</pf>. If a function makes sense on a single number, it almost certainly makes sense on a whole matrix, and MATLAB will handle the bookkeeping for you.
+		</p>
+
+		<p>
+			The big-picture message of this section is short: <em>operators and functions that worked on vectors work on matrices the same way</em>. Scalar-with-matrix, element-wise matrix-with-matrix, broadcasting functions — all three are direct extensions of what you already knew, with no surprises and no new rules. The next section turns to the cases where vectorization is not enough and you need a loop after all.
+		</p>
+
+	</subsection>
+  
+</section>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter xml:id="chp-matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<title>Matrices</title>
+
+	<introduction>
+		<p>
+			A vector stores an ordered list of numbers under a single name. A <term>matrix</term> stores a two-dimensional grid of numbers — values arranged in rows <em>and</em> columns. This chapter introduces matrices the same way the previous chapter introduced vectors: as a way to store collections of related data, operate on those collections all at once, and write loops that walk them when a single expression is not enough.
+		</p>
+
+		<p>
+			You will find that almost everything you learned about vectors carries over without surprises. The construction techniques are the same, the indexing rules are the same, the arithmetic operators behave the same way, and the built-in functions still apply to whole collections at once. The main differences are that you now need <em>two</em> indices to point at a single value, and that loops over a matrix sometimes need to be nested — a loop inside another loop — to walk all the elements.
+		</p>
+
+		<p>
+			This chapter covers the following topics:
+			<dl>
+				<li>
+					<title>Creating and Indexing Matrices</title>
+					<p>Building matrices with bracket literals and placeholder functions; pulling individual values back out with two-index access; asking how big a matrix is; slicing rows, columns, and rectangular blocks; and modifying matrices after they have been created.</p>
+				</li>
+				<li>
+					<title>Matrix Arithmetic</title>
+					<p>Applying operators and broadcasting functions to entire matrices at once. Almost everything from the vectors chapter carries over directly, with one new piece — the long-promised explanation of why the dot operators exist.</p>
+				</li>
+				<li>
+					<title>Matrices and Loops</title>
+					<p>Combining matrices with the for-loops you already know — single loops with slicing for the per-row or per-column case, nested loops for the cases that genuinely need element-by-element control, and the rule of thumb for choosing between vectorization, slicing, and nesting.</p>
+				</li>
+			</dl>
+		</p>
+
+		<p>
+			By the end of this chapter, you will be able to store and manipulate two-dimensional collections of values, replace many simple loops with single-line vectorized expressions, and write nested loops for the cases where vectorization and slicing alone are not enough.
+		</p>
+	</introduction>
+
+	<xi:include href="sec-creating-matrices.ptx" />
+	<xi:include href="sec-matrix-arithmetic.ptx" />
+	<xi:include href="sec-matrices-and-loops.ptx" />
+	<xi:include href="exercises-matrices.ptx" />
+
+	<conclusion>
+		<title>🗝️ Key Takeaways...</title>
+		<assemblage xml:id="takeaways-matrices">
+			<p>
+				<dl width="narrow">
+					<li>
+						<title>Matrices</title>
+						<p>
+							A matrix is a two-dimensional collection of numbers arranged in rows and columns. Other languages call the same idea a <q>2D array.</q> A vector is the special case of a matrix with one row or one column.
+						</p>
+					</li>
+					<li>
+						<title>Building Matrices</title>
+						<p>
+							<ul marker="square">
+								<li>Bracket literals — <pf>[1, 2; 3, 4]</pf> — with semicolons separating rows. Every row must have the same number of columns.</li>
+								<li><pf>zeros(m, n)</pf> and <pf>ones(m, n)</pf> for placeholder matrices of a known shape.</li>
+							</ul>
+						</p>
+					</li>
+					<li>
+						<title>Indexing</title>
+						<p>
+							Use <pf>A(i, j)</pf> to access the value at row <pf>i</pf>, column <pf>j</pf>. The order is always row first, then column. The <pf>end</pf> keyword works in either slot, referring to the last row or the last column.
+						</p>
+					</li>
+					<li>
+						<title>Size</title>
+						<p>
+							Use <pf>size(A)</pf> to get a two-element vector containing the number of rows and columns, or <pf>size(A, 1)</pf> and <pf>size(A, 2)</pf> to get them individually. Prefer <pf>size</pf> over <pf>length</pf> for matrices, since <pf>length</pf> returns the larger dimension and is rarely what you want.
+						</p>
+					</li>
+					<li>
+						<title>Slicing</title>
+						<p>
+							The standalone colon <pf>:</pf> means <q>every position along this dimension.</q>
+							<ul marker="square">
+								<li><pf>A(i, :)</pf> — the entire <pf>i</pf>th row.</li>
+								<li><pf>A(:, j)</pf> — the entire <pf>j</pf>th column.</li>
+								<li><pf>A(1:2, 2:3)</pf> — a rectangular block.</li>
+							</ul>
+						</p>
+					</li>
+					<li>
+						<title>Modifying Matrices</title>
+						<p>
+							<ul marker="square">
+								<li><pf>A(i, j) = newval</pf> — change a single element.</li>
+								<li><pf>A(i, :) = rowvec</pf> or <pf>A(:, j) = colvec</pf> — replace a whole row or column.</li>
+								<li><pf>A(i, :) = []</pf> or <pf>A(:, j) = []</pf> — delete a whole row or column. Single elements and interior blocks cannot be deleted, because the matrix must stay rectangular.</li>
+							</ul>
+						</p>
+					</li>
+					<li>
+						<title>Arithmetic</title>
+						<p>
+							Operators and built-in functions work on whole matrices the same way they worked on whole vectors. Scalar–matrix operations apply to every element. Element-wise operations on two matrices use plain <pf>+</pf> and <pf>-</pf>, but require the dot for <pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf>. The plain versions <pf>*</pf>, <pf>/</pf>, and <pf>^</pf> are reserved for matrix multiplication and related linear-algebra operations, which you will see in math classes.
+						</p>
+					</li>
+					<li>
+						<title>Matrices and Loops</title>
+						<p>
+							Three patterns, in order from simplest to most general:
+							<ul marker="square">
+								<li><em>Vectorization</em> — no loops at all. Reach for this first whenever the calculation can be expressed as a single matrix expression.</li>
+								<li><em>Single loop with slicing</em> — when each row or column needs an irregular operation but the per-row or per-column work can be written as a vector expression. Walk the row index and use <pf>A(i, :)</pf>; or walk the column index and use <pf>A(:, j)</pf>.</li>
+								<li><em>Nested loop</em> — outer loop over rows, inner loop over columns, accessing <pf>A(i, j)</pf>. Use this when both dimensions genuinely need independent element-by-element control. The inner index changes fastest.</li>
+							</ul>
+						</p>
+						<p>
+							Preallocate result matrices with <pf>zeros(m, n)</pf> before any loop that builds one — the cost of growing a matrix one element at a time is much worse than for a vector.
+						</p>
+					</li>
+				</dl>
+			</p>
+		</assemblage>
+	</conclusion>
+
+</chapter>

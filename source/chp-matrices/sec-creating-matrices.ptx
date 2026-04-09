@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-creating-matrices">
+	<title>Creating, Indexing, &amp; Modifying Matrices</title>
+
+	<subsection xml:id="subsec-what-is-a-matrix">
+		<title>What is a Matrix?</title>
+
+		<p>
+			A vector is a one-dimensional collection of numbers — a single row or a single column. A <term>matrix</term> is the natural next step: a two-dimensional collection of numbers, arranged in rows <em>and</em> columns. Where a vector has only positions, a matrix has row positions and column positions, and you need both to point at a single value.
+		</p>
+
+		<p>
+			Matrices show up everywhere two-dimensional data does. A spreadsheet of monthly sales by region is a matrix. A grayscale image is a matrix of pixel brightnesses. A table of distances between cities is a matrix. The grid of values you would compute by evaluating a function at every combination of two inputs is a matrix. Anything you would naturally draw as a rectangular grid of numbers can be stored as one.
+		</p>
+
+		<aside>
+			<title>Vocabulary across languages</title>
+			<p>
+				Other programming languages call the same idea a <q>2D array</q> or a <q>nested list.</q> Python's NumPy calls them <q>2D arrays</q> and treats them as a special case of a more general n-dimensional array. The vocabulary varies; the picture — a rectangular grid of numbers — is the same everywhere.
+			</p>
+		</aside>
+
+		<p>
+			A vector is really just a matrix with one row (or one column), and almost everything you learned in the previous chapter still applies — building, indexing, slicing, modifying, vectorized arithmetic, and looping. The main differences are that you now need <em>two</em> indices to talk about a single element, and many of MATLAB's built-in tools take both a number of rows and a number of columns.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-building-matrices">
+		<title>Building Matrices</title>
+
+		<p>
+			The same construction techniques you used for vectors carry over to matrices, with one new ingredient: a way to mark where one row ends and the next begins.
+		</p>
+
+		<p>
+			<term>Bracket literals</term> work just like they did for vectors. Inside the brackets, separate the values in a row with commas (or spaces), and separate the rows from each other with semicolons:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [1, 2, 3; 4, 5, 6; 7, 8, 9]
+			</input>
+		</sage>
+
+		<p>
+			MATLAB displays the result as a 3×3 grid, with one row per line. The semicolons inside the brackets are doing exactly what they did when you wrote a column vector as <pf>[1; 2; 3]</pf> back in the vectors chapter — each semicolon means <q>start a new row.</q> A column vector is just a matrix that happens to have one column.
+		</p>
+
+		<p>
+			Every row of a matrix must have the same number of columns. Trying to write <pf>[1, 2, 3; 4, 5]</pf> is an error, because the first row has three values and the second has only two. There is no such thing as a matrix with rows of different lengths.
+		</p>
+
+		<p>
+			Just as with vectors, sometimes you need a placeholder of the right size that you will fill in later. The <pf>zeros</pf> and <pf>ones</pf> functions you already know take a number of rows and a number of columns and produce a matrix of that shape:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					Z = zeros(2, 4)
+					O = ones(3, 2)
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					Z = [0, 0, 0, 0;
+					     0, 0, 0, 0]
+					O = [1, 1;
+					     1, 1;
+					     1, 1]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			Now the <q>two arguments</q> rule from the vectors chapter makes more sense — <pf>zeros</pf> and <pf>ones</pf> were always matrix functions, and a row vector was simply the special case where the first argument was <pf>1</pf>.
+		</p>
+
+		<p>
+			Here is a summary of the construction techniques:
+		</p>
+
+		<table>
+			<title>Ways to Build a Matrix</title>
+			<tabular top="minor" bottom="minor" left="minor" right="minor">
+				<col halign="center" width="20%" />
+				<col halign="center" width="40%" />
+				<col halign="left" width="40%" />
+				<row header="yes">
+					<cell><p>Technique</p></cell>
+					<cell><p>Example</p></cell>
+					<cell><p>Use when…</p></cell>
+				</row>
+				<row>
+					<cell><p>Bracket literal</p></cell>
+					<cell><p><pf>[1, 2; 3, 4]</pf></p></cell>
+					<cell><p>You already know all of the values.</p></cell>
+				</row>
+				<row>
+					<cell><p><pf>zeros</pf> / <pf>ones</pf></p></cell>
+					<cell><p><pf>zeros(3, 4)</pf></p></cell>
+					<cell><p>You need a placeholder of a known shape to fill in later.</p></cell>
+				</row>
+			</tabular>
+		</table>
+
+	</subsection>
+
+	<subsection xml:id="subsec-indexing-matrices">
+		<title>Indexing a Matrix</title>
+
+		<p>
+			To pull a single value out of a matrix, you need to say <em>which row</em> and <em>which column</em> you want. The syntax is the same as for vectors, but with two numbers inside the parentheses instead of one: the row first, then the column.
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(1, 1)
+				A(2, 3)
+				A(3, 1)
+			</input>
+		</sage>
+
+		<p>
+			<pf>A(1, 1)</pf> returns <pf>10</pf>, the value in the first row and first column. <pf>A(2, 3)</pf> returns <pf>60</pf>, the value in the second row and third column. <pf>A(3, 1)</pf> returns <pf>70</pf>, the value in the third row and first column. The two numbers are <em>coordinates</em>, not values.
+		</p>
+
+		<p>
+			It helps to picture a matrix the same way you pictured a vector — with positions on the outside and values on the inside — but now the positions form a grid:
+		</p>
+
+		<sidebyside widths="48% 48%" valign="middle">
+			<table>
+				<title>Positions vs. Values</title>
+				<tabular top="minor" bottom="minor" left="minor" right="minor">
+					<row header="yes">
+						<cell></cell>
+						<cell><pf>col 1</pf></cell>
+						<cell><pf>col 2</pf></cell>
+						<cell><pf>col 3</pf></cell>
+					</row>
+					<row>
+						<cell><pf>row 1</pf></cell>
+						<cell><pf>10</pf></cell>
+						<cell><pf>20</pf></cell>
+						<cell><pf>30</pf></cell>
+					</row>
+					<row>
+						<cell><pf>row 2</pf></cell>
+						<cell><pf>40</pf></cell>
+						<cell><pf>50</pf></cell>
+						<cell><pf>60</pf></cell>
+					</row>
+					<row>
+						<cell><pf>row 3</pf></cell>
+						<cell><pf>70</pf></cell>
+						<cell><pf>80</pf></cell>
+						<cell><pf>90</pf></cell>
+					</row>
+				</tabular>
+			</table>
+			<stack>
+				<p>Examples ⤵︎</p>
+				<program language="matlab">
+					A(1, 2)   % → 20
+					A(2, 1)   % → 40
+					A(3, 3)   % → 90
+					A(2, 2)   % → 50
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			When you write <pf>A(2, 3)</pf>, the <pf>2</pf> picks the second row and the <pf>3</pf> picks the third column. MATLAB looks at the cell where they meet and hands back <pf>60</pf>. The same warning from the vectors chapter applies here: indexing always works by position. There is no way to ask <q>give me the value 60</q> directly — you have to know where it lives and ask for it by its row and column.
+		</p>
+
+		<aside>
+			<title>Row first, then column</title>
+			<p>
+				The order matters. <pf>A(2, 3)</pf> and <pf>A(3, 2)</pf> are different — the first picks row 2, column 3, and the second picks row 3, column 2. The convention <q>row first, then column</q> is universal in mathematics and in nearly every programming language that supports 2D arrays, but it is also the single most common source of off-by-one bugs when working with matrices. When you find yourself getting unexpected values back, the first thing to check is whether you have the two indices in the right order.
+			</p>
+		</aside>
+
+		<p>
+			The <pf>end</pf> keyword still works inside each index slot. Inside the row position, <pf>end</pf> means the last row; inside the column position, <pf>end</pf> means the last column:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(end, end)
+				A(1, end)
+				A(end, 1)
+			</input>
+		</sage>
+
+		<p>
+			<pf>A(end, end)</pf> returns the bottom-right value, <pf>A(1, end)</pf> returns the top-right, and <pf>A(end, 1)</pf> returns the bottom-left. As before, you can do arithmetic on <pf>end</pf>, so <pf>A(end - 1, end)</pf> gives the second-to-last row of the rightmost column.
+		</p>
+
+		<p>
+			Asking for a position that does not exist — like <pf>A(5, 1)</pf> when <pf>A</pf> only has three rows — is an error, just as it was for vectors.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-matrix-size">
+		<title>The Size of a Matrix</title>
+
+		<p>
+			Before you can write a loop over a matrix or check that two matrices have compatible shapes, you need a way to ask MATLAB how big a matrix actually is. Three built-in functions do this, and now is the moment they earn their keep.
+		</p>
+
+		<p>
+			The function you will use most often is <pf>size</pf>. Calling <pf>size(A)</pf> returns a two-element row vector containing the number of rows and the number of columns:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60]
+				size(A)
+			</input>
+		</sage>
+
+		<p>
+			The result is <pf>[2, 3]</pf> — two rows and three columns. The order matches the indexing convention: rows first, then columns.
+		</p>
+
+		<p>
+			Often you only need one of the two dimensions, not both. <pf>size</pf> accepts a second argument that picks which dimension you want: <pf>1</pf> for rows, <pf>2</pf> for columns:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					A = [10, 20, 30; 40, 50, 60]
+					size(A, 1)
+					size(A, 2)
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					A = [10, 20, 30;
+					     40, 50, 60]
+					ans = 2
+					ans = 3
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			This form is what you will reach for most often inside loops, where you want to write <pf>1:size(A, 1)</pf> to walk the rows or <pf>1:size(A, 2)</pf> to walk the columns.
+		</p>
+
+		<p>
+			The other function from the vectors chapter, <pf>numel</pf>, also still works on a matrix. It returns the <em>total</em> number of elements — rows times columns. For a 2-by-3 matrix, <pf>numel(A)</pf> returns <pf>6</pf>. This is occasionally useful when you only care how many values are in a matrix and not how they are arranged.
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60]
+				numel(A)
+			</input>
+		</sage>
+
+		<aside>
+			<title>What about <pf>length</pf>?</title>
+			<p>
+				The <pf>length</pf> function from the vectors chapter still runs on a matrix without an error, but its behavior is almost never what you want: it returns the <em>larger</em> of the two dimensions. For a 2-by-3 matrix, <pf>length(A)</pf> returns <pf>3</pf>. The general rule: use <pf>length</pf> for vectors, use <pf>size</pf> for matrices, and use <pf>numel</pf> when you genuinely want the total count regardless of shape.
+			</p>
+		</aside>
+
+		<p>
+			You will use <pf>size</pf> constantly in the next two sections — for writing loops that adapt to whatever shape of matrix they are given, and for preallocating result matrices that match the shape of an input.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-slicing-matrices">
+		<title>Slicing Rows, Columns, and Submatrices</title>
+
+		<p>
+			Pulling out a single value with <pf>A(i, j)</pf> is the most basic kind of indexing, but it is rarely the most useful. Much more often, you want a whole row, a whole column, or a rectangular block of the matrix. The slicing tools you learned for vectors all work here — there are just two slots to fill in instead of one.
+		</p>
+
+		<p>
+			The most important new tool is the standalone colon <pf>:</pf>, which back in the vectors chapter was mentioned as <q>select everything.</q> Inside a matrix index, <pf>:</pf> means <q>every position along this dimension.</q> Used in the column slot, it gives you a whole row; used in the row slot, it gives you a whole column:
+		</p>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					A = [10, 20, 30;
+					     40, 50, 60;
+					     70, 80, 90];
+					A(2, :)
+					A(:, 3)
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					A(2, :) = [40, 50, 60]
+					A(:, 3) = [30;
+					           60;
+					           90]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			<pf>A(2, :)</pf> returns the entire second row as a row vector. <pf>A(:, 3)</pf> returns the entire third column as a column vector. Notice the shapes — a row pulled from a matrix comes back as a row, and a column pulled from a matrix comes back as a column. The orientation is preserved.
+		</p>
+
+		<p>
+			You can also use a range or a list of positions in either slot, just as you did with vectors. This is how you grab a rectangular block — a <term>submatrix</term> — out of a larger matrix:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(1:2, 2:3)
+				A([1, 3], :)
+			</input>
+		</sage>
+
+		<p>
+			<pf>A(1:2, 2:3)</pf> returns the 2-by-2 block formed by the first two rows and the last two columns. <pf>A([1, 3], :)</pf> returns rows 1 and 3 in their entirety, skipping row 2 — this is the matrix equivalent of the out-of-order indexing you saw with vectors.
+		</p>
+
+		<aside>
+			<title>The general rule for slicing</title>
+			<p>
+				Whatever you put in the row slot picks which rows to keep, and whatever you put in the column slot picks which columns. The result is a matrix made up of the values where the chosen rows and columns intersect. A single number picks one row or column; a range picks a contiguous block; a list picks specific positions; and <pf>:</pf> picks all of them.
+			</p>
+		</aside>
+
+		<p>
+			The <pf>end</pf> keyword still works in either slot, and it refers to the last position along that dimension — last row in the row slot, last column in the column slot. This is how you grab things like <q>the bottom-right 2-by-2 corner</q> without having to know the exact size of the matrix:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(end-1:end, end-1:end)
+			</input>
+		</sage>
+
+		<p>
+			This is one of the patterns that makes <pf>end</pf> so valuable: the same expression works no matter how big the matrix happens to be.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-modifying-matrices">
+		<title>Modifying a Matrix</title>
+
+		<p>
+			Modifying a matrix follows the same rules as modifying a vector, with the same indexing tools you just learned for slicing. You can change one element, replace a whole row or column, or remove rows and columns from the matrix entirely.
+		</p>
+
+		<p>
+			To <term>change</term> a single value, index into the position you want and assign a new value to it:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(2, 3) = 99
+			</input>
+		</sage>
+
+		<p>
+			The value at row 2, column 3 is replaced with <pf>99</pf>, and every other element is left untouched.
+		</p>
+
+		<p>
+			To <term>replace a whole row or column</term>, slice it with <pf>:</pf> on the left side of the assignment and supply a vector of new values on the right. The shape of the values has to match the shape of the slice — a row replacement needs a row vector, and a column replacement needs a column vector:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(1, :) = [1, 2, 3]
+				A(:, 2) = [100; 200; 300]
+			</input>
+		</sage>
+
+		<p>
+			You can also replace a whole row or column with a single scalar, in which case MATLAB fills every position in the slice with that value:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(:, 2) = 0
+			</input>
+		</sage>
+
+		<p>
+			After this, the entire second column is zeros. This shortcut is genuinely convenient and shows up often when you want to wipe out part of a matrix without typing out a vector of zeros.
+		</p>
+
+		<p>
+			The same idea extends to <term>rectangular blocks</term> of the matrix. If you slice a region with ranges in both the row and column slots, you can replace the whole block at once — either with another matrix of matching shape, or with a single scalar that fills every position in the block:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30, 40; 50, 60, 70, 80; 90, 100, 110, 120]
+				A(1:2, 3:4) = [1, 2; 3, 4]
+				A(1:2, 1:2) = 0
+			</input>
+		</sage>
+
+		<p>
+			The first assignment overwrites the top-right 2-by-2 block with the values from a small matrix; the second wipes out the top-left 2-by-2 block by filling it with zeros. The rule is the same one you already know — the left side picks a region, the right side supplies the values — and it works for any rectangular slice, not just whole rows and columns.
+		</p>
+
+		<p>
+			To <term>delete</term> a whole row or column, assign the empty vector <pf>[]</pf> to it. The matrix closes up around the gap, just as a vector did when you deleted one of its elements:
+		</p>
+
+		<sage language="octave">
+			<input>
+				A = [10, 20, 30; 40, 50, 60; 70, 80, 90]
+				A(2, :) = []
+			</input>
+		</sage>
+
+		<p>
+			After this, <pf>A</pf> has only two rows, and what used to be row 3 is now row 2. You can delete a column the same way with <pf>A(:, j) = []</pf>.
+		</p>
+
+		<aside>
+			<title>You cannot delete a single element</title>
+			<p>
+				Deleting one element of a matrix is not allowed: writing <pf>A(2, 3) = []</pf> is an error. The reason is that a matrix has to stay rectangular — every row must have the same number of columns. Removing one element would leave the matrix with a hole in it, which is not a shape MATLAB knows how to represent. You can only delete entire rows or entire columns.
+			</p>
+		</aside>
+
+		<aside>
+			<title>Writing vs. deleting</title>
+			<p>
+				You can <em>write</em> to any rectangular region of a matrix — a single element, a row, a column, or a block — and the matrix stays the same shape. But you can only <em>delete</em> whole rows or whole columns. Writing <pf>A(2, 3) = []</pf> to delete a single element, or <pf>A(2:3, 2:3) = []</pf> to delete an interior block, are both errors. The reason is the same in both cases: a matrix has to stay rectangular, and removing anything smaller than a whole row or column would leave a hole that MATLAB cannot represent.
+			</p>
+		</aside>
+
+		<p>
+			Here is a summary of the modification patterns:
+		</p>
+
+		<table>
+			<title>Modifying a Matrix</title>
+			<tabular top="minor" bottom="minor" left="minor" right="minor">
+				<col halign="center" width="20%" />
+				<col halign="center" width="35%" />
+				<col halign="left" width="45%" />
+				<row header="yes">
+					<cell><p>Operation</p></cell>
+					<cell><p>Syntax</p></cell>
+					<cell><p>Effect</p></cell>
+				</row>
+				<row>
+					<cell><p>Change one element</p></cell>
+					<cell><p><pf>A(i, j) = newval</pf></p></cell>
+					<cell><p>Replaces the value at row <pf>i</pf>, column <pf>j</pf>.</p></cell>
+				</row>
+				<row>
+					<cell><p>Replace a row</p></cell>
+					<cell><p><pf>A(i, :) = rowvec</pf></p></cell>
+					<cell><p>Replaces row <pf>i</pf> with a new row vector (or scalar).</p></cell>
+				</row>
+				<row>
+					<cell><p>Replace a column</p></cell>
+					<cell><p><pf>A(:, j) = colvec</pf></p></cell>
+					<cell><p>Replaces column <pf>j</pf> with a new column vector (or scalar).</p></cell>
+				</row>
+				<row>
+					<cell><p>Replace a block</p></cell>
+					<cell><p><pf>A(rows, cols) = B</pf></p></cell>
+					<cell><p>Replaces a rectangular region with a matrix of matching shape (or a scalar).</p></cell>
+				</row>
+				<row>
+					<cell><p>Delete a row</p></cell>
+					<cell><p><pf>A(i, :) = []</pf></p></cell>
+					<cell><p>Removes row <pf>i</pf>; later rows shift up.</p></cell>
+				</row>
+				<row>
+					<cell><p>Delete a column</p></cell>
+					<cell><p><pf>A(:, j) = []</pf></p></cell>
+					<cell><p>Removes column <pf>j</pf>; later columns shift left.</p></cell>
+				</row>
+			</tabular>
+		</table>
+
+	</subsection>
+
+</section>

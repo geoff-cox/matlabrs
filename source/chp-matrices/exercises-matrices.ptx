@@ -1,0 +1,1555 @@
+<exercises xml:id="exercises-arrays">
+	<title>💻 Coding Exercises</title>
+
+	<introduction>
+		<p>
+			These exercises integrate concepts from throughout the chapter. They require you to combine array creation, indexing, operations, and built-in functions to solve problems.
+		</p>
+	</introduction>
+
+
+		<exercise label="hw-random-walk-a">
+			<title>Random Walk to a Boundary</title>
+			<statement>
+				<p>
+					A <term>random walk</term> changes position by a sequence of steps. In a live simulation, each step could be generated with <pf>randi([0,1]) * 2 - 1</pf>, which produces either <m>-1</m> or <m>1</m> with equal probability.
+				</p>
+
+				<p>
+					To make the exercise testable, write a function called <pf>walkToBoundary</pf> that takes a starting position, a lower boundary, an upper boundary, and a vector of moves whose entries are <pf>-1</pf> or <pf>1</pf>. Use a <pf>while</pf>-loop to apply moves one at a time until the position reaches either boundary or there are no moves left.
+				</p>
+
+				<p>
+					Return the final position, the number of moves actually used, and the highest and lowest positions reached. This models both a walk that starts at 0 and stops at <m>-10</m> or <m>10</m>, and the Gambler's Ruin version that starts at 5 and stops at 0 or 10.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>startPos</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>starting position</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>lowerBound</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>lower stopping value</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>upperBound</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>upper stopping value</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>moves</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>vector of steps, each equal to <pf>-1</pf> or <pf>1</pf></p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>finalPos</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>position where the walk stops</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>steps</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of moves used</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>maxPos</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>highest position reached</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>minPos</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>lowest position reached</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[finalPos, n, hi, lo] = walkToBoundary(0, -3, 3, [1 1 -1 1 1])
+							% Test 2
+							[finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [-1 -1 1 -1 -1 -1 -1])
+							% Test 3
+							[finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [1 1 -1 1 1 1 1])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							finalPos = 3		n = 5		hi = 3		lo = 0
+							% Test 2
+							finalPos = 0		n = 7		hi = 5		lo = 0
+							% Test 3
+							finalPos = 10		n = 7		hi = 10		lo = 5
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [finalPos, steps, maxPos, minPos] = walkToBoundary(startPos, lowerBound, upperBound, moves)
+						pos = startPos;
+						steps = 0;
+						maxPos = pos;
+						minPos = pos;
+						idx = 1;
+
+						while pos &gt; lowerBound &amp;&amp; pos &lt; upperBound &amp;&amp; idx &lt;= length(moves)
+							pos = pos + moves(idx);
+							steps = steps + 1;
+
+							if pos &gt; maxPos
+								maxPos = pos;
+							end
+
+							if pos &lt; minPos
+								minPos = pos;
+							end
+
+							idx = idx + 1;
+						end
+
+						finalPos = pos;
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-guessing-game-a">
+			<title>Number Guessing Game</title>
+			<statement>
+				<p>
+					The original version of this activity uses <pf>randi</pf> to choose a secret number and <pf>input</pf> to collect guesses from the player. To make the behavior testable, write a function called <pf>guessNumber</pf> that takes the secret number and a vector of guesses as input.
+				</p>
+
+				<p>
+					Process the guesses in order with a <pf>while</pf>-loop until the correct guess is found or the list of guesses runs out. Return <pf>won</pf> as 1 if the player guessed correctly and 0 otherwise, along with <pf>attempts</pf>, the number of guesses that were actually used.
+				</p>
+
+				<p>
+					In an interactive version, you would print <q>Too low!</q> or <q>Too high!</q> after each incorrect guess.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>secret</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>secret number to guess</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>guesses</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>guesses to process in order</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>won</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>1 if the secret number is guessed, otherwise 0</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>attempts</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of guesses used</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[won, n] = guessNumber(42, [50 25 40 42])
+							% Test 2
+							[won, n] = guessNumber(17, [10 20 17])
+							% Test 3
+							[won, n] = guessNumber(8, [1 2 3])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							won = 1			n = 4
+							% Test 2
+							won = 1			n = 3
+							% Test 3
+							won = 0			n = 3
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [won, attempts] = guessNumber(secret, guesses)
+						won = 0;
+						attempts = 0;
+						idx = 1;
+
+						while idx &lt;= length(guesses) &amp;&amp; won == 0
+							attempts = attempts + 1;
+
+							if guesses(idx) == secret
+								won = 1;
+							end
+
+							idx = idx + 1;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-guessing-game-c">
+			<title>Limited Guesses</title>
+			<statement>
+				<p>
+					Write a function called <pf>guessNumberLimited</pf> that works like the previous exercise, but stops after at most <pf>maxAttempts</pf> guesses. Process the guesses in order with a <pf>while</pf>-loop.
+				</p>
+
+				<p>
+					Return <pf>won</pf> as 1 if the player guesses the secret number before the limit is reached and 0 otherwise. Also return <pf>attempts</pf>, the number of guesses actually used.
+				</p>
+
+				<p>
+					In the interactive version, if the player loses, you would reveal the secret number after the loop ends.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>secret</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>secret number to guess</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>guesses</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>guesses to process in order</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>maxAttempts</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>maximum number of guesses allowed</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>won</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>1 if the player guesses correctly in time, otherwise 0</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>attempts</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of guesses used before stopping</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[won, n] = guessNumberLimited(42, [50 25 40 42], 4)
+							% Test 2
+							[won, n] = guessNumberLimited(42, [50 25 40 35 44], 3)
+							% Test 3
+							[won, n] = guessNumberLimited(7, [7 1 2], 7)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							won = 1			n = 4
+							% Test 2
+							won = 0			n = 3
+							% Test 3
+							won = 1			n = 1
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [won, attempts] = guessNumberLimited(secret, guesses, maxAttempts)
+						won = 0;
+						attempts = 0;
+						idx = 1;
+
+						while idx &lt;= length(guesses) &amp;&amp; attempts &lt; maxAttempts &amp;&amp; won == 0
+							attempts = attempts + 1;
+
+							if guesses(idx) == secret
+								won = 1;
+							end
+
+							idx = idx + 1;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-mental-math-a">
+			<title>Multiplication Streak</title>
+			<statement>
+				<p>
+					The original version of this activity generates random multiplication questions and stops as soon as the player gives one incorrect answer. To make the logic testable, write a function called <pf>multiplicationStreak</pf> that takes three equally sized vectors: the first factors, the second factors, and the player's answers.
+				</p>
+
+				<p>
+					Use a <pf>while</pf>-loop to process the questions in order. Stop at the first incorrect answer or when all questions have been checked. Return the number of consecutive correct answers from the start.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>aVals</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>first factors</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>bVals</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>second factors</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>answers</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>player answers</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>streak</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of consecutive correct answers from the start</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							multiplicationStreak([3 7 2], [4 5 9], [12 35 18])
+							% Test 2
+							multiplicationStreak([3 7 2], [4 5 9], [12 34 18])
+							% Test 3
+							multiplicationStreak([9 8], [9 7], [80 56])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							ans = 3
+							% Test 2
+							ans = 1
+							% Test 3
+							ans = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function streak = multiplicationStreak(aVals, bVals, answers)
+						streak = 0;
+						idx = 1;
+
+						while idx &lt;= length(answers) &amp;&amp; answers(idx) == aVals(idx) * bVals(idx)
+							streak = streak + 1;
+							idx = idx + 1;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-mental-math-b">
+			<title>Mixed Operations Streak</title>
+			<statement>
+				<p>
+					Write a function called <pf>mixedMathStreak</pf> that checks a sequence of arithmetic questions. Use operation codes <pf>1</pf> for addition, <pf>2</pf> for subtraction, and <pf>3</pf> for multiplication.
+				</p>
+
+				<p>
+					The inputs <pf>ops</pf>, <pf>aVals</pf>, <pf>bVals</pf>, and <pf>answers</pf> should all have the same length. Use a <pf>while</pf>-loop and a <pf>switch</pf>-statement to compute the correct answer for each round. Stop at the first incorrect answer and return the number of consecutive correct answers from the start.
+				</p>
+
+				<p>
+					Assume every subtraction round is written so that <pf>aVals(k) &gt;= bVals(k)</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>ops</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>operation codes: 1 add, 2 subtract, 3 multiply</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>aVals</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>first numbers</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>bVals</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>second numbers</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>answers</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>player answers</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>streak</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of consecutive correct answers from the start</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 42 42])
+							% Test 2
+							mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 41 42])
+							% Test 3
+							mixedMathStreak([2], [10], [3], [8])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							ans = 4
+							% Test 2
+							ans = 2
+							% Test 3
+							ans = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function streak = mixedMathStreak(ops, aVals, bVals, answers)
+						streak = 0;
+						idx = 1;
+
+						while idx &lt;= length(answers)
+							switch ops(idx)
+								case 1
+									trueAnswer = aVals(idx) + bVals(idx);
+								case 2
+									trueAnswer = aVals(idx) - bVals(idx);
+								case 3
+									trueAnswer = aVals(idx) * bVals(idx);
+							end
+
+							if answers(idx) == trueAnswer
+								streak = streak + 1;
+								idx = idx + 1;
+							else
+								break
+							end
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-rps-a">
+			<title>Rock, Paper, Scissors Round</title>
+			<statement>
+				<p>
+					In Rock, Paper, Scissors, the choices are encoded as <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>. A player wins if Rock beats Scissors, Paper beats Rock, or Scissors beats Paper.
+				</p>
+
+				<p>
+					To make the activity testable, write a function called <pf>rpsRound</pf> that takes the player's choice and the computer's choice as input and returns the result of the round.
+				</p>
+
+				<p>
+					Return <pf>winner</pf> as <pf>1</pf> if the player wins, <pf>0</pf> if the round is a tie, and <pf>-1</pf> if the computer wins. In an interactive version, the computer's move could be generated with <pf>randi([1,3])</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>player</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>player's choice: <pf>1</pf> for Rock, <pf>2</pf> for Paper, <pf>3</pf> for Scissors</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>comp</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>computer's choice: <pf>1</pf> for Rock, <pf>2</pf> for Paper, <pf>3</pf> for Scissors</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>winner</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><pf>1</pf> if the player wins, <pf>0</pf> for a tie, and <pf>-1</pf> if the computer wins</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							rpsRound(1, 3)
+							% Test 2
+							rpsRound(2, 2)
+							% Test 3
+							rpsRound(3, 1)
+							% Test 4
+							rpsRound(2, 1)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							ans = 1
+							% Test 2
+							ans = 0
+							% Test 3
+							ans = -1
+							% Test 4
+							ans = 1
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function winner = rpsRound(player, comp)
+						if player == comp
+							winner = 0;
+						elseif (player == 1 &amp;&amp; comp == 3) || ...
+									(player == 2 &amp;&amp; comp == 1) || ...
+									(player == 3 &amp;&amp; comp == 2)
+							winner = 1;
+						else
+							winner = -1;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-rps-b">
+			<title>Rock, Paper, Scissors First to 3 Wins</title>
+			<statement>
+				<p>
+					Write a function called <pf>rpsFirstToThree</pf> that plays a match using predetermined moves for the player and the computer. This makes the activity testable without <pf>input</pf> or random numbers.
+				</p>
+
+				<p>
+					The vectors <pf>playerMoves</pf> and <pf>compMoves</pf> contain choices encoded as <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>. Use a <pf>while</pf>-loop to process moves in order until either the player reaches 3 wins, the computer reaches 3 wins, or one of the move lists runs out.
+				</p>
+
+				<p>
+					Return the final scores, the number of rounds actually played, and <pf>winner</pf>, where <pf>1</pf> means the player won the match, <pf>-1</pf> means the computer won the match, and <pf>0</pf> means no one reached 3 wins before the moves ended. Ties count as rounds played but do not increase either score.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>playerMoves</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>player choices to process in order</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>compMoves</pf></p></cell>
+						<cell><p>(1xm) double</p></cell>
+						<cell><p>computer choices to process in order</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>playerScore</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of rounds won by the player</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>compScore</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of rounds won by the computer</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>rounds</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of rounds actually played</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>winner</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> otherwise</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[p, c, n, w] = rpsFirstToThree([1 2 3 1], [3 1 2 2])
+							% Test 2
+							[p, c, n, w] = rpsFirstToThree([1 1 1 2 2], [2 2 1 3 3])
+							% Test 3
+							[p, c, n, w] = rpsFirstToThree([1 2 3], [1 3 2])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							p = 3		c = 0		n = 3		w = 1
+							% Test 2
+							p = 0		c = 3		n = 4		w = -1
+							% Test 3
+							p = 1		c = 1		n = 3		w = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [playerScore, compScore, rounds, winner] = rpsFirstToThree(playerMoves, compMoves)
+						playerScore = 0;
+						compScore = 0;
+						rounds = 0;
+						idx = 1;
+						maxRounds = min(length(playerMoves), length(compMoves));
+
+						while playerScore &lt; 3 &amp;&amp; compScore &lt; 3 &amp;&amp; idx &lt;= maxRounds
+							player = playerMoves(idx);
+							comp = compMoves(idx);
+							rounds = rounds + 1;
+
+							if player ~= comp
+								if (player == 1 &amp;&amp; comp == 3) || ...
+									(player == 2 &amp;&amp; comp == 1) || ...
+									(player == 3 &amp;&amp; comp == 2)
+									playerScore = playerScore + 1;
+								else
+									compScore = compScore + 1;
+								end
+							end
+
+							idx = idx + 1;
+						end
+
+						if playerScore == 3
+							winner = 1;
+						elseif compScore == 3
+							winner = -1;
+						else
+							winner = 0;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-rps-c">
+			<title>Rock, Paper, Scissors Match Statistics</title>
+			<statement>
+				<p>
+					Write a function called <pf>rpsMatchStats</pf> that tracks the full summary of a Rock, Paper, Scissors match. Use the same move encoding as before: <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>.
+				</p>
+
+				<p>
+					Use a <pf>while</pf>-loop to process the moves in order until either player reaches 3 wins or one of the move lists runs out. Track the total number of rounds played, the player's wins, the computer's wins, and the number of ties.
+				</p>
+
+				<p>
+					Return <pf>winner</pf> as <pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> if no one reaches 3 wins.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>playerMoves</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>player choices to process in order</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>compMoves</pf></p></cell>
+						<cell><p>(1xm) double</p></cell>
+						<cell><p>computer choices to process in order</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>playerWins</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of rounds won by the player</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>compWins</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of rounds won by the computer</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>ties</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of tied rounds</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>rounds</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of rounds actually played</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>winner</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> otherwise</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[p, c, t, n, w] = rpsMatchStats([1 2 3 1], [1 1 1 3])
+							% Test 2
+							[p, c, t, n, w] = rpsMatchStats([1 2 3 1], [3 1 2 2])
+							% Test 3
+							[p, c, t, n, w] = rpsMatchStats([1 1 1 2 2], [2 2 1 3 3])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							p = 2		c = 1		t = 1		n = 4		w = 0
+							% Test 2
+							p = 3		c = 0		t = 0		n = 3		w = 1
+							% Test 3
+							p = 0		c = 3		t = 1		n = 4		w = -1
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [playerWins, compWins, ties, rounds, winner] = rpsMatchStats(playerMoves, compMoves)
+						playerWins = 0;
+						compWins = 0;
+						ties = 0;
+						rounds = 0;
+						idx = 1;
+						maxRounds = min(length(playerMoves), length(compMoves));
+
+						while playerWins &lt; 3 &amp;&amp; compWins &lt; 3 &amp;&amp; idx &lt;= maxRounds
+							player = playerMoves(idx);
+							comp = compMoves(idx);
+							rounds = rounds + 1;
+
+							if player == comp
+								ties = ties + 1;
+							elseif (player == 1 &amp;&amp; comp == 3) || ...
+										(player == 2 &amp;&amp; comp == 1) || ...
+										(player == 3 &amp;&amp; comp == 2)
+								playerWins = playerWins + 1;
+							else
+								compWins = compWins + 1;
+							end
+
+							idx = idx + 1;
+						end
+
+						if playerWins == 3
+							winner = 1;
+						elseif compWins == 3
+							winner = -1;
+						else
+							winner = 0;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-change-machine-a">
+			<title>Counting Quarters</title>
+			<statement>
+				<p>
+					A vending machine often makes change by repeatedly taking the largest coin that still fits. This strategy is called a <term>greedy algorithm</term>.
+				</p>
+
+				<p>
+					Write a function called <pf>countQuarters</pf> that takes an amount in cents and uses a <pf>while</pf>-loop to count how many quarters fit into that amount. Do not use division or <pf>floor</pf>. Instead, subtract <pf>25</pf> repeatedly until fewer than 25 cents remain.
+				</p>
+
+				<p>
+					Return the number of quarters used and the remaining number of cents.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>amount</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>nonnegative integer amount in cents</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>quarters</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of quarters used</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>remainder</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>cents left after removing all possible quarters</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[q, r] = countQuarters(87)
+							% Test 2
+							[q, r] = countQuarters(19)
+							% Test 3
+							[q, r] = countQuarters(100)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							q = 3			r = 12
+							% Test 2
+							q = 0			r = 19
+							% Test 3
+							q = 4			r = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [quarters, remainder] = countQuarters(amount)
+						quarters = 0;
+						remainder = amount;
+
+						while remainder &gt;= 25
+							remainder = remainder - 25;
+							quarters = quarters + 1;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-password-a">
+			<title>PIN Check with Repeated Guesses</title>
+			<statement>
+				<p>
+					In a live version of this activity, a program could use <pf>input</pf> to keep asking for a PIN until the correct value is entered.
+				</p>
+
+				<p>
+					To make the behavior testable, write a function called <pf>checkPin</pf> that takes the secret PIN and a vector of guesses. Use a <pf>while</pf>-loop to process guesses in order until the correct PIN is found or the guess list runs out.
+				</p>
+
+				<p>
+					Return <pf>granted</pf> as <pf>1</pf> if the PIN is entered correctly and <pf>0</pf> otherwise. Also return <pf>attempts</pf>, the number of guesses that were actually used.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>pin</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>secret PIN value</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>guesses</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>PIN guesses to process in order</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>granted</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><pf>1</pf> if the correct PIN is found, otherwise <pf>0</pf></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>attempts</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of guesses used</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[g, n] = checkPin(1234, [1111 9999 1234])
+							% Test 2
+							[g, n] = checkPin(2468, [1111 2222 3333 4444])
+							% Test 3
+							[g, n] = checkPin(4321, [4321])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							g = 1			n = 3
+							% Test 2
+							g = 0			n = 4
+							% Test 3
+							g = 1			n = 1
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [granted, attempts] = checkPin(pin, guesses)
+						granted = 0;
+						attempts = 0;
+						idx = 1;
+
+						while idx &lt;= length(guesses) &amp;&amp; granted == 0
+							attempts = attempts + 1;
+
+							if guesses(idx) == pin
+								granted = 1;
+							end
+
+							idx = idx + 1;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise label="hw-password-b">
+			<title>PIN Lockout After Three Strikes</title>
+			<statement>
+				<p>
+					Write a function called <pf>checkPinThreeStrikes</pf> that limits the user to at most three guesses.
+				</p>
+
+				<p>
+					Use a <pf>while</pf>-loop with a compound condition so the loop continues only while the correct PIN has not been entered and fewer than 3 attempts have been used. Process guesses in order from the input vector.
+				</p>
+
+				<p>
+					Return <pf>granted</pf> as <pf>1</pf> if the correct PIN is entered and <pf>0</pf> otherwise. Also return <pf>attempts</pf>, the number of guesses that were actually used, and <pf>lockedOut</pf>, which should be <pf>1</pf> only when all three attempts are used without entering the correct PIN. In an interactive version, after the second failed guess you could display the warning <q>1 attempt remaining before lockout.</q>
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>pin</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>secret PIN value</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>guesses</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>PIN guesses to process in order</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>granted</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><pf>1</pf> if the correct PIN is entered, otherwise <pf>0</pf></p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>attempts</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of guesses used, up to a maximum of 3</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>lockedOut</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p><pf>1</pf> if three incorrect guesses are used, otherwise <pf>0</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="48% 50%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							[g, n, locked] = checkPinThreeStrikes(1234, [1111 1234 9999])
+							% Test 2
+							[g, n, locked] = checkPinThreeStrikes(1234, [1111 2222 3333 1234])
+							% Test 3
+							[g, n, locked] = checkPinThreeStrikes(2468, [2468])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							% Test 1
+							g = 1			n = 2		locked = 0
+							% Test 2
+							g = 0			n = 3		locked = 1
+							% Test 3
+							g = 1			n = 1		locked = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					function [granted, attempts, lockedOut] = checkPinThreeStrikes(pin, guesses)
+						granted = 0;
+						attempts = 0;
+						idx = 1;
+
+						while granted == 0 &amp;&amp; attempts &lt; 3 &amp;&amp; idx &lt;= length(guesses)
+							attempts = attempts + 1;
+
+							if guesses(idx) == pin
+								granted = 1;
+							end
+
+							idx = idx + 1;
+						end
+
+						if granted == 0 &amp;&amp; attempts == 3
+							lockedOut = 1;
+						else
+							lockedOut = 0;
+						end
+					end
+				</program>
+			</solution>
+		</exercise>
+
+	<exercise>
+		<title>Temperature Data Analysis</title>
+		<statement>
+			<p>
+				A weather station records daily high temperatures for a week: <c>[72 75 78 74 80 82 79]</c>.
+			</p>
+			<ol>
+				<li>Calculate the average temperature for the week.</li>
+				<li>Find the hottest day's temperature.</li>
+				<li>Determine how many days had temperatures above 75 degrees.</li>
+				<li>Create a new array showing the difference from the average for each day.</li>
+			</ol>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					temps = [72 75 78 74 80 82 79];
+					
+					% 1. Average temperature
+					avg_temp = mean(temps);              % 77.1429
+					
+					% 2. Hottest temperature
+					hottest = max(temps);                % 82
+					
+					% 3. Days above 75
+					days_above_75 = sum(temps > 75);     % 4
+					
+					% 4. Difference from average
+					diff_from_avg = temps - avg_temp;    
+					% [-5.14 -2.14 0.86 -3.14 2.86 4.86 1.86]
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Grading Multiple Students</title>
+		<statement>
+			<p>
+				A class has three students with test scores stored in a matrix where each row represents a student and each column represents a test:
+			</p>
+			<program language="matlab">
+				<code>
+					scores = [85 92 88; 78 84 90; 92 95 89];
+				</code>
+			</program>
+			<ol>
+				<li>Calculate each student's average score (hint: use row sums).</li>
+				<li>Calculate the class average for each test (hint: use column means).</li>
+				<li>Find the highest score in the entire class.</li>
+			</ol>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					scores = [85 92 88; 78 84 90; 92 95 89];
+					
+					% 1. Each student's average
+					student_avgs = mean(scores, 2);  % [88.33; 84; 92]
+					
+					% 2. Class average for each test
+					test_avgs = mean(scores);        % [85 90.33 89]
+					
+					% 3. Highest score overall
+					highest = max(max(scores));      % 95
+					% Or: highest = max(scores(:));
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Vector Operations</title>
+		<statement>
+			<p>
+				Given two vectors <c>x = 1:10</c> and <c>y = linspace(0,1,10)</c>:
+			</p>
+			<ol>
+				<li>Compute <c>z = x.^2 + 5*y</c></li>
+				<li>Find the indices where <c>z</c> is greater than 20</li>
+				<li>Calculate the sum of all elements in <c>z</c> that are greater than 20</li>
+			</ol>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					x = 1:10;
+					y = linspace(0, 1, 10);
+					
+					% 1. Compute z
+					z = x.^2 + 5*y;
+					
+					% 2. Indices where z > 20
+					indices = find(z > 20);          % [5 6 7 8 9 10]
+					
+					% 3. Sum of elements > 20
+					sum_large = sum(z(z > 20));      % 298.1481
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Matrix Construction</title>
+		<statement>
+			<p>
+				Create a 5-by-5 matrix where:
+			</p>
+			<ul marker="square">
+				<li>The first column contains the numbers 1 through 5</li>
+				<li>The second column contains the squares of those numbers</li>
+				<li>The third column contains the cubes</li>
+				<li>The fourth and fifth columns contain zeros</li>
+			</ul>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					% Create the base vector
+					n = (1:5)';                  % Column vector [1; 2; 3; 4; 5]
+					
+					% Build the matrix column by column
+					M = [n, n.^2, n.^3, zeros(5,2)];
+					
+					% Result:
+					% 1   1    1   0  0
+					% 2   4    8   0  0
+					% 3   9   27   0  0
+					% 4  16   64   0  0
+					% 5  25  125   0  0
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Data Filtering</title>
+		<statement>
+			<p>
+				Given a vector of measurements <c>data = [12 -5 18 -3 25 -8 30 15]</c>:
+			</p>
+			<ol>
+				<li>Create a new vector containing only the positive values</li>
+				<li>Replace all negative values with zero (in the original vector)</li>
+				<li>Count how many values are greater than 15</li>
+			</ol>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					data = [12 -5 18 -3 25 -8 30 15];
+					
+					% 1. Extract positive values
+					positive_only = data(data > 0);      % [12 18 25 30 15]
+					
+					% 2. Replace negatives with zero
+					data(data &lt; 0) = 0;                  % [12 0 18 0 25 0 30 15]
+					
+					% 3. Count values > 15
+					count = sum(data > 15);              % 3
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Array Reshaping Challenge</title>
+		<statement>
+			<p>
+				Create a row vector <c>v = 1:12</c>. Then:
+			</p>
+			<ol>
+				<li>Reshape it into a 3-by-4 matrix</li>
+				<li>Extract the second row of that matrix</li>
+				<li>Compute the sum of the last column</li>
+			</ol>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					v = 1:12;
+					
+					% 1. Reshape to 3-by-4
+					A = reshape(v, 3, 4);
+					% Result:
+					% 1  4  7  10
+					% 2  5  8  11
+					% 3  6  9  12
+					
+					% 2. Extract second row
+					row2 = A(2,:);                       % [2 5 8 11]
+					
+					% 3. Sum of last column
+					col_sum = sum(A(:,end));             % 33
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Function Evaluation</title>
+		<statement>
+			<p>
+				Create a vector <c>t</c> of 50 evenly spaced values from 0 to <m>2\pi</m>. Then compute <c>y = sin(t) + 0.5*cos(2*t)</c>. Find:
+			</p>
+			<ol>
+				<li>The maximum value of <c>y</c></li>
+				<li>The index at which this maximum occurs</li>
+				<li>The corresponding value of <c>t</c> at that index</li>
+			</ol>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					t = linspace(0, 2*pi, 50);
+					y = sin(t) + 0.5*cos(2*t);
+					
+					% 1 and 2. Maximum value and its index
+					[max_y, max_idx] = max(y);           
+					
+					% 3. Corresponding t value
+					t_at_max = t(max_idx);
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise>
+		<title>Comparing Arrays</title>
+		<statement>
+			<p>
+				Two sensors measure the same quantity and produce slightly different readings:
+			</p>
+			<program language="matlab">
+				<code>
+					sensor1 = [10.2 10.5 10.1 10.4 10.3];
+					sensor2 = [10.1 10.6 10.0 10.5 10.2];
+				</code>
+			</program>
+			<p>
+				Calculate:
+			</p>
+			<ol>
+				<li>The element-wise difference between the sensors</li>
+				<li>The absolute value of these differences</li>
+				<li>The average absolute difference</li>
+			</ol>
+		</statement>
+		<solution component="example-solution-dev">
+			<program language="matlab">
+				<code>
+					sensor1 = [10.2 10.5 10.1 10.4 10.3];
+					sensor2 = [10.1 10.6 10.0 10.5 10.2];
+					
+					% 1. Element-wise difference
+					diff = sensor1 - sensor2;            % [0.1 -0.1 0.1 -0.1 0.1]
+					
+					% 2. Absolute differences
+					abs_diff = abs(diff);                % [0.1 0.1 0.1 0.1 0.1]
+					
+					% 3. Average absolute difference
+					avg_abs_diff = mean(abs_diff);       % 0.1
+				</code>
+			</program>
+		</solution>
+	</exercise>
+
+	<exercise xml:id="coding-for-loop-snakeEyesCount">
+		<statement>
+			<p>
+				Write a function named <pf>snakeEyesCount</pf> that counts the number of times you roll two <pf>1</pf>'s in a row in <pf>n</pf> rolls.
+			</p>
+			<tabular valign="top" halign="right" top="minor">
+				<col width="12%" halign="right"/>
+				<col width="12%" halign="right"/>
+				<col width="22%" halign="center"/>
+				<col width="54%" halign="left"/>
+				<row>
+					<cell><p>Inputs:</p></cell>
+					<cell><p><pf>n</pf></p></cell>
+					<cell><p>(1x1) double</p></cell>
+					<cell><p>number of die rolls</p></cell>
+				</row>
+				<row bottom="minor">
+					<cell><p>Outputs:</p></cell>
+					<cell><p><pf>count</pf></p></cell>
+					<cell><p>(1x1) double</p></cell>
+					<cell><p>the number of times two <pf>1</pf>s are rolled</p></cell>
+				</row>
+			</tabular>
+			<sidebyside widths="49% 49%">
+				<stack>
+					<p>Test Cases ⤵︎</p>
+					<program language="matlab">
+						rng(123);  % Set seed
+						snakeEyesCount(10)
+						snakeEyesCount(100)
+						snakeEyesCount(600)
+					</program>
+				</stack>
+				<stack>
+					<p>Expected ⤵︎</p>
+					<program language="matlab">
+						󠀠
+						% count = 1
+						% count = 10
+						% count = 52
+					</program>
+				</stack>
+			</sidebyside>
+		</statement>
+	</exercise>
+
+			<task label="hw-while-factorization">
+				<title>Integer Factorization by Trial Division</title>
+				<statement>
+					<p>
+						Every integer greater than 1 can be written as a product of prime factors. For example,
+						<me>
+							360 = 2^3 \cdot 3^2 \cdot 5.
+						</me>
+						A simple way to find these factors is <term>trial division</term>: test divisors starting at 2, divide them out when they work, and move on when they do not.
+					</p>
+
+					<p>
+						As a warm-up, first write a <pf>while</pf>-loop that divides out all copies of 2 from a number <pf>n</pf>. For example, starting with <pf>n = 360</pf>, the values should change as follows:
+						<me>
+							360 \to 180 \to 90 \to 45.
+						</me>
+					</p>
+
+					<p>
+						Then write a function <pf>primeFactors(n)</pf> that returns all prime factors of <pf>n</pf> as a row vector in nondecreasing order. Use a divisor <pf>d</pf> that starts at 2. While <pf>d * d &lt;= n</pf>, test whether <pf>d</pf> divides <pf>n</pf>. If it does, record the factor and divide it out. If it does not, increase <pf>d</pf> by 1. After the loop, if <pf>n &gt; 1</pf>, then the remaining value of <pf>n</pf> is the last prime factor.
+					</p>
+
+					<p>
+						Finally, write a function <pf>smallestFactor(n)</pf> that returns the smallest prime factor of <pf>n</pf>. If <pf>n</pf> is prime, the function should return <pf>n</pf> itself.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left" />
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>n</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>integer greater than 1</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>factors</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>row vector of prime factors returned by <pf>primeFactors</pf></p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>p</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>smallest prime factor returned by <pf>smallestFactor</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								primeFactors(360)
+								primeFactors(97)
+								smallestFactor(91)
+								smallestFactor(9973)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								ans = [2 2 2 3 3 5]
+								ans = [97]
+								ans = 7
+								ans = 9973
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="exercise-solution">
+					<program language="matlab">
+						n = 360;
+						fprintf('Starting with n = %i\n', n)
+						while mod(n, 2) == 0
+							n = n / 2;
+							fprintf('  /2 -> %i\n', n)
+						end
+						fprintf('Remaining: n = %i\n', n)
+					</program>
+					<program language="matlab">
+						function factors = primeFactors(n)
+							factors = [];
+							d = 2;
+
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									factors(end + 1) = d; %#ok&lt;AGROW&gt;
+									n = n / d;
+								else
+									d = d + 1;
+								end
+							end
+
+							if n &gt; 1
+								factors(end + 1) = n;
+							end
+						end
+					</program>
+					<program language="matlab">
+						function p = smallestFactor(n)
+							d = 2;
+							while d * d &lt;= n
+								if mod(n, d) == 0
+									p = d;
+									return
+								end
+								d = d + 1;
+							end
+							p = n;
+						end
+					</program>
+				</solution>
+			</task>
+</exercises>
