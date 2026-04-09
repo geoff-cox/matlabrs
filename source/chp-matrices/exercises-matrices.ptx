@@ -1,1489 +1,2034 @@
-<exercises xml:id="exercises-arrays">
+<exercises xml:id="matrices-coding-exercises">
 	<title>💻 Coding Exercises</title>
 
-	<introduction>
-		<p>
-			These exercises integrate concepts from throughout the chapter. They require you to combine array creation, indexing, operations, and built-in functions to solve problems.
-		</p>
-	</introduction>
+	<exercise label="matrices-coding-exercise-1">
+		<title>Creating and Indexing Matrices</title>
 
-
-		<exercise label="hw-random-walk-a">
-			<title>Random Walk to a Boundary</title>
+		<task label="matrices-coding-cornerValues">
 			<statement>
 				<p>
-					A <term>random walk</term> changes position by a sequence of steps. In a live simulation, each step could be generated with <pf>randi([0,1]) * 2 - 1</pf>, which produces either <m>-1</m> or <m>1</m> with equal probability.
-				</p>
-
-				<p>
-					To make the exercise testable, write a function called <pf>walkToBoundary</pf> that takes a starting position, a lower boundary, an upper boundary, and a vector of moves whose entries are <pf>-1</pf> or <pf>1</pf>. Use a <pf>while</pf>-loop to apply moves one at a time until the position reaches either boundary or there are no moves left.
-				</p>
-
-				<p>
-					Return the final position, the number of moves actually used, and the highest and lowest positions reached. This models both a walk that starts at 0 and stops at <m>-10</m> or <m>10</m>, and the Gambler's Ruin version that starts at 5 and stops at 0 or 10.
+					Write a function <pf>cornerValues</pf> that takes a matrix <pf>A</pf> and returns its four corner values as four separate outputs: top-left, top-right, bottom-left, and bottom-right, in that order.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>startPos</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>starting position</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>lowerBound</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>lower stopping value</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>upperBound</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>upper stopping value</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>moves</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector of steps, each equal to <pf>-1</pf> or <pf>1</pf></p></cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix with at least one row and one column</p></cell>
 					</row>
 					<row>
 						<cell>Outputs:</cell>
-						<cell><p><pf>finalPos</pf></p></cell>
+						<cell><p><pf>tl</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>position where the walk stops</p></cell>
+						<cell><p>top-left value</p></cell>
 					</row>
 					<row>
 						<cell></cell>
-						<cell><p><pf>steps</pf></p></cell>
+						<cell><p><pf>tr</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of moves used</p></cell>
+						<cell><p>top-right value</p></cell>
 					</row>
 					<row>
 						<cell></cell>
-						<cell><p><pf>maxPos</pf></p></cell>
+						<cell><p><pf>bl</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>highest position reached</p></cell>
+						<cell><p>bottom-left value</p></cell>
 					</row>
 					<row bottom="minor">
 						<cell></cell>
-						<cell><p><pf>minPos</pf></p></cell>
+						<cell><p><pf>br</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>lowest position reached</p></cell>
+						<cell><p>bottom-right value</p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							[finalPos, n, hi, lo] = walkToBoundary(0, -3, 3, [1 1 -1 1 1])
-							% Test 2
-							[finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [-1 -1 1 -1 -1 -1 -1])
-							% Test 3
-							[finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [1 1 -1 1 1 1 1])
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							[tl, tr, bl, br] = cornerValues(A)
+
+							B = [10, 20; 30, 40];
+							[tl, tr, bl, br] = cornerValues(B)
+
+							C = [42];
+							[tl, tr, bl, br] = cornerValues(C)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							finalPos = 3		n = 5		hi = 3		lo = 0
-							% Test 2
-							finalPos = 0		n = 7		hi = 5		lo = 0
-							% Test 3
-							finalPos = 10		n = 7		hi = 10		lo = 5
+							tl = 1, tr = 3
+							bl = 7, br = 9
+
+							tl = 10, tr = 20
+							bl = 30, br = 40
+
+							tl = 42, tr = 42
+							bl = 42, br = 42
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
 				<program language="matlab">
-					function [finalPos, steps, maxPos, minPos] = walkToBoundary(startPos, lowerBound, upperBound, moves)
-						pos = startPos;
-						steps = 0;
-						maxPos = pos;
-						minPos = pos;
-						idx = 1;
-
-						while pos &gt; lowerBound &amp;&amp; pos &lt; upperBound &amp;&amp; idx &lt;= length(moves)
-							pos = pos + moves(idx);
-							steps = steps + 1;
-
-							if pos &gt; maxPos
-								maxPos = pos;
-							end
-
-							if pos &lt; minPos
-								minPos = pos;
-							end
-
-							idx = idx + 1;
-						end
-
-						finalPos = pos;
+					function [tl, tr, bl, br] = cornerValues(A)
+						tl = A(1, 1);
+						tr = A(1, end);
+						bl = A(end, 1);
+						br = A(end, end);
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-		<exercise label="hw-guessing-game-a">
-			<title>Number Guessing Game</title>
+		<task label="matrices-coding-getRow">
 			<statement>
 				<p>
-					The original version of this activity uses <pf>randi</pf> to choose a secret number and <pf>input</pf> to collect guesses from the player. To make the behavior testable, write a function called <pf>guessNumber</pf> that takes the secret number and a vector of guesses as input.
-				</p>
-
-				<p>
-					Process the guesses in order with a <pf>while</pf>-loop until the correct guess is found or the list of guesses runs out. Return <pf>won</pf> as 1 if the player guessed correctly and 0 otherwise, along with <pf>attempts</pf>, the number of guesses that were actually used.
-				</p>
-
-				<p>
-					In an interactive version, you would print <q>Too low!</q> or <q>Too high!</q> after each incorrect guess.
+					Write a function <pf>getRow</pf> that takes a matrix <pf>A</pf> and a row index <pf>i</pf>, and returns the <pf>i</pf>th row of <pf>A</pf> as a row vector.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>secret</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>secret number to guess</p></cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to read from</p></cell>
 					</row>
 					<row>
 						<cell></cell>
-						<cell><p><pf>guesses</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>guesses to process in order</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>won</pf></p></cell>
+						<cell><p><pf>i</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>1 if the secret number is guessed, otherwise 0</p></cell>
+						<cell><p>row index (between 1 and m)</p></cell>
 					</row>
 					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>attempts</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of guesses used</p></cell>
+						<cell>Outputs:</cell>
+						<cell><p><pf>r</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p><pf>i</pf>th row of <pf>A</pf></p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							[won, n] = guessNumber(42, [50 25 40 42])
-							% Test 2
-							[won, n] = guessNumber(17, [10 20 17])
-							% Test 3
-							[won, n] = guessNumber(8, [1 2 3])
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							r = getRow(A, 1)
+							r = getRow(A, 2)
+							r = getRow(A, 3)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							won = 1			n = 4
-							% Test 2
-							won = 1			n = 3
-							% Test 3
-							won = 0			n = 3
+							r = [1, 2, 3]
+							r = [4, 5, 6]
+							r = [7, 8, 9]
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
 				<program language="matlab">
-					function [won, attempts] = guessNumber(secret, guesses)
-						won = 0;
-						attempts = 0;
-						idx = 1;
+					function r = getRow(A, i)
+						r = A(i, :);
+					end
+				</program>
+			</solution>
+		</task>
 
-						while idx &lt;= length(guesses) &amp;&amp; won == 0
-							attempts = attempts + 1;
+		<task label="matrices-coding-getColumn">
+			<statement>
+				<p>
+					Write a function <pf>getColumn</pf> that takes a matrix <pf>A</pf> and a column index <pf>j</pf>, and returns the <pf>j</pf>th column of <pf>A</pf> as a column vector.
+				</p>
 
-							if guesses(idx) == secret
-								won = 1;
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to read from</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>j</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>column index (between 1 and n)</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>c</pf></p></cell>
+						<cell><p>(mx1) double</p></cell>
+						<cell><p><pf>j</pf>th column of <pf>A</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							c = getColumn(A, 1)
+							c = getColumn(A, 2)
+							c = getColumn(A, 3)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							c = [1; 4; 7]
+							c = [2; 5; 8]
+							c = [3; 6; 9]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function c = getColumn(A, j)
+						c = A(:, j);
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-centerBlock">
+			<statement>
+				<p>
+					Write a function <pf>centerBlock</pf> that takes a matrix <pf>A</pf> with at least 4 rows and at least 4 columns, and returns the middle 2-by-2 block. The middle block consists of the two middle rows and the two middle columns.
+				</p>
+				<p>
+					For a matrix with an even number of rows and columns, this is unambiguous. For matrices with odd dimensions, use the rows at positions <pf>(end-1)/2 + 1</pf> and <pf>end/2 + 1</pf> — or, more simply, use <pf>floor</pf> on the calculations to handle both cases.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix with at least 4 rows and 4 columns</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(2x2) double</p></cell>
+						<cell><p>middle 2-by-2 block of <pf>A</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [ 1,  2,  3,  4;
+							      5,  6,  7,  8;
+							      9, 10, 11, 12;
+							     13, 14, 15, 16];
+							B = centerBlock(A)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [ 6,  7;
+							     10, 11]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution that works for any matrix with at least 4 rows and 4 columns. The expression <pf>floor(end/2)</pf> picks the row just above the middle, and <pf>floor(end/2)+1</pf> picks the row just below it.
+				</p>
+				<program language="matlab">
+					function B = centerBlock(A)
+						i1 = floor(size(A, 1) / 2);
+						j1 = floor(size(A, 2) / 2);
+						B = A(i1:i1+1, j1:j1+1);
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-replaceRow">
+			<statement>
+				<p>
+					Write a function <pf>replaceRow</pf> that takes a matrix <pf>A</pf>, a row index <pf>i</pf>, and a row vector <pf>newrow</pf>, and returns a new matrix with row <pf>i</pf> of <pf>A</pf> replaced by <pf>newrow</pf>. All other rows should remain unchanged.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to modify</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>i</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>row index to replace</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>newrow</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>replacement row</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix with row <pf>i</pf> replaced</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							B = replaceRow(A, 2, [99, 99, 99])
+							B = replaceRow(A, 1, [0, 0, 0])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [ 1,  2,  3;
+							     99, 99, 99;
+							      7,  8,  9]
+
+							B = [0, 0, 0;
+							     4, 5, 6;
+							     7, 8, 9]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function B = replaceRow(A, i, newrow)
+						B = A;
+						B(i, :) = newrow;
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-zeroOutColumn">
+			<statement>
+				<p>
+					Write a function <pf>zeroOutColumn</pf> that takes a matrix <pf>A</pf> and a column index <pf>j</pf>, and returns a new matrix where every entry of column <pf>j</pf> has been set to zero. All other columns should remain unchanged.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to modify</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>j</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>column index to clear</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix with column <pf>j</pf> zeroed out</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							B = zeroOutColumn(A, 2)
+							B = zeroOutColumn(A, 1)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [1, 0, 3;
+							     4, 0, 6;
+							     7, 0, 9]
+
+							B = [0, 2, 3;
+							     0, 5, 6;
+							     0, 8, 9]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. Assigning a single scalar to a whole column slice fills every position in the slice with that value.
+				</p>
+				<program language="matlab">
+					function B = zeroOutColumn(A, j)
+						B = A;
+						B(:, j) = 0;
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-removeRow">
+			<statement>
+				<p>
+					Write a function <pf>removeRow</pf> that takes a matrix <pf>A</pf> and a row index <pf>i</pf>, and returns a new matrix with row <pf>i</pf> removed. All rows below row <pf>i</pf> should shift up by one.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to modify</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>i</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>row index to remove</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>((m-1)xn) double</p></cell>
+						<cell><p>matrix with row <pf>i</pf> removed</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							B = removeRow(A, 2)
+							B = removeRow(A, 1)
+							B = removeRow(A, 3)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [1, 2, 3;
+							     7, 8, 9]
+
+							B = [4, 5, 6;
+							     7, 8, 9]
+
+							B = [1, 2, 3;
+							     4, 5, 6]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function B = removeRow(A, i)
+						B = A;
+						B(i, :) = [];
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-reshapeToRows">
+			<statement>
+				<p>
+					MATLAB provides a built-in function <pf>reshape</pf> that takes a vector (or matrix) and rearranges its values into a different shape. The call <pf>reshape(v, m, n)</pf> takes the values in <pf>v</pf> and lays them out in an <pf>m</pf>-by-<pf>n</pf> matrix, filling the new matrix one column at a time, top to bottom, then left to right. The total number of values must match: <pf>length(v)</pf> must equal <pf>m * n</pf>.
+				</p>
+				<p>
+					Write a function <pf>reshapeToRows</pf> that takes a vector <pf>v</pf> and a row count <pf>m</pf>, and returns a matrix with <pf>m</pf> rows that contains all the values of <pf>v</pf>. You can assume <pf>length(v)</pf> is evenly divisible by <pf>m</pf>. Use the built-in <pf>reshape</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>v</pf></p></cell>
+						<cell><p>(1xk) double</p></cell>
+						<cell><p>vector of values to reshape</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>m</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>desired number of rows (must divide <pf>length(v)</pf> evenly)</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>reshaped matrix with <pf>m</pf> rows</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = reshapeToRows(1:12, 3)
+							A = reshapeToRows(1:12, 4)
+							A = reshapeToRows(1:6, 2)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							A = [1, 4, 7, 10;
+							     2, 5, 8, 11;
+							     3, 6, 9, 12]
+
+							A = [1, 5,  9;
+							     2, 6, 10;
+							     3, 7, 11;
+							     4, 8, 12]
+
+							A = [1, 3, 5;
+							     2, 4, 6]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The number of columns is computed from the total length divided by the row count.
+				</p>
+				<program language="matlab">
+					function A = reshapeToRows(v, m)
+						n = length(v) / m;
+						A = reshape(v, m, n);
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-flipMatrix">
+			<statement>
+				<p>
+					Back in the vectors chapter, you saw the transpose operator <pf>'</pf>, which flipped a row vector into a column vector and vice versa. On a matrix, the same operator does something more interesting: it flips the matrix across its diagonal, so that rows become columns and columns become rows. The element at position <pf>(i, j)</pf> in the original matrix ends up at position <pf>(j, i)</pf> in the result.
+				</p>
+				<p>
+					Write a function <pf>flipMatrix</pf> that takes a matrix <pf>A</pf> and returns its transpose. Use the <pf>'</pf> operator.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to transpose</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(nxm) double</p></cell>
+						<cell><p>transpose of <pf>A</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6];
+							B = flipMatrix(A)
+
+							A = [1, 2; 3, 4; 5, 6];
+							B = flipMatrix(A)
+
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							B = flipMatrix(A)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [1, 4;
+							     2, 5;
+							     3, 6]
+
+							B = [1, 3, 5;
+							     2, 4, 6]
+
+							B = [1, 4, 7;
+							     2, 5, 8;
+							     3, 6, 9]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function B = flipMatrix(A)
+						B = A';
+					end
+				</program>
+			</solution>
+		</task>
+
+	</exercise>
+
+	<exercise label="matrices-coding-exercise-2">
+		<title>Matrix Arithmetic</title>
+
+		<task label="matrices-coding-scaleMatrix">
+			<statement>
+				<p>
+					Write a function <pf>scaleMatrix</pf> that takes a matrix <pf>A</pf> and a scalar <pf>k</pf>, and returns a new matrix where every element of <pf>A</pf> has been multiplied by <pf>k</pf>. Do not use a loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to scale</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>k</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>scale factor</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>scaled matrix</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6];
+							B = scaleMatrix(A, 10)
+							B = scaleMatrix(A, 0)
+							B = scaleMatrix(A, -1)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [10, 20, 30;
+							     40, 50, 60]
+
+							B = [0, 0, 0;
+							     0, 0, 0]
+
+							B = [-1, -2, -3;
+							     -4, -5, -6]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function B = scaleMatrix(A, k)
+						B = k * A;
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-shiftMatrix">
+			<statement>
+				<p>
+					Write a function <pf>shiftMatrix</pf> that takes a matrix <pf>A</pf> and a scalar <pf>s</pf>, and returns a new matrix where <pf>s</pf> has been added to every element of <pf>A</pf>. Do not use a loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to shift</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>s</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>amount to add to every element</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>shifted matrix</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6];
+							B = shiftMatrix(A, 100)
+							B = shiftMatrix(A, -1)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [101, 102, 103;
+							     104, 105, 106]
+
+							B = [0, 1, 2;
+							     3, 4, 5]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function B = shiftMatrix(A, s)
+						B = A + s;
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-elementwiseProduct">
+			<statement>
+				<p>
+					Write a function <pf>elementwiseProduct</pf> that takes two matrices <pf>A</pf> and <pf>B</pf> of the same shape, and returns a new matrix whose elements are the element-by-element products: the entry at position <pf>(i, j)</pf> of the result is <pf>A(i, j) * B(i, j)</pf>. Do not use a loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>first matrix</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>second matrix, same shape as <pf>A</pf></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>C</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>element-wise product of <pf>A</pf> and <pf>B</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2; 3, 4];
+							B = [10, 20; 30, 40];
+							C = elementwiseProduct(A, B)
+
+							A = [1, 1, 1; 1, 1, 1];
+							B = [2, 4, 6; 8, 10, 12];
+							C = elementwiseProduct(A, B)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							C = [10,  40;
+							     90, 160]
+
+							C = [2,  4,  6;
+							     8, 10, 12]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. Remember the dot — plain <pf>*</pf> means matrix multiplication and would either fail or produce a different result.
+				</p>
+				<program language="matlab">
+					function C = elementwiseProduct(A, B)
+						C = A .* B;
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-matrixSquare">
+			<statement>
+				<p>
+					Write a function <pf>matrixSquare</pf> that takes a matrix <pf>A</pf> and returns a new matrix where every element of <pf>A</pf> has been squared. Do not use a loop.
+				</p>
+				<p>
+					Be careful: this is <em>not</em> the same as multiplying the matrix by itself. You want each individual entry squared.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to square element-wise</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix where each element is the square of the corresponding element of <pf>A</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6];
+							B = matrixSquare(A)
+
+							A = [-2, 0, 3; 1, -4, 5];
+							B = matrixSquare(A)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [ 1,  4,  9;
+							     16, 25, 36]
+
+							B = [4,  0,  9;
+							     1, 16, 25]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The dot in <pf>.^</pf> is what tells MATLAB to square each element individually rather than perform a matrix operation.
+				</p>
+				<program language="matlab">
+					function B = matrixSquare(A)
+						B = A.^2;
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-absDifference">
+			<statement>
+				<p>
+					Write a function <pf>absDifference</pf> that takes two matrices <pf>A</pf> and <pf>B</pf> of the same shape, and returns a new matrix containing the absolute value of the element-wise difference between them: the entry at position <pf>(i, j)</pf> of the result is <m>|A(i, j) - B(i, j)|</m>. Do not use a loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>first matrix</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>second matrix, same shape as <pf>A</pf></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>D</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>element-wise absolute differences</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 5; 9, 2];
+							B = [3, 2; 4, 8];
+							D = absDifference(A, B)
+
+							A = [10, 20, 30];
+							B = [15, 18, 30];
+							D = absDifference(A, B)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							D = [2, 3;
+							     5, 6]
+
+							D = [5, 2, 0]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function D = absDifference(A, B)
+						D = abs(A - B);
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-normalizeByMax">
+			<statement>
+				<p>
+					Write a function <pf>normalizeByMax</pf> that takes a matrix <pf>A</pf> and returns a new matrix where every element has been divided by the largest element of <pf>A</pf>. After this transformation, the largest element of the result should be exactly <pf>1</pf>, and every other element should be a fraction between 0 and 1 (assuming all entries of <pf>A</pf> are non-negative).
+				</p>
+				<p>
+					To find the largest element of an entire matrix, you need a way to ask <pf>max</pf> to look at every entry, not just one row or column at a time. The standard MATLAB idiom for this is to write <pf>A(:)</pf>, which flattens the matrix into a single long column vector containing every value. Then <pf>max(A(:))</pf> returns the largest element of the whole matrix.
+				</p>
+				<p>
+					Do not use a loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix with at least one non-zero element</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix scaled so its largest element is 1</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2; 4, 8];
+							B = normalizeByMax(A)
+
+							A = [10, 20, 30; 5, 25, 15];
+							B = normalizeByMax(A)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [0.125, 0.25;
+							     0.5,   1.0]
+
+							B ≈ [0.333, 0.667, 1.000;
+							     0.167, 0.833, 0.500]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The expression <pf>A(:)</pf> turns the matrix into a column vector of all its values, and <pf>max</pf> then reduces it to the single largest entry.
+				</p>
+				<program language="matlab">
+					function B = normalizeByMax(A)
+						B = A / max(A(:));
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-normalizeBy">
+			<statement>
+				<p>
+					When a matrix represents data with a known upper bound — for example, pixel brightnesses on a 0-to-255 scale — it is often useful to <term>normalize</term> the data by dividing every entry by that upper bound. The result is a matrix whose values lie between 0 and 1.
+				</p>
+				<p>
+					Write a function <pf>normalizeBy</pf> that takes a matrix <pf>A</pf> and a positive scalar <pf>m</pf>, and returns a new matrix where every element of <pf>A</pf> has been divided by <pf>m</pf>. Do not use a loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to normalize</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>m</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive normalization value</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>normalized matrix</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2; 4, 8];
+							B = normalizeBy(A, 8)
+
+							A = [128, 64, 255; 0, 192, 255];
+							B = normalizeBy(A, 255)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [0.125, 0.25;
+							     0.5,   1.0]
+
+							B ≈ [0.502, 0.251, 1.000;
+							     0,     0.753, 1.000]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function B = normalizeBy(A, m)
+						B = A / m;
+					end
+				</program>
+			</solution>
+		</task>
+
+	</exercise>
+
+	<exercise label="matrices-coding-exercise-3">
+		<title>Matrices and Loops</title>
+
+		<task label="matrices-coding-rowSums">
+			<statement>
+				<p>
+					Write a function <pf>rowSums</pf> that takes a matrix <pf>A</pf> and returns a column vector containing the sum of each row of <pf>A</pf>. The result should have one entry per row of the input. Use a single loop with slicing — do not use a nested loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to sum row by row</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>s</pf></p></cell>
+						<cell><p>(mx1) double</p></cell>
+						<cell><p>column vector of row sums</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							s = rowSums(A)
+
+							A = [1, 1, 1, 1; 2, 2, 2, 2];
+							s = rowSums(A)
+
+							A = [10, -10; 5, -5];
+							s = rowSums(A)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							s = [ 6;
+							     15;
+							     24]
+
+							s = [4;
+							     8]
+
+							s = [0;
+							     0]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function s = rowSums(A)
+						s = zeros(size(A, 1), 1);
+						for i = 1:size(A, 1)
+							s(i) = sum(A(i, :));
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-columnMaxes">
+			<statement>
+				<p>
+					Write a function <pf>columnMaxes</pf> that takes a matrix <pf>A</pf> and returns a row vector containing the maximum value of each column of <pf>A</pf>. The result should have one entry per column of the input. Use a single loop with slicing — do not use a nested loop.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to scan column by column</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>m</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>row vector of column maxes</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							m = columnMaxes(A)
+
+							A = [10, 5, 8; 3, 12, 1; 7, 4, 9];
+							m = columnMaxes(A)
+
+							A = [-1, -2; -3, -4];
+							m = columnMaxes(A)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							m = [7, 8, 9]
+
+							m = [10, 12, 9]
+
+							m = [-1, -2]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function m = columnMaxes(A)
+						m = zeros(1, size(A, 2));
+						for j = 1:size(A, 2)
+							m(j) = max(A(:, j));
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-rowMeans">
+			<statement>
+				<p>
+					Write a function <pf>rowMeans</pf> that takes a matrix <pf>A</pf> and returns a column vector containing the mean (arithmetic average) of each row of <pf>A</pf>. The result should have one entry per row of the input. Use a single loop with slicing.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to average row by row</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>m</pf></p></cell>
+						<cell><p>(mx1) double</p></cell>
+						<cell><p>column vector of row means</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							m = rowMeans(A)
+
+							A = [10, 20, 30, 40];
+							m = rowMeans(A)
+
+							A = [0, 0; 5, 5];
+							m = rowMeans(A)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							m = [2;
+							     5;
+							     8]
+
+							m = [25]
+
+							m = [0;
+							     5]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function m = rowMeans(A)
+						m = zeros(size(A, 1), 1);
+						for i = 1:size(A, 1)
+							m(i) = mean(A(i, :));
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-scaleRows">
+			<statement>
+				<p>
+					Write a function <pf>scaleRows</pf> that takes a matrix <pf>A</pf> and a column vector <pf>scales</pf> with one entry per row of <pf>A</pf>, and returns a new matrix where each row of <pf>A</pf> has been multiplied by the corresponding entry of <pf>scales</pf>. The first row of the result is <pf>scales(1) * A(1, :)</pf>, the second row is <pf>scales(2) * A(2, :)</pf>, and so on. Use a single loop with slicing.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to scale row by row</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>scales</pf></p></cell>
+						<cell><p>(mx1) double</p></cell>
+						<cell><p>column vector of per-row scale factors</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>scaled matrix</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							B = scaleRows(A, [10; 100; 1000])
+
+							A = [1, 1; 1, 1; 1, 1];
+							B = scaleRows(A, [2; 3; 4])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							B = [  10,   20,   30;
+							      400,  500,  600;
+							     7000, 8000, 9000]
+
+							B = [2, 2;
+							     3, 3;
+							     4, 4]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The result matrix is preallocated with the same shape as the input, and each iteration of the loop fills in one row.
+				</p>
+				<program language="matlab">
+					function B = scaleRows(A, scales)
+						B = zeros(size(A));
+						for i = 1:size(A, 1)
+							B(i, :) = scales(i) * A(i, :);
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="matrices-coding-multiplicationTable">
+			<statement>
+				<p>
+					Write a function <pf>multiplicationTable</pf> that takes a positive integer <pf>n</pf> and returns an <pf>n</pf>-by-<pf>n</pf> matrix where the entry at row <pf>i</pf>, column <pf>j</pf> is <pf>i * j</pf>. The result is the standard multiplication table you would learn in elementary school. Use a nested loop and preallocate the result with <pf>zeros</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>positive integer (table size)</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>M</pf></p></cell>
+						<cell><p>(nxn) double</p></cell>
+						<cell><p><pf>n</pf>-by-<pf>n</pf> multiplication table</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							M = multiplicationTable(3)
+
+							M = multiplicationTable(5)
+
+							M = multiplicationTable(1)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							M = [1, 2, 3;
+							     2, 4, 6;
+							     3, 6, 9]
+
+							M = [1,  2,  3,  4,  5;
+							     2,  4,  6,  8, 10;
+							     3,  6,  9, 12, 15;
+							     4,  8, 12, 16, 20;
+							     5, 10, 15, 20, 25]
+
+							M = [1]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function M = multiplicationTable(n)
+						M = zeros(n, n);
+						for i = 1:n
+							for j = 1:n
+								M(i, j) = i * j;
 							end
-
-							idx = idx + 1;
 						end
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-		<exercise label="hw-guessing-game-c">
-			<title>Limited Guesses</title>
+		<task label="matrices-coding-additionTable">
 			<statement>
 				<p>
-					Write a function called <pf>guessNumberLimited</pf> that works like the previous exercise, but stops after at most <pf>maxAttempts</pf> guesses. Process the guesses in order with a <pf>while</pf>-loop.
-				</p>
-
-				<p>
-					Return <pf>won</pf> as 1 if the player guesses the secret number before the limit is reached and 0 otherwise. Also return <pf>attempts</pf>, the number of guesses actually used.
-				</p>
-
-				<p>
-					In the interactive version, if the player loses, you would reveal the secret number after the loop ends.
+					Write a function <pf>additionTable</pf> that takes a positive integer <pf>n</pf> and returns an <pf>n</pf>-by-<pf>n</pf> matrix where the entry at row <pf>i</pf>, column <pf>j</pf> is <pf>i + j</pf>. Use a nested loop and preallocate the result with <pf>zeros</pf>.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>secret</pf></p></cell>
+						<cell><p><pf>n</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>secret number to guess</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>guesses</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>guesses to process in order</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>maxAttempts</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>maximum number of guesses allowed</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>won</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>1 if the player guesses correctly in time, otherwise 0</p></cell>
+						<cell><p>positive integer (table size)</p></cell>
 					</row>
 					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>attempts</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of guesses used before stopping</p></cell>
+						<cell>Outputs:</cell>
+						<cell><p><pf>S</pf></p></cell>
+						<cell><p>(nxn) double</p></cell>
+						<cell><p><pf>n</pf>-by-<pf>n</pf> addition table</p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							[won, n] = guessNumberLimited(42, [50 25 40 42], 4)
-							% Test 2
-							[won, n] = guessNumberLimited(42, [50 25 40 35 44], 3)
-							% Test 3
-							[won, n] = guessNumberLimited(7, [7 1 2], 7)
+							S = additionTable(3)
+
+							S = additionTable(4)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							won = 1			n = 4
-							% Test 2
-							won = 0			n = 3
-							% Test 3
-							won = 1			n = 1
+							S = [2, 3, 4;
+							     3, 4, 5;
+							     4, 5, 6]
+
+							S = [2, 3, 4, 5;
+							     3, 4, 5, 6;
+							     4, 5, 6, 7;
+							     5, 6, 7, 8]
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
 				<program language="matlab">
-					function [won, attempts] = guessNumberLimited(secret, guesses, maxAttempts)
-						won = 0;
-						attempts = 0;
-						idx = 1;
-
-						while idx &lt;= length(guesses) &amp;&amp; attempts &lt; maxAttempts &amp;&amp; won == 0
-							attempts = attempts + 1;
-
-							if guesses(idx) == secret
-								won = 1;
-							end
-
-							idx = idx + 1;
-						end
-					end
-				</program>
-			</solution>
-		</exercise>
-
-		<exercise label="hw-mental-math-a">
-			<title>Multiplication Streak</title>
-			<statement>
-				<p>
-					The original version of this activity generates random multiplication questions and stops as soon as the player gives one incorrect answer. To make the logic testable, write a function called <pf>multiplicationStreak</pf> that takes three equally sized vectors: the first factors, the second factors, and the player's answers.
-				</p>
-
-				<p>
-					Use a <pf>while</pf>-loop to process the questions in order. Stop at the first incorrect answer or when all questions have been checked. Return the number of consecutive correct answers from the start.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>aVals</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>first factors</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>bVals</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>second factors</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>answers</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>player answers</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>streak</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of consecutive correct answers from the start</p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							multiplicationStreak([3 7 2], [4 5 9], [12 35 18])
-							% Test 2
-							multiplicationStreak([3 7 2], [4 5 9], [12 34 18])
-							% Test 3
-							multiplicationStreak([9 8], [9 7], [80 56])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							ans = 3
-							% Test 2
-							ans = 1
-							% Test 3
-							ans = 0
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution component="example-solution-dev">
-				<program language="matlab">
-					function streak = multiplicationStreak(aVals, bVals, answers)
-						streak = 0;
-						idx = 1;
-
-						while idx &lt;= length(answers) &amp;&amp; answers(idx) == aVals(idx) * bVals(idx)
-							streak = streak + 1;
-							idx = idx + 1;
-						end
-					end
-				</program>
-			</solution>
-		</exercise>
-
-		<exercise label="hw-mental-math-b">
-			<title>Mixed Operations Streak</title>
-			<statement>
-				<p>
-					Write a function called <pf>mixedMathStreak</pf> that checks a sequence of arithmetic questions. Use operation codes <pf>1</pf> for addition, <pf>2</pf> for subtraction, and <pf>3</pf> for multiplication.
-				</p>
-
-				<p>
-					The inputs <pf>ops</pf>, <pf>aVals</pf>, <pf>bVals</pf>, and <pf>answers</pf> should all have the same length. Use a <pf>while</pf>-loop and a <pf>switch</pf>-statement to compute the correct answer for each round. Stop at the first incorrect answer and return the number of consecutive correct answers from the start.
-				</p>
-
-				<p>
-					Assume every subtraction round is written so that <pf>aVals(k) &gt;= bVals(k)</pf>.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>ops</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>operation codes: 1 add, 2 subtract, 3 multiply</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>aVals</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>first numbers</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>bVals</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>second numbers</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>answers</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>player answers</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>streak</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of consecutive correct answers from the start</p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 42 42])
-							% Test 2
-							mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 41 42])
-							% Test 3
-							mixedMathStreak([2], [10], [3], [8])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							ans = 4
-							% Test 2
-							ans = 2
-							% Test 3
-							ans = 0
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution component="example-solution-dev">
-				<program language="matlab">
-					function streak = mixedMathStreak(ops, aVals, bVals, answers)
-						streak = 0;
-						idx = 1;
-
-						while idx &lt;= length(answers)
-							switch ops(idx)
-								case 1
-									trueAnswer = aVals(idx) + bVals(idx);
-								case 2
-									trueAnswer = aVals(idx) - bVals(idx);
-								case 3
-									trueAnswer = aVals(idx) * bVals(idx);
-							end
-
-							if answers(idx) == trueAnswer
-								streak = streak + 1;
-								idx = idx + 1;
-							else
-								break
+					function S = additionTable(n)
+						S = zeros(n, n);
+						for i = 1:n
+							for j = 1:n
+								S(i, j) = i + j;
 							end
 						end
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-		<exercise label="hw-rps-a">
-			<title>Rock, Paper, Scissors Round</title>
+		<task label="matrices-coding-distanceTable">
 			<statement>
 				<p>
-					In Rock, Paper, Scissors, the choices are encoded as <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>. A player wins if Rock beats Scissors, Paper beats Rock, or Scissors beats Paper.
+					Suppose you have <m>n</m> points in the plane, with their <m>x</m>-coordinates in one vector and their <m>y</m>-coordinates in another. The <term>distance table</term> for these points is the <m>n</m>-by-<m>n</m> matrix where the entry at row <m>i</m>, column <m>j</m> is the straight-line distance between point <m>i</m> and point <m>j</m>:
+					<me>D(i, j) = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}</me>
 				</p>
-
 				<p>
-					To make the activity testable, write a function called <pf>rpsRound</pf> that takes the player's choice and the computer's choice as input and returns the result of the round.
-				</p>
-
-				<p>
-					Return <pf>winner</pf> as <pf>1</pf> if the player wins, <pf>0</pf> if the round is a tie, and <pf>-1</pf> if the computer wins. In an interactive version, the computer's move could be generated with <pf>randi([1,3])</pf>.
+					Write a function <pf>distanceTable</pf> that takes two equal-length vectors <pf>x</pf> and <pf>y</pf> and returns the corresponding distance table. Use a nested loop and preallocate the result with <pf>zeros</pf>.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>player</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>player's choice: <pf>1</pf> for Rock, <pf>2</pf> for Paper, <pf>3</pf> for Scissors</p></cell>
+						<cell><p><pf>x</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>x-coordinates of <m>n</m> points</p></cell>
 					</row>
 					<row>
 						<cell></cell>
-						<cell><p><pf>comp</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>computer's choice: <pf>1</pf> for Rock, <pf>2</pf> for Paper, <pf>3</pf> for Scissors</p></cell>
+						<cell><p><pf>y</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>y-coordinates of <m>n</m> points</p></cell>
 					</row>
 					<row bottom="minor">
 						<cell>Outputs:</cell>
-						<cell><p><pf>winner</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p><pf>1</pf> if the player wins, <pf>0</pf> for a tie, and <pf>-1</pf> if the computer wins</p></cell>
+						<cell><p><pf>D</pf></p></cell>
+						<cell><p>(nxn) double</p></cell>
+						<cell><p>distance table for the points</p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							rpsRound(1, 3)
-							% Test 2
-							rpsRound(2, 2)
-							% Test 3
-							rpsRound(3, 1)
-							% Test 4
-							rpsRound(2, 1)
+							x = [0, 3, 0];
+							y = [0, 0, 4];
+							D = distanceTable(x, y)
+
+							x = [0, 1];
+							y = [0, 1];
+							D = distanceTable(x, y)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							ans = 1
-							% Test 2
-							ans = 0
-							% Test 3
-							ans = -1
-							% Test 4
-							ans = 1
+							D = [0, 3, 4;
+							     3, 0, 5;
+							     4, 5, 0]
+
+							D ≈ [0,      1.4142;
+							     1.4142, 0]
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. Notice that the diagonal entries — the distance from each point to itself — work out to zero automatically, with no special-casing needed.
+				</p>
 				<program language="matlab">
-					function winner = rpsRound(player, comp)
-						if player == comp
-							winner = 0;
-						elseif (player == 1 &amp;&amp; comp == 3) || ...
-									(player == 2 &amp;&amp; comp == 1) || ...
-									(player == 3 &amp;&amp; comp == 2)
-							winner = 1;
-						else
-							winner = -1;
+					function D = distanceTable(x, y)
+						n = length(x);
+						D = zeros(n, n);
+						for i = 1:n
+							for j = 1:n
+								D(i, j) = sqrt((x(i) - x(j))^2 + (y(i) - y(j))^2);
+							end
 						end
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-		<exercise label="hw-rps-b">
-			<title>Rock, Paper, Scissors First to 3 Wins</title>
+		<task label="matrices-coding-countAboveThreshold">
 			<statement>
 				<p>
-					Write a function called <pf>rpsFirstToThree</pf> that plays a match using predetermined moves for the player and the computer. This makes the activity testable without <pf>input</pf> or random numbers.
-				</p>
-
-				<p>
-					The vectors <pf>playerMoves</pf> and <pf>compMoves</pf> contain choices encoded as <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>. Use a <pf>while</pf>-loop to process moves in order until either the player reaches 3 wins, the computer reaches 3 wins, or one of the move lists runs out.
-				</p>
-
-				<p>
-					Return the final scores, the number of rounds actually played, and <pf>winner</pf>, where <pf>1</pf> means the player won the match, <pf>-1</pf> means the computer won the match, and <pf>0</pf> means no one reached 3 wins before the moves ended. Ties count as rounds played but do not increase either score.
+					Write a function <pf>countAboveThreshold</pf> that takes a matrix <pf>A</pf> and a threshold <pf>t</pf>, and returns the number of elements of <pf>A</pf> that are strictly greater than <pf>t</pf>. Use a nested loop.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>playerMoves</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>player choices to process in order</p></cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to scan</p></cell>
 					</row>
 					<row>
 						<cell></cell>
-						<cell><p><pf>compMoves</pf></p></cell>
-						<cell><p>(1xm) double</p></cell>
-						<cell><p>computer choices to process in order</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>playerScore</pf></p></cell>
+						<cell><p><pf>t</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of rounds won by the player</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>compScore</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of rounds won by the computer</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>rounds</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of rounds actually played</p></cell>
+						<cell><p>threshold value</p></cell>
 					</row>
 					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>winner</pf></p></cell>
+						<cell>Outputs:</cell>
+						<cell><p><pf>count</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p><pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> otherwise</p></cell>
+						<cell><p>number of elements strictly greater than <pf>t</pf></p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							[p, c, n, w] = rpsFirstToThree([1 2 3 1], [3 1 2 2])
-							% Test 2
-							[p, c, n, w] = rpsFirstToThree([1 1 1 2 2], [2 2 1 3 3])
-							% Test 3
-							[p, c, n, w] = rpsFirstToThree([1 2 3], [1 3 2])
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							count = countAboveThreshold(A, 5)
+
+							A = [10, 20; 30, 40];
+							count = countAboveThreshold(A, 100)
+
+							A = [-3, 0, 3; -1, 1, 2];
+							count = countAboveThreshold(A, 0)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							p = 3		c = 0		n = 3		w = 1
-							% Test 2
-							p = 0		c = 3		n = 4		w = -1
-							% Test 3
-							p = 1		c = 1		n = 3		w = 0
+							count = 4
+
+							count = 0
+
+							count = 3
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
 				<program language="matlab">
-					function [playerScore, compScore, rounds, winner] = rpsFirstToThree(playerMoves, compMoves)
-						playerScore = 0;
-						compScore = 0;
-						rounds = 0;
-						idx = 1;
-						maxRounds = min(length(playerMoves), length(compMoves));
-
-						while playerScore &lt; 3 &amp;&amp; compScore &lt; 3 &amp;&amp; idx &lt;= maxRounds
-							player = playerMoves(idx);
-							comp = compMoves(idx);
-							rounds = rounds + 1;
-
-							if player ~= comp
-								if (player == 1 &amp;&amp; comp == 3) || ...
-									(player == 2 &amp;&amp; comp == 1) || ...
-									(player == 3 &amp;&amp; comp == 2)
-									playerScore = playerScore + 1;
-								else
-									compScore = compScore + 1;
+					function count = countAboveThreshold(A, t)
+						count = 0;
+						for i = 1:size(A, 1)
+							for j = 1:size(A, 2)
+								if A(i, j) &gt; t
+									count = count + 1;
 								end
 							end
-
-							idx = idx + 1;
-						end
-
-						if playerScore == 3
-							winner = 1;
-						elseif compScore == 3
-							winner = -1;
-						else
-							winner = 0;
 						end
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-		<exercise label="hw-rps-c">
-			<title>Rock, Paper, Scissors Match Statistics</title>
+		<task label="matrices-coding-indexOfLargest">
 			<statement>
 				<p>
-					Write a function called <pf>rpsMatchStats</pf> that tracks the full summary of a Rock, Paper, Scissors match. Use the same move encoding as before: <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>.
-				</p>
-
-				<p>
-					Use a <pf>while</pf>-loop to process the moves in order until either player reaches 3 wins or one of the move lists runs out. Track the total number of rounds played, the player's wins, the computer's wins, and the number of ties.
-				</p>
-
-				<p>
-					Return <pf>winner</pf> as <pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> if no one reaches 3 wins.
+					Write a function <pf>indexOfLargest</pf> that takes a matrix <pf>A</pf> and returns the row and column index of its largest element as two separate outputs. If the largest value appears more than once, return the position of the first occurrence in row-major order — that is, the one MATLAB would visit first when walking row by row, left to right. Use a nested loop.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>playerMoves</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>player choices to process in order</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>compMoves</pf></p></cell>
-						<cell><p>(1xm) double</p></cell>
-						<cell><p>computer choices to process in order</p></cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix with at least one element</p></cell>
 					</row>
 					<row>
 						<cell>Outputs:</cell>
-						<cell><p><pf>playerWins</pf></p></cell>
+						<cell><p><pf>row</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of rounds won by the player</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>compWins</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of rounds won by the computer</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>ties</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of tied rounds</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>rounds</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of rounds actually played</p></cell>
+						<cell><p>row index of the largest element</p></cell>
 					</row>
 					<row bottom="minor">
 						<cell></cell>
-						<cell><p><pf>winner</pf></p></cell>
+						<cell><p><pf>col</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p><pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> otherwise</p></cell>
+						<cell><p>column index of the largest element</p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							[p, c, t, n, w] = rpsMatchStats([1 2 3 1], [1 1 1 3])
-							% Test 2
-							[p, c, t, n, w] = rpsMatchStats([1 2 3 1], [3 1 2 2])
-							% Test 3
-							[p, c, t, n, w] = rpsMatchStats([1 1 1 2 2], [2 2 1 3 3])
+							A = [1, 2, 3; 9, 5, 6; 7, 8, 4];
+							[row, col] = indexOfLargest(A)
+
+							A = [10, 20; 30, 40];
+							[row, col] = indexOfLargest(A)
+
+							A = [5, 5, 5; 5, 5, 5];
+							[row, col] = indexOfLargest(A)
+
+							A = [-3, -1; -8, -2];
+							[row, col] = indexOfLargest(A)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							p = 2		c = 1		t = 1		n = 4		w = 0
-							% Test 2
-							p = 3		c = 0		t = 0		n = 3		w = 1
-							% Test 3
-							p = 0		c = 3		t = 1		n = 4		w = -1
+							row = 2, col = 1
+
+							row = 2, col = 2
+
+							row = 1, col = 1
+
+							row = 1, col = 2
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. Initializing the running best to position (1, 1) and using a strict inequality <pf>&gt;</pf> ensures that ties are won by the earliest position visited.
+				</p>
 				<program language="matlab">
-					function [playerWins, compWins, ties, rounds, winner] = rpsMatchStats(playerMoves, compMoves)
-						playerWins = 0;
-						compWins = 0;
-						ties = 0;
-						rounds = 0;
-						idx = 1;
-						maxRounds = min(length(playerMoves), length(compMoves));
-
-						while playerWins &lt; 3 &amp;&amp; compWins &lt; 3 &amp;&amp; idx &lt;= maxRounds
-							player = playerMoves(idx);
-							comp = compMoves(idx);
-							rounds = rounds + 1;
-
-							if player == comp
-								ties = ties + 1;
-							elseif (player == 1 &amp;&amp; comp == 3) || ...
-										(player == 2 &amp;&amp; comp == 1) || ...
-										(player == 3 &amp;&amp; comp == 2)
-								playerWins = playerWins + 1;
-							else
-								compWins = compWins + 1;
+					function [row, col] = indexOfLargest(A)
+						row = 1;
+						col = 1;
+						for i = 1:size(A, 1)
+							for j = 1:size(A, 2)
+								if A(i, j) &gt; A(row, col)
+									row = i;
+									col = j;
+								end
 							end
-
-							idx = idx + 1;
-						end
-
-						if playerWins == 3
-							winner = 1;
-						elseif compWins == 3
-							winner = -1;
-						else
-							winner = 0;
 						end
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-		<exercise label="hw-change-machine-a">
-			<title>Counting Quarters</title>
+		<task label="matrices-coding-replaceNegativesMatrix">
 			<statement>
 				<p>
-					A vending machine often makes change by repeatedly taking the largest coin that still fits. This strategy is called a <term>greedy algorithm</term>.
-				</p>
-
-				<p>
-					Write a function called <pf>countQuarters</pf> that takes an amount in cents and uses a <pf>while</pf>-loop to count how many quarters fit into that amount. Do not use division or <pf>floor</pf>. Instead, subtract <pf>25</pf> repeatedly until fewer than 25 cents remain.
-				</p>
-
-				<p>
-					Return the number of quarters used and the remaining number of cents.
+					Write a function <pf>replaceNegativesMatrix</pf> that takes a matrix <pf>A</pf> and a value <pf>newval</pf>, and returns a new matrix where every negative element of <pf>A</pf> has been replaced by <pf>newval</pf>. Non-negative elements should be left alone. Use a nested loop.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>amount</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>nonnegative integer amount in cents</p></cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to scan</p></cell>
 					</row>
 					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>quarters</pf></p></cell>
+						<cell></cell>
+						<cell><p><pf>newval</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of quarters used</p></cell>
+						<cell><p>replacement value for negative entries</p></cell>
 					</row>
 					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>remainder</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>cents left after removing all possible quarters</p></cell>
+						<cell>Outputs:</cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix with negative elements replaced</p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							[q, r] = countQuarters(87)
-							% Test 2
-							[q, r] = countQuarters(19)
-							% Test 3
-							[q, r] = countQuarters(100)
+							A = [1, -2, 3; -4, 5, -6];
+							B = replaceNegativesMatrix(A, 0)
+
+							A = [-1, -2; -3, -4];
+							B = replaceNegativesMatrix(A, 99)
+
+							A = [1, 2; 3, 4];
+							B = replaceNegativesMatrix(A, 0)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							q = 3			r = 12
-							% Test 2
-							q = 0			r = 19
-							% Test 3
-							q = 4			r = 0
+							B = [1, 0, 3;
+							     0, 5, 0]
+
+							B = [99, 99;
+							     99, 99]
+
+							B = [1, 2;
+							     3, 4]
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. Starting with a copy of <pf>A</pf> and only modifying the positions that need changing is cleaner than rebuilding the matrix from scratch.
+				</p>
 				<program language="matlab">
-					function [quarters, remainder] = countQuarters(amount)
-						quarters = 0;
-						remainder = amount;
-
-						while remainder &gt;= 25
-							remainder = remainder - 25;
-							quarters = quarters + 1;
-						end
-					end
-				</program>
-			</solution>
-		</exercise>
-
-		<exercise label="hw-password-a">
-			<title>PIN Check with Repeated Guesses</title>
-			<statement>
-				<p>
-					In a live version of this activity, a program could use <pf>input</pf> to keep asking for a PIN until the correct value is entered.
-				</p>
-
-				<p>
-					To make the behavior testable, write a function called <pf>checkPin</pf> that takes the secret PIN and a vector of guesses. Use a <pf>while</pf>-loop to process guesses in order until the correct PIN is found or the guess list runs out.
-				</p>
-
-				<p>
-					Return <pf>granted</pf> as <pf>1</pf> if the PIN is entered correctly and <pf>0</pf> otherwise. Also return <pf>attempts</pf>, the number of guesses that were actually used.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>pin</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>secret PIN value</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>guesses</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>PIN guesses to process in order</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>granted</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p><pf>1</pf> if the correct PIN is found, otherwise <pf>0</pf></p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>attempts</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of guesses used</p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="48% 50%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							[g, n] = checkPin(1234, [1111 9999 1234])
-							% Test 2
-							[g, n] = checkPin(2468, [1111 2222 3333 4444])
-							% Test 3
-							[g, n] = checkPin(4321, [4321])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							% Test 1
-							g = 1			n = 3
-							% Test 2
-							g = 0			n = 4
-							% Test 3
-							g = 1			n = 1
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution component="example-solution-dev">
-				<program language="matlab">
-					function [granted, attempts] = checkPin(pin, guesses)
-						granted = 0;
-						attempts = 0;
-						idx = 1;
-
-						while idx &lt;= length(guesses) &amp;&amp; granted == 0
-							attempts = attempts + 1;
-
-							if guesses(idx) == pin
-								granted = 1;
+					function B = replaceNegativesMatrix(A, newval)
+						B = A;
+						for i = 1:size(A, 1)
+							for j = 1:size(A, 2)
+								if B(i, j) &lt; 0
+									B(i, j) = newval;
+								end
 							end
-
-							idx = idx + 1;
 						end
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-		<exercise label="hw-password-b">
-			<title>PIN Lockout After Three Strikes</title>
+		<task label="matrices-coding-mySumMatrix">
 			<statement>
 				<p>
-					Write a function called <pf>checkPinThreeStrikes</pf> that limits the user to at most three guesses.
-				</p>
-
-				<p>
-					Use a <pf>while</pf>-loop with a compound condition so the loop continues only while the correct PIN has not been entered and fewer than 3 attempts have been used. Process guesses in order from the input vector.
-				</p>
-
-				<p>
-					Return <pf>granted</pf> as <pf>1</pf> if the correct PIN is entered and <pf>0</pf> otherwise. Also return <pf>attempts</pf>, the number of guesses that were actually used, and <pf>lockedOut</pf>, which should be <pf>1</pf> only when all three attempts are used without entering the correct PIN. In an interactive version, after the second failed guess you could display the warning <q>1 attempt remaining before lockout.</q>
+					Write a function <pf>mySumMatrix</pf> that takes a matrix <pf>A</pf> and returns the sum of all its elements. Use a nested loop and an accumulator. The point of this exercise is to understand how a reduction over a matrix works by building one yourself, so do not use the built-in <pf>sum</pf> function — write the loop by hand.
 				</p>
 
 				<tabular valign="top" top="minor">
 					<col width="11%" halign="right" />
 					<col width="15%" halign="left" />
 					<col width="28%" halign="center" />
-					<col width="46%" halign="left"/>
+					<col width="46%" halign="left" />
 					<row>
 						<cell>Inputs:</cell>
-						<cell><p><pf>pin</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>secret PIN value</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>guesses</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>PIN guesses to process in order</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>granted</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p><pf>1</pf> if the correct PIN is entered, otherwise <pf>0</pf></p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>attempts</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of guesses used, up to a maximum of 3</p></cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>matrix to sum</p></cell>
 					</row>
 					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>lockedOut</pf></p></cell>
+						<cell>Outputs:</cell>
+						<cell><p><pf>s</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p><pf>1</pf> if three incorrect guesses are used, otherwise <pf>0</pf></p></cell>
+						<cell><p>sum of every element of <pf>A</pf></p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 50%">
+				<sidebyside widths="49% 49%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							[g, n, locked] = checkPinThreeStrikes(1234, [1111 1234 9999])
-							% Test 2
-							[g, n, locked] = checkPinThreeStrikes(1234, [1111 2222 3333 1234])
-							% Test 3
-							[g, n, locked] = checkPinThreeStrikes(2468, [2468])
+							A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+							s = mySumMatrix(A)
+
+							A = [10, 20; 30, 40];
+							s = mySumMatrix(A)
+
+							A = [-1, 1; -2, 2];
+							s = mySumMatrix(A)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							% Test 1
-							g = 1			n = 2		locked = 0
-							% Test 2
-							g = 0			n = 3		locked = 1
-							% Test 3
-							g = 1			n = 1		locked = 0
+							s = 45
+
+							s = 100
+
+							s = 0
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
-			<solution component="example-solution-dev">
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The accumulator <pf>s</pf> starts at zero and is updated once per inner iteration, so by the time both loops finish it holds the total. The built-in equivalent is <pf>sum(A(:))</pf>, which uses the same idiom from the normalize exercise: <pf>A(:)</pf> flattens the matrix into a column vector, and then <pf>sum</pf> reduces it to a scalar.
+				</p>
 				<program language="matlab">
-					function [granted, attempts, lockedOut] = checkPinThreeStrikes(pin, guesses)
-						granted = 0;
-						attempts = 0;
-						idx = 1;
-
-						while granted == 0 &amp;&amp; attempts &lt; 3 &amp;&amp; idx &lt;= length(guesses)
-							attempts = attempts + 1;
-
-							if guesses(idx) == pin
-								granted = 1;
+					function s = mySumMatrix(A)
+						s = 0;
+						for i = 1:size(A, 1)
+							for j = 1:size(A, 2)
+								s = s + A(i, j);
 							end
-
-							idx = idx + 1;
-						end
-
-						if granted == 0 &amp;&amp; attempts == 3
-							lockedOut = 1;
-						else
-							lockedOut = 0;
 						end
 					end
 				</program>
 			</solution>
-		</exercise>
+		</task>
 
-	<exercise>
-		<title>Temperature Data Analysis</title>
-		<statement>
-			<p>
-				A weather station records daily high temperatures for a week: <c>[72 75 78 74 80 82 79]</c>.
-			</p>
-			<ol>
-				<li>Calculate the average temperature for the week.</li>
-				<li>Find the hottest day's temperature.</li>
-				<li>Determine how many days had temperatures above 75 degrees.</li>
-				<li>Create a new array showing the difference from the average for each day.</li>
-			</ol>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					temps = [72 75 78 74 80 82 79];
-					
-					% 1. Average temperature
-					avg_temp = mean(temps);              % 77.1429
-					
-					% 2. Hottest temperature
-					hottest = max(temps);                % 82
-					
-					% 3. Days above 75
-					days_above_75 = sum(temps > 75);     % 4
-					
-					% 4. Difference from average
-					diff_from_avg = temps - avg_temp;    
-					% [-5.14 -2.14 0.86 -3.14 2.86 4.86 1.86]
-				</code>
-			</program>
-		</solution>
+		<task label="matrices-coding-elementwiseProductLoop">
+			<statement>
+				<p>
+					Earlier in this exercise set, you wrote <pf>elementwiseProduct</pf> using the dot operator <pf>.*</pf> with no loop at all. Now write a function <pf>elementwiseProductLoop</pf> that takes two matrices <pf>A</pf> and <pf>B</pf> of the same shape and returns the same result — the element-by-element product — but using a nested loop. Preallocate the result with <pf>zeros</pf>.
+				</p>
+				<p>
+					When you finish, compare your loop version side by side with the one-line vectorized version. Both produce the same answer, but the loop version is several times longer and has more places to make a mistake. This is the contrast that motivates the <q>prefer vectorization when possible</q> rule from the chapter.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>A</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>first matrix</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>B</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>second matrix, same shape as <pf>A</pf></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>C</pf></p></cell>
+						<cell><p>(mxn) double</p></cell>
+						<cell><p>element-wise product of <pf>A</pf> and <pf>B</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							A = [1, 2; 3, 4];
+							B = [10, 20; 30, 40];
+							C = elementwiseProductLoop(A, B)
+
+							A = [1, 1, 1; 1, 1, 1];
+							B = [2, 4, 6; 8, 10, 12];
+							C = elementwiseProductLoop(A, B)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							C = [10,  40;
+							     90, 160]
+
+							C = [2,  4,  6;
+							     8, 10, 12]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The vectorized version <pf>C = A .* B</pf> produces the same result in a single line — and that is the point.
+				</p>
+				<program language="matlab">
+					function C = elementwiseProductLoop(A, B)
+						C = zeros(size(A));
+						for i = 1:size(A, 1)
+							for j = 1:size(A, 2)
+								C(i, j) = A(i, j) * B(i, j);
+							end
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
 	</exercise>
 
-	<exercise>
-		<title>Grading Multiple Students</title>
-		<statement>
-			<p>
-				A class has three students with test scores stored in a matrix where each row represents a student and each column represents a test:
-			</p>
-			<program language="matlab">
-				<code>
-					scores = [85 92 88; 78 84 90; 92 95 89];
-				</code>
-			</program>
-			<ol>
-				<li>Calculate each student's average score (hint: use row sums).</li>
-				<li>Calculate the class average for each test (hint: use column means).</li>
-				<li>Find the highest score in the entire class.</li>
-			</ol>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					scores = [85 92 88; 78 84 90; 92 95 89];
-					
-					% 1. Each student's average
-					student_avgs = mean(scores, 2);  % [88.33; 84; 92]
-					
-					% 2. Class average for each test
-					test_avgs = mean(scores);        % [85 90.33 89]
-					
-					% 3. Highest score overall
-					highest = max(max(scores));      % 95
-					% Or: highest = max(scores(:));
-				</code>
-			</program>
-		</solution>
-	</exercise>
+	<exercisegroup xml:id="exercises-arrays">
+		<title>💻 From Merged Version</title>
 
-	<exercise>
-		<title>Vector Operations</title>
-		<statement>
+		<introduction>
 			<p>
-				Given two vectors <c>x = 1:10</c> and <c>y = linspace(0,1,10)</c>:
+				These exercises integrate concepts from throughout the chapter. They require you to combine array creation, indexing, operations, and built-in functions to solve problems.
 			</p>
-			<ol>
-				<li>Compute <c>z = x.^2 + 5*y</c></li>
-				<li>Find the indices where <c>z</c> is greater than 20</li>
-				<li>Calculate the sum of all elements in <c>z</c> that are greater than 20</li>
-			</ol>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					x = 1:10;
-					y = linspace(0, 1, 10);
-					
-					% 1. Compute z
-					z = x.^2 + 5*y;
-					
-					% 2. Indices where z > 20
-					indices = find(z > 20);          % [5 6 7 8 9 10]
-					
-					% 3. Sum of elements > 20
-					sum_large = sum(z(z > 20));      % 298.1481
-				</code>
-			</program>
-		</solution>
-	</exercise>
+		</introduction>
 
-	<exercise>
-		<title>Matrix Construction</title>
-		<statement>
-			<p>
-				Create a 5-by-5 matrix where:
-			</p>
-			<ul marker="square">
-				<li>The first column contains the numbers 1 through 5</li>
-				<li>The second column contains the squares of those numbers</li>
-				<li>The third column contains the cubes</li>
-				<li>The fourth and fifth columns contain zeros</li>
-			</ul>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					% Create the base vector
-					n = (1:5)';                  % Column vector [1; 2; 3; 4; 5]
-					
-					% Build the matrix column by column
-					M = [n, n.^2, n.^3, zeros(5,2)];
-					
-					% Result:
-					% 1   1    1   0  0
-					% 2   4    8   0  0
-					% 3   9   27   0  0
-					% 4  16   64   0  0
-					% 5  25  125   0  0
-				</code>
-			</program>
-		</solution>
-	</exercise>
 
-	<exercise>
-		<title>Data Filtering</title>
-		<statement>
-			<p>
-				Given a vector of measurements <c>data = [12 -5 18 -3 25 -8 30 15]</c>:
-			</p>
-			<ol>
-				<li>Create a new vector containing only the positive values</li>
-				<li>Replace all negative values with zero (in the original vector)</li>
-				<li>Count how many values are greater than 15</li>
-			</ol>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					data = [12 -5 18 -3 25 -8 30 15];
-					
-					% 1. Extract positive values
-					positive_only = data(data > 0);      % [12 18 25 30 15]
-					
-					% 2. Replace negatives with zero
-					data(data &lt; 0) = 0;                  % [12 0 18 0 25 0 30 15]
-					
-					% 3. Count values > 15
-					count = sum(data > 15);              % 3
-				</code>
-			</program>
-		</solution>
-	</exercise>
-
-	<exercise>
-		<title>Array Reshaping Challenge</title>
-		<statement>
-			<p>
-				Create a row vector <c>v = 1:12</c>. Then:
-			</p>
-			<ol>
-				<li>Reshape it into a 3-by-4 matrix</li>
-				<li>Extract the second row of that matrix</li>
-				<li>Compute the sum of the last column</li>
-			</ol>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					v = 1:12;
-					
-					% 1. Reshape to 3-by-4
-					A = reshape(v, 3, 4);
-					% Result:
-					% 1  4  7  10
-					% 2  5  8  11
-					% 3  6  9  12
-					
-					% 2. Extract second row
-					row2 = A(2,:);                       % [2 5 8 11]
-					
-					% 3. Sum of last column
-					col_sum = sum(A(:,end));             % 33
-				</code>
-			</program>
-		</solution>
-	</exercise>
-
-	<exercise>
-		<title>Function Evaluation</title>
-		<statement>
-			<p>
-				Create a vector <c>t</c> of 50 evenly spaced values from 0 to <m>2\pi</m>. Then compute <c>y = sin(t) + 0.5*cos(2*t)</c>. Find:
-			</p>
-			<ol>
-				<li>The maximum value of <c>y</c></li>
-				<li>The index at which this maximum occurs</li>
-				<li>The corresponding value of <c>t</c> at that index</li>
-			</ol>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					t = linspace(0, 2*pi, 50);
-					y = sin(t) + 0.5*cos(2*t);
-					
-					% 1 and 2. Maximum value and its index
-					[max_y, max_idx] = max(y);           
-					
-					% 3. Corresponding t value
-					t_at_max = t(max_idx);
-				</code>
-			</program>
-		</solution>
-	</exercise>
-
-	<exercise>
-		<title>Comparing Arrays</title>
-		<statement>
-			<p>
-				Two sensors measure the same quantity and produce slightly different readings:
-			</p>
-			<program language="matlab">
-				<code>
-					sensor1 = [10.2 10.5 10.1 10.4 10.3];
-					sensor2 = [10.1 10.6 10.0 10.5 10.2];
-				</code>
-			</program>
-			<p>
-				Calculate:
-			</p>
-			<ol>
-				<li>The element-wise difference between the sensors</li>
-				<li>The absolute value of these differences</li>
-				<li>The average absolute difference</li>
-			</ol>
-		</statement>
-		<solution component="example-solution-dev">
-			<program language="matlab">
-				<code>
-					sensor1 = [10.2 10.5 10.1 10.4 10.3];
-					sensor2 = [10.1 10.6 10.0 10.5 10.2];
-					
-					% 1. Element-wise difference
-					diff = sensor1 - sensor2;            % [0.1 -0.1 0.1 -0.1 0.1]
-					
-					% 2. Absolute differences
-					abs_diff = abs(diff);                % [0.1 0.1 0.1 0.1 0.1]
-					
-					% 3. Average absolute difference
-					avg_abs_diff = mean(abs_diff);       % 0.1
-				</code>
-			</program>
-		</solution>
-	</exercise>
-
-	<exercise xml:id="coding-for-loop-snakeEyesCount">
-		<statement>
-			<p>
-				Write a function named <pf>snakeEyesCount</pf> that counts the number of times you roll two <pf>1</pf>'s in a row in <pf>n</pf> rolls.
-			</p>
-			<tabular valign="top" halign="right" top="minor">
-				<col width="12%" halign="right"/>
-				<col width="12%" halign="right"/>
-				<col width="22%" halign="center"/>
-				<col width="54%" halign="left"/>
-				<row>
-					<cell><p>Inputs:</p></cell>
-					<cell><p><pf>n</pf></p></cell>
-					<cell><p>(1x1) double</p></cell>
-					<cell><p>number of die rolls</p></cell>
-				</row>
-				<row bottom="minor">
-					<cell><p>Outputs:</p></cell>
-					<cell><p><pf>count</pf></p></cell>
-					<cell><p>(1x1) double</p></cell>
-					<cell><p>the number of times two <pf>1</pf>s are rolled</p></cell>
-				</row>
-			</tabular>
-			<sidebyside widths="49% 49%">
-				<stack>
-					<p>Test Cases ⤵︎</p>
-					<program language="matlab">
-						rng(123);  % Set seed
-						snakeEyesCount(10)
-						snakeEyesCount(100)
-						snakeEyesCount(600)
-					</program>
-				</stack>
-				<stack>
-					<p>Expected ⤵︎</p>
-					<program language="matlab">
-						󠀠
-						% count = 1
-						% count = 10
-						% count = 52
-					</program>
-				</stack>
-			</sidebyside>
-		</statement>
-	</exercise>
-
-			<task label="hw-while-factorization">
-				<title>Integer Factorization by Trial Division</title>
+			<exercise label="hw-random-walk-a">
+				<title>Random Walk to a Boundary</title>
 				<statement>
 					<p>
-						Every integer greater than 1 can be written as a product of prime factors. For example,
-						<me>
-							360 = 2^3 \cdot 3^2 \cdot 5.
-						</me>
-						A simple way to find these factors is <term>trial division</term>: test divisors starting at 2, divide them out when they work, and move on when they do not.
+						A <term>random walk</term> changes position by a sequence of steps. In a live simulation, each step could be generated with <pf>randi([0,1]) * 2 - 1</pf>, which produces either <m>-1</m> or <m>1</m> with equal probability.
 					</p>
 
 					<p>
-						As a warm-up, first write a <pf>while</pf>-loop that divides out all copies of 2 from a number <pf>n</pf>. For example, starting with <pf>n = 360</pf>, the values should change as follows:
-						<me>
-							360 \to 180 \to 90 \to 45.
-						</me>
+						To make the exercise testable, write a function called <pf>walkToBoundary</pf> that takes a starting position, a lower boundary, an upper boundary, and a vector of moves whose entries are <pf>-1</pf> or <pf>1</pf>. Use a <pf>while</pf>-loop to apply moves one at a time until the position reaches either boundary or there are no moves left.
 					</p>
 
 					<p>
-						Then write a function <pf>primeFactors(n)</pf> that returns all prime factors of <pf>n</pf> as a row vector in nondecreasing order. Use a divisor <pf>d</pf> that starts at 2. While <pf>d * d &lt;= n</pf>, test whether <pf>d</pf> divides <pf>n</pf>. If it does, record the factor and divide it out. If it does not, increase <pf>d</pf> by 1. After the loop, if <pf>n &gt; 1</pf>, then the remaining value of <pf>n</pf> is the last prime factor.
-					</p>
-
-					<p>
-						Finally, write a function <pf>smallestFactor(n)</pf> that returns the smallest prime factor of <pf>n</pf>. If <pf>n</pf> is prime, the function should return <pf>n</pf> itself.
+						Return the final position, the number of moves actually used, and the highest and lowest positions reached. This models both a walk that starts at 0 and stops at <m>-10</m> or <m>10</m>, and the Gambler's Ruin version that starts at 5 and stops at 0 or 10.
 					</p>
 
 					<tabular valign="top" top="minor">
 						<col width="11%" halign="right" />
 						<col width="15%" halign="left" />
 						<col width="28%" halign="center" />
-						<col width="46%" halign="left" />
+						<col width="46%" halign="left"/>
 						<row>
 							<cell>Inputs:</cell>
-							<cell><p><pf>n</pf></p></cell>
+							<cell><p><pf>startPos</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>integer greater than 1</p></cell>
+							<cell><p>starting position</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>lowerBound</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>lower stopping value</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>upperBound</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>upper stopping value</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>moves</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>vector of steps, each equal to <pf>-1</pf> or <pf>1</pf></p></cell>
 						</row>
 						<row>
 							<cell>Outputs:</cell>
-							<cell><p><pf>factors</pf></p></cell>
-							<cell><p>(1xn) double</p></cell>
-							<cell><p>row vector of prime factors returned by <pf>primeFactors</pf></p></cell>
+							<cell><p><pf>finalPos</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>position where the walk stops</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>steps</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of moves used</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>maxPos</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>highest position reached</p></cell>
 						</row>
 						<row bottom="minor">
 							<cell></cell>
-							<cell><p><pf>p</pf></p></cell>
+							<cell><p><pf>minPos</pf></p></cell>
 							<cell><p>(1x1) double</p></cell>
-							<cell><p>smallest prime factor returned by <pf>smallestFactor</pf></p></cell>
+							<cell><p>lowest position reached</p></cell>
 						</row>
 					</tabular>
 
@@ -1491,65 +2036,1476 @@
 						<stack>
 							<p>Test Cases ⤵︎</p>
 							<program language="matlab">
-								primeFactors(360)
-								primeFactors(97)
-								smallestFactor(91)
-								smallestFactor(9973)
+								% Test 1
+								[finalPos, n, hi, lo] = walkToBoundary(0, -3, 3, [1 1 -1 1 1])
+								% Test 2
+								[finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [-1 -1 1 -1 -1 -1 -1])
+								% Test 3
+								[finalPos, n, hi, lo] = walkToBoundary(5, 0, 10, [1 1 -1 1 1 1 1])
 							</program>
 						</stack>
 						<stack>
 							<p>Expected ⤵︎</p>
 							<program language="matlab">
-								ans = [2 2 2 3 3 5]
-								ans = [97]
-								ans = 7
-								ans = 9973
+								% Test 1
+								finalPos = 3		n = 5		hi = 3		lo = 0
+								% Test 2
+								finalPos = 0		n = 7		hi = 5		lo = 0
+								% Test 3
+								finalPos = 10		n = 7		hi = 10		lo = 5
 							</program>
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution component="exercise-solution">
+				<solution component="example-solution-dev">
 					<program language="matlab">
-						n = 360;
-						fprintf('Starting with n = %i\n', n)
-						while mod(n, 2) == 0
-							n = n / 2;
-							fprintf('  /2 -> %i\n', n)
-						end
-						fprintf('Remaining: n = %i\n', n)
-					</program>
-					<program language="matlab">
-						function factors = primeFactors(n)
-							factors = [];
-							d = 2;
+						function [finalPos, steps, maxPos, minPos] = walkToBoundary(startPos, lowerBound, upperBound, moves)
+							pos = startPos;
+							steps = 0;
+							maxPos = pos;
+							minPos = pos;
+							idx = 1;
 
-							while d * d &lt;= n
-								if mod(n, d) == 0
-									factors(end + 1) = d; %#ok&lt;AGROW&gt;
-									n = n / d;
-								else
-									d = d + 1;
+							while pos &gt; lowerBound &amp;&amp; pos &lt; upperBound &amp;&amp; idx &lt;= length(moves)
+								pos = pos + moves(idx);
+								steps = steps + 1;
+
+								if pos &gt; maxPos
+									maxPos = pos;
 								end
+
+								if pos &lt; minPos
+									minPos = pos;
+								end
+
+								idx = idx + 1;
 							end
 
-							if n &gt; 1
-								factors(end + 1) = n;
-							end
-						end
-					</program>
-					<program language="matlab">
-						function p = smallestFactor(n)
-							d = 2;
-							while d * d &lt;= n
-								if mod(n, d) == 0
-									p = d;
-									return
-								end
-								d = d + 1;
-							end
-							p = n;
+							finalPos = pos;
 						end
 					</program>
 				</solution>
-			</task>
+			</exercise>
+
+			<exercise label="hw-guessing-game-a">
+				<title>Number Guessing Game</title>
+				<statement>
+					<p>
+						The original version of this activity uses <pf>randi</pf> to choose a secret number and <pf>input</pf> to collect guesses from the player. To make the behavior testable, write a function called <pf>guessNumber</pf> that takes the secret number and a vector of guesses as input.
+					</p>
+
+					<p>
+						Process the guesses in order with a <pf>while</pf>-loop until the correct guess is found or the list of guesses runs out. Return <pf>won</pf> as 1 if the player guessed correctly and 0 otherwise, along with <pf>attempts</pf>, the number of guesses that were actually used.
+					</p>
+
+					<p>
+						In an interactive version, you would print <q>Too low!</q> or <q>Too high!</q> after each incorrect guess.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>secret</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>secret number to guess</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>guesses</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>guesses to process in order</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>won</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>1 if the secret number is guessed, otherwise 0</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>attempts</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of guesses used</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								[won, n] = guessNumber(42, [50 25 40 42])
+								% Test 2
+								[won, n] = guessNumber(17, [10 20 17])
+								% Test 3
+								[won, n] = guessNumber(8, [1 2 3])
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								won = 1			n = 4
+								% Test 2
+								won = 1			n = 3
+								% Test 3
+								won = 0			n = 3
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [won, attempts] = guessNumber(secret, guesses)
+							won = 0;
+							attempts = 0;
+							idx = 1;
+
+							while idx &lt;= length(guesses) &amp;&amp; won == 0
+								attempts = attempts + 1;
+
+								if guesses(idx) == secret
+									won = 1;
+								end
+
+								idx = idx + 1;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-guessing-game-c">
+				<title>Limited Guesses</title>
+				<statement>
+					<p>
+						Write a function called <pf>guessNumberLimited</pf> that works like the previous exercise, but stops after at most <pf>maxAttempts</pf> guesses. Process the guesses in order with a <pf>while</pf>-loop.
+					</p>
+
+					<p>
+						Return <pf>won</pf> as 1 if the player guesses the secret number before the limit is reached and 0 otherwise. Also return <pf>attempts</pf>, the number of guesses actually used.
+					</p>
+
+					<p>
+						In the interactive version, if the player loses, you would reveal the secret number after the loop ends.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>secret</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>secret number to guess</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>guesses</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>guesses to process in order</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>maxAttempts</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>maximum number of guesses allowed</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>won</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>1 if the player guesses correctly in time, otherwise 0</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>attempts</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of guesses used before stopping</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								[won, n] = guessNumberLimited(42, [50 25 40 42], 4)
+								% Test 2
+								[won, n] = guessNumberLimited(42, [50 25 40 35 44], 3)
+								% Test 3
+								[won, n] = guessNumberLimited(7, [7 1 2], 7)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								won = 1			n = 4
+								% Test 2
+								won = 0			n = 3
+								% Test 3
+								won = 1			n = 1
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [won, attempts] = guessNumberLimited(secret, guesses, maxAttempts)
+							won = 0;
+							attempts = 0;
+							idx = 1;
+
+							while idx &lt;= length(guesses) &amp;&amp; attempts &lt; maxAttempts &amp;&amp; won == 0
+								attempts = attempts + 1;
+
+								if guesses(idx) == secret
+									won = 1;
+								end
+
+								idx = idx + 1;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-mental-math-a">
+				<title>Multiplication Streak</title>
+				<statement>
+					<p>
+						The original version of this activity generates random multiplication questions and stops as soon as the player gives one incorrect answer. To make the logic testable, write a function called <pf>multiplicationStreak</pf> that takes three equally sized vectors: the first factors, the second factors, and the player's answers.
+					</p>
+
+					<p>
+						Use a <pf>while</pf>-loop to process the questions in order. Stop at the first incorrect answer or when all questions have been checked. Return the number of consecutive correct answers from the start.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>aVals</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>first factors</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>bVals</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>second factors</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>answers</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>player answers</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>streak</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of consecutive correct answers from the start</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								multiplicationStreak([3 7 2], [4 5 9], [12 35 18])
+								% Test 2
+								multiplicationStreak([3 7 2], [4 5 9], [12 34 18])
+								% Test 3
+								multiplicationStreak([9 8], [9 7], [80 56])
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								ans = 3
+								% Test 2
+								ans = 1
+								% Test 3
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function streak = multiplicationStreak(aVals, bVals, answers)
+							streak = 0;
+							idx = 1;
+
+							while idx &lt;= length(answers) &amp;&amp; answers(idx) == aVals(idx) * bVals(idx)
+								streak = streak + 1;
+								idx = idx + 1;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-mental-math-b">
+				<title>Mixed Operations Streak</title>
+				<statement>
+					<p>
+						Write a function called <pf>mixedMathStreak</pf> that checks a sequence of arithmetic questions. Use operation codes <pf>1</pf> for addition, <pf>2</pf> for subtraction, and <pf>3</pf> for multiplication.
+					</p>
+
+					<p>
+						The inputs <pf>ops</pf>, <pf>aVals</pf>, <pf>bVals</pf>, and <pf>answers</pf> should all have the same length. Use a <pf>while</pf>-loop and a <pf>switch</pf>-statement to compute the correct answer for each round. Stop at the first incorrect answer and return the number of consecutive correct answers from the start.
+					</p>
+
+					<p>
+						Assume every subtraction round is written so that <pf>aVals(k) &gt;= bVals(k)</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>ops</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>operation codes: 1 add, 2 subtract, 3 multiply</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>aVals</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>first numbers</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>bVals</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>second numbers</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>answers</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>player answers</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>streak</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of consecutive correct answers from the start</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 42 42])
+								% Test 2
+								mixedMathStreak([1 2 3 1], [12 9 7 40], [5 4 6 2], [17 5 41 42])
+								% Test 3
+								mixedMathStreak([2], [10], [3], [8])
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								ans = 4
+								% Test 2
+								ans = 2
+								% Test 3
+								ans = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function streak = mixedMathStreak(ops, aVals, bVals, answers)
+							streak = 0;
+							idx = 1;
+
+							while idx &lt;= length(answers)
+								switch ops(idx)
+									case 1
+										trueAnswer = aVals(idx) + bVals(idx);
+									case 2
+										trueAnswer = aVals(idx) - bVals(idx);
+									case 3
+										trueAnswer = aVals(idx) * bVals(idx);
+								end
+
+								if answers(idx) == trueAnswer
+									streak = streak + 1;
+									idx = idx + 1;
+								else
+									break
+								end
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-rps-a">
+				<title>Rock, Paper, Scissors Round</title>
+				<statement>
+					<p>
+						In Rock, Paper, Scissors, the choices are encoded as <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>. A player wins if Rock beats Scissors, Paper beats Rock, or Scissors beats Paper.
+					</p>
+
+					<p>
+						To make the activity testable, write a function called <pf>rpsRound</pf> that takes the player's choice and the computer's choice as input and returns the result of the round.
+					</p>
+
+					<p>
+						Return <pf>winner</pf> as <pf>1</pf> if the player wins, <pf>0</pf> if the round is a tie, and <pf>-1</pf> if the computer wins. In an interactive version, the computer's move could be generated with <pf>randi([1,3])</pf>.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>player</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>player's choice: <pf>1</pf> for Rock, <pf>2</pf> for Paper, <pf>3</pf> for Scissors</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>comp</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>computer's choice: <pf>1</pf> for Rock, <pf>2</pf> for Paper, <pf>3</pf> for Scissors</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell>Outputs:</cell>
+							<cell><p><pf>winner</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if the player wins, <pf>0</pf> for a tie, and <pf>-1</pf> if the computer wins</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								rpsRound(1, 3)
+								% Test 2
+								rpsRound(2, 2)
+								% Test 3
+								rpsRound(3, 1)
+								% Test 4
+								rpsRound(2, 1)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								ans = 1
+								% Test 2
+								ans = 0
+								% Test 3
+								ans = -1
+								% Test 4
+								ans = 1
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function winner = rpsRound(player, comp)
+							if player == comp
+								winner = 0;
+							elseif (player == 1 &amp;&amp; comp == 3) || ...
+										(player == 2 &amp;&amp; comp == 1) || ...
+										(player == 3 &amp;&amp; comp == 2)
+								winner = 1;
+							else
+								winner = -1;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-rps-b">
+				<title>Rock, Paper, Scissors First to 3 Wins</title>
+				<statement>
+					<p>
+						Write a function called <pf>rpsFirstToThree</pf> that plays a match using predetermined moves for the player and the computer. This makes the activity testable without <pf>input</pf> or random numbers.
+					</p>
+
+					<p>
+						The vectors <pf>playerMoves</pf> and <pf>compMoves</pf> contain choices encoded as <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>. Use a <pf>while</pf>-loop to process moves in order until either the player reaches 3 wins, the computer reaches 3 wins, or one of the move lists runs out.
+					</p>
+
+					<p>
+						Return the final scores, the number of rounds actually played, and <pf>winner</pf>, where <pf>1</pf> means the player won the match, <pf>-1</pf> means the computer won the match, and <pf>0</pf> means no one reached 3 wins before the moves ended. Ties count as rounds played but do not increase either score.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>playerMoves</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>player choices to process in order</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>compMoves</pf></p></cell>
+							<cell><p>(1xm) double</p></cell>
+							<cell><p>computer choices to process in order</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>playerScore</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of rounds won by the player</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>compScore</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of rounds won by the computer</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>rounds</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of rounds actually played</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>winner</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> otherwise</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								[p, c, n, w] = rpsFirstToThree([1 2 3 1], [3 1 2 2])
+								% Test 2
+								[p, c, n, w] = rpsFirstToThree([1 1 1 2 2], [2 2 1 3 3])
+								% Test 3
+								[p, c, n, w] = rpsFirstToThree([1 2 3], [1 3 2])
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								p = 3		c = 0		n = 3		w = 1
+								% Test 2
+								p = 0		c = 3		n = 4		w = -1
+								% Test 3
+								p = 1		c = 1		n = 3		w = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [playerScore, compScore, rounds, winner] = rpsFirstToThree(playerMoves, compMoves)
+							playerScore = 0;
+							compScore = 0;
+							rounds = 0;
+							idx = 1;
+							maxRounds = min(length(playerMoves), length(compMoves));
+
+							while playerScore &lt; 3 &amp;&amp; compScore &lt; 3 &amp;&amp; idx &lt;= maxRounds
+								player = playerMoves(idx);
+								comp = compMoves(idx);
+								rounds = rounds + 1;
+
+								if player ~= comp
+									if (player == 1 &amp;&amp; comp == 3) || ...
+										(player == 2 &amp;&amp; comp == 1) || ...
+										(player == 3 &amp;&amp; comp == 2)
+										playerScore = playerScore + 1;
+									else
+										compScore = compScore + 1;
+									end
+								end
+
+								idx = idx + 1;
+							end
+
+							if playerScore == 3
+								winner = 1;
+							elseif compScore == 3
+								winner = -1;
+							else
+								winner = 0;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-rps-c">
+				<title>Rock, Paper, Scissors Match Statistics</title>
+				<statement>
+					<p>
+						Write a function called <pf>rpsMatchStats</pf> that tracks the full summary of a Rock, Paper, Scissors match. Use the same move encoding as before: <pf>1 = Rock</pf>, <pf>2 = Paper</pf>, and <pf>3 = Scissors</pf>.
+					</p>
+
+					<p>
+						Use a <pf>while</pf>-loop to process the moves in order until either player reaches 3 wins or one of the move lists runs out. Track the total number of rounds played, the player's wins, the computer's wins, and the number of ties.
+					</p>
+
+					<p>
+						Return <pf>winner</pf> as <pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> if no one reaches 3 wins.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>playerMoves</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>player choices to process in order</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>compMoves</pf></p></cell>
+							<cell><p>(1xm) double</p></cell>
+							<cell><p>computer choices to process in order</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>playerWins</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of rounds won by the player</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>compWins</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of rounds won by the computer</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>ties</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of tied rounds</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>rounds</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of rounds actually played</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>winner</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if the player wins the match, <pf>-1</pf> if the computer wins, and <pf>0</pf> otherwise</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								[p, c, t, n, w] = rpsMatchStats([1 2 3 1], [1 1 1 3])
+								% Test 2
+								[p, c, t, n, w] = rpsMatchStats([1 2 3 1], [3 1 2 2])
+								% Test 3
+								[p, c, t, n, w] = rpsMatchStats([1 1 1 2 2], [2 2 1 3 3])
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								p = 2		c = 1		t = 1		n = 4		w = 0
+								% Test 2
+								p = 3		c = 0		t = 0		n = 3		w = 1
+								% Test 3
+								p = 0		c = 3		t = 1		n = 4		w = -1
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [playerWins, compWins, ties, rounds, winner] = rpsMatchStats(playerMoves, compMoves)
+							playerWins = 0;
+							compWins = 0;
+							ties = 0;
+							rounds = 0;
+							idx = 1;
+							maxRounds = min(length(playerMoves), length(compMoves));
+
+							while playerWins &lt; 3 &amp;&amp; compWins &lt; 3 &amp;&amp; idx &lt;= maxRounds
+								player = playerMoves(idx);
+								comp = compMoves(idx);
+								rounds = rounds + 1;
+
+								if player == comp
+									ties = ties + 1;
+								elseif (player == 1 &amp;&amp; comp == 3) || ...
+											(player == 2 &amp;&amp; comp == 1) || ...
+											(player == 3 &amp;&amp; comp == 2)
+									playerWins = playerWins + 1;
+								else
+									compWins = compWins + 1;
+								end
+
+								idx = idx + 1;
+							end
+
+							if playerWins == 3
+								winner = 1;
+							elseif compWins == 3
+								winner = -1;
+							else
+								winner = 0;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-change-machine-a">
+				<title>Counting Quarters</title>
+				<statement>
+					<p>
+						A vending machine often makes change by repeatedly taking the largest coin that still fits. This strategy is called a <term>greedy algorithm</term>.
+					</p>
+
+					<p>
+						Write a function called <pf>countQuarters</pf> that takes an amount in cents and uses a <pf>while</pf>-loop to count how many quarters fit into that amount. Do not use division or <pf>floor</pf>. Instead, subtract <pf>25</pf> repeatedly until fewer than 25 cents remain.
+					</p>
+
+					<p>
+						Return the number of quarters used and the remaining number of cents.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>amount</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>nonnegative integer amount in cents</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>quarters</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of quarters used</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>remainder</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>cents left after removing all possible quarters</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								[q, r] = countQuarters(87)
+								% Test 2
+								[q, r] = countQuarters(19)
+								% Test 3
+								[q, r] = countQuarters(100)
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								q = 3			r = 12
+								% Test 2
+								q = 0			r = 19
+								% Test 3
+								q = 4			r = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [quarters, remainder] = countQuarters(amount)
+							quarters = 0;
+							remainder = amount;
+
+							while remainder &gt;= 25
+								remainder = remainder - 25;
+								quarters = quarters + 1;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-password-a">
+				<title>PIN Check with Repeated Guesses</title>
+				<statement>
+					<p>
+						In a live version of this activity, a program could use <pf>input</pf> to keep asking for a PIN until the correct value is entered.
+					</p>
+
+					<p>
+						To make the behavior testable, write a function called <pf>checkPin</pf> that takes the secret PIN and a vector of guesses. Use a <pf>while</pf>-loop to process guesses in order until the correct PIN is found or the guess list runs out.
+					</p>
+
+					<p>
+						Return <pf>granted</pf> as <pf>1</pf> if the PIN is entered correctly and <pf>0</pf> otherwise. Also return <pf>attempts</pf>, the number of guesses that were actually used.
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>pin</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>secret PIN value</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>guesses</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>PIN guesses to process in order</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>granted</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if the correct PIN is found, otherwise <pf>0</pf></p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>attempts</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of guesses used</p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								[g, n] = checkPin(1234, [1111 9999 1234])
+								% Test 2
+								[g, n] = checkPin(2468, [1111 2222 3333 4444])
+								% Test 3
+								[g, n] = checkPin(4321, [4321])
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								g = 1			n = 3
+								% Test 2
+								g = 0			n = 4
+								% Test 3
+								g = 1			n = 1
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [granted, attempts] = checkPin(pin, guesses)
+							granted = 0;
+							attempts = 0;
+							idx = 1;
+
+							while idx &lt;= length(guesses) &amp;&amp; granted == 0
+								attempts = attempts + 1;
+
+								if guesses(idx) == pin
+									granted = 1;
+								end
+
+								idx = idx + 1;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+			<exercise label="hw-password-b">
+				<title>PIN Lockout After Three Strikes</title>
+				<statement>
+					<p>
+						Write a function called <pf>checkPinThreeStrikes</pf> that limits the user to at most three guesses.
+					</p>
+
+					<p>
+						Use a <pf>while</pf>-loop with a compound condition so the loop continues only while the correct PIN has not been entered and fewer than 3 attempts have been used. Process guesses in order from the input vector.
+					</p>
+
+					<p>
+						Return <pf>granted</pf> as <pf>1</pf> if the correct PIN is entered and <pf>0</pf> otherwise. Also return <pf>attempts</pf>, the number of guesses that were actually used, and <pf>lockedOut</pf>, which should be <pf>1</pf> only when all three attempts are used without entering the correct PIN. In an interactive version, after the second failed guess you could display the warning <q>1 attempt remaining before lockout.</q>
+					</p>
+
+					<tabular valign="top" top="minor">
+						<col width="11%" halign="right" />
+						<col width="15%" halign="left" />
+						<col width="28%" halign="center" />
+						<col width="46%" halign="left"/>
+						<row>
+							<cell>Inputs:</cell>
+							<cell><p><pf>pin</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>secret PIN value</p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>guesses</pf></p></cell>
+							<cell><p>(1xn) double</p></cell>
+							<cell><p>PIN guesses to process in order</p></cell>
+						</row>
+						<row>
+							<cell>Outputs:</cell>
+							<cell><p><pf>granted</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if the correct PIN is entered, otherwise <pf>0</pf></p></cell>
+						</row>
+						<row>
+							<cell></cell>
+							<cell><p><pf>attempts</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p>number of guesses used, up to a maximum of 3</p></cell>
+						</row>
+						<row bottom="minor">
+							<cell></cell>
+							<cell><p><pf>lockedOut</pf></p></cell>
+							<cell><p>(1x1) double</p></cell>
+							<cell><p><pf>1</pf> if three incorrect guesses are used, otherwise <pf>0</pf></p></cell>
+						</row>
+					</tabular>
+
+					<sidebyside widths="48% 50%">
+						<stack>
+							<p>Test Cases ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								[g, n, locked] = checkPinThreeStrikes(1234, [1111 1234 9999])
+								% Test 2
+								[g, n, locked] = checkPinThreeStrikes(1234, [1111 2222 3333 1234])
+								% Test 3
+								[g, n, locked] = checkPinThreeStrikes(2468, [2468])
+							</program>
+						</stack>
+						<stack>
+							<p>Expected ⤵︎</p>
+							<program language="matlab">
+								% Test 1
+								g = 1			n = 2		locked = 0
+								% Test 2
+								g = 0			n = 3		locked = 1
+								% Test 3
+								g = 1			n = 1		locked = 0
+							</program>
+						</stack>
+					</sidebyside>
+				</statement>
+				<solution component="example-solution-dev">
+					<program language="matlab">
+						function [granted, attempts, lockedOut] = checkPinThreeStrikes(pin, guesses)
+							granted = 0;
+							attempts = 0;
+							idx = 1;
+
+							while granted == 0 &amp;&amp; attempts &lt; 3 &amp;&amp; idx &lt;= length(guesses)
+								attempts = attempts + 1;
+
+								if guesses(idx) == pin
+									granted = 1;
+								end
+
+								idx = idx + 1;
+							end
+
+							if granted == 0 &amp;&amp; attempts == 3
+								lockedOut = 1;
+							else
+								lockedOut = 0;
+							end
+						end
+					</program>
+				</solution>
+			</exercise>
+
+		<exercise>
+			<title>Temperature Data Analysis</title>
+			<statement>
+				<p>
+					A weather station records daily high temperatures for a week: <c>[72 75 78 74 80 82 79]</c>.
+				</p>
+				<ol>
+					<li>Calculate the average temperature for the week.</li>
+					<li>Find the hottest day's temperature.</li>
+					<li>Determine how many days had temperatures above 75 degrees.</li>
+					<li>Create a new array showing the difference from the average for each day.</li>
+				</ol>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						temps = [72 75 78 74 80 82 79];
+						
+						% 1. Average temperature
+						avg_temp = mean(temps);              % 77.1429
+						
+						% 2. Hottest temperature
+						hottest = max(temps);                % 82
+						
+						% 3. Days above 75
+						days_above_75 = sum(temps > 75);     % 4
+						
+						% 4. Difference from average
+						diff_from_avg = temps - avg_temp;    
+						% [-5.14 -2.14 0.86 -3.14 2.86 4.86 1.86]
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Grading Multiple Students</title>
+			<statement>
+				<p>
+					A class has three students with test scores stored in a matrix where each row represents a student and each column represents a test:
+				</p>
+				<program language="matlab">
+					<code>
+						scores = [85 92 88; 78 84 90; 92 95 89];
+					</code>
+				</program>
+				<ol>
+					<li>Calculate each student's average score (hint: use row sums).</li>
+					<li>Calculate the class average for each test (hint: use column means).</li>
+					<li>Find the highest score in the entire class.</li>
+				</ol>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						scores = [85 92 88; 78 84 90; 92 95 89];
+						
+						% 1. Each student's average
+						student_avgs = mean(scores, 2);  % [88.33; 84; 92]
+						
+						% 2. Class average for each test
+						test_avgs = mean(scores);        % [85 90.33 89]
+						
+						% 3. Highest score overall
+						highest = max(max(scores));      % 95
+						% Or: highest = max(scores(:));
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Vector Operations</title>
+			<statement>
+				<p>
+					Given two vectors <c>x = 1:10</c> and <c>y = linspace(0,1,10)</c>:
+				</p>
+				<ol>
+					<li>Compute <c>z = x.^2 + 5*y</c></li>
+					<li>Find the indices where <c>z</c> is greater than 20</li>
+					<li>Calculate the sum of all elements in <c>z</c> that are greater than 20</li>
+				</ol>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						x = 1:10;
+						y = linspace(0, 1, 10);
+						
+						% 1. Compute z
+						z = x.^2 + 5*y;
+						
+						% 2. Indices where z > 20
+						indices = find(z > 20);          % [5 6 7 8 9 10]
+						
+						% 3. Sum of elements > 20
+						sum_large = sum(z(z > 20));      % 298.1481
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Matrix Construction</title>
+			<statement>
+				<p>
+					Create a 5-by-5 matrix where:
+				</p>
+				<ul marker="square">
+					<li>The first column contains the numbers 1 through 5</li>
+					<li>The second column contains the squares of those numbers</li>
+					<li>The third column contains the cubes</li>
+					<li>The fourth and fifth columns contain zeros</li>
+				</ul>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						% Create the base vector
+						n = (1:5)';                  % Column vector [1; 2; 3; 4; 5]
+						
+						% Build the matrix column by column
+						M = [n, n.^2, n.^3, zeros(5,2)];
+						
+						% Result:
+						% 1   1    1   0  0
+						% 2   4    8   0  0
+						% 3   9   27   0  0
+						% 4  16   64   0  0
+						% 5  25  125   0  0
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Data Filtering</title>
+			<statement>
+				<p>
+					Given a vector of measurements <c>data = [12 -5 18 -3 25 -8 30 15]</c>:
+				</p>
+				<ol>
+					<li>Create a new vector containing only the positive values</li>
+					<li>Replace all negative values with zero (in the original vector)</li>
+					<li>Count how many values are greater than 15</li>
+				</ol>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						data = [12 -5 18 -3 25 -8 30 15];
+						
+						% 1. Extract positive values
+						positive_only = data(data > 0);      % [12 18 25 30 15]
+						
+						% 2. Replace negatives with zero
+						data(data &lt; 0) = 0;                  % [12 0 18 0 25 0 30 15]
+						
+						% 3. Count values > 15
+						count = sum(data > 15);              % 3
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Array Reshaping Challenge</title>
+			<statement>
+				<p>
+					Create a row vector <c>v = 1:12</c>. Then:
+				</p>
+				<ol>
+					<li>Reshape it into a 3-by-4 matrix</li>
+					<li>Extract the second row of that matrix</li>
+					<li>Compute the sum of the last column</li>
+				</ol>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						v = 1:12;
+						
+						% 1. Reshape to 3-by-4
+						A = reshape(v, 3, 4);
+						% Result:
+						% 1  4  7  10
+						% 2  5  8  11
+						% 3  6  9  12
+						
+						% 2. Extract second row
+						row2 = A(2,:);                       % [2 5 8 11]
+						
+						% 3. Sum of last column
+						col_sum = sum(A(:,end));             % 33
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Function Evaluation</title>
+			<statement>
+				<p>
+					Create a vector <c>t</c> of 50 evenly spaced values from 0 to <m>2\pi</m>. Then compute <c>y = sin(t) + 0.5*cos(2*t)</c>. Find:
+				</p>
+				<ol>
+					<li>The maximum value of <c>y</c></li>
+					<li>The index at which this maximum occurs</li>
+					<li>The corresponding value of <c>t</c> at that index</li>
+				</ol>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						t = linspace(0, 2*pi, 50);
+						y = sin(t) + 0.5*cos(2*t);
+						
+						% 1 and 2. Maximum value and its index
+						[max_y, max_idx] = max(y);           
+						
+						% 3. Corresponding t value
+						t_at_max = t(max_idx);
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise>
+			<title>Comparing Arrays</title>
+			<statement>
+				<p>
+					Two sensors measure the same quantity and produce slightly different readings:
+				</p>
+				<program language="matlab">
+					<code>
+						sensor1 = [10.2 10.5 10.1 10.4 10.3];
+						sensor2 = [10.1 10.6 10.0 10.5 10.2];
+					</code>
+				</program>
+				<p>
+					Calculate:
+				</p>
+				<ol>
+					<li>The element-wise difference between the sensors</li>
+					<li>The absolute value of these differences</li>
+					<li>The average absolute difference</li>
+				</ol>
+			</statement>
+			<solution component="example-solution-dev">
+				<program language="matlab">
+					<code>
+						sensor1 = [10.2 10.5 10.1 10.4 10.3];
+						sensor2 = [10.1 10.6 10.0 10.5 10.2];
+						
+						% 1. Element-wise difference
+						diff = sensor1 - sensor2;            % [0.1 -0.1 0.1 -0.1 0.1]
+						
+						% 2. Absolute differences
+						abs_diff = abs(diff);                % [0.1 0.1 0.1 0.1 0.1]
+						
+						% 3. Average absolute difference
+						avg_abs_diff = mean(abs_diff);       % 0.1
+					</code>
+				</program>
+			</solution>
+		</exercise>
+
+		<exercise xml:id="coding-for-loop-snakeEyesCount">
+			<statement>
+				<p>
+					Write a function named <pf>snakeEyesCount</pf> that counts the number of times you roll two <pf>1</pf>'s in a row in <pf>n</pf> rolls.
+				</p>
+				<tabular valign="top" halign="right" top="minor">
+					<col width="12%" halign="right"/>
+					<col width="12%" halign="right"/>
+					<col width="22%" halign="center"/>
+					<col width="54%" halign="left"/>
+					<row>
+						<cell><p>Inputs:</p></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of die rolls</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell><p>Outputs:</p></cell>
+						<cell><p><pf>count</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>the number of times two <pf>1</pf>s are rolled</p></cell>
+					</row>
+				</tabular>
+				<sidebyside widths="49% 49%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							rng(123);  % Set seed
+							snakeEyesCount(10)
+							snakeEyesCount(100)
+							snakeEyesCount(600)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							󠀠
+							% count = 1
+							% count = 10
+							% count = 52
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+		</exercise>
+
+				<task label="hw-while-factorization">
+					<title>Integer Factorization by Trial Division</title>
+					<statement>
+						<p>
+							Every integer greater than 1 can be written as a product of prime factors. For example,
+							<me>
+								360 = 2^3 \cdot 3^2 \cdot 5.
+							</me>
+							A simple way to find these factors is <term>trial division</term>: test divisors starting at 2, divide them out when they work, and move on when they do not.
+						</p>
+
+						<p>
+							As a warm-up, first write a <pf>while</pf>-loop that divides out all copies of 2 from a number <pf>n</pf>. For example, starting with <pf>n = 360</pf>, the values should change as follows:
+							<me>
+								360 \to 180 \to 90 \to 45.
+							</me>
+						</p>
+
+						<p>
+							Then write a function <pf>primeFactors(n)</pf> that returns all prime factors of <pf>n</pf> as a row vector in nondecreasing order. Use a divisor <pf>d</pf> that starts at 2. While <pf>d * d &lt;= n</pf>, test whether <pf>d</pf> divides <pf>n</pf>. If it does, record the factor and divide it out. If it does not, increase <pf>d</pf> by 1. After the loop, if <pf>n &gt; 1</pf>, then the remaining value of <pf>n</pf> is the last prime factor.
+						</p>
+
+						<p>
+							Finally, write a function <pf>smallestFactor(n)</pf> that returns the smallest prime factor of <pf>n</pf>. If <pf>n</pf> is prime, the function should return <pf>n</pf> itself.
+						</p>
+
+						<tabular valign="top" top="minor">
+							<col width="11%" halign="right" />
+							<col width="15%" halign="left" />
+							<col width="28%" halign="center" />
+							<col width="46%" halign="left" />
+							<row>
+								<cell>Inputs:</cell>
+								<cell><p><pf>n</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>integer greater than 1</p></cell>
+							</row>
+							<row>
+								<cell>Outputs:</cell>
+								<cell><p><pf>factors</pf></p></cell>
+								<cell><p>(1xn) double</p></cell>
+								<cell><p>row vector of prime factors returned by <pf>primeFactors</pf></p></cell>
+							</row>
+							<row bottom="minor">
+								<cell></cell>
+								<cell><p><pf>p</pf></p></cell>
+								<cell><p>(1x1) double</p></cell>
+								<cell><p>smallest prime factor returned by <pf>smallestFactor</pf></p></cell>
+							</row>
+						</tabular>
+
+						<sidebyside widths="48% 50%">
+							<stack>
+								<p>Test Cases ⤵︎</p>
+								<program language="matlab">
+									primeFactors(360)
+									primeFactors(97)
+									smallestFactor(91)
+									smallestFactor(9973)
+								</program>
+							</stack>
+							<stack>
+								<p>Expected ⤵︎</p>
+								<program language="matlab">
+									ans = [2 2 2 3 3 5]
+									ans = [97]
+									ans = 7
+									ans = 9973
+								</program>
+							</stack>
+						</sidebyside>
+					</statement>
+					<solution component="exercise-solution">
+						<program language="matlab">
+							n = 360;
+							fprintf('Starting with n = %i\n', n)
+							while mod(n, 2) == 0
+								n = n / 2;
+								fprintf('  /2 -> %i\n', n)
+							end
+							fprintf('Remaining: n = %i\n', n)
+						</program>
+						<program language="matlab">
+							function factors = primeFactors(n)
+								factors = [];
+								d = 2;
+
+								while d * d &lt;= n
+									if mod(n, d) == 0
+										factors(end + 1) = d; %#ok&lt;AGROW&gt;
+										n = n / d;
+									else
+										d = d + 1;
+									end
+								end
+
+								if n &gt; 1
+									factors(end + 1) = n;
+								end
+							end
+						</program>
+						<program language="matlab">
+							function p = smallestFactor(n)
+								d = 2;
+								while d * d &lt;= n
+									if mod(n, d) == 0
+										p = d;
+										return
+									end
+									d = d + 1;
+								end
+								p = n;
+							end
+						</program>
+					</solution>
+				</task>
+	</exercisegroup>
+
 </exercises>
