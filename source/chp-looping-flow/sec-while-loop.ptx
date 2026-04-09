@@ -4,6 +4,7 @@
 
 	<subsection xml:id="subsec-while-loop">
 		<title>The while-Loop</title>
+
 		<p>
 			The <pf>while</pf>-loop is a fundamental programming structure that allows you to repeat a block of code as long as a specified condition remains true. It is particularly useful when the number of iterations is not known beforehand and depends on dynamic conditions during execution.
 		</p>
@@ -1119,200 +1120,392 @@
 
 				<task label="while-loop-drill-expand-1">
 					<statement>
-				<p>
-					Expand each <pf>while</pf>-loop into equivalent repeated code. Write out each iteration as if there were no loop at all, including the condition check at each step.
-				</p>
-						<program language="matlab">
-							x = 1;
+						<p>
+							Expand each <pf>while</pf>-loop into equivalent repeated code. Write out each iteration as if there were no loop at all.
+						</p>
+						<program language="matlab" line-numbers="yes">
+							x = 1
 							while x &lt; 10
-								x = x * 2;
+								x = x * 2
 							end
-							fprintf('x = %d\n', x)
 						</program>
 						<sage language="octave">
 							<input>
 								%─── TYPE YOUR CODE HERE ───%
 
 								%───────────────────────────%
-								fprintf('x = %d\n', x);
 							</input>
 						</sage>
 						<p>
-							When done, evaluate and confirm it prints <pf>x = 16</pf>.
+							When done, press <kbd>Evaluate</kbd> to confirm the final value: <pf>x = 16</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
-						<program language="matlab">
-							x = 1;
-							% (is x &lt; 10? 1 &lt; 10, Yes)
-							x = x * 2;    % x = 2
-							% (is x &lt; 10? 2 &lt; 10, Yes)
-							x = x * 2;    % x = 4
-							% (is x &lt; 10? 4 &lt; 10, Yes)
-							x = x * 2;    % x = 8
-							% (is x &lt; 10? 8 &lt; 10, Yes)
-							x = x * 2;    % x = 16
-							% (is x &lt; 10? 16 &lt; 10, No → exit)
-							fprintf('x = %d\n', x)
-						</program>
+					<solution component="example-solution">
+						<sidebyside widths="48% 48%">
+							<stack>
+								<p>Executed code lines ⤵︎</p>
+								<program language="matlab">
+									x = 1      % line 1
+									x = x * 2  % line 3 ⟳
+									x = x * 2  % line 3 ⟳
+									x = x * 2  % line 3 ⟳
+									x = x * 2  % line 3 ⟳✖
+								</program>
+								<p><ul><li><pf>⟳</pf> = inside the loop,</li><li><pf>⟳✖</pf> = exiting the loop.</li></ul></p>
+							</stack>
+							<stack>
+								<p>Tracked <pf>x</pf> values ⤵︎</p>
+								<program language="matlab">
+									x = 1  % x &lt; 10 ➝ true
+									x = 2  % x &lt; 10 ➝ true
+									x = 4  % x &lt; 10 ➝ true
+									x = 8  % x &lt; 10 ➝ true
+									x = 16 % x &lt; 10 ➝ false
+								</program>
+							</stack>
+						</sidebyside>
 					</solution>
 				</task>
 
 				<task label="while-loop-drill-expand-2">
 					<statement>
-						<program language="matlab">
-							n = 100;
-							count = 0;
+						<p>
+							Expand each <pf>while</pf>-loop into equivalent repeated code.
+						</p>
+						<program language="matlab" line-numbers="yes">
+							n = 100
+							step = 0
 							while n &gt;= 10
-								n = floor(n / 10);
-								count = count + 1;
+								n = floor(n / 10)
+								step = step + 1
 							end
-							fprintf('count = %d\n', count)
 						</program>
 						<sage language="octave">
 							<input>
 								%─── TYPE YOUR CODE HERE ───%
 
 								%───────────────────────────%
-								fprintf('count = %d\n', count);
 							</input>
 						</sage>
 						<p>
-							When done, evaluate and confirm it prints <pf>count = 2</pf>.
+							When done, press <kbd>Evaluate</kbd> to confirm the final values: <pf>step = 2</pf>, <pf>n = 1</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
-						<program language="matlab">
-							n = 100;
-							count = 0;
-							% (is n &gt;= 10? 100 &gt;= 10, Yes)
-							n = floor(100 / 10);       % n = 10
-							count = count + 1;         % count = 1
-							% (is n &gt;= 10? 10 &gt;= 10, Yes)
-							n = floor(10 / 10);        % n = 1
-							count = count + 1;         % count = 2
-							% (is n &gt;= 10? 1 &gt;= 10, No → exit)
-							fprintf('count = %d\n', count)
-						</program>
+					<solution component="example-solution">
+						<sidebyside widths="50% 48%">
+							<stack>
+								<p>Executed code lines ⤵︎</p>
+								<program language="matlab">
+									n = 100           % line 1
+									step = 0          % line 2
+									n = floor(n / 10) % line 4 ⟳
+									step = step + 1   % line 5 ⟳
+									n = floor(n / 10) % line 4 ⟳
+									step = step + 1   % line 5 ⟳✖
+								</program>
+								<p><ul><li><pf>⟳</pf> = inside the loop,</li><li><pf>⟳✖</pf> = exiting the loop.</li></ul></p>
+							</stack>
+							<stack>
+								<p>Tracked <pf>n</pf>, <pf>step</pf> values ⤵︎</p>
+								<program language="matlab">
+									n = 100   % n &gt;= 10 ➝ true
+									step = 0
+									n = 10    % n &gt;= 10 ➝ true
+									step = 1
+									n = 1     % n &gt;= 10 ➝ false
+									step = 2
+								</program>
+							</stack>
+						</sidebyside>
 					</solution>
 				</task>
 
 				<task label="while-loop-drill-expand-3">
 					<statement>
-						<program language="matlab">
-							total = 0;
-							k = 5;
+						<p>
+							Expand each <pf>while</pf>-loop into equivalent repeated code.
+						</p>
+						<program language="matlab" line-numbers="yes">
+							k = 5
+							total = 0
 							while k &gt;= 1
-								total = total + k;
-								k = k - 2;
+								k = k - 2
+								total = total + k
 							end
-							fprintf('total = %d\n', total)
 						</program>
 						<sage language="octave">
 							<input>
 								%─── TYPE YOUR CODE HERE ───%
 
 								%───────────────────────────%
-								fprintf('total = %d\n', total);
 							</input>
 						</sage>
 						<p>
-							When done, evaluate and confirm it prints <pf>total = 9</pf>.
+							When done, press <kbd>Evaluate</kbd> to confirm the final values: <pf>total = 3</pf>, <pf>k = -1</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
-						<program language="matlab">
-							total = 0;
-							k = 5;
-							% (is k &gt;= 1? 5 &gt;= 1, Yes)
-							total = 0 + 5;     % total = 5
-							k = 5 - 2;         % k = 3
-							% (is k &gt;= 1? 3 &gt;= 1, Yes)
-							total = 5 + 3;     % total = 8
-							k = 3 - 2;         % k = 1
-							% (is k &gt;= 1? 1 &gt;= 1, Yes)
-							total = 8 + 1;     % total = 9
-							k = 1 - 2;         % k = -1
-							% (is k &gt;= 1? -1 &gt;= 1, No → exit)
-							fprintf('total = %d\n', total)
-						</program>
+					<solution component="example-solution">
+						<sidebyside widths="52% 46%">
+							<stack>
+								<p>Executed code lines ⤵︎</p>
+								<program language="matlab">
+									k = 5              % line 1
+									total = 0          % line 2
+									k = k - 2          % line 4 ⟳
+									total = total + k  % line 5 ⟳
+									k = k - 2          % line 4 ⟳
+									total = total + k  % line 5 ⟳
+									k = k - 2          % line 4 ⟳
+									total = total + k  % line 5 ⟳✖
+								</program>
+								<p><ul><li><pf>⟳</pf> = inside the loop,</li><li><pf>⟳✖</pf> = exiting the loop.</li></ul></p>
+							</stack>
+							<stack>
+								<p>Tracked <pf>total</pf>, <pf>k</pf> values ⤵︎</p>
+								<program language="matlab">
+									k = 5      % k &gt;= 1 ➝ true
+									total = 0
+									k = 3      % k &gt;= 1 ➝ true
+									total = 3
+									k = 1      % k &gt;= 1 ➝ true
+									total = 4
+									k = -1     % k &gt;= 1 ➝ false
+									total = 3  % loop exits here
+								</program>
+							</stack>
+						</sidebyside>
 					</solution>
 				</task>
 
 				<task label="while-loop-drill-expand-4">
 					<statement>
+						<p>
+							Expand each <pf>while</pf>-loop into equivalent repeated code.
+						</p>
 						<program language="matlab">
-							a = 30;
-							b = 12;
+							a = 30
+							b = 12
 							while b ~= 0
-								r = mod(a, b);
-								a = b;
-								b = r;
+								r = mod(a, b)
+								a = b
+								b = r
 							end
-							fprintf('a = %d\n', a)
 						</program>
 						<sage language="octave">
 							<input>
 								%─── TYPE YOUR CODE HERE ───%
 
 								%───────────────────────────%
-								fprintf('a = %d\n', a);
 							</input>
 						</sage>
 						<p>
-							When done, evaluate and confirm it prints <pf>a = 6</pf>.
+							When done, press <kbd>Evaluate</kbd> to confirm the final values: <pf>a = 6</pf>, <pf>b = 0</pf>, <pf>r = 0</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
+					<solution component="example-solution">
+						<sidebyside widths="48% 48%">
+							<stack>
+								<p>Executed code lines ⤵︎</p>
+								<program language="matlab">
+									a = 30        % line 1
+									b = 12        % line 2
+									r = mod(a, b) % line 4 ⟳
+									a = b         % line 5 ⟳
+									b = r         % line 6 ⟳
+									r = mod(a, b) % line 4 ⟳
+									a = b         % line 5 ⟳
+									b = r         % line 6 ⟳✖
+								</program>
+								<p><ul><li><pf>⟳</pf> = inside the loop,</li><li><pf>⟳✖</pf> = exiting the loop.</li></ul></p>
+							</stack>
+							<stack>
+								<p>Tracked <pf>a</pf>, <pf>b</pf>, <pf>r</pf> values ⤵︎</p>
+								<program language="matlab">
+									a = 30
+									b = 12 % b ~= 0 ➝ true
+									r = 6
+									a = 12
+									b = 6  % b ~= 0 ➝ true
+									r = 0
+									a = 6
+									b = 0  % b ~= 0 ➝ false
+								</program>
+							</stack>
+						</sidebyside>
+						
+					</solution>
+				</task>
+
+				<task label="while-loop-drill-write-c">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that prints the following countdown and message. Use a variable <pf>n</pf> that starts at <pf>5</pf> and decreases by 1.
+						</p>
+						<pre>
+							5
+							4
+							3
+							2
+							1
+							Liftoff!
+						</pre>
+						<sage language="octave">
+							<input>
+								n = 5;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								fprintf('Liftoff!\n');
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution">
 						<program language="matlab">
-							a = 30;
-							b = 12;
-							% (is b ~= 0? 12 ~= 0, Yes)
-							r = mod(30, 12);   % r = 6
-							a = 12;
-							b = 6;
-							% (is b ~= 0? 6 ~= 0, Yes)
-							r = mod(12, 6);    % r = 0
-							a = 6;
-							b = 0;
-							% (is b ~= 0? 0 ~= 0, No → exit)
-							fprintf('a = %d\n', a)
+							n = 5;
+							while n &gt;= 1
+								fprintf('%i\n', n);
+								n = n - 1;
+							end
+							fprintf('Liftoff!\n');
 						</program>
 					</solution>
 				</task>
 
+				<task label="while-loop-drill-write-b">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that starts with <pf>x = 1000</pf> and repeatedly divides <pf>x</pf> by 3 (using <pf>floor</pf>) until <pf>x</pf> reaches 0. Count how many divisions are needed and store the count in <pf>steps</pf>.
+						</p>
+						<sage language="octave">
+							<input>
+								x = 1000;
+								steps = 0;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								fprintf('steps = %i\n', steps);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>steps = 7</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution">
+						<program language="matlab">
+							x = 1000;
+							steps = 0;
+							while x &gt; 0
+								x = floor(x / 3);
+								steps = steps + 1;
+							end
+							fprintf('steps = %i\n', steps);
+						</program>
+					</solution>
+				</task>
+
+				<task label="while-loop-drill-write-d">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that finds the smallest power of 2 that is greater than a given number <pf>N</pf>. Store the power in <pf>result</pf>.
+						</p>
+						<sage language="octave">
+							<input>
+								N = 1000;
+								result = 1;
+								%─── TYPE YOUR CODE HERE ───%
+
+
+								%───────────────────────────%
+								fprintf('result = %i\n', result);
+							</input>
+						</sage>
+						<p>
+							When done, evaluate and confirm it prints <pf>result = 1024</pf>.
+						</p>
+					</statement>
+					<solution component="example-solution">
+						<program language="matlab">
+							N = 1000;
+							result = 1;
+							while result &lt;= N
+								result = result * 2;
+							end
+							fprintf('result = %i\n', result);
+						</program>
+					</solution>
+				</task>
+				
+				<task label="while-loop-drill-write-3">
+					<statement>
+						<p>
+							Write a <pf>while</pf>-loop that finds the smallest value of <m>N</m> needed so that
+							<me>\sum_{k=1}^N k = 1 + 2 + 3 + \cdots + N \ge 123456</me>.
+						</p>
+						<sage language="octave">
+							<input>
+								total = 0;
+								%─── TYPE YOUR CODE HERE ───%
+								
+
+								%───────────────────────────%
+								fprintf('smallest N = %i, total = %i\n', N, total);
+							</input>
+						</sage>
+					</statement>
+					<solution component="example-solution">
+						<p>
+							Here is one possible solution:
+						</p>
+						<program language="matlab">
+							total = 0;
+							%─── TYPE YOUR CODE HERE ───%
+							N = 0;
+							while total &lt; 123456
+								N = N + 1;
+								total = total + N;
+							end
+							%───────────────────────────%
+							fprintf('smallest N = %i, total = %i\n', N, total);
+						</program>
+					</solution>
+				</task>
+
+		</exercise>
+
+		<exercise xml:id="while-loop-convert-for-to-while">
+			<title>Converting <pf>for</pf> loops to <pf>while</pf> loops</title>
 				<task label="while-loop-drill-convert-a">
 					<statement>
-					<p>
-						Every <pf>for</pf>-loop can be rewritten as a <pf>while</pf>-loop. The pattern is:
-					</p>
+						<p>
+							Every <pf>for</pf>-loop can be rewritten as a <pf>while</pf>-loop. The pattern is:
+						</p>
 
-					<p><m/></p>
+						<sidebyside widths="48% 48%">
+							<stack>
+								<p>for-loop ⤵︎</p>
+								<program language="matlab">
+									for k = start:step:stop
+										loop_body
+									end
+								</program>
+							</stack>
+							<stack>
+								<p>Equivalent while-loop ⤵︎</p>
+								<program language="matlab">
+									k = start;
+									while k &lt;= stop
+										loop_body
+										k = k + step;
+									end
+								</program>
+							</stack>
+						</sidebyside>
 
-					<sidebyside widths="48% 48%">
-						<stack>
-							<p>for-loop ⤵︎</p>
-							<program language="matlab">
-								for k = start:step:stop
-									loop_body
-								end
-							</program>
-						</stack>
-						<stack>
-							<p>Equivalent while-loop ⤵︎</p>
-							<program language="matlab">
-								k = start;
-								while k &lt;= stop
-									loop_body
-									k = k + step;
-								end
-							</program>
-						</stack>
-					</sidebyside>
-
-					<p>
-						For each <pf>for</pf>-loop below, rewrite it as an equivalent <pf>while</pf>-loop. Replace each <pf>?</pf> with the appropriate code.
-					</p>
+						<p>
+							For each <pf>for</pf>-loop below, rewrite it as an equivalent <pf>while</pf>-loop. Replace each <pf>?</pf> with the appropriate code.
+						</p>
 						<program language="matlab">
 							total = 0;
 							for k = 1:5
@@ -1333,7 +1526,7 @@
 							When done, evaluate and confirm it prints <pf>total = 15</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
+					<solution component="example-solution">
 						<program language="matlab">
 							total = 0;
 							k = 1;
@@ -1368,7 +1561,7 @@
 							When done, evaluate and confirm it prints <pf>product = 3840</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
+					<solution component="example-solution">
 						<program language="matlab">
 							product = 1;
 							k = 2;
@@ -1401,7 +1594,7 @@
 							When done, evaluate and confirm it prints <pf>10, 7, 4, 1,</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
+					<solution component="example-solution">
 						<program language="matlab">
 							n = 10;
 							while n &gt;= 1
@@ -1439,7 +1632,7 @@
 							When done, evaluate and confirm it prints <pf>count = 5</pf>.
 						</p>
 					</statement>
-					<solution component="example-solution-dev">
+					<solution component="example-solution">
 						<program language="matlab">
 							count = 0;
 							n = 20;
@@ -1451,145 +1644,6 @@
 								k = k + 1;
 							end
 							fprintf('count = %i\n', count);
-						</program>
-					</solution>
-				</task>
-
-				<task label="while-loop-drill-write-c">
-					<statement>
-					<p>
-						For each task, write a <pf>while</pf>-loop that produces the requested result.
-					</p>
-						<p>
-							Write a <pf>while</pf>-loop that prints the following countdown and message. Use a variable <pf>n</pf> that starts at <pf>5</pf> and decreases by 1 each iteration.
-						</p>
-						<pre>
-							5
-							4
-							3
-							2
-							1
-							Liftoff!
-						</pre>
-						<sage language="octave">
-							<input>
-								n = 5;
-								%─── TYPE YOUR CODE HERE ───%
-
-
-								%───────────────────────────%
-								fprintf('Liftoff!\n');
-							</input>
-						</sage>
-					</statement>
-					<solution component="example-solution-dev">
-						<program language="matlab">
-							n = 5;
-							while n &gt;= 1
-								fprintf('%i\n', n);
-								n = n - 1;
-							end
-							fprintf('Liftoff!\n');
-						</program>
-					</solution>
-				</task>
-
-				<task label="while-loop-drill-write-b">
-					<statement>
-						<p>
-							Write a <pf>while</pf>-loop that starts with <pf>x = 1000</pf> and repeatedly divides <pf>x</pf> by 3 (using <pf>floor</pf>) until <pf>x</pf> reaches 0. Count how many divisions are needed and store the count in <pf>steps</pf>.
-						</p>
-						<sage language="octave">
-							<input>
-								x = 1000;
-								steps = 0;
-								%─── TYPE YOUR CODE HERE ───%
-
-
-								%───────────────────────────%
-								fprintf('steps = %i\n', steps);
-							</input>
-						</sage>
-						<p>
-							When done, evaluate and confirm it prints <pf>steps = 7</pf>.
-						</p>
-					</statement>
-					<solution component="example-solution-dev">
-						<program language="matlab">
-							x = 1000;
-							steps = 0;
-							while x &gt; 0
-								x = floor(x / 3);
-								steps = steps + 1;
-							end
-							fprintf('steps = %i\n', steps);
-						</program>
-					</solution>
-				</task>
-
-				<task label="while-loop-drill-write-d">
-					<statement>
-						<p>
-							Write a <pf>while</pf>-loop that finds the smallest power of 2 that is greater than a given number <pf>N</pf>. Store the power in <pf>result</pf>.
-						</p>
-						<sage language="octave">
-							<input>
-								N = 1000;
-								result = 1;
-								%─── TYPE YOUR CODE HERE ───%
-
-
-								%───────────────────────────%
-								fprintf('result = %i\n', result);
-							</input>
-						</sage>
-						<p>
-							When done, evaluate and confirm it prints <pf>result = 1024</pf>.
-						</p>
-					</statement>
-					<solution component="example-solution-dev">
-						<program language="matlab">
-							N = 1000;
-							result = 1;
-							while result &lt;= N
-								result = result * 2;
-							end
-							fprintf('result = %i\n', result);
-						</program>
-					</solution>
-				</task>
-				
-				<task label="while-loop-drill-write-3">
-					<statement>
-						<p>
-							Write a <pf>while</pf>-loop that finds the smallest value of <m>N</m> needed so that
-							<me>\sum_{k=1}^N k = 1 + 2 + 3 + \cdots + N \ge 123456</me>.
-						</p>
-						<sage language="octave">
-							<input>
-								total = 0;
-								%─── TYPE YOUR CODE HERE ───%
-								
-
-								%───────────────────────────%
-								fprintf('smallest N = %i, total = %i\n', N, total);
-							</input>
-						</sage>
-					</statement>
-					<solution component="example-solution-dev">
-						<p>
-							Here is one possible solution:
-						</p>
-						<program language="matlab">
-							total = 0;
-							%─── TYPE YOUR CODE HERE ───%
-							N = 0;
-							while total &lt; 123456
-								N = N + 1;
-								total = total + N;
-							end
-							%───────────────────────────%
-							fprintf('smallest N = %i, total = %i\n', N, total);
 						</program>
 					</solution>
 				</task>
@@ -1618,7 +1672,7 @@
 						</input>
 					</sage>
 				</statement>
-				<solution component="example-solution-dev">
+				<solution component="example-solution">
 					<program language="matlab">
 						N = 10;  total = 0;
 						%─── TYPE YOUR CODE HERE ───%
@@ -1678,7 +1732,7 @@
 						</input>
 					</sage>
 				</statement>
-				<solution component="example-solution-dev">
+				<solution component="example-solution">
 					<program language="matlab">
 						N = 10;  total = 0;
 						%─── TYPE YOUR CODE HERE ───%
@@ -1807,7 +1861,7 @@
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution component="example-solution-dev">
+				<solution component="example-solution">
 					<program language="matlab">
 						function [count, final] = doubleUntil(x, N)
 							count = 0;
@@ -1930,7 +1984,7 @@
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution component="example-solution-dev">
+				<solution component="example-solution">
 					<program language="matlab">
 						function years = yearsToDouble(rate)
 							balance = 1;
@@ -2022,7 +2076,7 @@
 						</stack>
 					</sidebyside>
 				</statement>
-				<solution component="example-solution-dev">
+				<solution component="example-solution">
 					<program language="matlab">
 						function [quarters, dimes, nickels, pennies, totalCoins] = makeChange(amount)
 							quarters = 0;
