@@ -2,16 +2,55 @@
 <section xml:id="sec-creating-vectors">
 	<title>Creating, Indexing &amp; Modifying Vectors</title>
 
-	<subsection xml:id="subsec-what-is-a-vector">
+	<!-- <subsection xml:id="subsec-what-is-a-vector">
 		<title>What is a Vector?</title>
 
 		<p>
-			Up to this point, every variable you have created has stored a single number — a <term>scalar</term>. But many problems involve a whole collection of numbers that belong together: the daily high temperatures for a week, the exam scores for a class, the <m>x</m>-coordinates of points on a curve. Giving each value its own variable (<pf>temp1</pf>, <pf>temp2</pf>, <pf>temp3</pf>, <m>\ldots</m>) gets unwieldy fast.
+			Up to this point, every variable you have created has stored a single number. 
+			But many problems involve a collection of numbers that belong together in a 
+			single variable. Such a collection is called a <term>vector</term>.
+			For example, we can store the daily high temperatures for a week in seven 
+			separate variables or we can store them together in a single vector variable:
 		</p>
 
-		<p>
-			A <term>vector</term> is an ordered collection of numbers stored under a single name. Instead of seven temperature variables, you can have one variable named <pf>temps</pf> that holds all seven values.
-		</p>
+		<sidebyside valign="bottom" widths="40% 28% 28%" margins="2%">
+			<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+				<row header="yes"><cell>Day</cell><cell>Temperature</cell></row>
+				<row><cell>Monday</cell><cell>68</cell></row>
+				<row><cell>Tuesday</cell><cell>71</cell></row>
+				<row><cell>Wednesday</cell><cell>75</cell></row>
+				<row><cell>Thursday</cell><cell>74</cell></row>
+				<row><cell>Friday</cell><cell>69</cell></row>
+				<row><cell>Saturday</cell><cell>72</cell></row>
+				<row><cell>Sunday</cell><cell>70</cell></row>
+			</tabular>
+			<p>
+				<md>
+					<mrow>\texttt{temp1} = 68</mrow>
+					<mrow>\texttt{temp2} = 71</mrow>
+					<mrow>\texttt{temp3} = 75</mrow>
+					<mrow>\texttt{temp4} = 74</mrow>
+					<mrow>\texttt{temp5} = 69</mrow>
+					<mrow>\texttt{temp6} = 72</mrow>
+					<mrow>\texttt{temp7} = 70</mrow>
+				</md>
+			</p>
+			<p>
+				<md>
+					\texttt{temps} = \left[
+					\begin{array}{c}
+						68 \\
+						71 \\
+						75 \\
+						74 \\
+						69 \\
+						72 \\
+						70
+					\end{array}
+					\right]
+				</md>
+			</p>
+		</sidebyside>
 
 		<aside>
 			<title>Vocabulary across languages</title>
@@ -51,17 +90,67 @@
 			MATLAB displays the entire collection as a row of numbers, and the variable <pf>temps</pf> now refers to all seven values at once.
 		</p>
 
-	</subsection>
+	</subsection> -->
 
-	<subsection xml:id="subsec-row-vs-column">
-		<title>Row &amp; Column Vectors</title>
+	<subsection xml:id="subsec-building-vectors-with-brackets">
+		<title>Building Vectors with Brackets</title>
 
 		<p>
-			Vectors come in two shapes: <term>row vectors</term> and <term>column vectors</term>. So far you have only seen row vectors, where the values are laid out horizontally. A column vector lays the same values out vertically. The difference is just orientation — the values and their order are the same.
+			Up to this point, every variable you have created has stored a single number. 
+			But many problems involve a collection of numbers that belong together in a 
+			single variable. Such a collection is called a <term>vector</term>.
+			For example, we can store the daily high temperatures for a week in seven 
+			separate variables or we can store them together in a single vector variable:
 		</p>
 
+		<sidebyside valign="bottom" widths="40% 28% 28%" margins="2%">
+			<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+				<row header="yes"><cell>Day</cell><cell>Temperature</cell></row>
+				<row><cell>Monday</cell><cell>68</cell></row>
+				<row><cell>Tuesday</cell><cell>71</cell></row>
+				<row><cell>Wednesday</cell><cell>75</cell></row>
+				<row><cell>Thursday</cell><cell>74</cell></row>
+				<row><cell>Friday</cell><cell>69</cell></row>
+				<row><cell>Saturday</cell><cell>72</cell></row>
+				<row><cell>Sunday</cell><cell>70</cell></row>
+			</tabular>
+			<p>
+				<md>
+					<mrow>\texttt{temp1} = 68</mrow>
+					<mrow>\texttt{temp2} = 71</mrow>
+					<mrow>\texttt{temp3} = 75</mrow>
+					<mrow>\texttt{temp4} = 74</mrow>
+					<mrow>\texttt{temp5} = 69</mrow>
+					<mrow>\texttt{temp6} = 72</mrow>
+					<mrow>\texttt{temp7} = 70</mrow>
+				</md>
+			</p>
+			<p>
+				<md>
+					\texttt{temps} = \left[
+					\begin{array}{c}
+						68 \\
+						71 \\
+						75 \\
+						74 \\
+						69 \\
+						72 \\
+						70
+					\end{array}
+					\right]
+				</md>
+			</p>
+		</sidebyside>
+
+		<aside>
+			<title>Vocabulary across languages</title>
+			<p>
+				Vectors are also called <term>one-dimensional arrays</term>. Other programming languages call the same idea a <q>list</q> (Python) or simply an <q>array</q> (Java, C, JavaScript). The vocabulary changes; the concept does not.
+			</p>
+		</aside>
+
 		<p>
-			To write a row vector, separate the values with commas <em>or</em> spaces. To write a column vector, separate the values with semicolons:
+			Vectors come in two shapes: <term>row vectors</term> and <term>column vectors</term>. Row vectors lay values out horizontally and column vectors lay the same values out vertically. The difference is just orientation, the values and their order are the same, but we distinguish the two because they are relevent when we start working with matrices.
 		</p>
 
 		<aside>
@@ -70,6 +159,13 @@
 				Most programming languages do not distinguish row and column vectors at all. MATLAB makes the distinction because it was designed around matrices from the start, and a matrix's rows and columns are not interchangeable. For now, treat the row/column choice as a stylistic detail.
 			</p>
 		</aside>
+
+		<p>
+			MATLAB gives you a few ways to create a vector. The most direct way 
+			to create a vector is to list the values inside square brackets. 
+			To create a row vector, separate the values with commas <em>or</em> 
+			spaces. To create a column vector, separate them with semicolons:
+		</p>
 
 		<sidebyside widths="32% 32% 32%">
 			<stack>
@@ -92,33 +188,33 @@
 			</stack>
 		</sidebyside>
 
+		<sage language="octave">
+			<input>
+				temps = [68; 71; 75; 74; 69; 72; 70]    % column vector
+				r = [1, 2, 3, 4]    % row vector
+			</input>
+		</sage>
+
 		<p>
 			You can flip a vector from one shape to the other using the <term>transpose operator</term>, written as a single quote <pf>'</pf> after the variable name. Transposing a row vector turns it into a column vector, and transposing it again turns it back:
 		</p>
 
 		<sage language="octave">
 			<input>
-				r = [1, 2, 3, 4]
+				% Run the previous cell first to define temps and r
+				row_temps = temps'
 				c = r'
 				r2 = c'
 			</input>
 		</sage>
 
-		<p>
-			For most of this chapter, the orientation will not matter — everything we do works the same way on both shapes. The reason MATLAB distinguishes the two will become clear in a later chapter on matrices, where rows and columns play very different roles.
-		</p>
-
 	</subsection>
 
-	<subsection xml:id="subsec-building-vectors">
-		<title>Building Vectors</title>
+	<subsection xml:id="subsec-building-vectors-with-colon">
+		<title>Building Vectors with the Colon Operator</title>
 
 		<p>
-			MATLAB gives you several ways to create a vector. Which one you choose depends on whether you already know the values, whether they follow a pattern, or whether you just need a placeholder of the right size.
-		</p>
-
-		<p>
-			<term>Bracket literals</term> are the most direct: list the values you want, separated by commas, inside square brackets.
+			Another common way to build a vector is with <term>colon notation</term>, which you should find familiar from the for-loop chapter. Use <pf>start:stop</pf> for a range of integers stepping by 1, or <pf>start:step:stop</pf> to choose a different step size:	
 		</p>
 
 		<program language="matlab">
@@ -150,47 +246,8 @@
 			</stack>
 		</sidebyside>
 
-		<p>
-			Sometimes you do not yet know what values a vector should hold — you just need a vector of a certain size that you will fill in later. The functions <pf>zeros</pf> and <pf>ones</pf> create a placeholder vector of all zeros or all ones:
-		</p>
-
-		<aside>
-			<title>What does <pf>zeros(6)</pf> produce?</title>
-			<p>
-				It is tempting to think that <pf>zeros(6)</pf> creates a vector of six zeros, however, it actually creates a 6 x 6 matrix of zeros.
-			</p>
-			<p>
-				Make sure to include both dimensions when using <pf>zeros</pf> and <pf>ones</pf> to create vectors.
-			</p>
-		</aside>
-
-		<sidebyside widths="38% 58%">
-			<stack>
-				<p>Command ⤵︎</p>
-				<program language="matlab">
-					z = zeros(1, 6)           
-					w = ones(1, 4)
-				</program>
-			</stack>
-			<stack>
-				<p>Result ⤵︎</p>
-				<program language="matlab">
-					z = [0, 0, 0, 0, 0, 0]
-					w = [1, 1, 1, 1]
-				</program>
-			</stack>
-		</sidebyside>
-
-		<p>
-			The functions <pf>zeros</pf> and <pf>ones</pf> are designed to build matrices, that is why there are two input values: the number of rows and the number of columns. Since we are working with row vectors, the first argument is always <pf>1</pf>. A column vector would be <pf>zeros(6, 1)</pf>.
-		</p>
-
-		<p>
-			Here is a summary of the three construction techniques:
-		</p>
-
 		<table>
-			<title>Ways to Build a Vector</title>
+			<title>Common Ways to Build a Vector</title>
 			<tabular top="minor" bottom="minor" left="minor" right="minor">
 				<col halign="center" width="20%" />
 				<col halign="center" width="40%" />
@@ -209,11 +266,6 @@
 					<cell><p>Colon notation</p></cell>
 					<cell><p><pf>0:2:10</pf></p></cell>
 					<cell><p>The values follow a regular pattern with a known step.</p></cell>
-				</row>
-				<row>
-					<cell><p><pf>zeros</pf> / <pf>ones</pf></p></cell>
-					<cell><p><pf>zeros(1, 6)</pf></p></cell>
-					<cell><p>You need a placeholder of a known size to fill in later.</p></cell>
 				</row>
 			</tabular>
 		</table>
