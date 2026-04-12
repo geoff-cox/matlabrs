@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-matrix-size">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-matrix-size"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Size of a Matrix</span>
 </h2>
 <div class="para" id="subsec-matrix-size-2">Before you can write a loop over a matrix or check that two matrices have compatible shapes, you need a way to ask MATLAB how big a matrix actually is. Three built-in functions do this, and now is the moment they earn their keep.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -487,8 +484,7 @@ size(A)
 </div>
 <div class="para" id="subsec-matrix-size-6">Often you only need one of the two dimensions, not both. <code class="code-inline tex2jax_ignore language-matlab">size</code> accepts a second argument that picks which dimension you want: <code class="code-inline tex2jax_ignore language-matlab">1</code> for rows, <code class="code-inline tex2jax_ignore language-matlab">2</code> for columns:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-matrix-size-7-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -506,8 +502,7 @@ ans = 2
 ans = 3
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-matrix-size-8">This form is what you will reach for most often inside loops, where you want to write <code class="code-inline tex2jax_ignore language-matlab">1:size(A, 1)</code> to walk the rows or <code class="code-inline tex2jax_ignore language-matlab">1:size(A, 2)</code> to walk the columns.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="subsec-matrix-size-9">The other function from the vectors chapter, <code class="code-inline tex2jax_ignore language-matlab">numel</code>, also still works on a matrix. It returns the <em class="emphasis">total</em> number of elements — rows times columns. For a 2-by-3 matrix, <code class="code-inline tex2jax_ignore language-matlab">numel(A)</code> returns <code class="code-inline tex2jax_ignore language-matlab">6</code>. This is occasionally useful when you only care how many values are in a matrix and not how they are arranged.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -517,16 +512,10 @@ numel(A)
 </script></div>
 <details id="subsec-matrix-size-11" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">What about <code class="code-inline tex2jax_ignore language-matlab">length</code>?</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-matrix-size-11-2">The <code class="code-inline tex2jax_ignore language-matlab">length</code> function from the vectors chapter still runs on a matrix without an error, but its behavior is almost never what you want: it returns the <em class="emphasis">larger</em> of the two dimensions. For a 2-by-3 matrix, <code class="code-inline tex2jax_ignore language-matlab">length(A)</code> returns <code class="code-inline tex2jax_ignore language-matlab">3</code>. The general rule: use <code class="code-inline tex2jax_ignore language-matlab">length</code> for vectors, use <code class="code-inline tex2jax_ignore language-matlab">size</code> for matrices, and use <code class="code-inline tex2jax_ignore language-matlab">numel</code> when you genuinely want the total count regardless of shape.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-11-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-matrix-size-11-2">The <code class="code-inline tex2jax_ignore language-matlab">length</code> function from the vectors chapter still runs on a matrix without an error, but its behavior is almost never what you want: it returns the <em class="emphasis">larger</em> of the two dimensions. For a 2-by-3 matrix, <code class="code-inline tex2jax_ignore language-matlab">length(A)</code> returns <code class="code-inline tex2jax_ignore language-matlab">3</code>. The general rule: use <code class="code-inline tex2jax_ignore language-matlab">length</code> for vectors, use <code class="code-inline tex2jax_ignore language-matlab">size</code> for matrices, and use <code class="code-inline tex2jax_ignore language-matlab">numel</code> when you genuinely want the total count regardless of shape.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-11-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside></details><div class="para" id="subsec-matrix-size-12">You will use <code class="code-inline tex2jax_ignore language-matlab">size</code> constantly in the next two sections — for writing loops that adapt to whatever shape of matrix they are given, and for preallocating result matrices that match the shape of an input.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-</aside></details>
-<div class="para" id="subsec-matrix-size-12">You will use <code class="code-inline tex2jax_ignore language-matlab">size</code> constantly in the next two sections — for writing loops that adapt to whatever shape of matrix they are given, and for preallocating result matrices that match the shape of an input.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-matrix-size-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Subsection: The Size of a Matrix"><a href="#subsec-matrix-size" title="Copy heading and permalink for Subsection: The Size of a Matrix" aria-label="Copy heading and permalink for Subsection: The Size of a Matrix">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Subsection: The Size of a Matrix"><a href="#subsec-matrix-size" title="Copy heading and permalink for Subsection: The Size of a Matrix" aria-label="Copy heading and permalink for Subsection: The Size of a Matrix">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-indexing-matrices.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-slicing-matrices.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

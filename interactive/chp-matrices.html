@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,12 +470,10 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="chapter" id="chp-matrices">
-<h2 class="heading">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="chapter" id="chp-matrices"><h2 class="heading">
 <span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Matrices</span>
 </h2>
-<section class="introduction" id="chp-matrices-2">
-<div class="para" id="chp-matrices-2-1">A vector stores an ordered list of numbers under a single name. A <dfn class="terminology">matrix</dfn> stores a two-dimensional grid of numbers — values arranged in rows <em class="emphasis">and</em> columns. This chapter introduces matrices the same way the previous chapter introduced vectors: as a way to store collections of related data, operate on those collections all at once, and write loops that walk them when a single expression is not enough.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<section class="introduction" id="chp-matrices-2"><div class="para" id="chp-matrices-2-1">A vector stores an ordered list of numbers under a single name. A <dfn class="terminology">matrix</dfn> stores a two-dimensional grid of numbers — values arranged in rows <em class="emphasis">and</em> columns. This chapter introduces matrices the same way the previous chapter introduced vectors: as a way to store collections of related data, operate on those collections all at once, and write loops that walk them when a single expression is not enough.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="chp-matrices-2-2">You will find that almost everything you learned about vectors carries over without surprises. The construction techniques are the same, the indexing rules are the same, the arithmetic operators behave the same way, and the built-in functions still apply to whole collections at once. The main differences are that you now need <em class="emphasis">two</em> indices to point at a single value, and that loops over a matrix sometimes need to be nested — a loop inside another loop — to walk all the elements.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -485,22 +482,16 @@ true);
 <dl class="description-list">
 <dt id="chp-matrices-2-3-1-1">Creating and Indexing Matrices<div class="autopermalink" data-description="Item: Creating and Indexing Matrices"><a href="#chp-matrices-2-3-1-1" title="Copy heading and permalink for Item: Creating and Indexing Matrices" aria-label="Copy heading and permalink for Item: Creating and Indexing Matrices">🔗</a></div>
 </dt>
-<dd>
-<div class="para" id="chp-matrices-2-3-1-1-2">Building matrices with bracket literals and placeholder functions; pulling individual values back out with two-index access; asking how big a matrix is; slicing rows, columns, and rectangular blocks; and modifying matrices after they have been created.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-3-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+<dd><div class="para" id="chp-matrices-2-3-1-1-2">Building matrices with bracket literals and placeholder functions; pulling individual values back out with two-index access; asking how big a matrix is; slicing rows, columns, and rectangular blocks; and modifying matrices after they have been created.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-3-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></dd>
 <dt id="chp-matrices-2-3-1-2">Matrix Arithmetic<div class="autopermalink" data-description="Item: Matrix Arithmetic"><a href="#chp-matrices-2-3-1-2" title="Copy heading and permalink for Item: Matrix Arithmetic" aria-label="Copy heading and permalink for Item: Matrix Arithmetic">🔗</a></div>
 </dt>
-<dd>
-<div class="para" id="chp-matrices-2-3-1-2-2">Applying operators and broadcasting functions to entire matrices at once. Almost everything from the vectors chapter carries over directly, with one new piece — the long-promised explanation of why the dot operators exist.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-3-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+<dd><div class="para" id="chp-matrices-2-3-1-2-2">Applying operators and broadcasting functions to entire matrices at once. Almost everything from the vectors chapter carries over directly, with one new piece — the long-promised explanation of why the dot operators exist.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-3-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></dd>
 <dt id="chp-matrices-2-3-1-3">Matrices and Loops<div class="autopermalink" data-description="Item: Matrices and Loops"><a href="#chp-matrices-2-3-1-3" title="Copy heading and permalink for Item: Matrices and Loops" aria-label="Copy heading and permalink for Item: Matrices and Loops">🔗</a></div>
 </dt>
-<dd>
-<div class="para" id="chp-matrices-2-3-1-3-2">Combining matrices with the for-loops you already know — single loops with slicing for the per-row or per-column case, nested loops for the cases that genuinely need element-by-element control, and the rule of thumb for choosing between vectorization, slicing, and nesting.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-3-1-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+<dd><div class="para" id="chp-matrices-2-3-1-3-2">Combining matrices with the for-loops you already know — single loops with slicing for the per-row or per-column case, nested loops for the cases that genuinely need element-by-element control, and the rule of thumb for choosing between vectorization, slicing, and nesting.<div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-3-1-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></dd>
 </dl>
 <div class="autopermalink" data-description="Paragraph"><a href="#chp-matrices-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -510,22 +501,17 @@ true);
 <li><a href="sec-matrix-arithmetic.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Matrix Arithmetic</span></a></li>
 <li><a href="sec-matrices-and-loops.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Matrices and Loops</span></a></li>
 <li><a href="matrices-coding-exercises.html" class="internal"><span class="codenumber">6.4</span> <span class="title">💻 Coding Exercises</span></a></li>
-</ul></nav>
-<section class="conclusion" id="chp-matrices-7"><h1 class="heading">🗝️ Key Takeaways....<span></span>
+</ul></nav><section class="conclusion" id="chp-matrices-7"><h1 class="heading">🗝️ Key Takeaways....<span></span>
 </h1>
-<article class="assemblage assemblage-like" id="takeaways-matrices">
-<div class="para logical" id="takeaways-matrices-1">
+<article class="assemblage assemblage-like" id="takeaways-matrices"><div class="para logical" id="takeaways-matrices-1">
 <dl class="description-list narrow">
 <dt id="takeaways-matrices-1-1-1">Matrices<div class="autopermalink" data-description="Item: Matrices"><a href="#takeaways-matrices-1-1-1" title="Copy heading and permalink for Item: Matrices" aria-label="Copy heading and permalink for Item: Matrices">🔗</a></div>
 </dt>
-<dd>
-<div class="para" id="takeaways-matrices-1-1-1-2">A matrix is a two-dimensional collection of numbers arranged in rows and columns. Other languages call the same idea a “2D array.” A vector is the special case of a matrix with one row or one column.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+<dd><div class="para" id="takeaways-matrices-1-1-1-2">A matrix is a two-dimensional collection of numbers arranged in rows and columns. Other languages call the same idea a “2D array.” A vector is the special case of a matrix with one row or one column.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></dd>
 <dt id="takeaways-matrices-1-1-2">Building Matrices<div class="autopermalink" data-description="Item: Building Matrices"><a href="#takeaways-matrices-1-1-2" title="Copy heading and permalink for Item: Building Matrices" aria-label="Copy heading and permalink for Item: Building Matrices">🔗</a></div>
 </dt>
-<dd>
-<div class="para logical" id="takeaways-matrices-1-1-2-2">
+<dd><div class="para logical" id="takeaways-matrices-1-1-2-2">
 <ul class="square" id="takeaways-matrices-1-1-2-2-1">
 <li id="takeaways-matrices-1-1-2-2-1-1">
 <div class="para" id="p-derived-takeaways-matrices-1-1-2-2-1-1">Bracket literals — <code class="code-inline tex2jax_ignore language-matlab">[1, 2; 3, 4]</code> — with semicolons separating rows. Every row must have the same number of columns.</div>
@@ -538,24 +524,18 @@ true);
 </li>
 </ul>
 <div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+</div></dd>
 <dt id="takeaways-matrices-1-1-3">Indexing<div class="autopermalink" data-description="Item: Indexing"><a href="#takeaways-matrices-1-1-3" title="Copy heading and permalink for Item: Indexing" aria-label="Copy heading and permalink for Item: Indexing">🔗</a></div>
 </dt>
-<dd>
-<div class="para" id="takeaways-matrices-1-1-3-2">Use <code class="code-inline tex2jax_ignore language-matlab">A(i, j)</code> to access the value at row <code class="code-inline tex2jax_ignore language-matlab">i</code>, column <code class="code-inline tex2jax_ignore language-matlab">j</code>. The order is always row first, then column. The <code class="code-inline tex2jax_ignore language-matlab">end</code> keyword works in either slot, referring to the last row or the last column.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+<dd><div class="para" id="takeaways-matrices-1-1-3-2">Use <code class="code-inline tex2jax_ignore language-matlab">A(i, j)</code> to access the value at row <code class="code-inline tex2jax_ignore language-matlab">i</code>, column <code class="code-inline tex2jax_ignore language-matlab">j</code>. The order is always row first, then column. The <code class="code-inline tex2jax_ignore language-matlab">end</code> keyword works in either slot, referring to the last row or the last column.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></dd>
 <dt id="takeaways-matrices-1-1-4">Size<div class="autopermalink" data-description="Item: Size"><a href="#takeaways-matrices-1-1-4" title="Copy heading and permalink for Item: Size" aria-label="Copy heading and permalink for Item: Size">🔗</a></div>
 </dt>
-<dd>
-<div class="para" id="takeaways-matrices-1-1-4-2">Use <code class="code-inline tex2jax_ignore language-matlab">size(A)</code> to get a two-element vector containing the number of rows and columns, or <code class="code-inline tex2jax_ignore language-matlab">size(A, 1)</code> and <code class="code-inline tex2jax_ignore language-matlab">size(A, 2)</code> to get them individually. Prefer <code class="code-inline tex2jax_ignore language-matlab">size</code> over <code class="code-inline tex2jax_ignore language-matlab">length</code> for matrices, since <code class="code-inline tex2jax_ignore language-matlab">length</code> returns the larger dimension and is rarely what you want.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+<dd><div class="para" id="takeaways-matrices-1-1-4-2">Use <code class="code-inline tex2jax_ignore language-matlab">size(A)</code> to get a two-element vector containing the number of rows and columns, or <code class="code-inline tex2jax_ignore language-matlab">size(A, 1)</code> and <code class="code-inline tex2jax_ignore language-matlab">size(A, 2)</code> to get them individually. Prefer <code class="code-inline tex2jax_ignore language-matlab">size</code> over <code class="code-inline tex2jax_ignore language-matlab">length</code> for matrices, since <code class="code-inline tex2jax_ignore language-matlab">length</code> returns the larger dimension and is rarely what you want.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></dd>
 <dt id="takeaways-matrices-1-1-5">Slicing<div class="autopermalink" data-description="Item: Slicing"><a href="#takeaways-matrices-1-1-5" title="Copy heading and permalink for Item: Slicing" aria-label="Copy heading and permalink for Item: Slicing">🔗</a></div>
 </dt>
-<dd>
-<div class="para logical" id="takeaways-matrices-1-1-5-2">
+<dd><div class="para logical" id="takeaways-matrices-1-1-5-2">
 <div class="para">The standalone colon <code class="code-inline tex2jax_ignore language-matlab">:</code> means “every position along this dimension.”</div>
 <ul class="square" id="takeaways-matrices-1-1-5-2-3">
 <li id="takeaways-matrices-1-1-5-2-3-1">
@@ -575,12 +555,10 @@ true);
 </li>
 </ul>
 <div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+</div></dd>
 <dt id="takeaways-matrices-1-1-6">Modifying Matrices<div class="autopermalink" data-description="Item: Modifying Matrices"><a href="#takeaways-matrices-1-1-6" title="Copy heading and permalink for Item: Modifying Matrices" aria-label="Copy heading and permalink for Item: Modifying Matrices">🔗</a></div>
 </dt>
-<dd>
-<div class="para logical" id="takeaways-matrices-1-1-6-2">
+<dd><div class="para logical" id="takeaways-matrices-1-1-6-2">
 <ul class="square" id="takeaways-matrices-1-1-6-2-1">
 <li id="takeaways-matrices-1-1-6-2-1-1">
 <div class="para" id="p-derived-takeaways-matrices-1-1-6-2-1-1">
@@ -599,14 +577,11 @@ true);
 </li>
 </ul>
 <div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+</div></dd>
 <dt id="takeaways-matrices-1-1-7">Arithmetic<div class="autopermalink" data-description="Item: Arithmetic"><a href="#takeaways-matrices-1-1-7" title="Copy heading and permalink for Item: Arithmetic" aria-label="Copy heading and permalink for Item: Arithmetic">🔗</a></div>
 </dt>
-<dd>
-<div class="para" id="takeaways-matrices-1-1-7-2">Operators and built-in functions work on whole matrices the same way they worked on whole vectors. Scalar–matrix operations apply to every element. Element-wise operations on two matrices use plain <code class="code-inline tex2jax_ignore language-matlab">+</code> and <code class="code-inline tex2jax_ignore language-matlab">-</code>, but require the dot for <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code>. The plain versions <code class="code-inline tex2jax_ignore language-matlab">*</code>, <code class="code-inline tex2jax_ignore language-matlab">/</code>, and <code class="code-inline tex2jax_ignore language-matlab">^</code> are reserved for matrix multiplication and related linear-algebra operations, which you will see in math classes.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-7-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</dd>
+<dd><div class="para" id="takeaways-matrices-1-1-7-2">Operators and built-in functions work on whole matrices the same way they worked on whole vectors. Scalar–matrix operations apply to every element. Element-wise operations on two matrices use plain <code class="code-inline tex2jax_ignore language-matlab">+</code> and <code class="code-inline tex2jax_ignore language-matlab">-</code>, but require the dot for <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code>. The plain versions <code class="code-inline tex2jax_ignore language-matlab">*</code>, <code class="code-inline tex2jax_ignore language-matlab">/</code>, and <code class="code-inline tex2jax_ignore language-matlab">^</code> are reserved for matrix multiplication and related linear-algebra operations, which you will see in math classes.<div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1-1-7-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></dd>
 <dt id="takeaways-matrices-1-1-8">Matrices and Loops<div class="autopermalink" data-description="Item: Matrices and Loops"><a href="#takeaways-matrices-1-1-8" title="Copy heading and permalink for Item: Matrices and Loops" aria-label="Copy heading and permalink for Item: Matrices and Loops">🔗</a></div>
 </dt>
 <dd>
@@ -637,8 +612,7 @@ true);
 </dl>
 <div class="autopermalink" data-description="Paragraph"><a href="#takeaways-matrices-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Assemblage"><a href="#takeaways-matrices" title="Copy heading and permalink for Assemblage" aria-label="Copy heading and permalink for Assemblage">🔗</a></div>
-</article></section><div class="autopermalink" data-description="Chapter 6: Matrices"><a href="#chp-matrices" title="Copy heading and permalink for Chapter 6: Matrices" aria-label="Copy heading and permalink for Chapter 6: Matrices">🔗</a></div></section></div>
+<div class="autopermalink" data-description="Assemblage"><a href="#takeaways-matrices" title="Copy heading and permalink for Assemblage" aria-label="Copy heading and permalink for Assemblage">🔗</a></div></article></section><div class="autopermalink" data-description="Chapter 6: Matrices"><a href="#chp-matrices" title="Copy heading and permalink for Chapter 6: Matrices" aria-label="Copy heading and permalink for Chapter 6: Matrices">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="chp-vectors.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="appdx-matlab-functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-building-matrices">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-building-matrices"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Building Matrices</span>
 </h2>
 <div class="para" id="subsec-building-matrices-2">The same construction techniques you used for vectors carry over to matrices, with one new ingredient: a way to mark where one row ends and the next begins.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -489,8 +486,7 @@ true);
 </div>
 <div class="para" id="subsec-building-matrices-7">Just as with vectors, sometimes you need a placeholder of the right size that you will fill in later. The <code class="code-inline tex2jax_ignore language-matlab">zeros</code> and <code class="code-inline tex2jax_ignore language-matlab">ones</code> functions you already know take a number of rows and a number of columns and produce a matrix of that shape:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-building-matrices-8-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -508,62 +504,40 @@ O = [1, 1;
      1, 1]
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-building-matrices-9">Now the “two arguments” rule from the vectors chapter makes more sense — <code class="code-inline tex2jax_ignore language-matlab">zeros</code> and <code class="code-inline tex2jax_ignore language-matlab">ones</code> were always matrix functions, and a row vector was simply the special case where the first argument was <code class="code-inline tex2jax_ignore language-matlab">1</code>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="subsec-building-matrices-10">Here is a summary of the construction techniques:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="table table-like" id="subsec-building-matrices-11"><figcaption><span class="type">Table</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Ways to Build a Matrix<div class="autopermalink" data-description="Table 6.1: Ways to Build a Matrix"><a href="#subsec-building-matrices-11" title="Copy heading and permalink for Table 6.1: Ways to Build a Matrix" aria-label="Copy heading and permalink for Table 6.1: Ways to Build a Matrix">🔗</a></div></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
-<th scope="col" class="c m b1 r1 l1 t1" style="max-width:120px;">
-<div class="para" id="subsec-building-matrices-11-2-4-1-1">Technique<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</th>
-<th scope="col" class="c m b1 r1 l0 t1" style="max-width:240px;">
-<div class="para" id="subsec-building-matrices-11-2-4-2-1">Example<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</th>
-<th scope="col" class="l m b1 r1 l0 t1" style="max-width:240px;">
-<div class="para" id="subsec-building-matrices-11-2-4-3-1">Use when…<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</th>
+<th scope="col" class="c m b1 r1 l1 t1" style="max-width:120px;"><div class="para" id="subsec-building-matrices-11-2-4-1-1">Technique<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></th>
+<th scope="col" class="c m b1 r1 l0 t1" style="max-width:240px;"><div class="para" id="subsec-building-matrices-11-2-4-2-1">Example<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></th>
+<th scope="col" class="l m b1 r1 l0 t1" style="max-width:240px;"><div class="para" id="subsec-building-matrices-11-2-4-3-1">Use when…<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></th>
 </tr>
 <tr>
-<td class="c m b1 r1 l1 t0" style="max-width:120px;">
-<div class="para" id="subsec-building-matrices-11-2-5-1-1">Bracket literal<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</td>
-<td class="c m b1 r1 l0 t0" style="max-width:240px;">
-<div class="para" id="subsec-building-matrices-11-2-5-2-1">
+<td class="c m b1 r1 l1 t0" style="max-width:120px;"><div class="para" id="subsec-building-matrices-11-2-5-1-1">Bracket literal<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
+<td class="c m b1 r1 l0 t0" style="max-width:240px;"><div class="para" id="subsec-building-matrices-11-2-5-2-1">
 <code class="code-inline tex2jax_ignore language-matlab">[1, 2; 3, 4]</code><div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</td>
-<td class="l m b1 r1 l0 t0" style="max-width:240px;">
-<div class="para" id="subsec-building-matrices-11-2-5-3-1">You already know all of the values.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</td>
+</div></td>
+<td class="l m b1 r1 l0 t0" style="max-width:240px;"><div class="para" id="subsec-building-matrices-11-2-5-3-1">You already know all of the values.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
 </tr>
 <tr>
-<td class="c m b1 r1 l1 t0" style="max-width:120px;">
-<div class="para" id="subsec-building-matrices-11-2-6-1-1">
+<td class="c m b1 r1 l1 t0" style="max-width:120px;"><div class="para" id="subsec-building-matrices-11-2-6-1-1">
 <code class="code-inline tex2jax_ignore language-matlab">zeros</code> / <code class="code-inline tex2jax_ignore language-matlab">ones</code><div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</td>
-<td class="c m b1 r1 l0 t0" style="max-width:240px;">
-<div class="para" id="subsec-building-matrices-11-2-6-2-1">
+</div></td>
+<td class="c m b1 r1 l0 t0" style="max-width:240px;"><div class="para" id="subsec-building-matrices-11-2-6-2-1">
 <code class="code-inline tex2jax_ignore language-matlab">zeros(3, 4)</code><div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</td>
-<td class="l m b1 r1 l0 t0" style="max-width:240px;">
-<div class="para" id="subsec-building-matrices-11-2-6-3-1">You need a placeholder of a known shape to fill in later.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</td>
+</div></td>
+<td class="l m b1 r1 l0 t0" style="max-width:240px;"><div class="para" id="subsec-building-matrices-11-2-6-3-1">You need a placeholder of a known shape to fill in later.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-matrices-11-2-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></td>
 </tr>
-</table></div>
-</figure><div class="autopermalink" data-description="Subsection: Building Matrices"><a href="#subsec-building-matrices" title="Copy heading and permalink for Subsection: Building Matrices" aria-label="Copy heading and permalink for Subsection: Building Matrices">🔗</a></div>
-</section>
-</div>
+</table></div></figure><div class="autopermalink" data-description="Subsection: Building Matrices"><a href="#subsec-building-matrices" title="Copy heading and permalink for Subsection: Building Matrices" aria-label="Copy heading and permalink for Subsection: Building Matrices">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-what-is-a-matrix.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-indexing-matrices.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

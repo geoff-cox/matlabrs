@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-loop-one-dimension">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-loop-one-dimension"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Looping Over Rows or Columns</span>
 </h2>
 <div class="para" id="subsec-loop-one-dimension-2">Many matrix problems are naturally “per row” or “per column” — compute the sum of each row, find the largest value in each column, normalize each row so its values add to 1. In those cases, a single loop is enough, because each iteration handles a whole row or a whole column at once instead of a single element.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-one-dimension-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -506,9 +503,7 @@ end
 </div>
 <div class="para" id="subsec-loop-one-dimension-11">This pattern works whenever the per-row or per-column operation is something a vector tool can do for you: a reduction with <code class="code-inline tex2jax_ignore language-matlab">sum</code>, <code class="code-inline tex2jax_ignore language-matlab">max</code>, <code class="code-inline tex2jax_ignore language-matlab">min</code>, or <code class="code-inline tex2jax_ignore language-matlab">mean</code>; a transformation like <code class="code-inline tex2jax_ignore language-matlab">2 * row</code> or <code class="code-inline tex2jax_ignore language-matlab">sqrt(row)</code>; a count like <code class="code-inline tex2jax_ignore language-matlab">sum(row &gt; 0)</code> — anything you already know how to do to a vector. When the per-element work is more irregular than that, a single loop is no longer enough, and you need the nested-loop pattern from the next subsection.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-one-dimension-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Subsection: Looping Over Rows or Columns"><a href="#subsec-loop-one-dimension" title="Copy heading and permalink for Subsection: Looping Over Rows or Columns" aria-label="Copy heading and permalink for Subsection: Looping Over Rows or Columns">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Subsection: Looping Over Rows or Columns"><a href="#subsec-loop-one-dimension" title="Copy heading and permalink for Subsection: Looping Over Rows or Columns" aria-label="Copy heading and permalink for Subsection: Looping Over Rows or Columns">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-need-for-two-indices.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-nested-loop-pattern.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

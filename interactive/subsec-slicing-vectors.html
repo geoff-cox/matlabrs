@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section contains-active">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list contains-active">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-slicing-vectors">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-slicing-vectors"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Slicing a Vector</span>
 </h2>
 <div class="para" id="subsec-slicing-vectors-2">So far you have used a single number as an index to pull one value out of a vector. You can also use a <em class="emphasis">vector</em> of indices to pull out several values at once. This is called <dfn class="terminology">slicing</dfn>, and the result is a new, smaller vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-slicing-vectors-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -485,8 +482,7 @@ temps(2:4)
 </script></div>
 <div class="para" id="subsec-slicing-vectors-5">The result is the row vector <code class="code-inline tex2jax_ignore language-matlab">[71, 75, 74]</code>. You can use any valid colon expression, including ones that involve <code class="code-inline tex2jax_ignore language-matlab">end</code>:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-slicing-vectors-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-slicing-vectors-6-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-slicing-vectors-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -503,8 +499,7 @@ temps(1:2:end)
 [68, 75, 69, 70]
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-slicing-vectors-7">The first slice grabs the first three elements, the second grabs the last three, and the third grabs every other element starting from the first.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-slicing-vectors-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="subsec-slicing-vectors-8">Colon notation is not the only option. You can also supply an explicit list of indices inside square brackets, and they do not have to be in order or contiguous:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-slicing-vectors-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -520,13 +515,8 @@ temps([5, 2, 5])
 </div>
 <details id="subsec-slicing-vectors-12" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Selecting everything with <code class="code-inline tex2jax_ignore language-matlab">:</code>.</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-slicing-vectors-12-2">Writing <code class="code-inline tex2jax_ignore language-matlab">temps(:)</code> — a colon by itself — selects every element of the vector. For a row vector this is rarely useful on its own, but it becomes important in the matrices chapter, where it lets you grab an entire row or column at once.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-slicing-vectors-12-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</aside></details><div class="autopermalink" data-description="Subsection: Slicing a Vector"><a href="#subsec-slicing-vectors" title="Copy heading and permalink for Subsection: Slicing a Vector" aria-label="Copy heading and permalink for Subsection: Slicing a Vector">🔗</a></div>
-</section>
-</div>
+</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-slicing-vectors-12-2">Writing <code class="code-inline tex2jax_ignore language-matlab">temps(:)</code> — a colon by itself — selects every element of the vector. For a row vector this is rarely useful on its own, but it becomes important in the matrices chapter, where it lets you grab an entire row or column at once.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-slicing-vectors-12-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside></details><div class="autopermalink" data-description="Subsection: Slicing a Vector"><a href="#subsec-slicing-vectors" title="Copy heading and permalink for Subsection: Slicing a Vector" aria-label="Copy heading and permalink for Subsection: Slicing a Vector">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-indexing-vectors.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-modifying-vectors.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

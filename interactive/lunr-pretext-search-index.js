@@ -2278,103 +2278,85 @@ var ptx_lunr_docs = [
   "body": " Continue, Break, and Return Exercises   Sum of Non-Divisible Values   Write a function called sumNonDivisible that computes the sum of all integers from 1 to n that are not divisible by d . Use a for -loop with continue to skip values that are divisible by d .        Inputs:  n  (1x1) double  positive integer upper limit     d  (1x1) double  positive integer divisor to exclude    Outputs:  total  (1x1) double  sum of values from 1 to n not divisible by d      Test Cases ⤵︎  sumNonDivisible(10, 3) sumNonDivisible(20, 5) sumNonDivisible(15, 1)    Expected ⤵︎  ans = 37 ans = 160 ans = 0       First Value Above a Threshold   Write a function called firstAbove that uses a for -loop and break to find the smallest positive integer k such that . If no such k exists in the range 1 to 1000, return -1 .        Inputs:  threshold  (1x1) double  positive number to exceed    Outputs:  k  (1x1) double  smallest integer where exceeds threshold, or -1      Test Cases ⤵︎  firstAbove(10) firstAbove(100) firstAbove(5000)    Expected ⤵︎  ans = 3 ans = 9 ans = 70       Count Valid Rolls   Write a function called countValidRolls that simulates rolling a six-sided die n times using randi([1, 6]) . Count only rolls that are not equal to 1 (i.e., skip rolls of 1 using continue ). Return the number of valid rolls and their sum.        Inputs:  n  (1x1) double  number of dice rolls    Outputs:  validCount  (1x1) double  number of rolls that were not 1     validSum  (1x1) double  sum of the valid rolls      Test Cases ⤵︎  rng(42); [c, s] = countValidRolls(10) rng(42); [c, s] = countValidRolls(100)    Expected ⤵︎  c = 8 s = 32 c = 86 s = 316      "
 },
 {
-  "id": "subsec-what-is-a-vector",
+  "id": "subsec-building-vectors-with-brackets",
   "level": "1",
-  "url": "subsec-what-is-a-vector.html",
+  "url": "subsec-building-vectors-with-brackets.html",
   "type": "Subsection",
   "number": "",
-  "title": "What is a Vector?",
-  "body": " What is a Vector?  Up to this point, every variable you have created has stored a single number — a scalar . But many problems involve a whole collection of numbers that belong together: the daily high temperatures for a week, the exam scores for a class, the -coordinates of points on a curve. Giving each value its own variable ( temp1 , temp2 , temp3 , ) gets unwieldy fast.  A vector is an ordered collection of numbers stored under a single name. Instead of seven temperature variables, you can have one variable named temps that holds all seven values.   Vocabulary across languages  Vectors are also called one-dimensional arrays . Other programming languages call the same idea a list (Python) or simply an array (Java, C, JavaScript). The vocabulary changes; the concept does not.   You have actually been using vectors already, without calling them that. Both of these appeared in for-loop headers in the previous chapter:   for k = 1:5 ... end  for k = [10, 20, 30] ... end   The expressions 1:5 and [10, 20, 30] are vectors. The for-loop happened to consume them one element at a time, but nothing stops you from storing such a collection in a variable and working with it directly:   MATLAB displays the entire collection as a row of numbers, and the variable temps now refers to all seven values at once.  "
+  "title": "Building Vectors with Brackets",
+  "body": " Building Vectors with Brackets  Up to this point, every variable you have created has stored a single number. But many problems involve a collection of numbers that belong together in a single variable. Such a collection is called a vector . For example, we can store the daily high temperatures for a week in seven separate variables or we can store them together in a single vector variable:    Day Temperature  Monday 68  Tuesday 71  Wednesday 75  Thursday 74  Friday 69  Saturday 72  Sunday 70           Vocabulary across languages  Vectors are also called one-dimensional arrays . Other programming languages call the same idea a list (Python) or simply an array (Java, C, JavaScript). The vocabulary changes; the concept does not.   Vectors come in two shapes: row vectors and column vectors . Row vectors lay values out horizontally and column vectors lay the same values out vertically. The difference is just orientation, the values and their order are the same, but we distinguish the two because they are relevent when we start working with matrices.   A MATLAB-specific quirk  Most programming languages do not distinguish row and column vectors at all. MATLAB makes the distinction because it was designed around matrices from the start, and a matrix's rows and columns are not interchangeable. For now, treat the row\/column choice as a stylistic detail.   MATLAB gives you a few ways to create a vector. The most direct way to create a vector is to list the values inside square brackets. To create a row vector, separate the values with commas or spaces. To create a column vector, separate them with semicolons:    Row vector ⤵︎  r1 = [1, 2, 3, 4]    Row vector ⤵︎  r2 = [1 2 3 4]    Column vector ⤵︎  c = [1; 2; 3; 4]     You can flip a vector from one shape to the other using the transpose operator , written as a single quote ' after the variable name. Transposing a row vector turns it into a column vector, and transposing it again turns it back:   "
 },
 {
-  "id": "subsec-what-is-a-vector-2",
+  "id": "subsec-building-vectors-with-brackets-2",
   "level": "2",
-  "url": "subsec-what-is-a-vector.html#subsec-what-is-a-vector-2",
-  "type": "Paragraph (with a defined term)",
-  "number": "",
-  "title": "",
-  "body": "scalar "
-},
-{
-  "id": "subsec-what-is-a-vector-3",
-  "level": "2",
-  "url": "subsec-what-is-a-vector.html#subsec-what-is-a-vector-3",
+  "url": "subsec-building-vectors-with-brackets.html#subsec-building-vectors-with-brackets-2",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
   "body": "vector "
 },
 {
-  "id": "subsec-what-is-a-vector-4-2",
+  "id": "subsec-building-vectors-with-brackets-4-2",
   "level": "2",
-  "url": "subsec-what-is-a-vector.html#subsec-what-is-a-vector-4-2",
+  "url": "subsec-building-vectors-with-brackets.html#subsec-building-vectors-with-brackets-4-2",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
   "body": "one-dimensional arrays "
 },
 {
-  "id": "subsec-row-vs-column",
-  "level": "1",
-  "url": "subsec-row-vs-column.html",
-  "type": "Subsection",
-  "number": "",
-  "title": "Row &amp; Column Vectors",
-  "body": " Row & Column Vectors  Vectors come in two shapes: row vectors and column vectors . So far you have only seen row vectors, where the values are laid out horizontally. A column vector lays the same values out vertically. The difference is just orientation — the values and their order are the same.  To write a row vector, separate the values with commas or spaces. To write a column vector, separate the values with semicolons:   A MATLAB-specific quirk  Most programming languages do not distinguish row and column vectors at all. MATLAB makes the distinction because it was designed around matrices from the start, and a matrix's rows and columns are not interchangeable. For now, treat the row\/column choice as a stylistic detail.     Row vector ⤵︎  r1 = [1, 2, 3, 4]    Row vector ⤵︎  r2 = [1 2 3 4]    Column vector ⤵︎  c = [1; 2; 3; 4]    You can flip a vector from one shape to the other using the transpose operator , written as a single quote ' after the variable name. Transposing a row vector turns it into a column vector, and transposing it again turns it back:   For most of this chapter, the orientation will not matter — everything we do works the same way on both shapes. The reason MATLAB distinguishes the two will become clear in a later chapter on matrices, where rows and columns play very different roles.  "
-},
-{
-  "id": "subsec-row-vs-column-2",
+  "id": "subsec-building-vectors-with-brackets-5",
   "level": "2",
-  "url": "subsec-row-vs-column.html#subsec-row-vs-column-2",
+  "url": "subsec-building-vectors-with-brackets.html#subsec-building-vectors-with-brackets-5",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
   "body": "row vectors column vectors "
 },
 {
-  "id": "subsec-row-vs-column-6",
+  "id": "subsec-building-vectors-with-brackets-10",
   "level": "2",
-  "url": "subsec-row-vs-column.html#subsec-row-vs-column-6",
+  "url": "subsec-building-vectors-with-brackets.html#subsec-building-vectors-with-brackets-10",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
   "body": "transpose operator "
 },
 {
-  "id": "subsec-building-vectors",
+  "id": "subsec-building-vectors-with-colon",
   "level": "1",
-  "url": "subsec-building-vectors.html",
+  "url": "subsec-building-vectors-with-colon.html",
   "type": "Subsection",
   "number": "",
-  "title": "Building Vectors",
-  "body": " Building Vectors  MATLAB gives you several ways to create a vector. Which one you choose depends on whether you already know the values, whether they follow a pattern, or whether you just need a placeholder of the right size.   Bracket literals are the most direct: list the values you want, separated by commas, inside square brackets.  scores = [88, 92, 75, 100, 67];   Colon notation should look familiar from the for-loop chapter. Use start:stop for a range of integers stepping by 1, or start:step:stop to choose a different step size:    Command ⤵︎  a = 1:6 b = 0:2:10 c = 10:-1:1 d = 0:0.25:1    Result ⤵︎  a = [1, 2, 3, 4, 5, 6] b = [0, 2, 4, 6, 8, 10] c = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] d = [0, 0.25, 0.5, 0.75, 1]    Sometimes you do not yet know what values a vector should hold — you just need a vector of a certain size that you will fill in later. The functions zeros and ones create a placeholder vector of all zeros or all ones:   What does zeros(6) produce?  It is tempting to think that zeros(6) creates a vector of six zeros, however, it actually creates a 6 x 6 matrix of zeros.  Make sure to include both dimensions when using zeros and ones to create vectors.     Command ⤵︎  z = zeros(1, 6) w = ones(1, 4)    Result ⤵︎  z = [0, 0, 0, 0, 0, 0] w = [1, 1, 1, 1]    The functions zeros and ones are designed to build matrices, that is why there are two input values: the number of rows and the number of columns. Since we are working with row vectors, the first argument is always 1 . A column vector would be zeros(6, 1) .  Here is a summary of the three construction techniques:   Ways to Build a Vector       Technique  Example  Use when…    Bracket literal  [88, 92, 75]  You already know the exact values.    Colon notation  0:2:10  The values follow a regular pattern with a known step.    zeros \/ ones  zeros(1, 6)  You need a placeholder of a known size to fill in later.     "
+  "title": "Building Vectors with the Colon Operator",
+  "body": " Building Vectors with the Colon Operator  Another common way to build a vector is with colon notation , which you should find familiar from the for-loop chapter. Use start:stop for a range of integers stepping by 1, or start:step:stop to choose a different step size:  scores = [88, 92, 75, 100, 67];   Colon notation should look familiar from the for-loop chapter. Use start:stop for a range of integers stepping by 1, or start:step:stop to choose a different step size:    Command ⤵︎  a = 1:6 b = 0:2:10 c = 10:-1:1 d = 0:0.25:1    Result ⤵︎  a = [1, 2, 3, 4, 5, 6] b = [0, 2, 4, 6, 8, 10] c = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] d = [0, 0.25, 0.5, 0.75, 1]     Common Ways to Build a Vector       Technique  Example  Use when…    Bracket literal  [88, 92, 75]  You already know the exact values.    Colon notation  0:2:10  The values follow a regular pattern with a known step.     "
 },
 {
-  "id": "subsec-building-vectors-3",
+  "id": "subsec-building-vectors-with-colon-2",
   "level": "2",
-  "url": "subsec-building-vectors.html#subsec-building-vectors-3",
+  "url": "subsec-building-vectors-with-colon.html#subsec-building-vectors-with-colon-2",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
-  "body": "Bracket literals "
+  "body": "colon notation "
 },
 {
-  "id": "subsec-building-vectors-5",
+  "id": "subsec-building-vectors-with-colon-4",
   "level": "2",
-  "url": "subsec-building-vectors.html#subsec-building-vectors-5",
+  "url": "subsec-building-vectors-with-colon.html#subsec-building-vectors-with-colon-4",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",
   "body": "Colon notation "
 },
 {
-  "id": "subsec-building-vectors-12",
+  "id": "subsec-building-vectors-with-colon-6",
   "level": "2",
-  "url": "subsec-building-vectors.html#subsec-building-vectors-12",
+  "url": "subsec-building-vectors-with-colon.html#subsec-building-vectors-with-colon-6",
   "type": "Table",
   "number": "5.1",
-  "title": "Ways to Build a Vector",
-  "body": " Ways to Build a Vector       Technique  Example  Use when…    Bracket literal  [88, 92, 75]  You already know the exact values.    Colon notation  0:2:10  The values follow a regular pattern with a known step.    zeros \/ ones  zeros(1, 6)  You need a placeholder of a known size to fill in later.    "
+  "title": "Common Ways to Build a Vector",
+  "body": " Common Ways to Build a Vector       Technique  Example  Use when…    Bracket literal  [88, 92, 75]  You already know the exact values.    Colon notation  0:2:10  The values follow a regular pattern with a known step.    "
 },
 {
   "id": "subsec-indexing-vectors",
@@ -2572,12 +2554,12 @@ var ptx_lunr_docs = [
   "type": "Subsection",
   "number": "",
   "title": "Preallocating Result Vectors",
-  "body": " Preallocating Result Vectors  In the previous subsection, every result vector was created with zeros before the loop started. This step is called preallocation — setting aside a vector of the right size up front, so the loop can fill it in without changing its size at each step. Preallocation is a habit worth forming early, and this subsection explains why.  You already know an alternative: growing a vector one element at a time using v(end + 1) = ... . The Fahrenheit-to-Celsius example could have been written that way instead:    Preallocated ⤵︎  fahrenheit = [32, 50, 68, 86, 104]; celsius = zeros(1, length(fahrenheit)); for i = 1:length(fahrenheit) celsius(i) = (fahrenheit(i) - 32) * 5\/9; end    Grown one at a time ⤵︎  fahrenheit = [32, 50, 68, 86, 104]; celsius = []; for i = 1:length(fahrenheit) celsius(end + 1) = (fahrenheit(i) - 32) * 5\/9; end    Both versions produce the same celsius vector. So why prefer the preallocated version?  The reason is what happens behind the scenes. When you grow a vector by writing celsius(end + 1) = ... , MATLAB has to find a new spot in memory that is one element larger than the current vector, copy all of the existing values into the new spot, and then add the new value at the end. For a five-element vector, this is invisible. For a vector with thousands or millions of elements, the copying adds up — every single iteration of the loop is doing more and more work as the vector grows.  Preallocating with zeros avoids this entirely. MATLAB sets aside the full block of memory once, before the loop starts, and the loop just writes into slots that are already there. No copying, no resizing, no extra work per iteration.   A general programming habit  This is not a MATLAB quirk. The same advice applies in NumPy, Julia, C++, Java, and most other languages: if you know how big a collection needs to be, create it at full size up front rather than growing it incrementally. The vocabulary is the same across languages, too — you will hear about preallocating or reserving capacity regardless of which language you find yourself in.   Of course, preallocation is only possible when you know the final size of the result vector before the loop starts. In the Fahrenheit example, the answer is obvious: the output vector needs one element for each input element, so zeros(1, length(fahrenheit)) is exactly the right size. Most loops that build a result vector follow this pattern, and preallocation is straightforward.  When the final size genuinely is not known ahead of time — for example, when the loop is searching for matches and you do not know how many it will find — growing the vector with end + 1 is still the right tool. The advice is not never grow vectors, but preallocate when you can.   "
+  "body": " Preallocating Result Vectors  Sometimes you do not yet know what values a vector should hold — you just need a vector of a certain size that you will fill in later. The functions zeros and ones create a placeholder vector of all zeros or all ones:   What does zeros(6) produce?  It is tempting to think that zeros(6) creates a vector of six zeros, however, it actually creates a 6 x 6 matrix of zeros.  Make sure to include both dimensions when using zeros and ones to create vectors.     Command ⤵︎  z = zeros(1, 6) w = ones(1, 4)    Result ⤵︎  z = [0, 0, 0, 0, 0, 0] w = [1, 1, 1, 1]    The functions zeros and ones are designed to build matrices, that is why there are two input values: the number of rows and the number of columns. Since we are working with row vectors, the first argument is always 1 . A column vector would be zeros(6, 1) .  In the previous subsection, every result vector was created with zeros before the loop started. This step is called preallocation — setting aside a vector of the right size up front, so the loop can fill it in without changing its size at each step. Preallocation is a habit worth forming early, and this subsection explains why.  You already know an alternative: growing a vector one element at a time using v(end + 1) = ... . The Fahrenheit-to-Celsius example could have been written that way instead:    Preallocated ⤵︎  fahrenheit = [32, 50, 68, 86, 104]; celsius = zeros(1, length(fahrenheit)); for i = 1:length(fahrenheit) celsius(i) = (fahrenheit(i) - 32) * 5\/9; end    Grown one at a time ⤵︎  fahrenheit = [32, 50, 68, 86, 104]; celsius = []; for i = 1:length(fahrenheit) celsius(end + 1) = (fahrenheit(i) - 32) * 5\/9; end    Both versions produce the same celsius vector. So why prefer the preallocated version?  The reason is what happens behind the scenes. When you grow a vector by writing celsius(end + 1) = ... , MATLAB has to find a new spot in memory that is one element larger than the current vector, copy all of the existing values into the new spot, and then add the new value at the end. For a five-element vector, this is invisible. For a vector with thousands or millions of elements, the copying adds up — every single iteration of the loop is doing more and more work as the vector grows.  Preallocating with zeros avoids this entirely. MATLAB sets aside the full block of memory once, before the loop starts, and the loop just writes into slots that are already there. No copying, no resizing, no extra work per iteration.   A general programming habit  This is not a MATLAB quirk. The same advice applies in NumPy, Julia, C++, Java, and most other languages: if you know how big a collection needs to be, create it at full size up front rather than growing it incrementally. The vocabulary is the same across languages, too — you will hear about preallocating or reserving capacity regardless of which language you find yourself in.   Of course, preallocation is only possible when you know the final size of the result vector before the loop starts. In the Fahrenheit example, the answer is obvious: the output vector needs one element for each input element, so zeros(1, length(fahrenheit)) is exactly the right size. Most loops that build a result vector follow this pattern, and preallocation is straightforward.  When the final size genuinely is not known ahead of time — for example, when the loop is searching for matches and you do not know how many it will find — growing the vector with end + 1 is still the right tool. The advice is not never grow vectors, but preallocate when you can.   "
 },
 {
-  "id": "subsec-preallocation-2",
+  "id": "subsec-preallocation-6",
   "level": "2",
-  "url": "subsec-preallocation.html#subsec-preallocation-2",
+  "url": "subsec-preallocation.html#subsec-preallocation-6",
   "type": "Paragraph (with a defined term)",
   "number": "",
   "title": "",

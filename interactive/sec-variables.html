@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="section" id="sec-variables">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-variables"><h2 class="heading hide-type">
 <span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Variables</span>
 </h2>
 <div class="para" id="sec-variables-2">A <dfn class="terminology">variable</dfn> in MATLAB is a named location in memory that stores a value. Variables allow you to save data so that it can be reused, modified, and combined with other data as a program runs. Every calculation you perform in the <a href="sec-cmdwin.html" class="internal" title="Section 1.3: Command Window">Command Window</a> produces values, and variables allow you to store those values for later use.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -554,9 +551,7 @@ true);
 </ul>
 <div class="autopermalink" data-description="Paragraph"><a href="#assemblage-variables-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Assemblage: Variable Assignment in MATLAB"><a href="#assemblage-variables" title="Copy heading and permalink for Assemblage: Variable Assignment in MATLAB" aria-label="Copy heading and permalink for Assemblage: Variable Assignment in MATLAB">🔗</a></div>
-</article>
-<figure class="table table-like" id="matlab-keywords"><figcaption><span class="type">Table</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>MATLAB keywords listed from <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code><div class="autopermalink" data-description="Table 1.12: MATLAB keywords listed from iskeyword"><a href="#matlab-keywords" title="Copy heading and permalink for Table 1.12: MATLAB keywords listed from iskeyword" aria-label="Copy heading and permalink for Table 1.12: MATLAB keywords listed from iskeyword">🔗</a></div></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<div class="autopermalink" data-description="Assemblage: Variable Assignment in MATLAB"><a href="#assemblage-variables" title="Copy heading and permalink for Assemblage: Variable Assignment in MATLAB" aria-label="Copy heading and permalink for Assemblage: Variable Assignment in MATLAB">🔗</a></div></article><figure class="table table-like" id="matlab-keywords"><figcaption><span class="type">Table</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>MATLAB keywords listed from <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code><div class="autopermalink" data-description="Table 1.12: MATLAB keywords listed from iskeyword"><a href="#matlab-keywords" title="Copy heading and permalink for Table 1.12: MATLAB keywords listed from iskeyword" aria-label="Copy heading and permalink for Table 1.12: MATLAB keywords listed from iskeyword">🔗</a></div></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">function</code></td>
 <td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">if</code></td>
@@ -585,14 +580,10 @@ true);
 <td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">spmd</code></td>
 <td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore language-matlab">global</code></td>
 </tr>
-</table></div>
-</figure>
-<details id="vars-chkpt-4" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h2 class="heading">
+</table></div></figure><details id="vars-chkpt-4" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h2 class="heading">
 <span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
-</h2></summary>
-<article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone clickablearea_section"><div data-component="clickablearea" data-question_label="" style="visibility: hidden;" id="rs-vars-chkpt-4">
-<span data-question="">
-<div class="para" id="vars-chkpt-4-1-1">Select all the <em class="emphasis">valid</em> variable names.<div class="autopermalink" data-description="Paragraph"><a href="#vars-chkpt-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</h2></summary><article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone clickablearea_section"><div data-component="clickablearea" data-question_label="" style="visibility: hidden;" id="rs-vars-chkpt-4">
+<span data-question=""><div class="para" id="vars-chkpt-4-1-1">Select all the <em class="emphasis">valid</em> variable names.<div class="autopermalink" data-description="Paragraph"><a href="#vars-chkpt-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div></span><span data-feedback=""></span><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="l m b0 r0 l0 t0 lines"><span data-correct=""><code class="code-inline tex2jax_ignore language-matlab">x6</code></span></td>
@@ -619,128 +610,71 @@ true);
 <td class="l m b0 r0 l0 t0 lines"></td>
 <td class="l m b0 r0 l0 t0 lines"><span data-incorrect=""><code class="code-inline tex2jax_ignore language-matlab">end</code></span></td>
 </tr>
-<tr>
-<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\)</span></td>
-</tr>
+<tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\)</span></td></tr>
 </table></div>
 </div></div></div>
-<div class="autopermalink" data-description="Checkpoint 1.13"><a href="#vars-chkpt-4" title="Copy heading and permalink for Checkpoint 1.13" aria-label="Copy heading and permalink for Checkpoint 1.13">🔗</a></div>
-</article></details>
-<div class="para" id="sec-variables-7">Ending a command with a semicolon suppresses output in the Command Window, but still creates the variable. This keeps intermediate calculations from cluttering your screen.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Checkpoint 1.13"><a href="#vars-chkpt-4" title="Copy heading and permalink for Checkpoint 1.13" aria-label="Copy heading and permalink for Checkpoint 1.13">🔗</a></div></article></details><div class="para" id="sec-variables-7">Ending a command with a semicolon suppresses output in the Command Window, but still creates the variable. This keeps intermediate calculations from cluttering your screen.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <details id="vars-struct-ckpts" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h2 class="heading">
 <span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Understanding Variables.</span>
-</h2></summary>
-<article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-vars-struct-ckpts">
-<div data-component="tab" data-tabname="(a)">
-<article class="task exercise-like" id="vars-struct-ckpt-1"><h3 class="heading"><span class="codenumber">(a)</span></h3>
+</h2></summary><article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-vars-struct-ckpts">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="vars-struct-ckpt-1"><h3 class="heading"><span class="codenumber">(a)</span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-vars-struct-ckpt-1">
 <div class="para" id="vars-struct-ckpt-1-1-1">In MATLAB, the symbol <code class="code-inline tex2jax_ignore">=</code> means the same thing as in a math equation.<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-vars-struct-ckpt-1_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-1_opt_t">
-<div class="para" id="vars-struct-ckpt-1-2-1">In MATLAB, <code class="code-inline tex2jax_ignore">=</code> is the <em class="emphasis">assignment operator</em>. It instructs MATLAB to evaluate the right-hand side and store the result under the left-hand name. It does not represent a mathematical equality.</div>
-</li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-1_opt_t"><div class="para" id="vars-struct-ckpt-1-2-1">In MATLAB, <code class="code-inline tex2jax_ignore">=</code> is the <em class="emphasis">assignment operator</em>. It instructs MATLAB to evaluate the right-hand side and store the result under the left-hand name. It does not represent a mathematical equality.</div></li>
 <li data-component="answer" id="rs-vars-struct-ckpt-1_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-1_opt_f">
-<div class="para" id="vars-struct-ckpt-1-2-1">In MATLAB, <code class="code-inline tex2jax_ignore">=</code> is the <em class="emphasis">assignment operator</em>. It instructs MATLAB to evaluate the right-hand side and store the result under the left-hand name. It does not represent a mathematical equality.</div>
-</li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-1_opt_f"><div class="para" id="vars-struct-ckpt-1-2-1">In MATLAB, <code class="code-inline tex2jax_ignore">=</code> is the <em class="emphasis">assignment operator</em>. It instructs MATLAB to evaluate the right-hand side and store the result under the left-hand name. It does not represent a mathematical equality.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.14.a"><a href="#vars-struct-ckpt-1" title="Copy heading and permalink for Task 1.14.a" aria-label="Copy heading and permalink for Task 1.14.a">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(b)">
-<article class="task exercise-like" id="vars-struct-ckpt-2"><h3 class="heading"><span class="codenumber">(b)</span></h3>
+<div class="autopermalink" data-description="Task 1.14.a"><a href="#vars-struct-ckpt-1" title="Copy heading and permalink for Task 1.14.a" aria-label="Copy heading and permalink for Task 1.14.a">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="vars-struct-ckpt-2"><h3 class="heading"><span class="codenumber">(b)</span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="vars-struct-ckpt-2-1-1">What happens when you end a MATLAB assignment statement with a semicolon?<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="vars-struct-ckpt-2-1-1">What happens when you end a MATLAB assignment statement with a semicolon?<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-struct-ckpt-2" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_a">
-<div class="para" id="vars-struct-ckpt-2-2-1-1-1">The variable is not created in the workspace.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_a">
-<div class="para" id="vars-struct-ckpt-2-2-1-2-1">The variable is still created; the semicolon only affects display.</div>
-</li>
-<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_b" data-correct="">
-<div class="para" id="vars-struct-ckpt-2-2-2-1-1">The variable is created, but its value is not printed in the Command Window.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_b">
-<div class="para" id="vars-struct-ckpt-2-2-2-2-1">Correct! The semicolon suppresses Command Window output while the variable is still stored.</div>
-</li>
-<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_c">
-<div class="para" id="vars-struct-ckpt-2-2-3-1-1">The variable is created with an empty value.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_c">
-<div class="para" id="vars-struct-ckpt-2-2-3-2-1">The expression is fully evaluated; the semicolon only suppresses display.</div>
-</li>
-<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_d">
-<div class="para" id="vars-struct-ckpt-2-2-4-1-1">The assignment applies only to the current session and is not saved.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_d">
-<div class="para" id="vars-struct-ckpt-2-2-4-2-1">Variables persist in the workspace until cleared or MATLAB is closed, regardless of semicolons.</div>
-</li>
+<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_a"><div class="para" id="vars-struct-ckpt-2-2-1-1-1">The variable is not created in the workspace.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_a"><div class="para" id="vars-struct-ckpt-2-2-1-2-1">The variable is still created; the semicolon only affects display.</div></li>
+<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_b" data-correct=""><div class="para" id="vars-struct-ckpt-2-2-2-1-1">The variable is created, but its value is not printed in the Command Window.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_b"><div class="para" id="vars-struct-ckpt-2-2-2-2-1">Correct! The semicolon suppresses Command Window output while the variable is still stored.</div></li>
+<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_c"><div class="para" id="vars-struct-ckpt-2-2-3-1-1">The variable is created with an empty value.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_c"><div class="para" id="vars-struct-ckpt-2-2-3-2-1">The expression is fully evaluated; the semicolon only suppresses display.</div></li>
+<li data-component="answer" id="rs-vars-struct-ckpt-2_opt_d"><div class="para" id="vars-struct-ckpt-2-2-4-1-1">The assignment applies only to the current session and is not saved.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-2_opt_d"><div class="para" id="vars-struct-ckpt-2-2-4-2-1">Variables persist in the workspace until cleared or MATLAB is closed, regardless of semicolons.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.14.b"><a href="#vars-struct-ckpt-2" title="Copy heading and permalink for Task 1.14.b" aria-label="Copy heading and permalink for Task 1.14.b">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(c)">
-<article class="task exercise-like" id="vars-struct-ckpt-3"><h3 class="heading"><span class="codenumber">(c)</span></h3>
+<div class="autopermalink" data-description="Task 1.14.b"><a href="#vars-struct-ckpt-2" title="Copy heading and permalink for Task 1.14.b" aria-label="Copy heading and permalink for Task 1.14.b">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="vars-struct-ckpt-3"><h3 class="heading"><span class="codenumber">(c)</span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
 <div class="exercise-statement">
 <div class="para" id="vars-struct-ckpt-3-1-1">After running<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">area = 0.5 * base * height;
-</code></pre></div> 
-<div class="para" id="vars-struct-ckpt-3-1-3">you reassign <code class="code-inline tex2jax_ignore language-matlab">base</code> with:<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-3-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div> <div class="para" id="vars-struct-ckpt-3-1-3">you reassign <code class="code-inline tex2jax_ignore language-matlab">base</code> with:<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-3-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">base = 10;
-</code></pre></div> 
-<div class="para" id="vars-struct-ckpt-3-1-5">What is the new value of <code class="code-inline tex2jax_ignore language-matlab">area</code>?<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-3-1-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div> <div class="para" id="vars-struct-ckpt-3-1-5">What is the new value of <code class="code-inline tex2jax_ignore language-matlab">area</code>?<div class="autopermalink" data-description="Paragraph"><a href="#vars-struct-ckpt-3-1-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-struct-ckpt-3" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_a" data-correct="">
-<div class="para" id="vars-struct-ckpt-3-2-1-1-1">It stays the same — MATLAB does not recompute <code class="code-inline tex2jax_ignore language-matlab">area</code> automatically.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_a">
-<div class="para" id="vars-struct-ckpt-3-2-1-2-1">Correct! MATLAB stored the numeric result, not the formula. Changing <code class="code-inline tex2jax_ignore language-matlab">base</code> has no effect on <code class="code-inline tex2jax_ignore language-matlab">area</code>.</div>
-</li>
-<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_b">
-<div class="para" id="vars-struct-ckpt-3-2-2-1-1">It is updated automatically because <code class="code-inline tex2jax_ignore language-matlab">base</code> changed.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_b">
-<div class="para" id="vars-struct-ckpt-3-2-2-2-1">MATLAB stores values, not formulas. Reassigning <code class="code-inline tex2jax_ignore language-matlab">base</code> does not trigger a recomputation of <code class="code-inline tex2jax_ignore language-matlab">area</code>.</div>
-</li>
-<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_c">
-<div class="para" id="vars-struct-ckpt-3-2-3-1-1">MATLAB throws an error because <code class="code-inline tex2jax_ignore language-matlab">base</code> was already used.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_c">
-<div class="para" id="vars-struct-ckpt-3-2-3-2-1">Variables can be freely reassigned. No error occurs.</div>
-</li>
-<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_d">
-<div class="para" id="vars-struct-ckpt-3-2-4-1-1">The value of <code class="code-inline tex2jax_ignore language-matlab">area</code> becomes undefined.</div>
-</li>
-<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_d">
-<div class="para" id="vars-struct-ckpt-3-2-4-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">area</code> retains the value computed from the original <code class="code-inline tex2jax_ignore language-matlab">base</code> and <code class="code-inline tex2jax_ignore language-matlab">height</code>.</div>
-</li>
+<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_a" data-correct=""><div class="para" id="vars-struct-ckpt-3-2-1-1-1">It stays the same — MATLAB does not recompute <code class="code-inline tex2jax_ignore language-matlab">area</code> automatically.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_a"><div class="para" id="vars-struct-ckpt-3-2-1-2-1">Correct! MATLAB stored the numeric result, not the formula. Changing <code class="code-inline tex2jax_ignore language-matlab">base</code> has no effect on <code class="code-inline tex2jax_ignore language-matlab">area</code>.</div></li>
+<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_b"><div class="para" id="vars-struct-ckpt-3-2-2-1-1">It is updated automatically because <code class="code-inline tex2jax_ignore language-matlab">base</code> changed.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_b"><div class="para" id="vars-struct-ckpt-3-2-2-2-1">MATLAB stores values, not formulas. Reassigning <code class="code-inline tex2jax_ignore language-matlab">base</code> does not trigger a recomputation of <code class="code-inline tex2jax_ignore language-matlab">area</code>.</div></li>
+<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_c"><div class="para" id="vars-struct-ckpt-3-2-3-1-1">MATLAB throws an error because <code class="code-inline tex2jax_ignore language-matlab">base</code> was already used.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_c"><div class="para" id="vars-struct-ckpt-3-2-3-2-1">Variables can be freely reassigned. No error occurs.</div></li>
+<li data-component="answer" id="rs-vars-struct-ckpt-3_opt_d"><div class="para" id="vars-struct-ckpt-3-2-4-1-1">The value of <code class="code-inline tex2jax_ignore language-matlab">area</code> becomes undefined.</div></li>
+<li data-component="feedback" id="rs-vars-struct-ckpt-3_opt_d"><div class="para" id="vars-struct-ckpt-3-2-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">area</code> retains the value computed from the original <code class="code-inline tex2jax_ignore language-matlab">base</code> and <code class="code-inline tex2jax_ignore language-matlab">height</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.14.c"><a href="#vars-struct-ckpt-3" title="Copy heading and permalink for Task 1.14.c" aria-label="Copy heading and permalink for Task 1.14.c">🔗</a></div>
-</article>
-</div>
+<div class="autopermalink" data-description="Task 1.14.c"><a href="#vars-struct-ckpt-3" title="Copy heading and permalink for Task 1.14.c" aria-label="Copy heading and permalink for Task 1.14.c">🔗</a></div></article></div>
 </div></div></div>
-<div class="autopermalink" data-description="Checkpoint 1.14: Understanding Variables"><a href="#vars-struct-ckpts" title="Copy heading and permalink for Checkpoint 1.14: Understanding Variables" aria-label="Copy heading and permalink for Checkpoint 1.14: Understanding Variables">🔗</a></div>
-</article></details>
-<article class="example example-like" id="example-variables-basic-assignment"><h2 class="heading">
+<div class="autopermalink" data-description="Checkpoint 1.14: Understanding Variables"><a href="#vars-struct-ckpts" title="Copy heading and permalink for Checkpoint 1.14: Understanding Variables" aria-label="Copy heading and permalink for Checkpoint 1.14: Understanding Variables">🔗</a></div></article></details><article class="example example-like" id="example-variables-basic-assignment"><h2 class="heading">
 <span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Basic Variable Assignment.</span>
 </h2>
 <div class="para" id="example-variables-basic-assignment-2-1">Define the variables <code class="code-inline tex2jax_ignore language-matlab">a</code> and <code class="code-inline tex2jax_ignore language-matlab">b</code> with values <code class="code-inline tex2jax_ignore language-matlab">1</code> and <code class="code-inline tex2jax_ignore language-matlab">7.8</code>, and suppress the output of <code class="code-inline tex2jax_ignore language-matlab">b</code>.<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-basic-assignment-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">a = 1
 b = 7.8;
-</code></pre></div> 
-<div class="para logical" id="example-variables-basic-assignment-2-3">
+</code></pre></div> <div class="para logical" id="example-variables-basic-assignment-2-3">
 <div class="para">After running these commands:</div>
 <ul class="square" id="example-variables-basic-assignment-2-3-1">
 <li id="example-variables-basic-assignment-2-3-1-1">
@@ -754,9 +688,7 @@ b = 7.8;
 </ul>
 <div class="autopermalink" data-description="Paragraph"><a href="#example-variables-basic-assignment-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="🌌 Example 1.15: Basic Variable Assignment"><a href="#example-variables-basic-assignment" title="Copy heading and permalink for 🌌 Example 1.15: Basic Variable Assignment" aria-label="Copy heading and permalink for 🌌 Example 1.15: Basic Variable Assignment">🔗</a></div>
-</article>
-<div class="para" id="sec-variables-10">Variables are typically used to build expressions that depend on previously defined values. This lets you update one input and quickly recompute the output.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="🌌 Example 1.15: Basic Variable Assignment"><a href="#example-variables-basic-assignment" title="Copy heading and permalink for 🌌 Example 1.15: Basic Variable Assignment" aria-label="Copy heading and permalink for 🌌 Example 1.15: Basic Variable Assignment">🔗</a></div></article><div class="para" id="sec-variables-10">Variables are typically used to build expressions that depend on previously defined values. This lets you update one input and quickly recompute the output.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="example example-like" id="example-variables-multiple"><h2 class="heading">
 <span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Using Multiple Variables in a Computation.</span>
@@ -765,66 +697,42 @@ b = 7.8;
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">base   = 4;
 height = 10;
 area   = 0.5 * base * height
-</code></pre></div> 
-<div class="para" id="example-variables-multiple-2-3">Running these commands displays <code class="code-inline tex2jax_ignore language-matlab">area = 20</code>.<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-multiple-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> 
-<div class="para" id="example-variables-multiple-2-4">Variables can be reassigned at any time. When this happens, the previous value is overwritten. For example, running the command<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-multiple-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div> <div class="para" id="example-variables-multiple-2-3">Running these commands displays <code class="code-inline tex2jax_ignore language-matlab">area = 20</code>.<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-multiple-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="example-variables-multiple-2-4">Variables can be reassigned at any time. When this happens, the previous value is overwritten. For example, running the command<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-multiple-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">base = height;
-</code></pre></div> 
-<div class="para" id="example-variables-multiple-2-6">assigns <code class="code-inline tex2jax_ignore language-matlab">base</code> to the value of <code class="code-inline tex2jax_ignore language-matlab">height</code> (10). The values of <code class="code-inline tex2jax_ignore language-matlab">height</code> and <code class="code-inline tex2jax_ignore language-matlab">area</code> are unchanged.<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-multiple-2-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div> <div class="para" id="example-variables-multiple-2-6">assigns <code class="code-inline tex2jax_ignore language-matlab">base</code> to the value of <code class="code-inline tex2jax_ignore language-matlab">height</code> (10). The values of <code class="code-inline tex2jax_ignore language-matlab">height</code> and <code class="code-inline tex2jax_ignore language-matlab">area</code> are unchanged.<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-multiple-2-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="🌌 Example 1.16: Using Multiple Variables in a Computation"><a href="#example-variables-multiple" title="Copy heading and permalink for 🌌 Example 1.16: Using Multiple Variables in a Computation" aria-label="Copy heading and permalink for 🌌 Example 1.16: Using Multiple Variables in a Computation">🔗</a></div>
-</article>
-<details id="sec-variables-12" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h2 class="heading">
+<div class="autopermalink" data-description="🌌 Example 1.16: Using Multiple Variables in a Computation"><a href="#example-variables-multiple" title="Copy heading and permalink for 🌌 Example 1.16: Using Multiple Variables in a Computation" aria-label="Copy heading and permalink for 🌌 Example 1.16: Using Multiple Variables in a Computation">🔗</a></div></article><details id="sec-variables-12" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h2 class="heading">
 <span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
-</h2></summary>
-<article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff">
-<div data-component="tab" data-tabname="(a)">
-<article class="task exercise-like" id="vars-chkpt-2"><h3 class="heading"><span class="codenumber">(a)</span></h3>
+</h2></summary><article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="vars-chkpt-2"><h3 class="heading"><span class="codenumber">(a)</span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="vars-chkpt-2-1-1">After computing a variable using other variables, why does changing one of those original variables not automatically update the result?<div class="autopermalink" data-description="Paragraph"><a href="#vars-chkpt-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="vars-chkpt-2-1-1">After computing a variable using other variables, why does changing one of those original variables not automatically update the result?<div class="autopermalink" data-description="Paragraph"><a href="#vars-chkpt-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-chkpt-2" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-chkpt-2_opt_a" data-correct="">
-<div class="para" id="vars-chkpt-2-2-1-1-1">MATLAB stores the computed value, not the formula used to compute it.</div>
-</li>
+<li data-component="answer" id="rs-vars-chkpt-2_opt_a" data-correct=""><div class="para" id="vars-chkpt-2-2-1-1-1">MATLAB stores the computed value, not the formula used to compute it.</div></li>
 <li data-component="feedback" id="rs-vars-chkpt-2_opt_a">
-<li data-component="answer" id="rs-vars-chkpt-2_opt_b">
-<div class="para" id="vars-chkpt-2-2-2-1-1">MATLAB only updates variables when semicolons are omitted.</div>
-</li>
+<li data-component="answer" id="rs-vars-chkpt-2_opt_b"><div class="para" id="vars-chkpt-2-2-2-1-1">MATLAB only updates variables when semicolons are omitted.</div></li>
 <li data-component="feedback" id="rs-vars-chkpt-2_opt_b">
-<li data-component="answer" id="rs-vars-chkpt-2_opt_c">
-<div class="para" id="vars-chkpt-2-2-3-1-1">MATLAB prevents dependent variables from changing.</div>
-</li>
+<li data-component="answer" id="rs-vars-chkpt-2_opt_c"><div class="para" id="vars-chkpt-2-2-3-1-1">MATLAB prevents dependent variables from changing.</div></li>
 <li data-component="feedback" id="rs-vars-chkpt-2_opt_c">
-<li data-component="answer" id="rs-vars-chkpt-2_opt_d">
-<div class="para" id="vars-chkpt-2-2-4-1-1">MATLAB assumes variables represent algebraic equations.</div>
-</li>
+<li data-component="answer" id="rs-vars-chkpt-2_opt_d"><div class="para" id="vars-chkpt-2-2-4-1-1">MATLAB assumes variables represent algebraic equations.</div></li>
 <li data-component="feedback" id="rs-vars-chkpt-2_opt_d">
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.17.a"><a href="#vars-chkpt-2" title="Copy heading and permalink for Task 1.17.a" aria-label="Copy heading and permalink for Task 1.17.a">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(b)">
-<article class="task exercise-like" id="vars-chkpt-3"><h3 class="heading"><span class="codenumber">(b)</span></h3>
+<div class="autopermalink" data-description="Task 1.17.a"><a href="#vars-chkpt-2" title="Copy heading and permalink for Task 1.17.a" aria-label="Copy heading and permalink for Task 1.17.a">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="vars-chkpt-3"><h3 class="heading"><span class="codenumber">(b)</span></h3>
 <div class="ptx-runestone-container"><div class="runestone">
 <div data-component="fillintheblank" class="fillintheblank" style="visibility: hidden;" id="rs-vars-chkpt-3"><script type="application/json">{
-"problemHtml": "\n<div class=\"para\" id=\"vars-chkpt-3-1-1\">Suppose you run the following commands in MATLAB:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"code-box\"><pre class=\"program clipboardable\"><code class=\"language-matlab\">base = 4;\nheight = 10;\narea = 0.5 * base * height;\n<\/code><\/pre><\/div>\n<div class=\"para\" id=\"vars-chkpt-3-1-3\">Next, you run the commands:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-3\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"code-box\"><pre class=\"program clipboardable\"><code class=\"language-matlab\">height = base;\nheight = 6;\n<\/code><\/pre><\/div>\n<div class=\"para\" id=\"vars-chkpt-3-1-5\">Give the resulting value of each variable:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-5\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>\n<div class=\"para logical\" id=\"vars-chkpt-3-1-6\">\n<ul class=\"disc\" id=\"vars-chkpt-3-1-6-1\">\n<li id=\"vars-chkpt-3-1-6-1-1\"><div class=\"para\" id=\"p-derived-vars-chkpt-3-1-6-1-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">base = <\/code> <input type=\"number\" id=\"sec-variables-12-blank1\"\/><\/div><div class=\"autopermalink\" data-description=\"Item\"><a href=\"#vars-chkpt-3-1-6-1-1\" title=\"Copy heading and permalink for Item\" aria-label=\"Copy heading and permalink for Item\">🔗<\/a><\/div><\/li>\n<li id=\"vars-chkpt-3-1-6-1-2\"><div class=\"para\" id=\"p-derived-vars-chkpt-3-1-6-1-2\"><code class=\"code-inline tex2jax_ignore language-matlab\">height = <\/code> <input type=\"number\" id=\"sec-variables-12-blank1\"\/><\/div><div class=\"autopermalink\" data-description=\"Item\"><a href=\"#vars-chkpt-3-1-6-1-2\" title=\"Copy heading and permalink for Item\" aria-label=\"Copy heading and permalink for Item\">🔗<\/a><\/div><\/li>\n<li id=\"vars-chkpt-3-1-6-1-3\"><div class=\"para\" id=\"p-derived-vars-chkpt-3-1-6-1-3\"><code class=\"code-inline tex2jax_ignore language-matlab\">area = <\/code> <input type=\"number\" id=\"sec-variables-12-blank1\"\/><\/div><div class=\"autopermalink\" data-description=\"Item\"><a href=\"#vars-chkpt-3-1-6-1-3\" title=\"Copy heading and permalink for Item\" aria-label=\"Copy heading and permalink for Item\">🔗<\/a><\/div><\/li><\/ul><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-6\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"problemHtml": "<div class=\"para\" id=\"vars-chkpt-3-1-1\">Suppose you run the following commands in MATLAB:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"code-box\"><pre class=\"program clipboardable\"><code class=\"language-matlab\">base = 4;\nheight = 10;\narea = 0.5 * base * height;\n<\/code><\/pre><\/div><div class=\"para\" id=\"vars-chkpt-3-1-3\">Next, you run the commands:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-3\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"code-box\"><pre class=\"program clipboardable\"><code class=\"language-matlab\">height = base;\nheight = 6;\n<\/code><\/pre><\/div><div class=\"para\" id=\"vars-chkpt-3-1-5\">Give the resulting value of each variable:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-5\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"para logical\" id=\"vars-chkpt-3-1-6\"><ul class=\"disc\" id=\"vars-chkpt-3-1-6-1\"><li id=\"vars-chkpt-3-1-6-1-1\"><div class=\"para\" id=\"p-derived-vars-chkpt-3-1-6-1-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">base = <\/code> <input type=\"number\" id=\"sec-variables-12-blank1\"\/><\/div><div class=\"autopermalink\" data-description=\"Item\"><a href=\"#vars-chkpt-3-1-6-1-1\" title=\"Copy heading and permalink for Item\" aria-label=\"Copy heading and permalink for Item\">🔗<\/a><\/div><\/li><li id=\"vars-chkpt-3-1-6-1-2\"><div class=\"para\" id=\"p-derived-vars-chkpt-3-1-6-1-2\"><code class=\"code-inline tex2jax_ignore language-matlab\">height = <\/code> <input type=\"number\" id=\"sec-variables-12-blank1\"\/><\/div><div class=\"autopermalink\" data-description=\"Item\"><a href=\"#vars-chkpt-3-1-6-1-2\" title=\"Copy heading and permalink for Item\" aria-label=\"Copy heading and permalink for Item\">🔗<\/a><\/div><\/li><li id=\"vars-chkpt-3-1-6-1-3\"><div class=\"para\" id=\"p-derived-vars-chkpt-3-1-6-1-3\"><code class=\"code-inline tex2jax_ignore language-matlab\">area = <\/code> <input type=\"number\" id=\"sec-variables-12-blank1\"\/><\/div><div class=\"autopermalink\" data-description=\"Item\"><a href=\"#vars-chkpt-3-1-6-1-3\" title=\"Copy heading and permalink for Item\" aria-label=\"Copy heading and permalink for Item\">🔗<\/a><\/div><\/li><\/ul><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-chkpt-3-1-6\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
 "solutionHtml": "",
 "blankNames": {"blank1": 0, "blank1": 1, "blank1": 2},
-"feedbackArray": [[{"number": [4,4], "feedback": "Correct!"}, {"number": [4,4], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"vars-chkpt-3-2-1-2-2-1\">Incorrect<\/div>"}, {"feedback": "Incorrect."}], [{"number": [6,6], "feedback": "Correct!"}, {"number": [6,6], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"vars-chkpt-3-2-2-2-2-1\">Incorrect<\/div>"}, {"feedback": "Incorrect."}], [{"number": [20,20], "feedback": "Correct!"}, {"number": [20,20], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"vars-chkpt-3-2-3-2-2-1\">Incorrect<\/div>"}, {"feedback": "Incorrect."}]]
+"feedbackArray": [[{"number": [4,4], "feedback": "Correct!"}, {"number": [4,4], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"vars-chkpt-3-2-1-2-2-1\">Incorrect<\/div>"}, {"feedback": "Incorrect."}], [{"number": [6,6], "feedback": "Correct!"}, {"number": [6,6], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"vars-chkpt-3-2-2-2-2-1\">Incorrect<\/div>"}, {"feedback": "Incorrect."}], [{"number": [20,20], "feedback": "Correct!"}, {"number": [20,20], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"vars-chkpt-3-2-3-2-2-1\">Incorrect<\/div>"}, {"feedback": "Incorrect."}]]
 }</script></div>
 </div></div>
-<div class="autopermalink" data-description="Task 1.17.b"><a href="#vars-chkpt-3" title="Copy heading and permalink for Task 1.17.b" aria-label="Copy heading and permalink for Task 1.17.b">🔗</a></div>
-</article>
-</div>
+<div class="autopermalink" data-description="Task 1.17.b"><a href="#vars-chkpt-3" title="Copy heading and permalink for Task 1.17.b" aria-label="Copy heading and permalink for Task 1.17.b">🔗</a></div></article></div>
 </div></div></div>
-<div class="autopermalink" data-description="Checkpoint 1.17"><a href="#sec-variables-12" title="Copy heading and permalink for Checkpoint 1.17" aria-label="Copy heading and permalink for Checkpoint 1.17">🔗</a></div>
-</article></details>
-<div class="para" id="sec-variables-13">In practice, variable names should clearly describe the data they store. Descriptive names improve readability and reduce errors.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Checkpoint 1.17"><a href="#sec-variables-12" title="Copy heading and permalink for Checkpoint 1.17" aria-label="Copy heading and permalink for Checkpoint 1.17">🔗</a></div></article></details><div class="para" id="sec-variables-13">In practice, variable names should clearly describe the data they store. Descriptive names improve readability and reduce errors.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="sec-variables-14">Once you begin writing scripts, good names make your code easier to read later and share with others.<div class="autopermalink" data-description="Paragraph"><a href="#sec-variables-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -835,10 +743,8 @@ area   = 0.5 * base * height
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">pricePerGallon = 3.11;
 tankCapacity   = 15;
 fullTankCost   = pricePerGallon * tankCapacity
-</code></pre></div> 
-<div class="para" id="example-variables-naming-2-3">Each name starts with a letter, uses only letters and digits (mixed case), avoids MATLAB keywords and clearly describes the stored value. Compare this to naming the variables <code class="code-inline tex2jax_ignore language-matlab">x</code>, <code class="code-inline tex2jax_ignore language-matlab">y</code>, <code class="code-inline tex2jax_ignore language-matlab">z</code>: the descriptive version is far easier to read and debug.<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-naming-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> 
-<div class="para logical" id="example-variables-naming-2-4">
+</code></pre></div> <div class="para" id="example-variables-naming-2-3">Each name starts with a letter, uses only letters and digits (mixed case), avoids MATLAB keywords and clearly describes the stored value. Compare this to naming the variables <code class="code-inline tex2jax_ignore language-matlab">x</code>, <code class="code-inline tex2jax_ignore language-matlab">y</code>, <code class="code-inline tex2jax_ignore language-matlab">z</code>: the descriptive version is far easier to read and debug.<div class="autopermalink" data-description="Paragraph"><a href="#example-variables-naming-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="example-variables-naming-2-4">
 <div class="para">The following names are <em class="emphasis">invalid</em> and cause an error:</div>
 <ul class="square" id="example-variables-naming-2-4-2">
 <li id="example-variables-naming-2-4-2-1">
@@ -859,96 +765,51 @@ fullTankCost   = pricePerGallon * tankCapacity
 </ul>
 <div class="autopermalink" data-description="Paragraph"><a href="#example-variables-naming-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="🌌 Example 1.18: Valid and Descriptive Variable Names"><a href="#example-variables-naming" title="Copy heading and permalink for 🌌 Example 1.18: Valid and Descriptive Variable Names" aria-label="Copy heading and permalink for 🌌 Example 1.18: Valid and Descriptive Variable Names">🔗</a></div>
-</article>
-<section class="reading-questions" id="variables-reading-quiz">
-<h3 class="heading hide-type">
+<div class="autopermalink" data-description="🌌 Example 1.18: Valid and Descriptive Variable Names"><a href="#example-variables-naming" title="Copy heading and permalink for 🌌 Example 1.18: Valid and Descriptive Variable Names" aria-label="Copy heading and permalink for 🌌 Example 1.18: Valid and Descriptive Variable Names">🔗</a></div></article><section class="reading-questions" id="variables-reading-quiz"><h3 class="heading hide-type">
 <span class="type">Reading Questions</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">📖 Reading Quiz</span>
 </h3>
 <article class="exercise exercise-like" id="vars-quiz-questions"><h3 class="heading">
 <span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Variable Concepts.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-vars-quiz-questions">
-<div data-component="tab" data-tabname="(a)">
-<article class="task exercise-like" id="rq-command-window-8"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="rq-command-window-8"><h4 class="heading"><span class="codenumber">(a)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
 <div class="exercise-statement">
 <div class="para" id="rq-command-window-8-1-1">A student types the following:<div class="autopermalink" data-description="Paragraph"><a href="#rq-command-window-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">result = 8 * 3;
-</code></pre></div> 
-<div class="para" id="rq-command-window-8-1-3">What is true about this command?<div class="autopermalink" data-description="Paragraph"><a href="#rq-command-window-8-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div> <div class="para" id="rq-command-window-8-1-3">What is true about this command?<div class="autopermalink" data-description="Paragraph"><a href="#rq-command-window-8-1-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-command-window-8" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-command-window-8_opt_a" data-correct="">
-<div class="para" id="rq-command-window-8-2-1-1-1">The variable <code class="code-inline tex2jax_ignore language-matlab">result</code> is created with value 24, but nothing is displayed in the Command Window.</div>
-</li>
-<li data-component="feedback" id="rs-rq-command-window-8_opt_a">
-<div class="para" id="rq-command-window-8-2-1-2-1">Correct. The semicolon suppresses output. The variable is created and stored, but the display is silent.</div>
-</li>
-<li data-component="answer" id="rs-rq-command-window-8_opt_b">
-<div class="para" id="rq-command-window-8-2-2-1-1">The variable <code class="code-inline tex2jax_ignore language-matlab">result</code> is not created because of the semicolon.</div>
-</li>
-<li data-component="feedback" id="rs-rq-command-window-8_opt_b">
-<div class="para" id="rq-command-window-8-2-2-2-1">A semicolon does not prevent variable creation. It only suppresses the display.</div>
-</li>
-<li data-component="answer" id="rs-rq-command-window-8_opt_c">
-<div class="para" id="rq-command-window-8-2-3-1-1">The variable <code class="code-inline tex2jax_ignore language-matlab">result</code> is created and <code class="code-inline tex2jax_ignore">result = 24</code> is displayed.</div>
-</li>
-<li data-component="feedback" id="rs-rq-command-window-8_opt_c">
-<div class="para" id="rq-command-window-8-2-3-2-1">The semicolon suppresses the display. The variable is created but not shown.</div>
-</li>
-<li data-component="answer" id="rs-rq-command-window-8_opt_d">
-<div class="para" id="rq-command-window-8-2-4-1-1">MATLAB displays an error because of the missing output.</div>
-</li>
-<li data-component="feedback" id="rs-rq-command-window-8_opt_d">
-<div class="para" id="rq-command-window-8-2-4-2-1">A semicolon is valid MATLAB syntax. No error is produced.</div>
-</li>
+<li data-component="answer" id="rs-rq-command-window-8_opt_a" data-correct=""><div class="para" id="rq-command-window-8-2-1-1-1">The variable <code class="code-inline tex2jax_ignore language-matlab">result</code> is created with value 24, but nothing is displayed in the Command Window.</div></li>
+<li data-component="feedback" id="rs-rq-command-window-8_opt_a"><div class="para" id="rq-command-window-8-2-1-2-1">Correct. The semicolon suppresses output. The variable is created and stored, but the display is silent.</div></li>
+<li data-component="answer" id="rs-rq-command-window-8_opt_b"><div class="para" id="rq-command-window-8-2-2-1-1">The variable <code class="code-inline tex2jax_ignore language-matlab">result</code> is not created because of the semicolon.</div></li>
+<li data-component="feedback" id="rs-rq-command-window-8_opt_b"><div class="para" id="rq-command-window-8-2-2-2-1">A semicolon does not prevent variable creation. It only suppresses the display.</div></li>
+<li data-component="answer" id="rs-rq-command-window-8_opt_c"><div class="para" id="rq-command-window-8-2-3-1-1">The variable <code class="code-inline tex2jax_ignore language-matlab">result</code> is created and <code class="code-inline tex2jax_ignore">result = 24</code> is displayed.</div></li>
+<li data-component="feedback" id="rs-rq-command-window-8_opt_c"><div class="para" id="rq-command-window-8-2-3-2-1">The semicolon suppresses the display. The variable is created but not shown.</div></li>
+<li data-component="answer" id="rs-rq-command-window-8_opt_d"><div class="para" id="rq-command-window-8-2-4-1-1">MATLAB displays an error because of the missing output.</div></li>
+<li data-component="feedback" id="rs-rq-command-window-8_opt_d"><div class="para" id="rq-command-window-8-2-4-2-1">A semicolon is valid MATLAB syntax. No error is produced.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.a"><a href="#rq-command-window-8" title="Copy heading and permalink for Task 1.4.1.a" aria-label="Copy heading and permalink for Task 1.4.1.a">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(b)">
-<article class="task exercise-like" id="vars-rq-1"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.a"><a href="#rq-command-window-8" title="Copy heading and permalink for Task 1.4.1.a" aria-label="Copy heading and permalink for Task 1.4.1.a">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="vars-rq-1"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="vars-rq-1-1-1">Which of the following is a valid MATLAB variable name?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="vars-rq-1-1-1">Which of the following is a valid MATLAB variable name?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-rq-1" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-rq-1_opt_a">
-<div class="para" id="vars-rq-1-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">2ndValue</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-1_opt_a">
-<div class="para" id="vars-rq-1-2-1-2-1">Variable names must start with a letter, not a digit.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-1_opt_b" data-correct="">
-<div class="para" id="vars-rq-1-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">value2nd</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-1_opt_b">
-<div class="para" id="vars-rq-1-2-2-2-1">Correct! It starts with a letter and contains only letters and digits.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-1_opt_c">
-<div class="para" id="vars-rq-1-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">end</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-1_opt_c">
-<div class="para" id="vars-rq-1-2-3-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">end</code> is a reserved MATLAB keyword and cannot be used as a variable name.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-1_opt_d">
-<div class="para" id="vars-rq-1-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">my-value</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-1_opt_d">
-<div class="para" id="vars-rq-1-2-4-2-1">Hyphens are not allowed in variable names; MATLAB would interpret <code class="code-inline tex2jax_ignore language-matlab">-</code> as subtraction.</div>
-</li>
+<li data-component="answer" id="rs-vars-rq-1_opt_a"><div class="para" id="vars-rq-1-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">2ndValue</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-1_opt_a"><div class="para" id="vars-rq-1-2-1-2-1">Variable names must start with a letter, not a digit.</div></li>
+<li data-component="answer" id="rs-vars-rq-1_opt_b" data-correct=""><div class="para" id="vars-rq-1-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">value2nd</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-1_opt_b"><div class="para" id="vars-rq-1-2-2-2-1">Correct! It starts with a letter and contains only letters and digits.</div></li>
+<li data-component="answer" id="rs-vars-rq-1_opt_c"><div class="para" id="vars-rq-1-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">end</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-1_opt_c"><div class="para" id="vars-rq-1-2-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">end</code> is a reserved MATLAB keyword and cannot be used as a variable name.</div></li>
+<li data-component="answer" id="rs-vars-rq-1_opt_d"><div class="para" id="vars-rq-1-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">my-value</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-1_opt_d"><div class="para" id="vars-rq-1-2-4-2-1">Hyphens are not allowed in variable names; MATLAB would interpret <code class="code-inline tex2jax_ignore language-matlab">-</code> as subtraction.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.b"><a href="#vars-rq-1" title="Copy heading and permalink for Task 1.4.1.b" aria-label="Copy heading and permalink for Task 1.4.1.b">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(c)">
-<article class="task exercise-like" id="vars-rq-2"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.b"><a href="#vars-rq-1" title="Copy heading and permalink for Task 1.4.1.b" aria-label="Copy heading and permalink for Task 1.4.1.b">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="vars-rq-2"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
 <div class="exercise-statement">
 <div class="para" id="vars-rq-2-1-1">After running the two lines below, what is the value of <code class="code-inline tex2jax_ignore language-matlab">result</code>?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -958,263 +819,132 @@ x = 10;
 </code></pre></div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-rq-2" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-rq-2_opt_a" data-correct="">
-<div class="para" id="vars-rq-2-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">12</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-2_opt_a">
-<div class="para" id="vars-rq-2-2-1-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">result</code> was computed when <code class="code-inline tex2jax_ignore language-matlab">x = 4</code>. Changing <code class="code-inline tex2jax_ignore language-matlab">x</code> afterward has no effect.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-2_opt_b">
-<div class="para" id="vars-rq-2-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">30</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-2_opt_b">
-<div class="para" id="vars-rq-2-2-2-2-1">MATLAB does not recompute <code class="code-inline tex2jax_ignore language-matlab">result</code> when <code class="code-inline tex2jax_ignore language-matlab">x</code> changes later.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-2_opt_c">
-<div class="para" id="vars-rq-2-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">10</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-2_opt_c">
-<div class="para" id="vars-rq-2-2-3-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">result</code> stores the product <code class="code-inline tex2jax_ignore language-matlab">x * 3</code> evaluated at the time of the assignment.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-2_opt_d">
-<div class="para" id="vars-rq-2-2-4-1-1">An error occurs.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-2_opt_d">
-<div class="para" id="vars-rq-2-2-4-2-1">No error; all three lines are valid MATLAB assignments.</div>
-</li>
+<li data-component="answer" id="rs-vars-rq-2_opt_a" data-correct=""><div class="para" id="vars-rq-2-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">12</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-2_opt_a"><div class="para" id="vars-rq-2-2-1-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">result</code> was computed when <code class="code-inline tex2jax_ignore language-matlab">x = 4</code>. Changing <code class="code-inline tex2jax_ignore language-matlab">x</code> afterward has no effect.</div></li>
+<li data-component="answer" id="rs-vars-rq-2_opt_b"><div class="para" id="vars-rq-2-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">30</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-2_opt_b"><div class="para" id="vars-rq-2-2-2-2-1">MATLAB does not recompute <code class="code-inline tex2jax_ignore language-matlab">result</code> when <code class="code-inline tex2jax_ignore language-matlab">x</code> changes later.</div></li>
+<li data-component="answer" id="rs-vars-rq-2_opt_c"><div class="para" id="vars-rq-2-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">10</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-2_opt_c"><div class="para" id="vars-rq-2-2-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">result</code> stores the product <code class="code-inline tex2jax_ignore language-matlab">x * 3</code> evaluated at the time of the assignment.</div></li>
+<li data-component="answer" id="rs-vars-rq-2_opt_d"><div class="para" id="vars-rq-2-2-4-1-1">An error occurs.</div></li>
+<li data-component="feedback" id="rs-vars-rq-2_opt_d"><div class="para" id="vars-rq-2-2-4-2-1">No error; all three lines are valid MATLAB assignments.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.c"><a href="#vars-rq-2" title="Copy heading and permalink for Task 1.4.1.c" aria-label="Copy heading and permalink for Task 1.4.1.c">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(d)">
-<article class="task exercise-like" id="vars-rq-3"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.c"><a href="#vars-rq-2" title="Copy heading and permalink for Task 1.4.1.c" aria-label="Copy heading and permalink for Task 1.4.1.c">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="vars-rq-3"><h4 class="heading"><span class="codenumber">(d)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="vars-rq-3-1-1">What is the purpose of the MATLAB workspace?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="vars-rq-3-1-1">What is the purpose of the MATLAB workspace?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-rq-3" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-rq-3_opt_a" data-correct="">
-<div class="para" id="vars-rq-3-2-1-1-1">It stores all currently defined variables and their values.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-3_opt_a">
-<div class="para" id="vars-rq-3-2-1-2-1">Correct! The workspace is MATLAB’s in-memory record of all active variables.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-3_opt_b">
-<div class="para" id="vars-rq-3-2-2-1-1">It saves MATLAB scripts to disk automatically.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-3_opt_b">
-<div class="para" id="vars-rq-3-2-2-2-1">The workspace holds variables in memory; saving scripts requires explicit file operations.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-3_opt_c">
-<div class="para" id="vars-rq-3-2-3-1-1">It displays Command Window output history.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-3_opt_c">
-<div class="para" id="vars-rq-3-2-3-2-1">That is the role of the Command Window itself, not the workspace panel.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-3_opt_d">
-<div class="para" id="vars-rq-3-2-4-1-1">It manages MATLAB’s toolbox licenses.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-3_opt_d">
-<div class="para" id="vars-rq-3-2-4-2-1">License management is handled elsewhere. The workspace stores variables.</div>
-</li>
+<li data-component="answer" id="rs-vars-rq-3_opt_a" data-correct=""><div class="para" id="vars-rq-3-2-1-1-1">It stores all currently defined variables and their values.</div></li>
+<li data-component="feedback" id="rs-vars-rq-3_opt_a"><div class="para" id="vars-rq-3-2-1-2-1">Correct! The workspace is MATLAB’s in-memory record of all active variables.</div></li>
+<li data-component="answer" id="rs-vars-rq-3_opt_b"><div class="para" id="vars-rq-3-2-2-1-1">It saves MATLAB scripts to disk automatically.</div></li>
+<li data-component="feedback" id="rs-vars-rq-3_opt_b"><div class="para" id="vars-rq-3-2-2-2-1">The workspace holds variables in memory; saving scripts requires explicit file operations.</div></li>
+<li data-component="answer" id="rs-vars-rq-3_opt_c"><div class="para" id="vars-rq-3-2-3-1-1">It displays Command Window output history.</div></li>
+<li data-component="feedback" id="rs-vars-rq-3_opt_c"><div class="para" id="vars-rq-3-2-3-2-1">That is the role of the Command Window itself, not the workspace panel.</div></li>
+<li data-component="answer" id="rs-vars-rq-3_opt_d"><div class="para" id="vars-rq-3-2-4-1-1">It manages MATLAB’s toolbox licenses.</div></li>
+<li data-component="feedback" id="rs-vars-rq-3_opt_d"><div class="para" id="vars-rq-3-2-4-2-1">License management is handled elsewhere. The workspace stores variables.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.d"><a href="#vars-rq-3" title="Copy heading and permalink for Task 1.4.1.d" aria-label="Copy heading and permalink for Task 1.4.1.d">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(e)">
-<article class="task exercise-like" id="vars-rq-4"><h4 class="heading"><span class="codenumber">(e)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.d"><a href="#vars-rq-3" title="Copy heading and permalink for Task 1.4.1.d" aria-label="Copy heading and permalink for Task 1.4.1.d">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="vars-rq-4"><h4 class="heading"><span class="codenumber">(e)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="vars-rq-4-1-1">Which command lists all MATLAB reserved keywords?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="vars-rq-4-1-1">Which command lists all MATLAB reserved keywords?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-rq-4" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-rq-4_opt_a" data-correct="">
-<div class="para" id="vars-rq-4-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">iskeyword</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-4_opt_a">
-<div class="para" id="vars-rq-4-2-1-2-1">Correct! Running <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code> with no argument returns the full list of reserved keywords.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-4_opt_b">
-<div class="para" id="vars-rq-4-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">keywords</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-4_opt_b">
-<div class="para" id="vars-rq-4-2-2-2-1">This is not a standard MATLAB command. Use <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code>.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-4_opt_c">
-<div class="para" id="vars-rq-4-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">whos</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-4_opt_c">
-<div class="para" id="vars-rq-4-2-3-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">whos</code> lists workspace variables, not keywords.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-4_opt_d">
-<div class="para" id="vars-rq-4-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">help reserved</code></div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-4_opt_d">
-<div class="para" id="vars-rq-4-2-4-2-1">There is no <code class="code-inline tex2jax_ignore language-matlab">reserved</code> help topic. Use <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code>.</div>
-</li>
+<li data-component="answer" id="rs-vars-rq-4_opt_a" data-correct=""><div class="para" id="vars-rq-4-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">iskeyword</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-4_opt_a"><div class="para" id="vars-rq-4-2-1-2-1">Correct! Running <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code> with no argument returns the full list of reserved keywords.</div></li>
+<li data-component="answer" id="rs-vars-rq-4_opt_b"><div class="para" id="vars-rq-4-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">keywords</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-4_opt_b"><div class="para" id="vars-rq-4-2-2-2-1">This is not a standard MATLAB command. Use <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code>.</div></li>
+<li data-component="answer" id="rs-vars-rq-4_opt_c"><div class="para" id="vars-rq-4-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">whos</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-4_opt_c"><div class="para" id="vars-rq-4-2-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">whos</code> lists workspace variables, not keywords.</div></li>
+<li data-component="answer" id="rs-vars-rq-4_opt_d"><div class="para" id="vars-rq-4-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">help reserved</code></div></li>
+<li data-component="feedback" id="rs-vars-rq-4_opt_d"><div class="para" id="vars-rq-4-2-4-2-1">There is no <code class="code-inline tex2jax_ignore language-matlab">reserved</code> help topic. Use <code class="code-inline tex2jax_ignore language-matlab">iskeyword</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.e"><a href="#vars-rq-4" title="Copy heading and permalink for Task 1.4.1.e" aria-label="Copy heading and permalink for Task 1.4.1.e">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(f)">
-<article class="task exercise-like" id="vars-rq-5"><h4 class="heading"><span class="codenumber">(f)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.e"><a href="#vars-rq-4" title="Copy heading and permalink for Task 1.4.1.e" aria-label="Copy heading and permalink for Task 1.4.1.e">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(f)"><article class="task exercise-like" id="vars-rq-5"><h4 class="heading"><span class="codenumber">(f)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="vars-rq-5-1-1">Which of the following best describes <em class="emphasis">why</em> descriptive variable names are recommended?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="vars-rq-5-1-1">Which of the following best describes <em class="emphasis">why</em> descriptive variable names are recommended?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-rq-5" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-rq-5_opt_a" data-correct="">
-<div class="para" id="vars-rq-5-2-1-1-1">They make code easier to read, understand, and debug.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-5_opt_a">
-<div class="para" id="vars-rq-5-2-1-2-1">Correct! Names like <code class="code-inline tex2jax_ignore language-matlab">tankRadius</code> immediately convey meaning; names like <code class="code-inline tex2jax_ignore language-matlab">r</code> do not.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-5_opt_b">
-<div class="para" id="vars-rq-5-2-2-1-1">They make MATLAB execute code faster.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-5_opt_b">
-<div class="para" id="vars-rq-5-2-2-2-1">Variable name length has no effect on execution speed.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-5_opt_c">
-<div class="para" id="vars-rq-5-2-3-1-1">They prevent accidental reassignment of variables.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-5_opt_c">
-<div class="para" id="vars-rq-5-2-3-2-1">MATLAB does not restrict reassignment based on name style.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-5_opt_d">
-<div class="para" id="vars-rq-5-2-4-1-1">They allow MATLAB to auto-generate documentation.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-5_opt_d">
-<div class="para" id="vars-rq-5-2-4-2-1">MATLAB does not automatically generate documentation from variable names.</div>
-</li>
+<li data-component="answer" id="rs-vars-rq-5_opt_a" data-correct=""><div class="para" id="vars-rq-5-2-1-1-1">They make code easier to read, understand, and debug.</div></li>
+<li data-component="feedback" id="rs-vars-rq-5_opt_a"><div class="para" id="vars-rq-5-2-1-2-1">Correct! Names like <code class="code-inline tex2jax_ignore language-matlab">tankRadius</code> immediately convey meaning; names like <code class="code-inline tex2jax_ignore language-matlab">r</code> do not.</div></li>
+<li data-component="answer" id="rs-vars-rq-5_opt_b"><div class="para" id="vars-rq-5-2-2-1-1">They make MATLAB execute code faster.</div></li>
+<li data-component="feedback" id="rs-vars-rq-5_opt_b"><div class="para" id="vars-rq-5-2-2-2-1">Variable name length has no effect on execution speed.</div></li>
+<li data-component="answer" id="rs-vars-rq-5_opt_c"><div class="para" id="vars-rq-5-2-3-1-1">They prevent accidental reassignment of variables.</div></li>
+<li data-component="feedback" id="rs-vars-rq-5_opt_c"><div class="para" id="vars-rq-5-2-3-2-1">MATLAB does not restrict reassignment based on name style.</div></li>
+<li data-component="answer" id="rs-vars-rq-5_opt_d"><div class="para" id="vars-rq-5-2-4-1-1">They allow MATLAB to auto-generate documentation.</div></li>
+<li data-component="feedback" id="rs-vars-rq-5_opt_d"><div class="para" id="vars-rq-5-2-4-2-1">MATLAB does not automatically generate documentation from variable names.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.f"><a href="#vars-rq-5" title="Copy heading and permalink for Task 1.4.1.f" aria-label="Copy heading and permalink for Task 1.4.1.f">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(g)">
-<article class="task exercise-like" id="vars-rq-6"><h4 class="heading"><span class="codenumber">(g)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.f"><a href="#vars-rq-5" title="Copy heading and permalink for Task 1.4.1.f" aria-label="Copy heading and permalink for Task 1.4.1.f">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(g)"><article class="task exercise-like" id="vars-rq-6"><h4 class="heading"><span class="codenumber">(g)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="vars-rq-6-1-1">Are <code class="code-inline tex2jax_ignore language-matlab">Temperature</code> and <code class="code-inline tex2jax_ignore language-matlab">temperature</code> the same variable in MATLAB?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="vars-rq-6-1-1">Are <code class="code-inline tex2jax_ignore language-matlab">Temperature</code> and <code class="code-inline tex2jax_ignore language-matlab">temperature</code> the same variable in MATLAB?<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-vars-rq-6" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-vars-rq-6_opt_a">
-<div class="para" id="vars-rq-6-2-1-1-1">Yes, MATLAB ignores capitalization in variable names.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-6_opt_a">
-<div class="para" id="vars-rq-6-2-1-2-1">MATLAB is case-sensitive; capitalization matters.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-6_opt_b" data-correct="">
-<div class="para" id="vars-rq-6-2-2-1-1">No, MATLAB variable names are case-sensitive.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-6_opt_b">
-<div class="para" id="vars-rq-6-2-2-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">Temperature</code> and <code class="code-inline tex2jax_ignore language-matlab">temperature</code> are two distinct variables.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-6_opt_c">
-<div class="para" id="vars-rq-6-2-3-1-1">It depends on the operating system.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-6_opt_c">
-<div class="para" id="vars-rq-6-2-3-2-1">Case sensitivity is a MATLAB language rule, independent of the OS.</div>
-</li>
-<li data-component="answer" id="rs-vars-rq-6_opt_d">
-<div class="para" id="vars-rq-6-2-4-1-1">They are the same if they hold the same value.</div>
-</li>
-<li data-component="feedback" id="rs-vars-rq-6_opt_d">
-<div class="para" id="vars-rq-6-2-4-2-1">Names are compared character by character; values are irrelevant to naming.</div>
-</li>
+<li data-component="answer" id="rs-vars-rq-6_opt_a"><div class="para" id="vars-rq-6-2-1-1-1">Yes, MATLAB ignores capitalization in variable names.</div></li>
+<li data-component="feedback" id="rs-vars-rq-6_opt_a"><div class="para" id="vars-rq-6-2-1-2-1">MATLAB is case-sensitive; capitalization matters.</div></li>
+<li data-component="answer" id="rs-vars-rq-6_opt_b" data-correct=""><div class="para" id="vars-rq-6-2-2-1-1">No, MATLAB variable names are case-sensitive.</div></li>
+<li data-component="feedback" id="rs-vars-rq-6_opt_b"><div class="para" id="vars-rq-6-2-2-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">Temperature</code> and <code class="code-inline tex2jax_ignore language-matlab">temperature</code> are two distinct variables.</div></li>
+<li data-component="answer" id="rs-vars-rq-6_opt_c"><div class="para" id="vars-rq-6-2-3-1-1">It depends on the operating system.</div></li>
+<li data-component="feedback" id="rs-vars-rq-6_opt_c"><div class="para" id="vars-rq-6-2-3-2-1">Case sensitivity is a MATLAB language rule, independent of the OS.</div></li>
+<li data-component="answer" id="rs-vars-rq-6_opt_d"><div class="para" id="vars-rq-6-2-4-1-1">They are the same if they hold the same value.</div></li>
+<li data-component="feedback" id="rs-vars-rq-6_opt_d"><div class="para" id="vars-rq-6-2-4-2-1">Names are compared character by character; values are irrelevant to naming.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.g"><a href="#vars-rq-6" title="Copy heading and permalink for Task 1.4.1.g" aria-label="Copy heading and permalink for Task 1.4.1.g">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(h)">
-<article class="task exercise-like" id="vars-rq-7"><h4 class="heading"><span class="codenumber">(h)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.g"><a href="#vars-rq-6" title="Copy heading and permalink for Task 1.4.1.g" aria-label="Copy heading and permalink for Task 1.4.1.g">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(h)"><article class="task exercise-like" id="vars-rq-7"><h4 class="heading"><span class="codenumber">(h)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-vars-rq-7">
 <div class="para" id="vars-rq-7-1-1">A variable created with a semicolon at the end of the line still appears in the MATLAB workspace.<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-vars-rq-7_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="rs-vars-rq-7_opt_t">
-<div class="para" id="vars-rq-7-2-1">True. The semicolon only suppresses Command Window output; the variable is fully created and stored in the workspace.</div>
-</li>
+<li data-component="feedback" id="rs-vars-rq-7_opt_t"><div class="para" id="vars-rq-7-2-1">True. The semicolon only suppresses Command Window output; the variable is fully created and stored in the workspace.</div></li>
 <li data-component="answer" id="rs-vars-rq-7_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="rs-vars-rq-7_opt_f">
-<div class="para" id="vars-rq-7-2-1">True. The semicolon only suppresses Command Window output; the variable is fully created and stored in the workspace.</div>
-</li>
+<li data-component="feedback" id="rs-vars-rq-7_opt_f"><div class="para" id="vars-rq-7-2-1">True. The semicolon only suppresses Command Window output; the variable is fully created and stored in the workspace.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.4.1.h"><a href="#vars-rq-7" title="Copy heading and permalink for Task 1.4.1.h" aria-label="Copy heading and permalink for Task 1.4.1.h">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(i)">
-<article class="task exercise-like" id="vars-rq-8"><h4 class="heading"><span class="codenumber">(i)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.h"><a href="#vars-rq-7" title="Copy heading and permalink for Task 1.4.1.h" aria-label="Copy heading and permalink for Task 1.4.1.h">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(i)"><article class="task exercise-like" id="vars-rq-8"><h4 class="heading"><span class="codenumber">(i)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-vars-rq-8">
 <div class="para" id="vars-rq-8-1-1">In MATLAB, writing <code class="code-inline tex2jax_ignore language-matlab">area = base * height</code> creates a dynamic link so that <code class="code-inline tex2jax_ignore language-matlab">area</code> updates automatically whenever <code class="code-inline tex2jax_ignore language-matlab">base</code> or <code class="code-inline tex2jax_ignore language-matlab">height</code> changes.<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-vars-rq-8_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-vars-rq-8_opt_t">
-<div class="para" id="vars-rq-8-2-1">False. MATLAB evaluates the right-hand side once at the time of the assignment and stores the resulting number. No dynamic link is maintained.</div>
-</li>
+<li data-component="feedback" id="rs-vars-rq-8_opt_t"><div class="para" id="vars-rq-8-2-1">False. MATLAB evaluates the right-hand side once at the time of the assignment and stores the resulting number. No dynamic link is maintained.</div></li>
 <li data-component="answer" id="rs-vars-rq-8_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-vars-rq-8_opt_f">
-<div class="para" id="vars-rq-8-2-1">False. MATLAB evaluates the right-hand side once at the time of the assignment and stores the resulting number. No dynamic link is maintained.</div>
-</li>
+<li data-component="feedback" id="rs-vars-rq-8_opt_f"><div class="para" id="vars-rq-8-2-1">False. MATLAB evaluates the right-hand side once at the time of the assignment and stores the resulting number. No dynamic link is maintained.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.4.1.i"><a href="#vars-rq-8" title="Copy heading and permalink for Task 1.4.1.i" aria-label="Copy heading and permalink for Task 1.4.1.i">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(j)">
-<article class="task exercise-like" id="vars-rq-9"><h4 class="heading"><span class="codenumber">(j)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.i"><a href="#vars-rq-8" title="Copy heading and permalink for Task 1.4.1.i" aria-label="Copy heading and permalink for Task 1.4.1.i">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(j)"><article class="task exercise-like" id="vars-rq-9"><h4 class="heading"><span class="codenumber">(j)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-vars-rq-9">
 <div class="para" id="vars-rq-9-1-1">A variable name in MATLAB can begin with an underscore.<div class="autopermalink" data-description="Paragraph"><a href="#vars-rq-9-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-vars-rq-9_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-vars-rq-9_opt_t">
-<div class="para" id="vars-rq-9-2-1">False. MATLAB variable names must begin with a letter. An underscore is allowed within the name but not as the first character.</div>
-</li>
+<li data-component="feedback" id="rs-vars-rq-9_opt_t"><div class="para" id="vars-rq-9-2-1">False. MATLAB variable names must begin with a letter. An underscore is allowed within the name but not as the first character.</div></li>
 <li data-component="answer" id="rs-vars-rq-9_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-vars-rq-9_opt_f">
-<div class="para" id="vars-rq-9-2-1">False. MATLAB variable names must begin with a letter. An underscore is allowed within the name but not as the first character.</div>
-</li>
+<li data-component="feedback" id="rs-vars-rq-9_opt_f"><div class="para" id="vars-rq-9-2-1">False. MATLAB variable names must begin with a letter. An underscore is allowed within the name but not as the first character.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.4.1.j"><a href="#vars-rq-9" title="Copy heading and permalink for Task 1.4.1.j" aria-label="Copy heading and permalink for Task 1.4.1.j">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(k)">
-<article class="task exercise-like" id="vars-rq-10"><h4 class="heading"><span class="codenumber">(k)</span></h4>
+<div class="autopermalink" data-description="Task 1.4.1.j"><a href="#vars-rq-9" title="Copy heading and permalink for Task 1.4.1.j" aria-label="Copy heading and permalink for Task 1.4.1.j">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(k)"><article class="task exercise-like" id="vars-rq-10"><h4 class="heading"><span class="codenumber">(k)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone">
 <div data-component="fillintheblank" class="fillintheblank" style="visibility: hidden;" id="rs-vars-rq-10"><script type="application/json">{
-"problemHtml": "\n<div class=\"para\" id=\"vars-rq-10-1-1\">After running the three commands below, what value is stored in <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code>? Enter the number only.<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-rq-10-1-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"code-box\"><pre class=\"program clipboardable\"><code class=\"language-matlab\">p = 5;\nq = p + 3;\np = 2;\n<\/code><\/pre><\/div>\n<div class=\"para\" id=\"vars-rq-10-1-3\"><input type=\"number\" id=\"vars-quiz-questions-blank1\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-rq-10-1-3\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"problemHtml": "<div class=\"para\" id=\"vars-rq-10-1-1\">After running the three commands below, what value is stored in <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code>? Enter the number only.<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-rq-10-1-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"code-box\"><pre class=\"program clipboardable\"><code class=\"language-matlab\">p = 5;\nq = p + 3;\np = 2;\n<\/code><\/pre><\/div><div class=\"para\" id=\"vars-rq-10-1-3\"><input type=\"number\" id=\"vars-quiz-questions-blank1\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#vars-rq-10-1-3\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
 "solutionHtml": "",
 "blankNames": {"blank1": 0},
-"feedbackArray": [[{"number": [2,2], "feedback": "Correct!"}, {"number": [2,2], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"vars-rq-10-2-1-2-2-1\">Incorrect. The last assignment <code class=\"code-inline tex2jax_ignore language-matlab\">p = 2<\/code> overwrites the earlier value.<\/div>"}, {"feedback": "Incorrect."}]]
+"feedbackArray": [[{"number": [2,2], "feedback": "Correct!"}, {"number": [2,2], "feedback": "Incorrect."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"vars-rq-10-2-1-2-2-1\">Incorrect. The last assignment <code class=\"code-inline tex2jax_ignore language-matlab\">p = 2<\/code> overwrites the earlier value.<\/div>"}, {"feedback": "Incorrect."}]]
 }</script></div>
 </div></div>
-<div class="autopermalink" data-description="Task 1.4.1.k"><a href="#vars-rq-10" title="Copy heading and permalink for Task 1.4.1.k" aria-label="Copy heading and permalink for Task 1.4.1.k">🔗</a></div>
-</article>
-</div>
+<div class="autopermalink" data-description="Task 1.4.1.k"><a href="#vars-rq-10" title="Copy heading and permalink for Task 1.4.1.k" aria-label="Copy heading and permalink for Task 1.4.1.k">🔗</a></div></article></div>
 </div></div></div>
-<div class="autopermalink" data-description="Reading Question 1.4.1: Variable Concepts"><a href="#vars-quiz-questions" title="Copy heading and permalink for Reading Question 1.4.1: Variable Concepts" aria-label="Copy heading and permalink for Reading Question 1.4.1: Variable Concepts">🔗</a></div>
-</article><div class="autopermalink" data-description="Reading Questions 1.4: 📖 Reading Quiz"><a href="#variables-reading-quiz" title="Copy heading and permalink for Reading Questions 1.4: 📖 Reading Quiz" aria-label="Copy heading and permalink for Reading Questions 1.4: 📖 Reading Quiz">🔗</a></div>
-</section>
-<section class="exercises" id="variables-coding-practice">
-<h3 class="heading hide-type">
+<div class="autopermalink" data-description="Reading Question 1.4.1: Variable Concepts"><a href="#vars-quiz-questions" title="Copy heading and permalink for Reading Question 1.4.1: Variable Concepts" aria-label="Copy heading and permalink for Reading Question 1.4.1: Variable Concepts">🔗</a></div></article><div class="autopermalink" data-description="Reading Questions 1.4: 📖 Reading Quiz"><a href="#variables-reading-quiz" title="Copy heading and permalink for Reading Questions 1.4: 📖 Reading Quiz" aria-label="Copy heading and permalink for Reading Questions 1.4: 📖 Reading Quiz">🔗</a></div></section><section class="exercises" id="variables-coding-practice"><h3 class="heading hide-type">
 <span class="type">Exercises</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">🧑🏻‍💻 Coding Practice</span>
 </h3>
 <article class="exercise exercise-like" id="variables-coding-practice-2"><h3 class="heading">
 <span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Working With Variables.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff">
-<div data-component="tab" data-tabname="(a)">
-<article class="task exercise-like" id="vars-practice-1"><h4 class="heading">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="vars-practice-1"><h4 class="heading">
 <span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Assigning and Displaying Variables.</span>
 </h4>
 <div class="para logical" id="vars-practice-1-2-1">
@@ -1243,21 +973,15 @@ x = 10;
 
 %───────────────────────────%
 </script></div>
-<div class="solutions">
-<details id="vars-practice-1-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
-<div class="solution solution-like knowl__content">
+<div class="solutions"><details id="vars-practice-1-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
 <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">x = 5
 y = -2.5;
 z = x + y
 </code></pre></div>
 <div class="autopermalink" data-description="Solution 1.4.1.a.1"><a href="#vars-practice-1-3" title="Copy heading and permalink for Solution 1.4.1.a.1" aria-label="Copy heading and permalink for Solution 1.4.1.a.1">🔗</a></div>
-</div></details>
-</div>
-<div class="autopermalink" data-description="Task 1.4.1.a: Assigning and Displaying Variables"><a href="#vars-practice-1" title="Copy heading and permalink for Task 1.4.1.a: Assigning and Displaying Variables" aria-label="Copy heading and permalink for Task 1.4.1.a: Assigning and Displaying Variables">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(b)">
-<article class="task exercise-like" id="vars-practice-2"><h4 class="heading">
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.4.1.a: Assigning and Displaying Variables"><a href="#vars-practice-1" title="Copy heading and permalink for Task 1.4.1.a: Assigning and Displaying Variables" aria-label="Copy heading and permalink for Task 1.4.1.a: Assigning and Displaying Variables">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="vars-practice-2"><h4 class="heading">
 <span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Reassigning a Variable.</span>
 </h4>
 <div class="para logical" id="vars-practice-2-2-1">
@@ -1281,9 +1005,7 @@ z = x + y
 
 %───────────────────────────%
 </script></div>
-<div class="solutions">
-<details id="vars-practice-2-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
-<div class="solution solution-like knowl__content">
+<div class="solutions"><details id="vars-practice-2-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
 <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">n = 10
 n = n + 5
 n = n * 2
@@ -1291,13 +1013,9 @@ n = n * 2
 <div class="para" id="vars-practice-2-3-2">Expected output: <code class="code-inline tex2jax_ignore language-matlab">10</code>, then <code class="code-inline tex2jax_ignore language-matlab">15</code>, then <code class="code-inline tex2jax_ignore language-matlab">30</code>.<div class="autopermalink" data-description="Paragraph"><a href="#vars-practice-2-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" data-description="Solution 1.4.1.b.1"><a href="#vars-practice-2-3" title="Copy heading and permalink for Solution 1.4.1.b.1" aria-label="Copy heading and permalink for Solution 1.4.1.b.1">🔗</a></div>
-</div></details>
-</div>
-<div class="autopermalink" data-description="Task 1.4.1.b: Reassigning a Variable"><a href="#vars-practice-2" title="Copy heading and permalink for Task 1.4.1.b: Reassigning a Variable" aria-label="Copy heading and permalink for Task 1.4.1.b: Reassigning a Variable">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(c)">
-<article class="task exercise-like" id="vars-practice-3"><h4 class="heading">
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.4.1.b: Reassigning a Variable"><a href="#vars-practice-2" title="Copy heading and permalink for Task 1.4.1.b: Reassigning a Variable" aria-label="Copy heading and permalink for Task 1.4.1.b: Reassigning a Variable">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="vars-practice-3"><h4 class="heading">
 <span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Descriptive Names and Workspace.</span>
 </h4>
 <div class="para" id="vars-practice-3-2-1">A cylindrical water tank has a radius of <code class="code-inline tex2jax_ignore language-matlab">1.2</code> meters and a height of <code class="code-inline tex2jax_ignore language-matlab">3.5</code> meters. Using descriptive variable names, compute its volume <span class="process-math">\(V = \pi r^2 h\text{.}\)</span> Use <code class="code-inline tex2jax_ignore language-matlab">pi</code> for <span class="process-math">\(\pi\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#vars-practice-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -1305,21 +1023,15 @@ n = n * 2
 
 %───────────────────────────%
 </script></div>
-<div class="solutions">
-<details id="vars-practice-3-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
-<div class="solution solution-like knowl__content">
+<div class="solutions"><details id="vars-practice-3-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
 <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">radius = 1.2;
 height = 3.5;
 volume = pi * radius^2 * height
 </code></pre></div>
 <div class="autopermalink" data-description="Solution 1.4.1.c.1"><a href="#vars-practice-3-3" title="Copy heading and permalink for Solution 1.4.1.c.1" aria-label="Copy heading and permalink for Solution 1.4.1.c.1">🔗</a></div>
-</div></details>
-</div>
-<div class="autopermalink" data-description="Task 1.4.1.c: Descriptive Names and Workspace"><a href="#vars-practice-3" title="Copy heading and permalink for Task 1.4.1.c: Descriptive Names and Workspace" aria-label="Copy heading and permalink for Task 1.4.1.c: Descriptive Names and Workspace">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(d)">
-<article class="task exercise-like" id="vars-practice-4"><h4 class="heading">
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.4.1.c: Descriptive Names and Workspace"><a href="#vars-practice-3" title="Copy heading and permalink for Task 1.4.1.c: Descriptive Names and Workspace" aria-label="Copy heading and permalink for Task 1.4.1.c: Descriptive Names and Workspace">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="vars-practice-4"><h4 class="heading">
 <span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Swap Two Variables.</span>
 </h4>
 <div class="para" id="vars-practice-4-2-1">Given <code class="code-inline tex2jax_ignore language-matlab">a = 3</code> and <code class="code-inline tex2jax_ignore language-matlab">b = 7</code>, write code that swaps their values so that afterwards <code class="code-inline tex2jax_ignore language-matlab">a = 7</code> and <code class="code-inline tex2jax_ignore language-matlab">b = 3</code>. You will need a temporary variable.<div class="autopermalink" data-description="Paragraph"><a href="#vars-practice-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -1327,9 +1039,7 @@ volume = pi * radius^2 * height
 
 %───────────────────────────%
 </script></div>
-<div class="solutions">
-<details id="vars-practice-4-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
-<div class="solution solution-like knowl__content">
+<div class="solutions"><details id="vars-practice-4-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary><div class="solution solution-like knowl__content">
 <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">a = 3;
 b = 7;
 temp = a;
@@ -1339,17 +1049,10 @@ a
 b
 </code></pre></div>
 <div class="autopermalink" data-description="Solution 1.4.1.d.1"><a href="#vars-practice-4-3" title="Copy heading and permalink for Solution 1.4.1.d.1" aria-label="Copy heading and permalink for Solution 1.4.1.d.1">🔗</a></div>
-</div></details>
-</div>
-<div class="autopermalink" data-description="Task 1.4.1.d: Swap Two Variables"><a href="#vars-practice-4" title="Copy heading and permalink for Task 1.4.1.d: Swap Two Variables" aria-label="Copy heading and permalink for Task 1.4.1.d: Swap Two Variables">🔗</a></div>
-</article>
-</div>
+</div></details></div>
+<div class="autopermalink" data-description="Task 1.4.1.d: Swap Two Variables"><a href="#vars-practice-4" title="Copy heading and permalink for Task 1.4.1.d: Swap Two Variables" aria-label="Copy heading and permalink for Task 1.4.1.d: Swap Two Variables">🔗</a></div></article></div>
 </div></div></div>
-<div class="autopermalink" data-description="Exercise 1.4.1: Working With Variables"><a href="#variables-coding-practice-2" title="Copy heading and permalink for Exercise 1.4.1: Working With Variables" aria-label="Copy heading and permalink for Exercise 1.4.1: Working With Variables">🔗</a></div>
-</article><div class="autopermalink" data-description="Exercises 1.4: 🧑🏻‍💻 Coding Practice"><a href="#variables-coding-practice" title="Copy heading and permalink for Exercises 1.4: 🧑🏻‍💻 Coding Practice" aria-label="Copy heading and permalink for Exercises 1.4: 🧑🏻‍💻 Coding Practice">🔗</a></div>
-</section><div class="autopermalink" data-description="Section 1.4: Variables"><a href="#sec-variables" title="Copy heading and permalink for Section 1.4: Variables" aria-label="Copy heading and permalink for Section 1.4: Variables">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Exercise 1.4.1: Working With Variables"><a href="#variables-coding-practice-2" title="Copy heading and permalink for Exercise 1.4.1: Working With Variables" aria-label="Copy heading and permalink for Exercise 1.4.1: Working With Variables">🔗</a></div></article><div class="autopermalink" data-description="Exercises 1.4: 🧑🏻‍💻 Coding Practice"><a href="#variables-coding-practice" title="Copy heading and permalink for Exercises 1.4: 🧑🏻‍💻 Coding Practice" aria-label="Copy heading and permalink for Exercises 1.4: 🧑🏻‍💻 Coding Practice">🔗</a></div></section><div class="autopermalink" data-description="Section 1.4: Variables"><a href="#sec-variables" title="Copy heading and permalink for Section 1.4: Variables" aria-label="Copy heading and permalink for Section 1.4: Variables">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="sec-cmdwin.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="matlab-desktop-coding-exercises.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

@@ -364,9 +364,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -459,17 +458,14 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-scalar-matrix-ops">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-scalar-matrix-ops"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Scalar and Element-wise Operations</span>
 </h2>
 <div class="para" id="subsec-scalar-matrix-ops-2">Almost everything you learned about vector arithmetic in the previous chapter carries over to matrices without any changes. Operators apply to every element automatically, the dot operators do exactly what they did before, and most built-in math functions work on a whole matrix the same way they worked on a whole vector. This subsection is mostly a tour confirming that nothing surprising happens when you go from one dimension to two.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="subsec-scalar-matrix-ops-3">Combining a matrix with a scalar applies the operation to every element:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-scalar-matrix-ops-4-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -492,12 +488,10 @@ A / 2
      2.0, 2.5, 3.0]
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-scalar-matrix-ops-5">Combining two matrices of the same shape works element by element, just like it did for vectors. Addition and subtraction use the plain operators; multiplication, division, and exponentiation need the dot:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-scalar-matrix-ops-6-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -523,19 +517,13 @@ B = [10, 20;
      10, 10]
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-scalar-matrix-ops-7">The same shape-matching rule applies as before: the two matrices must have the same number of rows and the same number of columns. Trying to add a 2-by-3 matrix to a 3-by-2 matrix is an error, even though both have six elements — the shapes have to match exactly, not just the totals.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <details id="subsec-scalar-matrix-ops-8" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The dot, finally explained.</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-scalar-matrix-ops-8-2">Back in the vectors chapter, the dot in <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code> was introduced with the explanation that the plain versions <code class="code-inline tex2jax_ignore language-matlab">*</code>, <code class="code-inline tex2jax_ignore language-matlab">/</code>, and <code class="code-inline tex2jax_ignore language-matlab">^</code> are “reserved for matrix operations” — but at the time there were no matrices around to make sense of the rule. Now there are. When MATLAB sees <code class="code-inline tex2jax_ignore language-matlab">A * B</code> for two matrices, it performs <dfn class="terminology">matrix multiplication</dfn>, which is a completely different operation from element-wise multiplication and follows different rules about what shapes are allowed. The same is true of <code class="code-inline tex2jax_ignore language-matlab">A \ B</code>, which solves a system of equations, and <code class="code-inline tex2jax_ignore language-matlab">A^2</code>, which means <code class="code-inline tex2jax_ignore language-matlab">A * A</code> as matrix multiplication. These operations come from linear algebra, and you will see them in math classes if you have not already. For programming purposes, the rule from the vectors chapter is unchanged: if you want the operation to apply element by element, use the dot.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-8-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</aside></details><div class="autopermalink" data-description="Subsection: Scalar and Element-wise Operations"><a href="#subsec-scalar-matrix-ops" title="Copy heading and permalink for Subsection: Scalar and Element-wise Operations" aria-label="Copy heading and permalink for Subsection: Scalar and Element-wise Operations">🔗</a></div>
-</section>
-</div>
+</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-scalar-matrix-ops-8-2">Back in the vectors chapter, the dot in <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code> was introduced with the explanation that the plain versions <code class="code-inline tex2jax_ignore language-matlab">*</code>, <code class="code-inline tex2jax_ignore language-matlab">/</code>, and <code class="code-inline tex2jax_ignore language-matlab">^</code> are “reserved for matrix operations” — but at the time there were no matrices around to make sense of the rule. Now there are. When MATLAB sees <code class="code-inline tex2jax_ignore language-matlab">A * B</code> for two matrices, it performs <dfn class="terminology">matrix multiplication</dfn>, which is a completely different operation from element-wise multiplication and follows different rules about what shapes are allowed. The same is true of <code class="code-inline tex2jax_ignore language-matlab">A \ B</code>, which solves a system of equations, and <code class="code-inline tex2jax_ignore language-matlab">A^2</code>, which means <code class="code-inline tex2jax_ignore language-matlab">A * A</code> as matrix multiplication. These operations come from linear algebra, and you will see them in math classes if you have not already. For programming purposes, the rule from the vectors chapter is unchanged: if you want the operation to apply element by element, use the dot.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-8-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside></details><div class="autopermalink" data-description="Subsection: Scalar and Element-wise Operations"><a href="#subsec-scalar-matrix-ops" title="Copy heading and permalink for Subsection: Scalar and Element-wise Operations" aria-label="Copy heading and permalink for Subsection: Scalar and Element-wise Operations">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-broadcasting-matrix-functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

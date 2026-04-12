@@ -364,9 +364,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -459,82 +458,56 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="reading-questions" id="programming-logic-quiz">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="reading-questions" id="programming-logic-quiz"><h2 class="heading hide-type">
 <span class="type">Reading Questions</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">📖 Reading Quiz</span>
 </h2>
 <article class="exercise exercise-like" id="concepts-logical-expressions"><h3 class="heading"><span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-concepts-logical-expressions">
-<div data-component="tab" data-tabname="(a)">
-<article class="task exercise-like" id="cqs-logical-expressions-data-types"><h4 class="heading">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="cqs-logical-expressions-data-types"><h4 class="heading">
 <span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Logical Data Types.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-cqs-logical-expressions-data-types">
 <div class="para" id="cqs-logical-expressions-data-types-2-1">In MATLAB, <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">1</code> are the same.<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-data-types-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-cqs-logical-expressions-data-types_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-data-types_opt_t">
-<div class="para" id="cqs-logical-expressions-data-types-3-1">Incorrect. While <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">1</code> are represented by the same numeric value, they have different data types: <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-data-types_opt_t"><div class="para" id="cqs-logical-expressions-data-types-3-1">Incorrect. While <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">1</code> are represented by the same numeric value, they have different data types: <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
 <li data-component="answer" id="rs-cqs-logical-expressions-data-types_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-data-types_opt_f">
-<div class="para" id="cqs-logical-expressions-data-types-3-1">Incorrect. While <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">1</code> are represented by the same numeric value, they have different data types: <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-data-types_opt_f"><div class="para" id="cqs-logical-expressions-data-types-3-1">Incorrect. While <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">1</code> are represented by the same numeric value, they have different data types: <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.a: Logical Data Types"><a href="#cqs-logical-expressions-data-types" title="Copy heading and permalink for Task 1.a: Logical Data Types" aria-label="Copy heading and permalink for Task 1.a: Logical Data Types">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(b)">
-<article class="task exercise-like" id="cqs-logical-expressions-relational-not-equal"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.a: Logical Data Types"><a href="#cqs-logical-expressions-data-types" title="Copy heading and permalink for Task 1.a: Logical Data Types" aria-label="Copy heading and permalink for Task 1.a: Logical Data Types">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="cqs-logical-expressions-relational-not-equal"><h4 class="heading">
 <span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Relational Operators: Inequality.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="cqs-logical-expressions-relational-not-equal-2-1">Which of the following commands test that <code class="code-inline tex2jax_ignore language-matlab">x</code> is not equal to <code class="code-inline tex2jax_ignore language-matlab">y</code>?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-relational-not-equal-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="cqs-logical-expressions-relational-not-equal-2-1">Which of the following commands test that <code class="code-inline tex2jax_ignore language-matlab">x</code> is not equal to <code class="code-inline tex2jax_ignore language-matlab">y</code>?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-relational-not-equal-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-logical-expressions-relational-not-equal" data-multipleanswers="true">
-<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_a">
-<div class="para" id="cqs-logical-expressions-relational-not-equal-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(x = y)</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_a"><div class="para" id="cqs-logical-expressions-relational-not-equal-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(x = y)</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-relational-not-equal_opt_a">
-<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_b" data-correct="">
-<div class="para" id="cqs-logical-expressions-relational-not-equal-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(x == y)</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_b" data-correct=""><div class="para" id="cqs-logical-expressions-relational-not-equal-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(x == y)</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-relational-not-equal_opt_b">
-<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_c">
-<div class="para" id="cqs-logical-expressions-relational-not-equal-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~x == y</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_c"><div class="para" id="cqs-logical-expressions-relational-not-equal-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~x == y</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-relational-not-equal_opt_c">
-<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_d" data-correct="">
-<div class="para" id="cqs-logical-expressions-relational-not-equal-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">x ~= y</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_d" data-correct=""><div class="para" id="cqs-logical-expressions-relational-not-equal-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">x ~= y</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-relational-not-equal_opt_d">
 <li data-component="answer" id="rs-cqs-logical-expressions-relational-not-equal_opt_e"><code class="code-inline tex2jax_ignore language-matlab">x ~== y</code></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-relational-not-equal_opt_e">
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.b: Relational Operators: Inequality"><a href="#cqs-logical-expressions-relational-not-equal" title="Copy heading and permalink for Task 1.b: Relational Operators: Inequality" aria-label="Copy heading and permalink for Task 1.b: Relational Operators: Inequality">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(c)">
-<article class="task exercise-like" id="cqs-logical-expressions-translation-intro"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.b: Relational Operators: Inequality"><a href="#cqs-logical-expressions-relational-not-equal" title="Copy heading and permalink for Task 1.b: Relational Operators: Inequality" aria-label="Copy heading and permalink for Task 1.b: Relational Operators: Inequality">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="cqs-logical-expressions-translation-intro"><h4 class="heading">
 <span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Translating Relational Operators.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone">
 <div data-component="fillintheblank" class="fillintheblank" style="visibility: hidden;" id="rs-cqs-logical-expressions-translation-intro"><script type="application/json">{
-"problemHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-2-1\">Give the logical expression that is equivalent to the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-translation-intro-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>\n<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-2-2\">Is <span class=\"process-math\">\\(7\\)<\/span> greater than <span class=\"process-math\">\\(3\\text{?}\\)<\/span> ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"10\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-translation-intro-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
-"solutionHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-4-1\">The MATLAB command is <code class=\"code-inline tex2jax_ignore language-matlab\">7 &gt; 3<\/code>, which evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">1<\/code> (true).<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-translation-intro-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"problemHtml": "<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-2-1\">Give the logical expression that is equivalent to the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-translation-intro-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"para\" id=\"cqs-logical-expressions-translation-intro-2-2\">Is <span class=\"process-math\">\\(7\\)<\/span> greater than <span class=\"process-math\">\\(3\\text{?}\\)<\/span> ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"10\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-translation-intro-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"solutionHtml": "<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-4-1\">The MATLAB command is <code class=\"code-inline tex2jax_ignore language-matlab\">7 &gt; 3<\/code>, which evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">1<\/code> (true).<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-translation-intro-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
 "blankNames": {"blank1": 0},
-"feedbackArray": [[{"regex": "^\\s*(7\\s*>\\s*3|3\\s*<\\s*7)\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-3-1-2-2-1\">Incorrect. Use the <code class=\"code-inline tex2jax_ignore language-matlab\">&gt;<\/code> operator to test if one value is greater than another.<\/div>"}, {"feedback": "Incorrect."}]]
+"feedbackArray": [[{"regex": "^\\s*(7\\s*>\\s*3|3\\s*<\\s*7)\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-translation-intro-3-1-2-2-1\">Incorrect. Use the <code class=\"code-inline tex2jax_ignore language-matlab\">&gt;<\/code> operator to test if one value is greater than another.<\/div>"}, {"feedback": "Incorrect."}]]
 }</script></div>
 </div></div>
-<div class="autopermalink" data-description="Task 1.c: Translating Relational Operators"><a href="#cqs-logical-expressions-translation-intro" title="Copy heading and permalink for Task 1.c: Translating Relational Operators" aria-label="Copy heading and permalink for Task 1.c: Translating Relational Operators">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(d)">
-<article class="task exercise-like" id="cqs-logical-expressions-basic-ops-result"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.c: Translating Relational Operators"><a href="#cqs-logical-expressions-translation-intro" title="Copy heading and permalink for Task 1.c: Translating Relational Operators" aria-label="Copy heading and permalink for Task 1.c: Translating Relational Operators">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="cqs-logical-expressions-basic-ops-result"><h4 class="heading">
 <span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Basic Logical Operators.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
@@ -544,182 +517,117 @@ true);
 </code></pre></div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-logical-expressions-basic-ops-result" data-multipleanswers="false">
-<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_a">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-1-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">ans = 1</code> (logical)</div>
-</li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_a">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-1-2-1">Incorrect. While <code class="code-inline tex2jax_ignore language-matlab">3 &gt;= 2</code> is true, check the second part: is <span class="process-math">\(3+4\)</span> really equal to <span class="process-math">\(6\text{?}\)</span>
-</div>
-</li>
-<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_b" data-correct="">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-2-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">ans = 0</code> (logical)</div>
-</li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_b">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-2-2-1">Correct! Even though <code class="code-inline tex2jax_ignore language-matlab">3 &gt;= 2</code> is true, the expression <code class="code-inline tex2jax_ignore language-matlab">3+4 == 6</code> is false (since <span class="process-math">\(3+4=7\)</span>). For an AND operation to be true, both sides must be true.</div>
-</li>
-<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_c">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">ans = 1</code></div>
-</li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_c">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-3-2-1">Incorrect. The result of a logical operation is always of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
-<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_d">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">ans = 0</code></div>
-</li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_d">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-4-2-1">Incorrect. The result of a logical operation is always of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
-<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_e">
-<div class="para" id="cqs-logical-expressions-basic-ops-result-3-5-1-1">None of the above. This expression will produce an error.</div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_a"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-1-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">ans = 1</code> (logical)</div></li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_a"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-1-2-1">Incorrect. While <code class="code-inline tex2jax_ignore language-matlab">3 &gt;= 2</code> is true, check the second part: is <span class="process-math">\(3+4\)</span> really equal to <span class="process-math">\(6\text{?}\)</span>
+</div></li>
+<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_b" data-correct=""><div class="para" id="cqs-logical-expressions-basic-ops-result-3-2-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">ans = 0</code> (logical)</div></li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_b"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-2-2-1">Correct! Even though <code class="code-inline tex2jax_ignore language-matlab">3 &gt;= 2</code> is true, the expression <code class="code-inline tex2jax_ignore language-matlab">3+4 == 6</code> is false (since <span class="process-math">\(3+4=7\)</span>). For an AND operation to be true, both sides must be true.</div></li>
+<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_c"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">ans = 1</code></div></li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_c"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-3-2-1">Incorrect. The result of a logical operation is always of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
+<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_d"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">ans = 0</code></div></li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_d"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-4-2-1">Incorrect. The result of a logical operation is always of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
+<li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-result_opt_e"><div class="para" id="cqs-logical-expressions-basic-ops-result-3-5-1-1">None of the above. This expression will produce an error.</div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-result_opt_e">
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.d: Basic Logical Operators"><a href="#cqs-logical-expressions-basic-ops-result" title="Copy heading and permalink for Task 1.d: Basic Logical Operators" aria-label="Copy heading and permalink for Task 1.d: Basic Logical Operators">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(e)">
-<article class="task exercise-like" id="cqs-logical-expressions-basic-ops-explanation"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.d: Basic Logical Operators"><a href="#cqs-logical-expressions-basic-ops-result" title="Copy heading and permalink for Task 1.d: Basic Logical Operators" aria-label="Copy heading and permalink for Task 1.d: Basic Logical Operators">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="cqs-logical-expressions-basic-ops-explanation"><h4 class="heading">
 <span class="codenumber">(e)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Understanding AND.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-cqs-logical-expressions-basic-ops-explanation">
 <div class="para" id="cqs-logical-expressions-basic-ops-explanation-2-1">An AND operation (<code class="code-inline tex2jax_ignore language-matlab">&amp;</code>) returns true if at least one of the conditions is true.<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-basic-ops-explanation-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-explanation_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-explanation_opt_t">
-<div class="para" id="cqs-logical-expressions-basic-ops-explanation-3-1">Incorrect. An AND operation requires <em class="emphasis">both</em> conditions to be true. You’re thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if <em class="emphasis">at least one</em> condition is true.</div>
-</li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-explanation_opt_t"><div class="para" id="cqs-logical-expressions-basic-ops-explanation-3-1">Incorrect. An AND operation requires <em class="emphasis">both</em> conditions to be true. You’re thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if <em class="emphasis">at least one</em> condition is true.</div></li>
 <li data-component="answer" id="rs-cqs-logical-expressions-basic-ops-explanation_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-explanation_opt_f">
-<div class="para" id="cqs-logical-expressions-basic-ops-explanation-3-1">Incorrect. An AND operation requires <em class="emphasis">both</em> conditions to be true. You’re thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if <em class="emphasis">at least one</em> condition is true.</div>
-</li>
+<li data-component="feedback" id="rs-cqs-logical-expressions-basic-ops-explanation_opt_f"><div class="para" id="cqs-logical-expressions-basic-ops-explanation-3-1">Incorrect. An AND operation requires <em class="emphasis">both</em> conditions to be true. You’re thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if <em class="emphasis">at least one</em> condition is true.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.e: Understanding AND"><a href="#cqs-logical-expressions-basic-ops-explanation" title="Copy heading and permalink for Task 1.e: Understanding AND" aria-label="Copy heading and permalink for Task 1.e: Understanding AND">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(f)">
-<article class="task exercise-like" id="cqs-logical-expressions-combined-1"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.e: Understanding AND"><a href="#cqs-logical-expressions-basic-ops-explanation" title="Copy heading and permalink for Task 1.e: Understanding AND" aria-label="Copy heading and permalink for Task 1.e: Understanding AND">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(f)"><article class="task exercise-like" id="cqs-logical-expressions-combined-1"><h4 class="heading">
 <span class="codenumber">(f)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Is p positive?</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone">
 <div data-component="fillintheblank" class="fillintheblank" style="visibility: hidden;" id="rs-cqs-logical-expressions-combined-1"><script type="application/json">{
-"problemHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-1-2-1\">Give the command that is equivalent to asking the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-1-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>\n<div class=\"para\" id=\"cqs-logical-expressions-combined-1-2-2\">Is <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> positive? ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"10\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-1-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
-"solutionHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-1-4-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">ans1 = p &gt; 0<\/code> evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">0<\/code> (false) since <span class=\"process-math\">\\(-3\\)<\/span> is not positive.<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-1-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"problemHtml": "<div class=\"para\" id=\"cqs-logical-expressions-combined-1-2-1\">Give the command that is equivalent to asking the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-1-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"para\" id=\"cqs-logical-expressions-combined-1-2-2\">Is <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> positive? ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"10\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-1-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"solutionHtml": "<div class=\"para\" id=\"cqs-logical-expressions-combined-1-4-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">ans1 = p &gt; 0<\/code> evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">0<\/code> (false) since <span class=\"process-math\">\\(-3\\)<\/span> is not positive.<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-1-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
 "blankNames": {"blank1": 0},
-"feedbackArray": [[{"regex": "^\\s*(p\\s*>\\s*0|0\\s*<\\s*p)\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-1-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-1-3-1-2-2-1\">Incorrect. Use the <code class=\"code-inline tex2jax_ignore language-matlab\">&gt;<\/code> operator to test if <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> is greater than 0.<\/div>"}, {"feedback": "Incorrect."}]]
+"feedbackArray": [[{"regex": "^\\s*(p\\s*>\\s*0|0\\s*<\\s*p)\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-combined-1-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-combined-1-3-1-2-2-1\">Incorrect. Use the <code class=\"code-inline tex2jax_ignore language-matlab\">&gt;<\/code> operator to test if <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> is greater than 0.<\/div>"}, {"feedback": "Incorrect."}]]
 }</script></div>
 </div></div>
-<div class="autopermalink" data-description="Task 1.f: Is p positive?"><a href="#cqs-logical-expressions-combined-1" title="Copy heading and permalink for Task 1.f: Is p positive?" aria-label="Copy heading and permalink for Task 1.f: Is p positive?">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(g)">
-<article class="task exercise-like" id="cqs-logical-expressions-combined-2"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.f: Is p positive?"><a href="#cqs-logical-expressions-combined-1" title="Copy heading and permalink for Task 1.f: Is p positive?" aria-label="Copy heading and permalink for Task 1.f: Is p positive?">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(g)"><article class="task exercise-like" id="cqs-logical-expressions-combined-2"><h4 class="heading">
 <span class="codenumber">(g)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Is p equal to 4?</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone">
 <div data-component="fillintheblank" class="fillintheblank" style="visibility: hidden;" id="rs-cqs-logical-expressions-combined-2"><script type="application/json">{
-"problemHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-2-2-1\">Give the command that is equivalent to asking the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-2-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>\n<div class=\"para\" id=\"cqs-logical-expressions-combined-2-2-2\">Is <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> equal to <code class=\"code-inline tex2jax_ignore language-matlab\">4<\/code>? ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"10\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-2-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
-"solutionHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-2-4-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">ans2 = p == 4<\/code> evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">0<\/code> (false) since <span class=\"process-math\">\\(-3 \\neq 4\\text{.}\\)<\/span><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-2-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"problemHtml": "<div class=\"para\" id=\"cqs-logical-expressions-combined-2-2-1\">Give the command that is equivalent to asking the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-2-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"para\" id=\"cqs-logical-expressions-combined-2-2-2\">Is <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> equal to <code class=\"code-inline tex2jax_ignore language-matlab\">4<\/code>? ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"10\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-2-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"solutionHtml": "<div class=\"para\" id=\"cqs-logical-expressions-combined-2-4-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">ans2 = p == 4<\/code> evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">0<\/code> (false) since <span class=\"process-math\">\\(-3 \\neq 4\\text{.}\\)<\/span><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-2-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
 "blankNames": {"blank1": 0},
-"feedbackArray": [[{"regex": "^\\s*(p\\s*==\\s*4|4\\s*==\\s*p)\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-2-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-2-3-1-2-2-1\">Incorrect. Use the <code class=\"code-inline tex2jax_ignore language-matlab\">==<\/code> operator to test equality.<\/div>"}, {"feedback": "Incorrect."}]]
+"feedbackArray": [[{"regex": "^\\s*(p\\s*==\\s*4|4\\s*==\\s*p)\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-combined-2-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-combined-2-3-1-2-2-1\">Incorrect. Use the <code class=\"code-inline tex2jax_ignore language-matlab\">==<\/code> operator to test equality.<\/div>"}, {"feedback": "Incorrect."}]]
 }</script></div>
 </div></div>
-<div class="autopermalink" data-description="Task 1.g: Is p equal to 4?"><a href="#cqs-logical-expressions-combined-2" title="Copy heading and permalink for Task 1.g: Is p equal to 4?" aria-label="Copy heading and permalink for Task 1.g: Is p equal to 4?">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(h)">
-<article class="task exercise-like" id="cqs-logical-expressions-combined-3"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.g: Is p equal to 4?"><a href="#cqs-logical-expressions-combined-2" title="Copy heading and permalink for Task 1.g: Is p equal to 4?" aria-label="Copy heading and permalink for Task 1.g: Is p equal to 4?">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(h)"><article class="task exercise-like" id="cqs-logical-expressions-combined-3"><h4 class="heading">
 <span class="codenumber">(h)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Combining with AND.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
 <div class="exercise-statement">
 <div class="para" id="cqs-logical-expressions-combined-3-2-1">Select the command that is equivalent to asking the question:<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-combined-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> 
-<div class="para" id="cqs-logical-expressions-combined-3-2-2">Is <code class="code-inline tex2jax_ignore language-matlab">p</code> a negative number greater than <code class="code-inline tex2jax_ignore language-matlab">-4</code>?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-combined-3-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="cqs-logical-expressions-combined-3-2-2">Is <code class="code-inline tex2jax_ignore language-matlab">p</code> a negative number greater than <code class="code-inline tex2jax_ignore language-matlab">-4</code>?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-combined-3-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-logical-expressions-combined-3" data-multipleanswers="false">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_a">
-<div class="para" id="cqs-logical-expressions-combined-3-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab"> p &lt; 0 &amp; p &gt;= -4 </code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_a"><div class="para" id="cqs-logical-expressions-combined-3-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab"> p &lt; 0 &amp; p &gt;= -4 </code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-3_opt_a">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_b">
-<div class="para" id="cqs-logical-expressions-combined-3-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab"> p &lt;= 0 | p &gt; -4 </code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_b"><div class="para" id="cqs-logical-expressions-combined-3-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab"> p &lt;= 0 | p &gt; -4 </code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-3_opt_b">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_c">
-<div class="para" id="cqs-logical-expressions-combined-3-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab"> -4 &lt; p &lt; 0 </code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_c"><div class="para" id="cqs-logical-expressions-combined-3-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab"> -4 &lt; p &lt; 0 </code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-3_opt_c">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_d">
-<div class="para" id="cqs-logical-expressions-combined-3-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab"> p &lt; 0 | p &gt; -4 </code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_d"><div class="para" id="cqs-logical-expressions-combined-3-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab"> p &lt; 0 | p &gt; -4 </code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-3_opt_d">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_e" data-correct="">
-<div class="para" id="cqs-logical-expressions-combined-3-3-5-1-1"><code class="code-inline tex2jax_ignore language-matlab">p &lt; 0 &amp; p &gt; -4</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-3_opt_e" data-correct=""><div class="para" id="cqs-logical-expressions-combined-3-3-5-1-1"><code class="code-inline tex2jax_ignore language-matlab">p &lt; 0 &amp; p &gt; -4</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-3_opt_e">
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.h: Combining with AND"><a href="#cqs-logical-expressions-combined-3" title="Copy heading and permalink for Task 1.h: Combining with AND" aria-label="Copy heading and permalink for Task 1.h: Combining with AND">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(i)">
-<article class="task exercise-like" id="cqs-logical-expressions-combined-4"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.h: Combining with AND"><a href="#cqs-logical-expressions-combined-3" title="Copy heading and permalink for Task 1.h: Combining with AND" aria-label="Copy heading and permalink for Task 1.h: Combining with AND">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(i)"><article class="task exercise-like" id="cqs-logical-expressions-combined-4"><h4 class="heading">
 <span class="codenumber">(i)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Negating with NOT.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
 <div class="exercise-statement">
 <div class="para" id="cqs-logical-expressions-combined-4-2-1">Which logical expressions are equivalent to asking the question:<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-combined-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div> 
-<div class="para" id="cqs-logical-expressions-combined-4-2-2">Is <code class="code-inline tex2jax_ignore language-matlab">p</code> NOT positive?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-combined-4-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="cqs-logical-expressions-combined-4-2-2">Is <code class="code-inline tex2jax_ignore language-matlab">p</code> NOT positive?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-logical-expressions-combined-4-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-logical-expressions-combined-4" data-multipleanswers="true">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_a" data-correct="">
-<div class="para" id="cqs-logical-expressions-combined-4-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(p &gt; 0)</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_a" data-correct=""><div class="para" id="cqs-logical-expressions-combined-4-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(p &gt; 0)</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-4_opt_a">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_b" data-correct="">
-<div class="para" id="cqs-logical-expressions-combined-4-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">p &lt;= 0</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_b" data-correct=""><div class="para" id="cqs-logical-expressions-combined-4-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">p &lt;= 0</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-4_opt_b">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_c">
-<div class="para" id="cqs-logical-expressions-combined-4-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~p &gt; 0</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_c"><div class="para" id="cqs-logical-expressions-combined-4-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~p &gt; 0</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-4_opt_c">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_d">
-<div class="para" id="cqs-logical-expressions-combined-4-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">p ~&gt; 0</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_d"><div class="para" id="cqs-logical-expressions-combined-4-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">p ~&gt; 0</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-4_opt_d">
-<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_e">
-<div class="para" id="cqs-logical-expressions-combined-4-3-5-1-1"><code class="code-inline tex2jax_ignore language-matlab">p &lt; 0</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-combined-4_opt_e"><div class="para" id="cqs-logical-expressions-combined-4-3-5-1-1"><code class="code-inline tex2jax_ignore language-matlab">p &lt; 0</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-combined-4_opt_e">
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.i: Negating with NOT"><a href="#cqs-logical-expressions-combined-4" title="Copy heading and permalink for Task 1.i: Negating with NOT" aria-label="Copy heading and permalink for Task 1.i: Negating with NOT">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(j)">
-<article class="task exercise-like" id="cqs-logical-expressions-combined-5"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.i: Negating with NOT"><a href="#cqs-logical-expressions-combined-4" title="Copy heading and permalink for Task 1.i: Negating with NOT" aria-label="Copy heading and permalink for Task 1.i: Negating with NOT">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(j)"><article class="task exercise-like" id="cqs-logical-expressions-combined-5"><h4 class="heading">
 <span class="codenumber">(j)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Combining with OR.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone">
 <div data-component="fillintheblank" class="fillintheblank" style="visibility: hidden;" id="rs-cqs-logical-expressions-combined-5"><script type="application/json">{
-"problemHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-5-2-1\">Give the command that is equivalent to asking the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-5-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>\n<div class=\"para\" id=\"cqs-logical-expressions-combined-5-2-2\">Is <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> not equal to 5 OR greater than 7? ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"15\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-5-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
-"solutionHtml": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-5-4-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">ans5 = (p ~= 5) | (p &gt; 7)<\/code> evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">1<\/code> (true) since <span class=\"process-math\">\\(-3 \\neq 5\\)<\/span> is true.<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-5-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"problemHtml": "<div class=\"para\" id=\"cqs-logical-expressions-combined-5-2-1\">Give the command that is equivalent to asking the question:<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-5-2-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div><div class=\"para\" id=\"cqs-logical-expressions-combined-5-2-2\">Is <code class=\"code-inline tex2jax_ignore language-matlab\">p<\/code> not equal to 5 OR greater than 7? ➜ <input type=\"text\" id=\"concepts-logical-expressions-blank1\" size=\"15\"\/><div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-5-2-2\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
+"solutionHtml": "<div class=\"para\" id=\"cqs-logical-expressions-combined-5-4-1\"><code class=\"code-inline tex2jax_ignore language-matlab\">ans5 = (p ~= 5) | (p &gt; 7)<\/code> evaluates to <code class=\"code-inline tex2jax_ignore language-matlab\">1<\/code> (true) since <span class=\"process-math\">\\(-3 \\neq 5\\)<\/span> is true.<div class=\"autopermalink\" data-description=\"Paragraph\"><a href=\"#cqs-logical-expressions-combined-5-4-1\" title=\"Copy heading and permalink for Paragraph\" aria-label=\"Copy heading and permalink for Paragraph\">🔗<\/a><\/div><\/div>",
 "blankNames": {"blank1": 0},
-"feedbackArray": [[{"regex": "^\\s*\\(?\\s*p\\s*~=\\s*5\\s*\\)?\\s*\\|\\s*\\(?\\s*p\\s*>\\s*7\\s*\\)?\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-5-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "\n<div class=\"para\" id=\"cqs-logical-expressions-combined-5-3-1-2-2-1\">Incorrect. Use <code class=\"code-inline tex2jax_ignore language-matlab\">~=<\/code> for \"not equal\" and <code class=\"code-inline tex2jax_ignore language-matlab\">|<\/code> for OR.<\/div>"}, {"feedback": "Incorrect."}]]
+"feedbackArray": [[{"regex": "^\\s*\\(?\\s*p\\s*~=\\s*5\\s*\\)?\\s*\\|\\s*\\(?\\s*p\\s*>\\s*7\\s*\\)?\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-combined-5-3-1-1-2-1\">Correct!<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"cqs-logical-expressions-combined-5-3-1-2-2-1\">Incorrect. Use <code class=\"code-inline tex2jax_ignore language-matlab\">~=<\/code> for \"not equal\" and <code class=\"code-inline tex2jax_ignore language-matlab\">|<\/code> for OR.<\/div>"}, {"feedback": "Incorrect."}]]
 }</script></div>
 </div></div>
-<div class="autopermalink" data-description="Task 1.j: Combining with OR"><a href="#cqs-logical-expressions-combined-5" title="Copy heading and permalink for Task 1.j: Combining with OR" aria-label="Copy heading and permalink for Task 1.j: Combining with OR">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(k)">
-<article class="task exercise-like" id="cqs-logical-expressions-precedence"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.j: Combining with OR"><a href="#cqs-logical-expressions-combined-5" title="Copy heading and permalink for Task 1.j: Combining with OR" aria-label="Copy heading and permalink for Task 1.j: Combining with OR">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(k)"><article class="task exercise-like" id="cqs-logical-expressions-precedence"><h4 class="heading">
 <span class="codenumber">(k)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Operator Precedence.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
@@ -729,560 +637,284 @@ true);
 </code></pre></div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-logical-expressions-precedence" data-multipleanswers="false">
-<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_a" data-correct="">
-<div class="para" id="cqs-logical-expressions-precedence-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">((~A) &amp; B) | C</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_a" data-correct=""><div class="para" id="cqs-logical-expressions-precedence-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">((~A) &amp; B) | C</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-precedence_opt_a">
-<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_b">
-<div class="para" id="cqs-logical-expressions-precedence-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(A &amp; B | C)</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_b"><div class="para" id="cqs-logical-expressions-precedence-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(A &amp; B | C)</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-precedence_opt_b">
-<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_c">
-<div class="para" id="cqs-logical-expressions-precedence-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~A &amp; (B | C)</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_c"><div class="para" id="cqs-logical-expressions-precedence-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~A &amp; (B | C)</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-precedence_opt_c">
-<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_d">
-<div class="para" id="cqs-logical-expressions-precedence-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(A &amp; B) | C</code></div>
-</li>
+<li data-component="answer" id="rs-cqs-logical-expressions-precedence_opt_d"><div class="para" id="cqs-logical-expressions-precedence-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(A &amp; B) | C</code></div></li>
 <li data-component="feedback" id="rs-cqs-logical-expressions-precedence_opt_d">
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.k: Operator Precedence"><a href="#cqs-logical-expressions-precedence" title="Copy heading and permalink for Task 1.k: Operator Precedence" aria-label="Copy heading and permalink for Task 1.k: Operator Precedence">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(l)">
-<article class="task exercise-like" id="rq-logical-values-1"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.k: Operator Precedence"><a href="#cqs-logical-expressions-precedence" title="Copy heading and permalink for Task 1.k: Operator Precedence" aria-label="Copy heading and permalink for Task 1.k: Operator Precedence">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(l)"><article class="task exercise-like" id="rq-logical-values-1"><h4 class="heading">
 <span class="codenumber">(l)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">What are the two logical values?</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-values-1-2-1">What are the two logical values in MATLAB?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-values-1-2-1">What are the two logical values in MATLAB?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-values-1" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-values-1_opt_a" data-correct="">
-<div class="para" id="rq-logical-values-1-3-1-1-1">
+<li data-component="answer" id="rs-rq-logical-values-1_opt_a" data-correct=""><div class="para" id="rq-logical-values-1-3-1-1-1">
 <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>
-</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-1_opt_a">
-<div class="para" id="rq-logical-values-1-3-1-2-1">Correct! These are the two logical values in MATLAB.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-1_opt_b">
-<div class="para" id="rq-logical-values-1-3-2-1-1">
+</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-1_opt_a"><div class="para" id="rq-logical-values-1-3-1-2-1">Correct! These are the two logical values in MATLAB.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-1_opt_b"><div class="para" id="rq-logical-values-1-3-2-1-1">
 <code class="code-inline tex2jax_ignore language-matlab">yes</code> and <code class="code-inline tex2jax_ignore language-matlab">no</code>
-</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-1_opt_b">
-<div class="para" id="rq-logical-values-1-3-2-2-1">Incorrect. MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>, not <code class="code-inline tex2jax_ignore language-matlab">yes</code> and <code class="code-inline tex2jax_ignore language-matlab">no</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-1_opt_c">
-<div class="para" id="rq-logical-values-1-3-3-1-1">
+</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-1_opt_b"><div class="para" id="rq-logical-values-1-3-2-2-1">Incorrect. MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>, not <code class="code-inline tex2jax_ignore language-matlab">yes</code> and <code class="code-inline tex2jax_ignore language-matlab">no</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-1_opt_c"><div class="para" id="rq-logical-values-1-3-3-1-1">
 <code class="code-inline tex2jax_ignore language-matlab">1</code> and <code class="code-inline tex2jax_ignore language-matlab">0</code>
-</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-1_opt_c">
-<div class="para" id="rq-logical-values-1-3-3-2-1">These are the numeric representations, but the logical values are <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-1_opt_d">
-<div class="para" id="rq-logical-values-1-3-4-1-1">
+</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-1_opt_c"><div class="para" id="rq-logical-values-1-3-3-2-1">These are the numeric representations, but the logical values are <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-1_opt_d"><div class="para" id="rq-logical-values-1-3-4-1-1">
 <code class="code-inline tex2jax_ignore language-matlab">on</code> and <code class="code-inline tex2jax_ignore language-matlab">off</code>
-</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-1_opt_d">
-<div class="para" id="rq-logical-values-1-3-4-2-1">Incorrect. MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>.</div>
-</li>
+</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-1_opt_d"><div class="para" id="rq-logical-values-1-3-4-2-1">Incorrect. MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.l: What are the two logical values?"><a href="#rq-logical-values-1" title="Copy heading and permalink for Task 1.l: What are the two logical values?" aria-label="Copy heading and permalink for Task 1.l: What are the two logical values?">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(m)">
-<article class="task exercise-like" id="rq-logical-values-2"><h4 class="heading"><span class="codenumber">(m)</span></h4>
+<div class="autopermalink" data-description="Task 1.l: What are the two logical values?"><a href="#rq-logical-values-1" title="Copy heading and permalink for Task 1.l: What are the two logical values?" aria-label="Copy heading and permalink for Task 1.l: What are the two logical values?">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(m)"><article class="task exercise-like" id="rq-logical-values-2"><h4 class="heading"><span class="codenumber">(m)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-logical-values-2">
 <div class="para" id="rq-logical-values-2-1-1">In MATLAB, <code class="code-inline tex2jax_ignore language-matlab">true</code> and <code class="code-inline tex2jax_ignore language-matlab">1</code> are the same data type.<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-logical-values-2_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-logical-values-2_opt_t">
-<div class="para" id="rq-logical-values-2-2-1">False. <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-values-2_opt_t"><div class="para" id="rq-logical-values-2-2-1">False. <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
 <li data-component="answer" id="rs-rq-logical-values-2_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-logical-values-2_opt_f">
-<div class="para" id="rq-logical-values-2-2-1">False. <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-values-2_opt_f"><div class="para" id="rq-logical-values-2-2-1">False. <code class="code-inline tex2jax_ignore language-matlab">true</code> is of type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, while <code class="code-inline tex2jax_ignore language-matlab">1</code> is of type <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.m"><a href="#rq-logical-values-2" title="Copy heading and permalink for Task 1.m" aria-label="Copy heading and permalink for Task 1.m">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(n)">
-<article class="task exercise-like" id="rq-logical-values-3"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.m"><a href="#rq-logical-values-2" title="Copy heading and permalink for Task 1.m" aria-label="Copy heading and permalink for Task 1.m">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(n)"><article class="task exercise-like" id="rq-logical-values-3"><h4 class="heading">
 <span class="codenumber">(n)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Memory usage of logical values.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-values-3-2-1">How many bytes does a <code class="code-inline tex2jax_ignore language-matlab">logical</code> scalar use in MATLAB?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-values-3-2-1">How many bytes does a <code class="code-inline tex2jax_ignore language-matlab">logical</code> scalar use in MATLAB?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-values-3" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-values-3_opt_a" data-correct="">
-<div class="para" id="rq-logical-values-3-3-1-1-1">1 byte</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-3_opt_a">
-<div class="para" id="rq-logical-values-3-3-1-2-1">Correct! Logical values use only 1 byte, compared to 8 bytes for a <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-3_opt_b">
-<div class="para" id="rq-logical-values-3-3-2-1-1">8 bytes</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-3_opt_b">
-<div class="para" id="rq-logical-values-3-3-2-2-1">That is the size of a <code class="code-inline tex2jax_ignore language-matlab">double</code>, not a <code class="code-inline tex2jax_ignore language-matlab">logical</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-3_opt_c">
-<div class="para" id="rq-logical-values-3-3-3-1-1">4 bytes</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-3_opt_c">
-<div class="para" id="rq-logical-values-3-3-3-2-1">Incorrect. Logical scalars use 1 byte in MATLAB.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-3_opt_d">
-<div class="para" id="rq-logical-values-3-3-4-1-1">2 bytes</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-3_opt_d">
-<div class="para" id="rq-logical-values-3-3-4-2-1">Incorrect. Logical scalars use 1 byte in MATLAB.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-values-3_opt_a" data-correct=""><div class="para" id="rq-logical-values-3-3-1-1-1">1 byte</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-3_opt_a"><div class="para" id="rq-logical-values-3-3-1-2-1">Correct! Logical values use only 1 byte, compared to 8 bytes for a <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-3_opt_b"><div class="para" id="rq-logical-values-3-3-2-1-1">8 bytes</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-3_opt_b"><div class="para" id="rq-logical-values-3-3-2-2-1">That is the size of a <code class="code-inline tex2jax_ignore language-matlab">double</code>, not a <code class="code-inline tex2jax_ignore language-matlab">logical</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-3_opt_c"><div class="para" id="rq-logical-values-3-3-3-1-1">4 bytes</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-3_opt_c"><div class="para" id="rq-logical-values-3-3-3-2-1">Incorrect. Logical scalars use 1 byte in MATLAB.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-3_opt_d"><div class="para" id="rq-logical-values-3-3-4-1-1">2 bytes</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-3_opt_d"><div class="para" id="rq-logical-values-3-3-4-2-1">Incorrect. Logical scalars use 1 byte in MATLAB.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.n: Memory usage of logical values"><a href="#rq-logical-values-3" title="Copy heading and permalink for Task 1.n: Memory usage of logical values" aria-label="Copy heading and permalink for Task 1.n: Memory usage of logical values">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(o)">
-<article class="task exercise-like" id="rq-logical-values-4"><h4 class="heading"><span class="codenumber">(o)</span></h4>
+<div class="autopermalink" data-description="Task 1.n: Memory usage of logical values"><a href="#rq-logical-values-3" title="Copy heading and permalink for Task 1.n: Memory usage of logical values" aria-label="Copy heading and permalink for Task 1.n: Memory usage of logical values">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(o)"><article class="task exercise-like" id="rq-logical-values-4"><h4 class="heading"><span class="codenumber">(o)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-logical-values-4">
 <div class="para" id="rq-logical-values-4-1-1">Logical values in MATLAB can be stored in variables just like numbers.<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-logical-values-4_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-logical-values-4_opt_t">
-<div class="para" id="rq-logical-values-4-2-1">True! You can assign <code class="code-inline tex2jax_ignore language-matlab">true</code> or <code class="code-inline tex2jax_ignore language-matlab">false</code> to a variable exactly like any numeric value.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-values-4_opt_t"><div class="para" id="rq-logical-values-4-2-1">True! You can assign <code class="code-inline tex2jax_ignore language-matlab">true</code> or <code class="code-inline tex2jax_ignore language-matlab">false</code> to a variable exactly like any numeric value.</div></li>
 <li data-component="answer" id="rs-rq-logical-values-4_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-logical-values-4_opt_f">
-<div class="para" id="rq-logical-values-4-2-1">True! You can assign <code class="code-inline tex2jax_ignore language-matlab">true</code> or <code class="code-inline tex2jax_ignore language-matlab">false</code> to a variable exactly like any numeric value.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-values-4_opt_f"><div class="para" id="rq-logical-values-4-2-1">True! You can assign <code class="code-inline tex2jax_ignore language-matlab">true</code> or <code class="code-inline tex2jax_ignore language-matlab">false</code> to a variable exactly like any numeric value.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.o"><a href="#rq-logical-values-4" title="Copy heading and permalink for Task 1.o" aria-label="Copy heading and permalink for Task 1.o">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(p)">
-<article class="task exercise-like" id="rq-logical-values-5"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.o"><a href="#rq-logical-values-4" title="Copy heading and permalink for Task 1.o" aria-label="Copy heading and permalink for Task 1.o">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(p)"><article class="task exercise-like" id="rq-logical-values-5"><h4 class="heading">
 <span class="codenumber">(p)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Class of a logical value.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-values-5-2-1">What is the MATLAB class of the variable <code class="code-inline tex2jax_ignore language-matlab">x</code> after <code class="code-inline tex2jax_ignore language-matlab">x = false</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-values-5-2-1">What is the MATLAB class of the variable <code class="code-inline tex2jax_ignore language-matlab">x</code> after <code class="code-inline tex2jax_ignore language-matlab">x = false</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-values-5" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-values-5_opt_a" data-correct="">
-<div class="para" id="rq-logical-values-5-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">logical</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-5_opt_a">
-<div class="para" id="rq-logical-values-5-3-1-2-1">Correct! Assigning <code class="code-inline tex2jax_ignore language-matlab">false</code> creates a variable of class <code class="code-inline tex2jax_ignore language-matlab">logical</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-5_opt_b">
-<div class="para" id="rq-logical-values-5-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">double</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-5_opt_b">
-<div class="para" id="rq-logical-values-5-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">false</code> creates a <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not a <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-5_opt_c">
-<div class="para" id="rq-logical-values-5-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">int</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-5_opt_c">
-<div class="para" id="rq-logical-values-5-3-3-2-1">Incorrect. MATLAB does not have a class named <code class="code-inline tex2jax_ignore language-matlab">int</code> for this purpose.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-5_opt_d">
-<div class="para" id="rq-logical-values-5-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">boolean</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-5_opt_d">
-<div class="para" id="rq-logical-values-5-3-4-2-1">Incorrect. MATLAB calls this type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">boolean</code>.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-values-5_opt_a" data-correct=""><div class="para" id="rq-logical-values-5-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">logical</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-values-5_opt_a"><div class="para" id="rq-logical-values-5-3-1-2-1">Correct! Assigning <code class="code-inline tex2jax_ignore language-matlab">false</code> creates a variable of class <code class="code-inline tex2jax_ignore language-matlab">logical</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-5_opt_b"><div class="para" id="rq-logical-values-5-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">double</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-values-5_opt_b"><div class="para" id="rq-logical-values-5-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">false</code> creates a <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not a <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-5_opt_c"><div class="para" id="rq-logical-values-5-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">int</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-values-5_opt_c"><div class="para" id="rq-logical-values-5-3-3-2-1">Incorrect. MATLAB does not have a class named <code class="code-inline tex2jax_ignore language-matlab">int</code> for this purpose.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-5_opt_d"><div class="para" id="rq-logical-values-5-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">boolean</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-values-5_opt_d"><div class="para" id="rq-logical-values-5-3-4-2-1">Incorrect. MATLAB calls this type <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">boolean</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.p: Class of a logical value"><a href="#rq-logical-values-5" title="Copy heading and permalink for Task 1.p: Class of a logical value" aria-label="Copy heading and permalink for Task 1.p: Class of a logical value">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(q)">
-<article class="task exercise-like" id="rq-logical-values-6"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.p: Class of a logical value"><a href="#rq-logical-values-5" title="Copy heading and permalink for Task 1.p: Class of a logical value" aria-label="Copy heading and permalink for Task 1.p: Class of a logical value">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(q)"><article class="task exercise-like" id="rq-logical-values-6"><h4 class="heading">
 <span class="codenumber">(q)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Arithmetic with logical values.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-values-6-2-1">What does MATLAB print after <code class="code-inline tex2jax_ignore language-matlab">fprintf('%g\n', true + true)</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-values-6-2-1">What does MATLAB print after <code class="code-inline tex2jax_ignore language-matlab">fprintf('%g\n', true + true)</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-values-6" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-values-6_opt_a" data-correct="">
-<div class="para" id="rq-logical-values-6-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">2</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-6_opt_a">
-<div class="para" id="rq-logical-values-6-3-1-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">true</code> acts as <code class="code-inline tex2jax_ignore language-matlab">1</code> in arithmetic, so <code class="code-inline tex2jax_ignore language-matlab">true + true = 2</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-6_opt_b">
-<div class="para" id="rq-logical-values-6-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">true</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-6_opt_b">
-<div class="para" id="rq-logical-values-6-3-2-2-1">Incorrect. MATLAB does not print the word <code class="code-inline tex2jax_ignore language-matlab">true</code> with <code class="code-inline tex2jax_ignore language-matlab">fprintf('%g', ...)</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-6_opt_c">
-<div class="para" id="rq-logical-values-6-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">1</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-6_opt_c">
-<div class="para" id="rq-logical-values-6-3-3-2-1">Incorrect. Adding two <code class="code-inline tex2jax_ignore language-matlab">true</code> values gives <code class="code-inline tex2jax_ignore language-matlab">2</code>, not <code class="code-inline tex2jax_ignore language-matlab">1</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-values-6_opt_d">
-<div class="para" id="rq-logical-values-6-3-4-1-1">An error occurs.</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-values-6_opt_d">
-<div class="para" id="rq-logical-values-6-3-4-2-1">Incorrect. Logical values can participate in arithmetic; no error is raised.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-values-6_opt_a" data-correct=""><div class="para" id="rq-logical-values-6-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">2</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-values-6_opt_a"><div class="para" id="rq-logical-values-6-3-1-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">true</code> acts as <code class="code-inline tex2jax_ignore language-matlab">1</code> in arithmetic, so <code class="code-inline tex2jax_ignore language-matlab">true + true = 2</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-6_opt_b"><div class="para" id="rq-logical-values-6-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">true</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-values-6_opt_b"><div class="para" id="rq-logical-values-6-3-2-2-1">Incorrect. MATLAB does not print the word <code class="code-inline tex2jax_ignore language-matlab">true</code> with <code class="code-inline tex2jax_ignore language-matlab">fprintf('%g', ...)</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-6_opt_c"><div class="para" id="rq-logical-values-6-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">1</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-values-6_opt_c"><div class="para" id="rq-logical-values-6-3-3-2-1">Incorrect. Adding two <code class="code-inline tex2jax_ignore language-matlab">true</code> values gives <code class="code-inline tex2jax_ignore language-matlab">2</code>, not <code class="code-inline tex2jax_ignore language-matlab">1</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-values-6_opt_d"><div class="para" id="rq-logical-values-6-3-4-1-1">An error occurs.</div></li>
+<li data-component="feedback" id="rs-rq-logical-values-6_opt_d"><div class="para" id="rq-logical-values-6-3-4-2-1">Incorrect. Logical values can participate in arithmetic; no error is raised.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.q: Arithmetic with logical values"><a href="#rq-logical-values-6" title="Copy heading and permalink for Task 1.q: Arithmetic with logical values" aria-label="Copy heading and permalink for Task 1.q: Arithmetic with logical values">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(r)">
-<article class="task exercise-like" id="rq-logical-values-7"><h4 class="heading"><span class="codenumber">(r)</span></h4>
+<div class="autopermalink" data-description="Task 1.q: Arithmetic with logical values"><a href="#rq-logical-values-6" title="Copy heading and permalink for Task 1.q: Arithmetic with logical values" aria-label="Copy heading and permalink for Task 1.q: Arithmetic with logical values">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(r)"><article class="task exercise-like" id="rq-logical-values-7"><h4 class="heading"><span class="codenumber">(r)</span></h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-logical-values-7">
 <div class="para" id="rq-logical-values-7-1-1">MATLAB will produce an error if you use a logical value in an arithmetic expression.<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-values-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-logical-values-7_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-logical-values-7_opt_t">
-<div class="para" id="rq-logical-values-7-2-1">False. MATLAB allows logical values in arithmetic, treating <code class="code-inline tex2jax_ignore language-matlab">true</code> as <code class="code-inline tex2jax_ignore language-matlab">1</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code> as <code class="code-inline tex2jax_ignore language-matlab">0</code>.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-values-7_opt_t"><div class="para" id="rq-logical-values-7-2-1">False. MATLAB allows logical values in arithmetic, treating <code class="code-inline tex2jax_ignore language-matlab">true</code> as <code class="code-inline tex2jax_ignore language-matlab">1</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code> as <code class="code-inline tex2jax_ignore language-matlab">0</code>.</div></li>
 <li data-component="answer" id="rs-rq-logical-values-7_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-logical-values-7_opt_f">
-<div class="para" id="rq-logical-values-7-2-1">False. MATLAB allows logical values in arithmetic, treating <code class="code-inline tex2jax_ignore language-matlab">true</code> as <code class="code-inline tex2jax_ignore language-matlab">1</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code> as <code class="code-inline tex2jax_ignore language-matlab">0</code>.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-values-7_opt_f"><div class="para" id="rq-logical-values-7-2-1">False. MATLAB allows logical values in arithmetic, treating <code class="code-inline tex2jax_ignore language-matlab">true</code> as <code class="code-inline tex2jax_ignore language-matlab">1</code> and <code class="code-inline tex2jax_ignore language-matlab">false</code> as <code class="code-inline tex2jax_ignore language-matlab">0</code>.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.r"><a href="#rq-logical-values-7" title="Copy heading and permalink for Task 1.r" aria-label="Copy heading and permalink for Task 1.r">🔗</a></div>
-</article>
-</div>
+<div class="autopermalink" data-description="Task 1.r"><a href="#rq-logical-values-7" title="Copy heading and permalink for Task 1.r" aria-label="Copy heading and permalink for Task 1.r">🔗</a></div></article></div>
 </div></div></div>
-<div class="autopermalink" data-description="Reading Question 1"><a href="#concepts-logical-expressions" title="Copy heading and permalink for Reading Question 1" aria-label="Copy heading and permalink for Reading Question 1">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-1"><h3 class="heading">
+<div class="autopermalink" data-description="Reading Question 1"><a href="#concepts-logical-expressions" title="Copy heading and permalink for Reading Question 1" aria-label="Copy heading and permalink for Reading Question 1">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-1"><h3 class="heading">
 <span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Assignment vs. Comparison.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-statements-1-2-1">Which operator tests whether two values are equal?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-statements-1-2-1">Which operator tests whether two values are equal?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-statements-1" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-statements-1_opt_a" data-correct="">
-<div class="para" id="rq-logical-statements-1-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">==</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-1_opt_a">
-<div class="para" id="rq-logical-statements-1-3-1-2-1">Correct! Double equals tests equality.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-1_opt_b">
-<div class="para" id="rq-logical-statements-1-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">=</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-1_opt_b">
-<div class="para" id="rq-logical-statements-1-3-2-2-1">Single equals assigns a value; it does not compare.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-1_opt_c">
-<div class="para" id="rq-logical-statements-1-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~=</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-1_opt_c">
-<div class="para" id="rq-logical-statements-1-3-3-2-1">This tests for inequality (not equal), not equality.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-1_opt_d">
-<div class="para" id="rq-logical-statements-1-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">=&gt;</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-1_opt_d">
-<div class="para" id="rq-logical-statements-1-3-4-2-1">This is not a valid MATLAB operator. Greater-than-or-equal uses <code class="code-inline tex2jax_ignore language-matlab">&gt;=</code>.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-statements-1_opt_a" data-correct=""><div class="para" id="rq-logical-statements-1-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">==</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-1_opt_a"><div class="para" id="rq-logical-statements-1-3-1-2-1">Correct! Double equals tests equality.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-1_opt_b"><div class="para" id="rq-logical-statements-1-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">=</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-1_opt_b"><div class="para" id="rq-logical-statements-1-3-2-2-1">Single equals assigns a value; it does not compare.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-1_opt_c"><div class="para" id="rq-logical-statements-1-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">~=</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-1_opt_c"><div class="para" id="rq-logical-statements-1-3-3-2-1">This tests for inequality (not equal), not equality.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-1_opt_d"><div class="para" id="rq-logical-statements-1-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">=&gt;</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-1_opt_d"><div class="para" id="rq-logical-statements-1-3-4-2-1">This is not a valid MATLAB operator. Greater-than-or-equal uses <code class="code-inline tex2jax_ignore language-matlab">&gt;=</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 2: Assignment vs. Comparison"><a href="#rq-logical-statements-1" title="Copy heading and permalink for Reading Question 2: Assignment vs. Comparison" aria-label="Copy heading and permalink for Reading Question 2: Assignment vs. Comparison">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-2"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 2: Assignment vs. Comparison"><a href="#rq-logical-statements-1" title="Copy heading and permalink for Reading Question 2: Assignment vs. Comparison" aria-label="Copy heading and permalink for Reading Question 2: Assignment vs. Comparison">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-2"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-logical-statements-2">
 <div class="para" id="rq-logical-statements-2-1-1">An AND operation (<code class="code-inline tex2jax_ignore language-matlab">&amp;</code>) returns true if at least one of the conditions is true.<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-logical-statements-2_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-logical-statements-2_opt_t">
-<div class="para" id="rq-logical-statements-2-2-1">False. AND requires <em class="emphasis">both</em> conditions to be true. You are thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if at least one is true.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-statements-2_opt_t"><div class="para" id="rq-logical-statements-2-2-1">False. AND requires <em class="emphasis">both</em> conditions to be true. You are thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if at least one is true.</div></li>
 <li data-component="answer" id="rs-rq-logical-statements-2_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-logical-statements-2_opt_f">
-<div class="para" id="rq-logical-statements-2-2-1">False. AND requires <em class="emphasis">both</em> conditions to be true. You are thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if at least one is true.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-statements-2_opt_f"><div class="para" id="rq-logical-statements-2-2-1">False. AND requires <em class="emphasis">both</em> conditions to be true. You are thinking of OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>), which returns true if at least one is true.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 3"><a href="#rq-logical-statements-2" title="Copy heading and permalink for Reading Question 3" aria-label="Copy heading and permalink for Reading Question 3">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-3"><h3 class="heading">
+<div class="autopermalink" data-description="Reading Question 3"><a href="#rq-logical-statements-2" title="Copy heading and permalink for Reading Question 3" aria-label="Copy heading and permalink for Reading Question 3">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-3"><h3 class="heading">
 <span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Result of a comparison.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-statements-3-2-1">What is the value of <code class="code-inline tex2jax_ignore language-matlab">p</code> after <code class="code-inline tex2jax_ignore language-matlab">p = (10 &gt; 5)</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-statements-3-2-1">What is the value of <code class="code-inline tex2jax_ignore language-matlab">p</code> after <code class="code-inline tex2jax_ignore language-matlab">p = (10 &gt; 5)</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-statements-3" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-statements-3_opt_a" data-correct="">
-<div class="para" id="rq-logical-statements-3-3-1-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">1</code> (logical)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-3_opt_a">
-<div class="para" id="rq-logical-statements-3-3-1-2-1">Correct! Since 10 is greater than 5, the expression evaluates to <code class="code-inline tex2jax_ignore language-matlab">true</code>, which displays as <code class="code-inline tex2jax_ignore language-matlab">1</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-3_opt_b">
-<div class="para" id="rq-logical-statements-3-3-2-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">0</code> (logical)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-3_opt_b">
-<div class="para" id="rq-logical-statements-3-3-2-2-1">Incorrect. 10 is greater than 5, so the result is true.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-3_opt_c">
-<div class="para" id="rq-logical-statements-3-3-3-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">1</code> (double)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-3_opt_c">
-<div class="para" id="rq-logical-statements-3-3-3-2-1">The numeric value is correct, but the class is <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-3_opt_d">
-<div class="para" id="rq-logical-statements-3-3-4-1-1">An error occurs.</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-3_opt_d">
-<div class="para" id="rq-logical-statements-3-3-4-2-1">No error. This is a valid comparison that produces a logical result.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-statements-3_opt_a" data-correct=""><div class="para" id="rq-logical-statements-3-3-1-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">1</code> (logical)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-3_opt_a"><div class="para" id="rq-logical-statements-3-3-1-2-1">Correct! Since 10 is greater than 5, the expression evaluates to <code class="code-inline tex2jax_ignore language-matlab">true</code>, which displays as <code class="code-inline tex2jax_ignore language-matlab">1</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-3_opt_b"><div class="para" id="rq-logical-statements-3-3-2-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">0</code> (logical)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-3_opt_b"><div class="para" id="rq-logical-statements-3-3-2-2-1">Incorrect. 10 is greater than 5, so the result is true.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-3_opt_c"><div class="para" id="rq-logical-statements-3-3-3-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">1</code> (double)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-3_opt_c"><div class="para" id="rq-logical-statements-3-3-3-2-1">The numeric value is correct, but the class is <code class="code-inline tex2jax_ignore language-matlab">logical</code>, not <code class="code-inline tex2jax_ignore language-matlab">double</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-3_opt_d"><div class="para" id="rq-logical-statements-3-3-4-1-1">An error occurs.</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-3_opt_d"><div class="para" id="rq-logical-statements-3-3-4-2-1">No error. This is a valid comparison that produces a logical result.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 4: Result of a comparison"><a href="#rq-logical-statements-3" title="Copy heading and permalink for Reading Question 4: Result of a comparison" aria-label="Copy heading and permalink for Reading Question 4: Result of a comparison">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-4"><h3 class="heading">
+<div class="autopermalink" data-description="Reading Question 4: Result of a comparison"><a href="#rq-logical-statements-3" title="Copy heading and permalink for Reading Question 4: Result of a comparison" aria-label="Copy heading and permalink for Reading Question 4: Result of a comparison">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-4"><h3 class="heading">
 <span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Negation result.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-statements-4-2-1">What does <code class="code-inline tex2jax_ignore language-matlab">~(3 &gt; 5)</code> evaluate to?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-statements-4-2-1">What does <code class="code-inline tex2jax_ignore language-matlab">~(3 &gt; 5)</code> evaluate to?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-statements-4" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-statements-4_opt_a" data-correct="">
-<div class="para" id="rq-logical-statements-4-3-1-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">1</code> (true)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-4_opt_a">
-<div class="para" id="rq-logical-statements-4-3-1-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">3 &gt; 5</code> is false, and NOT false is true.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-4_opt_b">
-<div class="para" id="rq-logical-statements-4-3-2-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">0</code> (false)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-4_opt_b">
-<div class="para" id="rq-logical-statements-4-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">3 &gt; 5</code> is false; negating it gives true.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-4_opt_c">
-<div class="para" id="rq-logical-statements-4-3-3-1-1">An error occurs.</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-4_opt_c">
-<div class="para" id="rq-logical-statements-4-3-3-2-1">No error. The NOT operator negates any logical value.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-4_opt_d">
-<div class="para" id="rq-logical-statements-4-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">-1</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-4_opt_d">
-<div class="para" id="rq-logical-statements-4-3-4-2-1">Incorrect. NOT produces <code class="code-inline tex2jax_ignore language-matlab">true</code> or <code class="code-inline tex2jax_ignore language-matlab">false</code>, not <code class="code-inline tex2jax_ignore language-matlab">-1</code>.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-statements-4_opt_a" data-correct=""><div class="para" id="rq-logical-statements-4-3-1-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">1</code> (true)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-4_opt_a"><div class="para" id="rq-logical-statements-4-3-1-2-1">Correct! <code class="code-inline tex2jax_ignore language-matlab">3 &gt; 5</code> is false, and NOT false is true.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-4_opt_b"><div class="para" id="rq-logical-statements-4-3-2-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">0</code> (false)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-4_opt_b"><div class="para" id="rq-logical-statements-4-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">3 &gt; 5</code> is false; negating it gives true.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-4_opt_c"><div class="para" id="rq-logical-statements-4-3-3-1-1">An error occurs.</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-4_opt_c"><div class="para" id="rq-logical-statements-4-3-3-2-1">No error. The NOT operator negates any logical value.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-4_opt_d"><div class="para" id="rq-logical-statements-4-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">-1</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-4_opt_d"><div class="para" id="rq-logical-statements-4-3-4-2-1">Incorrect. NOT produces <code class="code-inline tex2jax_ignore language-matlab">true</code> or <code class="code-inline tex2jax_ignore language-matlab">false</code>, not <code class="code-inline tex2jax_ignore language-matlab">-1</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 5: Negation result"><a href="#rq-logical-statements-4" title="Copy heading and permalink for Reading Question 5: Negation result" aria-label="Copy heading and permalink for Reading Question 5: Negation result">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-5"><h3 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 5: Negation result"><a href="#rq-logical-statements-4" title="Copy heading and permalink for Reading Question 5: Negation result" aria-label="Copy heading and permalink for Reading Question 5: Negation result">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-5"><h3 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-logical-statements-5">
 <div class="para" id="rq-logical-statements-5-1-1">The expression <code class="code-inline tex2jax_ignore language-matlab">x &lt;= 10</code> is equivalent to <code class="code-inline tex2jax_ignore language-matlab">~(x &gt; 10)</code>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-logical-statements-5_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-logical-statements-5_opt_t">
-<div class="para" id="rq-logical-statements-5-2-1">True. "Not greater than 10" is the same as "less than or equal to 10."</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-statements-5_opt_t"><div class="para" id="rq-logical-statements-5-2-1">True. "Not greater than 10" is the same as "less than or equal to 10."</div></li>
 <li data-component="answer" id="rs-rq-logical-statements-5_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-logical-statements-5_opt_f">
-<div class="para" id="rq-logical-statements-5-2-1">True. "Not greater than 10" is the same as "less than or equal to 10."</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-statements-5_opt_f"><div class="para" id="rq-logical-statements-5-2-1">True. "Not greater than 10" is the same as "less than or equal to 10."</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 6"><a href="#rq-logical-statements-5" title="Copy heading and permalink for Reading Question 6" aria-label="Copy heading and permalink for Reading Question 6">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-6"><h3 class="heading">
+<div class="autopermalink" data-description="Reading Question 6"><a href="#rq-logical-statements-5" title="Copy heading and permalink for Reading Question 6" aria-label="Copy heading and permalink for Reading Question 6">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-6"><h3 class="heading">
 <span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">AND evaluation.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-statements-6-2-1">Given <code class="code-inline tex2jax_ignore language-matlab">x = 5</code>, what does <code class="code-inline tex2jax_ignore language-matlab">(x &gt; 0) &amp; (x &lt; 3)</code> evaluate to?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-statements-6-2-1">Given <code class="code-inline tex2jax_ignore language-matlab">x = 5</code>, what does <code class="code-inline tex2jax_ignore language-matlab">(x &gt; 0) &amp; (x &lt; 3)</code> evaluate to?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-statements-6" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-statements-6_opt_a" data-correct="">
-<div class="para" id="rq-logical-statements-6-3-1-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">0</code> (false)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-6_opt_a">
-<div class="para" id="rq-logical-statements-6-3-1-2-1">Correct! While <code class="code-inline tex2jax_ignore language-matlab">5 &gt; 0</code> is true, <code class="code-inline tex2jax_ignore language-matlab">5 &lt; 3</code> is false. AND requires both to be true.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-6_opt_b">
-<div class="para" id="rq-logical-statements-6-3-2-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">1</code> (true)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-6_opt_b">
-<div class="para" id="rq-logical-statements-6-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">5 &lt; 3</code> is false, so the AND expression is false.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-6_opt_c">
-<div class="para" id="rq-logical-statements-6-3-3-1-1">An error occurs.</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-6_opt_c">
-<div class="para" id="rq-logical-statements-6-3-3-2-1">No error. This is a valid logical expression.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-6_opt_d">
-<div class="para" id="rq-logical-statements-6-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">5</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-6_opt_d">
-<div class="para" id="rq-logical-statements-6-3-4-2-1">Incorrect. Logical expressions produce <code class="code-inline tex2jax_ignore language-matlab">0</code> or <code class="code-inline tex2jax_ignore language-matlab">1</code>, not the value of <code class="code-inline tex2jax_ignore language-matlab">x</code>.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-statements-6_opt_a" data-correct=""><div class="para" id="rq-logical-statements-6-3-1-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">0</code> (false)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-6_opt_a"><div class="para" id="rq-logical-statements-6-3-1-2-1">Correct! While <code class="code-inline tex2jax_ignore language-matlab">5 &gt; 0</code> is true, <code class="code-inline tex2jax_ignore language-matlab">5 &lt; 3</code> is false. AND requires both to be true.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-6_opt_b"><div class="para" id="rq-logical-statements-6-3-2-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">1</code> (true)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-6_opt_b"><div class="para" id="rq-logical-statements-6-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">5 &lt; 3</code> is false, so the AND expression is false.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-6_opt_c"><div class="para" id="rq-logical-statements-6-3-3-1-1">An error occurs.</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-6_opt_c"><div class="para" id="rq-logical-statements-6-3-3-2-1">No error. This is a valid logical expression.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-6_opt_d"><div class="para" id="rq-logical-statements-6-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">5</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-6_opt_d"><div class="para" id="rq-logical-statements-6-3-4-2-1">Incorrect. Logical expressions produce <code class="code-inline tex2jax_ignore language-matlab">0</code> or <code class="code-inline tex2jax_ignore language-matlab">1</code>, not the value of <code class="code-inline tex2jax_ignore language-matlab">x</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 7: AND evaluation"><a href="#rq-logical-statements-6" title="Copy heading and permalink for Reading Question 7: AND evaluation" aria-label="Copy heading and permalink for Reading Question 7: AND evaluation">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-7"><h3 class="heading">
+<div class="autopermalink" data-description="Reading Question 7: AND evaluation"><a href="#rq-logical-statements-6" title="Copy heading and permalink for Reading Question 7: AND evaluation" aria-label="Copy heading and permalink for Reading Question 7: AND evaluation">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-7"><h3 class="heading">
 <span class="codenumber">8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">OR evaluation.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-statements-7-2-1">Given <code class="code-inline tex2jax_ignore language-matlab">x = 5</code>, what does <code class="code-inline tex2jax_ignore language-matlab">(x &lt; 0) | (x &gt; 4)</code> evaluate to?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-statements-7-2-1">Given <code class="code-inline tex2jax_ignore language-matlab">x = 5</code>, what does <code class="code-inline tex2jax_ignore language-matlab">(x &lt; 0) | (x &gt; 4)</code> evaluate to?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-statements-7" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-statements-7_opt_a" data-correct="">
-<div class="para" id="rq-logical-statements-7-3-1-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">1</code> (true)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-7_opt_a">
-<div class="para" id="rq-logical-statements-7-3-1-2-1">Correct! Although <code class="code-inline tex2jax_ignore language-matlab">5 &lt; 0</code> is false, <code class="code-inline tex2jax_ignore language-matlab">5 &gt; 4</code> is true. OR requires only one to be true.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-7_opt_b">
-<div class="para" id="rq-logical-statements-7-3-2-1-1">
-<code class="code-inline tex2jax_ignore language-matlab">0</code> (false)</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-7_opt_b">
-<div class="para" id="rq-logical-statements-7-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">5 &gt; 4</code> is true, so the OR is true.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-7_opt_c">
-<div class="para" id="rq-logical-statements-7-3-3-1-1">An error occurs.</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-7_opt_c">
-<div class="para" id="rq-logical-statements-7-3-3-2-1">No error. This is a valid logical expression.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-7_opt_d">
-<div class="para" id="rq-logical-statements-7-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">2</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-7_opt_d">
-<div class="para" id="rq-logical-statements-7-3-4-2-1">Incorrect. Logical expressions produce <code class="code-inline tex2jax_ignore language-matlab">0</code> or <code class="code-inline tex2jax_ignore language-matlab">1</code>.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-statements-7_opt_a" data-correct=""><div class="para" id="rq-logical-statements-7-3-1-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">1</code> (true)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-7_opt_a"><div class="para" id="rq-logical-statements-7-3-1-2-1">Correct! Although <code class="code-inline tex2jax_ignore language-matlab">5 &lt; 0</code> is false, <code class="code-inline tex2jax_ignore language-matlab">5 &gt; 4</code> is true. OR requires only one to be true.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-7_opt_b"><div class="para" id="rq-logical-statements-7-3-2-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">0</code> (false)</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-7_opt_b"><div class="para" id="rq-logical-statements-7-3-2-2-1">Incorrect. <code class="code-inline tex2jax_ignore language-matlab">5 &gt; 4</code> is true, so the OR is true.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-7_opt_c"><div class="para" id="rq-logical-statements-7-3-3-1-1">An error occurs.</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-7_opt_c"><div class="para" id="rq-logical-statements-7-3-3-2-1">No error. This is a valid logical expression.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-7_opt_d"><div class="para" id="rq-logical-statements-7-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">2</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-7_opt_d"><div class="para" id="rq-logical-statements-7-3-4-2-1">Incorrect. Logical expressions produce <code class="code-inline tex2jax_ignore language-matlab">0</code> or <code class="code-inline tex2jax_ignore language-matlab">1</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 8: OR evaluation"><a href="#rq-logical-statements-7" title="Copy heading and permalink for Reading Question 8: OR evaluation" aria-label="Copy heading and permalink for Reading Question 8: OR evaluation">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-8"><h3 class="heading">
+<div class="autopermalink" data-description="Reading Question 8: OR evaluation"><a href="#rq-logical-statements-7" title="Copy heading and permalink for Reading Question 8: OR evaluation" aria-label="Copy heading and permalink for Reading Question 8: OR evaluation">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-8"><h3 class="heading">
 <span class="codenumber">9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Precedence: NOT before AND.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-statements-8-2-1">How does MATLAB interpret <code class="code-inline tex2jax_ignore language-matlab">~A &amp; B</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-statements-8-2-1">How does MATLAB interpret <code class="code-inline tex2jax_ignore language-matlab">~A &amp; B</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-statements-8" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-statements-8_opt_a" data-correct="">
-<div class="para" id="rq-logical-statements-8-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">(~A) &amp; B</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-8_opt_a">
-<div class="para" id="rq-logical-statements-8-3-1-2-1">Correct! NOT has higher precedence than AND, so <code class="code-inline tex2jax_ignore language-matlab">A</code> is negated first.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-8_opt_b">
-<div class="para" id="rq-logical-statements-8-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(A &amp; B)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-8_opt_b">
-<div class="para" id="rq-logical-statements-8-3-2-2-1">Incorrect. NOT applies only to <code class="code-inline tex2jax_ignore language-matlab">A</code>, not to the whole AND expression.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-8_opt_c">
-<div class="para" id="rq-logical-statements-8-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">A &amp; (~B)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-8_opt_c">
-<div class="para" id="rq-logical-statements-8-3-3-2-1">Incorrect. The NOT operator is placed before <code class="code-inline tex2jax_ignore language-matlab">A</code>, so it negates <code class="code-inline tex2jax_ignore language-matlab">A</code>, not <code class="code-inline tex2jax_ignore language-matlab">B</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-8_opt_d">
-<div class="para" id="rq-logical-statements-8-3-4-1-1">This causes an error.</div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-8_opt_d">
-<div class="para" id="rq-logical-statements-8-3-4-2-1">No error. This is valid MATLAB syntax.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-statements-8_opt_a" data-correct=""><div class="para" id="rq-logical-statements-8-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">(~A) &amp; B</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-8_opt_a"><div class="para" id="rq-logical-statements-8-3-1-2-1">Correct! NOT has higher precedence than AND, so <code class="code-inline tex2jax_ignore language-matlab">A</code> is negated first.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-8_opt_b"><div class="para" id="rq-logical-statements-8-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">~(A &amp; B)</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-8_opt_b"><div class="para" id="rq-logical-statements-8-3-2-2-1">Incorrect. NOT applies only to <code class="code-inline tex2jax_ignore language-matlab">A</code>, not to the whole AND expression.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-8_opt_c"><div class="para" id="rq-logical-statements-8-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">A &amp; (~B)</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-8_opt_c"><div class="para" id="rq-logical-statements-8-3-3-2-1">Incorrect. The NOT operator is placed before <code class="code-inline tex2jax_ignore language-matlab">A</code>, so it negates <code class="code-inline tex2jax_ignore language-matlab">A</code>, not <code class="code-inline tex2jax_ignore language-matlab">B</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-8_opt_d"><div class="para" id="rq-logical-statements-8-3-4-1-1">This causes an error.</div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-8_opt_d"><div class="para" id="rq-logical-statements-8-3-4-2-1">No error. This is valid MATLAB syntax.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 9: Precedence: NOT before AND"><a href="#rq-logical-statements-8" title="Copy heading and permalink for Reading Question 9: Precedence: NOT before AND" aria-label="Copy heading and permalink for Reading Question 9: Precedence: NOT before AND">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-9"><h3 class="heading"><span class="codenumber">10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 9: Precedence: NOT before AND"><a href="#rq-logical-statements-8" title="Copy heading and permalink for Reading Question 9: Precedence: NOT before AND" aria-label="Copy heading and permalink for Reading Question 9: Precedence: NOT before AND">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-9"><h3 class="heading"><span class="codenumber">10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-logical-statements-9">
 <div class="para" id="rq-logical-statements-9-1-1">In MATLAB, <code class="code-inline tex2jax_ignore language-matlab">A &amp; B | C</code> is evaluated as <code class="code-inline tex2jax_ignore language-matlab">A &amp; (B | C)</code>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-9-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-logical-statements-9_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-logical-statements-9_opt_t">
-<div class="para" id="rq-logical-statements-9-2-1">False. AND has higher precedence than OR, so it is evaluated as <code class="code-inline tex2jax_ignore language-matlab">(A &amp; B) | C</code>.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-statements-9_opt_t"><div class="para" id="rq-logical-statements-9-2-1">False. AND has higher precedence than OR, so it is evaluated as <code class="code-inline tex2jax_ignore language-matlab">(A &amp; B) | C</code>.</div></li>
 <li data-component="answer" id="rs-rq-logical-statements-9_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-logical-statements-9_opt_f">
-<div class="para" id="rq-logical-statements-9-2-1">False. AND has higher precedence than OR, so it is evaluated as <code class="code-inline tex2jax_ignore language-matlab">(A &amp; B) | C</code>.</div>
-</li>
+<li data-component="feedback" id="rs-rq-logical-statements-9_opt_f"><div class="para" id="rq-logical-statements-9-2-1">False. AND has higher precedence than OR, so it is evaluated as <code class="code-inline tex2jax_ignore language-matlab">(A &amp; B) | C</code>.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 10"><a href="#rq-logical-statements-9" title="Copy heading and permalink for Reading Question 10" aria-label="Copy heading and permalink for Reading Question 10">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-logical-statements-10"><h3 class="heading">
+<div class="autopermalink" data-description="Reading Question 10"><a href="#rq-logical-statements-9" title="Copy heading and permalink for Reading Question 10" aria-label="Copy heading and permalink for Reading Question 10">🔗</a></div></article><article class="exercise exercise-like" id="rq-logical-statements-10"><h3 class="heading">
 <span class="codenumber">11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Inequality operator.</span>
 </h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-logical-statements-10-2-1">Which operator is used in MATLAB to test "not equal to"?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-10-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-logical-statements-10-2-1">Which operator is used in MATLAB to test "not equal to"?<div class="autopermalink" data-description="Paragraph"><a href="#rq-logical-statements-10-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-logical-statements-10" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-logical-statements-10_opt_a" data-correct="">
-<div class="para" id="rq-logical-statements-10-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">~=</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-10_opt_a">
-<div class="para" id="rq-logical-statements-10-3-1-2-1">Correct! Many other languages use <code class="code-inline tex2jax_ignore language-matlab">!=</code>, but MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">~=</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-10_opt_b">
-<div class="para" id="rq-logical-statements-10-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">!=</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-10_opt_b">
-<div class="para" id="rq-logical-statements-10-3-2-2-1">Incorrect. MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">~=</code> for "not equal to."</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-10_opt_c">
-<div class="para" id="rq-logical-statements-10-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">&lt;&gt;</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-10_opt_c">
-<div class="para" id="rq-logical-statements-10-3-3-2-1">Incorrect. MATLAB does not use <code class="code-inline tex2jax_ignore language-matlab">&lt;&gt;</code>; use <code class="code-inline tex2jax_ignore language-matlab">~=</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-logical-statements-10_opt_d">
-<div class="para" id="rq-logical-statements-10-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">=/=</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-logical-statements-10_opt_d">
-<div class="para" id="rq-logical-statements-10-3-4-2-1">Incorrect. Use <code class="code-inline tex2jax_ignore language-matlab">~=</code> for inequality in MATLAB.</div>
-</li>
+<li data-component="answer" id="rs-rq-logical-statements-10_opt_a" data-correct=""><div class="para" id="rq-logical-statements-10-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">~=</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-10_opt_a"><div class="para" id="rq-logical-statements-10-3-1-2-1">Correct! Many other languages use <code class="code-inline tex2jax_ignore language-matlab">!=</code>, but MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">~=</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-10_opt_b"><div class="para" id="rq-logical-statements-10-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">!=</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-10_opt_b"><div class="para" id="rq-logical-statements-10-3-2-2-1">Incorrect. MATLAB uses <code class="code-inline tex2jax_ignore language-matlab">~=</code> for "not equal to."</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-10_opt_c"><div class="para" id="rq-logical-statements-10-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">&lt;&gt;</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-10_opt_c"><div class="para" id="rq-logical-statements-10-3-3-2-1">Incorrect. MATLAB does not use <code class="code-inline tex2jax_ignore language-matlab">&lt;&gt;</code>; use <code class="code-inline tex2jax_ignore language-matlab">~=</code>.</div></li>
+<li data-component="answer" id="rs-rq-logical-statements-10_opt_d"><div class="para" id="rq-logical-statements-10-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">=/=</code></div></li>
+<li data-component="feedback" id="rs-rq-logical-statements-10_opt_d"><div class="para" id="rq-logical-statements-10-3-4-2-1">Incorrect. Use <code class="code-inline tex2jax_ignore language-matlab">~=</code> for inequality in MATLAB.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 11: Inequality operator"><a href="#rq-logical-statements-10" title="Copy heading and permalink for Reading Question 11: Inequality operator" aria-label="Copy heading and permalink for Reading Question 11: Inequality operator">🔗</a></div>
-</article><div class="autopermalink" data-description="Reading Questions: 📖 Reading Quiz"><a href="#programming-logic-quiz" title="Copy heading and permalink for Reading Questions: 📖 Reading Quiz" aria-label="Copy heading and permalink for Reading Questions: 📖 Reading Quiz">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Reading Question 11: Inequality operator"><a href="#rq-logical-statements-10" title="Copy heading and permalink for Reading Question 11: Inequality operator" aria-label="Copy heading and permalink for Reading Question 11: Inequality operator">🔗</a></div></article><div class="autopermalink" data-description="Reading Questions: 📖 Reading Quiz"><a href="#programming-logic-quiz" title="Copy heading and permalink for Reading Questions: 📖 Reading Quiz" aria-label="Copy heading and permalink for Reading Questions: 📖 Reading Quiz">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-combining-two-expressions.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="programming-logic-coding-practice.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

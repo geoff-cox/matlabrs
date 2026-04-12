@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-building-result-matrices">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-building-result-matrices"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Building a Result Matrix</span>
 </h2>
 <div class="para" id="subsec-building-result-matrices-2">In the vectors chapter, you learned to build a result vector inside a loop: preallocate it with <code class="code-inline tex2jax_ignore language-matlab">zeros</code>, then fill in one element per iteration. The same pattern works for matrices, with two changes — the placeholder has two dimensions, and you fill it in using two indices instead of one.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-result-matrices-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -527,13 +524,8 @@ rowSums
 </div>
 <details id="subsec-building-result-matrices-10" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Matching the result shape to the problem.</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-building-result-matrices-10-2">The shape of your preallocated result matrix is part of the design of the function you are writing. A function that returns one number per row of the input should preallocate a column vector with as many rows as the input. A function that returns the same shape as the input should preallocate <code class="code-inline tex2jax_ignore language-matlab">zeros(size(A))</code>. A function that swaps rows and columns should preallocate <code class="code-inline tex2jax_ignore language-matlab">zeros(size(A, 2), size(A, 1))</code>. Getting the shape right at the preallocation step saves you from a class of bugs where the loop runs fine but the output has the wrong dimensions.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-result-matrices-10-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</aside></details><div class="autopermalink" data-description="Subsection: Building a Result Matrix"><a href="#subsec-building-result-matrices" title="Copy heading and permalink for Subsection: Building a Result Matrix" aria-label="Copy heading and permalink for Subsection: Building a Result Matrix">🔗</a></div>
-</section>
-</div>
+</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-building-result-matrices-10-2">The shape of your preallocated result matrix is part of the design of the function you are writing. A function that returns one number per row of the input should preallocate a column vector with as many rows as the input. A function that returns the same shape as the input should preallocate <code class="code-inline tex2jax_ignore language-matlab">zeros(size(A))</code>. A function that swaps rows and columns should preallocate <code class="code-inline tex2jax_ignore language-matlab">zeros(size(A, 2), size(A, 1))</code>. Getting the shape right at the preallocation step saves you from a class of bugs where the loop runs fine but the output has the wrong dimensions.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-building-result-matrices-10-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside></details><div class="autopermalink" data-description="Subsection: Building a Result Matrix"><a href="#subsec-building-result-matrices" title="Copy heading and permalink for Subsection: Building a Result Matrix" aria-label="Copy heading and permalink for Subsection: Building a Result Matrix">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-nested-loop-pattern.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-prefer-vectorization.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

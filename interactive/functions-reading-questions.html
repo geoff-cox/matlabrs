@@ -364,9 +364,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -459,364 +458,179 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="reading-questions" id="functions-reading-questions">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="reading-questions" id="functions-reading-questions"><h2 class="heading hide-type">
 <span class="type">Reading Questions</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">📖 Reading Questions</span>
 </h2>
 <article class="exercise exercise-like" id="chk-functions-call-syntax"><h3 class="heading"><span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="chk-functions-call-syntax-1-1">Which of the following correctly calls a function <code class="code-inline tex2jax_ignore language-matlab">f</code> with three inputs?<div class="autopermalink" data-description="Paragraph"><a href="#chk-functions-call-syntax-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="chk-functions-call-syntax-1-1">Which of the following correctly calls a function <code class="code-inline tex2jax_ignore language-matlab">f</code> with three inputs?<div class="autopermalink" data-description="Paragraph"><a href="#chk-functions-call-syntax-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-chk-functions-call-syntax" data-multipleanswers="false">
-<li data-component="answer" id="rs-chk-functions-call-syntax_opt_a">
-<div class="para" id="chk-functions-call-syntax-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = 2, 3, 4</code></div>
-</li>
-<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_a">
-<div class="para" id="chk-functions-call-syntax-2-1-2-1">This assigns the value 2 to <code class="code-inline tex2jax_ignore language-matlab">f</code>; it is not a function call.</div>
-</li>
-<li data-component="answer" id="rs-chk-functions-call-syntax_opt_b">
-<div class="para" id="chk-functions-call-syntax-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2; 3; 4)</code></div>
-</li>
-<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_b">
-<div class="para" id="chk-functions-call-syntax-2-2-2-1">Semicolons separate rows in a matrix, not function arguments.</div>
-</li>
-<li data-component="answer" id="rs-chk-functions-call-syntax_opt_c" data-correct="">
-<div class="para" id="chk-functions-call-syntax-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2, 3, 4)</code></div>
-</li>
-<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_c">
-<div class="para" id="chk-functions-call-syntax-2-3-2-1">Correct. Function inputs are listed inside parentheses and separated by commas.</div>
-</li>
-<li data-component="answer" id="rs-chk-functions-call-syntax_opt_d">
-<div class="para" id="chk-functions-call-syntax-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = (2, 3, 4)</code></div>
-</li>
-<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_d">
-<div class="para" id="chk-functions-call-syntax-2-4-2-1">This is not valid MATLAB syntax.</div>
-</li>
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_a"><div class="para" id="chk-functions-call-syntax-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = 2, 3, 4</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_a"><div class="para" id="chk-functions-call-syntax-2-1-2-1">This assigns the value 2 to <code class="code-inline tex2jax_ignore language-matlab">f</code>; it is not a function call.</div></li>
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_b"><div class="para" id="chk-functions-call-syntax-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2; 3; 4)</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_b"><div class="para" id="chk-functions-call-syntax-2-2-2-1">Semicolons separate rows in a matrix, not function arguments.</div></li>
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_c" data-correct=""><div class="para" id="chk-functions-call-syntax-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_c"><div class="para" id="chk-functions-call-syntax-2-3-2-1">Correct. Function inputs are listed inside parentheses and separated by commas.</div></li>
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_d"><div class="para" id="chk-functions-call-syntax-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = (2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_d"><div class="para" id="chk-functions-call-syntax-2-4-2-1">This is not valid MATLAB syntax.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 1"><a href="#chk-functions-call-syntax" title="Copy heading and permalink for Reading Question 1" aria-label="Copy heading and permalink for Reading Question 1">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="chk-functions-script-vs-function"><h3 class="heading"><span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 1"><a href="#chk-functions-call-syntax" title="Copy heading and permalink for Reading Question 1" aria-label="Copy heading and permalink for Reading Question 1">🔗</a></div></article><article class="exercise exercise-like" id="chk-functions-script-vs-function"><h3 class="heading"><span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="chk-functions-script-vs-function-1-1">True or False: A script can call a function you wrote (e.g., <code class="code-inline tex2jax_ignore language-matlab">coin_total</code>), as long as the function file is in the Current Folder or on the MATLAB path.<div class="autopermalink" data-description="Paragraph"><a href="#chk-functions-script-vs-function-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="chk-functions-script-vs-function-1-1">True or False: A script can call a function you wrote (e.g., <code class="code-inline tex2jax_ignore language-matlab">coin_total</code>), as long as the function file is in the Current Folder or on the MATLAB path.<div class="autopermalink" data-description="Paragraph"><a href="#chk-functions-script-vs-function-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-chk-functions-script-vs-function" data-multipleanswers="false">
-<li data-component="answer" id="rs-chk-functions-script-vs-function_opt_a" data-correct="">
-<div class="para" id="chk-functions-script-vs-function-2-1-1-1">True</div>
-</li>
-<li data-component="feedback" id="rs-chk-functions-script-vs-function_opt_a">
-<div class="para" id="chk-functions-script-vs-function-2-1-2-1">Correct. This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div>
-</li>
-<li data-component="answer" id="rs-chk-functions-script-vs-function_opt_b">
-<div class="para" id="chk-functions-script-vs-function-2-2-1-1">False</div>
-</li>
-<li data-component="feedback" id="rs-chk-functions-script-vs-function_opt_b">
-<div class="para" id="chk-functions-script-vs-function-2-2-2-1">Scripts can call functions as long as MATLAB can find the function file.</div>
-</li>
+<li data-component="answer" id="rs-chk-functions-script-vs-function_opt_a" data-correct=""><div class="para" id="chk-functions-script-vs-function-2-1-1-1">True</div></li>
+<li data-component="feedback" id="rs-chk-functions-script-vs-function_opt_a"><div class="para" id="chk-functions-script-vs-function-2-1-2-1">Correct. This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div></li>
+<li data-component="answer" id="rs-chk-functions-script-vs-function_opt_b"><div class="para" id="chk-functions-script-vs-function-2-2-1-1">False</div></li>
+<li data-component="feedback" id="rs-chk-functions-script-vs-function_opt_b"><div class="para" id="chk-functions-script-vs-function-2-2-2-1">Scripts can call functions as long as MATLAB can find the function file.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 2"><a href="#chk-functions-script-vs-function" title="Copy heading and permalink for Reading Question 2" aria-label="Copy heading and permalink for Reading Question 2">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-purpose"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 2"><a href="#chk-functions-script-vs-function" title="Copy heading and permalink for Reading Question 2" aria-label="Copy heading and permalink for Reading Question 2">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-purpose"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-functions-purpose-1-1">A MATLAB function is most useful when you want to:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-purpose-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-functions-purpose-1-1">A MATLAB function is most useful when you want to:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-purpose-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-purpose" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-functions-purpose_opt_a">
-<div class="para" id="rq-functions-purpose-2-1-1-1">clear the Command Window automatically</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-purpose_opt_a">
-<div class="para" id="rq-functions-purpose-2-1-2-1">That is done with <code class="code-inline tex2jax_ignore language-matlab">clc</code>, not a function you write.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-purpose_opt_b">
-<div class="para" id="rq-functions-purpose-2-2-1-1">store a long list of comments</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-purpose_opt_b">
-<div class="para" id="rq-functions-purpose-2-2-2-1">Comments describe code but do not execute; this is not the purpose of a function.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-purpose_opt_c" data-correct="">
-<div class="para" id="rq-functions-purpose-2-3-1-1">create a reusable tool that takes inputs and returns outputs</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-purpose_opt_c">
-<div class="para" id="rq-functions-purpose-2-3-2-1">Correct. Functions encapsulate computations so you can call them repeatedly with different inputs.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-purpose_opt_d">
-<div class="para" id="rq-functions-purpose-2-4-1-1">avoid using variables</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-purpose_opt_d">
-<div class="para" id="rq-functions-purpose-2-4-2-1">Functions use variables heavily — both for inputs and intermediate calculations.</div>
-</li>
+<li data-component="answer" id="rs-rq-functions-purpose_opt_a"><div class="para" id="rq-functions-purpose-2-1-1-1">clear the Command Window automatically</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_a"><div class="para" id="rq-functions-purpose-2-1-2-1">That is done with <code class="code-inline tex2jax_ignore language-matlab">clc</code>, not a function you write.</div></li>
+<li data-component="answer" id="rs-rq-functions-purpose_opt_b"><div class="para" id="rq-functions-purpose-2-2-1-1">store a long list of comments</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_b"><div class="para" id="rq-functions-purpose-2-2-2-1">Comments describe code but do not execute; this is not the purpose of a function.</div></li>
+<li data-component="answer" id="rs-rq-functions-purpose_opt_c" data-correct=""><div class="para" id="rq-functions-purpose-2-3-1-1">create a reusable tool that takes inputs and returns outputs</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_c"><div class="para" id="rq-functions-purpose-2-3-2-1">Correct. Functions encapsulate computations so you can call them repeatedly with different inputs.</div></li>
+<li data-component="answer" id="rs-rq-functions-purpose_opt_d"><div class="para" id="rq-functions-purpose-2-4-1-1">avoid using variables</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_d"><div class="para" id="rq-functions-purpose-2-4-2-1">Functions use variables heavily — both for inputs and intermediate calculations.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 3"><a href="#rq-functions-purpose" title="Copy heading and permalink for Reading Question 3" aria-label="Copy heading and permalink for Reading Question 3">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-file-name-match"><h3 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 3"><a href="#rq-functions-purpose" title="Copy heading and permalink for Reading Question 3" aria-label="Copy heading and permalink for Reading Question 3">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-file-name-match"><h3 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-file-name-match">
 <div class="para" id="rq-functions-file-name-match-1-1">If a function is named <code class="code-inline tex2jax_ignore language-matlab">coin_total</code>, then its file should be saved as <code class="code-inline tex2jax_ignore language-matlab">coin_total.m</code>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-file-name-match-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-functions-file-name-match_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-functions-file-name-match_opt_t">
-<div class="para" id="rq-functions-file-name-match-2-1">Matching the file name to the function name prevents "function not found" errors.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-file-name-match_opt_t"><div class="para" id="rq-functions-file-name-match-2-1">Matching the file name to the function name prevents "function not found" errors.</div></li>
 <li data-component="answer" id="rs-rq-functions-file-name-match_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-functions-file-name-match_opt_f">
-<div class="para" id="rq-functions-file-name-match-2-1">Matching the file name to the function name prevents "function not found" errors.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-file-name-match_opt_f"><div class="para" id="rq-functions-file-name-match-2-1">Matching the file name to the function name prevents "function not found" errors.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 4"><a href="#rq-functions-file-name-match" title="Copy heading and permalink for Reading Question 4" aria-label="Copy heading and permalink for Reading Question 4">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-private-workspace"><h3 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 4"><a href="#rq-functions-file-name-match" title="Copy heading and permalink for Reading Question 4" aria-label="Copy heading and permalink for Reading Question 4">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-private-workspace"><h3 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-private-workspace">
 <div class="para" id="rq-functions-private-workspace-1-1">Variables created inside a function automatically appear in the Workspace after the function finishes.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-private-workspace-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-functions-private-workspace_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-functions-private-workspace_opt_t">
-<div class="para" id="rq-functions-private-workspace-2-1">A function uses its own private workspace, so its internal variables do not become Workspace variables.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-private-workspace_opt_t"><div class="para" id="rq-functions-private-workspace-2-1">A function uses its own private workspace, so its internal variables do not become Workspace variables.</div></li>
 <li data-component="answer" id="rs-rq-functions-private-workspace_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-functions-private-workspace_opt_f">
-<div class="para" id="rq-functions-private-workspace-2-1">A function uses its own private workspace, so its internal variables do not become Workspace variables.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-private-workspace_opt_f"><div class="para" id="rq-functions-private-workspace-2-1">A function uses its own private workspace, so its internal variables do not become Workspace variables.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 5"><a href="#rq-functions-private-workspace" title="Copy heading and permalink for Reading Question 5" aria-label="Copy heading and permalink for Reading Question 5">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-call-three-inputs"><h3 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 5"><a href="#rq-functions-private-workspace" title="Copy heading and permalink for Reading Question 5" aria-label="Copy heading and permalink for Reading Question 5">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-call-three-inputs"><h3 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-functions-call-three-inputs-1-1">Which of the following is a valid function call with three inputs?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-call-three-inputs-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-functions-call-three-inputs-1-1">Which of the following is a valid function call with three inputs?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-call-three-inputs-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-call-three-inputs" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_a">
-<div class="para" id="rq-functions-call-three-inputs-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = 2, 3, 4</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_a">
-<div class="para" id="rq-functions-call-three-inputs-2-1-2-1">This is an assignment, not a function call.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_b">
-<div class="para" id="rq-functions-call-three-inputs-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2; 3; 4)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_b">
-<div class="para" id="rq-functions-call-three-inputs-2-2-2-1">Semicolons are not used to separate function arguments.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_c" data-correct="">
-<div class="para" id="rq-functions-call-three-inputs-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2, 3, 4)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_c">
-<div class="para" id="rq-functions-call-three-inputs-2-3-2-1">Correct. Inputs are listed inside parentheses separated by commas.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_d">
-<div class="para" id="rq-functions-call-three-inputs-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = (2, 3, 4)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_d">
-<div class="para" id="rq-functions-call-three-inputs-2-4-2-1">This is not valid MATLAB syntax.</div>
-</li>
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_a"><div class="para" id="rq-functions-call-three-inputs-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = 2, 3, 4</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_a"><div class="para" id="rq-functions-call-three-inputs-2-1-2-1">This is an assignment, not a function call.</div></li>
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_b"><div class="para" id="rq-functions-call-three-inputs-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2; 3; 4)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_b"><div class="para" id="rq-functions-call-three-inputs-2-2-2-1">Semicolons are not used to separate function arguments.</div></li>
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_c" data-correct=""><div class="para" id="rq-functions-call-three-inputs-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_c"><div class="para" id="rq-functions-call-three-inputs-2-3-2-1">Correct. Inputs are listed inside parentheses separated by commas.</div></li>
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_d"><div class="para" id="rq-functions-call-three-inputs-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = (2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_d"><div class="para" id="rq-functions-call-three-inputs-2-4-2-1">This is not valid MATLAB syntax.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 6"><a href="#rq-functions-call-three-inputs" title="Copy heading and permalink for Reading Question 6" aria-label="Copy heading and permalink for Reading Question 6">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-two-output-syntax"><h3 class="heading"><span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 6"><a href="#rq-functions-call-three-inputs" title="Copy heading and permalink for Reading Question 6" aria-label="Copy heading and permalink for Reading Question 6">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-two-output-syntax"><h3 class="heading"><span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-functions-two-output-syntax-1-1">To store two outputs from a function, you should write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-two-output-syntax-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-functions-two-output-syntax-1-1">To store two outputs from a function, you should write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-two-output-syntax-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-two-output-syntax" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_a">
-<div class="para" id="rq-functions-two-output-syntax-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">a, b = f(x)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_a">
-<div class="para" id="rq-functions-two-output-syntax-2-1-2-1">This is not valid MATLAB syntax.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_b">
-<div class="para" id="rq-functions-two-output-syntax-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">(a, b) = f(x)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_b">
-<div class="para" id="rq-functions-two-output-syntax-2-2-2-1">Parentheses are not used on the left side for capturing outputs.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_c" data-correct="">
-<div class="para" id="rq-functions-two-output-syntax-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">[a, b] = f(x)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_c">
-<div class="para" id="rq-functions-two-output-syntax-2-3-2-1">Correct. Square brackets on the left side capture multiple outputs.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_d">
-<div class="para" id="rq-functions-two-output-syntax-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">a = f(x), b</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_d">
-<div class="para" id="rq-functions-two-output-syntax-2-4-2-1">This does not capture both outputs correctly.</div>
-</li>
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_a"><div class="para" id="rq-functions-two-output-syntax-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">a, b = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_a"><div class="para" id="rq-functions-two-output-syntax-2-1-2-1">This is not valid MATLAB syntax.</div></li>
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_b"><div class="para" id="rq-functions-two-output-syntax-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">(a, b) = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_b"><div class="para" id="rq-functions-two-output-syntax-2-2-2-1">Parentheses are not used on the left side for capturing outputs.</div></li>
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_c" data-correct=""><div class="para" id="rq-functions-two-output-syntax-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">[a, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_c"><div class="para" id="rq-functions-two-output-syntax-2-3-2-1">Correct. Square brackets on the left side capture multiple outputs.</div></li>
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_d"><div class="para" id="rq-functions-two-output-syntax-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">a = f(x), b</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_d"><div class="para" id="rq-functions-two-output-syntax-2-4-2-1">This does not capture both outputs correctly.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 7"><a href="#rq-functions-two-output-syntax" title="Copy heading and permalink for Reading Question 7" aria-label="Copy heading and permalink for Reading Question 7">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-header-output-symbol"><h3 class="heading"><span class="codenumber">8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 7"><a href="#rq-functions-two-output-syntax" title="Copy heading and permalink for Reading Question 7" aria-label="Copy heading and permalink for Reading Question 7">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-header-output-symbol"><h3 class="heading"><span class="codenumber">8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-functions-header-output-symbol-1-1">In the header <code class="code-inline tex2jax_ignore language-matlab">function y = f(x)</code>, which symbol represents the output?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-header-output-symbol-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-functions-header-output-symbol-1-1">In the header <code class="code-inline tex2jax_ignore language-matlab">function y = f(x)</code>, which symbol represents the output?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-header-output-symbol-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-header-output-symbol" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_a">
-<div class="para" id="rq-functions-header-output-symbol-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_a">
-<div class="para" id="rq-functions-header-output-symbol-2-1-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">f</code> is the function name.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_b">
-<div class="para" id="rq-functions-header-output-symbol-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">x</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_b">
-<div class="para" id="rq-functions-header-output-symbol-2-2-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">x</code> is the input.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_c" data-correct="">
-<div class="para" id="rq-functions-header-output-symbol-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">y</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_c">
-<div class="para" id="rq-functions-header-output-symbol-2-3-2-1">Correct. The output variable appears between <code class="code-inline tex2jax_ignore language-matlab">function</code> and the <code class="code-inline tex2jax_ignore language-matlab">=</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_d">
-<div class="para" id="rq-functions-header-output-symbol-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">function</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_d">
-<div class="para" id="rq-functions-header-output-symbol-2-4-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">function</code> is the keyword that begins every function definition.</div>
-</li>
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_a"><div class="para" id="rq-functions-header-output-symbol-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_a"><div class="para" id="rq-functions-header-output-symbol-2-1-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">f</code> is the function name.</div></li>
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_b"><div class="para" id="rq-functions-header-output-symbol-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">x</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_b"><div class="para" id="rq-functions-header-output-symbol-2-2-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x</code> is the input.</div></li>
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_c" data-correct=""><div class="para" id="rq-functions-header-output-symbol-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">y</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_c"><div class="para" id="rq-functions-header-output-symbol-2-3-2-1">Correct. The output variable appears between <code class="code-inline tex2jax_ignore language-matlab">function</code> and the <code class="code-inline tex2jax_ignore language-matlab">=</code>.</div></li>
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_d"><div class="para" id="rq-functions-header-output-symbol-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">function</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_d"><div class="para" id="rq-functions-header-output-symbol-2-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">function</code> is the keyword that begins every function definition.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 8"><a href="#rq-functions-header-output-symbol" title="Copy heading and permalink for Reading Question 8" aria-label="Copy heading and permalink for Reading Question 8">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-calling-from-script"><h3 class="heading"><span class="codenumber">9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 8"><a href="#rq-functions-header-output-symbol" title="Copy heading and permalink for Reading Question 8" aria-label="Copy heading and permalink for Reading Question 8">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-calling-from-script"><h3 class="heading"><span class="codenumber">9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-calling-from-script">
 <div class="para" id="rq-functions-calling-from-script-1-1">A script can call a function you wrote (for example, <code class="code-inline tex2jax_ignore language-matlab">coin_total</code>), as long as the function file is available in the Current Folder or on the path.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-calling-from-script-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-functions-calling-from-script_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-functions-calling-from-script_opt_t">
-<div class="para" id="rq-functions-calling-from-script-2-1">This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-calling-from-script_opt_t"><div class="para" id="rq-functions-calling-from-script-2-1">This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div></li>
 <li data-component="answer" id="rs-rq-functions-calling-from-script_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-functions-calling-from-script_opt_f">
-<div class="para" id="rq-functions-calling-from-script-2-1">This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-calling-from-script_opt_f"><div class="para" id="rq-functions-calling-from-script-2-1">This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 9"><a href="#rq-functions-calling-from-script" title="Copy heading and permalink for Reading Question 9" aria-label="Copy heading and permalink for Reading Question 9">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-tilde-ignore"><h3 class="heading"><span class="codenumber">10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 9"><a href="#rq-functions-calling-from-script" title="Copy heading and permalink for Reading Question 9" aria-label="Copy heading and permalink for Reading Question 9">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-tilde-ignore"><h3 class="heading"><span class="codenumber">10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-functions-tilde-ignore-1-1">If a function returns two outputs but you only need the second one, you can write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-tilde-ignore-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-functions-tilde-ignore-1-1">If a function returns two outputs but you only need the second one, you can write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-tilde-ignore-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-tilde-ignore" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_a" data-correct="">
-<div class="para" id="rq-functions-tilde-ignore-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">[~, b] = f(x)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_a">
-<div class="para" id="rq-functions-tilde-ignore-2-1-2-1">Correct. The tilde <code class="code-inline tex2jax_ignore language-matlab">~</code> is a placeholder that discards the unwanted output.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_b">
-<div class="para" id="rq-functions-tilde-ignore-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">[_, b] = f(x)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_b">
-<div class="para" id="rq-functions-tilde-ignore-2-2-2-1">Underscore is not used as a placeholder in MATLAB; use <code class="code-inline tex2jax_ignore language-matlab">~</code> instead.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_c">
-<div class="para" id="rq-functions-tilde-ignore-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">b = f(x)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_c">
-<div class="para" id="rq-functions-tilde-ignore-2-3-2-1">This only captures the first output, not the second.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_d">
-<div class="para" id="rq-functions-tilde-ignore-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">[null, b] = f(x)</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_d">
-<div class="para" id="rq-functions-tilde-ignore-2-4-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">null</code> is not the placeholder for ignored outputs in MATLAB.</div>
-</li>
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_a" data-correct=""><div class="para" id="rq-functions-tilde-ignore-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">[~, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_a"><div class="para" id="rq-functions-tilde-ignore-2-1-2-1">Correct. The tilde <code class="code-inline tex2jax_ignore language-matlab">~</code> is a placeholder that discards the unwanted output.</div></li>
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_b"><div class="para" id="rq-functions-tilde-ignore-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">[_, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_b"><div class="para" id="rq-functions-tilde-ignore-2-2-2-1">Underscore is not used as a placeholder in MATLAB; use <code class="code-inline tex2jax_ignore language-matlab">~</code> instead.</div></li>
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_c"><div class="para" id="rq-functions-tilde-ignore-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">b = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_c"><div class="para" id="rq-functions-tilde-ignore-2-3-2-1">This only captures the first output, not the second.</div></li>
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_d"><div class="para" id="rq-functions-tilde-ignore-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">[null, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_d"><div class="para" id="rq-functions-tilde-ignore-2-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">null</code> is not the placeholder for ignored outputs in MATLAB.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 10"><a href="#rq-functions-tilde-ignore" title="Copy heading and permalink for Reading Question 10" aria-label="Copy heading and permalink for Reading Question 10">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-script-vs-function-workspace"><h3 class="heading"><span class="codenumber">11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 10"><a href="#rq-functions-tilde-ignore" title="Copy heading and permalink for Reading Question 10" aria-label="Copy heading and permalink for Reading Question 10">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-script-vs-function-workspace"><h3 class="heading"><span class="codenumber">11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone cardsort_section"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="rs-rq-functions-script-vs-function-workspace">
-<span data-subcomponent="question">
-<div class="para" id="rq-functions-script-vs-function-workspace-1-1">Drag each description to the correct concept.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-script-vs-function-workspace-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></span><span data-subcomponent="feedback">
-<div class="para" id="rq-functions-script-vs-function-workspace-3-1">Scripts and functions both run top-to-bottom, but functions emphasize reusable input/output behavior and a separate workspace.</div></span><li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag1" data-category="1">Uses the base workspace</li>
+<span data-subcomponent="question"><div class="para" id="rq-functions-script-vs-function-workspace-1-1">Drag each description to the correct concept.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-script-vs-function-workspace-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></span><span data-subcomponent="feedback"><div class="para" id="rq-functions-script-vs-function-workspace-3-1">Scripts and functions both run top-to-bottom, but functions emphasize reusable input/output behavior and a separate workspace.</div></span><li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag1" data-category="1">Uses the base workspace</li>
 <li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag2" data-category="1">Often written as a one-time recipe</li>
 <li data-subcomponent="dropzone" for="rs-rq-functions-script-vs-function-workspace_drag1" data-category="1">Script</li>
 <li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag3" data-category="2">Has its own private workspace</li>
 <li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag4" data-category="2">Designed for reuse with many inputs</li>
 <li data-subcomponent="dropzone" for="rs-rq-functions-script-vs-function-workspace_drag2" data-category="2">Function</li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 11"><a href="#rq-functions-script-vs-function-workspace" title="Copy heading and permalink for Reading Question 11" aria-label="Copy heading and permalink for Reading Question 11">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-where-to-save"><h3 class="heading"><span class="codenumber">12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 11"><a href="#rq-functions-script-vs-function-workspace" title="Copy heading and permalink for Reading Question 11" aria-label="Copy heading and permalink for Reading Question 11">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-where-to-save"><h3 class="heading"><span class="codenumber">12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-functions-where-to-save-1-1">For MATLAB to find your function when you call it, where should you save the <code class="code-inline tex2jax_ignore language-matlab">.m</code> file?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-where-to-save-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-functions-where-to-save-1-1">For MATLAB to find your function when you call it, where should you save the <code class="code-inline tex2jax_ignore language-matlab">.m</code> file?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-where-to-save-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-where-to-save" data-multipleanswers="false" data-random="">
-<li data-component="answer" id="rs-rq-functions-where-to-save_opt_a" data-correct="">
-<div class="para" id="rq-functions-where-to-save-2-1-1-1">In the Current Folder or in a folder on the MATLAB path</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_a">
-<div class="para" id="rq-functions-where-to-save-2-1-2-1">Correct. MATLAB searches the Current Folder and the path when resolving function names.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-where-to-save_opt_b">
-<div class="para" id="rq-functions-where-to-save-2-2-1-1">In the Documents folder</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_b">
-<div class="para" id="rq-functions-where-to-save-2-2-2-1">MATLAB does not automatically search the Documents folder unless it is on the path.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-where-to-save_opt_c">
-<div class="para" id="rq-functions-where-to-save-2-3-1-1">In any folder on your computer</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_c">
-<div class="para" id="rq-functions-where-to-save-2-3-2-1">MATLAB only searches the Current Folder and folders listed on the path.</div>
-</li>
-<li data-component="answer" id="rs-rq-functions-where-to-save_opt_d">
-<div class="para" id="rq-functions-where-to-save-2-4-1-1">In the same folder as MATLAB itself</div>
-</li>
-<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_d">
-<div class="para" id="rq-functions-where-to-save-2-4-2-1">You should not place your files in the MATLAB installation directory.</div>
-</li>
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_a" data-correct=""><div class="para" id="rq-functions-where-to-save-2-1-1-1">In the Current Folder or in a folder on the MATLAB path</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_a"><div class="para" id="rq-functions-where-to-save-2-1-2-1">Correct. MATLAB searches the Current Folder and the path when resolving function names.</div></li>
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_b"><div class="para" id="rq-functions-where-to-save-2-2-1-1">In the Documents folder</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_b"><div class="para" id="rq-functions-where-to-save-2-2-2-1">MATLAB does not automatically search the Documents folder unless it is on the path.</div></li>
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_c"><div class="para" id="rq-functions-where-to-save-2-3-1-1">In any folder on your computer</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_c"><div class="para" id="rq-functions-where-to-save-2-3-2-1">MATLAB only searches the Current Folder and folders listed on the path.</div></li>
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_d"><div class="para" id="rq-functions-where-to-save-2-4-1-1">In the same folder as MATLAB itself</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_d"><div class="para" id="rq-functions-where-to-save-2-4-2-1">You should not place your files in the MATLAB installation directory.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 12"><a href="#rq-functions-where-to-save" title="Copy heading and permalink for Reading Question 12" aria-label="Copy heading and permalink for Reading Question 12">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-fail-a-zero"><h3 class="heading"><span class="codenumber">13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 12"><a href="#rq-functions-where-to-save" title="Copy heading and permalink for Reading Question 12" aria-label="Copy heading and permalink for Reading Question 12">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-fail-a-zero"><h3 class="heading"><span class="codenumber">13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="rq-functions-fail-a-zero-1-1">Fill in the blank: The quadratic formula function <code class="code-inline tex2jax_ignore language-matlab">[x1,x2] = quadratic(a,b,c)</code> will not work correctly (it divides by zero and produces Inf or NaN) when <code class="code-inline tex2jax_ignore language-matlab">a</code> equals <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-fail-a-zero-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Reading Question 13"><a href="#rq-functions-fail-a-zero" title="Copy heading and permalink for Reading Question 13" aria-label="Copy heading and permalink for Reading Question 13">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-functions-end-keyword"><h3 class="heading"><span class="codenumber">14<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 13"><a href="#rq-functions-fail-a-zero" title="Copy heading and permalink for Reading Question 13" aria-label="Copy heading and permalink for Reading Question 13">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-end-keyword"><h3 class="heading"><span class="codenumber">14<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-end-keyword">
 <div class="para" id="rq-functions-end-keyword-1-1">Every MATLAB function definition should conclude with the keyword <code class="code-inline tex2jax_ignore language-matlab">end</code>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-end-keyword-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-functions-end-keyword_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-functions-end-keyword_opt_t">
-<div class="para" id="rq-functions-end-keyword-2-1">While MATLAB can sometimes infer the end of a function from the file boundary, using <code class="code-inline tex2jax_ignore language-matlab">end</code> explicitly is required when multiple functions appear in one file and is considered best practice.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-end-keyword_opt_t"><div class="para" id="rq-functions-end-keyword-2-1">While MATLAB can sometimes infer the end of a function from the file boundary, using <code class="code-inline tex2jax_ignore language-matlab">end</code> explicitly is required when multiple functions appear in one file and is considered best practice.</div></li>
 <li data-component="answer" id="rs-rq-functions-end-keyword_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-functions-end-keyword_opt_f">
-<div class="para" id="rq-functions-end-keyword-2-1">While MATLAB can sometimes infer the end of a function from the file boundary, using <code class="code-inline tex2jax_ignore language-matlab">end</code> explicitly is required when multiple functions appear in one file and is considered best practice.</div>
-</li>
+<li data-component="feedback" id="rs-rq-functions-end-keyword_opt_f"><div class="para" id="rq-functions-end-keyword-2-1">While MATLAB can sometimes infer the end of a function from the file boundary, using <code class="code-inline tex2jax_ignore language-matlab">end</code> explicitly is required when multiple functions appear in one file and is considered best practice.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 14"><a href="#rq-functions-end-keyword" title="Copy heading and permalink for Reading Question 14" aria-label="Copy heading and permalink for Reading Question 14">🔗</a></div>
-</article><div class="autopermalink" data-description="Reading Questions: 📖 Reading Questions"><a href="#functions-reading-questions" title="Copy heading and permalink for Reading Questions: 📖 Reading Questions" aria-label="Copy heading and permalink for Reading Questions: 📖 Reading Questions">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Reading Question 14"><a href="#rq-functions-end-keyword" title="Copy heading and permalink for Reading Question 14" aria-label="Copy heading and permalink for Reading Question 14">🔗</a></div></article><div class="autopermalink" data-description="Reading Questions: 📖 Reading Questions"><a href="#functions-reading-questions" title="Copy heading and permalink for Reading Questions: 📖 Reading Questions" aria-label="Copy heading and permalink for Reading Questions: 📖 Reading Questions">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="two-inputs-two-outputs.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-functions-exercises.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-loop-over-values">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-loop-over-values"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Looping Over a Vector by Value</span>
 </h2>
 <div class="para" id="subsec-loop-over-values-2">There is a second way to loop over a vector that skips the index entirely. If you write a for-loop whose range is the vector itself, the loop variable takes on each <em class="emphasis">value</em> of the vector in turn:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -489,15 +486,10 @@ end
 </div>
 <details id="subsec-loop-over-values-6" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The same idea in other languages.</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-loop-over-values-6-2">Most modern languages offer this exact pattern under a different name. Python calls it a “for-each” loop and writes it as <code class="code-inline tex2jax_ignore language-matlab">for t in temps:</code>. Java and C++ have similar syntax. The idea is identical: hand the loop a collection, and let it walk through the values one at a time without any explicit index.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-loop-over-values-6-2">Most modern languages offer this exact pattern under a different name. Python calls it a “for-each” loop and writes it as <code class="code-inline tex2jax_ignore language-matlab">for t in temps:</code>. Java and C++ have similar syntax. The idea is identical: hand the loop a collection, and let it walk through the values one at a time without any explicit index.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside></details><div class="para" id="subsec-loop-over-values-7">So when should you use each style? The two forms are not interchangeable — each one is missing something the other has.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-</aside></details>
-<div class="para" id="subsec-loop-over-values-7">So when should you use each style? The two forms are not interchangeable — each one is missing something the other has.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:48.9795918367347% 48.9795918367347%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:48.9795918367347% 48.9795918367347%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-loop-over-values-8-1-1">Loop by index ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -514,15 +506,12 @@ end
 end
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-loop-over-values-9">Looping by value is cleaner when all you need is the element itself — printing each value, adding them up, checking whether any of them satisfy some condition. Looping by index is necessary when you also need to know <em class="emphasis">where</em> you are in the vector: storing results back into another vector at matching positions, comparing each element with its neighbor, or reporting which day had the highest temperature rather than just what that temperature was.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="subsec-loop-over-values-10">A useful rule of thumb: if the loop body ever writes <code class="code-inline tex2jax_ignore language-matlab">temps(i)</code>, you need the index. If it only ever reads the current value, looping by value is usually the clearer choice.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-over-values-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Subsection: Looping Over a Vector by Value"><a href="#subsec-loop-over-values" title="Copy heading and permalink for Subsection: Looping Over a Vector by Value" aria-label="Copy heading and permalink for Subsection: Looping Over a Vector by Value">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Subsection: Looping Over a Vector by Value"><a href="#subsec-loop-over-values" title="Copy heading and permalink for Subsection: Looping Over a Vector by Value" aria-label="Copy heading and permalink for Subsection: Looping Over a Vector by Value">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-loop-by-index.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-building-result-vectors.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

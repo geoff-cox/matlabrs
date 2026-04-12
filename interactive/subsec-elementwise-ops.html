@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-elementwise-ops">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-elementwise-ops"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Element-wise Operations</span>
 </h2>
 <div class="para" id="subsec-elementwise-ops-2">The same idea extends to combining two vectors. If <code class="code-inline tex2jax_ignore language-matlab">v</code> and <code class="code-inline tex2jax_ignore language-matlab">w</code> are vectors of the same length, MATLAB can add them, subtract them, multiply them, or divide them element by element — meaning the operation is applied to matching pairs of values, one from each vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -489,8 +486,7 @@ w - v
 </div>
 <div class="para" id="subsec-elementwise-ops-6">Multiplication, division, and exponentiation are where MATLAB does something that will look unusual at first. To multiply two vectors element by element, you have to write <code class="code-inline tex2jax_ignore language-matlab">.*</code> — a period in front of the asterisk — instead of plain <code class="code-inline tex2jax_ignore language-matlab">*</code>:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-elementwise-ops-7-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -511,8 +507,7 @@ w = [10, 20, 30, 40]
   = [1, 4, 9, 16]
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-elementwise-ops-8">The dotted versions <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code> are called <dfn class="terminology">element-wise operators</dfn>. Each one pairs up matching positions and performs the operation independently on each pair.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para logical" id="subsec-elementwise-ops-9">
@@ -533,16 +528,10 @@ w = [10, 20, 30, 40]
 </div>
 <details id="subsec-elementwise-ops-10" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A point of cross-language friction.</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-elementwise-ops-10-2">Most other languages use plain <code class="code-inline tex2jax_ignore language-matlab">*</code> for element-wise multiplication and provide a separate function for matrix multiplication — NumPy, for example, uses <code class="code-inline tex2jax_ignore language-matlab">*</code> for element-wise and <code class="code-inline tex2jax_ignore language-matlab">@</code> for matrix multiplication. MATLAB makes the opposite choice: plain <code class="code-inline tex2jax_ignore language-matlab">*</code> is matrix multiplication, and element-wise requires the dot. Neither convention is more correct, but forgetting the dot is one of the most common mistakes when writing MATLAB code.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-10-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-elementwise-ops-10-2">Most other languages use plain <code class="code-inline tex2jax_ignore language-matlab">*</code> for element-wise multiplication and provide a separate function for matrix multiplication — NumPy, for example, uses <code class="code-inline tex2jax_ignore language-matlab">*</code> for element-wise and <code class="code-inline tex2jax_ignore language-matlab">@</code> for matrix multiplication. MATLAB makes the opposite choice: plain <code class="code-inline tex2jax_ignore language-matlab">*</code> is matrix multiplication, and element-wise requires the dot. Neither convention is more correct, but forgetting the dot is one of the most common mistakes when writing MATLAB code.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-10-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside></details><div class="para" id="subsec-elementwise-ops-11">One more thing to watch for: element-wise operations require the two vectors to be the <em class="emphasis">same size</em>. Trying to add a 4-element vector to a 5-element vector is an error, because there is no matching element to pair with. The same rule applies to <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code> when both sides are vectors.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-</aside></details>
-<div class="para" id="subsec-elementwise-ops-11">One more thing to watch for: element-wise operations require the two vectors to be the <em class="emphasis">same size</em>. Trying to add a 4-element vector to a 5-element vector is an error, because there is no matching element to pair with. The same rule applies to <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code> when both sides are vectors.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-elementwise-ops-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Subsection: Element-wise Operations"><a href="#subsec-elementwise-ops" title="Copy heading and permalink for Subsection: Element-wise Operations" aria-label="Copy heading and permalink for Subsection: Element-wise Operations">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Subsection: Element-wise Operations"><a href="#subsec-elementwise-ops" title="Copy heading and permalink for Subsection: Element-wise Operations" aria-label="Copy heading and permalink for Subsection: Element-wise Operations">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="subsec-scalar-vector-ops.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-broadcasting-functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

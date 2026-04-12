@@ -376,9 +376,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -471,9 +470,7 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-scalar-vector-ops">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-scalar-vector-ops"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Scalar and Vector Operations</span>
 </h2>
 <div class="para" id="subsec-scalar-vector-ops-2">Now that you can build and index a vector, the next question is what you can <em class="emphasis">do</em> with one. The simplest case is combining a vector with a single number — a scalar. MATLAB applies the operation to every element of the vector automatically, with no loop required.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -485,8 +482,7 @@ temps = temps + 2
 </script></div>
 <div class="para" id="subsec-scalar-vector-ops-5">MATLAB adds <code class="code-inline tex2jax_ignore language-matlab">2</code> to every element of <code class="code-inline tex2jax_ignore language-matlab">temps</code> and returns a new vector of the same size. The same pattern works for subtraction, multiplication, and division:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="subsec-scalar-vector-ops-6-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -507,22 +503,15 @@ v / 2
    = [0.5, 1.0, 1.5, 2.0, 2.5]
 </code></pre>
 </div>
-</div>
-</div>
+</div></div>
 <div class="para" id="subsec-scalar-vector-ops-7">The order of the operands does not matter for addition or multiplication: <code class="code-inline tex2jax_ignore language-matlab">v + 10</code> and <code class="code-inline tex2jax_ignore language-matlab">10 + v</code> produce the same result, and so do <code class="code-inline tex2jax_ignore language-matlab">2 * v</code> and <code class="code-inline tex2jax_ignore language-matlab">v * 2</code>. For subtraction and division, the order matters in the usual mathematical sense — <code class="code-inline tex2jax_ignore language-matlab">10 - v</code> is not the same as <code class="code-inline tex2jax_ignore language-matlab">v - 10</code>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <details id="subsec-scalar-vector-ops-8" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Replacing loops with vector operations.</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-scalar-vector-ops-8-2">In most languages, applying an operation to every element of a collection requires an explicit loop. MATLAB — along with NumPy in Python, Julia, R, and others — lets you write the operation once and have it apply to the whole vector. This style is called <dfn class="terminology">vectorization</dfn>, and it is one of the reasons MATLAB code for numerical work tends to be short and readable.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-8-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-scalar-vector-ops-8-2">In most languages, applying an operation to every element of a collection requires an explicit loop. MATLAB — along with NumPy in Python, Julia, R, and others — lets you write the operation once and have it apply to the whole vector. This style is called <dfn class="terminology">vectorization</dfn>, and it is one of the reasons MATLAB code for numerical work tends to be short and readable.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-8-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside></details><div class="para" id="subsec-scalar-vector-ops-9">Notice that none of these operations changed the original vector unless you assigned the result back to it. Writing <code class="code-inline tex2jax_ignore language-matlab">v + 10</code> produces a new vector but leaves <code class="code-inline tex2jax_ignore language-matlab">v</code> alone; writing <code class="code-inline tex2jax_ignore language-matlab">v = v + 10</code> replaces <code class="code-inline tex2jax_ignore language-matlab">v</code> with the shifted version. This is the same rule that applies to scalar assignment — it is easy to forget when a whole vector is involved.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-</aside></details>
-<div class="para" id="subsec-scalar-vector-ops-9">Notice that none of these operations changed the original vector unless you assigned the result back to it. Writing <code class="code-inline tex2jax_ignore language-matlab">v + 10</code> produces a new vector but leaves <code class="code-inline tex2jax_ignore language-matlab">v</code> alone; writing <code class="code-inline tex2jax_ignore language-matlab">v = v + 10</code> replaces <code class="code-inline tex2jax_ignore language-matlab">v</code> with the shifted version. This is the same rule that applies to scalar assignment — it is easy to forget when a whole vector is involved.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-vector-ops-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Subsection: Scalar and Vector Operations"><a href="#subsec-scalar-vector-ops" title="Copy heading and permalink for Subsection: Scalar and Vector Operations" aria-label="Copy heading and permalink for Subsection: Scalar and Vector Operations">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Subsection: Scalar and Vector Operations"><a href="#subsec-scalar-vector-ops" title="Copy heading and permalink for Subsection: Scalar and Vector Operations" aria-label="Copy heading and permalink for Subsection: Scalar and Vector Operations">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-elementwise-ops.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>

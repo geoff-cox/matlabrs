@@ -364,9 +364,8 @@ true);
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-vector.html" class="internal"><span class="title">What is a Vector?</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-row-vs-column.html" class="internal"><span class="title">Row &amp; Column Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors.html" class="internal"><span class="title">Building Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -459,79 +458,44 @@ true);
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="reading-questions" id="switch-statement-quiz">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="reading-questions" id="switch-statement-quiz"><h2 class="heading hide-type">
 <span class="type">Reading Questions</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">📖 Reading Quiz</span>
 </h2>
 <article class="exercise exercise-like" id="concepts-switch-statement"><h3 class="heading"><span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff" id="rs-concepts-switch-statement">
-<div data-component="tab" data-tabname="(a)">
-<article class="task exercise-like" id="cqs-switch-statement-switch-values"><h4 class="heading">
+<div data-component="tab" data-tabname="(a)"><article class="task exercise-like" id="cqs-switch-statement-switch-values"><h4 class="heading">
 <span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Switch Case Values.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="cqs-switch-statement-switch-values-2-1">Which of the following statements about <code class="code-inline tex2jax_ignore language-matlab">switch</code> case values are true? Select all that apply.<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-switch-values-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="cqs-switch-statement-switch-values-2-1">Which of the following statements about <code class="code-inline tex2jax_ignore language-matlab">switch</code> case values are true? Select all that apply.<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-switch-values-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-switch-statement-switch-values" data-multipleanswers="true">
-<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_a" data-correct="">
-<div class="para" id="cqs-switch-statement-switch-values-3-1-1-1">The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is optional.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_a">
-<div class="para" id="cqs-switch-statement-switch-values-3-1-2-1">In a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement the <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is optional.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_b" data-correct="">
-<div class="para" id="cqs-switch-statement-switch-values-3-2-1-1">Case values can be numbers.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_b">
-<div class="para" id="cqs-switch-statement-switch-values-3-2-2-1">Correct! Switch cases can match numeric values.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_c" data-correct="">
-<div class="para" id="cqs-switch-statement-switch-values-3-3-1-1">Case values can be strings.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_c">
-<div class="para" id="cqs-switch-statement-switch-values-3-3-2-1">Correct! Switch cases work well with string comparisons.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_d">
-<div class="para" id="cqs-switch-statement-switch-values-3-4-1-1">Case values can use relational operators like <code class="code-inline tex2jax_ignore language-matlab">&gt;</code> or <code class="code-inline tex2jax_ignore language-matlab">&lt;</code>.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_d">
-<div class="para" id="cqs-switch-statement-switch-values-3-4-2-1">Incorrect. Switch statements only test for equality. Use <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> for range-based conditions.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_e" data-correct="">
-<div class="para" id="cqs-switch-statement-switch-values-3-5-1-1">Multiple case values can be grouped using curly braces <code class="code-inline tex2jax_ignore language-matlab">{ }</code>.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_e">
-<div class="para" id="cqs-switch-statement-switch-values-3-5-2-1">Correct! You can use <code class="code-inline tex2jax_ignore language-matlab">case {val1, val2, val3}</code> to match multiple values.</div>
-</li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_a" data-correct=""><div class="para" id="cqs-switch-statement-switch-values-3-1-1-1">The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is optional.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_a"><div class="para" id="cqs-switch-statement-switch-values-3-1-2-1">In a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement the <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is optional.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_b" data-correct=""><div class="para" id="cqs-switch-statement-switch-values-3-2-1-1">Case values can be numbers.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_b"><div class="para" id="cqs-switch-statement-switch-values-3-2-2-1">Correct! Switch cases can match numeric values.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_c" data-correct=""><div class="para" id="cqs-switch-statement-switch-values-3-3-1-1">Case values can be strings.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_c"><div class="para" id="cqs-switch-statement-switch-values-3-3-2-1">Correct! Switch cases work well with string comparisons.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_d"><div class="para" id="cqs-switch-statement-switch-values-3-4-1-1">Case values can use relational operators like <code class="code-inline tex2jax_ignore language-matlab">&gt;</code> or <code class="code-inline tex2jax_ignore language-matlab">&lt;</code>.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_d"><div class="para" id="cqs-switch-statement-switch-values-3-4-2-1">Incorrect. Switch statements only test for equality. Use <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> for range-based conditions.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-values_opt_e" data-correct=""><div class="para" id="cqs-switch-statement-switch-values-3-5-1-1">Multiple case values can be grouped using curly braces <code class="code-inline tex2jax_ignore language-matlab">{ }</code>.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-values_opt_e"><div class="para" id="cqs-switch-statement-switch-values-3-5-2-1">Correct! You can use <code class="code-inline tex2jax_ignore language-matlab">case {val1, val2, val3}</code> to match multiple values.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.a: Switch Case Values"><a href="#cqs-switch-statement-switch-values" title="Copy heading and permalink for Task 1.a: Switch Case Values" aria-label="Copy heading and permalink for Task 1.a: Switch Case Values">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(b)">
-<article class="task exercise-like" id="cqs-switch-statement-otherwise"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.a: Switch Case Values"><a href="#cqs-switch-statement-switch-values" title="Copy heading and permalink for Task 1.a: Switch Case Values" aria-label="Copy heading and permalink for Task 1.a: Switch Case Values">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(b)"><article class="task exercise-like" id="cqs-switch-statement-otherwise"><h4 class="heading">
 <span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Otherwise Block Behavior.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-cqs-switch-statement-otherwise">
 <div class="para" id="cqs-switch-statement-otherwise-2-1">In a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement, the <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block only runs when none of the <code class="code-inline tex2jax_ignore language-matlab">case</code> values match.<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-otherwise-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-cqs-switch-statement-otherwise_opt_t" data-correct=""><p>True.</p></li>
-<li data-component="feedback" id="rs-cqs-switch-statement-otherwise_opt_t">
-<div class="para" id="cqs-switch-statement-otherwise-3-1">Correct! The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is similar to the <code class="code-inline tex2jax_ignore language-matlab">else</code> in an <code class="code-inline tex2jax_ignore language-matlab">if</code> statement—it provides a default action when no cases match.</div>
-</li>
+<li data-component="feedback" id="rs-cqs-switch-statement-otherwise_opt_t"><div class="para" id="cqs-switch-statement-otherwise-3-1">Correct! The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is similar to the <code class="code-inline tex2jax_ignore language-matlab">else</code> in an <code class="code-inline tex2jax_ignore language-matlab">if</code> statement—it provides a default action when no cases match.</div></li>
 <li data-component="answer" id="rs-cqs-switch-statement-otherwise_opt_f"><p>False.</p></li>
-<li data-component="feedback" id="rs-cqs-switch-statement-otherwise_opt_f">
-<div class="para" id="cqs-switch-statement-otherwise-3-1">Correct! The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is similar to the <code class="code-inline tex2jax_ignore language-matlab">else</code> in an <code class="code-inline tex2jax_ignore language-matlab">if</code> statement—it provides a default action when no cases match.</div>
-</li>
+<li data-component="feedback" id="rs-cqs-switch-statement-otherwise_opt_f"><div class="para" id="cqs-switch-statement-otherwise-3-1">Correct! The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> block is similar to the <code class="code-inline tex2jax_ignore language-matlab">else</code> in an <code class="code-inline tex2jax_ignore language-matlab">if</code> statement—it provides a default action when no cases match.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Task 1.b: Otherwise Block Behavior"><a href="#cqs-switch-statement-otherwise" title="Copy heading and permalink for Task 1.b: Otherwise Block Behavior" aria-label="Copy heading and permalink for Task 1.b: Otherwise Block Behavior">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(c)">
-<article class="task exercise-like" id="cqs-switch-statement-case-sensitive"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.b: Otherwise Block Behavior"><a href="#cqs-switch-statement-otherwise" title="Copy heading and permalink for Task 1.b: Otherwise Block Behavior" aria-label="Copy heading and permalink for Task 1.b: Otherwise Block Behavior">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(c)"><article class="task exercise-like" id="cqs-switch-statement-case-sensitive"><h4 class="heading">
 <span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Switch Case Sensitivity.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
@@ -546,122 +510,59 @@ switch status
 	otherwise
 		disp('Unknown status')
 end
-</code></pre></div> 
-<div class="para" id="cqs-switch-statement-case-sensitive-2-3">What will be displayed?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-case-sensitive-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</code></pre></div> <div class="para" id="cqs-switch-statement-case-sensitive-2-3">What will be displayed?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-case-sensitive-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-switch-statement-case-sensitive" data-multipleanswers="false">
-<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_a">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">User is active</code></div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_a">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-1-2-1">Incorrect. Case values are case-sensitive, so <code class="code-inline tex2jax_ignore language-matlab">'Active'</code> does not match <code class="code-inline tex2jax_ignore language-matlab">'active'</code>.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_b" data-correct="">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">User is online</code></div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_b">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-2-2-1">Correct! The string <code class="code-inline tex2jax_ignore language-matlab">'active'</code> exactly matches the second case. Switch comparisons are case-sensitive.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_c">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">Unknown status</code></div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_c">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-3-2-1">Incorrect. There is a case that matches: the second case <code class="code-inline tex2jax_ignore language-matlab">'active'</code>.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_d">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-4-1-1">An error will occur.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_d">
-<div class="para" id="cqs-switch-statement-case-sensitive-3-4-2-1">Incorrect. This is valid code; the second case matches and executes.</div>
-</li>
+<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_a"><div class="para" id="cqs-switch-statement-case-sensitive-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">User is active</code></div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_a"><div class="para" id="cqs-switch-statement-case-sensitive-3-1-2-1">Incorrect. Case values are case-sensitive, so <code class="code-inline tex2jax_ignore language-matlab">'Active'</code> does not match <code class="code-inline tex2jax_ignore language-matlab">'active'</code>.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_b" data-correct=""><div class="para" id="cqs-switch-statement-case-sensitive-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">User is online</code></div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_b"><div class="para" id="cqs-switch-statement-case-sensitive-3-2-2-1">Correct! The string <code class="code-inline tex2jax_ignore language-matlab">'active'</code> exactly matches the second case. Switch comparisons are case-sensitive.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_c"><div class="para" id="cqs-switch-statement-case-sensitive-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">Unknown status</code></div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_c"><div class="para" id="cqs-switch-statement-case-sensitive-3-3-2-1">Incorrect. There is a case that matches: the second case <code class="code-inline tex2jax_ignore language-matlab">'active'</code>.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-case-sensitive_opt_d"><div class="para" id="cqs-switch-statement-case-sensitive-3-4-1-1">An error will occur.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-case-sensitive_opt_d"><div class="para" id="cqs-switch-statement-case-sensitive-3-4-2-1">Incorrect. This is valid code; the second case matches and executes.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.c: Switch Case Sensitivity"><a href="#cqs-switch-statement-case-sensitive" title="Copy heading and permalink for Task 1.c: Switch Case Sensitivity" aria-label="Copy heading and permalink for Task 1.c: Switch Case Sensitivity">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(d)">
-<article class="task exercise-like" id="cqs-switch-statement-when-to-use-switch"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.c: Switch Case Sensitivity"><a href="#cqs-switch-statement-case-sensitive" title="Copy heading and permalink for Task 1.c: Switch Case Sensitivity" aria-label="Copy heading and permalink for Task 1.c: Switch Case Sensitivity">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(d)"><article class="task exercise-like" id="cqs-switch-statement-when-to-use-switch"><h4 class="heading">
 <span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">When to Use Switch vs If.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-2-1">Which scenario is best suited for a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement rather than an <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> chain?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-when-to-use-switch-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="cqs-switch-statement-when-to-use-switch-2-1">Which scenario is best suited for a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement rather than an <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> chain?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-when-to-use-switch-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-switch-statement-when-to-use-switch" data-multipleanswers="false">
-<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_a" data-correct="">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-1-1-1">Comparing a variable to a list of specific string values.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_a">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-1-2-1">Correct! Switch statements are ideal for testing exact matches against discrete values, especially strings.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_b">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-2-1-1">Checking if a number falls within different ranges (e.g., 0-10, 10-20).</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_b">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-2-2-1">Incorrect. Range-based conditions require relational operators like <code class="code-inline tex2jax_ignore language-matlab">&gt;</code> or <code class="code-inline tex2jax_ignore language-matlab">&lt;=</code>, which switch statements cannot handle. Use <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> instead.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_c">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-3-1-1">Testing multiple logical conditions that use AND (<code class="code-inline tex2jax_ignore language-matlab">&amp;</code>) or OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>).</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_c">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-3-2-1">Incorrect. Switch statements only test for equality. Use <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> for complex logical conditions.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_d">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-4-1-1">Checking if a value is greater than a threshold.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_d">
-<div class="para" id="cqs-switch-statement-when-to-use-switch-3-4-2-1">Incorrect. This requires a relational operator (<code class="code-inline tex2jax_ignore language-matlab">&gt;</code>), which switch statements cannot use. Use an <code class="code-inline tex2jax_ignore language-matlab">if</code> statement.</div>
-</li>
+<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_a" data-correct=""><div class="para" id="cqs-switch-statement-when-to-use-switch-3-1-1-1">Comparing a variable to a list of specific string values.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_a"><div class="para" id="cqs-switch-statement-when-to-use-switch-3-1-2-1">Correct! Switch statements are ideal for testing exact matches against discrete values, especially strings.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_b"><div class="para" id="cqs-switch-statement-when-to-use-switch-3-2-1-1">Checking if a number falls within different ranges (e.g., 0-10, 10-20).</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_b"><div class="para" id="cqs-switch-statement-when-to-use-switch-3-2-2-1">Incorrect. Range-based conditions require relational operators like <code class="code-inline tex2jax_ignore language-matlab">&gt;</code> or <code class="code-inline tex2jax_ignore language-matlab">&lt;=</code>, which switch statements cannot handle. Use <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> instead.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_c"><div class="para" id="cqs-switch-statement-when-to-use-switch-3-3-1-1">Testing multiple logical conditions that use AND (<code class="code-inline tex2jax_ignore language-matlab">&amp;</code>) or OR (<code class="code-inline tex2jax_ignore language-matlab">|</code>).</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_c"><div class="para" id="cqs-switch-statement-when-to-use-switch-3-3-2-1">Incorrect. Switch statements only test for equality. Use <code class="code-inline tex2jax_ignore language-matlab">if-elseif</code> for complex logical conditions.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-when-to-use-switch_opt_d"><div class="para" id="cqs-switch-statement-when-to-use-switch-3-4-1-1">Checking if a value is greater than a threshold.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-when-to-use-switch_opt_d"><div class="para" id="cqs-switch-statement-when-to-use-switch-3-4-2-1">Incorrect. This requires a relational operator (<code class="code-inline tex2jax_ignore language-matlab">&gt;</code>), which switch statements cannot use. Use an <code class="code-inline tex2jax_ignore language-matlab">if</code> statement.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.d: When to Use Switch vs If"><a href="#cqs-switch-statement-when-to-use-switch" title="Copy heading and permalink for Task 1.d: When to Use Switch vs If" aria-label="Copy heading and permalink for Task 1.d: When to Use Switch vs If">🔗</a></div>
-</article>
-</div>
-<div data-component="tab" data-tabname="(e)">
-<article class="task exercise-like" id="cqs-switch-statement-switch-duplicate"><h4 class="heading">
+<div class="autopermalink" data-description="Task 1.d: When to Use Switch vs If"><a href="#cqs-switch-statement-when-to-use-switch" title="Copy heading and permalink for Task 1.d: When to Use Switch vs If" aria-label="Copy heading and permalink for Task 1.d: When to Use Switch vs If">🔗</a></div></article></div>
+<div data-component="tab" data-tabname="(e)"><article class="task exercise-like" id="cqs-switch-statement-switch-duplicate"><h4 class="heading">
 <span class="codenumber">(e)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Duplicate Case Values.</span>
 </h4>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="cqs-switch-statement-switch-duplicate-2-1">What happens if a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement contains duplicate case values?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-switch-duplicate-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="cqs-switch-statement-switch-duplicate-2-1">What happens if a <code class="code-inline tex2jax_ignore language-matlab">switch</code> statement contains duplicate case values?<div class="autopermalink" data-description="Paragraph"><a href="#cqs-switch-statement-switch-duplicate-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-cqs-switch-statement-switch-duplicate" data-multipleanswers="false">
-<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_a">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-1-1-1">MATLAB runs both matching cases.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_a">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-1-2-1">Incorrect. MATLAB will actually report an error if you try to use duplicate case values.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_b">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-2-1-1">MATLAB runs the first matching case and ignores the duplicate.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_b">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-2-2-1">Incorrect. MATLAB doesn’t allow duplicate case values at all.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_c">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-3-1-1">MATLAB uses the last duplicate case value.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_c">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-3-2-1">Incorrect. MATLAB won’t allow duplicate case values at all.</div>
-</li>
-<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_d" data-correct="">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-4-1-1">MATLAB produces an error.</div>
-</li>
-<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_d">
-<div class="para" id="cqs-switch-statement-switch-duplicate-3-4-2-1">Correct! Duplicate case values are not allowed in MATLAB switch statements and will cause an error.</div>
-</li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_a"><div class="para" id="cqs-switch-statement-switch-duplicate-3-1-1-1">MATLAB runs both matching cases.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_a"><div class="para" id="cqs-switch-statement-switch-duplicate-3-1-2-1">Incorrect. MATLAB will actually report an error if you try to use duplicate case values.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_b"><div class="para" id="cqs-switch-statement-switch-duplicate-3-2-1-1">MATLAB runs the first matching case and ignores the duplicate.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_b"><div class="para" id="cqs-switch-statement-switch-duplicate-3-2-2-1">Incorrect. MATLAB doesn’t allow duplicate case values at all.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_c"><div class="para" id="cqs-switch-statement-switch-duplicate-3-3-1-1">MATLAB uses the last duplicate case value.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_c"><div class="para" id="cqs-switch-statement-switch-duplicate-3-3-2-1">Incorrect. MATLAB won’t allow duplicate case values at all.</div></li>
+<li data-component="answer" id="rs-cqs-switch-statement-switch-duplicate_opt_d" data-correct=""><div class="para" id="cqs-switch-statement-switch-duplicate-3-4-1-1">MATLAB produces an error.</div></li>
+<li data-component="feedback" id="rs-cqs-switch-statement-switch-duplicate_opt_d"><div class="para" id="cqs-switch-statement-switch-duplicate-3-4-2-1">Correct! Duplicate case values are not allowed in MATLAB switch statements and will cause an error.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Task 1.e: Duplicate Case Values"><a href="#cqs-switch-statement-switch-duplicate" title="Copy heading and permalink for Task 1.e: Duplicate Case Values" aria-label="Copy heading and permalink for Task 1.e: Duplicate Case Values">🔗</a></div>
-</article>
-</div>
+<div class="autopermalink" data-description="Task 1.e: Duplicate Case Values"><a href="#cqs-switch-statement-switch-duplicate" title="Copy heading and permalink for Task 1.e: Duplicate Case Values" aria-label="Copy heading and permalink for Task 1.e: Duplicate Case Values">🔗</a></div></article></div>
 </div></div></div>
-<div class="autopermalink" data-description="Reading Question 1"><a href="#concepts-switch-statement" title="Copy heading and permalink for Reading Question 1" aria-label="Copy heading and permalink for Reading Question 1">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-switch-trace-1"><h3 class="heading"><span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 1"><a href="#concepts-switch-statement" title="Copy heading and permalink for Reading Question 1" aria-label="Copy heading and permalink for Reading Question 1">🔗</a></div></article><article class="exercise exercise-like" id="rq-switch-trace-1"><h3 class="heading"><span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
 <div class="exercise-statement">
 <div class="para" id="rq-switch-trace-1-1-1">What does this code print?<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-trace-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -677,128 +578,62 @@ end
 </code></pre></div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-switch-trace-1" data-multipleanswers="false">
-<li data-component="answer" id="rs-rq-switch-trace-1_opt_a" data-correct="">
-<div class="para" id="rq-switch-trace-1-2-1-1-1"><code class="code-inline tex2jax_ignore">two</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-1_opt_a">
-<div class="para" id="rq-switch-trace-1-2-1-2-1">Correct. <code class="code-inline tex2jax_ignore language-matlab">n = 2</code> matches the second case.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-trace-1_opt_b">
-<div class="para" id="rq-switch-trace-1-2-2-1-1"><code class="code-inline tex2jax_ignore">one</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-1_opt_b">
-<div class="para" id="rq-switch-trace-1-2-2-2-1">
-<code class="code-inline tex2jax_ignore language-matlab">n</code> is 2, not 1.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-trace-1_opt_c">
-<div class="para" id="rq-switch-trace-1-2-3-1-1">
+<li data-component="answer" id="rs-rq-switch-trace-1_opt_a" data-correct=""><div class="para" id="rq-switch-trace-1-2-1-1-1"><code class="code-inline tex2jax_ignore">two</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-1_opt_a"><div class="para" id="rq-switch-trace-1-2-1-2-1">Correct. <code class="code-inline tex2jax_ignore language-matlab">n = 2</code> matches the second case.</div></li>
+<li data-component="answer" id="rs-rq-switch-trace-1_opt_b"><div class="para" id="rq-switch-trace-1-2-2-1-1"><code class="code-inline tex2jax_ignore">one</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-1_opt_b"><div class="para" id="rq-switch-trace-1-2-2-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">n</code> is 2, not 1.</div></li>
+<li data-component="answer" id="rs-rq-switch-trace-1_opt_c"><div class="para" id="rq-switch-trace-1-2-3-1-1">
 <code class="code-inline tex2jax_ignore">two</code> and <code class="code-inline tex2jax_ignore">three</code>
-</div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-1_opt_c">
-<div class="para" id="rq-switch-trace-1-2-3-2-1">No fall-through; only the matching case runs.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-trace-1_opt_d">
-<div class="para" id="rq-switch-trace-1-2-4-1-1">Nothing is printed.</div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-1_opt_d">
-<div class="para" id="rq-switch-trace-1-2-4-2-1">Case 2 matches.</div>
-</li>
+</div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-1_opt_c"><div class="para" id="rq-switch-trace-1-2-3-2-1">No fall-through; only the matching case runs.</div></li>
+<li data-component="answer" id="rs-rq-switch-trace-1_opt_d"><div class="para" id="rq-switch-trace-1-2-4-1-1">Nothing is printed.</div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-1_opt_d"><div class="para" id="rq-switch-trace-1-2-4-2-1">Case 2 matches.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 2"><a href="#rq-switch-trace-1" title="Copy heading and permalink for Reading Question 2" aria-label="Copy heading and permalink for Reading Question 2">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-switch-no-match"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 2"><a href="#rq-switch-trace-1" title="Copy heading and permalink for Reading Question 2" aria-label="Copy heading and permalink for Reading Question 2">🔗</a></div></article><article class="exercise exercise-like" id="rq-switch-no-match"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-switch-no-match">
 <div class="para" id="rq-switch-no-match-1-1">If no case matches and there is no <code class="code-inline tex2jax_ignore language-matlab">otherwise</code>, MATLAB throws an error.<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-no-match-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <li data-component="answer" id="rs-rq-switch-no-match_opt_t"><p>True.</p></li>
-<li data-component="feedback" id="rs-rq-switch-no-match_opt_t">
-<div class="para" id="rq-switch-no-match-2-1">False. The switch block is simply skipped with no error.</div>
-</li>
+<li data-component="feedback" id="rs-rq-switch-no-match_opt_t"><div class="para" id="rq-switch-no-match-2-1">False. The switch block is simply skipped with no error.</div></li>
 <li data-component="answer" id="rs-rq-switch-no-match_opt_f" data-correct=""><p>False.</p></li>
-<li data-component="feedback" id="rs-rq-switch-no-match_opt_f">
-<div class="para" id="rq-switch-no-match-2-1">False. The switch block is simply skipped with no error.</div>
-</li>
+<li data-component="feedback" id="rs-rq-switch-no-match_opt_f"><div class="para" id="rq-switch-no-match-2-1">False. The switch block is simply skipped with no error.</div></li>
 </ul></div></div>
-<div class="autopermalink" data-description="Reading Question 3"><a href="#rq-switch-no-match" title="Copy heading and permalink for Reading Question 3" aria-label="Copy heading and permalink for Reading Question 3">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-switch-string"><h3 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 3"><a href="#rq-switch-no-match" title="Copy heading and permalink for Reading Question 3" aria-label="Copy heading and permalink for Reading Question 3">🔗</a></div></article><article class="exercise exercise-like" id="rq-switch-string"><h3 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-switch-string-1-1">Which data types can be used as the switch expression?<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-string-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-switch-string-1-1">Which data types can be used as the switch expression?<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-string-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-switch-string" data-multipleanswers="false">
-<li data-component="answer" id="rs-rq-switch-string_opt_a" data-correct="">
-<div class="para" id="rq-switch-string-2-1-1-1">Numbers and strings.</div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-string_opt_a">
-<div class="para" id="rq-switch-string-2-1-2-1">Correct. MATLAB switch works with both.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-string_opt_b">
-<div class="para" id="rq-switch-string-2-2-1-1">Numbers only.</div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-string_opt_b">
-<div class="para" id="rq-switch-string-2-2-2-1">Strings are also valid switch expressions.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-string_opt_c">
-<div class="para" id="rq-switch-string-2-3-1-1">Strings only.</div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-string_opt_c">
-<div class="para" id="rq-switch-string-2-3-2-1">Numbers are also valid.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-string_opt_d">
-<div class="para" id="rq-switch-string-2-4-1-1">Logical values only.</div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-string_opt_d">
-<div class="para" id="rq-switch-string-2-4-2-1">Logical values work (as 0 or 1), but numbers and strings are the primary types.</div>
-</li>
+<li data-component="answer" id="rs-rq-switch-string_opt_a" data-correct=""><div class="para" id="rq-switch-string-2-1-1-1">Numbers and strings.</div></li>
+<li data-component="feedback" id="rs-rq-switch-string_opt_a"><div class="para" id="rq-switch-string-2-1-2-1">Correct. MATLAB switch works with both.</div></li>
+<li data-component="answer" id="rs-rq-switch-string_opt_b"><div class="para" id="rq-switch-string-2-2-1-1">Numbers only.</div></li>
+<li data-component="feedback" id="rs-rq-switch-string_opt_b"><div class="para" id="rq-switch-string-2-2-2-1">Strings are also valid switch expressions.</div></li>
+<li data-component="answer" id="rs-rq-switch-string_opt_c"><div class="para" id="rq-switch-string-2-3-1-1">Strings only.</div></li>
+<li data-component="feedback" id="rs-rq-switch-string_opt_c"><div class="para" id="rq-switch-string-2-3-2-1">Numbers are also valid.</div></li>
+<li data-component="answer" id="rs-rq-switch-string_opt_d"><div class="para" id="rq-switch-string-2-4-1-1">Logical values only.</div></li>
+<li data-component="feedback" id="rs-rq-switch-string_opt_d"><div class="para" id="rq-switch-string-2-4-2-1">Logical values work (as 0 or 1), but numbers and strings are the primary types.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 4"><a href="#rq-switch-string" title="Copy heading and permalink for Reading Question 4" aria-label="Copy heading and permalink for Reading Question 4">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-switch-cell-array"><h3 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 4"><a href="#rq-switch-string" title="Copy heading and permalink for Reading Question 4" aria-label="Copy heading and permalink for Reading Question 4">🔗</a></div></article><article class="exercise exercise-like" id="rq-switch-cell-array"><h3 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
-<div class="exercise-statement">
-<div class="para" id="rq-switch-cell-array-1-1">To match a switch expression against either <code class="code-inline tex2jax_ignore language-matlab">'cat'</code> or <code class="code-inline tex2jax_ignore language-matlab">'dog'</code>, you write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-cell-array-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
+<div class="exercise-statement"><div class="para" id="rq-switch-cell-array-1-1">To match a switch expression against either <code class="code-inline tex2jax_ignore language-matlab">'cat'</code> or <code class="code-inline tex2jax_ignore language-matlab">'dog'</code>, you write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-cell-array-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-switch-cell-array" data-multipleanswers="false">
-<li data-component="answer" id="rs-rq-switch-cell-array_opt_a" data-correct="">
-<div class="para" id="rq-switch-cell-array-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">case {'cat', 'dog'}</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-cell-array_opt_a">
-<div class="para" id="rq-switch-cell-array-2-1-2-1">Correct. A cell array groups multiple values in one case.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-cell-array_opt_b">
-<div class="para" id="rq-switch-cell-array-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">case 'cat' || 'dog'</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-cell-array_opt_b">
-<div class="para" id="rq-switch-cell-array-2-2-2-1">Logical OR is not used in case clauses.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-cell-array_opt_c">
-<div class="para" id="rq-switch-cell-array-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">case 'cat', 'dog'</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-cell-array_opt_c">
-<div class="para" id="rq-switch-cell-array-2-3-2-1">Values must be wrapped in <code class="code-inline tex2jax_ignore language-matlab">{}</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-cell-array_opt_d">
-<div class="para" id="rq-switch-cell-array-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">case ('cat', 'dog')</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-cell-array_opt_d">
-<div class="para" id="rq-switch-cell-array-2-4-2-1">Parentheses do not create a match list; use <code class="code-inline tex2jax_ignore language-matlab">{}</code>.</div>
-</li>
+<li data-component="answer" id="rs-rq-switch-cell-array_opt_a" data-correct=""><div class="para" id="rq-switch-cell-array-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">case {'cat', 'dog'}</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-cell-array_opt_a"><div class="para" id="rq-switch-cell-array-2-1-2-1">Correct. A cell array groups multiple values in one case.</div></li>
+<li data-component="answer" id="rs-rq-switch-cell-array_opt_b"><div class="para" id="rq-switch-cell-array-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">case 'cat' || 'dog'</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-cell-array_opt_b"><div class="para" id="rq-switch-cell-array-2-2-2-1">Logical OR is not used in case clauses.</div></li>
+<li data-component="answer" id="rs-rq-switch-cell-array_opt_c"><div class="para" id="rq-switch-cell-array-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">case 'cat', 'dog'</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-cell-array_opt_c"><div class="para" id="rq-switch-cell-array-2-3-2-1">Values must be wrapped in <code class="code-inline tex2jax_ignore language-matlab">{}</code>.</div></li>
+<li data-component="answer" id="rs-rq-switch-cell-array_opt_d"><div class="para" id="rq-switch-cell-array-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">case ('cat', 'dog')</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-cell-array_opt_d"><div class="para" id="rq-switch-cell-array-2-4-2-1">Parentheses do not create a match list; use <code class="code-inline tex2jax_ignore language-matlab">{}</code>.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 5"><a href="#rq-switch-cell-array" title="Copy heading and permalink for Reading Question 5" aria-label="Copy heading and permalink for Reading Question 5">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-switch-fill"><h3 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 5"><a href="#rq-switch-cell-array" title="Copy heading and permalink for Reading Question 5" aria-label="Copy heading and permalink for Reading Question 5">🔗</a></div></article><article class="exercise exercise-like" id="rq-switch-fill"><h3 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="rq-switch-fill-1-1">To handle all unmatched values in a switch, use the keyword <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-fill-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Reading Question 6"><a href="#rq-switch-fill" title="Copy heading and permalink for Reading Question 6" aria-label="Copy heading and permalink for Reading Question 6">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="rq-switch-trace-2"><h3 class="heading"><span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="autopermalink" data-description="Reading Question 6"><a href="#rq-switch-fill" title="Copy heading and permalink for Reading Question 6" aria-label="Copy heading and permalink for Reading Question 6">🔗</a></div></article><article class="exercise exercise-like" id="rq-switch-trace-2"><h3 class="heading"><span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
 <div class="exercise-statement">
 <div class="para" id="rq-switch-trace-2-1-1">What is printed when <code class="code-inline tex2jax_ignore language-matlab">x = 15</code>?<div class="autopermalink" data-description="Paragraph"><a href="#rq-switch-trace-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -814,36 +649,17 @@ end
 </code></pre></div>
 </div>
 <ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-switch-trace-2" data-multipleanswers="false">
-<li data-component="answer" id="rs-rq-switch-trace-2_opt_a" data-correct="">
-<div class="para" id="rq-switch-trace-2-2-1-1-1"><code class="code-inline tex2jax_ignore">large</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-2_opt_a">
-<div class="para" id="rq-switch-trace-2-2-1-2-1">Correct. 15 does not match either case list, so otherwise runs.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-trace-2_opt_b">
-<div class="para" id="rq-switch-trace-2-2-2-1-1"><code class="code-inline tex2jax_ignore">small odd</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-2_opt_b">
-<div class="para" id="rq-switch-trace-2-2-2-2-1">15 is not in <code class="code-inline tex2jax_ignore language-matlab">{1, 3, 5}</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-trace-2_opt_c">
-<div class="para" id="rq-switch-trace-2-2-3-1-1"><code class="code-inline tex2jax_ignore">small even</code></div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-2_opt_c">
-<div class="para" id="rq-switch-trace-2-2-3-2-1">15 is not in <code class="code-inline tex2jax_ignore language-matlab">{2, 4, 6}</code>.</div>
-</li>
-<li data-component="answer" id="rs-rq-switch-trace-2_opt_d">
-<div class="para" id="rq-switch-trace-2-2-4-1-1">Nothing is printed.</div>
-</li>
-<li data-component="feedback" id="rs-rq-switch-trace-2_opt_d">
-<div class="para" id="rq-switch-trace-2-2-4-2-1">The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> clause catches unmatched values.</div>
-</li>
+<li data-component="answer" id="rs-rq-switch-trace-2_opt_a" data-correct=""><div class="para" id="rq-switch-trace-2-2-1-1-1"><code class="code-inline tex2jax_ignore">large</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-2_opt_a"><div class="para" id="rq-switch-trace-2-2-1-2-1">Correct. 15 does not match either case list, so otherwise runs.</div></li>
+<li data-component="answer" id="rs-rq-switch-trace-2_opt_b"><div class="para" id="rq-switch-trace-2-2-2-1-1"><code class="code-inline tex2jax_ignore">small odd</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-2_opt_b"><div class="para" id="rq-switch-trace-2-2-2-2-1">15 is not in <code class="code-inline tex2jax_ignore language-matlab">{1, 3, 5}</code>.</div></li>
+<li data-component="answer" id="rs-rq-switch-trace-2_opt_c"><div class="para" id="rq-switch-trace-2-2-3-1-1"><code class="code-inline tex2jax_ignore">small even</code></div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-2_opt_c"><div class="para" id="rq-switch-trace-2-2-3-2-1">15 is not in <code class="code-inline tex2jax_ignore language-matlab">{2, 4, 6}</code>.</div></li>
+<li data-component="answer" id="rs-rq-switch-trace-2_opt_d"><div class="para" id="rq-switch-trace-2-2-4-1-1">Nothing is printed.</div></li>
+<li data-component="feedback" id="rs-rq-switch-trace-2_opt_d"><div class="para" id="rq-switch-trace-2-2-4-2-1">The <code class="code-inline tex2jax_ignore language-matlab">otherwise</code> clause catches unmatched values.</div></li>
 </ul>
 </div></div>
-<div class="autopermalink" data-description="Reading Question 7"><a href="#rq-switch-trace-2" title="Copy heading and permalink for Reading Question 7" aria-label="Copy heading and permalink for Reading Question 7">🔗</a></div>
-</article><div class="autopermalink" data-description="Reading Questions: 📖 Reading Quiz"><a href="#switch-statement-quiz" title="Copy heading and permalink for Reading Questions: 📖 Reading Quiz" aria-label="Copy heading and permalink for Reading Questions: 📖 Reading Quiz">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Reading Question 7"><a href="#rq-switch-trace-2" title="Copy heading and permalink for Reading Question 7" aria-label="Copy heading and permalink for Reading Question 7">🔗</a></div></article><div class="autopermalink" data-description="Reading Questions: 📖 Reading Quiz"><a href="#switch-statement-quiz" title="Copy heading and permalink for Reading Questions: 📖 Reading Quiz" aria-label="Copy heading and permalink for Reading Questions: 📖 Reading Quiz">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="switch-statement-description.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="switch-statement-coding-practice.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
