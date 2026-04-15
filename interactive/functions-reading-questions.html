@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MATLAB-BOOK 📖 Reading Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="external/custom-styles.css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "textmacros",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[tex]/textmacros",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="og:image" content="vmi.instructure.com/external/figures/matlabrs-icon.png">
+<meta property="book:title" content="Getting Started with MATLAB Programming">
+<meta property="book:author" content="Geoffrey W. Cox, Ph.D.">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = true;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.13.4';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.b76b8eace4405b9e.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.bbf2283c5c1d4f99.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="matlabrs" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href="https://www.vmi.edu/"><img src="external/figures/matlabrs-icon.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="matlabrs.html"><span class="title">Getting Started with MATLAB Programming</span> <span class="subtitle">A Resource for Mathematicians, Engineers, and Scientists</span></a></h1>
+<p class="byline">Geoffrey W. Cox, Ph.D.</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-3.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "classic",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="two-inputs-two-outputs.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="sec-functions.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="subsec-functions-exercises.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\newcommand\DLGray{\color{Gray}}
+\newcommand\DLO{\color{BurntOrange}}
+\newcommand\DLRa{\color{WildStrawberry}}
+\newcommand\DLGa{\color{Green}}
+\newcommand\DLGb{\color{PineGreen}}
+\newcommand\DLBa{\color{RoyalBlue}}
+\newcommand\DLBb{\color{Cerulean}}
+\newcommand\ds{\displaystyle}
+\newcommand\ddx{\frac{d}{dx}}
+\newcommand\os{\overset}
+\newcommand\us{\underset}
+\newcommand\ob{\overbrace}
+\newcommand\obt{\overbracket}
+\newcommand\ub{\underbrace}
+\newcommand\ubt{\underbracket}
+\newcommand\ul{\underline}
+\newcommand\tikznode[3][]
+	{\tikz[remember picture,baseline=(#2.base)]
+		\node[minimum size=0pt,inner sep=0pt,#1](#2){#3};
+	}
+\newcommand\del{\nabla}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathcal{C}}
+\newcommand\N{\mathcal{N}}
+\newcommand\eps{\varepsilon}
+\renewcommand\epsilon{\varepsilon}
+\renewcommand\subset{\subseteq}
+\newcommand\norm[1]{\|{#1}\|}
+\newcommand\matrixbrackets[4][1]{
+	\draw (#3,#2) -- (\fpeval{#3+0.2},#2); 
+	\draw (#3,#1) -- (#3 ,#2); 
+	\draw (#3,#1) -- (\fpeval{#3+0.2},#1);
+	\draw (#4,#2) -- (\fpeval{#4-0.2},#2); 
+	\draw (#4,#1) -- (#4 ,#2); 
+	\draw (#4,#1) -- (\fpeval{#4-0.2},#1);
+}
+\tikzstyle{circle node 0}=[fill=white, draw=black, shape=circle, inner sep=0pt]
+\tikzstyle{circle node 2}=[fill=white, draw=black, shape=circle, inner sep=2pt]
+\tikzstyle{hrect node 0}=[fill=white, draw=black, inner sep=2pt, outer sep=0pt]
+\tikzstyle{hrect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=2pt]
+\tikzstyle{hrect node 3}=[fill=white, draw=black, inner sep=2pt, outer sep=3pt]
+\tikzstyle{vrect node 0}=[fill=white, draw=black, inner sep=0pt, outer sep=0pt]
+\tikzstyle{vrect node 2}=[fill=white, draw=black, inner sep=0pt, outer sep=2pt]
+\tikzstyle{vrect node 3}=[fill=white, draw=black, inner sep=0pt, outer sep=3pt]
+\tikzstyle{hidden node 0}=[inner sep=0pt, outer sep=0pt] 
+\tikzstyle{hidden node 2}=[fill=white, inner sep=2pt, outer sep=2pt]
+\tikzstyle{rect node 1}=[fill=white, inner sep=2pt, outer sep=0pt]
+\tikzstyle{rect node 2}=[fill=white, draw=black, inner sep=2pt, outer sep=0pt]
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 focused" data-preexpanded-levels="0" data-max-levels="3"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-welcome-to-matlab.html" class="internal"><span class="codenumber">1</span> <span class="title">Welcome to MATLAB</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-installing-matlab.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Installing MATLAB</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="installing-matlab-quiz.html" class="internal"><span class="codenumber">1.1</span> <span class="title">📖 Reading Quiz</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matlab-desktop.html" class="internal"><span class="codenumber">1.2</span> <span class="title">MATLAB Desktop</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="matlab-desktop-reading-quiz.html" class="internal"><span class="codenumber">1.2</span> <span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="matlab-desktop-coding-practice.html" class="internal"><span class="codenumber">1.2</span> <span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-cmdwin.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Command Window</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="cmdwin-reading-quiz.html" class="internal"><span class="codenumber">1.3</span> <span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="cmdwin-coding-practice.html" class="internal"><span class="codenumber">1.3</span> <span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-variables.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="variables-reading-quiz.html" class="internal"><span class="codenumber">1.4</span> <span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="variables-coding-practice.html" class="internal"><span class="codenumber">1.4</span> <span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="matlab-desktop-coding-exercises.html" class="internal"><span class="codenumber">1.5</span> <span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="chp-top-down-programming.html" class="internal"><span class="codenumber">2</span> <span class="title">Top-Down Programming</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-scripts.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Scripts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="scripts-fprintf.html" class="internal"><span class="title">Reporting with fprintf</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-scripts.html" class="internal"><span class="title">Writing Simple Scripts</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="scripts-reading-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="scripts-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-functions.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Functions</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-functions.html" class="internal"><span class="title">Writing Simple Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="one-input-one-output.html" class="internal"><span class="title">One Input, One Output</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="two-inputs-one-output.html" class="internal"><span class="title">Two Inputs, One Output</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="two-inputs-two-outputs.html" class="internal"><span class="title">Two Inputs, Two Outputs</span></a></div></li>
+<li class="toc-item toc-reading-questions active"><div class="toc-title-box"><a href="functions-reading-questions.html" class="internal"><span class="title">📖 Reading Questions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-functions-exercises.html" class="internal"><span class="title">🧑🏻‍💻 Exercises</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-functions-exercises.html#subsubsec-functions-drills" class="internal"><span class="title">Drills</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="subsec-functions-exercises.html#subsubsec-functions-scaffolded" class="internal"><span class="title">Scaffolded Activities</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="top-down-programming-exercises.html" class="internal"><span class="codenumber">2.3</span> <span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-conditional-flow.html" class="internal"><span class="codenumber">3</span> <span class="title">Conditional Flow</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-logical-expressions.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Logical Expressions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-logical-values.html" class="internal"><span class="title">Logical Values</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-logical-values.html#conceptual-questions-logical-values" class="internal"><span class="title">🤔💭 Conceptual Questions</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-relational-operators.html" class="internal"><span class="title">Relational Operators</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-negating-expressions.html" class="internal"><span class="title">Negating Logical Expressions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-combining-two-expressions.html" class="internal"><span class="title">Combining Logical Expressions</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="programming-logic-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="programming-logic-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-if-statement.html" class="internal"><span class="codenumber">3.2</span> <span class="title">If Statements</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-if-statement.html" class="internal"><span class="title">If Statement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-if-else-statement.html" class="internal"><span class="title">If-Else Statement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-if-elseif-else-statement.html" class="internal"><span class="title">If-ElseIf-Else Statement</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="if-statement-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="if-statement-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-switch-statement.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Switch Statement</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="switch-statement-description.html" class="internal"><span class="title">The switch Statement</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="switch-statement-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="switch-statement-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="conditional-flow-exercises.html" class="internal"><span class="codenumber">3.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-looping-flow.html" class="internal"><span class="codenumber">4</span> <span class="title">Looping Flow</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-for-loop.html" class="internal"><span class="codenumber">4.1</span> <span class="title">For Loops</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-loop.html" class="internal"><span class="title">The for-Loop</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-reading-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="for-loop-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-while-loop.html" class="internal"><span class="codenumber">4.2</span> <span class="title">While Loops</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-while-loop.html" class="internal"><span class="title">The while-Loop</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-for-vs-while.html" class="internal"><span class="title">For vs. While Loops</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="while-loop-reading-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="while-loop-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-early-stopping-control.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Continue, Break, &amp; Return</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-continue-break-return.html" class="internal"><span class="title">Syntax and Usage</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="early-stopping-control-reading-quiz.html" class="internal"><span class="title">📖 Reading Quiz</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="early-stopping-control-control-coding-practice.html" class="internal"><span class="title">🧑🏻‍💻 Coding Practice</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="looping-flow-coding-exercises.html" class="internal"><span class="codenumber">4.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-vectors.html" class="internal"><span class="codenumber">5</span> <span class="title">Vectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-vector-arithmetic.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Vector Arithmetic</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-scalar-vector-ops.html" class="internal"><span class="title">Scalar and Vector Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-elementwise-ops.html" class="internal"><span class="title">Element-wise Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-broadcasting-functions.html" class="internal"><span class="title">Functions That Work on Whole Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-aggregate-functions.html" class="internal"><span class="title">Reducing a Vector to a Number</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-vectors-and-loops.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Vectors and Loops</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-loop-by-index.html" class="internal"><span class="title">Looping Over a Vector by Index</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-loop-over-values.html" class="internal"><span class="title">Looping Over a Vector by Value</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-result-vectors.html" class="internal"><span class="title">Building a Vector Inside a Loop</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-preallocation.html" class="internal"><span class="title">Preallocating Result Vectors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="vectors-coding-exercises.html" class="internal"><span class="codenumber">5.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chp-matrices.html" class="internal"><span class="codenumber">6</span> <span class="title">Matrices</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-creating-matrices.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Creating, Indexing, &amp; Modifying Matrices</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-what-is-a-matrix.html" class="internal"><span class="title">What is a Matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-matrices.html" class="internal"><span class="title">Building Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-matrices.html" class="internal"><span class="title">Indexing a Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-matrix-size.html" class="internal"><span class="title">The Size of a Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-matrices.html" class="internal"><span class="title">Slicing Rows, Columns, and Submatrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-matrices.html" class="internal"><span class="title">Modifying a Matrix</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-arithmetic.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Matrix Arithmetic</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-scalar-matrix-ops.html" class="internal"><span class="title">Scalar and Element-wise Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-broadcasting-matrix-functions.html" class="internal"><span class="title">Functions That Work on Whole Matrices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrices-and-loops.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Matrices and Loops</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-need-for-two-indices.html" class="internal"><span class="title">The Need for Two Indices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-loop-one-dimension.html" class="internal"><span class="title">Looping Over Rows or Columns</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-nested-loop-pattern.html" class="internal"><span class="title">The Nested-Loop Pattern</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-result-matrices.html" class="internal"><span class="title">Building a Result Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-prefer-vectorization.html" class="internal"><span class="title">When to Prefer Vectorization</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="matrices-coding-exercises.html" class="internal"><span class="codenumber">6.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appdx-matlab-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Common Built-In MATLAB Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-math-functions.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Mathematical Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-rounding-functions.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Rounding Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-trig-functions.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Trigonometric Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-random-functions.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Random Number Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-output-functions.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Output Functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="appdx-input-functions.html" class="internal"><span class="codenumber">A.6</span> <span class="title">Input Functions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sec-useful-built-in-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Useful Built-in Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">The mod function</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-mod.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-floor-ceil-round.html" class="internal"><span class="codenumber">A.2</span> <span class="title">The floor, ceil, and round functions</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-floor-ceil-round.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="back-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="reading-questions" id="functions-reading-questions"><h2 class="heading hide-type">
+<span class="type">Reading Questions</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">📖 Reading Questions</span>
+</h2>
+<article class="exercise exercise-like" id="chk-functions-call-syntax"><h3 class="heading"><span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="chk-functions-call-syntax-1-1">Which of the following correctly calls a function <code class="code-inline tex2jax_ignore language-matlab">f</code> with three inputs?<div class="autopermalink" data-description="Paragraph"><a href="#chk-functions-call-syntax-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-chk-functions-call-syntax" data-multipleanswers="false">
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_a"><div class="para" id="chk-functions-call-syntax-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = 2, 3, 4</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_a"><div class="para" id="chk-functions-call-syntax-2-1-2-1">This assigns the value 2 to <code class="code-inline tex2jax_ignore language-matlab">f</code>; it is not a function call.</div></li>
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_b"><div class="para" id="chk-functions-call-syntax-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2; 3; 4)</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_b"><div class="para" id="chk-functions-call-syntax-2-2-2-1">Semicolons separate rows in a matrix, not function arguments.</div></li>
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_c" data-correct=""><div class="para" id="chk-functions-call-syntax-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_c"><div class="para" id="chk-functions-call-syntax-2-3-2-1">Correct. Function inputs are listed inside parentheses and separated by commas.</div></li>
+<li data-component="answer" id="rs-chk-functions-call-syntax_opt_d"><div class="para" id="chk-functions-call-syntax-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = (2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-chk-functions-call-syntax_opt_d"><div class="para" id="chk-functions-call-syntax-2-4-2-1">This is not valid MATLAB syntax.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 1"><a href="#chk-functions-call-syntax" title="Copy heading and permalink for Reading Question 1" aria-label="Copy heading and permalink for Reading Question 1">🔗</a></div></article><article class="exercise exercise-like" id="chk-functions-script-vs-function"><h3 class="heading"><span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="chk-functions-script-vs-function-1-1">True or False: A script can call a function you wrote (e.g., <code class="code-inline tex2jax_ignore language-matlab">coin_total</code>), as long as the function file is in the Current Folder or on the MATLAB path.<div class="autopermalink" data-description="Paragraph"><a href="#chk-functions-script-vs-function-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-chk-functions-script-vs-function" data-multipleanswers="false">
+<li data-component="answer" id="rs-chk-functions-script-vs-function_opt_a" data-correct=""><div class="para" id="chk-functions-script-vs-function-2-1-1-1">True</div></li>
+<li data-component="feedback" id="rs-chk-functions-script-vs-function_opt_a"><div class="para" id="chk-functions-script-vs-function-2-1-2-1">Correct. This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div></li>
+<li data-component="answer" id="rs-chk-functions-script-vs-function_opt_b"><div class="para" id="chk-functions-script-vs-function-2-2-1-1">False</div></li>
+<li data-component="feedback" id="rs-chk-functions-script-vs-function_opt_b"><div class="para" id="chk-functions-script-vs-function-2-2-2-1">Scripts can call functions as long as MATLAB can find the function file.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 2"><a href="#chk-functions-script-vs-function" title="Copy heading and permalink for Reading Question 2" aria-label="Copy heading and permalink for Reading Question 2">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-purpose"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="rq-functions-purpose-1-1">A MATLAB function is most useful when you want to:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-purpose-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-purpose" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-rq-functions-purpose_opt_a"><div class="para" id="rq-functions-purpose-2-1-1-1">clear the Command Window automatically</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_a"><div class="para" id="rq-functions-purpose-2-1-2-1">That is done with <code class="code-inline tex2jax_ignore language-matlab">clc</code>, not a function you write.</div></li>
+<li data-component="answer" id="rs-rq-functions-purpose_opt_b"><div class="para" id="rq-functions-purpose-2-2-1-1">store a long list of comments</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_b"><div class="para" id="rq-functions-purpose-2-2-2-1">Comments describe code but do not execute; this is not the purpose of a function.</div></li>
+<li data-component="answer" id="rs-rq-functions-purpose_opt_c" data-correct=""><div class="para" id="rq-functions-purpose-2-3-1-1">create a reusable tool that takes inputs and returns outputs</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_c"><div class="para" id="rq-functions-purpose-2-3-2-1">Correct. Functions encapsulate computations so you can call them repeatedly with different inputs.</div></li>
+<li data-component="answer" id="rs-rq-functions-purpose_opt_d"><div class="para" id="rq-functions-purpose-2-4-1-1">avoid using variables</div></li>
+<li data-component="feedback" id="rs-rq-functions-purpose_opt_d"><div class="para" id="rq-functions-purpose-2-4-2-1">Functions use variables heavily — both for inputs and intermediate calculations.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 3"><a href="#rq-functions-purpose" title="Copy heading and permalink for Reading Question 3" aria-label="Copy heading and permalink for Reading Question 3">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-file-name-match"><h3 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-file-name-match">
+<div class="para" id="rq-functions-file-name-match-1-1">If a function is named <code class="code-inline tex2jax_ignore language-matlab">coin_total</code>, then its file should be saved as <code class="code-inline tex2jax_ignore language-matlab">coin_total.m</code>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-file-name-match-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<li data-component="answer" id="rs-rq-functions-file-name-match_opt_t" data-correct=""><p>True.</p></li>
+<li data-component="feedback" id="rs-rq-functions-file-name-match_opt_t"><div class="para" id="rq-functions-file-name-match-2-1">Matching the file name to the function name prevents "function not found" errors.</div></li>
+<li data-component="answer" id="rs-rq-functions-file-name-match_opt_f"><p>False.</p></li>
+<li data-component="feedback" id="rs-rq-functions-file-name-match_opt_f"><div class="para" id="rq-functions-file-name-match-2-1">Matching the file name to the function name prevents "function not found" errors.</div></li>
+</ul></div></div>
+<div class="autopermalink" data-description="Reading Question 4"><a href="#rq-functions-file-name-match" title="Copy heading and permalink for Reading Question 4" aria-label="Copy heading and permalink for Reading Question 4">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-private-workspace"><h3 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-private-workspace">
+<div class="para" id="rq-functions-private-workspace-1-1">Variables created inside a function automatically appear in the Workspace after the function finishes.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-private-workspace-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<li data-component="answer" id="rs-rq-functions-private-workspace_opt_t"><p>True.</p></li>
+<li data-component="feedback" id="rs-rq-functions-private-workspace_opt_t"><div class="para" id="rq-functions-private-workspace-2-1">A function uses its own private workspace, so its internal variables do not become Workspace variables.</div></li>
+<li data-component="answer" id="rs-rq-functions-private-workspace_opt_f" data-correct=""><p>False.</p></li>
+<li data-component="feedback" id="rs-rq-functions-private-workspace_opt_f"><div class="para" id="rq-functions-private-workspace-2-1">A function uses its own private workspace, so its internal variables do not become Workspace variables.</div></li>
+</ul></div></div>
+<div class="autopermalink" data-description="Reading Question 5"><a href="#rq-functions-private-workspace" title="Copy heading and permalink for Reading Question 5" aria-label="Copy heading and permalink for Reading Question 5">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-call-three-inputs"><h3 class="heading"><span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="rq-functions-call-three-inputs-1-1">Which of the following is a valid function call with three inputs?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-call-three-inputs-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-call-three-inputs" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_a"><div class="para" id="rq-functions-call-three-inputs-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = 2, 3, 4</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_a"><div class="para" id="rq-functions-call-three-inputs-2-1-2-1">This is an assignment, not a function call.</div></li>
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_b"><div class="para" id="rq-functions-call-three-inputs-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2; 3; 4)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_b"><div class="para" id="rq-functions-call-three-inputs-2-2-2-1">Semicolons are not used to separate function arguments.</div></li>
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_c" data-correct=""><div class="para" id="rq-functions-call-three-inputs-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">f(2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_c"><div class="para" id="rq-functions-call-three-inputs-2-3-2-1">Correct. Inputs are listed inside parentheses separated by commas.</div></li>
+<li data-component="answer" id="rs-rq-functions-call-three-inputs_opt_d"><div class="para" id="rq-functions-call-three-inputs-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">f = (2, 3, 4)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-call-three-inputs_opt_d"><div class="para" id="rq-functions-call-three-inputs-2-4-2-1">This is not valid MATLAB syntax.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 6"><a href="#rq-functions-call-three-inputs" title="Copy heading and permalink for Reading Question 6" aria-label="Copy heading and permalink for Reading Question 6">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-two-output-syntax"><h3 class="heading"><span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="rq-functions-two-output-syntax-1-1">To store two outputs from a function, you should write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-two-output-syntax-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-two-output-syntax" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_a"><div class="para" id="rq-functions-two-output-syntax-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">a, b = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_a"><div class="para" id="rq-functions-two-output-syntax-2-1-2-1">This is not valid MATLAB syntax.</div></li>
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_b"><div class="para" id="rq-functions-two-output-syntax-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">(a, b) = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_b"><div class="para" id="rq-functions-two-output-syntax-2-2-2-1">Parentheses are not used on the left side for capturing outputs.</div></li>
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_c" data-correct=""><div class="para" id="rq-functions-two-output-syntax-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">[a, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_c"><div class="para" id="rq-functions-two-output-syntax-2-3-2-1">Correct. Square brackets on the left side capture multiple outputs.</div></li>
+<li data-component="answer" id="rs-rq-functions-two-output-syntax_opt_d"><div class="para" id="rq-functions-two-output-syntax-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">a = f(x), b</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-two-output-syntax_opt_d"><div class="para" id="rq-functions-two-output-syntax-2-4-2-1">This does not capture both outputs correctly.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 7"><a href="#rq-functions-two-output-syntax" title="Copy heading and permalink for Reading Question 7" aria-label="Copy heading and permalink for Reading Question 7">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-header-output-symbol"><h3 class="heading"><span class="codenumber">8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="rq-functions-header-output-symbol-1-1">In the header <code class="code-inline tex2jax_ignore language-matlab">function y = f(x)</code>, which symbol represents the output?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-header-output-symbol-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-header-output-symbol" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_a"><div class="para" id="rq-functions-header-output-symbol-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">f</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_a"><div class="para" id="rq-functions-header-output-symbol-2-1-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">f</code> is the function name.</div></li>
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_b"><div class="para" id="rq-functions-header-output-symbol-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">x</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_b"><div class="para" id="rq-functions-header-output-symbol-2-2-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">x</code> is the input.</div></li>
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_c" data-correct=""><div class="para" id="rq-functions-header-output-symbol-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">y</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_c"><div class="para" id="rq-functions-header-output-symbol-2-3-2-1">Correct. The output variable appears between <code class="code-inline tex2jax_ignore language-matlab">function</code> and the <code class="code-inline tex2jax_ignore language-matlab">=</code>.</div></li>
+<li data-component="answer" id="rs-rq-functions-header-output-symbol_opt_d"><div class="para" id="rq-functions-header-output-symbol-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">function</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-header-output-symbol_opt_d"><div class="para" id="rq-functions-header-output-symbol-2-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">function</code> is the keyword that begins every function definition.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 8"><a href="#rq-functions-header-output-symbol" title="Copy heading and permalink for Reading Question 8" aria-label="Copy heading and permalink for Reading Question 8">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-calling-from-script"><h3 class="heading"><span class="codenumber">9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-calling-from-script">
+<div class="para" id="rq-functions-calling-from-script-1-1">A script can call a function you wrote (for example, <code class="code-inline tex2jax_ignore language-matlab">coin_total</code>), as long as the function file is available in the Current Folder or on the path.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-calling-from-script-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<li data-component="answer" id="rs-rq-functions-calling-from-script_opt_t" data-correct=""><p>True.</p></li>
+<li data-component="feedback" id="rs-rq-functions-calling-from-script_opt_t"><div class="para" id="rq-functions-calling-from-script-2-1">This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div></li>
+<li data-component="answer" id="rs-rq-functions-calling-from-script_opt_f"><p>False.</p></li>
+<li data-component="feedback" id="rs-rq-functions-calling-from-script_opt_f"><div class="para" id="rq-functions-calling-from-script-2-1">This is one of the main benefits of functions: they simplify scripts by packaging common computations.</div></li>
+</ul></div></div>
+<div class="autopermalink" data-description="Reading Question 9"><a href="#rq-functions-calling-from-script" title="Copy heading and permalink for Reading Question 9" aria-label="Copy heading and permalink for Reading Question 9">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-tilde-ignore"><h3 class="heading"><span class="codenumber">10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="rq-functions-tilde-ignore-1-1">If a function returns two outputs but you only need the second one, you can write:<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-tilde-ignore-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-tilde-ignore" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_a" data-correct=""><div class="para" id="rq-functions-tilde-ignore-2-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">[~, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_a"><div class="para" id="rq-functions-tilde-ignore-2-1-2-1">Correct. The tilde <code class="code-inline tex2jax_ignore language-matlab">~</code> is a placeholder that discards the unwanted output.</div></li>
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_b"><div class="para" id="rq-functions-tilde-ignore-2-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">[_, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_b"><div class="para" id="rq-functions-tilde-ignore-2-2-2-1">Underscore is not used as a placeholder in MATLAB; use <code class="code-inline tex2jax_ignore language-matlab">~</code> instead.</div></li>
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_c"><div class="para" id="rq-functions-tilde-ignore-2-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">b = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_c"><div class="para" id="rq-functions-tilde-ignore-2-3-2-1">This only captures the first output, not the second.</div></li>
+<li data-component="answer" id="rs-rq-functions-tilde-ignore_opt_d"><div class="para" id="rq-functions-tilde-ignore-2-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">[null, b] = f(x)</code></div></li>
+<li data-component="feedback" id="rs-rq-functions-tilde-ignore_opt_d"><div class="para" id="rq-functions-tilde-ignore-2-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">null</code> is not the placeholder for ignored outputs in MATLAB.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 10"><a href="#rq-functions-tilde-ignore" title="Copy heading and permalink for Reading Question 10" aria-label="Copy heading and permalink for Reading Question 10">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-script-vs-function-workspace"><h3 class="heading"><span class="codenumber">11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone cardsort_section"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="rs-rq-functions-script-vs-function-workspace">
+<span data-subcomponent="question"><div class="para" id="rq-functions-script-vs-function-workspace-1-1">Drag each description to the correct concept.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-script-vs-function-workspace-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></span><span data-subcomponent="feedback"><div class="para" id="rq-functions-script-vs-function-workspace-3-1">Scripts and functions both run top-to-bottom, but functions emphasize reusable input/output behavior and a separate workspace.</div></span><li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag1" data-category="1">Uses the base workspace</li>
+<li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag2" data-category="1">Often written as a one-time recipe</li>
+<li data-subcomponent="dropzone" for="rs-rq-functions-script-vs-function-workspace_drag1" data-category="1">Script</li>
+<li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag3" data-category="2">Has its own private workspace</li>
+<li data-subcomponent="draggable" id="rs-rq-functions-script-vs-function-workspace_drag4" data-category="2">Designed for reuse with many inputs</li>
+<li data-subcomponent="dropzone" for="rs-rq-functions-script-vs-function-workspace_drag2" data-category="2">Function</li>
+</ul></div></div>
+<div class="autopermalink" data-description="Reading Question 11"><a href="#rq-functions-script-vs-function-workspace" title="Copy heading and permalink for Reading Question 11" aria-label="Copy heading and permalink for Reading Question 11">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-where-to-save"><h3 class="heading"><span class="codenumber">12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement"><div class="para" id="rq-functions-where-to-save-1-1">For MATLAB to find your function when you call it, where should you save the <code class="code-inline tex2jax_ignore language-matlab">.m</code> file?<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-where-to-save-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-rq-functions-where-to-save" data-multipleanswers="false" data-random="">
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_a" data-correct=""><div class="para" id="rq-functions-where-to-save-2-1-1-1">In the Current Folder or in a folder on the MATLAB path</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_a"><div class="para" id="rq-functions-where-to-save-2-1-2-1">Correct. MATLAB searches the Current Folder and the path when resolving function names.</div></li>
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_b"><div class="para" id="rq-functions-where-to-save-2-2-1-1">In the Documents folder</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_b"><div class="para" id="rq-functions-where-to-save-2-2-2-1">MATLAB does not automatically search the Documents folder unless it is on the path.</div></li>
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_c"><div class="para" id="rq-functions-where-to-save-2-3-1-1">In any folder on your computer</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_c"><div class="para" id="rq-functions-where-to-save-2-3-2-1">MATLAB only searches the Current Folder and folders listed on the path.</div></li>
+<li data-component="answer" id="rs-rq-functions-where-to-save_opt_d"><div class="para" id="rq-functions-where-to-save-2-4-1-1">In the same folder as MATLAB itself</div></li>
+<li data-component="feedback" id="rs-rq-functions-where-to-save_opt_d"><div class="para" id="rq-functions-where-to-save-2-4-2-1">You should not place your files in the MATLAB installation directory.</div></li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Reading Question 12"><a href="#rq-functions-where-to-save" title="Copy heading and permalink for Reading Question 12" aria-label="Copy heading and permalink for Reading Question 12">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-fail-a-zero"><h3 class="heading"><span class="codenumber">13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="para" id="rq-functions-fail-a-zero-1-1">Fill in the blank: The quadratic formula function <code class="code-inline tex2jax_ignore language-matlab">[x1,x2] = quadratic(a,b,c)</code> will not work correctly (it divides by zero and produces Inf or NaN) when <code class="code-inline tex2jax_ignore language-matlab">a</code> equals <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-fail-a-zero-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Reading Question 13"><a href="#rq-functions-fail-a-zero" title="Copy heading and permalink for Reading Question 13" aria-label="Copy heading and permalink for Reading Question 13">🔗</a></div></article><article class="exercise exercise-like" id="rq-functions-end-keyword"><h3 class="heading"><span class="codenumber">14<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section"><ul data-component="multiplechoice" data-multipleanswers="false" id="rs-rq-functions-end-keyword">
+<div class="para" id="rq-functions-end-keyword-1-1">Every MATLAB function definition should conclude with the keyword <code class="code-inline tex2jax_ignore language-matlab">end</code>.<div class="autopermalink" data-description="Paragraph"><a href="#rq-functions-end-keyword-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<li data-component="answer" id="rs-rq-functions-end-keyword_opt_t" data-correct=""><p>True.</p></li>
+<li data-component="feedback" id="rs-rq-functions-end-keyword_opt_t"><div class="para" id="rq-functions-end-keyword-2-1">While MATLAB can sometimes infer the end of a function from the file boundary, using <code class="code-inline tex2jax_ignore language-matlab">end</code> explicitly is required when multiple functions appear in one file and is considered best practice.</div></li>
+<li data-component="answer" id="rs-rq-functions-end-keyword_opt_f"><p>False.</p></li>
+<li data-component="feedback" id="rs-rq-functions-end-keyword_opt_f"><div class="para" id="rq-functions-end-keyword-2-1">While MATLAB can sometimes infer the end of a function from the file boundary, using <code class="code-inline tex2jax_ignore language-matlab">end</code> explicitly is required when multiple functions appear in one file and is considered best practice.</div></li>
+</ul></div></div>
+<div class="autopermalink" data-description="Reading Question 14"><a href="#rq-functions-end-keyword" title="Copy heading and permalink for Reading Question 14" aria-label="Copy heading and permalink for Reading Question 14">🔗</a></div></article><div class="autopermalink" data-description="Reading Questions: 📖 Reading Questions"><a href="#functions-reading-questions" title="Copy heading and permalink for Reading Questions: 📖 Reading Questions" aria-label="Copy heading and permalink for Reading Questions: 📖 Reading Questions">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="two-inputs-two-outputs.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-functions-exercises.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="feedback-link" href="mailto:coxgeoff@vmi.edu" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>
