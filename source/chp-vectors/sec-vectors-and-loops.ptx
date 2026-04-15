@@ -6,7 +6,7 @@
 		<title>Looping Over a Vector by Index</title>
 
 		<p>
-			Vectorization covers a lot of ground, but not everything. Some calculations depend on earlier results, some need to compare an element with its neighbor, and some just do not fit cleanly into a single expression. For those cases, you still need a for-loop — and now that loop has something new to iterate over: a vector of data.
+			Some calculations depend on earlier results, some need to compare an element with its neighbor, and some just do not fit cleanly into a single expression. For those cases, you still need a for-loop.
 		</p>
 
 		<p>
@@ -14,13 +14,14 @@
 			<dl width="narrow">
 				<li>
 					<title><pf>length(v)</pf></title>
-					<p>Returns the number of elements in the vector.</p>
+					<p>Returns the number of rows or columns, whichever is larger.</p>
 				</li>
 				<li>
 					<title><pf>numel(v)</pf></title>
-					<p>Returns the same thing — the total number of elements. The two are interchangeable for vectors.</p>
+					<p>Returns the total number of elements.</p>
 				</li>
 			</dl>
+			Since vectors have size 1 x n (row vector) or n x 1 (column vector), <pf>length(v)</pf> and <pf>numel(v)</pf> will return the same value and can be used interchangeably.
 		</p>
 
 		<sage language="octave">
@@ -45,18 +46,11 @@
 		</sage>
 
 		<p>
-			The loop variable <pf>i</pf> takes the values <pf>1, 2, 3, ..., 7</pf>, one per iteration. Inside the loop body, <pf>temps(i)</pf> pulls out the value at the current position. This is the workhorse pattern for looping over a vector, and it shows up in essentially every language — the syntax changes, but the shape is always the same: count from the first position to the last, and use the counter to index into the collection.
+			The loop variable <pf>i</pf> takes the values <pf>1, 2, 3, ..., 7</pf>, one per iteration. Inside the loop body, <pf>temps(i)</pf> pulls out the value at the <pf>i</pf>-th position. This is the workhorse pattern for looping over a vector.
 		</p>
 
-		<aside>
-			<title>Why <pf>1:length(v)</pf> and not <pf>1:7</pf>?</title>
-			<p>
-				You could write <pf>for i = 1:7</pf> and it would work for this particular vector. But the moment <pf>temps</pf> changes size — maybe you add an eighth day of data — the hard-coded <pf>7</pf> becomes wrong, and the loop either skips elements or crashes with an out-of-bounds error. Writing <pf>1:length(temps)</pf> makes the loop adapt automatically to whatever size the vector happens to be. Hard-coded sizes are a common source of bugs; asking the vector how long it is avoids the problem entirely.
-			</p>
-		</aside>
-
 		<p>
-			Here is a slightly more interesting example. Suppose you want to find the largest temperature in the vector. You cannot do this with a single vectorized expression using only what you know so far — you have to walk the vector one element at a time and keep track of the biggest value you have seen:
+			Here is a slightly more interesting example. Suppose you want to find the largest temperature in the vector. You can scan the vector one element at a time and keep track of the biggest value you have seen:
 		</p>
 
 		<sage language="octave">
@@ -75,7 +69,7 @@
 		</sage>
 
 		<p>
-			The loop starts at position <pf>2</pf> rather than <pf>1</pf> because <pf>biggest</pf> is initialized to the first element — there is no need to compare it with itself. Each iteration compares the current element with the running maximum and updates <pf>biggest</pf> if a larger value is found. This is the same accumulation pattern from the for-loops chapter, just applied to data stored in a vector.
+			The loop starts at position <pf>2</pf> rather than <pf>1</pf> because <pf>biggest</pf> is initialized to the first element and there is no need to compare it with itself. Each iteration compares the current element with the running maximum and updates <pf>biggest</pf> if a larger value is found. This is the same accumulation pattern from the for-loops chapter, just applied to data stored in a vector.
 		</p>
 
 	</subsection>
@@ -97,22 +91,11 @@
 		</sage>
 
 		<p>
-			On the first iteration, <pf>t</pf> is <pf>68</pf>. On the second, it is <pf>71</pf>. And so on through the last value, <pf>70</pf>. The loop variable is no longer a position — it is the value stored at that position.
+			On the first iteration, <pf>t</pf> is <pf>68</pf>. On the second, it is <pf>71</pf>. And so on through the last value, <pf>70</pf>. The loop variable is no longer a position, it is the value stored at that position.
 		</p>
 
 		<p>
 			This pattern is actually the one you saw first in the for-loops chapter, back when you wrote things like <pf>for k = [10, 20, 30]</pf>. At the time, the list was written out directly in the loop header; now you know that it works just as well when the list is stored in a variable.
-		</p>
-
-		<aside>
-			<title>The same idea in other languages</title>
-			<p>
-				Most modern languages offer this exact pattern under a different name. Python calls it a <q>for-each</q> loop and writes it as <pf>for t in temps:</pf>. Java and C++ have similar syntax. The idea is identical: hand the loop a collection, and let it walk through the values one at a time without any explicit index.
-			</p>
-		</aside>
-
-		<p>
-			So when should you use each style? The two forms are not interchangeable — each one is missing something the other has.
 		</p>
 
 		<sidebyside widths="48% 48%">
@@ -135,11 +118,7 @@
 		</sidebyside>
 
 		<p>
-			Looping by value is cleaner when all you need is the element itself — printing each value, adding them up, checking whether any of them satisfy some condition. Looping by index is necessary when you also need to know <em>where</em> you are in the vector: storing results back into another vector at matching positions, comparing each element with its neighbor, or reporting which day had the highest temperature rather than just what that temperature was.
-		</p>
-
-		<p>
-			A useful rule of thumb: if the loop body ever writes <pf>temps(i)</pf>, you need the index. If it only ever reads the current value, looping by value is usually the clearer choice.
+			So when should you use each style? It comes down to whether you need the index or not. If you only need the value, looping by value is usually cleaner.
 		</p>
 
 	</subsection>
@@ -222,7 +201,7 @@
 	<subsection xml:id="subsec-preallocation">
 		<title>Preallocating Result Vectors</title>
 
-<p>
+		<p>
 			Sometimes you do not yet know what values a vector should hold — you just need a vector of a certain size that you will fill in later. The functions <pf>zeros</pf> and <pf>ones</pf> create a placeholder vector of all zeros or all ones:
 		</p>
 
