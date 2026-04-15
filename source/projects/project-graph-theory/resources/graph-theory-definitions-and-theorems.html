@@ -1,0 +1,414 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Graph Theory Definitions &amp; Theorems</title>
+<meta name="identifier" content="gd54530cec1ae59f78ad0645a83739870"/>
+<meta name="editing_roles" content="teachers"/>
+<meta name="workflow_state" content="unpublished"/>
+</head>
+<body>
+<h3><term>Graph Theory Reference Handout</term></h3>
+<hr>
+<h4><term>Definitions</term></h4>
+<ol>
+<li>
+<p><term>Graph</term>: A graph <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G = (V, E)</annotation></semantics></math></span></span>&nbsp;is a collection of vertices <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span></span> and edges <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span></span> connecting pairs of vertices.</p>
+</li>
+<li>
+<p><term>Adjacency Matrix</term>: A square matrix where entry <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{i,j}</annotation></semantics></math></span></span>&nbsp;represents the number of edges connecting vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span></span> to vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span></span>. In an undirected graph, this matrix is symmetric.</p>
+</li>
+<li>
+<p><term>Incidence Matrix</term>: A matrix where rows represent vertices and columns represent edges. Each entry indicates whether a vertex is incident (connected) to a specific edge.</p>
+</li>
+<li>
+<p><term>Degree of a Vertex</term>: The number of edges incident to a vertex. In an adjacency matrix, the degree is the sum of entries in the corresponding row.</p>
+</li>
+<li>
+<p><term>Eulerian Graph</term>: A connected graph where each vertex has an even degree, allowing a traversal of every edge exactly once and returning to the starting point (Eulerian circuit).</p>
+</li>
+<li>
+<p><term>Simple Graph</term>: A graph with no self-loops (edges connecting a vertex to itself) and no parallel edges (multiple edges between two vertices).</p>
+</li>
+<li>
+<p><term>Cycle</term>: A closed path with no repeated vertices, except for the starting and ending vertex. A graph with at least one cycle contains a path that starts and ends at the same vertex without retracing any edges.</p>
+</li>
+<li>
+<p><term>Connected Graph</term>: A graph is connected if a path exists between every pair of vertices.</p>
+</li>
+<li>
+<p><term>Tree</term>: A connected, acyclic graph (contains no cycles).</p>
+</li>
+<li>
+<p><term>Bipartite Graph</term>: A graph whose vertices can be divided into two disjoint sets <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord"><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">S_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord"><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span></span></span></span> so every edge connects a vertex in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord"><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span></span></span></span> to one in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">S_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord"><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span></span></span></span>.</p>
+</li>
+</ol>
+<hr>
+<h4><term>Theorems</term></h4>
+<ol>
+<li>
+<p><term>Theorem 1</term>: A connected graph is <term>Eulerian</term> if every vertex has an even degree.</p>
+</li>
+<li><term>Theorem 2</term>: A graph is a <term>tree</term> if it is connected and contains no cycles.</li>
+</ol>
+<hr>
+<p><span style="font-size: 18px;"><term>Examples</term></span></p>
+<table style="border-collapse: collapse; width: 97.8558%; height: 284px;" border="1">
+<tbody>
+<tr style="height: 10px;">
+<td style="width: 31.6611%; height: 10px; text-align: center;">
+<p><term>Graph</term></p>
+</td>
+<td style="width: 2.1789%; height: 10px; text-align: center;"><term>Vertices</term></td>
+<td style="width: 7.05754%; height: 10px; text-align: center;"><term>Edges</term></td>
+<td style="width: 17.994%; height: 10px; text-align: center;"><term>Adjacency Matrix</term></td>
+<td style="width: 24.9346%; height: 10px; text-align: center;"><term>Incidence Matrix</term></td>
+<td style="width: 16.1341%; height: 10px; text-align: center;">
+<div class="rtcContent">
+<div class="lineNode"><term>Properties</term></div>
+</div>
+</td>
+</tr>
+<tr style="height: 114px;">
+<td style="width: 31.6611%; height: 114px;">
+<p><img id="2193824" src="$IMS-CC-FILEBASE$/02--Homework/HW%2005/graph-figures/graph-12.png" alt="graph-12.png" width="100%" height="100%" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/21804/files/2193860" data-api-returntype="File" loading="lazy"></p>
+</td>
+<td style="width: 2.1789%; height: 114px;"><img class="equation_image" title="\left[\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cleft%255B%255Cmatrix%257B%250A1%255C%255C%250A2%255C%255C%250A3%255C%255C%250A4%255C%255C%250A5%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \left[\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}\right]
+" data-equation-content="\left[\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 7.05754%; height: 114px;"><img class="equation_image" title="\left[\matrix{
+     1   &amp;  2\\
+     1   &amp;  3\\
+     1   &amp;  5\\
+     2   &amp;  3\\
+     2   &amp;  4\\
+     3   &amp;  5\\
+     4   &amp;  5\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cleft%255B%255Cmatrix%257B%250A%2520%2520%2520%2520%25201%2520%2520%2520%2526%2520%25202%255C%255C%250A%2520%2520%2520%2520%25201%2520%2520%2520%2526%2520%25203%255C%255C%250A%2520%2520%2520%2520%25201%2520%2520%2520%2526%2520%25205%255C%255C%250A%2520%2520%2520%2520%25202%2520%2520%2520%2526%2520%25203%255C%255C%250A%2520%2520%2520%2520%25202%2520%2520%2520%2526%2520%25204%255C%255C%250A%2520%2520%2520%2520%25203%2520%2520%2520%2526%2520%25205%255C%255C%250A%2520%2520%2520%2520%25204%2520%2520%2520%2526%2520%25205%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \left[\matrix{
+     1   &amp;  2\\
+     1   &amp;  3\\
+     1   &amp;  5\\
+     2   &amp;  3\\
+     2   &amp;  4\\
+     3   &amp;  5\\
+     4   &amp;  5\\
+}\right]
+" data-equation-content="\left[\matrix{
+     1   &amp;  2\\
+     1   &amp;  3\\
+     1   &amp;  5\\
+     2   &amp;  3\\
+     2   &amp;  4\\
+     3   &amp;  5\\
+     4   &amp;  5\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 17.994%; height: 114px;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="\matrix{\phantom{v_1[}}
+\matrix{1&amp;2&amp;3&amp;4&amp;5}\\
+\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}
+\left[\matrix{
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cmatrix%257B%255Cphantom%257Bv_1%255B%257D%257D%250A%255Cmatrix%257B1%25262%25263%25264%25265%257D%255C%255C%250A%255Cmatrix%257B%250A1%255C%255C%250A2%255C%255C%250A3%255C%255C%250A4%255C%255C%250A5%255C%255C%250A%257D%250A%255Cleft%255B%255Cmatrix%257B%250A0%2520%2526%25201%2520%2526%25201%2520%2526%25200%2520%2526%25201%255C%255C%250A1%2520%2526%25200%2520%2526%25201%2520%2526%25201%2520%2526%25200%255C%255C%250A1%2520%2526%25201%2520%2526%25200%2520%2526%25200%2520%2526%25201%255C%255C%250A0%2520%2526%25201%2520%2526%25200%2520%2526%25200%2520%2526%25201%255C%255C%250A1%2520%2526%25200%2520%2526%25201%2520%2526%25201%2520%2526%25200%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \matrix{\phantom{v_1[}}
+\matrix{1&amp;2&amp;3&amp;4&amp;5}\\
+\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}
+\left[\matrix{
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+}\right]
+" data-equation-content="\matrix{\phantom{v_1[}}
+\matrix{1&amp;2&amp;3&amp;4&amp;5}\\
+\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}
+\left[\matrix{
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 24.9346%; height: 114px;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="\matrix{\phantom{v_1[}}
+\matrix{1&amp;2&amp;3&amp;4&amp;5&amp;6&amp;7}\\
+\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}
+\left[\matrix{
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cmatrix%257B%255Cphantom%257Bv_1%255B%257D%257D%250A%255Cmatrix%257B1%25262%25263%25264%25265%25266%25267%257D%255C%255C%250A%255Cmatrix%257B%250A1%255C%255C%250A2%255C%255C%250A3%255C%255C%250A4%255C%255C%250A5%255C%255C%250A%257D%250A%255Cleft%255B%255Cmatrix%257B%250A1%2520%2526%25201%2520%2526%25201%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A1%2520%2526%25200%2520%2526%25200%2520%2526%25201%2520%2526%25201%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25201%2520%2526%25200%2520%2526%25201%2520%2526%25200%2520%2526%25201%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25201%2520%2526%25200%2520%2526%25201%255C%255C%250A0%2520%2526%25200%2520%2526%25201%2520%2526%25200%2520%2526%25200%2520%2526%25201%2520%2526%25201%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \matrix{\phantom{v_1[}}
+\matrix{1&amp;2&amp;3&amp;4&amp;5&amp;6&amp;7}\\
+\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}
+\left[\matrix{
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1\\
+}\right]
+" data-equation-content="\matrix{\phantom{v_1[}}
+\matrix{1&amp;2&amp;3&amp;4&amp;5&amp;6&amp;7}\\
+\matrix{
+1\\
+2\\
+3\\
+4\\
+5\\
+}
+\left[\matrix{
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 16.1341%; height: 114px;">
+<table style="border-collapse: collapse; width: 98.9924%; height: 150px;" border="1">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 61.212%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span>eulerian</span></div>
+</div>
+</td>
+<td style="width: 38.4987%; height: 28px;">No</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 61.212%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span>simple</span></div>
+</div>
+</td>
+<td style="width: 38.4987%; height: 28px;">Yes</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 61.212%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span>has_cycle</span></div>
+</div>
+</td>
+<td style="width: 38.4987%; height: 28px;">Yes</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 61.212%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span>connected</span></div>
+</div>
+</td>
+<td style="width: 38.4987%; height: 28px;">Yes</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 61.212%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span>tree</span></div>
+</div>
+</td>
+<td style="width: 38.4987%; height: 28px;">No</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 61.212%; height: 10px;">
+<div class="rtcContent">
+<div class="lineNode"><span>bipartite</span></div>
+</div>
+</td>
+<td style="width: 38.4987%; height: 10px;">No</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 31.6611%; height: 28px;"><img id="2193829" src="$IMS-CC-FILEBASE$/02--Homework/HW%2005/graph-figures/graph1.png" alt="graph1.png" width="100%" height="100%" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/21804/files/2193865" data-api-returntype="File" loading="lazy"></td>
+<td style="width: 2.1789%; height: 28px;"></td>
+<td style="width: 7.05754%; height: 28px;"></td>
+<td style="width: 17.994%; height: 28px;"><img class="equation_image" title="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cleft%255B%255Cmatrix%257B%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-equation-content="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 24.9346%; height: 28px;">
+<p><img class="equation_image" title="e_1" src="https://vmi.instructure.com/equation_images/e_1?scale=1" alt="LaTeX: e_1" data-equation-content="e_1" data-ignore-a11y-check="" loading="lazy"></p>
+<p><img class="equation_image" title="e_2" src="https://vmi.instructure.com/equation_images/e_2?scale=1" alt="LaTeX: e_2" data-equation-content="e_2" data-ignore-a11y-check="" loading="lazy"></p>
+<p><img class="equation_image" title="e_3" src="https://vmi.instructure.com/equation_images/e_3?scale=1" alt="LaTeX: e_3" data-equation-content="e_3" data-ignore-a11y-check="" loading="lazy"></p>
+<p><img class="equation_image" title="e_4" src="https://vmi.instructure.com/equation_images/e_4?scale=1" alt="LaTeX: e_4" data-equation-content="e_4" data-ignore-a11y-check="" loading="lazy"></p>
+<p><img class="equation_image" title="e_5" src="https://vmi.instructure.com/equation_images/e_5?scale=1" alt="LaTeX: e_5" data-equation-content="e_5" data-ignore-a11y-check="" loading="lazy"></p>
+<p><img class="equation_image" title="e_6" src="https://vmi.instructure.com/equation_images/e_6?scale=1" alt="LaTeX: e_6" data-equation-content="e_6" data-ignore-a11y-check="" loading="lazy"></p>
+<p><img class="equation_image" title="e_7" src="https://vmi.instructure.com/equation_images/e_7?scale=1" alt="LaTeX: e_7" data-equation-content="e_7" data-ignore-a11y-check="" loading="lazy"></p>
+</td>
+<td style="width: 16.1341%; height: 28px;"></td>
+</tr>
+<tr style="height: 52px;">
+<td style="width: 31.6611%; height: 52px;"><img id="2193830" src="$IMS-CC-FILEBASE$/02--Homework/HW%2005/graph-figures/graph-13.png" alt="graph-13.png" width="100%" height="100%" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/21804/files/2193866" data-api-returntype="File" loading="lazy"></td>
+<td style="width: 2.1789%; height: 52px;"></td>
+<td style="width: 7.05754%; height: 52px;"></td>
+<td style="width: 17.994%; height: 52px;"><img class="equation_image" title="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cleft%255B%255Cmatrix%257B%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-equation-content="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 24.9346%; height: 52px;"></td>
+<td style="width: 16.1341%; height: 52px;"></td>
+</tr>
+<tr style="height: 52px;">
+<td style="width: 31.6611%; height: 52px;"><img id="2193827" src="$IMS-CC-FILEBASE$/02--Homework/HW%2005/graph-figures/graph-9.png" alt="graph-9.png" width="100%" height="100%" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/21804/files/2193863" data-api-returntype="File" loading="lazy"></td>
+<td style="width: 2.1789%; height: 52px;"></td>
+<td style="width: 7.05754%; height: 52px;"></td>
+<td style="width: 17.994%; height: 52px;"><img class="equation_image" title="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cleft%255B%255Cmatrix%257B%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-equation-content="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 24.9346%; height: 52px;"></td>
+<td style="width: 16.1341%; height: 52px;"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 31.6611%; height: 28px;"><img id="2193823" src="$IMS-CC-FILEBASE$/02--Homework/HW%2005/graph-figures/graph3.png" alt="graph3.png" width="100%" height="100%" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/21804/files/2193859" data-api-returntype="File" loading="lazy"></td>
+<td style="width: 2.1789%; height: 28px;"></td>
+<td style="width: 7.05754%; height: 28px;"></td>
+<td style="width: 17.994%; height: 28px;"><img class="equation_image" title="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" src="https://vmi.instructure.com/equation_images/%255Cleft%255B%255Cmatrix%257B%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A0%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%2520%2526%25200%255C%255C%250A%257D%255Cright%255D%250A?scale=1" alt="LaTeX: \left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-equation-content="\left[\matrix{
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+}\right]
+" data-ignore-a11y-check="" loading="lazy"></td>
+<td style="width: 24.9346%; height: 28px;"></td>
+<td style="width: 16.1341%; height: 28px;"></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

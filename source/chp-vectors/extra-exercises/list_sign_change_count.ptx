@@ -1,0 +1,60 @@
+<!--META-DATA
+{
+	tags: ["if", "for", "while", "vector"],
+}
+-->
+
+<statement>
+	<p>
+		Returns the number of times consecutive numbers have a different sign in the list.
+    </p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>list</pf> (1 x N) double vector</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>count</pf> (1 x 1) integer — number of sign changes in <pf>list</pf></p>
+			</cell>
+		</row>
+			<row>
+			<cell>Details:</cell>
+			<cell><p>▸ Use <pf>length</pf> to get the number of values in the <pf>list</pf>.</p></cell>
+		</row>
+			<row>
+				<cell/>
+			<cell><p>▸ Use a <pf>for</pf> or <pf>while</pf> loop together with an <pf>if</pf>-statement.</p></cell>
+		</row>
+			<row>
+				<cell/>
+			<cell><p>▸ Changing from a positive or negative to a zero does not count as a change of sign.</p></cell>
+		</row>
+		<row bottom="minor">
+				<cell/>
+			<cell><p>▸ Only count changes between adjacent numbers.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				count = list_sign_change_count([1 -1 1 -9 6 6 -1 -2 4])
+				% returns 6
+			</code>
+		</program>
+		<program>
+			<code>
+				count = list_sign_change_count([1 1 1 -9 0 0 6 6 -1 6 7 1 2])
+				% returns 3
+			</code>
+		</program>
+	</p>
+</statement>

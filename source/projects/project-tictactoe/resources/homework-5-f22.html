@@ -1,0 +1,574 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 5 - F22</title>
+</head>
+<body>
+<p>Complete each of the programming and script problems below for homework 5.&nbsp;</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Click on the function filename to download the template for that problem.</p>
+<p>Follow the templates. Do not use any built-in MATLAB commands unless specified in the directions of the problem.</p>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 104px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:</td>
+<td style="width: 89.688%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="P51_keprekar_numbers_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/gd8065dfeda48b85333809d40224c5314?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1201811" data-api-returntype="File"><code>P51_keprekar_numbers_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:</td>
+<td style="width: 89.688%; height: 28px;">Given a positive integer, <img class="equation_image" title="n" src="https://vmi.instructure.com/equation_images/n" alt="LaTeX: n" data-equation-content="n" loading="lazy">, or <img class="equation_image" title="\infty " src="https://vmi.instructure.com/equation_images/%255Cinfty%2520" alt="LaTeX: \infty " data-equation-content="\infty " loading="lazy"> this program returns all the numbers (between 0 and 9999) with a keprekar number of <img class="equation_image" title="n" src="https://vmi.instructure.com/equation_images/n" alt="LaTeX: n" data-equation-content="n" loading="lazy"> or <img class="equation_image" title="\infty" src="https://vmi.instructure.com/equation_images/%255Cinfty" alt="LaTeX: \infty" data-equation-content="\infty" loading="lazy">.</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 10px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 10px;">You will probably want to use your <code>P41_kaprekar_steps</code> program.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>Examples:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>kep_1_nums = P51_keprekar_numbers_Key(1)</code> returns the 383 x 1 column vector
+<pre>kep_1_nums =<br>  &nbsp; &nbsp; &nbsp; 26<br>  &nbsp; &nbsp; &nbsp; 62<br>  &nbsp; &nbsp; &nbsp;136<br>  &nbsp; &nbsp; &nbsp;163<br>  &nbsp; &nbsp; &nbsp;...<br>  &nbsp; &nbsp; 9863<br>  &nbsp; &nbsp; 9937<br>&nbsp; &nbsp; &nbsp; 9973</pre>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>kep_10_nums = P51_keprekar_numbers_Key(10)</code> returns<br><term></term><code>kep_10_nums = []</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 346px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 9.5144%; height: 28px; text-align: right;"><term>Function</term>:</td>
+<td style="width: 90.444%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT_detect_winning_move_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g01a056dbb57b52b7439083d17917e579?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1201812" data-api-returntype="File"><code>TTT_detect_winning_move_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 9.5144%; height: 28px; text-align: right;"><term>Description</term>:</td>
+<td style="width: 90.444%; height: 28px;">This program detects if either player has an immediate winning move.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; height: 29px; vertical-align: top;"><term>Inputs:</term></td>
+<td style="width: 90.444%; height: 29px;"><code>game_state</code> (3 x 3) the current state of the TTT game board</td>
+</tr>
+<tr style="height: 73px;">
+<td style="width: 9.5144%; text-align: right; height: 19px; vertical-align: top;"><term>Outputs:</term></td>
+<td style="width: 90.444%; height: 19px;"><code>player_status</code> (1 x 2) has the value:&nbsp; &nbsp;[ winning space for player X,&nbsp; &nbsp;winning space for player O ]<br>where "winning space" is the absolute index of the space that would result in a win.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.5144%; text-align: right; height: 10px; vertical-align: top;"><term>Comments:</term></td>
+<td style="width: 90.444%; height: 10px;">If a player does not have a direct winning move the value in the output corresponding to that player should be <code>0</code>.</td>
+</tr>
+<tr>
+<td style="width: 9.5144%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 90.444%;">Your <code>TTT_get_open_spaces</code> and <code>TTT_winner_check</code> codes will be helpful in this function.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>Examples:</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = TTT_detect_winning_move_lastname([0 -1 1; -1 1 -1; 0 1 -1])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = [3 0]</code></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = TTT_detect_winning_move_lastname([0 -1 0; -1 1 -1; 0 1 -1])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = [0 7]</code></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = TTT_detect_winning_move_lastname([-1 1 0; 0 -1 -1; 1 1 0])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = [9 2]</code></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = TTT_detect_winning_move_lastname([0 0 0; 0 1 0; 0 0 0])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>win_status = [0 0]</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 472px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:</td>
+<td style="width: 89.688%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT_ai_move_2_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/gdfaa4ec0ddf80676f204b0893b578d86?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1201810" data-api-returntype="File"><code>TTT_ai_move_2_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 10px; text-align: right; vertical-align: top;"><term>Description</term>:</td>
+<td style="width: 89.688%; height: 10px;">This program returns an AI move to an available space in a Tic-Tac-Toe game based on the set of priorities:</td>
+</tr>
+<tr style="height: 33px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><em>Priority 1</em>: If a winning move is available, it takes it.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><em>Priority 2</em>: If a winning move for the opposing player is available, it takes it (thus, blocking that move).</td>
+</tr>
+<tr style="height: 22px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 22px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 22px;"><em>Priority 3</em>: It resorts to the <code>ai_move_1</code> strategy.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>game_state</code> (3 x 3) the current state of the TTT game board</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>player</code> (1 x 1) has value <code>1</code> if X is the current player or <code>-1</code> if O is the current player.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>move_to</code> (1 x 1) absolute index of the space <code>player</code> should move to.</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 10px;">This is a smarter version of your <code>ai_move_1</code> code.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Use your <code>TTT_get_open_spaces</code> and <code>TTT_detect_winning_move</code> code inside this program.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">If there are multiple winning move spaces available, take the space with the lowest absolute index.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>Examples:</term></td>
+<td style="width: 89.688%; height: 10px;"><code>move_to = TTT_ai_move_2_lastname([0 -1 1; -1 1 -1; 1 1 -1],1)</code> returns</td>
+</tr>
+<tr style="height: 34px;">
+<td style="width: 10.2704%; text-align: right; height: 16px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 16px;"><code>move_to = 1</code> (only choice)</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; height: 18px; vertical-align: top;"></td>
+<td style="width: 89.688%; height: 18px;"><code>move_to = TTT_ai_move_2_lastname([0 0 0; 0 1 0; 0 0 0],-1)</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 27px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 27px;"><code>move_to = 7</code> (random selection, your output might be different)</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; height: 21px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 21px;"><code>move_to = TTT_ai_move_2_lastname([1 -1 -1; -1 1 -1; 1 1 -1],1)</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>move_to = []</code> (nowhere to go)</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>move_to = TTT_ai_move_2_lastname([0 1 -1; 1 1 0; -1 0 -1],1)</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>move_to = 6</code> (winning space with lowest absolute index)</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>move_to = TTT_ai_move_2_lastname([1 0 -1; 0 1 0; 0 0 0],-1)</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>move_to = 9</code> (player O blocks player X's winning move)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 184px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><code>TTT_main_pve_lastname.m</code> (use your <code>TTT_main_pvp</code> code as a template)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">This program implements a player vs environment (i.e. computer) implementation of Tic-Tac-Toe.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 29px;">None</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>Outputs:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>winner</code> (1 x 1) has value 1 if player X wins, has value -1 if player O wins, has value 0 if there was a tie</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">Adapt your <code>TTT_main_pvp</code> game into a player vs computer game.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 13px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 13px;">Use your <code>ai_move_1</code> program as the AI for this game.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">Assume the human player is X and moves first.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 66px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><code>TTT_ai_move_3_lastname.m</code> (use your <code>TTT_ai_move_2</code>&nbsp;code as a template)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">This program returns an AI move to an available space in a Tic-Tac-Toe game based on your chosen strategy.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Inputs:</term></td>
+<td style="width: 89.8822%;"><code>game_state</code> (3 x 3) the current state of the TTT game board</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>player</code> (1 x 1) has value <code>1</code> if X is the current player or <code>-1</code> if O is the current player.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Outputs:</term></td>
+<td style="width: 89.8822%;"><code>move_to</code> (1 x 1) absolute index of the space <code>player</code> should move to.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 10px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 10px;">Your grade on this program will be based on how well it does, on average, when played head-to-head against the <code>TTT_ai_move_2</code> strategy. &nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">I will simulate 1000 games against your code and the <code>TTT_ai_move_2</code> strategy.&nbsp; Half of the games your code will have the first move.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">Do not look up strategies online or ask anyone for help on this one. You should own it completely.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 66px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="MS_create_field_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g2aa6f9a5c93df4088e32f4e55838e72a?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1204661" data-api-returntype="File"><code>MS_create_field_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">This program creates a square N x N matrix that represents a minesweeper field. Each value in the matrix will either be -1 if a mine exists in that location or the number of mines adjacent to that location.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Inputs:</term></td>
+<td style="width: 89.8822%;"><code>mines</code> (N x N) locations of mines = -1</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Outputs:</term></td>
+<td style="width: 89.8822%;"><code>play_field</code> (N x N) minesweeper matrix</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 10px; vertical-align: top;"><term>Comments:</term></td>
+<td style="width: 89.8822%; height: 10px;">Two spaces are said to be adjacent if they are one space from each other (this includes diagonally).&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Examples:</term></td>
+<td style="width: 89.8822%;"><code>board = MS_create_field_lastname([0 -1;-1 0])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<pre>board = <br>  &nbsp; &nbsp;2 &nbsp; &nbsp;-1<br>  &nbsp; -1&nbsp; &nbsp; &nbsp;2</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>board = MS_create_field_lastname([0 -1 0;-1 0 0;0 -1 0])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<pre>board = <br>  &nbsp; &nbsp;2 &nbsp; &nbsp;-1 &nbsp; &nbsp; 1<br>  &nbsp; -1 &nbsp; &nbsp; 3 &nbsp; &nbsp; 2<br>  &nbsp;  2 &nbsp; &nbsp;-1 &nbsp; &nbsp; 1</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>board = MS_create_field_lastname([0 -1 0 0 0;0 0 0 0 0;-1 0 0 0 0;0 0 -1 0 0; -1 -1 -1 -1 -1])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<pre>board = <br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp;-1 &nbsp; &nbsp; 1 &nbsp; &nbsp; 0 &nbsp; &nbsp; 0<br>  &nbsp; &nbsp;2 &nbsp; &nbsp; 2 &nbsp; &nbsp; 1 &nbsp; &nbsp; 0 &nbsp; &nbsp; 0<br>&nbsp; &nbsp; -1 &nbsp; &nbsp; 2 &nbsp; &nbsp; 1 &nbsp; &nbsp; 1 &nbsp; &nbsp; 0<br>  &nbsp; &nbsp;3 &nbsp; &nbsp; 5 &nbsp; &nbsp;-1 &nbsp; &nbsp; 4 &nbsp; &nbsp; 2<br>&nbsp; &nbsp; -1 &nbsp; &nbsp;-1 &nbsp; &nbsp;-1 &nbsp; &nbsp;-1 &nbsp; &nbsp;-1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 66px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:</td>
+<td style="width: 89.8822%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TSP_global_dist_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/gecf86cf4d598e2b8129846367563d411?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1207247" data-api-returntype="File"><code>TSP_global_dist_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:</td>
+<td style="width: 89.8822%; height: 28px;">Given two points on the earth (in longitude/latitude coordinates, <img class="equation_image" title="(\alpha , \beta )" src="https://vmi.instructure.com/equation_images/(%255Calpha%2520%252C%2520%255Cbeta%2520)" alt="LaTeX: (\alpha , \beta )" data-equation-content="(\alpha , \beta )" loading="lazy">) create a program that computes the<br>distance between these two points along the earth's surface.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Background:</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div><span>Consider two points </span><span><img class="equation_image" title="P = (\alpha_1, \beta_1)" src="https://vmi.instructure.com/equation_images/P%2520%253D%2520(%255Calpha_1%252C%2520%255Cbeta_1)" alt="LaTeX: P = (\alpha_1, \beta_1)" data-equation-content="P = (\alpha_1, \beta_1)" loading="lazy"></span><span> and </span><span><img class="equation_image" title="Q = (\alpha_2, \beta_2)" src="https://vmi.instructure.com/equation_images/Q%2520%253D%2520(%255Calpha_2%252C%2520%255Cbeta_2)" alt="LaTeX: Q = (\alpha_2, \beta_2)" data-equation-content="Q = (\alpha_2, \beta_2)" loading="lazy"></span><span> on a sphere of radius </span><span><img class="equation_image" title="R" src="https://vmi.instructure.com/equation_images/R" alt="LaTeX: R" data-equation-content="R" loading="lazy"></span><span> where </span><span><img class="equation_image" title="\alpha_1, \alpha_2" src="https://vmi.instructure.com/equation_images/%255Calpha_1%252C%2520%255Calpha_2" alt="LaTeX: \alpha_1, \alpha_2" data-equation-content="\alpha_1, \alpha_2" loading="lazy"></span><span> are latitude angles and </span><span><img class="equation_image" title="\beta_1, \beta_2" src="https://vmi.instructure.com/equation_images/%255Cbeta_1%252C%2520%255Cbeta_2" alt="LaTeX: \beta_1, \beta_2" data-equation-content="\beta_1, \beta_2" loading="lazy"></span><span> are longitude angles. The distance, </span><span><img class="equation_image" title="d" src="https://vmi.instructure.com/equation_images/d" alt="LaTeX: d" data-equation-content="d" loading="lazy"></span><span>, between these two points is related to </span><span><img class="equation_image" title="R" src="https://vmi.instructure.com/equation_images/R" alt="LaTeX: R" data-equation-content="R" loading="lazy"></span><span> and the angle between two lines from the origin to these points, </span><span><img class="equation_image" title="\theta" src="https://vmi.instructure.com/equation_images/%255Ctheta" alt="LaTeX: \theta" data-equation-content="\theta" loading="lazy"></span><span> by the formula</span></div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="\displaystyle \theta = \frac{d}{R} \qquad (\theta\text{ in radians})" src="https://vmi.instructure.com/equation_images/%255Cdisplaystyle%2520%255Ctheta%2520%253D%2520%255Cfrac%257Bd%257D%257BR%257D%2520%255Cqquad%2520(%255Ctheta%255Ctext%257B%2520in%2520radians%257D)" alt="LaTeX: \displaystyle \theta = \frac{d}{R} \qquad (\theta\text{ in radians})" data-equation-content="\displaystyle \theta = \frac{d}{R} \qquad (\theta\text{ in radians})" loading="lazy"></td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><span><span><img id="1207165" style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/SphereLatLon-2.png" alt="SphereLatLon.png" width="268" height="226" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436115" data-api-returntype="File" loading="lazy"></span></span></td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<div><span>So the distance, <img class="equation_image" title="d" src="https://vmi.instructure.com/equation_images/d" alt="LaTeX: d" data-equation-content="d" loading="lazy"></span><span><span>, is given by &nbsp;<img class="equation_image" title="d = R\cdot\theta" src="https://vmi.instructure.com/equation_images/d%2520%253D%2520R%255Ccdot%255Ctheta" alt="LaTeX: d = R\cdot\theta" data-equation-content="d = R\cdot\theta" loading="lazy"></span></span></div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div><span>We usually know </span><span><img class="equation_image" title="R" src="https://vmi.instructure.com/equation_images/R" alt="LaTeX: R" data-equation-content="R" loading="lazy"></span><span> but not </span><span><img class="equation_image" title="\theta" src="https://vmi.instructure.com/equation_images/%255Ctheta" alt="LaTeX: \theta" data-equation-content="\theta" loading="lazy"></span><span>.</span><span>&nbsp;It turns out that </span><span><img class="equation_image" title="\theta" src="https://vmi.instructure.com/equation_images/%255Ctheta" alt="LaTeX: \theta" data-equation-content="\theta" loading="lazy"></span><span> can be approximated from the longitude and latitude coordinates of the two points by using the haversine formula:</span></div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="\theta = 2\sin^{-1}\left(\sqrt{\sin^2\left(\frac{\alpha_2-\alpha_1}{2}\right)+\cos(\alpha_1)\cos(\alpha_2)\sin^2\left(\frac{\beta_2-\beta_1}{2}\right)}\,\right)" src="https://vmi.instructure.com/equation_images/%255Ctheta%2520%253D%25202%255Csin%255E%257B-1%257D%255Cleft(%255Csqrt%257B%255Csin%255E2%255Cleft(%255Cfrac%257B%255Calpha_2-%255Calpha_1%257D%257B2%257D%255Cright)%252B%255Ccos(%255Calpha_1)%255Ccos(%255Calpha_2)%255Csin%255E2%255Cleft(%255Cfrac%257B%255Cbeta_2-%255Cbeta_1%257D%257B2%257D%255Cright)%257D%255C%252C%255Cright)" alt="LaTeX: \theta = 2\sin^{-1}\left(\sqrt{\sin^2\left(\frac{\alpha_2-\alpha_1}{2}\right)+\cos(\alpha_1)\cos(\alpha_2)\sin^2\left(\frac{\beta_2-\beta_1}{2}\right)}\,\right)" data-equation-content="\theta = 2\sin^{-1}\left(\sqrt{\sin^2\left(\frac{\alpha_2-\alpha_1}{2}\right)+\cos(\alpha_1)\cos(\alpha_2)\sin^2\left(\frac{\beta_2-\beta_1}{2}\right)}\,\right)" loading="lazy"></td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><span>Putting these two equations together gives an equation for the distance between </span><span><img class="equation_image" title="(\alpha_1, \beta_1)" src="https://vmi.instructure.com/equation_images/(%255Calpha_1%252C%2520%255Cbeta_1)" alt="LaTeX: (\alpha_1, \beta_1)" data-equation-content="(\alpha_1, \beta_1)" loading="lazy"></span><span> and </span><span><img class="equation_image" title="(\alpha_2, \beta_2)" src="https://vmi.instructure.com/equation_images/(%255Calpha_2%252C%2520%255Cbeta_2)" alt="LaTeX: (\alpha_2, \beta_2)" data-equation-content="(\alpha_2, \beta_2)" loading="lazy"></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><span>The first coordinates, </span><span><img class="equation_image" title="\alpha_1" src="https://vmi.instructure.com/equation_images/%255Calpha_1" alt="LaTeX: \alpha_1" data-equation-content="\alpha_1" loading="lazy"></span><span> and </span><span><img class="equation_image" title="\alpha_2" src="https://vmi.instructure.com/equation_images/%255Calpha_2" alt="LaTeX: \alpha_2" data-equation-content="\alpha_2" loading="lazy"></span><span>, are the</span><span>&nbsp;<term>latitude</term> while the second coordinates, </span><span><img class="equation_image" title="\beta_1" src="https://vmi.instructure.com/equation_images/%255Cbeta_1" alt="LaTeX: \beta_1" data-equation-content="\beta_1" loading="lazy"></span><span>&nbsp;</span><span>and </span><span><img class="equation_image" title="\beta_2" src="https://vmi.instructure.com/equation_images/%255Cbeta_2" alt="LaTeX: \beta_2" data-equation-content="\beta_2" loading="lazy"></span><span>, are </span><span><term>longitude</term> of the two points (in radians).&nbsp;</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><span>Use <img class="equation_image" title="R = 3959" src="https://vmi.instructure.com/equation_images/R%2520%253D%25203959" alt="LaTeX: R = 3959" data-equation-content="R = 3959" loading="lazy">&nbsp;mi (radius of the earth)&nbsp;</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Inputs:</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><span><code>P</code> (2 x 2) GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Outputs:</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><span><code>g_dist</code> (1 x 1) global distance between the two points in <code>P</code>.</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Comments:</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div><span>We will be using the same GPS coordinates as google maps where any latitudes south of the equator and any longitudes west of the prime meridian are negative values. Also, these GPS coordinates are given in degrees, not radians, so adjust accordingly.</span></div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div><span>You can test your code with the following GPS coordinates:</span></div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div>
+<div><span>Los Angeles: </span><span><img class="equation_image" title="(34.0522, -118.2437)" src="https://vmi.instructure.com/equation_images/(34.0522%252C%2520-118.2437)" alt="LaTeX: (34.0522, -118.2437)" data-equation-content="(34.0522, -118.2437)" loading="lazy"></span><span> and San Fransisco: <img class="equation_image" title="(37.7749, -122.4194)" src="https://vmi.instructure.com/equation_images/(37.7749%252C%2520-122.4194)" alt="LaTeX: (37.7749, -122.4194)" data-equation-content="(37.7749, -122.4194)" loading="lazy"></span></div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><span>Distance <img class="equation_image" title="\approx 347.4428" src="https://vmi.instructure.com/equation_images/%255Capprox%2520347.4428" alt="LaTeX: \approx 347.4428" data-equation-content="\approx 347.4428" loading="lazy"></span><span> miles</span><span>&nbsp;(as the crow flies)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 66px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><code><a class="instructure_file_link instructure_scribd_file inline_disabled" title="KNN_most_repeats_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/ge02adf53f8d48e741a1018bee779262a?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1207246" data-api-returntype="File">KNN_most_repeats_lastname.m</a></code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">Given a column vector of numbers, this program returns the value that occurs most often.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Inputs:</term></td>
+<td style="width: 89.8822%;"><code>values</code> (m x 1) a column vector of numeric values</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>Outputs:</term></td>
+<td style="width: 89.8822%;"><code>val</code> (1 x 1) value in <code>values</code> that occurs most often</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 10px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 10px;">If there is a tie, return the value that is closest to the beginning of the list.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Examples:</term></td>
+<td style="width: 89.8822%;"><code>result = KNN_most_repeats_lastname([9; 3; 2; 3])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>result = 3</code></td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>result = KNN_most_repeats_lastname([9; 2; 3; 3; 2; 1; 3; 1; 4; 2; 5; 1])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>result = 2</code></td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<h3><term><span style="font-size: 14pt;">Script Problems</span></term></h3>
+<p><span style="font-size: 12pt;">Click on the Script filename to download the template for that problem.</span></p>
+<table style="border-collapse: collapse; width: 97.8605%; height: 42px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 14px; text-align: right; vertical-align: top;"><term>Script</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 14px;"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Objectives</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>Directions:&nbsp;</term></td>
+<td style="width: 89.688%;"></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

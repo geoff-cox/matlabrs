@@ -1,0 +1,375 @@
+<section xml:id="structures-part2-structure-arrays">
+	<title>Structures — Part 2: Structure Arrays</title>
+
+	<introduction>
+		<p>
+			A <c>struct</c> in MATLAB stores heterogeneous data—numbers, text, even arrays—under named
+			<em>fields</em> that you access with dot notation. In this section, we focus on
+			<em>structure arrays</em>: arrays whose elements are structures sharing the same field names.
+		</p>
+
+		<note>
+			For MATLAB's official reference, see <url href="https://www.mathworks.com/help/matlab/ref/struct.html">struct</url>.
+		</note>
+	</introduction>
+
+	<subsection xml:id="struct-arrays-library-intro">
+		<title>Library collection example</title>
+
+		<p>
+		Imagine tracking a library's collection. A top-level structure <c>collection</c> can hold a
+		field <c>books</c>, and each entry <c>books(k)</c> is itself a structure with fields like
+		<c>title</c>, <c>author</c>, <c>released</c>, <c>genre</c>, <c>loaned</c>, and <c>loaned_to</c>.
+		</p>
+
+		<ul>
+			<li><c>collection</c> is the parent structure.</li>
+			<li><c>collection.books</c> is a 1×<m>N</m> <c>struct</c> <em>array</em>.</li>
+			<li>Access values with dot notation, e.g., <c>collection.books(504).genre</c>.</li>
+		</ul>
+
+		<figure>
+			<caption></caption>
+			<image source="figures/struct_tree_03.png" width="70%">
+				<shortdescription></shortdescription>
+			</image>
+		</figure>
+
+		<example xml:id="ex-struct-arrays-add-books">
+		<title>Adding books with dot notation and with <c>struct</c></title>
+
+		<p><em>Option 1:</em> add <c>book(1)</c> using dot notation.</p>
+		<program>
+			<code>
+	collection.books(1).title = 'Frankenstein';
+	collection.books(1).author = 'Shelly';
+	collection.books(1).released = 1818;
+	collection.books(1).genre = 'horror';
+	collection.books(1).loaned = true;
+	collection.books(1).loaned_to = 'Smith';
+
+	collection
+	display(collection.books)
+			</code>
+		</program>
+
+		<p><em>Option 2:</em> add <c>book(2)</c> using the <c>struct</c> constructor.</p>
+		<program>
+			<code>
+	collection.books(2) = struct( ...
+		'title', 'Dubliners', ...
+		'author', 'Joyce', ...
+		'released', 1914, ...
+		'genre', 'short story', ...
+		'loaned', false, ...
+		'loaned_to', '');
+
+	collection
+	display(collection.books)
+			</code>
+		</program>
+		</example>
+	</subsection>
+
+	<subsection xml:id="what-is-a-structure-array">
+		<title>What is a structure array?</title>
+
+		<p>
+		A <em>structure array</em> is an array whose elements are structures with the same field
+		names (but different values). Below we create a 1×3 array of student records.
+		</p>
+
+		<example xml:id="ex-students-struct-array">
+		<title>Constructing and using a structure array</title>
+		<program>
+			<code>
+	students(1).Name = 'Alice';
+	students(1).ID = 101;
+	students(1).GPA = 3.8;
+
+	students(2).Name = 'Bob';
+	students(2).ID = 102;
+	students(2).GPA = 3.5;
+
+	students(3).Name = 'Charlie';
+	students(3).ID = 103;
+	students(3).GPA = 3.9;
+
+	% Display the array of structures
+	disp('Structure array "students":')
+	disp(students)
+
+	% Accessing fields in a structure array
+	disp('Accessing data from the structure array:')
+	disp(['Student 1 Name: ', students(1).Name])
+	disp(['Student 2 GPA: ', num2str(students(2).GPA)])
+
+	% Loop through the structure array
+	disp('Looping through the structure array to display all names:')
+	for i = 1:length(students)
+		disp(['Student ', num2str(i), ' Name: ', students(i).Name])
+	end
+			</code>
+		</program>
+		</example>
+	</subsection>
+
+	<subsection xml:id="exercise-employees-struct-array">
+		<title>Practice: employees structure array</title>
+
+		<p>
+		Create a structure array <c>employees</c> with fields <c>Name</c>, <c>ID</c>, <c>Position</c>, and
+		<c>Salary</c>. Add at least three entries, then loop to print each employee's name and position.
+		</p>
+
+		<example xml:id="ex-employees-solution">
+		<title>One possible solution</title>
+		<program>
+			<code>
+	employees(1).Name = 'John Doe';
+	employees(1).ID = 12345;
+	employees(1).Position = 'Engineer';
+	employees(1).Salary = 60000;
+
+	employees(2).Name = 'Jane Smith';
+	employees(2).ID = 12346;
+	employees(2).Position = 'Manager';
+	employees(2).Salary = 75000;
+
+	employees(3).Name = 'Alice Johnson';
+	employees(3).ID = 12347;
+	employees(3).Position = 'Analyst';
+	employees(3).Salary = 50000;
+
+	% Display the employee names and positions
+	disp('Employee names and positions:')
+	for i = 1:length(employees)
+		disp([employees(i).Name, ' - ', employees(i).Position])
+	end
+			</code>
+		</program>
+		</example>
+	</subsection>
+
+	<subsection xml:id="project-polygon-collection">
+		<title>Project: a collection of polygons</title>
+
+		<p>
+		A polygon is formed by connecting a set of corner points <m>(x,y)</m> with straight, non-intersecting
+		line segments. Build a 1×3 structure array <c>polygon</c> with fields:
+		</p>
+		<ul>
+		<li><c>location</c> — a sub-structure with fields <c>x_vals</c> and <c>y_vals</c> (corner coordinates)</li>
+		<li><c>color</c> — a fill color</li>
+		<li><c>center</c> — the polygon's center <m>(\bar x,\bar y)</m></li>
+		</ul>
+
+		<p>Follow the tasks to preallocate, populate, and plot the shapes.</p>
+
+		<example xml:id="ex-polygon-collection-code">
+		<title>Preallocating, populating, and plotting</title>
+		<program>
+			<code>
+	% TASK 1: Preallocate the 1x3 struct with defaults
+	polygon(1:3) = struct('location',[],'color','w','center',[]);
+
+	% TASK 2: define polygon(1)'s location and color
+	polygon(1).location.x_vals = [-2 0 1 -2 -2];
+	polygon(1).location.y_vals = [ 1 1 2  2  1];
+	polygon(1).color = 'm';
+
+	% TASK 3: define polygon(2)'s location and color
+	polygon(2).location.x_vals = [0 4 4 0];
+	polygon(2).location.y_vals = [0 0 2 0];
+	polygon(2).color = 'r';
+
+	% TASK 4: define polygon(3)'s location and color
+	polygon(3).location.x_vals = [-1  0 -1  4  3  4 -1];
+	polygon(3).location.y_vals = [ 3  4  5  5  4  3  3];
+	polygon(3).color = 'c';
+
+	% TASK 6: Call plot_shapes (defined below)
+	plot_shapes(polygon)
+			</code>
+		</program>
+
+		<p><em>TASK 5:</em> Complete the plotting function. It should:</p>
+		<ul>
+			<li>plot and fill each polygon,</li>
+			<li>compute each polygon's center (use the mean of the non-repeated vertices), and</li>
+			<li>label the center with the polygon's index.</li>
+		</ul>
+
+		<program>
+			<code>
+	function plot_shapes(polygon)
+
+		hold on
+		% set axis range, force equal scaling, and turn grid on
+		axis([-3 5 -1 6])
+		axis equal
+		grid on
+
+		num_of_polygons = length(polygon);
+
+		for k = 1:num_of_polygons
+			% optional: set the x, y and color values for the current polygon
+			x_vals = polygon(k).location.x_vals;
+			y_vals = polygon(k).location.y_vals;
+			color = polygon(k).color;
+
+			% plot the polygon
+			plot(x_vals, y_vals);
+
+			% fill the polygon color
+			fill(x_vals, y_vals, color)
+
+			% compute the center coordinates of the polygon
+			x_center = mean(x_vals(1:end-1));
+			y_center = mean(y_vals(1:end-1));
+
+			% display the index of the current polygon
+			text(x_center, y_center, num2str(k))
+		end
+
+		hold off
+	end
+			</code>
+		</program>
+		</example>
+	</subsection>
+
+	<subsection xml:id="triangle-library-part1">
+		<title>Coding Example: Triangle library (part 1)</title>
+
+		<p>
+		To manage many triangle properties together, we store them in triangle structures.
+		Below are two ways to initialize such structures.
+		</p>
+
+		<example xml:id="ex-triangle-init">
+		<title>Initializing triangle structures</title>
+		<program>
+			<code>
+	triangle_1 = struct('side_lengths', [3, 4, 5], 'area', 0, 'perimeter', 0, 'right', false, 'hypotenuse', 1)
+	triangle_2 = struct('side_lengths', [86, 44, 57], 'area', 0, 'perimeter', 0, 'right', false, 'hypotenuse', 1)
+			</code>
+		</program>
+
+		<p>(a) Using Method 1 (<c>struct</c> constructor):</p>
+		<program>
+			<code>
+	triangle_1 = struct( ...
+		'sides', [3 4 5], ...
+		'perimeter', 12, ...
+		'area', 0, ...
+		'hypotenuse', 5, ...
+		'is_right', true, ...
+		'is_valid', true ...
+		);
+			</code>
+		</program>
+
+		<p>(b) Using Method 2 (dot notation):</p>
+		<program>
+			<code>
+	triangle_2.sides = [86 44 57];
+	triangle_2.perimeter = 187;
+	triangle_2.area = 0;
+	triangle_2.hypotenuse = 86;
+	triangle_2.is_right = false;
+	triangle_2.is_valid = true
+			</code>
+		</program>
+
+		<p>(c) Display the structures:</p>
+		<program>
+			<code>
+	triangle_1
+	triangle_2
+			</code>
+		</program>
+		</example>
+
+		<example xml:id="ex-triangle-grouping">
+		<title>Grouping triangles with computed properties</title>
+
+		<p>
+			Write <c>group_triangles</c> that accepts an <m>n\times 3</m> matrix of side lengths
+			(each row is a triangle), then computes and stores, per triangle:
+			<c>sides</c> (sorted), <c>perimeter</c>, <c>area</c> (via Heron's formula),
+			<c>hypotenuse</c>, <c>is_right</c> (Pythagorean check), and <c>is_valid</c> (positive area).
+		</p>
+
+		<p>Recall Heron's formula for side lengths <m>a,b,c</m> and semi-perimeter <m>s=\frac{a+b+c}{2}</m>:</p>
+		<me>
+			A = \sqrt{s(s-a)(s-b)(s-c)}.
+		</me>
+
+		<program>
+			<code>
+	% Test
+	triangle_library = group_triangles([1 2 4; 4 5 3; 24 21 7])
+	triangle_library.triangle_1
+	triangle_library.triangle_2
+	triangle_library.triangle_3
+
+	function triangle_library = group_triangles(side_lengths)
+
+		small_number = 10*eps;
+		n_triangles = height(side_lengths);
+
+		for k = 1:n_triangles
+
+			side_lengths(k, :) = sort(side_lengths(k, :));
+
+			% extract the side lengths
+			a = side_lengths(k, 1);
+			b = side_lengths(k, 2);
+			c = side_lengths(k, 3);
+
+			% perimeter calculation
+			P = a + b + c;
+
+			% area calculation
+			s = 0.5*P;
+			under_sqrt = s*( s-a )*( s-b )*( s-c );
+			A = sqrt( under_sqrt );
+
+			% determine if triangle is a right triangle
+			% if-statement version
+			if abs(a^2 + b^2 - c^2) &lt; small_number
+				right = true;
+			else
+				right = false;
+			end
+			% no if-statement version (better)
+			right = abs(a^2 + b^2 - c^2) &lt; small_number;
+
+			% determine if triangle is valid
+			% if-statement version
+			if under_sqrt &gt; 0
+				valid = true;
+			else
+				valid = false;
+			end
+			% no if-statement version (better)
+			valid = under_sqrt &gt; 0;
+
+			triangle_library.(['triangle_' num2str(k)]) = struct( ...
+				'sides', [a b c], ...
+				'perimeter', P, ...
+				'area', A, ...
+				'hypotenuse', c, ...
+				'is_right', right, ...
+				'is_valid', valid ...
+				);
+
+		end
+
+	end
+			</code>
+		</program>
+		</example>
+	</subsection>
+</section>

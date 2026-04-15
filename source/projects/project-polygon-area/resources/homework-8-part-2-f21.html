@@ -1,0 +1,267 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 8 - part 2 - F21</title>
+</head>
+<body>
+<p>Complete each of the programming and script problems below for homework 8. This assignment is part 2 of a more extensive assignment.</p>
+<p>The goal of this final assignment is to write a MATLAB script that performs the following two primary tasks:</p>
+<ul style="list-style-type: square;">
+<li>Allows a user to create a 2D polygon on a set of axes, then</li>
+<li>computes and displays the approximate and exact area of this polygon back to the user.</li>
+</ul>
+<p>You will complete this script through a series of helper functions described below.</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>If a template for a program exists, you can download it by clicking on the function filename. Otherwise, you must create your own functions from scratch.</p>
+<p>Additionally, if there are no examples, then it is expected that you should come up with your own to test the output of your programs.</p>
+<p><em><term>Do not use any built-in MATLAB commands unless specified in the directions of the problem.</term></em></p>
+<hr><hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 133px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.6636%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.2948%; height: 28px;"><code>HW8P5_is_polygon_simple_lastname.m</code> (<span style="background-color: #fbeeb8;">EXTRA CREDIT PROGRAM</span>)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.6636%; text-align: right; height: 29px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.2948%; height: 29px;">This program determines whether a polygon is a simple polygon. (Recall that a simple polygon is one that doesn't intersect itself.)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.6636%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.2948%; height: 28px;"><code>vertices</code> (<img class="equation_image" title="1\times n" src="https://vmi.instructure.com/equation_images/1%255Ctimes%2520n?scale=1" alt="LaTeX: 1\times n" data-equation-content="1\times n" data-ignore-a11y-check="" loading="lazy"> struct) that has fields <code>x</code> and <code>y</code>, which are the x- and y-coordinates of the vertices of the polygon. (You can see examples of the structure in the Examples file below.)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.6636%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.2948%; height: 28px;"><code>is_simple</code> (logical) is true if the region is simple and is false if the polygon intersects itself</td>
+</tr>
+<tr>
+<td style="width: 10.6636%; text-align: right;"><term>Comments:</term></td>
+<td style="width: 89.2948%;">The goal here is to check (in a systematic way) whether any of the line segments that make up the polygon intersect each other.</td>
+</tr>
+<tr>
+<td style="width: 10.6636%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.2948%;">Make sure to check the line segment that connects the last vertex back to the first vertex.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.6636%; text-align: right; height: 10px;"><term>&nbsp;Examples:</term></td>
+<td style="width: 89.2948%; height: 10px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="Examples_for_HW8P5.m" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/Examples_for_HW8P5.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435979" data-api-returntype="File">Examples_for_HW8P5.m</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 1486px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW8P6_is_pt_in_polygon_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">This function returns true if a point, <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">, lies inside the polygon with given vertices. It returns false otherwise.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>x0</code> (double) x-coordinate of the point <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>y0</code> (double) y-coordinate of the point <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"></td>
+<td style="width: 89.688%; height: 28px;"><code>vertices</code> (<img class="equation_image" title="1\times n" src="https://vmi.instructure.com/equation_images/1%255Ctimes%2520n?scale=1" alt="LaTeX: 1\times n" data-equation-content="1\times n" data-ignore-a11y-check="" loading="lazy"> struct) that has fields <code>x</code> and <code>y</code>, which are the x- and y-coordinates of the vertices of the polygon.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span><code>in_polygon</code> (logical) : is <code>true</code> if (<code>x0</code>,<code>y0</code>) lies inside the polygon. <code>false</code>, otherwise.&nbsp;</span></div>
+</div>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Comments: <br></term></td>
+<td style="width: 89.688%; height: 28px;">One idea for how to code this is to think about a horizontal segment that starts far to the left (negative infinity) and ends at the point <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">. We will refer to this horizontal line segment a "ray".&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">The goal is to count how many edges of the polygon intersect with this ray.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Consider the situation below where the point is in the polygon and imagine traveling along the ray (from left to right).</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 168px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 168px;"><img id="1574648" src="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Polygon_Area_Fig_02.PNG" alt="Polygon_Area_Fig_02.PNG" width="390" height="164" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436015" data-api-returntype="File" loading="lazy">&nbsp; &nbsp; &nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Since the ray starts outside the polygon, the first edge you cross will put you inside the polygon.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Now consider the next case (moving left to right along the ray):</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 167px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 167px;"><img id="1574647" src="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Polygon_Area_Fig_03.PNG" alt="Polygon_Area_Fig_03.PNG" width="390" height="163" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436021" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Here, the ray intersects the first edge (indicating it's inside the polygon), then it hits the second edge, exiting the polygon.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">If the ray were to hit an additional edge along the way, it would re-enter the polygon, as shown in the next example.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 167px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 167px;"><img id="1574649" src="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Polygon_Area_Fig_04.PNG" alt="Polygon_Area_Fig_04.PNG" width="390" height="163" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436017" data-api-returntype="File" loading="lazy">&nbsp; &nbsp; &nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Finally, here is one more example where the point is outside the polygon, and the ray hits 4 edges.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 168px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 168px;"><img id="1574650" src="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Polygon_Area_Fig_05.PNG" alt="Polygon_Area_Fig_05.PNG" width="390" height="163" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436013" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px; text-align: left;">You should convince yourself that if the point is inside the polygon, the number of intersections is even.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Also, if the point is inside the region, the number of intersections will be odd.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Therefore one way to code this program is to&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 83px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 83px;">
+<ol>
+<li>Create the ray (i.e. a horizontal line segment starting at <img class="equation_image" title="\left(-\infty,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(-%255Cinfty%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(-\infty,y_0\right)" data-equation-content="\left(-\infty,y_0\right)" data-ignore-a11y-check="" loading="lazy">&nbsp;and ending at the given point, <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">);</li>
+<li>Count the number of edges of the polygon that the ray intersects;</li>
+<li>If the number of intersections is even, then the point is outside the polygon, and if the number of intersections is odd then the point is inside the polygon.</li>
+</ol>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><term>Creating the ray in MATLAB:</term></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 19px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 19px;">We create the "horizontal" ray by defining it as a line segment from <code>(-1000,y0+1)</code> to <code>(x0,y0)</code>.&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Notes:&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 67px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 67px;">
+<ul style="list-style-type: square;">
+<li><code>-1000</code> takes the place of <img class="equation_image" title="-\infty" src="https://vmi.instructure.com/equation_images/-%255Cinfty?scale=1" alt="LaTeX: -\infty" data-equation-content="-\infty" data-ignore-a11y-check="" loading="lazy">.</li>
+<li>The ray defined above is very close to horizontal but is technically not horizontal because we shift the y value of the first point up by 1.&nbsp; This is done to avoid the very tricky situation when an edge lies directly on the ray.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 33px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 33px;"><term>Coding Notes:</term></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 62px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 62px;">
+<ul style="list-style-type: square;">
+<li>Since you have code that detects when two line segments intersect, you will want to loop through all the edges of the polygon and count the number of times an edge intersection with the "horizontal" ray.&nbsp;</li>
+<li>Don't forget about the edge that connects the last vertex with the first vertex.</li>
+<li>I recommend having a separate check that detects if the given point lies directly on an edge. In this case, you should end the program early since the point is on the boundary of the polygon and therefore in the polygon.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;Examples:<br></term></td>
+<td style="width: 89.688%; height: 10px;"><a class="instructure_file_link inline_disabled" title="Examples_for_HW8P6.mlx" href="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Examples_for_HW8P6.mlx?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436020" data-api-returntype="File">Examples_for_HW8P6.m</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 319px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW8P7_approx_polygon_area_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; vertical-align: top; height: 28px;">This function approximates the area of a polygon using a Monte-Carlo simulation on a given bounding box (in our case, this is the plot window).</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>vertices</code> (<img class="equation_image" title="1\times n" src="https://vmi.instructure.com/equation_images/1%255Ctimes%2520n?scale=1" alt="LaTeX: 1\times n" data-equation-content="1\times n" data-ignore-a11y-check="" loading="lazy"> struct) that has fields <code>x</code> and <code>y</code>, which are the x- and y-coordinates of the vertices of the polygon.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"></td>
+<td style="width: 89.688%; height: 28px;"><code>box</code> (struct) that has fields <code>x1</code>, <code>y1</code>, <code>x2</code>, and <code>y2</code>, which are the x- and y-coordinates of the lower left-hand corner of the bounding box and the upper right-hand corner of the bounding box. (You can see examples of the structure in the Examples file below.)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>approx_area</code> (double) is the approximate area of the region</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Comments: </term></td>
+<td style="width: 89.688%; height: 28px;">A <a class="inline_disabled" href="https://en.wikipedia.org/wiki/Monte_Carlo_method" target="_blank">Monte Carlo</a> simulation works by repeatedly sampling to determine a numerical result. In this case, we want to approximate the area of the polygon as follows:</td>
+</tr>
+<tr style="height: 107px;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">
+<ul>
+<li>Generate a random point inside the bounding box.</li>
+<li>Determine if the point is inside the polygon or not.</li>
+<li>Repeat this a large* number of times.</li>
+<li>At the end of this process, determine the proportion of points that are inside the polygon.</li>
+<li>Compute the area of the bounding box.</li>
+<li>Approximate the area of the polygon by assuming that the polygon takes of the computed proportion of the entire area.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Consider this simplistic example.</td>
+</tr>
+<tr style="height: 33px;">
+<td style="width: 10.2704%; text-align: right; height: 33px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 33px; padding-left: 40px;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW8P7_example1.png" alt="HW8P7_example1.png" width="160" height="203" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435980" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Let's assume that the area of the bounding box is 75. Here we generated only ten random points (which is not a large number!) and we can see that 3/10 of the points lie inside the polygon.&nbsp; In this example, we would estimate that the area of the polygon would be 3/10 of the total area of the box.&nbsp; That is, our area approximation would be 22.5.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Here are some considerations/suggestions as you develop your code:</td>
+</tr>
+<tr style="height: 13px;">
+<td style="width: 10.2704%; text-align: right; height: 13px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 13px;">
+<ul>
+<li>While you are developing your code, you should use a small number of randomly generated points (maybe 100). In this case, you might find it useful to plot the polygon and plot the randomly generated points so you can actually "see" where the points are.&nbsp; In fact, you should plot points of different colors based on whether they are inside the polygon or not.</li>
+<li>When you turn in your code, you should use a large number (at least 10000) of points. If you try to plot all 10000 points, your code will run very slowly.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Examples: <br></term></td>
+<td style="width: 89.688%; vertical-align: top; height: 10px;"><a id="1572542" class="instructure_file_link inline_disabled" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/Examples_for_HW8P7.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435978" data-api-returntype="File">Examples_for_HW8P7.m</a></td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+</body>
+</html>

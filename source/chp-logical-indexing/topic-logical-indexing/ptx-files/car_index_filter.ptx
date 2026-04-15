@@ -1,0 +1,96 @@
+<!--META-DATA
+{
+	tags: ["struct", "logical_indexing", "for", "while", "isfield", "isa"],
+}
+-->
+
+<statement>
+	<p>
+		Given a structure containing car attributes and a filter condition, return a logical indexing vector indicating which entries satisfy the condition.
+	</p>
+	
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+			<row>
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>data</pf> (1 x 1) struct — from <pf>'carbig.mat'</pf></p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p><pf>feature</pf> (1 x N) char vector — the field name (e.g., <pf>'Model'</pf>, <pf>'Weight'</pf>)</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+				<cell/>
+			<cell>
+				<p><pf>value</pf> (1 x 1) double or (1 x M) char vector — the value to match</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>filter</pf> (R x 1) logical vector — column vector of <pf>true</pf>\<pf>false</pf> values.</p>
+			</cell>
+		</row>
+			<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>Use <pf>numel</pf>, <pf>size</pf>, or <pf>length</pf> to get the number of values in the list.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p> The k-th value of <pf>index_list</pf> should be <pf>true</pf> if <pf>feature</pf> is a field of <pf>data</pf> AND the k-th value of of this <pf>feature</pf> field is equal to <pf>value</pf>. It should be <pf>false</pf> otherwise.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p>Use a loop to construct the output logical vector.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p>Assume <pf>data</pf> is a non-empty structure vector loaded from <pf>'carbig.mat'</pf>.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p>If <pf>feature</pf> is not a field in <pf>data</pf>, return <pf>[]</pf>.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p>Use <pf>isfield</pf> to test if a char vector names a field; use <pf>isa</pf> to distinguish text vs numbers.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+				<cell/>
+			<cell>
+				<p>You may find <pf>true(m,1)</pf> and <pf>false(m,1)</pf> useful to initialize logical vectors.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				car_data = load('carbig.mat');
+				mpg_filter = car_index_filter(car_data, 'MPG', 30);
+				% mpg_filter should be a 406x1 logical vector.
+				% Use this filter to display all models with an mpg of 30:
+				disp(car_data.Model(mpg_filter,:))
+				% Expected output shows 7 models with MPG exactly 30.
+			</code>
+		</program>
+	</p>
+</statement>

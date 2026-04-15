@@ -1,0 +1,454 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>demo_cell_arrays</title>
+<meta name="generator" content="MATLAB 24.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-12-03">
+<meta name="DC.source" content="demo_cell_arrays.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#2">Part 1: What Are Cell Arrays?</a>
+</li>
+<li>
+<a href="#3">Part 2: Key Differences Between Cell Arrays and Numeric Vectors/Matrices</a>
+</li>
+<li>
+<a href="#4">Part 3: Indexing in Cell Arrays</a>
+</li>
+<li>
+<a href="#5">Part 4: Operations on Cell Arrays</a>
+</li>
+<li>
+<a href="#6">Part 5: Practical Examples</a>
+</li>
+<li>
+<a href="#7">Part 6: Summary</a>
+</li>
+</ul>
+</div>
+<pre class="codeinput">
+<span class="comment">% MATLAB Tutorial: Cell Arrays vs. Vectors and Matrices</span>
+clc; clear; close <span class="string">all</span>;
+</pre>
+<h2 id="2">Part 1: What Are Cell Arrays?</h2>
+<p>Cell arrays are containers that can hold data of varying types and sizes. Unlike numeric vectors and matrices, cell arrays can store strings, numbers, other arrays, or even complex objects in the same structure.</p>
+<pre class="codeinput">disp(<span class="string">'--- Cell Arrays: Introduction ---'</span>);
+
+<span class="comment">% Create a cell array</span>
+C = {<span class="string">'Hello'</span>, 42, [1, 2, 3; 4, 5, 6], pi};
+disp(<span class="string">'Example of a cell array:'</span>);
+disp(C);
+
+<span class="comment">% Access elements in a cell array</span>
+disp(<span class="string">'Accessing elements:'</span>);
+disp([<span class="string">'First element (a string): '</span>, C{1}]);
+disp([<span class="string">'Second element (a number): '</span>, num2str(C{2})]);
+disp(<span class="string">'Third element (a matrix):'</span>);
+disp(C{3});
+disp([<span class="string">'Fourth element (a number): '</span>, num2str(C{4})]);
+
+<span class="comment">% Compare with numeric matrix</span>
+A = [1, 2, 3; 4, 5, 6];
+disp(<span class="string">'Numeric matrix (cannot store mixed types):'</span>);
+disp(A);
+</pre>
+<pre class="codeoutput">--- Cell Arrays: Introduction ---
+Example of a cell array:
+    {'Hello'}    {[42]}    {2&times;3 double}    {[3.1416]}
+
+Accessing elements:
+First element (a string): Hello
+Second element (a number): 42
+Third element (a matrix):
+     1     2     3
+     4     5     6
+
+Fourth element (a number): 3.1416
+Numeric matrix (cannot store mixed types):
+     1     2     3
+     4     5     6
+
+</pre>
+<h2 id="3">Part 2: Key Differences Between Cell Arrays and Numeric Vectors/Matrices</h2>
+<pre class="codeinput">disp(<span class="string">'--- Differences Between Cell Arrays and Numeric Arrays ---'</span>);
+
+<span class="comment">% Numeric Arrays:</span>
+<span class="comment">% - Store only numeric data of the same size and type.</span>
+<span class="comment">% - Perform mathematical operations directly.</span>
+
+<span class="comment">% Cell Arrays:</span>
+<span class="comment">% - Can store mixed data types.</span>
+<span class="comment">% - Use curly braces {} to access data (unlike parentheses for numeric arrays).</span>
+
+<span class="comment">% Example: Numeric Vector</span>
+vec = [1, 2, 3];
+disp(<span class="string">'Numeric vector:'</span>);
+disp(vec);
+
+<span class="comment">% Example: Cell Array with Mixed Types</span>
+cell_vec = {1, <span class="string">'two'</span>, [3, 3, 3]};
+disp(<span class="string">'Cell array with mixed types:'</span>);
+disp(cell_vec);
+
+<span class="comment">% Attempting arithmetic on a cell array (will fail)</span>
+<span class="keyword">try</span>
+    result = cell_vec + 1;
+<span class="keyword">catch</span> ME
+    disp(<span class="string">'Arithmetic on cell arrays is not directly allowed:'</span>);
+    disp(ME.message);
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">--- Differences Between Cell Arrays and Numeric Arrays ---
+Numeric vector:
+     1     2     3
+
+Cell array with mixed types:
+    {[1]}    {'two'}    {[3 3 3]}
+
+Arithmetic on cell arrays is not directly allowed:
+Undefined function 'plus' for input arguments of type 'cell'.
+</pre>
+<h2 id="4">Part 3: Indexing in Cell Arrays</h2>
+<pre class="codeinput">disp(<span class="string">'--- Indexing in Cell Arrays ---'</span>);
+
+<span class="comment">% Access data using {} to extract the content</span>
+value = C{2}; <span class="comment">% Get the content of the second cell</span>
+disp([<span class="string">'Content of the second cell: '</span>, num2str(value)]);
+
+<span class="comment">% Access data using () to extract a cell (returns a cell array)</span>
+cell_value = C(2); <span class="comment">% Get the second cell itself</span>
+disp(<span class="string">'Second cell as a cell array:'</span>);
+disp(cell_value);
+
+<span class="comment">% Modify elements in a cell array</span>
+C{2} = 100; <span class="comment">% Change the value in the second cell</span>
+disp(<span class="string">'Modified cell array:'</span>);
+disp(C);
+</pre>
+<pre class="codeoutput">--- Indexing in Cell Arrays ---
+Content of the second cell: 42
+Second cell as a cell array:
+    {[42]}
+
+Modified cell array:
+    {'Hello'}    {[100]}    {2&times;3 double}    {[3.1416]}
+
+</pre>
+<h2 id="5">Part 4: Operations on Cell Arrays</h2>
+<pre class="codeinput">disp(<span class="string">'--- Operations on Cell Arrays ---'</span>);
+
+<span class="comment">% Cell arrays support specialized functions for manipulation</span>
+<span class="comment">% Concatenate cell arrays</span>
+C2 = {<span class="string">'New'</span>, 99};
+C_combined = [C, C2];
+disp(<span class="string">'Concatenated cell array:'</span>);
+disp(C_combined);
+
+<span class="comment">% Convert cell array to numeric array (if possible)</span>
+C_numeric = {1, 2, 3; 4, 5, 6};
+disp(<span class="string">'Cell array of numbers:'</span>);
+disp(C_numeric);
+
+numeric_array = cell2mat(C_numeric); <span class="comment">% Convert to numeric array</span>
+disp(<span class="string">'Converted to numeric array:'</span>);
+disp(numeric_array);
+
+<span class="comment">% Convert numeric array to cell array</span>
+matrix = [7, 8, 9; 10, 11, 12];
+cell_array = num2cell(matrix);
+disp(<span class="string">'Converted numeric matrix to cell array:'</span>);
+disp(cell_array);
+</pre>
+<pre class="codeoutput">--- Operations on Cell Arrays ---
+Concatenated cell array:
+    {'Hello'}    {[100]}    {2&times;3 double}    {[3.1416]}    {'New'}    {[99]}
+
+Cell array of numbers:
+    {[1]}    {[2]}    {[3]}
+    {[4]}    {[5]}    {[6]}
+
+Converted to numeric array:
+     1     2     3
+     4     5     6
+
+Converted numeric matrix to cell array:
+    {[ 7]}    {[ 8]}    {[ 9]}
+    {[10]}    {[11]}    {[12]}
+
+</pre>
+<h2 id="6">Part 5: Practical Examples</h2>
+<pre class="codeinput">disp(<span class="string">'--- Practical Examples of Cell Arrays ---'</span>);
+
+<span class="comment">% Example 1: Storing Strings and Numbers Together</span>
+data = {<span class="string">'Alice'</span>, 85; <span class="string">'Bob'</span>, 92; <span class="string">'Charlie'</span>, 78};
+disp(<span class="string">'Student data stored in a cell array:'</span>);
+disp(data);
+
+<span class="comment">% Access specific elements</span>
+disp([<span class="string">'Name of first student: '</span>, data{1, 1}]);
+disp([<span class="string">'Score of second student: '</span>, num2str(data{2, 2})]);
+
+<span class="comment">% Example 2: Storing Matrices of Different Sizes</span>
+matrices = {rand(2, 2), rand(3, 3), rand(4, 4)};
+disp(<span class="string">'Cell array containing matrices of different sizes:'</span>);
+disp(matrices);
+
+<span class="comment">% Access and manipulate specific matrix</span>
+matrix_2x2 = matrices{1};
+disp(<span class="string">'First matrix (2x2):'</span>);
+disp(matrix_2x2);
+</pre>
+<pre class="codeoutput">--- Practical Examples of Cell Arrays ---
+Student data stored in a cell array:
+    {'Alice'  }    {[85]}
+    {'Bob'    }    {[92]}
+    {'Charlie'}    {[78]}
+
+Name of first student: Alice
+Score of second student: 92
+Cell array containing matrices of different sizes:
+    {2&times;2 double}    {3&times;3 double}    {4&times;4 double}
+
+First matrix (2x2):
+    0.1489    0.4504
+    0.8997    0.2057
+
+</pre>
+<h2 id="7">Part 6: Summary</h2>
+<pre class="codeinput">disp(<span class="string">'--- Summary ---'</span>);
+disp(<span class="string">'Cell arrays are versatile containers for mixed data types.'</span>);
+disp(<span class="string">'Use cell arrays when you need to handle heterogenous data or objects.'</span>);
+disp(<span class="string">'Key features:'</span>);
+disp(<span class="string">'- Store mixed data types.'</span>);
+disp(<span class="string">'- Access with {} to extract content, () to reference cells.'</span>);
+disp(<span class="string">'- Specialized functions like cell2mat and num2cell for conversions.'</span>);
+
+disp(<span class="string">'--- End of Tutorial ---'</span>);
+</pre>
+<pre class="codeoutput">--- Summary ---
+Cell arrays are versatile containers for mixed data types.
+Use cell arrays when you need to handle heterogenous data or objects.
+Key features:
+- Store mixed data types.
+- Access with {} to extract content, () to reference cells.
+- Specialized functions like cell2mat and num2cell for conversions.
+--- End of Tutorial ---
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2024b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+% MATLAB Tutorial: Cell Arrays vs. Vectors and Matrices
+clc; clear; close all;
+
+%% Part 1: What Are Cell Arrays?
+% Cell arrays are containers that can hold data of varying types and sizes.
+% Unlike numeric vectors and matrices, cell arrays can store strings, numbers,
+% other arrays, or even complex objects in the same structure.
+
+disp('REPLACE_WITH_DASH_DASH- Cell Arrays: Introduction REPLACE_WITH_DASH_DASH-');
+
+% Create a cell array
+C = {'Hello', 42, [1, 2, 3; 4, 5, 6], pi};
+disp('Example of a cell array:');
+disp(C);
+
+% Access elements in a cell array
+disp('Accessing elements:');
+disp(['First element (a string): ', C{1}]);
+disp(['Second element (a number): ', num2str(C{2})]);
+disp('Third element (a matrix):');
+disp(C{3});
+disp(['Fourth element (a number): ', num2str(C{4})]);
+
+% Compare with numeric matrix
+A = [1, 2, 3; 4, 5, 6];
+disp('Numeric matrix (cannot store mixed types):');
+disp(A);
+
+%% Part 2: Key Differences Between Cell Arrays and Numeric Vectors/Matrices
+
+disp('REPLACE_WITH_DASH_DASH- Differences Between Cell Arrays and Numeric Arrays REPLACE_WITH_DASH_DASH-');
+
+% Numeric Arrays:
+% - Store only numeric data of the same size and type.
+% - Perform mathematical operations directly.
+
+% Cell Arrays:
+% - Can store mixed data types.
+% - Use curly braces {} to access data (unlike parentheses for numeric arrays).
+
+% Example: Numeric Vector
+vec = [1, 2, 3];
+disp('Numeric vector:');
+disp(vec);
+
+% Example: Cell Array with Mixed Types
+cell_vec = {1, 'two', [3, 3, 3]};
+disp('Cell array with mixed types:');
+disp(cell_vec);
+
+% Attempting arithmetic on a cell array (will fail)
+try
+    result = cell_vec + 1;
+catch ME
+    disp('Arithmetic on cell arrays is not directly allowed:');
+    disp(ME.message);
+end
+
+%% Part 3: Indexing in Cell Arrays
+disp('REPLACE_WITH_DASH_DASH- Indexing in Cell Arrays REPLACE_WITH_DASH_DASH-');
+
+% Access data using {} to extract the content
+value = C{2}; % Get the content of the second cell
+disp(['Content of the second cell: ', num2str(value)]);
+
+% Access data using () to extract a cell (returns a cell array)
+cell_value = C(2); % Get the second cell itself
+disp('Second cell as a cell array:');
+disp(cell_value);
+
+% Modify elements in a cell array
+C{2} = 100; % Change the value in the second cell
+disp('Modified cell array:');
+disp(C);
+
+%% Part 4: Operations on Cell Arrays
+disp('REPLACE_WITH_DASH_DASH- Operations on Cell Arrays REPLACE_WITH_DASH_DASH-');
+
+% Cell arrays support specialized functions for manipulation
+% Concatenate cell arrays
+C2 = {'New', 99};
+C_combined = [C, C2];
+disp('Concatenated cell array:');
+disp(C_combined);
+
+% Convert cell array to numeric array (if possible)
+C_numeric = {1, 2, 3; 4, 5, 6};
+disp('Cell array of numbers:');
+disp(C_numeric);
+
+numeric_array = cell2mat(C_numeric); % Convert to numeric array
+disp('Converted to numeric array:');
+disp(numeric_array);
+
+% Convert numeric array to cell array
+matrix = [7, 8, 9; 10, 11, 12];
+cell_array = num2cell(matrix);
+disp('Converted numeric matrix to cell array:');
+disp(cell_array);
+
+%% Part 5: Practical Examples
+disp('REPLACE_WITH_DASH_DASH- Practical Examples of Cell Arrays REPLACE_WITH_DASH_DASH-');
+
+% Example 1: Storing Strings and Numbers Together
+data = {'Alice', 85; 'Bob', 92; 'Charlie', 78};
+disp('Student data stored in a cell array:');
+disp(data);
+
+% Access specific elements
+disp(['Name of first student: ', data{1, 1}]);
+disp(['Score of second student: ', num2str(data{2, 2})]);
+
+% Example 2: Storing Matrices of Different Sizes
+matrices = {rand(2, 2), rand(3, 3), rand(4, 4)};
+disp('Cell array containing matrices of different sizes:');
+disp(matrices);
+
+% Access and manipulate specific matrix
+matrix_2x2 = matrices{1};
+disp('First matrix (2x2):');
+disp(matrix_2x2);
+
+%% Part 6: Summary
+disp('REPLACE_WITH_DASH_DASH- Summary REPLACE_WITH_DASH_DASH-');
+disp('Cell arrays are versatile containers for mixed data types.');
+disp('Use cell arrays when you need to handle heterogenous data or objects.');
+disp('Key features:');
+disp('- Store mixed data types.');
+disp('- Access with {} to extract content, () to reference cells.');
+disp('- Specialized functions like cell2mat and num2cell for conversions.');
+
+disp('REPLACE_WITH_DASH_DASH- End of Tutorial REPLACE_WITH_DASH_DASH-');
+
+##### SOURCE END #####
+-->
+</body>
+</html>

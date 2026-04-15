@@ -1,0 +1,64 @@
+<!--META-DATA
+{
+tags: while, for, preallocation, vector, duplicates, unique,
+}
+-->
+
+<statement>
+	<p>
+		Returns a new list with duplicates removed. All duplicates to the right of the first occurrence are eliminated, preserving the first instance.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+			    <p><pf>list</pf> (1 x N) double vector — list of numbers</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+			    <p><pf>result</pf> (1 x K) double vector — values from <pf>list</pf> with duplicates removed (first occurrences kept)</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Details:</cell>
+			<cell><p>▸ Use a nested loop.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell></cell>
+			<cell>
+                <p>▸ To code this, create a logical false vector (with the same length as <pf>list</pf>) that keeps track of which values are duplicates. Use one loop to get a non-duplicate in <pf>list</pf> and another loop to look for values in <pf>list</pf> that are equal to this value. When both loops are complete, use the logical vector to delete all the duplicate values.</p>
+            </cell>
+		</row>
+
+	</tabular>
+
+	<p>
+        Examples:
+		<program>
+			<code>
+				result = list_unique([4 -3 1 9 4 -8 -3])
+				% returns result = [4 -3 1 9 -8]
+			</code>
+		</program>
+		<program>
+			<code>
+				result = list_unique([1 1 1 -9 0 0 6 6 -1 6 7 1 2])
+				% returns result = [1 -9 0 6 -1 7 2]
+			</code>
+		</program>
+		<program>
+			<code>
+				newlist = list_unique([-1 2 -346])
+				% returns newlist = [-1 2 -346]
+			</code>
+		</program>
+    </p>
+</statement>

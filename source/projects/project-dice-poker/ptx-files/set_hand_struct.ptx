@@ -1,0 +1,132 @@
+<!--META-DATA
+{
+	"tags": ["struct", "update", "ranking", "counts", "helper-functions"]
+}
+-->
+
+<statement>
+	<p>
+		This function's task is to convert a raw initial roll or reroll and update the dice hand for the player or dealer.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p>
+					<pf>hand</pf> (1 x 1) struct containing the fields:
+					<ul>
+						<li><pf>roll1</pf> (1x5) integer — initial roll</li>
+						<li><pf>roll2</pf> (1x5) integer — reroll</li>
+						<li><pf>counts</pf> (1x6) integer  — current roll face counts</li>
+						<li><pf>rid</pf> (1x1) integer  — integer rank ID</li>
+						<li><pf>rank1</pf> (1x1) string — text rank for <pf>roll1</pf></li>
+						<li><pf>rank2</pf> (1x1) string — text rank for <pf>roll2</pf></li>
+					</ul>
+				</p>
+				<p><pf>roll</pf> (1 x 5) integer vector — new set of dice values (faces 1–6).</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p><em>Note:</em></p></cell>
+			<cell>
+				<p><pf>hand</pf> is a generic input name. In practice, this will be either the <pf>dHand</pf> or <pf>pHand</pf> structures initialized in <pf>init_game</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>new_hand</pf> (1 x 1) struct — updated roll with new roll, rank ID, rank name, and face counts.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>
+					▸ The input <pf>roll</pf> will represent the initial roll or reroll from either the dealer or player (depending on whose <pf>hand</pf> was sent in as the input).
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ Use <pf>roll</pf> to update <pf>counts</pf> and <pf>rid</pf>.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ Also update either:</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>
+					<sidebyside widths="6% 25% 6% 6% 25%" margins="15% 15%">
+						<p>(1)</p>
+						<p><pf>roll1</pf> &amp; <pf>rank1</pf></p>
+						<p>OR</p>
+						<p>(2)</p>
+						<p><pf>roll2</pf> &amp; <pf>rank2</pf>.</p>
+					</sidebyside>
+				</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>get_face_counts</pf>, <pf>sort_by_rank</pf>, <pf>get_rank</pf></p></cell>
+		</row>
+
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: Before and After initial roll
+				d = init_hand()
+				% d before:
+				% d = 
+				%   struct with fields:
+				%      roll1: []
+				%      roll2: []
+				%      rank1: ''
+				%      rank2: ''
+				%     counts: []
+				%        rid: 0				
+				d = set_hand_struct(d, [5 2 4 1 5])
+				% d after:
+				% d = 
+				%   struct with fields:
+				%      roll1: [5 5 4 2 1]
+				%      roll2: []
+				%      rank1: 'one-pair'
+				%      rank2: ''
+				%     counts: [1 1 0 1 2 0]
+				%        rid: 7
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 2: After reroll
+				d = set_hand_struct(d, [3 3 5 5 5])
+				% returns:
+				% d = 
+				%   struct with fields:
+				%      roll1: [5 5 4 2 1]
+				%      roll2: [5 5 5 3 3]
+				%      rank1: 'one-pair'
+				%      rank2: 'full-house'
+				%     counts: [0 0 2 0 3 0]
+				%        rid: 3
+			</code>
+		</program>
+	</p>
+</statement>

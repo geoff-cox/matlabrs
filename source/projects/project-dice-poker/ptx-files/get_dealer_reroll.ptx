@@ -1,0 +1,92 @@
+<!--META-DATA
+{
+	"tags": ["decision-logic", "reroll-strategy", "struct", "loops", "indexing"]
+}
+-->
+
+<statement>
+	<p>
+		Chooses which dice the dealer will reroll based on the current roll. Use the following strategy for the dealer:
+		<ul>
+			<li>straight, full-house, five-of-a-kind ➜ keep all,</li>
+			<li>singles ➜ reroll 1,</li>
+			<li>otherwise ➜ reroll all <q>singles</q> (dice appearing once in the roll).</li>
+		</ul>
+	</p>
+
+	<tabular valign="top" top="minor">
+		<col width="16%"/>
+		<col width="84%"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>rank</pf> (1 x 1) integer — dealer's rank ID (1-8) from the initial roll.</p>
+			</cell>
+		</row>
+		
+		<row>
+			<cell/>
+			<cell>
+				<p><pf>roll</pf> (1 x 5) integer vector — dealer's initial roll sorted by rank order.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>counts</pf> (1 x 6) integer vector — counts of each die face in <pf>roll</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>sel</pf> (1 x M) integer vector — positions (indices 1–5) of dice to reroll; <pf>[]</pf> if keeping all.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ Use the <pf>rank</pf> to determine if the dealer has a good roll and should keep all dice.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Otherwise, return the locations of all the singles.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: straight => keep all
+				rank = 4;
+				roll = [6 5 4 3 2];
+				counts = [0 1 1 1 1 1];
+				sel = get_dealer_reroll(rank, roll, counts)
+				% returns sel  =  []
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 2: three-of-a-kind  => reroll singles in positions 4 &amp; 5
+				rank = 5;
+				roll = [5 5 5 4 1];
+				counts = [1 0 0 1 3 0];
+				sel = get_dealer_reroll(rank, roll, counts)
+				% returns sel  =  4  5
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 3: singles  =>  reroll 1 in position 5
+				rank = 8;
+				roll = [6 4 3 2 1];
+				counts = [1 1 1 1 0 1];
+				sel = get_dealer_reroll(rank, roll, counts)
+				% returns sel  =  5
+			</code>
+		</program>
+	</p>
+</statement>

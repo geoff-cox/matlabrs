@@ -1,0 +1,58 @@
+<!--META-DATA
+{
+tags: for, while, preallocation, vector, indexing, zeros,
+}
+-->
+
+<statement>
+	<p>
+		Returns the index locations of all zero values in a list without using the built-in <pf>find</pf> command.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+			<p><pf>list</pf> (1 x N) double vector — list of numbers</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+			<p><pf>result</pf> (1 x K) integer vector — indices of all zero entries in <pf>list</pf>; <pf>[]</pf> if none</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Details:</cell>
+			<cell><p>▸ Preallocate the output (e.g., with <pf>zeros</pf>).</p></cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ Use a <pf>for</pf> or <pf>while</pf> loop.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Do not use the <pf>find</pf> command.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example calls and expected results
+				result = locate_zeros([3 0 0 1 1 0 1])
+				% returns [2 3 6]
+				result = locate_zeros(zeros(1,5))
+				% returns [1 2 3 4 5]
+				result = locate_zeros([1 1 1 1])
+				% returns []
+			</code>
+		</program>
+	</p>
+</statement>

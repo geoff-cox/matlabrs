@@ -1,0 +1,59 @@
+<!--META-DATA
+{
+	tags: for, indexing,
+}
+-->
+
+<statement>
+<p>
+	Given the absolute index of the game state data matrix, this program returns the corresponding (x,y) coordinate on the tic-tac-toe interface. This is just the reverse direction of the previous program.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>abs_index</pf> (1 x 1) integer — positive integer. The absolute index of the corresponding value on <pf>game_state.data</pf>.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>x</pf> (1 x 1) integer — positive integer. The x-coordinate of the bottom left corner of a space.</p>
+			<p><pf>y</pf> (1 x 1) integer — positive integer. The y-coordinate of the bottom left corner of a space.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>As in the previous problem, you can hardcode this program specifically for the tic-tac-toe game. That is,</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>the only absolute indices that your code needs to handle are 1-9</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>. See the previous figure for the mapping of absolute index to (x,y) coordinates</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		[x, y] = index_2_click(9)
+		x = 3
+		y = 1
+		[x, y] = index_2_click(9)
+		x = 1
+		y = 2
+	</code>
+</program>
+</p>
+</statement>

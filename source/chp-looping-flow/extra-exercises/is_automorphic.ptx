@@ -1,0 +1,72 @@
+<!--META-DATA
+{
+	tags: ["for", "while", "mod"],
+}
+-->
+
+<statement>
+	<p>
+		Return <pf>true</pf> if a given number is automorphic and <pf>false</pf> otherwise.
+	</p>
+
+	<p>
+		A number <m>N</m> is <em>automorphic</em> if <m>N^2</m> ends with the digits of <m>N</m>.
+	</p>
+
+	<p>
+		For instance, <m>5</m> is automorphic because <m>5^2 = 25</m> ends with <m>5</m>, and <m>376</m> is automorphic because <m>376^2 = 141376</m> ends with <m>376</m>.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>num</pf> (1 x 1) integer</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>result</pf> (1 x 1) logical — <pf>true</pf> if <pf>num</pf> is automorphic, <pf>false</pf> otherwise..</p>
+			</cell>
+		</row>
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>Use a loop to determine how many digits are in <pf>num</pf>. (Hint: repeatedly divide by ten until the value is less than 1.)</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>Use the digit count with <pf>mod</pf> to extract the trailing digits of <pf>num^2</pf>.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>Compare the extracted digits to <pf>num</pf> to determine the result.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+	Examples:
+	<program>
+		<code>
+			result = is_automorphic(110)
+			% should return
+			% result = 0   % logical false
+		</code>
+	</program>
+	<program>
+		<code>
+			result = is_automorphic(76)
+			% should return
+			% result = 1   % logical true
+		</code>
+	</program>
+	</p>
+</statement>

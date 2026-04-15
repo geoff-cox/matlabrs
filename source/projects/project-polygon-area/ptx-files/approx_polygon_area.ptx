@@ -1,0 +1,88 @@
+<!--META-DATA
+{
+	tags: while, min, sum, find,
+}
+-->
+
+<statement>
+<p>
+	This function approximates the area of a polygon using a Monte-Carlo simulation on a given bounding box (in our case, this is the plot window).
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>vertices</pf> ( struct) number — that has fields <pf>x</pf> and <pf>y</pf>, which are the x- and y-coordinates of the vertices of the polygon.</p>
+			<p><pf>box</pf> (struct) number — that has fields <pf>x1</pf>, <pf>y1</pf>, <pf>x2</pf>, and <pf>y2</pf>, which are the x- and y-coordinates of the lower left-hand corner of the bounding box and the upper right-hand corner of the bounding box. (You can see examples of the structure in the Examples file below.)</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>approx_area</pf> (double) double — is the approximate area of the region</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>A</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Monte Carlo</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>simulation works by repeatedly sampling to determine a numerical result. In this case, we want to approximate the area of the polygon as follows:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>Generate a random point inside the bounding box.</li>
+					<li>Determine if the point is inside the polygon or not.</li>
+					<li>Repeat this a large number of times.</li>
+					<li>At the end of this process, determine the proportion of points that are inside the polygon.</li>
+					<li>Compute the area of the bounding box.</li>
+					<li>Approximate the area of the polygon by assuming that the polygon takes of the computed proportion of the entire area.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Consider this simplistic example.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Let's assume that the area of the bounding box is 75. Here we generated only ten random points (which is not a large number!) and we can see that 3/10 of the points lie inside the polygon. In this example, we would estimate that the area of the polygon would be 3/10 of the total area of the box. That is, our area approximation would be 22.5.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Here are some considerations/suggestions as you develop your code:</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>While you are developing your code, you should use a small number of randomly generated points (maybe 100). In this case, you might find it useful to plot the polygon and plot the randomly generated points so you can actually "see" where the points are. In fact, you should plot points of different colors based on whether they are inside the polygon or not.</li>
+					<li>When you turn in your code, you should use a large number (at least 10000) of points. If you try to plot all 10000 points, your code will run very slowly.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Examples_for_HW8P7.m
+	</code>
+</program>
+</p>
+</statement>

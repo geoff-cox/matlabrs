@@ -1,0 +1,214 @@
+<!--META-DATA
+{
+	tags: for, zeros, script,
+}
+-->
+
+<statement>
+<p>
+	This program plots an &lt;pf&gt;&#x27;X&#x27;&lt;/pf&gt; or an &lt;pf&gt;&#x27;O&#x27;&lt;/pf&gt; in a given space on the tic-tac-toe interface.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object containing the state of the current tic-tac-toe game.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>none</pf> number — value</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>You must access the field values in the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>variable to code this. See class notes about accessing field values inside of a struct object.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>text</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>function to plot an</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'X'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>or an</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'O'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>. Which one to plot depends on the value of</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.player</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The location of your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'X'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>or</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'O'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>is contained in</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.x_click</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.y_click</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>To center your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'X'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>or</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'O'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>in a space, you need to offset the x and y coordinates of the letter's location. Add a bit to each value until it looks as centered as possible.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Set the following</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>text</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>function properties for your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'X'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>or</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'O'</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>'fontsize' - Your letter should mostly fill the space.</li>
+					<li><pf>'color'</pf> - Choose between <pf>'red'</pf>, <pf>'blue'</pf>, <pf>'green'</pf>, <pf>'yellow'</pf>, <pf>'cyan'</pf>, <pf>'brown'</pf>, or <pf>'magenta'</pf></li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>To test your code, you need a figure defined before you call this function. Call your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>HW4P2_display_initial_board</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>code before trying to test this program.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		In the command window or a script, define the following struct to use as an input for this program.
+		display_initial_board % This gives you a figure to test on
+		% The code below creates a sample game_state
+		% that your
+		update_board
+		code needs as an input
+		game_state.data = zeros(3);
+		game_state.round = 0;
+		game_state.winner = 0;
+		game_state.whos_turn = 'X';
+		game_state.player = 1;
+		game_state.empty_space = true(1,9);
+		game_state.x_click = 2;
+		game_state.y_click = 3;
+		update_board(game_state) % This is the function you are testing.
+		display_initial_board % This gives you a figure to test on
+		update_board
+		update_board(game_state) % This is the function you are testing.
+		After running the above code, your figure should look something like this:
+		whos_turn
+		x_click
+		y_click
+		game_state
+	</code>
+</program>
+</p>
+</statement>

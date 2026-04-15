@@ -1,0 +1,77 @@
+<!--META-DATA
+{
+	"tags": ["vector", "for", "moving-average", "smoothing", "neighbors", "nargin"]
+}
+-->
+
+<statement>
+	<p>
+		Computes a moving average where each entry is replaced by the average of itself and up to <m>k</m> neighbors on each side (fewer near the ends).
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell>Inputs:</cell>
+			<cell><p><pf>list</pf> (1 x N) double vector.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p><pf>k</pf> (1 x 1) nonnegative integer — number of neighbors on each side (optional, default <m>1</m>).</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell><p><pf>smoothlist</pf> (1 x N) double vector — smoothed values.</p></cell>
+		</row>
+
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>▸ To code this, use a loop to replace the current value with the average of <pf>k</pf> values to the left and <pf>k</pf> values to the right of the current value.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>▸ Use your <pf>list_avg</pf> function to compute this average. The current value should be included in this average.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>▸ If a value does not have <pf>k</pf> values to the left or right, then use as many values as are available.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>▸ If <pf>k</pf> is omitted as an input, assume <m>k=1</m>. Use <pf>nargin</pf> for this.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				list_smooth_values([-4 0 4 8 -12])     % default k=1
+				% returns [-2 0 4 0 -2]
+			</code>
+		</program>
+		<program>
+			<code>
+				list_smooth_values([-4 0 4 8 -12], 2)
+				% returns [0 2.0000 -0.8000 0 0]
+			</code>
+		</program>
+		<program>
+			<code>
+				list_smooth_values([-4 0 4 8 -12], 4)
+				% returns [-0.8000 -0.8000 -0.8000 -0.8000 -0.8000]
+			</code>
+		</program>
+	</p>
+</statement>

@@ -1,0 +1,86 @@
+<!--META-DATA
+{
+	"tags": ["monte-carlo", "probability", "birthday-problem", "simulation", "function"]
+}
+-->
+
+<statement>
+	<p>
+		This function estimates the probability that in a group of <m>k</m> people, at least two share the same birthday — a classic probability puzzle known as the <q>birthday problem</q>.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>k</pf> (1 x 1) integer — number of people in the room.</p>
+				<p><pf>trials</pf> (1 x 1) integer — number of Monte Carlo simulations to run.</p>
+				<p><pf>seed</pf> (optional, 1 x 1 integer) — random number generator seed for reproducibility.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>prob</pf> (1 x 1) double — estimated probability that at least two of the <pf>k</pf> people share a birthday.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ Each trial simulates a group of <pf>k</pf> people, where each person’s birthday is modeled as a random integer between 1 and 365 (assuming no leap years).</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ A Boolean array <pf>seen</pf> keeps track of which birthdays have been observed so far.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ If a generated birthday has already been seen, a duplicate is detected and the trial is counted as a "hit."</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The loop breaks early once a duplicate is found to improve efficiency.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The estimated probability is calculated as <m>\text{hits} / \text{trials}</m>.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Notes:</p></cell>
+			<cell>
+				<p>▸ If <pf>seed</pf> is provided, the random number generator is initialized with <pf>rng(seed,'twister')</pf> for reproducible results.</p>
+				<p>▸ The true theoretical probability is <m>1 - \frac{365!}{(365-k)! \, 365^k}</m>, but this simulation approximates it through repeated random sampling.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: Estimate the probability that two people share a birthday in a group of 23
+				prob = prob_same_bday(23, 10000)
+				% returns a value close to 0.507
+			</code>
+		</program>
+
+		<program>
+			<code>
+				% Example 2: Reproducible simulation with fixed seed
+				prob = prob_same_bday(30, 1e6, 123)
+				% returns approximately 0.706
+			</code>
+		</program>
+	</p>
+</statement>

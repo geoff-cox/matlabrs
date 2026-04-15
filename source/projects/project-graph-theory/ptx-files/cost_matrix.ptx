@@ -1,0 +1,63 @@
+<!--META-DATA
+{
+	tags: for, min,
+}
+-->
+
+<statement>
+<p>
+	This function constructs the cost matrix for a directed graph represented by the structure &lt;pf&gt;G&lt;/pf&gt;. The cost matrix is a square matrix where each element represents the cost of the edge from vertex to vertex . If no edge exists, the cost is set to &lt;pf&gt;inf&lt;/pf&gt;.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>G.n</pf> (integer) integer — : The number of vertices in the graph.</p>
+			<p><pf>G.m</pf> (integer) integer — : The number of edges in the graph.</p>
+			<p><pf>G.edges</pf> (m x 3) number — : A matrix where each row represents an edge connecting two vertices with a cost, formatted as [from, to, cost].</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>C</pf> (n x n) number — : The cost matrix, where is the number of vertices in the graph. Nonexistent edges have a cost of <pf>inf</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Ensure your function handles cases with no edges (empty edge list).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Handle self-loops with their specified cost; otherwise, give them a zero cost.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Verify that multiple edges between the same vertices result in the minimum cost being used.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Command Window Expected Output G.n = 3; G.m = 2; G.edges = [1, 2, 5; 2, 3, 10]; C = HW6P2_cost_matrix(G); C = 0 5 inf inf 0 10 inf inf 0 G.n = 2; G.m = 2; G.edges = [1, 1, 3; 1, 2, 7]; C = HW6P2_cost_matrix(G); C = 3 7 inf 0 G.n = 4; G.m = 5; G.edges = [1, 2, 6; 1, 3, 3; 2, 4, 8; 3, 4, 2; 4, 1, 7]; C = HW6P2_cost_matrix(G); C = 0 6 3 inf inf 0 inf 8 inf inf 0 2 7 inf inf 0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected Output</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>C = 0 5 inf inf 0 10 inf inf 0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>C = 3 7 inf 0</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>C = 0 6 3 inf inf 0 inf 8 inf inf 0 2 7 inf inf 0</p></cell>
+	</row>
+</tabular>
+
+</statement>

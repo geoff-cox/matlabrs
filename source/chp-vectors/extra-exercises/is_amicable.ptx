@@ -1,0 +1,66 @@
+<!--META-DATA
+{
+	tags: ["sum", "vector", "composition"],
+}
+-->
+
+<statement>
+	<p>
+		Given one number of an amicable pair, compute the other number in the pair. If the given number does not correspond to an amicable pair, return <pf>-1</pf>.
+	</p>
+
+	<p>
+		Two numbers, <m>M</m> and <m>N</m>, are <em>amicable</em> if the sum of the proper divisors of <m>M</m> is <m>N</m> and the sum of the proper divisors of <m>N</m> is <m>M</m>.
+	</p>
+
+	<p>
+		For example, 220 and 284 are amicable because the proper divisors of 220 sum to 284, and the proper divisors of 284 sum to 220.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>num</pf> (1 x 1) integer</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>other</pf> (1 x 1) the amicable partner of <pf>num</pf>, or <pf>-1</pf> if none exists.</p>
+			</cell>
+		</row>
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>Implement this by <em>calling</em> your <pf>HW2P1_vector_sum</pf> and <pf>HW2P2_proper_divisors</pf> functions.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>Do not use a <pf>for</pf> or <pf>while</pf> loop in this function.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+	Examples:
+	<program>
+		<code>
+			friend = is_amicable(983)
+			% should return
+			% friend = -1
+		</code>
+	</program>
+	<program>
+		<code>
+			friend = is_amicable(18416)
+			% should return
+			% friend = 17296
+		</code>
+	</program>
+	</p>
+</statement>

@@ -1,0 +1,111 @@
+<!--META-DATA
+{
+	"tags": ["vector", "struct", "summary-statistics", "aggregation", "functions"],
+}
+-->
+
+<statement>
+	<p>
+		Computes a collection of descriptive properties of a list and returns them in a structure.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell><p><pf>list</pf> (1 x N) double vector.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p>
+					<pf>list_struct</pf> (1 x 1) struct containing the following fields:
+					<ul>
+						<li><pf>min</pf> — minimum value in <pf>list</pf></li>
+						<li><pf>max</pf> — maximum value in <pf>list</pf></li>
+						<li><pf>range</pf> — difference between maximum and minimum</li>
+						<li><pf>avg</pf> — average value</li>
+						<li><pf>unique</pf> — distinct values</li>
+						<li><pf>counts</pf> — frequency of each unique value</li>
+						<li><pf>nearest_vals</pf> — pair of closest values</li>
+						<li><pf>sorted</pf> — sorted copy of the list</li>
+						<li><pf>peak_locations</pf> — indices of peaks in the list</li>
+						<li><pf>smoothed2</pf> — list smoothed with 2 neighbors</li>
+						<li><pf>smoothed3</pf> — list smoothed with 3 neighbors</li>
+					</ul>
+				</p>
+			</cell>
+		</row>
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>▸ This function aggregates results from several helper functions (<pf>list_min</pf>, <pf>list_max</pf>, <pf>list_avg</pf>, <pf>list_value_counter</pf>, <pf>list_nearest_values</pf>, <pf>list_sort</pf>, <pf>list_peak_locations</pf>, and <pf>list_smooth_values</pf>).</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ The output structure groups related properties into a single object for convenience.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				list_struct = list_properties([-2.4 1 -2 2 -7])
+				
+				% returns a struct with fields:
+				%            min: -7
+				%            max: 2
+				%          range: 9
+				%            avg: -1.6800
+				%         unique: [-2.4000 1 -2 2 -7]
+				%         counts: [1 1 1 1 0]
+				%   nearest_vals: [-2.4000 -2]
+				%         sorted: [-7 -2.4000 -2 1 2]
+				% peak_locations: [2 4]
+				%      smoothed2: [-1.1333 -0.3500 -1.6800 -1.5000 -2.3333]
+				%      smoothed3: [-0.3500 -1.6800 -1.6800 -1.6800 -1.5000]
+			</code>
+		</program>
+		<program>
+			<code>
+				list_info = list_properties([-4 0 4 8 -12])
+
+				% returns a struct with fields:
+				%                min: -12
+				%                max: 8
+				%              range: 20
+				%                avg: -0.8000
+				%             unique: [-4 0 4 8 -12]
+				%             counts: [1 1 1 1 0]
+				%       nearest_vals: [-4 0]
+				%             sorted: [-12 -4 0 4 8]
+				%     peak_locations: 4
+				%          smoothed2: [0 2 -0.8000 0 0]
+				%          smoothed3: [2 -0.8000 -0.8000 -0.8000 0]
+			</code>
+		</program>
+		<program>
+			<code>
+				list_info = list_properties([3, 1, 7, 5, -9])
+
+				% returns a struct with fields:
+				%                min: -9
+				%                max: 7
+				%              range: 16
+				%                avg: 1.4000
+				%             unique: [3 1 7 5 -9]
+				%             counts: [1 1 1 1 0]
+				%       nearest_vals: [3 1]
+				%             sorted: [-9 1 3 5 7]
+				%     peak_locations: 3
+				%          smoothed2: [3.6667 4 1.4000 1 1]
+				%          smoothed3: [4 1.4000 1.4000 1.4000 1]
+			</code>
+		</program>
+	</p>
+</statement>

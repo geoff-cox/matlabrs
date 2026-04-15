@@ -1,0 +1,288 @@
+<section xml:id="matlab-structures">
+	<title>Structures - <pf>struct</pf></title>
+
+	<introduction>
+		<p>
+			A <term>structure</term> in MATLAB is a flexible data type that lets you bundle related but
+			differently-typed pieces of data—numbers, strings, arrays—under a single object. Each piece
+			of data is stored in a <term>field</term>, and you access it using the field's name.
+		</p>
+
+		<p>
+			For further details, see the official MATLAB documentation:
+			<url href="https://www.mathworks.com/help/matlab/ref/struct.html">struct</url>.
+		</p>
+	</introduction>
+
+	<subsection xml:id="structures-basics">
+		<title>Part 1: Structure Variables</title>
+
+		<p>
+		Suppose <c>S</c> is a structure. It contains <em>fields</em> (names) and corresponding
+		<em>values</em> (data). Think of each field as a “sub-variable” inside <c>S</c> that holds
+		information about <c>S</c>. The value is the actual information stored in that field.
+		</p>
+
+		<p>There are two common ways to create a structure:</p>
+
+		<p><em>Method 1:</em> Use the <c>struct</c> command (field names in quotes):</p>
+		<program language="matlab">
+	S = struct('field_1', value_1, 'field_2', value_2, 'field_3', value_3)
+		</program>
+
+		<p><em>Method 2:</em> Use the dot selector (field names as identifiers):</p>
+		<program language="matlab">
+	S.field_1 = value_1
+	S.field_2 = value_2
+	S.field_3 = value_3
+		</program>
+
+		<p><em>Variant with quoted field names:</em> useful when the field name comes from a variable
+		or is built dynamically.</p>
+		<program language="matlab">
+	S.('field_1') = value_1
+	S.('field_2') = value_2
+	S.('field_3') = value_3
+		</program>
+
+		<p>
+		You only need the quoted form when all or part of the field name is stored in a variable
+		or constructed at runtime:
+		</p>
+		<program language="matlab">
+	fname = 'field_1';
+	i = 3;
+	S.(fname) = value_1;                 % same as S.field_1 = value_1
+	S.(['field_' num2str(i)]) = value_3; % same as S.field_3 = value_3
+		</program>
+
+		<p>Each method above produces the same structure layout.</p>
+
+		<p>
+		Using these methods, define structures <c>person_1</c>, <c>person_2</c>, and <c>person_3</c>
+		with fields <c>Name</c>, <c>Age</c>, and <c>Height</c> (in feet) as shown below.
+		</p>
+
+		<tabular>
+		<row header="yes">
+			<cell>Variable</cell><cell>Name</cell><cell>Age (yrs)</cell><cell>Height (ft)</cell>
+		</row>
+		<row>
+			<cell><c>person_1</c></cell><cell>Alice</cell><cell>25</cell><cell>5.68</cell>
+		</row>
+		<row>
+			<cell><c>person_2</c></cell><cell>Ben</cell><cell>32</cell><cell>4.90</cell>
+		</row>
+		<row>
+			<cell><c>person_3</c></cell><cell>Sunil</cell><cell>18</cell><cell>6.14</cell>
+		</row>
+	</tabular>
+
+		<program language="matlab">
+	% Build three structures using different techniques
+	person_1 = struct('Name', 'Alice', 'Age', 25, 'Height', 5.68);
+
+	person_2.Name = 'Ben';
+	person_2.Age = 32;
+	person_2.Height = 4.90;
+
+	vars = ['Age'; 'Hei'; 'ght'];
+	person_3.('Name') = 'Sunil';
+	person_3.(vars(1,:)) = 18;               % same as person_3.('Age') = 18
+	person_3.([vars(2,:) vars(3,:)]) = 6.14; % same as person_3.('Height') = 6.14
+		</program>
+
+		<p>Display the structures to verify their contents:</p>
+		<program language="matlab">
+	disp(person_1)
+	disp(person_2)
+	disp(person_3)
+		</program>
+
+		<p>Access values with the dot selector:</p>
+		<program language="matlab">
+	person_1.Age
+	person_2.Name
+	person_3.Height
+		</program>
+
+		<sage language="octave">
+			<input>
+				% MATLAB Commands
+
+
+
+
+
+
+
+
+				
+			</input>
+		</sage>
+	</subsection>
+
+	<subsection xml:id="structures-example-list-info">
+		<title>Coding Example 1: Summarize a Numeric List</title>
+
+		<p>
+		Write a function that takes a row vector of numbers and returns a structure with basic
+		summary information.
+		</p>
+
+		<sidebyside>
+		<tabular>
+		<row header="yes">
+			<cell>name</cell><cell>size</cell><cell>type</cell><cell>description</cell>
+		</row>
+			<row>
+			<cell>inputs:</cell><cell><c>1xN</c></cell><cell><c>double</c></cell>
+			<cell>row vector of numbers</cell>
+		</row>
+			<row>
+			<cell>outputs:</cell><cell><c>1x1</c></cell><cell><c>struct</c></cell>
+			<cell>structure with fields <c>n</c>, <c>m</c>, <c>M</c>, <c>sorted</c></cell>
+		</row>
+	</tabular>
+		</sidebyside>
+
+		<ul>
+		<li><c>n</c> (int): number of values</li>
+		<li><c>m</c> (double): minimum value</li>
+		<li><c>M</c> (double): maximum value</li>
+		<li><c>sorted</c> (logical): <c>true (1)</c> if the list is nondecreasing; otherwise <c>false (0)</c></li>
+		</ul>
+
+		<program language="matlab">
+	function list_info = get_list_info(list)
+		% set n
+		n = length(list);
+
+		% initialize m, M, &amp; sorted
+		m = list(1);
+		M = list(1);
+		sorted = true;
+
+		% determine m, M, &amp; sorted
+		for k = 2:length(list)
+			% update m?
+			if list(k) &lt; m
+				m = list(k);
+			end
+			% update M?
+			if list(k) &gt; M
+				M = list(k);
+			end
+			% update sorted?
+			if list(k-1) &gt; list(k)
+				sorted = false;
+			end
+		end
+
+		% create the list_info structure
+		list_info.n = n;
+		list_info.m = m;
+		list_info.M = M;
+		list_info.sorted = sorted;
+	end
+		</program>
+
+		<p><em>Test the function.</em></p>
+		<program language="matlab">
+	list_info_1 = get_list_info([-11.02 5.3 -2.0 5.3 4.09 5.3])
+	list_info_2 = get_list_info([1 1 1 1 1 1 1 1])
+		</program>
+	</subsection>
+
+	<subsection xml:id="structures-example-car-data">
+		<title>Coding Example 2: Car Data</title>
+
+		<p><em>Task 1: Load the data.</em></p>
+		<program language="matlab">
+	car_data = load('carbig.mat');
+		</program>
+
+		<p><em>Task 2: Explore the data.</em></p>
+		<p>What type is <c>car_data</c>?</p>
+		<program language="matlab">
+	class(car_data)
+		</program>
+
+		<p>What are the fields of <c>car_data</c>?</p>
+		<program language="matlab">
+	fields(car_data)
+		</program>
+
+		<p>Display the values in the model and year fields (side by side):</p>
+		<program language="matlab">
+	disp([car_data.Model, num2str(car_data.Model_Year)])
+		</program>
+
+		<p>How many cars are in the data set?</p>
+		<program language="matlab">
+	n_cars = length(car_data.Model)
+		</program>
+
+		<p><em>Task 3: Print a list of models.</em></p>
+		<p>
+		Write a function that, given the car data structure and a target miles-per-gallon (MPG),
+		prints models from year <c>1980</c> whose MPG is <em>less than</em> the target.
+		</p>
+
+		<sidebyside>
+		<tabular>
+		<row header="yes">
+			<cell>name</cell><cell>size</cell><cell>type</cell><cell>description</cell>
+		</row>
+			<row>
+			<cell>inputs:</cell><cell><c>1x1</c></cell><cell><c>struct</c></cell>
+			<cell>MATLAB built-in car data from <c>'carbig.mat'</c></cell>
+		</row>
+			<row>
+			<cell></cell><cell><c>1x1</c></cell><cell><c>double</c></cell>
+			<cell>maximum MPG threshold for year 1980</cell>
+		</row>
+			<row>
+			<cell>outputs:</cell><cell><c>MxN</c></cell><cell><c>char</c></cell>
+			<cell>printed list of models with MPG &lt; target (1980 only)</cell>
+		</row>
+	</tabular>
+		</sidebyside>
+
+		<program language="matlab">
+	function print_models_below_mpg(data, target_mpg)
+		% Extract the model, year, and mpg data
+		models = data.Model;
+		years  = data.Model_Year;
+		mpgs   = data.MPG;
+
+		% Print a header
+		fprintf('1980 Car Models with an MPG under: %i \n\n', target_mpg)
+
+		% Print desired models
+		for k = 1:length(models)
+			if years(k) == 80 &amp;&amp; mpgs(k) &lt; target_mpg
+				fprintf('  Model: %20s  MPG: %6g \n', models(k,:), mpgs(k))
+			end
+		end
+	end
+		</program>
+
+		<p><em>Test the function.</em></p>
+		<program language="matlab">
+	car_data = load('carbig.mat');
+	print_models_below_mpg(car_data, 30);
+	print_models_below_mpg(car_data, 25);
+	print_models_below_mpg(car_data, 5);
+		</program>
+	</subsection>
+
+	<subsection xml:id="structures-tips">
+		<title>Tips and Common Pitfalls</title>
+		<ul>
+		<li>Field names must be valid identifiers unless you use the quoted form <c>S.('field')</c>.</li>
+		<li>Use dynamic field names (quoted form) when constructing names at runtime.</li>
+		<li>Structures are great for bundling heterogeneous data; prefer tables for columnar, uniform data.</li>
+		</ul>
+	</subsection>
+</section>

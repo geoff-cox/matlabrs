@@ -1,0 +1,134 @@
+<!--META-DATA
+{
+	tags: while, for, vector, digits, min,
+}
+-->
+
+<statement>
+<p>
+	Given a positive integer, this program returns the digits of this integer as a row vector.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>n</pf> (1 x 1) integer — positive integer</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>digits</pf> (1 x n) number — contains the digits of <pf>n</pf></p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The goal is to determine how to separate the digits from a number.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Do not convert the number to a character array (e.g., using functions like</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>num2str</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use a while loop to code this.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>One approach uses division by ten and MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>floor</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>mod</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>commands. We can always get the far right digit by considering the remainder (</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>mod</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>) after dividing our number by 10. Furthermore, we can "chop off" the far right digit by dividing by ten and rounding down (</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>floor</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>) the result. Repeating this process until there are no digits left.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>For example,</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>x = mod(297,10)</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>gives</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>x = 7</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>y = 297/10</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>gives</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>y = 29.7</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>z = floor(y)</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>gives</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>z = 29</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		digits = extract_digits(300461)
+		digits = [3, 0, 0, 4, 6, 1]
+	</code>
+</program>
+</p>
+</statement>

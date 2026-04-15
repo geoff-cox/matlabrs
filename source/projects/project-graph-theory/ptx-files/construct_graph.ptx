@@ -1,0 +1,50 @@
+<!--META-DATA
+{
+	tags: for, logical, indexing,
+}
+-->
+
+<statement>
+<p>
+	This function constructs a graph structure from a given set of vertices and edges. It also labels a graph with the properties listed in the output details below.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>vertices</pf> (n x 1, integer) integer — : A list of vertex IDs.</p>
+			<p><pf>edges</pf> (m x 2, integer) integer — : A list of edges where each row contains the starting and ending vertex IDs.</p>
+			<p><pf>graph_name</pf> (string) number — : A name for the graph stored as part of the output structure.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>G</pf> (struct) number — : A structure representing the graph containing the following fields:</p>
+			<p><pf>G.name</pf> (string) number — : The name of the graph as provided in <pf>graph_name</pf>.</p>
+			<p><pf>G.vertices</pf> (n x 1, integers) integer — : List of vertex index IDs</p>
+			<p><pf>G.edges</pf> (m x 2) number — : A matrix where each row represents an edge connecting two vertices.</p>
+			<p><pf>G.n</pf> (integer) integer — : The number of vertices in the graph.</p>
+			<p><pf>G.m</pf> (integer) integer — : The number of edges in the graph.</p>
+			<p><pf>G.adj_mat</pf> (n x n double array) double — : The adjacency matrix of the graph.</p>
+			<p><pf>G.inc_mat</pf> (n x m double array) double — : The incidence matrix of the graph.</p>
+			<p><pf>G.degrees</pf> (n x 1, integers) number — : List of vertex degrees.</p>
+			<p><pf>G.simple</pf> (1 x 1, logical) logical — : <pf>true</pf> if the graph is simple. <pf>false</pf>, otherwise</p>
+			<p><pf>G.has_cycle</pf> (1 x 1, logical) logical — : <pf>true</pf> if the graph contains a cycle. <pf>false</pf>, otherwise</p>
+			<p><pf>G.connected</pf> (1 x 1, logical) logical — : <pf>true</pf> if the graph is connected. <pf>false</pf>, otherwise</p>
+			<p><pf>G.eulerian</pf> (1 x 1, logical) logical — : <pf>true</pf> if the graph is Eulerian. <pf>false</pf>, otherwise.</p>
+			<p><pf>G.tree</pf> (1 x 1, logical) logical — : <pf>true</pf> if the graph is a tree. <pf>false</pf>, otherwise</p>
+			<p><pf>G.bipartite</pf> (1 x 1, logical) logical — : <pf>true</pf> if the graph is bipartite. <pf>false</pf>, otherwise</p>
+			<p><pf>Note:</pf> number — The values of the fields 6 through 14 should come from the output of one of the programs you wrote in this assignment.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>This problem is relatively easy since you mainly call all the previous functions you wrote in this assignment to set the properties on a given graph.</p></cell>
+	</row>
+</tabular>
+
+</statement>

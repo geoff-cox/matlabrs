@@ -1,0 +1,49 @@
+<!-- H2F23_P7_digits_2_num.txt -->
+<!--META-DATA
+{
+	tags: while, digits, vector, integer,
+}
+-->
+
+<statement>
+	<p>
+		Given a row vector of decimal digits (0–9), reconstructs the corresponding nonnegative integer.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+			<p><pf>digit_list</pf> (1 x K) integer vector — digits 0–9, in order from most to least significant</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+			<p><pf>num</pf> (1 x 1) nonnegative integer — number formed by <pf>digit_list</pf></p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Details:</cell>
+			<cell><p>Use a loop and place-value arithmetic (multiply by 10 and add the next digit). Do not use <pf>num2str</pf>.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+	Examples:
+	<program>
+		<code>
+			% Example calls and expected results
+			num = digits_2_num([3 0 0 4 6 1])
+			% returns 300461
+			num = digits_2_num([0 0 6 6 0 2])
+			% returns 6602
+		</code>
+	</program>
+	</p>
+</statement>

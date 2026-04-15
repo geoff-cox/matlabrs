@@ -1,0 +1,288 @@
+<task label="vectors-coding-updateAverage">
+	<statement>
+		<p>
+			Write a function <pf>updateAverage()</pf> that takes a vector <pf>v</pf> of new data values and returns the updated average and updated count after those values are included. Optionally, the function may also receive a previous average <pf>avg0</pf> and a previous count <pf>n0</pf>. If only one or two inputs are given, treat the call as a fresh start and use <pf>avg0 = 0</pf> and <pf>n0 = 0</pf>.
+		</p>
+
+		<tabular valign="top" top="minor">
+			<col width="11%" halign="right" />
+			<col width="15%" halign="left" />
+			<col width="28%" halign="center" />
+			<col width="46%" halign="left" />
+			<row>
+				<cell>Inputs:</cell>
+				<cell><p><pf>v</pf></p></cell>
+				<cell><p>(1xn) double</p></cell>
+				<cell><p>new data values to include in the average</p></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell><p><pf>avg0</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>previous average, optional</p></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell><p><pf>n0</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>previous count, optional</p></cell>
+			</row>
+			<row>
+				<cell>Outputs:</cell>
+				<cell><p><pf>avg</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>updated average after including the values in <pf>v</pf></p></cell>
+			</row>
+			<row bottom="minor">
+				<cell></cell>
+				<cell><p><pf>n</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>updated total number of values used in the average</p></cell>
+			</row>
+		</tabular>
+
+		<sidebyside widths="48% 48%">
+			<stack>
+				<p>Test Cases ⤵︎</p>
+				<program language="matlab">
+					[a, n] = updateAverage([4, 0, 1])
+					[a, n] = updateAverage([4, 6], 10, 3)
+					[a, n] = updateAverage([5, 7], 99)
+				</program>
+			</stack>
+			<stack>
+				<p>Expected ⤵︎</p>
+				<program language="matlab">
+					a = 1.6667, n = 3
+					a = 7.2000, n = 5
+					a = 6,      n = 2
+				</program>
+			</stack>
+		</sidebyside>
+	</statement>
+
+	<solution component="exercise-solution">
+		<p>
+			Here is one possible solution. The previous average and count are converted back into a running total, the new values are added one at a time, and then the average is recomputed at the end.
+		</p>
+		<program language="matlab">
+			function [avg, n] = updateAverage(v, avg0, n0)
+				if nargin ~= 3
+					avg0 = 0;
+					n0 = 0;
+				end
+
+				total = avg0 * n0;
+				n = n0;
+
+				for x = v
+					total = total + x;
+					n = n + 1;
+				end
+
+				avg = total / n;
+			end
+		</program>
+	</solution>
+</task>
+
+<task label="vectors-coding-combineDigits">
+	<statement>
+		<p>
+			Write a function <pf>combineDigits()</pf> that takes a row vector of decimal digits and returns the integer formed by those digits. Use a loop. Do not use <pf>num2str</pf>.
+		</p>
+
+		<tabular valign="top" top="minor">
+			<col width="11%" halign="right" />
+			<col width="15%" halign="left" />
+			<col width="28%" halign="center" />
+			<col width="46%" halign="left" />
+			<row>
+				<cell>Inputs:</cell>
+				<cell><p><pf>digits</pf></p></cell>
+				<cell><p>(1xn) double</p></cell>
+				<cell><p>row vector of digits between <pf>0</pf> and <pf>9</pf></p></cell>
+			</row>
+			<row bottom="minor">
+				<cell>Outputs:</cell>
+				<cell><p><pf>num</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>number formed by the digits in <pf>digits</pf></p></cell>
+			</row>
+		</tabular>
+
+		<sidebyside widths="48% 48%">
+			<stack>
+				<p>Test Cases ⤵︎</p>
+				<program language="matlab">
+					num = combineDigits([4, 2, 1])
+					num = combineDigits([0, 7])
+					num = combineDigits([1, 0, 5])
+				</program>
+			</stack>
+			<stack>
+				<p>Expected ⤵︎</p>
+				<program language="matlab">
+					num = 421
+					num = 7
+					num = 105
+				</program>
+			</stack>
+		</sidebyside>
+	</statement>
+
+	<solution component="exercise-solution">
+		<p>
+			Here is one possible solution. The loop visits each digit and adds its contribution based on its place value.
+		</p>
+		<program language="matlab">
+			function num = combineDigits(digits)
+				num = 0;
+				for i = 1:length(digits)
+					place = 10^(length(digits) - i);
+					num = num + digits(i) * place;
+				end
+			end
+		</program>
+	</solution>
+</task>
+
+<task label="vectors-coding-isPrime">
+	<statement>
+		<p>
+			Write a function <pf>isPrime()</pf> that takes a positive integer <pf>n</pf> and returns <pf>true</pf> if <pf>n</pf> is prime and <pf>false</pf> otherwise. A prime number is an integer greater than <pf>1</pf> whose only positive divisors are <pf>1</pf> and itself. Use a loop. Do not use MATLAB’s built-in factoring or prime-number functions.
+		</p>
+
+		<tabular valign="top" top="minor">
+			<col width="11%" halign="right" />
+			<col width="15%" halign="left" />
+			<col width="28%" halign="center" />
+			<col width="46%" halign="left" />
+			<row>
+				<cell>Inputs:</cell>
+				<cell><p><pf>n</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>positive integer to test</p></cell>
+			</row>
+			<row bottom="minor">
+				<cell>Outputs:</cell>
+				<cell><p><pf>result</pf></p></cell>
+				<cell><p>(1x1) logical</p></cell>
+				<cell><p><pf>true</pf> if <pf>n</pf> is prime, otherwise <pf>false</pf></p></cell>
+			</row>
+		</tabular>
+
+		<sidebyside widths="48% 48%">
+			<stack>
+				<p>Test Cases ⤵︎</p>
+				<program language="matlab">
+					result = isPrime(2)
+					result = isPrime(15)
+					result = isPrime(97)
+					result = isPrime(1)
+				</program>
+			</stack>
+			<stack>
+				<p>Expected ⤵︎</p>
+				<program language="matlab">
+					result = true
+					result = false
+					result = true
+					result = false
+				</program>
+			</stack>
+		</sidebyside>
+	</statement>
+
+	<solution component="exercise-solution">
+		<p>
+			Here is one possible solution. It is enough to test possible divisors up to <pf>sqrt(n)</pf>, because any larger factor would have a matching smaller factor.
+		</p>
+		<program language="matlab">
+			function result = isPrime(n)
+				if n &lt; 2
+					result = false;
+					return
+				end
+
+				for k = 2:floor(sqrt(n))
+					if mod(n, k) == 0
+						result = false;
+						return
+					end
+				end
+
+				result = true;
+			end
+		</program>
+	</solution>
+</task>
+
+<task label="vectors-coding-highestCommonFactor">
+	<statement>
+		<p>
+			Write a function <pf>highestCommonFactor()</pf> that takes two positive integers and returns their highest common factor. The highest common factor is the largest positive integer that divides both numbers evenly. Use a loop. Do not use MATLAB’s built-in <pf>gcd</pf> function.
+		</p>
+
+		<tabular valign="top" top="minor">
+			<col width="11%" halign="right" />
+			<col width="15%" halign="left" />
+			<col width="28%" halign="center" />
+			<col width="46%" halign="left" />
+			<row>
+				<cell>Inputs:</cell>
+				<cell><p><pf>a</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>first positive integer</p></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell><p><pf>b</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>second positive integer</p></cell>
+			</row>
+			<row bottom="minor">
+				<cell>Outputs:</cell>
+				<cell><p><pf>h</pf></p></cell>
+				<cell><p>(1x1) double</p></cell>
+				<cell><p>highest common factor of <pf>a</pf> and <pf>b</pf></p></cell>
+			</row>
+		</tabular>
+
+		<sidebyside widths="48% 48%">
+			<stack>
+				<p>Test Cases ⤵︎</p>
+				<program language="matlab">
+					h = highestCommonFactor(180, 640)
+					h = highestCommonFactor(15, 17)
+					h = highestCommonFactor(210, 900)
+				</program>
+			</stack>
+			<stack>
+				<p>Expected ⤵︎</p>
+				<program language="matlab">
+					h = 20
+					h = 1
+					h = 30
+				</program>
+			</stack>
+		</sidebyside>
+	</statement>
+
+	<solution component="exercise-solution">
+		<p>
+			Here is one possible solution using the Euclidean algorithm. Each step replaces the pair <pf>(a, b)</pf> with <pf>(b, mod(a, b))</pf> until the remainder becomes zero.
+		</p>
+		<program language="matlab">
+			function h = highestCommonFactor(a, b)
+				while b ~= 0
+					temp = b;
+					b = mod(a, b);
+					a = temp;
+				end
+
+				h = a;
+			end
+		</program>
+	</solution>
+</task>

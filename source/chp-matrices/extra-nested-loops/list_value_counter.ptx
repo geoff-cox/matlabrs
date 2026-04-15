@@ -1,0 +1,67 @@
+<!--META-DATA
+{
+	"tags": ["vector", "loops", "value-counting", "frequency-table"],
+}
+-->
+
+<statement>
+	<p>
+		Counts the frequency of each unique value in a list.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>list</pf> (1 x N) double vector — a list of numbers that may contain repeated values.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>values</pf> (1 x M) double vector — the distinct values in <pf>list</pf>, order preserved by first appearance.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>counts</pf> (1 x M) integer vector — the number of times each value occurs in <pf>list</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Details:</cell>
+			<cell>
+				<p>
+					▸ Use a <pf>while</pf> loop to scan through the list. For each new value, count how many times it appears. Remove duplicates as you go so each value is counted only once.
+				</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				[values, counts] = list_value_counter([2 2 3 3 3 5 2])
+				% returns values = [2 3 5], counts = [3 3 1]
+			</code>
+		</program>
+		<program>
+			<code>
+				[values, counts] = list_value_counter([10 10 10 10])
+				% returns values = [10], counts = [4]
+			</code>
+		</program>
+		<program>
+			<code>
+				[values, counts] = list_value_counter([7 8 9])
+				% returns values = [7 8 9], counts = [1 1 1]
+			</code>
+		</program>
+	</p>
+</statement> 

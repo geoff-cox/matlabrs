@@ -1,0 +1,155 @@
+<!--META-DATA
+{
+	tags: for, logical,
+}
+-->
+
+<statement>
+<p>
+	This function returns true if a point, , lies inside the polygon with given vertices. It returns false otherwise.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>x0</pf> (double) double — x-coordinate of the point .</p>
+			<p><pf>y0</pf> (double) double — y-coordinate of the point .</p>
+			<p><pf>vertices</pf> ( struct) number — that has fields <pf>x</pf> and <pf>y</pf>, which are the x- and y-coordinates of the vertices of the polygon.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>in_polygon</pf> (logical) logical — : is <pf>true</pf> if (<pf>x0</pf>,<pf>y0</pf>) lies inside the polygon. <pf>false</pf>, otherwise.</p>
+			<p><pf>in_polygon</pf> (logical) logical — : is <pf>true</pf> if (<pf>x0</pf>,<pf>y0</pf>) lies inside the polygon. <pf>false</pf>, otherwise.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>One idea for how to code this is to think about a horizontal segment that starts far to the left (negative infinity) and ends at the point</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>. We will refer to this horizontal line segment a "ray".</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The goal is to count how many edges of the polygon intersect with this ray.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Consider the situation below where the point is in the polygon and imagine traveling along the ray (from left to right).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Since the ray starts outside the polygon, the first edge you cross will put you inside the polygon.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Now consider the next case (moving left to right along the ray):</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Here, the ray intersects the first edge (indicating it's inside the polygon), then it hits the second edge, exiting the polygon.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>If the ray were to hit an additional edge along the way, it would re-enter the polygon, as shown in the next example.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Finally, here is one more example where the point is outside the polygon, and the ray hits 4 edges.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>You should convince yourself that if the point is inside the polygon, the number of intersections is even.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Also, if the point is inside the region, the number of intersections will be odd.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Therefore one way to code this program is to</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ol>
+					<li>Create the ray (i.e. a horizontal line segment starting at and ending at the given point, );</li>
+					<li>Count the number of edges of the polygon that the ray intersects;</li>
+					<li>If the number of intersections is even, then the point is outside the polygon, and if the number of intersections is odd then the point is inside the polygon.</li>
+				</ol>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Creating the ray in MATLAB:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>We create the "horizontal" ray by defining it as a line segment from</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>(-1000,y0+1)</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>to</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>(x0,y0)</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Notes:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li><pf>-1000</pf> takes the place of .</li>
+					<li>The ray defined above is very close to horizontal but is technically not horizontal because we shift the y value of the first point up by 1. This is done to avoid the very tricky situation when an edge lies directly on the ray.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Coding Notes:</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>Since you have code that detects when two line segments intersect, you will want to loop through all the edges of the polygon and count the number of times an edge intersection with the "horizontal" ray.</li>
+					<li>Don't forget about the edge that connects the last vertex with the first vertex.</li>
+					<li>I recommend having a separate check that detects if the given point lies directly on an edge. In this case, you should end the program early since the point is on the boundary of the polygon and therefore in the polygon.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Examples_for_HW8P6.m
+	</code>
+</program>
+</p>
+</statement>

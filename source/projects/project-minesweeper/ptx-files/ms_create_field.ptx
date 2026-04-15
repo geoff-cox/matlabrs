@@ -1,0 +1,56 @@
+<!--META-DATA
+{
+	tags: min,
+}
+-->
+
+<statement>
+<p>
+	This program creates a square N x N matrix that represents a minesweeper field. Each value in the matrix will either be -1 if a mine exists in that location or the number of mines adjacent to that location.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>mines</pf> (N x N) number — locations of mines = -1</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>play_field</pf> (N x N) number — minesweeper matrix</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Two spaces are said to be adjacent if they are one space from each other (this includes diagonally).</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		board = MS_create_field_lastname([0 -1;-1 0])
+		board =
+		2    -1
+		-1     2
+		board = MS_create_field_lastname([0 -1 0;-1 0 0;0 -1 0])
+		board =
+		2    -1     1
+		-1     3     2
+		2    -1     1
+		board = MS_create_field_lastname([0 -1 0 0 0;0 0 0 0 0;-1 0 0 0 0;0 0 -1 0 0; -1 -1 -1 -1 -1])
+		board =
+		1    -1     1     0     0
+		2     2     1     0     0
+		-1     2     1     1     0
+		3     5    -1     4     2
+		-1    -1    -1    -1    -1
+	</code>
+</program>
+</p>
+</statement>

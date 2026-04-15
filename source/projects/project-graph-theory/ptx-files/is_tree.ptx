@@ -1,0 +1,64 @@
+<!--META-DATA
+{
+	tags: logical, min, unique,
+}
+-->
+
+<statement>
+<p>
+	This function determines if an undirected graph is a tree . A tree is a connected, acyclic graph, meaning that it has no cycles and a unique path exists between every pair of vertices.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>G</pf> (struct) number — : A structure representing the graph containing, at minimum, the following fields:</p>
+			<p><pf>G.n</pf> (integer) integer — : The number of vertices in the graph.</p>
+			<p><pf>G.m</pf> (integer) integer — : The number of edges in the graph.</p>
+			<p><pf>G.adj_mat</pf> (n x n) number — : The adjacency matrix of the graph.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>result</pf> (logical) logical — : Returns true if the graph is a tree, false otherwise.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Handle edge cases such as a single vertex graph, which is trivially a tree.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Using your other functions in this assignment can make this an easy problem.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Command Window Expected Output G.adj_mat = [0 1 0 0; 1 0 1 0; 0 1 0 1; 0 0 1 0]; G.n = 4; G.m = 3; result = HW5P9_is_tree(G) result = logical 1 G.adj_mat = [0 1 1; 1 0 1; 1 1 0]; G.n = 3; G.m = 3; result = HW5P9_is_tree(G) result = logical 0 G.adj_mat = [0 1 0 0; 1 0 0 0; 0 0 0 1; 0 0 1 0]; G.n = 4; G.m = 2; result = HW5P9_is_tree(G) result = logical 0 G.adj_mat = [0]; G.n = 1; G.m = 0; result = HW5P9_is_tree(G) result = logical 1</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected Output</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>result = logical 1</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>result = logical 0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>result = logical 0</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>result = logical 1</p></cell>
+	</row>
+</tabular>
+
+</statement>

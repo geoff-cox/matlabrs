@@ -1,0 +1,101 @@
+<!--META-DATA
+{
+	"tags": ["comparison", "ranking", "tie-break", "struct", "control-flow"]
+}
+-->
+
+<statement>
+	<p>
+		Decides the winner of a Dice Poker round by comparing player and dealer rolls. First compare rank IDs; if tied, compare the individual numeric die faces (i.e., roll) to determine a winner.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>d_rank</pf> (1 x 1) integer — dealer's rank ID (1-8).</p>
+			</cell>
+		</row>
+		
+		<row>
+			<cell/>
+			<cell>
+				<p><pf>d_roll</pf> (1 x 5) integer vector — dealer's roll sorted by rank order.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p><pf>p_rank</pf> (1 x 1) integer — player's rank ID (1-8).</p>
+			</cell>
+		</row>
+		
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>p_roll</pf> (1 x 5) integer vector — player's roll sorted by rank order.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>winner</pf> (1 x 1) integer — <m>1</m> for player, <m>2</m> for dealer, <m>0</m> for exact tie.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ A lower rank ID wins.</p></cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ To break a rank tie, compare the values on <pf>d_roll</pf> and <pf>p_roll</pf>.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ If all five dice are equal, return <m>0</m> (tie).</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: rank decides
+				p_roll = [3 3 3 4 1];	% three-of-a-kind
+				p_rank = 5;
+				d_roll = [2 2 1 1 5];	% two-pair
+				d_rank = 6;
+				w = get_winner(d_rank, d_roll, p_rank, p_roll)
+				% returns  w  =  1  (player wins)
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 2: tie-break by dice values
+				p_roll = [5 5 4 2 1];	% one-pair, highest single: 4
+				p_rank = 7;
+				d_roll = [5 5 6 2 1];	% one-pair, highest single: 6
+				d_rank = 7;
+				w = get_winner(d_rank, d_roll, p_rank, p_roll)
+				% returns  w  =  2  (dealer wins)
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 3: exact tie
+				p_roll = [4 4 4 6 6];	% full-house, 4's over 6's
+				p_rank = 3;
+				d_roll = [4 4 4 6 6];	% full-house, 4's over 6's
+				d_rank = 3;
+				w = get_winner(d_rank, d_roll, p_rank, p_roll)
+				% returns  w  =  0  (tie)
+			</code>
+		</program>
+	</p>
+</statement>

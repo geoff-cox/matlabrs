@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Minesweeper Notes</title>
+<meta name="identifier" content="gdfe8738e0958b5919177646df0e5aa5f"/>
+<meta name="editing_roles" content="teachers"/>
+<meta name="workflow_state" content="unpublished"/>
+</head>
+<body>
+<header class="discussion-section clearfix">
+<div class="discussion-header-content right-of-avatar">
+<div class="pull-left">
+<h4 class="discussion-title"><term>Minesweeper Note #1 Scaling the gameboard</term></h4>
+</div>
+</div>
+</header>
+<div class="discussion-section message_wrapper">
+<div class="message user_content enhanced" data-bind="message">
+<p>It is important to scale the size of your figure (containing the gameboard) according to the size of the grid. This allows the font size of the text on your gameboard to be consistent.</p>
+<p>I found that 50 pixels per grid space to be a good scaling.</p>
+<p>If you want to do this, then inside your <code>MS_display_interface</code> code define your figure position with the following values:&nbsp;&nbsp;</p>
+<p><code>fig = figure('Position',[10,10,50*(N+2),50*(N+2)]);</code></p>
+<p>where the gameboard is <code>N</code> x <code>N</code>.&nbsp; If you don't pad your gameboard with a border, you shouldn't need the <code>+2</code> above.&nbsp;</p>
+<p>&nbsp;<term>Minesweeper Note #2 flag and skull icons</term></p>
+<p>You are free to choose any character to represent flags and mines, but the ones I used were <code>char(9873)</code> and <code>char(9760)</code>, respectively.</p>
+<p>&nbsp;<term>Minesweeper Note # 3 Toggling the flag</term></p>
+<p>When a player clicks on the bottom-left quadrant of a game space, the space will be flagged. If the player clicks on the bottom-left quadrant of a flagged space, it should remove the flag.&nbsp; In my code, I toggle this by changing the rectangle FaceColor with the original color. This "hides" the flag behind it.&nbsp; You can also use the <code>delete</code> command, but this requires defining the <code>text</code> as a variable. For example,</p>
+<pre>txt = text(4,3,char(9873));<br>delete(txt);</pre>
+<p>creates a flag at the point (4,3), then deletes it.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</div>
+</body>
+</html>

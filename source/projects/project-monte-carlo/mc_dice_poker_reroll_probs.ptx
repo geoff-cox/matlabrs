@@ -1,0 +1,115 @@
+<!--META-DATA
+{
+	"tags": ["monte-carlo", "dice", "poker", "reroll-policy", "simulation", "function", "confidence-interval", "table"]
+}
+-->
+
+<statement>
+	<p>
+		This function estimates the probabilities of final 5-dice poker hand types when a single reroll is taken according to a user-specified selection policy. It simulates an initial roll, applies the policy to choose which dice to reroll, performs the reroll, ranks the final hand, and then displays a confidence-interval summary table of outcomes.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>trials</pf> (1 x 1) integer — number of simulated games (initial roll + policy-based reroll). Default: <m>10^6</m> when omitted.</p>
+				<p><pf>policy</pf> (function handle) — selection policy with signature <m>\texttt{sel = policy(roll, counts)}</m>, returning a 1x5 logical vector indicating which dice to reroll. Default: <pf>@policy_reroll_none</pf> (no dice are rerolled).</p>
+				<p><pf>seed</pf> (optional, 1 x 1 integer) — random number generator seed for reproducibility.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p>Displays a MATLAB table (via <pf>confidence_interval_table</pf>) for each hand type with columns:</p>
+				<ul>
+					<li><pf>varNames</pf> — hand type name.</li>
+					<li><pf>varCounts</pf> — simulated count across all trials.</li>
+					<li><pf>pHat</pf> — proportion estimate (rounded to four decimals).</li>
+					<li><pf>pct</pf> — percentage formatting of <pf>pHat</pf>.</li>
+					<li><pf>marginErr</pf> — 95% margin of error (± percentage).</li>
+					<li><pf>confLvl</pf> — reported confidence level (95%).</li>
+				</ul>
+				<p><em>Note:</em> This function prints the table to the Command Window and does not return an output variable.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Hand types:</p></cell>
+			<cell>
+				<p>The simulation tallies the following ranks (as ordered in the output):</p>
+				<ul>
+					<li>5 of a kind</li>
+					<li>4 of a kind</li>
+					<li>full house</li>
+					<li>straight (1-2-3-4-5 or 2-3-4-5-6)</li>
+					<li>3 of a kind (not a full house)</li>
+					<li>2 pair</li>
+					<li>1 pair</li>
+					<li>singles (all distinct, not a straight)</li>
+				</ul>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ <em>Initial roll:</em> Draw five fair dice with <pf>randi(6,1,5)</pf>; compute face counts <pf>counts = get_face_counts(roll1)</pf>; and sort by rank using <pf>sort_by_rank</pf> (purely for standardized ordering).</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ <em>Policy selection:</em> Call <pf>sel = policy(roll1, counts)</pf>, which must return a 1x5 logical mask. The dice where <pf>sel</pf> is true are rerolled once via <pf>randi(6,1,sum(sel))</pf>.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ <em>Final ranking:</em> After reroll, recompute counts and sort by rank; then obtain the final rank ID <pf>roll2ID</pf> using <pf>get_rank</pf>. Accumulate <pf>rankCounts(roll2ID)</pf>.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ <em>Reporting:</em> After all <pf>trials</pf>, display a 95% confidence-interval table with <pf>confidence_interval_table(rankName, rankCounts, trials, 95)</pf>.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Notes:</p></cell>
+			<cell>
+				<p>▸ If <pf>seed</pf> is provided, the simulation initializes with <pf>rng(seed,'twister')</pf> for reproducibility.</p>
+				<p>▸ Helper utilities and policies are expected on the MATLAB path; this function temporarily adds <pf>'dice-poker/helpers'</pf> and <pf>'dice-poker/policies'</pf> and removes them afterward.</p>
+				<p>▸ Larger <pf>trials</pf> reduce Monte Carlo sampling error; the table’s margins of error assume a normal approximation at the 95% level.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>get_face_counts</pf>, <pf>sort_by_rank</pf>, <pf>get_rank</pf>, <pf>confidence_interval_table</pf>, and a user-supplied <pf>policy</pf> function handle with signature <pf>policy(roll, counts)</pf>.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: No reroll policy (baseline)
+				% Reroll selection is always false -> identical to keeping the initial roll.
+				mc_dice_poker_reroll_probs(1e5, @policy_reroll_none, 2025)
+				% Displays a 95% CI table for all 8 hand types.
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 2: Reroll everything (toy policy)
+				% Define a simple policy that rerolls all dice regardless of the first roll.
+				policy_all = @(roll,counts) true(1,5);
+				mc_dice_poker_reroll_probs(2e5, policy_all)
+				% Displays a 95% CI table reflecting outcomes after a full reroll.
+			</code>
+		</program>
+	</p>
+</statement>

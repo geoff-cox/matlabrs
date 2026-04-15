@@ -1,0 +1,94 @@
+<!--META-DATA
+{
+	tags: for, vector, sum, find,
+}
+-->
+
+<statement>
+<p>
+	This program uses brute force to solve the traveling salesman problem.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>pt_list</pf> (N x 2) number — list of GPS (degree) coordinates.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>route_order</pf> (1 x N) double vector — vector specifying the shortest route order.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The Traveling Salesman Problem is defined as follows:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Given a set of points and a starting location, find the shortest (closed) route that passes through all these points.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>You may use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>perms</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>command.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>TSP_global_path_dist</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>code in this program.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>In your code, assume every possible route starts and ends at the first value in</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>pt_list</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>. This means every possible route should have a 1 as its first value.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Check out</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>this document</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>for more information about the traveling salesman problem.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		BF_route = TSP_BF_lastname([0 0;4 4;2 5;4 1;1 1])
+		BF_route = [1 4 2 3 5]
+	</code>
+</program>
+</p>
+</statement>

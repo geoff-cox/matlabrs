@@ -1,0 +1,73 @@
+<!--META-DATA
+{
+	"tags": ["vector", "loops", "duplicates", "merge"],
+}
+-->
+
+<statement>
+	<p>
+		Removes consecutive duplicate values from a list, returning a merged version.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>list</pf> (1 x N) double vector — a list of numbers, possibly with consecutive duplicates.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>merged_list</pf> (1 x M) double vector — list with consecutive duplicates removed, preserving order.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Details:</cell>
+			<cell>
+				<p>
+					▸ Scan through <pf>list</pf> with a <pf>while</pf> loop. Whenever two consecutive elements are equal, delete one of them. Otherwise, move to the next index. Continue until the end of the list.
+				</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				merged_list = list_merge_dups([1 1 2 2 2 3 1 1 4])
+				% returns [1 2 3 1 4]
+			</code>
+		</program>
+		<program>
+			<code>
+				merged_list = list_merge_dups([5 5 5 5 5])
+				% returns 5
+			</code>
+		</program>
+		<program>
+			<code>
+				merged_list = list_merge_dups([7 8 9])
+				% returns [7 8 9]
+			</code>
+		</program>
+		<program>
+			<code>
+				merged_list = list_merge_dups([3])
+				% returns 3
+			</code>
+		</program>
+		<program>
+			<code>
+				merged_list = list_merge_dups([])
+				% returns []
+			</code>
+		</program>
+	</p>
+</statement>

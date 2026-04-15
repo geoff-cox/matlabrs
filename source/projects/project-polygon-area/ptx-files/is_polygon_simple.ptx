@@ -1,0 +1,45 @@
+<!--META-DATA
+{
+	tags: logical, min,
+}
+-->
+
+<statement>
+<p>
+	This program determines whether a polygon is a simple polygon. (Recall that a simple polygon is one that doesn&#x27;t intersect itself.)
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>vertices</pf> ( struct) number — that has fields <pf>x</pf> and <pf>y</pf>, which are the x- and y-coordinates of the vertices of the polygon. (You can see examples of the structure in the Examples file below.)</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>is_simple</pf> (logical) logical — is true if the region is simple and is false if the polygon intersects itself</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The goal here is to check (in a systematic way) whether any of the line segments that make up the polygon intersect each other.</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>Make sure to check the line segment that connects the last vertex back to the first vertex.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Examples_for_HW8P5.m
+	</code>
+</program>
+</p>
+</statement>

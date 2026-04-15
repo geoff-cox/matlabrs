@@ -1,0 +1,212 @@
+<!--META-DATA
+{
+	tags: while, for, find, zeros, script,
+}
+-->
+
+<statement>
+<p>
+	Write a function <pf>hw3s1_ttt_display</pf>.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Write a MATLAB script that displays a Tic-Tac-Toe board and allows a user to add X's and O's to the board with mouse clicks, using MATLAB's <pf>ginput</pf> command.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>THIS SCRIPT SHOULD NOT PLAY A FULL GAME OF TIC-TAC-TOE.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use the MATLAB documentation to find the code needed to perform some of the tasks below.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Important variable descriptions in the template:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li><pf>player</pf> - tracks the current player. <pf>player = 1</pf> means it is X's turn. <pf>player = -1</pf> means it is O's turn.</li>
+					<li><pf>game_board</pf> - tracks the space each player has claimed. A value of <pf>1</pf> in this matrix indicates that X claimed that space, while a value of <pf>-1</pf> means O claimed it. A value of <pf>0</pf> means it has not been claimed by either player yet.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Download the template.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>For each line below, complete the specified tasks in the script file.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 5</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Replace the zeros with the values that set the "Position" of the figure to have a bottom left corner @ (x,y) = (100, 100), a width = 650 and a height = 600.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 7</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Replace the zeros with the values that will plot a vertical line between the points: (2,1) and (2,4).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 8</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Replace the zeros with the values that will plot a vertical line between the points: (3,1) and (3,4).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 9</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Replace the zeros with the values that will plot a horizontal line between the points: (1,2) and (4,2).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 10</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Replace the zeros with the values that will plot a horizontal line between the points: (1,3) and (4,3).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 11</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Replace the zeros with the values that will set the ranges of both the x and y-axis to 0 to 5.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 32</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Use</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>ginput</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>to get the x and y coordinates of the user's mouse click.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 34</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Complete the if-statement that checks that the user's mouse click is within the appropriate range.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 35-36</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Use the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>floor</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>command to round the x and y coordinates of the mouse clicks to the nearest integer.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 38</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Complete the if-statement that checks</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>game_board</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>to see if that user clicked a space that was available.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 39</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Add the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>player</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>value to the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>game_board</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>variable.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 40</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Increase the number of</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>selected_spaces</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>by one.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Line 49</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>: Change the current</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>player</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>value to the opposite player.</p></cell>
+	</row>
+</tabular>
+
+</statement>

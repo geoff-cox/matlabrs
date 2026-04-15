@@ -1,0 +1,86 @@
+<!--META-DATA
+{
+	"tags": ["random", "audio", "randi", "vector", "try-catch"]
+}
+-->
+
+<statement>
+	<p>
+		Generates a random roll of <m>n</m> six-sided dice and plays a dice-throw sound if the media file is available.
+	</p>
+
+	<tabular valign="top" top="minor">
+		<col width="12%"/>
+		<col width="88%"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>n</pf> (1 x 1) positive integer — number of dice to roll.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1 x n) integer vector — contains random integers from 1 - 6.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ Download the sound file, <url href="https://drive.google.com/file/d/1Mhl56tmPyQNW9r0GvL3P0dwSQwv5wf5N/view?usp=sharing">throw_dice.mat</url>, and place it in your current working directory.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Within a <pf>try</pf>/<pf>catch</pf> block, attempt to: 
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				(1) Load the sound file with the command
+				<program><code>sound_data = load('throw_dice.mat','y','fs')</code></program>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					(2) Play it with the command
+					<program><code>sound(sound_data.y, sound_data.fs)</code></program>
+					If the file is missing or audio fails, <q>silently</q> continue.
+					<fn>By <q>silently</q>, I mean don't print a warning in the <pf>catch</pf> block.</fn>
+				</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Use the <pf>randi</pf> command to produce the roll.</p></cell>
+		</row>
+
+	</tabular>
+
+	<p>
+		Examples: (<em>Note: you should hear a dice rolling sound in each example.</em>)
+		<program>
+			<code>
+				r = roll_dice(5)   % Outputs are random and will vary
+				% returns:  r  =  2  6  1  1  5
+			</code>
+		</program>
+		<program>
+			<code>
+				r = roll_dice(3)   % Outputs are random and will vary
+				% returns:  r =  6  6  3
+			</code>
+		</program>
+	</p>
+</statement>

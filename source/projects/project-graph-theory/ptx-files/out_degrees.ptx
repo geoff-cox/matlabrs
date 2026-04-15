@@ -1,0 +1,59 @@
+<!--META-DATA
+{
+	tags: vector,
+}
+-->
+
+<statement>
+<p>
+	This function calculates the out-degrees of all vertices in a directed graph represented by the structure &lt;pf&gt;G&lt;/pf&gt;. The out-degree of a vertex is the number of edges leaving the vertex.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>G.n</pf> (integer) integer — : The number of vertices in the graph.</p>
+			<p><pf>G.m</pf> (integer) integer — : The number of edges in the graph.</p>
+			<p><pf>G.edges</pf> (m x 2) number — : A matrix where each row represents an edge [from, to].</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>out_degrees</pf> (1 x n) double vector — : A row vector where each element <pf>out_degrees(i)</pf> represents the number of edges leaving vertex <pf>i</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Ensure your function handles cases with no edges (empty edge list).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Support graphs with self-loops, where an edge starts and ends at the same vertex.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Command Window Expected Output G.n = 3; G.m = 2; G.edges = [1, 2; 2, 3]; out_degrees = HW6P3_out_degrees(G); out_degrees = 1 1 0 G.n = 2; G.m = 2; G.edges = [1, 1; 1, 2]; out_degrees = HW6P3_out_degrees(G); out_degrees = 2 0 G.n = 4; G.m = 5; G.edges = [3, 4; 4, 4; 1, 4; 4, 3; 1, 1]; out_degrees = HW6P3_out_degrees(G); out_degrees = 2 0 1 2</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected Output</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>out_degrees = 1 1 0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>out_degrees = 2 0</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>out_degrees = 2 0 1 2</p></cell>
+	</row>
+</tabular>
+
+</statement>

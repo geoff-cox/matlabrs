@@ -1,0 +1,459 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 7 - F21</title>
+</head>
+<body>
+<p>Complete each of the programming and/or script problems below for homework 7.&nbsp;</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>If a template is provided, you can download it by clicking on the function filename. Otherwise, you must create your own functions from scratch.</p>
+<p>If no examples are given, you should come up with your own examples to test the output of your programs.</p>
+<p><em><term>Do not use any built-in MATLAB commands unless specified in the directions of the problem.</term></em></p>
+<hr><hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 393px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="HW7P1_create_keyboard_structure_lastname.m" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P1_create_keyboard_structure_lastname-1.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435942" data-api-returntype="File"><code>HW7P1_create_keyboard_struct_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%;">In the Wordle game, the user will click on the "keyboard" at the bottom of the game board.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/game_board_keyboard_example-1.png" alt="game_board_keyboard_example.png" width="433" height="325" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435948" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">As the user plays the game, the boxes on the keyboard change color accordingly, as shown below.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/game_board_keyboard_example2-1.png" alt="game_board_keyboard_example2.png" width="228" height="346" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435951" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">This function creates the structure we use to store information about the keyboard.&nbsp; In particular, this structure has 26 fields, one for each letter in the alphabet, as shown.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/keyboard_struct1-1.png" alt="keyboard_struct1.png" width="192" height="239" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435949" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">Each letter contains another structure that has three fields:</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">
+<ul>
+<li><code>xvals</code> contains the x-coordinates of the boundary box for that letter.</li>
+<li><code>yvals</code> contains the y-coordinates of the boundary box for that letter.</li>
+<li><code>color</code> contains the code for the color in that box.&nbsp; The default value is grey, which we get with the RGB triplet [0.5, 0.5, 0.5].</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">For example, consider the picture below of the struct associated with the letter T on the keyboard.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/keyboard_struct3-3-1.png" alt="keyboard_struct3-3.png" width="522" height="324" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435954" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">Notice that the box containing T has corners at the points (8,4), (10,4), (10,6), and (8,6).&nbsp; Note how the <code>xvals</code> and <code>yvals</code> correspond to these coordinates.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">Here's one final example, for the letter N on the keyboard.&nbsp; Notice that the color field has 'g' (for green).</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/keyboard_struct5-2-1.png" alt="keyboard_struct5-2.png" width="545" height="330" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435952" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;">none</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>keyboard</code> (struct) is a structure containing 26 fields (one for each letter); each of the letters contains a struct with three fields</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>Comments:</term></td>
+<td style="width: 89.688%;">Note that this function does not display the game board or the keyboard.&nbsp; No plot/figure is involved in this function. The purpose of this function is only to create the <code>keyboard</code> structure.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">A template is provided that generates the top two lines of the keyboard. You should create the code to complete the keyboard structure.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 2578px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW7P2_display_game_board_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">This function will display the initial game board at the beginning of the game as well as refresh the gameboard as it is being played. At the beginning of the game, the game board will look like the image below.</td>
+</tr>
+<tr style="height: 352px;">
+<td style="width: 10.2704%; text-align: right; height: 352px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 352px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/Wordle_empty_game_board-1.png" alt="Wordle_empty_game_board.png" width="229" height="348" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435946" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Here's an example of what it might look like mid-game.</td>
+</tr>
+<tr style="height: 356px;">
+<td style="width: 10.2704%; text-align: right; height: 356px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 356px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/game_board_example3-1.png" alt="game_board_example3.png" width="229" height="351" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435947" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess_boxes</code> (6<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">5 struct with 4 fields)--described in detail above</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>keyboard</code> (struct) is a structure containing 26 fields (one for each letter); each of the letters contains a struct with three fields--described in detail previously</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>initialize</code> (1x1 logical) if this value is <code>true</code> then it should: (1) define the initial figure and (2) plot the guess boxes and keyboard. If <code>false</code>, it should only plot the guess boxes and keyboard.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;">no function outputs, but the game board is displayed</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Comments: <br></term></td>
+<td style="width: 89.688%; height: 28px;">Note that the keyboard should be drawn using only <code>fill</code> commands.&nbsp; No <code>plot</code> commands are needed.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">When initializing only, you can use the <code>close all</code> command to clear any game boards still open from from previous games.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Use the information stored in the input structures to create the game board.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Don't forget to check the value of <code>initialize</code> to see if the figure should be defined for the first time. If <code>initialize</code> is <code>false</code> then this part should be skipped.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;Examples:<br></term></td>
+<td style="width: 89.688%; height: 28px;">Load <a class="instructure_file_link inline_disabled" title="HW7_display_inputs.mat" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7_display_inputs.mat?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435936" data-api-returntype="File">this .mat</a> file to get the sample inputs.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess_boxes1</code>, <code>keyboard1</code>, <code>initialize1</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P2_test1-1.png" alt="HW7P2_test1.png" width="244" height="375" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435943" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess_boxes2</code>, <code>keyboard2</code>, <code>initialize2</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 382px;">
+<td style="width: 10.2704%; text-align: right; height: 382px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 382px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P2_test2-1.png" alt="HW7P2_test2.png" width="244" height="378" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435944" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess_boxes3</code>, <code>keyboard3</code>, <code>initialize3</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 392px;">
+<td style="width: 10.2704%; text-align: right; height: 392px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 392px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P2_test3-1.png" alt="HW7P2_test3.png" width="248" height="388" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435926" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess_boxes4</code>, <code>keyboard4</code>, <code>initialize4</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 395px;">
+<td style="width: 10.2704%; text-align: right; height: 395px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 395px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P2_test4-1.png" alt="HW7P2_test4.png" width="252" height="390" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435945" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>guess_boxes5</code>, <code>keyboard5</code>, <code>initialize5</code></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">OUTPUT</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/Wordle_empty_game_board-1.png" alt="Wordle_empty_game_board.png" width="229" height="348" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435946" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 471px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW7P3_get_the_letter_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; vertical-align: top; height: 28px;">This function will identify which letter on the game keyboard is associated with the coordinates of the (valid) point provided.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>x</code> (double) is the x-coordinate of the point</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>y</code> (double) is the y-coordinate of the point</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>keyboard</code> (struct) is a structure containing 26 fields (one for each letter); each of the letters contains a struct with three fields--described in detail previously</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>letter</code> (character) is the (uppercase) letter on the keyboard box that contains the point</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Comments: </term></td>
+<td style="width: 89.688%; height: 28px;">Note that we are considering the following keyboard.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/qwerty_keyboard-1.png" alt="qwerty_keyboard.png" width="264" height="124" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435953" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">However, <term>there is no plot/game board involved in this function</term>. The inputs are numbers and the output is a letter.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Hint: compare the provided <code>x</code> and <code>y</code> to the <code>xvals</code> and <code>yvals</code> stored in the <code>keyboard</code> structure</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">NOTE: The <code>keyboard</code> input below must be provided. You can call your <code>HW7P1</code> or use one of the keyboard variables provided in <a class="instructure_file_link inline_disabled" title="HW7_display_inputs.mat" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7_display_inputs.mat?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435936" data-api-returntype="File">this .mat</a> file. The colors on the keyboard don't matter, you just need the x and y values.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Examples: <br></term></td>
+<td style="width: 89.688%; vertical-align: top; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>2.5, 4.8, keyboard</code> <img class="equation_image" title="\longleftarrow" src="https://vmi.instructure.com/equation_images/%255Clongleftarrow?scale=1" alt="LaTeX: \longleftarrow" data-equation-content="\longleftarrow" data-ignore-a11y-check="" loading="lazy"> see note above</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'W'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>12.15, 1.43, keyboard</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'B'</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 250px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW7P4_update_colors_in_structs_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">As the Wordle game is played, the user makes a guess, and the feedback the user has before they make their next guess is provided in the form of colors that appear in two places: on the guess boxes and on the keyboard. This function takes in the colors (as a five-letter string) that should appear in the guess boxes on the game board, and then updates the colors stored in the both the <code>guess_box</code> structure and the <code>keyboard</code> structure.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess_boxes</code> (65 struct with 4 fields) as described previously</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>keyboard</code> (struct) is a structure containing 26 fields (one for each letter); each of the letters contains a struct with three fields; described in detail previously</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>attempt_num</code> (double) is a number that indicates how many guesses the user has made</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>colors</code> (string) is a five-letter string representing the guess box colors associated with the current guess; the only letters in the string are w, g, and y (because the only colors that should appear in the guess boxes are white, green and yellow).</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess_boxes</code> (struct)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>keyboard</code> (struct)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>Comments:</term></td>
+<td style="width: 89.688%;">Note that this function does not display the game board or the keyboard.&nbsp; <term>No plot/figure is involved in this function</term>. The purpose of this function is to edit the appropriate color fields in the <code>guess_boxes</code> and&nbsp; <code>keyboard</code> structures.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">However, it's easiest to test this function by displaying the game board with the given inputs and then displaying the game board after the function has been run. Some sample inputs are provided in <a class="instructure_file_link inline_disabled" title="HW7_test_update_colors.mat" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7_test_update_colors.mat?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435938" data-api-returntype="File">this .mat file</a>. You may also wish to use <a class="instructure_file_link instructure_scribd_file inline_disabled" title="script_for_testing_HW7P4.m" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/script_for_testing_HW7P4.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435977" data-api-returntype="File">this script</a> for testing.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Examples: <br></term></td>
+<td style="width: 89.688%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>guess_boxes1</code>, <code>keyboard1</code>, <code>3</code>, <code>'wwgyy'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">PLOTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; text-align: center;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P4_test1-1.png" alt="HW7P4_test1.png" width="495" height="326" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435939" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>guess_boxes2</code>, <code>keyboard2</code>, <code>4</code>, <code>'yywyw'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">PLOTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P4_test2-1.png" alt="HW7P4_test2.png" width="498" height="325" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435940" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>guess_boxes3</code>, <code>keyboard3</code>, <code>6</code>, <code>'ggggg'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">PLOTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P4_test3-1.png" alt="HW7P4_test3.png" width="503" height="315" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435941" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>guess_boxes4</code>, <code>keyboard4</code>, <code>5</code>, <code>'wgwyw'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">PLOTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; text-align: center;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW7P4_test4-1.png" alt="HW7P4_test4.png" width="500" height="328" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435935" data-api-returntype="File" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Script Problem</term></span></h3>
+<p>If a template is provided, you can download it by clicking on the function filename. Otherwise, you must create your own functions from scratch.</p>
+<p>If no examples are given, you should come up with your own examples to test the output of your programs.</p>
+<p><em><term>Do not use any built-in MATLAB commands unless specified in the directions of the problem.</term></em></p>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 28px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Script: <br></term></td>
+<td style="width: 89.8822%; height: 28px;"><code>HW7S1_wordle_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Description:<br></term></td>
+<td style="width: 89.8822%; height: 28px;">This is the script that runs the Wordle game.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Comments:</term></td>
+<td style="width: 89.8822%; height: 28px;">When your game is running correctly, you should remove the axes and gridlines from the game board.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; text-align: center;"><iframe title="YouTube video player" src="https://www.youtube.com/embed/l5IIqehWS_k" width="560" height="315" loading="lazy" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</body>
+</html>

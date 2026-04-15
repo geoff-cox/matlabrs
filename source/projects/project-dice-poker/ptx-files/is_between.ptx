@@ -1,0 +1,61 @@
+<!--META-DATA
+{
+	"tags": ["validation", "logical", "vector", "range-check"]
+}
+-->
+
+<statement>
+	<p>
+		Checks if all elements of a list lie between two bounds <m>a</m> and <m>b</m>, inclusive.
+	</p>
+
+		<tabular valign="top" halign="right" top="minor">
+			<col width="12%"/>
+			<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>list</pf> (1 x N) double vector — values to check.</p>
+				<p><pf>a</pf> (1 x 1) double — lower bound.</p>
+				<p><pf>b</pf> (1 x 1) double — upper bound.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>tf</pf> (1 x 1) logical — <pf>true</pf> if every value of <pf>list</pf> is between <m>a</m> &amp; <m>b</m> OR is empty; <pf>false</pf> otherwise.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ You may use logical vectors to code this.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				tf = is_between([2 3 4], 1, 5)
+				% returns tf  =  (logical)  1
+			</code>
+		</program>
+		<program>
+			<code>
+				tf = is_between([0 2 4], 1, 5)
+				% returns tf  =  (logical)  0
+			</code>
+		</program>
+		<program>
+			<code>
+				tf = is_between([], 1, 5)
+				% returns tf  =  (logical)  1
+			</code>
+		</program>
+	</p>
+</statement>

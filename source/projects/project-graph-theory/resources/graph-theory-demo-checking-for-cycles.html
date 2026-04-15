@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Graph Theory Demo: Checking for Cycles</title>
+<meta name="identifier" content="g7592e0dcdbd31b7b326065f2fbd41789"/>
+<meta name="editing_roles" content="teachers"/>
+<meta name="workflow_state" content="unpublished"/>
+</head>
+<body>
+<h3><term>Graph Theory Homework Demo</term></h3>
+<p>Here's an in-class demonstration for understanding the cycle detection algorithm in the <code>HW5P6_has_cycle</code> function. This function checks for cycles in an undirected graph using a simplified approach, removing vertices with a degree of 1 until no such vertices remain. The remaining graph will indicate whether there are cycles.</p>
+<hr>
+<h3><term>Demonstration: Detecting Cycles in a Graph</term></h3>
+<h4><term>Objective</term></h4>
+<p>Help students understand how to identify cycles in an undirected graph by systematically reducing the graph until it either shows an empty graph (no cycle) or a connected subset of vertices (indicating a cycle).</p>
+<h4><term>Steps in the Algorithm</term></h4>
+<ol>
+<li>
+<p><term>Start with the Adjacency Matrix</term>: The adjacency matrix <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">A</span></span></span></span> represents connections between vertices, with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">A(i,j) = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">A</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mord mathnormal">j</span><span class="mclose">)</span><span class="mrel">=</span></span><span class="base"><span class="mord">1</span></span></span></span> if there's an edge between vertices <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">j</span></span></span></span>.</p>
+</li>
+<li>
+<p><term>Identify Degree 1 Vertices</term>: In each iteration, locate all vertices with a degree of 1. These vertices are <term>leaf nodes</term> that cannot be part of a cycle.</p>
+</li>
+<li>
+<p><term>Remove Degree 1 Vertices</term>: For each vertex with a degree of 1:</p>
+<ul>
+<li>Remove this vertex and its connecting edge(s) from the adjacency matrix.</li>
+<li>Update the degrees of connected vertices since they lose an edge.</li>
+</ul>
+</li>
+<li>
+<p><term>Repeat</term>: Repeat steps 2-3 until:</p>
+<ul>
+<li><term>No vertices with degree 1 remain</term> (indicating a possible cycle), or</li>
+<li><term>All vertices are removed</term>, indicating the graph is cycle-free.</li>
+</ul>
+</li>
+<li>
+<p><term>Check Result</term>:</p>
+<ul>
+<li>If there are vertices left in the reduced adjacency matrix after all degree 1 vertices are removed, a cycle exists.</li>
+<li>If all vertices have been removed, the graph is acyclic.</li>
+</ul>
+</li>
+</ol>
+<h4><term>Example Walkthrough</term></h4>
+<p>Let's demonstrate with an example graph:</p>
+<ul>
+<li>
+<p><term>Graph Vertices and Edges</term>: Consider a graph with vertices <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">V = \{1, 2, 3, 4\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">V</span><span class="mrel">=</span></span><span class="base"><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mord">2</span><span class="mpunct">,</span><span class="mord">3</span><span class="mpunct">,</span><span class="mord">4</span><span class="mclose">}</span></span></span></span> and edges <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>4</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">E = \{(1,2), (2,3), (3,4), (4,1)\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">E</span><span class="mrel">=</span></span><span class="base"><span class="mopen">{(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mord">2</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mord">3</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mord">4</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord">4</span><span class="mpunct">,</span><span class="mord">1</span><span class="mclose">)}</span></span></span></span>. This forms a simple 4-cycle.</p>
+</li>
+<li>
+<p><term>Adjacency Matrix</term> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">A</span></span></span></span>:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mo>=</mo><mrow><mo fence="true">[</mo><mtable columnalign="center center center center" rowspacing="0.16em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">A = \begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ \end{bmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">A</span><span class="mrel">=</span></span><span class="base"><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>0</span><span>1</span><span>0</span><span>1</span></span><span class="vlist-s">​</span></span></span></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>1</span><span>0</span><span>1</span><span>0</span></span><span class="vlist-s">​</span></span></span></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>0</span><span>1</span><span>0</span><span>1</span></span><span class="vlist-s">​</span></span></span></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>1</span><span>0</span><span>1</span><span>0</span></span><span class="vlist-s">​</span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+<p><term>Algorithm Execution</term>:</p>
+<ol>
+<li>
+<p><term>Initial Degree Calculation</term>:</p>
+<ul>
+<li>Each vertex has degree 2, so there are no vertices with degree 1 to remove initially.</li>
+</ul>
+</li>
+<li>
+<p><term>Cycle Detection</term>:</p>
+<ul>
+<li>Since we couldn't remove any vertices with degree 1, we conclude there is a cycle in the graph.</li>
+</ul>
+</li>
+<li>
+<p><term>Result</term>:</p>
+<ul>
+<li>The algorithm stops here, confirming that this graph contains a cycle.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><term>Key Points</term></h3>
+<ul>
+<li><term>Degree Analysis</term>: Recognizing how degree 1 vertices cannot contribute to cycles is essential.</li>
+<li><term>Matrix Reduction</term>: This step-by-step elimination reinforces understanding of how matrix operations relate to graph structure.</li>
+<li><term>Cycle Determination</term>: The remaining vertices after removing degree 1 nodes highlight cycle presence effectively.</li>
+</ul>
+<hr>
+<p>This algorithm introduces students to cycle detection without deep recursion or advanced data structures, making it both educational and practical in understanding fundamental graph properties.</p>
+</body>
+</html>

@@ -6,7 +6,7 @@
 		<title>Scalar and Vector Operations</title>
 
 		<p>
-			Now that you can build and index a vector, the next question is what you can <em>do</em> with one. The simplest case is combining a vector with a single number — a scalar. MATLAB applies the operation to every element of the vector automatically, with no loop required.
+			Now that you can build and index a vector, the next question is what you can <em>do</em> with one. The simplest case is combining a vector with a single number. MATLAB applies the operation to every element of the vector automatically, with no loop required.
 		</p>
 
 		<p>
@@ -48,18 +48,18 @@
 		</sidebyside>
 
 		<p>
-			The order of the operands does not matter for addition or multiplication: <pf>v + 10</pf> and <pf>10 + v</pf> produce the same result, and so do <pf>2 * v</pf> and <pf>v * 2</pf>. For subtraction and division, the order matters in the usual mathematical sense — <pf>10 - v</pf> is not the same as <pf>v - 10</pf>.
+			The order of the operands does not matter for addition or multiplication: <pf>v + 10</pf> and <pf>10 + v</pf> produce the same result, and so do <pf>2 * v</pf> and <pf>v * 2</pf>. For subtraction and division, the order matters in the usual mathematical sense. That is, <pf>10 - v</pf> is not the same as <pf>v - 10</pf>.
 		</p>
 
 		<aside>
 			<title>Replacing loops with vector operations</title>
 			<p>
-				In most languages, applying an operation to every element of a collection requires an explicit loop. MATLAB — along with NumPy in Python, Julia, R, and others — lets you write the operation once and have it apply to the whole vector. This style is called <term>vectorization</term>, and it is one of the reasons MATLAB code for numerical work tends to be short and readable.
+				In most languages, applying an operation to every element of a collection requires an explicit loop. MATLAB lets you write the operation once and have it apply to the whole vector. This style is called <term>vectorization</term>, and it is one of the reasons MATLAB code for numerical work tends to be short and readable.
 			</p>
 		</aside>
 
 		<p>
-			Notice that none of these operations changed the original vector unless you assigned the result back to it. Writing <pf>v + 10</pf> produces a new vector but leaves <pf>v</pf> alone; writing <pf>v = v + 10</pf> replaces <pf>v</pf> with the shifted version. This is the same rule that applies to scalar assignment — it is easy to forget when a whole vector is involved.
+			Notice that none of these operations changed the original vector unless you assigned the result back to it. Writing <pf>v + 10</pf> produces a new vector but leaves <pf>v</pf> alone; writing <pf>v = v + 10</pf> replaces <pf>v</pf> with the shifted version.
 		</p>
 
 	</subsection>
@@ -68,51 +68,142 @@
 		<title>Element-wise Operations</title>
 
 		<p>
-			The same idea extends to combining two vectors. If <pf>v</pf> and <pf>w</pf> are vectors of the same length, MATLAB can add them, subtract them, multiply them, or divide them element by element — meaning the operation is applied to matching pairs of values, one from each vector.
+			The same idea extends to combining two vectors. If <pf>v</pf> and <pf>w</pf> are vectors of the same length, MATLAB can add them, subtract them, multiply them, or divide them element by element. This means that the operation is applied to only the values that share the same position.
 		</p>
 
 		<p>
-			Addition and subtraction look exactly like you would expect:
+			Addition and subtraction already do this by default:
 		</p>
 
-		<sage language="octave">
-			<input>
-				v = [1, 2, 3, 4]
-				w = [10, 20, 30, 40]
-				v + w
-				w - v
-			</input>
-		</sage>
+		<sidebyside>
+			<tabular halign="center" bottom="minor" left="minor" right="minor">
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<row header="yes" bottom="none" left="none">
+					<cell colspan="7" right="none"><pf>+</pf> Addition</cell>
+				</row>
+				<row bottom="none" left="none">
+					<cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>10</pf></cell><cell bottom="none"/><cell><pf>1</pf></cell><cell bottom="none"/><cell><pf>10+1</pf></cell><cell bottom="none"/><cell><pf>11</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>20</pf></cell><cell bottom="none"><pf>+</pf></cell><cell><pf>2</pf></cell><cell bottom="none"><m>\to</m></cell><cell><pf>20+2</pf></cell><cell bottom="none"><m>=</m></cell><cell><pf>22</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>30</pf></cell><cell bottom="none"/><cell><pf>3</pf></cell><cell bottom="none"/><cell><pf>30+3</pf></cell><cell bottom="none"/><cell><pf>33</pf></cell>
+				</row>
+			</tabular>
+			<tabular halign="center" bottom="minor" left="minor" right="minor">
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<row header="yes" bottom="none" left="none">
+					<cell colspan="7" right="none"><pf>-</pf> Subtraction</cell>
+				</row>
+				<row bottom="none" left="none">
+					<cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>10</pf></cell><cell bottom="none"/><cell><pf>1</pf></cell><cell bottom="none"/><cell><pf>10-1</pf></cell><cell bottom="none"/><cell><pf>9</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>20</pf></cell><cell bottom="none"><pf>-</pf></cell><cell><pf>2</pf></cell><cell bottom="none"><m>\to</m></cell><cell><pf>20-2</pf></cell><cell bottom="none"><m>=</m></cell><cell><pf>18</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>30</pf></cell><cell bottom="none"/><cell><pf>3</pf></cell><cell bottom="none"/><cell><pf>30-3</pf></cell><cell bottom="none"/><cell><pf>27</pf></cell>
+				</row>
+			</tabular>
+		</sidebyside>
 
 		<p>
-			The first call returns <pf>[11, 22, 33, 44]</pf> — the first element of <pf>v</pf> paired with the first element of <pf>w</pf>, the second with the second, and so on. Subtraction works the same way.
+			Multiplication, division, and exponentiation are where MATLAB does something that will look unusual at first. To multiply two vectors element by element, you have to place a period in front of the asterisk: <pf>.*</pf>, instead of plain <pf>*</pf>:
 		</p>
 
-		<p>
-			Multiplication, division, and exponentiation are where MATLAB does something that will look unusual at first. To multiply two vectors element by element, you have to write <pf>.*</pf> — a period in front of the asterisk — instead of plain <pf>*</pf>:
-		</p>
+		<sidebyside>
+			<tabular halign="center" bottom="minor" left="minor" right="minor">
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<row header="yes" bottom="none" left="none">
+					<cell colspan="7" right="none"><pf>.*</pf> Multiplication</cell>
+				</row>
+				<row bottom="none" left="none">
+					<cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>10</pf></cell><cell bottom="none"/><cell><pf>1</pf></cell><cell bottom="none"/><cell><pf>10*1</pf></cell><cell bottom="none"/><cell><pf>10</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>20</pf></cell><cell bottom="none"><pf>.*</pf></cell><cell><pf>2</pf></cell><cell bottom="none"><m>\to</m></cell><cell><pf>20*2</pf></cell><cell bottom="none"><m>=</m></cell><cell><pf>40</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>30</pf></cell><cell bottom="none"/><cell><pf>3</pf></cell><cell bottom="none"/><cell><pf>30*3</pf></cell><cell bottom="none"/><cell><pf>90</pf></cell>
+				</row>
+			</tabular>
+			<tabular halign="center" bottom="minor" left="minor" right="minor">
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<row header="yes" bottom="none" left="none">
+					<cell colspan="7" right="none"><pf>./</pf> Division</cell>
+				</row>
+				<row bottom="none" left="none">
+					<cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>10</pf></cell><cell bottom="none"/><cell><pf>1</pf></cell><cell bottom="none"/><cell><pf>10/1</pf></cell><cell bottom="none"/><cell><pf>10</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>20</pf></cell><cell bottom="none"><pf>./</pf></cell><cell><pf>2</pf></cell><cell bottom="none"><m>\to</m></cell><cell><pf>20/2</pf></cell><cell bottom="none"><m>=</m></cell><cell><pf>10</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>30</pf></cell><cell bottom="none"/><cell><pf>3</pf></cell><cell bottom="none"/><cell><pf>30/3</pf></cell><cell bottom="none"/><cell><pf>10</pf></cell>
+				</row>
+			</tabular>
+		</sidebyside>
 
-		<sidebyside widths="38% 58%">
-			<stack>
-				<p>Command ⤵︎</p>
-				<program language="matlab">
-					v = [1, 2, 3, 4]
-					w = [10, 20, 30, 40]
-					v .* w
-					w ./ v
-					v .^ 2
-				</program>
-			</stack>
-			<stack>
-				<p>Result ⤵︎</p>
-				<program language="matlab">
-					v = [1, 2, 3, 4]
-					w = [10, 20, 30, 40]
-					  = [10, 40, 90, 160]
-					  = [10, 10, 10, 10]
-					  = [1, 4, 9, 16]
-				</program>
-			</stack>
+		<sidebyside>
+			<tabular halign="center" bottom="minor" left="minor" right="minor">
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<col width="5%" top="none"/>
+				<col width="5%"/>
+				<row header="yes" bottom="none" left="none">
+					<cell colspan="7" right="none"><pf>.^</pf> Exponentiation</cell>
+				</row>
+				<row bottom="none" left="none">
+					<cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/><cell right="none"/><cell bottom="minor" right="none"/>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>10</pf></cell><cell bottom="none"/><cell><pf>1</pf></cell><cell bottom="none"/><cell><pf>10^1</pf></cell><cell bottom="none"/><cell><pf>10</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>20</pf></cell><cell bottom="none"><pf>.^</pf></cell><cell><pf>2</pf></cell><cell bottom="none"><m>\to</m></cell><cell><pf>20^2</pf></cell><cell bottom="none"><m>=</m></cell><cell><pf>400</pf></cell>
+				</row>
+				<row>
+					<cell bottom="minor" right="minor"><pf>30</pf></cell><cell bottom="none"/><cell><pf>3</pf></cell><cell bottom="none"/><cell><pf>30^3</pf></cell><cell bottom="none"/><cell><pf>27000</pf></cell>
+				</row>
+			</tabular>
 		</sidebyside>
 
 		<p>
@@ -126,13 +217,6 @@
 				<li><pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> need the dot to signal element-wise.</li>
 			</ul>
 		</p>
-
-		<aside>
-			<title>A point of cross-language friction</title>
-			<p>
-				Most other languages use plain <pf>*</pf> for element-wise multiplication and provide a separate function for matrix multiplication — NumPy, for example, uses <pf>*</pf> for element-wise and <pf>@</pf> for matrix multiplication. MATLAB makes the opposite choice: plain <pf>*</pf> is matrix multiplication, and element-wise requires the dot. Neither convention is more correct, but forgetting the dot is one of the most common mistakes when writing MATLAB code.
-			</p>
-		</aside>
 
 		<p>
 			One more thing to watch for: element-wise operations require the two vectors to be the <em>same size</em>. Trying to add a 4-element vector to a 5-element vector is an error, because there is no matching element to pair with. The same rule applies to <pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> when both sides are vectors.
@@ -159,64 +243,57 @@
 		</sage>
 
 		<p>
-			The result is <pf>[1, 2, 3, 4, 5]</pf> — the square root of each element. No loop, no dot operator, no special syntax. You call the function exactly the way you would call it on a single number, and MATLAB handles the rest.
+			The result is the square root of each element: <pf>[1, 2, 3, 4, 5]</pf>. No loop is needed. You call the function exactly the way you would call it on a single number, and MATLAB handles the rest.
 		</p>
 
 		<p>
 			Here are a few more examples using functions you have seen before:
 		</p>
 
-		<sidebyside widths="38% 58%">
+		<sidebyside widths="48% 50%">
 			<stack>
 				<p>Command ⤵︎</p>
 				<program language="matlab">
-					x = [0, pi/2, pi, 3*pi/2, 2*pi]
-					sin(x)
-					v = [-3, -1, 0, 2, 5]
-					abs(v)
+					x = [0, pi/2, pi, 2*pi]
+					y = sin(x)
+					u = [-3, -1, 0, 2, 5]
+					v = abs(u)
 					w = [1.2, 2.7, 3.5, 4.9]
-					round(w)
+					z = round(w)
 				</program>
 			</stack>
 			<stack>
 				<p>Result ⤵︎</p>
 				<program language="matlab">
-					x = [0, 1.5708, 3.1416, 4.7124, 6.2832]
-					  = [0, 1, 0, -1, 0]
-					v = [-3, -1, 0, 2, 5]
-					  = [3, 1, 0, 2, 5]
+					x = [0, 1.5708, 3.1416, 6.2832]
+					y = [0, 1, 0, -1, 0]
+					u = [-3, -1, 0, 2, 5]
+					v = [3, 1, 0, 2, 5]
 					w = [1.2, 2.7, 3.5, 4.9]
-					  = [1, 3, 4, 5]
+					z = [1, 3, 4, 5]
 				</program>
 			</stack>
 		</sidebyside>
 
 		<p>
-			Each function is applied independently to every element, and the result is a vector of the same size as the input. This behavior is not special to a handful of functions — it is the default for nearly every built-in math function in MATLAB, including <pf>cos</pf>, <pf>tan</pf>, <pf>exp</pf>, <pf>log</pf>, <pf>floor</pf>, <pf>ceil</pf>, and many more.
+			Each function is applied independently to every element, and the result is a vector of the same size as the input. This behavior is the default for nearly every built-in math function in MATLAB, including <pf>cos</pf>, <pf>tan</pf>, <pf>exp</pf>, <pf>log</pf>, <pf>floor</pf>, <pf>ceil</pf>, and many more.
 		</p>
 
-		<aside>
-			<title>What about functions you write yourself?</title>
-			<p>
-				A function you wrote in the previous chapter to operate on a scalar will <em>sometimes</em> work on a vector without any changes, and sometimes not — it depends entirely on what operators you used inside. A function whose body is <pf>y = x^2 + 1</pf> will fail on a vector because of the plain <pf>^</pf>; rewriting it as <pf>y = x.^2 + 1</pf> makes it work on both scalars and vectors. Writing functions that work on both is a useful habit, and most of the exercises in this chapter will ask you to do exactly that.
-			</p>
-		</aside>
-
 		<p>
-			Between scalar–vector operations, element-wise operations, and broadcasting functions, you have three different ways to transform a vector without writing a loop. The next subsection introduces a fourth kind of operation — one that does not transform the vector but instead reduces it to a single number.
+			You now have three different ways to transform a vector into another vector without writing a loop. The next subsection introduces a fourth kind of operation: one that does not transform the vector but instead reduces it to a single number.
 		</p>
 
 	</subsection>
 
 	<subsection xml:id="subsec-aggregate-functions">
-		<title>Reducing a Vector to One Number</title>
+		<title>Reducing a Vector to a Number</title>
 
 		<p>
-			The operations and functions you have seen so far all <em>transform</em> a vector — they take a vector and return another vector of the same size. There is a second, equally important kind of operation: one that takes a vector and returns a single number. These are called <term>aggregate</term> or <term>reduction</term> operations, because they reduce a whole collection of values down to one.
+			The operations and functions you have seen so far take a vector and return another vector of the same size. There is a second, equally important kind of operation: one that takes a vector and returns a single number. These are called <term>aggregate</term> operations, because they reduce a whole set of values down to one.
 		</p>
 
 		<p>
-			MATLAB provides a small handful of built-in aggregate functions, and they work exactly the way you would hope:
+			MATLAB provides a handful of built-in aggregate functions, and they work exactly the way you would hope:
 		</p>
 
 		<sage language="octave">
@@ -231,11 +308,11 @@
 		</sage>
 
 		<p>
-			Each one takes the whole vector and returns a single answer: <pf>sum</pf> adds the elements together, <pf>prod</pf> multiplies them, <pf>max</pf> and <pf>min</pf> return the largest and smallest, and <pf>mean</pf> returns the arithmetic average. None of them require a loop, and none of them care how long the input vector is — they handle a vector with three elements the same way they handle a vector with three million.
+			Each one takes the whole vector and returns a single answer: <pf>sum</pf> adds the elements together, <pf>prod</pf> multiplies them, <pf>max</pf> and <pf>min</pf> return the largest and smallest, and <pf>mean</pf> returns the arithmetic average. None of them require a loop, and none of them care how long the input vector is. They handle a vector with three elements the same way they handle a vector with three million.
 		</p>
 
 		<p>
-			These functions are where vectorization really starts to feel transformative. Many of the loops you wrote in the previous chapter — running totals, factorials, finding the largest element, computing an average — collapse into a single function call:
+			These functions are where vectorization really starts to feel transformative. Many of the loops you wrote in the previous chapter collapse into a single line. For example, here are two ways to compute the sum of the first 97 integers:
 		</p>
 
 		<sidebyside widths="48% 48%">
@@ -243,7 +320,7 @@
 				<p>With a loop ⤵︎</p>
 				<program language="matlab">
 					total = 0;
-					for i = 1:5
+					for i = 1:97
 						total = total + i;
 					end
 				</program>
@@ -251,25 +328,21 @@
 			<stack>
 				<p>With an aggregate function ⤵︎</p>
 				<program language="matlab">
-					total = sum(1:5);
+					total = sum(1:97);
 				</program>
 			</stack>
 		</sidebyside>
 
 		<p>
-			Both produce <pf>total = 15</pf>. The loop version is six lines that have to be read carefully; the aggregate version is one line that says exactly what it does. For the kinds of calculations that aggregate functions handle, the one-line form is almost always the right choice.
+			Both produce <pf>total = 4753</pf>, but the aggregate version is one line and very easy to understand what the code is doing.
 		</p>
 
 		<aside>
 			<title>Why write your own when these exist?</title>
 			<p>
-				The exercises in this chapter will ask you to write functions like <pf>mySum</pf>, <pf>myMax</pf>, and <pf>myMean</pf> from scratch using a loop, even though MATLAB already provides <pf>sum</pf>, <pf>max</pf>, and <pf>mean</pf>. The point is not that the built-ins are insufficient — they are excellent and you should use them in real code. The point is that understanding <em>how</em> a reduction works, by building one yourself, makes you a stronger programmer in any language. Once you have written <pf>mySum</pf> by hand, you will never again be confused about what <pf>sum</pf> is doing under the hood, and the same intuition transfers directly to similar functions in Python, R, Julia, and elsewhere.
+				The exercises in this chapter will ask you to write functions like <pf>mySum</pf>, <pf>myMax</pf>, and <pf>myMean</pf> from scratch using a loop, even though MATLAB already provides <pf>sum</pf>, <pf>max</pf>, and <pf>mean</pf>. The point is not that the built-ins are insufficient. On the contrary, they are excellent and you should use them in real code. The point is that by building one yourself, you become a stronger programmer. Once you have written <pf>mySum</pf> by hand, you will never again be confused about what <pf>sum</pf> is doing under the hood.
 			</p>
 		</aside>
-
-		<p>
-			Aggregate functions complete the picture for this section. You now have four ways to operate on a whole vector at once: scalar–vector operations, element-wise vector–vector operations, broadcasting functions that transform every element, and aggregate functions that reduce every element to a single answer. Between them, an enormous range of calculations can be expressed without writing a single loop.
-		</p>
 
 	</subsection>
 

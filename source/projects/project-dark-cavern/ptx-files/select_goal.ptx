@@ -1,0 +1,94 @@
+<!--META-DATA
+{
+	tags: vector,
+}
+-->
+
+<statement>
+<p>
+	It must be an open path (&lt;pf&gt;0&lt;/pf&gt;). It cannot be the same as the player&#x27;s starting position.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>data</pf> (10x10 matrix) number — representing the maze, where 1 is a wall, and 0 is an open path.</p>
+			<p><pf>start</pf> (1x2 row vector) double vector — representing the player's current (row &amp; column) position in the maze.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>goal</pf> (1x2 row vector) double vector — representing the randomly selected goal (row &amp; column) position.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The goal should be located on an open path (</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>), and it is different from the player's starting position.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The function randomly selects a row and a column in the maze using MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>randi</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>function.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>When you complete this program, make sure to update your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>HW3P6_initialize_game</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>code so that it calls this function.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Use the commands below to test your code.
+		maze = [
+		1 1 1 1 1 1 1 1 1 1;
+		1 0 0 0 1 0 0 0 0 1;
+		1 0 1 0 1 0 1 1 0 1;
+		1 0 1 0 0 0 0 1 0 1;
+		1 0 1 1 1 1 0 1 0 1;
+		1 0 0 0 0 1 0 0 0 1;
+		1 0 1 1 0 1 1 1 0 1;
+		1 0 1 0 0 0 0 1 0 1;
+		1 0 0 0 1 0 0 0 0 1;
+		1 1 1 1 1 1 1 1 1 1
+		];
+		start = [2, 2];
+		goal =
+		select_goal
+		(maze, start)
+		select_goal
+		% returns goal =
+		7     2
+		maze.goal
+	</code>
+</program>
+</p>
+</statement>

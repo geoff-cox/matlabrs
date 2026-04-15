@@ -1,0 +1,56 @@
+<!--META-DATA
+{
+	"tags": ["dice", "poker", "reroll-policy", "function", "selection-mask", "helper-compatibility"]
+}
+-->
+
+<statement>
+	<p>
+		<pf>reroll_base</pf> (matches the earlier dealer policy, formerly <pf>get_dealer_reroll</pf>) is a practical one-pass rule: keep straights; if all dice are singles (no repeats), reroll just the first die to chase improvements; otherwise, reroll all singles using <pf>reroll_singles</pf>.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1x5) integer — current dice (faces 1–6). Preferably sorted by rank.</p>
+				<p><pf>counts</pf> (1x6) integer — face counts from <pf>get_face_counts</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Output:</p></cell>
+			<cell><p><pf>sel</pf> (1x5) logical — <q>true</q> for dice to reroll, per the rule set below.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Decision rule:</p></cell>
+			<cell>
+				<p>▸ If the hand is a straight (detected by <pf>is_straight(roll,counts)</pf>): keep all dice (<pf>sel = false(1,5)</pf>).</p>
+				<p>▸ Else if all dice are singles (<pf>all(counts(roll) == 1)</pf>): reroll only the first die (<pf>sel(1) = true</pf>).</p>
+				<p>▸ Else: call <pf>reroll_singles(roll,counts)</pf> to reroll all singletons and keep any pairs-or-better.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>is_straight</pf>, <pf>reroll_singles</pf>, <pf>get_face_counts</pf>, <pf>sort_by_rank</pf></p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Example:
+		<program>
+			<code>
+				roll   = [2 2 3 5 6];
+				counts = get_face_counts(roll);
+				roll   = sort_by_rank(roll, counts);
+				sel = reroll_base(roll, counts)
+				% Rerolls singles (3,5,6): sel ≈ [0 1 1 1 0]  (ordering depends on sort_by_rank)
+			</code>
+		</program>
+	</p>
+</statement>

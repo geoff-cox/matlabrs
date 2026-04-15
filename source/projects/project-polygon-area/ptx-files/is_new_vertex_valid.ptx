@@ -1,0 +1,74 @@
+<!--META-DATA
+{
+	tags: for, logical, min, find,
+}
+-->
+
+<statement>
+<p>
+	This program determines if the x and y value of the user&#x27;s mouse click is a valid vertex for the polygon. In this case, valid means the new edge formed from the last vertex in the collection to the new vertex would not intersect with any of the current edges of the partially constructed polygon.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>vx</pf> (integer) integer — x-value of a potential new vertex (rounded from the user mouse click).</p>
+			<p><pf>vy</pf> (integer) integer — y-value of a potential new vertex (rounded from the user mouse click).</p>
+			<p><pf>vertices</pf> (1 x N struct with 2 fields) number — structure array containing a complete or partial set of the vertices (x and y-values) of a polygon.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>valid</pf> ( logical) logical — : is <pf>true</pf> if the new mouse click is a valid vertex. Is <pf>false</pf>, otherwise.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>There are two special cases of this program that you should be aware of:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>If there is only one vertex in <pf>vertices</pf>, then any new vertex is valid as long as it is not equal to the first vertex.</li>
+					<li>If there are two or more vertices in <pf>vertices</pf>, then the edge connecting the previous vertex in <pf>vertices</pf> to the new vertex must share a vertex. Keep this in mind when checking if the new edge intersects with any of the current edges of the polygon.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>You may find your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>HW8P2_is_pt_on_line_segment</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>HW8P3_do_line_segments_intersect</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>codes helpful here.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Examples_for_HW8P4.mlx
+	</code>
+</program>
+</p>
+</statement>

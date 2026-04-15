@@ -1,0 +1,78 @@
+<!--META-DATA
+{
+	"tags": ["struct", "initialization", "strings", "unicode"]
+}
+-->
+
+<statement>
+	<p>
+		This helper defines and initializes the default values for the fields of a single Dice Poker hand structure.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell><p><em>None</em></p></cell>
+		</row>
+
+		<row>
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p>
+					<pf>hand</pf> (1x1) struct with fields:
+					<ul>
+						<li><pf>roll1</pf> (1x5) integer — initial roll (<pf>[]</pf>)</li>
+						<li><pf>roll2</pf> (1x5) integer — reroll (<pf>[]</pf>)</li>
+						<li><pf>counts</pf> (1x6) integer  — current roll face counts (<pf>[]</pf>)</li>
+						<li><pf>rid</pf> (1x1) integer  — integer rank ID (<pf>0</pf>)</li>
+						<li><pf>rank1</pf> (1x1) string — text rank for <pf>roll1</pf> (<pf>""</pf>)</li>
+						<li><pf>rank2</pf> (1x1) string — text rank for <pf>roll2</pf> (<pf>""</pf>)</li>
+					</ul>
+				</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Note:</p></cell>
+			<cell>
+				<p>The values in parentheses are the default values for each field. These values will be updated later by your <pf>set_hand_struct</pf> helper.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>
+					▸ This function sets up a clean Dice Poker hand with the default values listed above.
+				</p>
+			</cell>
+		</row>
+
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				aHand = init_hand()
+				% struct with fields:
+				% 
+				%         roll1: []
+				%         roll2: []
+				%        counts: []
+				%           rid: 0
+				%         rank1: ""
+				%         rank2: ""
+			</code>
+		</program>
+		<program>
+			<code>
+				aHand.rid
+				% returns:  0
+			</code>
+		</program>
+	</p>
+</statement>

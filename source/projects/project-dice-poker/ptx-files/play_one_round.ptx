@@ -1,0 +1,102 @@
+<!--META-DATA
+{
+	"tags": ["game-mechanics", "struct", "functions", "reroll", "display", "winner-decision"]
+}
+-->
+
+<statement>
+	<p>
+		Plays one complete round of Dice Poker between the dealer and the player. This function manages all rolls, re-roll selections, game display, and winner determination.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell><p><pf>game</pf> (1 x 1) struct — the current game state structure, as returned by <pf>init_game</pf>.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Outputs:</p></cell>
+			<cell><p><pf>game</pf> (1 x 1) struct — updated game state structure.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>
+					▸ Before starting a round, reset the player and dealer's hand structures to the default values.
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Then, this function executes the following phases:
+					<ol marker="(1)">
+						<li>Dealer's Initial roll</li>
+						<li>Player's Initial roll</li>
+						<li>Dealer's Selection</li>
+						<li>Dealer's Reroll</li>
+						<li>Player's Selection</li>
+						<li>Player's Reroll</li>
+						<li>Determine Winner</li>
+					</ol>
+					See the resource <q><xref ref="dice-poker-typical-round" text="title"/></q> for more details.
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Each phase should update a field of the game structure followed by a call your <pf>display_game_area</pf> helper.
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Conclude each phase with a prompt for the player to press enter:
+					<program>
+						<code>
+							input("Press ENTER to continue.")
+						</code>
+					</program>
+					This pauses the code until ENTER is pressed and triggers a new phase to begin.
+				</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ You can see a full round in action by downloading this <url href="https://drive.google.com/file/d/1TeCud5wxqK5zdvGPkfunNJOmgYXhuwEB/view?usp=drive_link"><c>play_one_round</c> demo</url> and running it in MATLAB.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>init_hand</pf>, <pf>roll_dice</pf>, <pf>set_hand_struct</pf>, <pf>get_dealer_reroll</pf>, <pf>get_player_reroll</pf>, <pf>display_game_area</pf>, <pf>get_winner</pf></p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				game = init_game();  % One-round game initialization
+				game = play_one_round(game);
+				% Does it play without error?
+				% Does it mimic the provided demo?
+				% The input game struct enters as a blank slate. Are the fields of the
+				%     output game struct filled-in with the results of the game?
+			</code>
+		</program>
+	</p>
+</statement>

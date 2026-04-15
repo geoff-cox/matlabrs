@@ -1,0 +1,76 @@
+<!--META-DATA
+{
+	"tags": ["monte-carlo", "expected-value", "random-sum", "simulation", "function"]
+}
+-->
+
+<statement>
+	<p>
+		This function estimates the expected number of uniform random draws required for their cumulative sum to exceed a target value <m>N</m>, using Monte Carlo simulation.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>N</pf> (1 x 1) double — target sum threshold.</p>
+				<p><pf>trials</pf> (1 x 1) integer — number of Monte Carlo simulations to run.</p>
+				<p><pf>seed</pf> (optional, 1 x 1 integer) — random number generator seed for reproducibility.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>avg_count</pf> (1 x 1) double — estimated average number of random draws required for the cumulative sum to reach or exceed <pf>N</pf>.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ For each trial, random values between 0 and 1 are drawn repeatedly using <pf>rand</pf> and accumulated into a running sum <pf>s</pf>.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The number of draws <pf>c</pf> required for <pf>s</pf> to exceed <pf>N</pf> is recorded.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ After all <pf>trials</pf> are completed, the mean of all counts provides an estimate of the expected number of draws, <pf>avg_count</pf>.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Notes:</p></cell>
+			<cell>
+				<p>▸ If <pf>seed</pf> is provided, the random number generator is initialized with <pf>rng(seed,'twister')</pf> for reproducibility.</p>
+				<p>▸ The expected count grows roughly linearly with <pf>N</pf>, since each random draw has an average value of 0.5, implying <m>\mathbb{E}[c] \approx 2N</m> for large <pf>N</pf>.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: Estimate expected count for sum to exceed 1
+				avg_count = mc_sum_until_N(1, 10000)
+				% returns a value close to 2.72
+			</code>
+		</program>
+
+		<program>
+			<code>
+				% Example 2: Reproducible simulation with fixed seed
+				avg_count = mc_sum_until_N(3, 1e5, 42)
+				% returns approximately 6.0
+			</code>
+		</program>
+	</p>
+</statement>

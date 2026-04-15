@@ -1,0 +1,121 @@
+<!--META-DATA
+{
+	tags: ["geometry", "if", "round", "struct", "for", "while"],
+}
+-->
+
+<statement>
+	<p>
+		Return a structure of line objects, each computed from two given points.
+	</p>
+
+	<p>
+		For each line you will be given two points <m>(x_1, y_1)</m> and <m>(x_2, y_2)</m>. Determine:
+		<ul>
+			<li>the slope,</li>
+			<li>the y-intercept,</li>
+			<li>the x-intercept,</li>
+			<li>whether it is horizontal,</li>
+			<li>whether it is vertical, and</li>
+			<li>the equation of the line.</li>
+		</ul>
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>points_on_lines</pf> (n x 4) double matrix where each row is the <m>x</m> &amp; <m>y</m> coordinates of the two points on each line: <m>[x_1\ y_1\ x_2\ y_2]</m></p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p>
+					<pf>line_library</pf> (n x 1) struct where <pf>line_library(k)</pf> corresponds to the k-th line in <pf>points_on_lines</pf> and is a struct with fields:
+					<ul>
+						<li><pf>point_1</pf> (1 x 2) double vector — first point on line k</li>
+						<li><pf>point_2</pf> (1 x 2) double vector — second point on line k</li>
+						<li><pf>slope</pf> (1 x 1) double — slope of line k</li>
+						<li><pf>y_intercept</pf> (1 x 1) double — y intercept of line k</li>
+						<li><pf>x_intercept</pf> (1 x 1) double — x intercept of line k</li>
+						<li><pf>ishorizontal</pf> (1 x 1) logical — <pf>true</pf> if line k is horizontal</li>
+						<li><pf>isvertical</pf> (1 x 1) logical — <pf>true</pf> if line k is vertical</li>
+						<li><pf>equation</pf> (1 x m) char vector — equation of line k</li>
+					</ul>
+				</p>
+			</cell>
+		</row>
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>Each input row corresponds to one line and encodes its two points.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>Scan each row, compute the requested fields, and add a <pf>line_i</pf> field to the output struct.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>Handle horizontal, vertical, and standard cases separately.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p><em>Horizontal case:</em> <pf>x_intercept = []</pf> if not on the x-axis; <pf>x_intercept = inf</pf> if on the x-axis. Equation: <pf>'y = y_intercept'</pf>.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p><em>Vertical case:</em> <pf>y_intercept = []</pf> if not on the y-axis; <pf>y_intercept = inf</pf> if on the y-axis. Equation: <pf>'x = x_intercept'</pf>.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>The field <pf>equation</pf> contains a char vector of the form <pf>'y = mx + b'</pf>, where <pf>m</pf> and <pf>b</pf> should be replaced with there corresponding numeric values rounded to two decimals.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>For the <pf>equation</pf> string, round the slope and y-intercept to two decimal places; do not round the numeric <pf>slope</pf> field itself.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>Avoid extra “prettifying” (e.g., do not suppress <pf>+ 0</pf> in the equation).</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				line_library = line_library([1 1 2 1; 9 5 2 -1]);
+				% line_library is a struct with fields line_1, line_2
+				% For inspection:
+				line_library.line_1
+				% Expected (horizontal line through y=1):
+				% point_1: [1 1]
+				% point_2: [2 1]
+				% slope: 0
+				% y_intercept: 1
+				% horizontal: 1
+				% vertical: 0
+				% x_intercept: []
+				% equation: 'y = 1'
+			</code>
+		</program>
+	</p>
+</statement>

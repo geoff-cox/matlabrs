@@ -1,0 +1,120 @@
+<!--META-DATA
+{
+	tags: for, vector,
+}
+-->
+
+<statement>
+<p>
+	This function visually displays the maze&#x27;s current state in the command window console. It displays the maze grid with walls, open paths, and the player&#x27;s current position.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>maze</pf> number — - A structure that contains:</p>
+			<p><pf>data</pf> (10x10 matrix) number — : (10x10 matrix) representing the maze, which <pf>1</pf> indicates a wall and <pf>0</pf> an open path.</p>
+			<p><pf>goal</pf> (1x2 row vector) double vector — : (1x2 row vector) containing the row &amp; column of the goal space.</p>
+			<p><pf>player</pf> number — - A structure that contains:</p>
+			<p><pf>position</pf> (row &amp; column) number — : A 1x2 array representing the player's current (row &amp; column) position.</p>
+			<p><pf>moves</pf> number — : A counter for the number of moves the player has made.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>fprintf</pf> number — This function does not return any output. Instead, it directly prints the maze to the console using <pf>fprintf</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Begin by clearing the console using the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>clc</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>command to provide a clean display every time the maze is updated.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use a double</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>for</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>loop to iterate over each element of the maze's 2D matrix.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>For each element at the position</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>(i, j)</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>, the function checks its value:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>If it matches the player's current position, it prints <pf>':)'</pf> to represent the player.</li>
+					<li>If it's a wall (<pf>1</pf>), it prints <pf>'##'</pf> to represent a wall.</li>
+					<li>If it's an open path (<pf>0</pf>), it prints a double-space <pf>' '</pf> to represent an empty path.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>We use double characters because they result in an output closer to a 1:1 aspect ratio. Single characters make the maze look too skinny.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Use the commands below to test your code.
+		maze.data = [
+		1 1 1 1 1 1 1 1 1 1;
+		1 0 0 0 1 0 0 0 0 1;
+		1 0 1 0 1 0 1 1 0 1;
+		1 0 1 0 0 0 0 1 0 1;
+		1 0 1 1 1 1 0 1 0 1;
+		1 0 0 0 0 1 0 0 0 1;
+		1 0 1 1 0 1 1 1 0 1;
+		1 0 1 0 0 0 0 1 0 1;
+		1 0 0 0 1 0 0 0 0 1;
+		1 1 1 1 1 1 1 1 1 1
+		];
+		player.position = [4, 5];
+		display_maze
+		(maze, player);
+		display_maze
+		% returns ####################
+		##      ##        ##
+		##  ##  ##  ####  ##
+		##  ##  :)    ##  ##
+		##  ########  ##  ##
+		##        ##      ##
+		##  ####  ######  ##
+		##  ##        ##  ##
+		##      ##        ##
+		####################
+	</code>
+</program>
+</p>
+</statement>

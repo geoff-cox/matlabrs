@@ -1,0 +1,437 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 5 - F23</title>
+</head>
+<body>
+<p>Complete each of the programming and script problems below for homework 5.</p>
+<p>When you have completed these programs, UPLOAD THEM TO THIS ASSIGNMENT.</p>
+<p>A complete submission will include the following files:</p>
+<ul>
+<li><code>HW5P1_better_ai_move_lastname.m</code></li>
+<li><code>HW5P2_my_ai_move_lastname.m</code></li>
+<li><code>HW5P3_pvp_game_loop_lastname.m</code></li>
+<li><code>HW5P4_pve_game_loop_lastname.m</code></li>
+<li><code>HW5P5_eve_game_loop_lastname.m</code></li>
+</ul>
+<p>where <code>lastname</code> should be replaced with your last name.</p>
+<p>Notes:</p>
+<ul>
+<li>Each of these files should contain a single function.&nbsp; So, there should be NO commands above or below the defined function inside the file. However, comments outside the function are ok.</li>
+<li>If you do not use descriptive variable names, you must describe every variable you define with code comments.</li>
+<li>The file names must match the format specified below to grade your programs. Misspellings and/or deviations from the naming convention will lead to errors when I run your code, and I will not manually retype your function names to make them work. So please double-check each file name before uploading them.</li>
+</ul>
+<hr>
+<hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Do not use any built-in MATLAB commands unless specified in the directions of the problem. Here is a list of approved MATLAB built-in functions you are free to use:</p>
+<p><code>length</code>, <code>numel</code>, <code>size</code>, <code>mod</code>, <code>sum</code>, <code>zeros</code>, <code>ones</code>, <code>primes</code>, <code>num2str</code></p>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 1px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; height: 1px; text-align: right; vertical-align: top;">
+<term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 1px;"><code>HW5P1_better_ai_move_lastname</code></td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; height: 1px; text-align: right; vertical-align: top;">
+<term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 1px;">This program returns an AI move to an available space in a Tic-Tac-Toe game based on the following strategy:</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; height: 1px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<em>Priority 1</em>: If a winning move is available, it takes it.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<em>Priority 2</em>: If a winning move for the opposing player is available, it takes it (thus blocking that move).</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<em>Priority 3</em>: It selects a space at random.&nbsp; That is, it uses the <code>dumb_ai_move</code> strategy.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the state of the current tic-tac-toe game.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<code>selection</code> (1 x 1) &nbsp;The absolute index of the chosen space.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; height: 1px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">This is a slightly smarter version of your <code><span>dumb_ai_move</span></code>&nbsp;code.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">If there are multiple winning move spaces available, take the space with the lowest absolute index.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>Examples:&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">Running</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"></td>
+<td style="width: 89.688%; height: 1px;">
+<pre>game_state.data = <code>[ 0 -1  1; ...<br>                   -1  1 -1; ...<br>                    1  1 -1 ]</code>;<br>game_state.player = 1;<br>game_state.empty_space = [1 0 0 0 0 0 0 0 0];<br><code>selection = HW5P1_better_ai_move(game_state)</code></pre>
+</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; height: 1px; vertical-align: top;"></td>
+<td style="width: 89.688%; height: 1px;">should return</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; height: 1px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<code>selection = 1</code>&nbsp; (only choice)</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">Running</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<pre>game_state.data = <code>[ 0  1 -1; ...<br>                    1  1  0; ...<br>                   -1 -1  0 ]</code>;<br>game_state.player = 1;<br>game_state.empty_space = [1 0 0 0 0 1 0 1 0];<br><code>selection = HW5P1_better_ai_move(game_state)</code></pre>
+</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">should return</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<code>selection = 8</code>&nbsp; (winning move for X)</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">Running</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<pre>game_state.data = <code>[ 0  1 -1; ...<br>                    1  1  0; ...<br>                   -1  0 -1 ]</code>;<br>game_state.player = 1;<br>game_state.empty_space = [1 0 0 0 0 1 0 1 0];<br><code>selection = HW5P1_better_ai_move(game_state)</code></pre>
+</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">should return</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<code>selection = 6</code>&nbsp; (both 6 and 8 are winning moves for X; return the smallest)</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">Running</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<pre>game_state.data = <code>[ 1  0 -1; ... <br>                    0  1  0; ...<br>                    0  0  0 ]</code>;<br>game_state.player = -1;<br>game_state.empty_space = [0 1 1 1 0 1 0 1 1];<br><code>selection = HW5P1_better_ai_move(game_state)</code></pre>
+</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">should return</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 1px;">
+<code>selection = 9</code> (O doesn't have a winning move but blocks X's winning move)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 1px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; height: 1px; text-align: right;">
+<term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;"><code>HW5P2_my_ai_move_lastname</code></td>
+</tr>
+<tr style="height: 1px; vertical-align: top;">
+<td style="width: 10.0762%; height: 1px; text-align: right;">
+<term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;">This program returns an AI move to an available space in a Tic-Tac-Toe game based on your chosen strategy.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the state of the current tic-tac-toe game.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>selection</code> (1 x 1) &nbsp;The absolute index of the chosen space.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; height: 1px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">Your grade on this program will be based on how well it does when it competes against the <code>HW5P1_better_ai_move</code> code.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">I will simulate 1000 games against your code and the <code>TTT_ai_move_2</code> strategy.&nbsp; In half of the games, your code will have the first move.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">Do not look up strategies online or ask anyone for help.&nbsp; This should be 100% your own AI strategy for Tic-Tac-Toe.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 1px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; height: 1px; vertical-align: top; text-align: right;">
+<term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;"><code>HW5P3_pvp_game_loop_lastname.m</code></td>
+</tr>
+<tr style="height: 1px; vertical-align: top;">
+<td style="width: 10.0762%; height: 1px; vertical-align: top; text-align: right;">
+<term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;">This program implements the game loop for a player-versus-player (PVP) version of Tic-Tac-Toe.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the <em>initial state</em> of a PVP Tic-Tac-Toe game.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the final<em>&nbsp;state</em> of a PVP Tic-Tac-Toe game.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">Assume the first player is the X player.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">The game loop should repeat at most nine rounds of a Tic-Tac-Toe game.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">Each round should consist of the following tasks:</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<ul>
+<li>Get a <span style="text-decoration: underline;">valid</span> click from a single player,</li>
+<li>Update the game_state structure,</li>
+<li>Update the game interface,</li>
+<li>Check for a winner.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">This program should return an updated <code>game_state</code> structure containing the game's results.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 1px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; height: 1px; vertical-align: top; text-align: right;">
+<term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;"><code>HW5P4_pve_game_loop_lastname</code></td>
+</tr>
+<tr style="height: 1px; vertical-align: top;">
+<td style="width: 10.0762%; height: 1px; vertical-align: top; text-align: right;">
+<term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;">This program implements the game loop for a player-versus-player (PVE) version of Tic-Tac-Toe.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; vertical-align: top; text-align: right;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the <em>initial state</em> of a PVE Tic-Tac-Toe game.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>ai_O_level</code> (1 x 1) character indicating which <code>ai_move</code> code to use for player O.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the final<em>&nbsp;state</em> of a PVE Tic-Tac-Toe game.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">Assume the human player goes first and is the X player.&nbsp; The AI will move as the O player.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">This should be exactly like your <code>HW5P3_pvp_game_loop</code> code, except that instead of getting a mouse-click selection from the O player, your code will get the selection from one of your ai_move codes based on the value of <code>ai_O_level</code>:&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<ul>
+<li>if <code>ai_O_level = '1'</code>, use your <span><code>dumb_ai_move</code> code.</span>
+</li>
+<li>if <code>ai_O_level = '2'</code>, use your <span><code>better_ai_move</code>&nbsp;code.</span>
+</li>
+<li>if <code>ai_O_level = '3'</code>, use your <span><code>my_ai_move</code> code.</span>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 1px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; height: 1px; vertical-align: top; text-align: right;">
+<term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;"><code>HW5P5_eve_game_loop_lastname.m</code></td>
+</tr>
+<tr style="height: 1px; vertical-align: top;">
+<td style="width: 10.0762%; height: 1px; vertical-align: top; text-align: right;">
+<term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 1px;">This program implements the game loop for a player-versus-player (EVE) version of Tic-Tac-Toe.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the <em>initial state</em> of an EVE Tic-Tac-Toe game.&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<code>ai_X_level</code> (1 x 1) character indicating which <code>ai_move</code> code to use for player X.&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<code>ai_O_level</code> (1 x 1) character indicating which <code>ai_move</code> code to use for player O.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">
+<code>state</code> (1 x 1) struct object containing the final<em>&nbsp;state</em> of an EVE Tic-Tac-Toe game.&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">Assume the X player moves first.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 1px;">This should be exactly like your previous two <code>game_loop</code> codes, except here, both players will get their selections from one of your ai_move codes. Both <span><code>ai_move</code> codes </span>are determined the same way as in your <code>pve_game_loop</code> code.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<hr>
+<p>&nbsp;</p>
+<hr>
+<p><strong style="font-family: inherit; font-size: 1.5em; color: var(--ic-brand-font-color-dark);"><span style="font-size: 14pt;">Script Problems</span></term></p>
+<table style="border-collapse: collapse; width: 98.2295%; height: 30px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; height: 1px; text-align: right; vertical-align: top;">
+<term>Function</term>:&nbsp;</td>
+<td style="width: 85.1917%; height: 1px;"><code>tic_tac_toe_lastname.m</code></td>
+</tr>
+<tr style="height: 1px; vertical-align: top;">
+<td style="width: 14.7667%; height: 1px; text-align: right; vertical-align: top;">
+<term>Description</term>:&nbsp;</td>
+<td style="width: 85.1917%; height: 1px;">This program combines all the helper functions written above and in the previous assignment to implement a fully working Tic-Tac-Toe game.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 1px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 85.1917%; height: 1px;">This script should have three main parts:&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 1px;"></td>
+<td style="width: 85.1917%; height: 1px;">
+<term><span style="text-decoration: underline;">Game Setup.</span></term>&nbsp; &nbsp;his section handles the following tasks:&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 1px;"></td>
+<td style="width: 85.1917%; height: 1px;">
+<ul>
+<li>Close any open figures.</li>
+<li>Create the initial game_state structure with all of the default values.</li>
+<li>Ask* the user what type of game will be played.&nbsp; &nbsp;Here are the options:
+<ul>
+<li>Player vs Player (PVP)</li>
+<li>Player vs Environment (PVE)</li>
+<li>Environment vs Environment (EVE)</li>
+</ul>
+</li>
+<li>If PVE is selected, your script should ask the user for the AI level.&nbsp; &nbsp;Here are the level options:
+<ul>
+<li>
+<code>'1'</code> - use your <span><code>dumb_ai_move</code> code.</span>
+</li>
+<li>
+<code>'2'</code> - use your <span><code>better_ai_move</code>&nbsp;code.</span>
+</li>
+<li>
+<code>'3'</code> - use your <span><code>my_ai_move</code> code.</span>
+</li>
+</ul>
+</li>
+<li>If EVE is selected, your script should ask the user for both AI levels.&nbsp; &nbsp;The options are the same as in the PVE version.</li>
+<li>Display the initial game interface.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 12px;"></td>
+<td style="width: 85.1917%; height: 12px;">* Ask your questions using MATLAB's <code>questdlg</code> command. Type <code>doc questdlg</code> into the command window to see an example of its use.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 1px;"></td>
+<td style="width: 85.1917%; height: 1px;">
+<term><span style="text-decoration: underline;">Game Loop.</span></term>&nbsp; &nbsp;his section calls your <code>game_loop</code> code corresponding to the selected version of Tic-Tac-Toe in the Game Setup.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 85.1917%; height: 1px;">
+<span style="text-decoration: underline;"><term>Results.</term></span>&nbsp; &nbsp;This section displays the game's results in the game interface's <code>title</code>.</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 1px;"><term>&nbsp;</term></td>
+<td style="width: 85.1917%; height: 1px;">Once completed, this program should play a complete game of tic-tac-toe.&nbsp;</td>
+</tr>
+<tr style="height: 1px;">
+<td style="width: 14.7667%; text-align: right; vertical-align: top; height: 10px;"><term>FINAL STEPS:&nbsp;</term></td>
+<td style="width: 85.1917%; height: 10px;">Copy and paste all helper functions called by this script at the bottom of this script. Include any functions that are also called from within the helper functions. The order in which you place them does not matter as long as they are all below the script commands.</td>
+</tr>
+<tr>
+<td style="width: 14.7667%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 85.1917%;">In your final submission (within your <code>display_initial_board</code> code), do the following:<br>
+<ul style="list-style-type: square;">
+<li>Set <code>grid off</code> to <code>grid on</code>
+</li>
+<li>Add the following lines of code to turn off the x and y axis:<br>
+<div class="lineNode">
+<div class="rtcContent">
+<div class="lineNode"><code><span>ax = gca; ax.XColor = 'none'; ax.YColor = 'none';</span></code></div>
+</div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<hr>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!--META-DATA
+{
+	"tags": ["dice", "poker", "reroll-policy", "function", "selection-mask", "strategy"]
+}
+-->
+
+<statement>
+	<p>
+		<pf>reroll_str8_chaser</pf> is a straight-chasing policy: it prefers to keep dice that progress toward a straight (1–2–3–4–5 or 2–3–4–5–6), falling back to a greedy policy only when a straight is <q>too far</q> (four or more dice away).
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1x5) integer — current dice (faces 1–6). Preferably sorted by rank.</p>
+				<p><pf>counts</pf> (1x6) integer — face counts from <pf>get_face_counts</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Output:</p></cell>
+			<cell><p><pf>sel</pf> (1x5) logical — <q>true</q> for dice to reroll; duplicates within a potential straight are marked.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Strategy:</p></cell>
+			<cell>
+				<p>▸ Compute how many dice are missing from a low straight (1–5) and a high straight (2–6):</p>
+				<p> <m>\text{miss}_{\text{low}} = 5 - \sum_{f=1}^{5}[\text{counts}(f) &gt; 0]</m>, <m>\text{miss}_{\text{high}} = 5 - \sum_{f=2}^{6}[\text{counts}(f) &gt; 0]</m>.</p>
+				<p>▸ Let <m>\text{miss} = \min(\text{miss}_{\text{low}}, \text{miss}_{\text{high}})</m>. If <m>\text{miss} \ge 4</m>, fall back to <pf>reroll_greedy</pf> (straight is unlikely in one reroll).</p>
+				<p>▸ Otherwise, scan the sorted <pf>roll</pf> and mark repeated values (duplicates) for reroll, keeping a single representative of each distinct face to advance toward a straight.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Notes:</p></cell>
+			<cell>
+				<p>▸ Assumes <pf>roll</pf> is nondecreasing (e.g., via <pf>sort_by_rank</pf>); duplicates are identified by comparing each die to the previous kept value.</p>
+				<p>▸ When the fallback is triggered, behavior mirrors <pf>reroll_greedy</pf>, favoring the current modal face.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>get_face_counts</pf>, <pf>sort_by_rank</pf>, <pf>reroll_greedy</pf></p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Example:
+		<program>
+			<code>
+				roll   = [1 2 2 4 6];
+				counts = get_face_counts(roll);
+				roll   = sort_by_rank(roll, counts);
+				sel = reroll_str8_chaser(roll, counts)
+				% Likely marks the duplicate '2' (and possibly 6) to pursue 1-2-3-4-5.
+			</code>
+		</program>
+	</p>
+</statement>

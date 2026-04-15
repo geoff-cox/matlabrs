@@ -1,0 +1,62 @@
+<!--META-DATA
+{
+	tags: while, for, script,
+}
+-->
+
+<statement>
+<p>
+	Write a script that plays a game of tic-tac-toe with a graphical interface.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>When you click run, your script should perform the following tasks:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>Display welcome message to MATLAB's command window. Use <pf>fprintf.</pf></li>
+					<li>Define your game state variables (examples: <pf>game_state</pf>, <pf>winner</pf>, <pf>player</pf>, <pf>moves</pf>, etc.)</li>
+					<li>Using <pf>input,</pf> prompt the user for the number of players (options: 0,1, or 2). If the number of players is 0, prompt the user to select the AI ability level for X (options: 1, 2, or 3) and then the AI ability level for O (options: 1, 2, or 3). If the number of players is 1, prompt the user to select if they will be X (move first) or O, then prompt them to select the AI ability level for their opponent. If the number of players is 2, no other input is needed and the game should begin.</li>
+					<li>Display blank game interface using a MATLAB figure containing a plot. Here is some example code that you may use figure('Position',[100,100,650,600]); axis([0 5 0 5]); axis equal; plot([2 2],[1 4],'k',[3 3],[1 4],'k',[1 4],[2 2],'k',[1 4],[3 3],'k','LineWidth',3) ax = gca; ax.XColor = 'none'; ax.YColor = 'none';</li>
+					<li>Write a game loop that plays tic-tac-toe according to the user's game selections.</li>
+					<li>When the game is complete, post a message about the outcome of the game in the title of the plot. Use the <pf>title</pf> command.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>If you want a short pause between AI moves in the AI vs AI mode, you can use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p><pf>pause</pf></p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>command.</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>If a player clicks on a space that is either already taken or outside the game area, nothing should happen. This requires a while loop that continues to take mouse clicks until a valid click has been received.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		You can run
+		this code
+		to see a sample script running Tic-Tac-Toe. Just download the file, locate the file inside MATLAB, right-click on the file and select "Run."
+	</code>
+</program>
+</p>
+</statement>

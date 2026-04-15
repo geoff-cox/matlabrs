@@ -1,0 +1,112 @@
+<!--META-DATA
+{
+	tags: indexing,
+}
+-->
+
+<statement>
+<p>
+	Priority 3 : It selects a space at random. That is, it uses the &lt;pf&gt;dumb_ai_move&lt;/pf&gt; strategy.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object containing the state of the current tic-tac-toe game.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>selection</pf> (1 x 1) integer — The absolute index of the chosen space.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>This is a slightly smarter version of your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>dumb_ai_move</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>code.</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>If there are multiple winning move spaces available, take the space with the lowest absolute index.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Running
+		game_state.data =
+		[ 0 -1 1; ...
+		-1 1 -1; ...
+		1 1 -1 ]
+		;
+		game_state.player = 1;
+		game_state.empty_space = [1 0 0 0 0 0 0 0 0];
+		selection = better_ai_move(game_state)
+		[ 0 -1 1; ...
+		-1 1 -1; ...
+		1 1 -1 ]
+		selection = better_ai_move(game_state)
+		should return
+		selection = 1
+		Running
+		game_state.data =
+		[ 0 1 -1; ...
+		1 1 0; ...
+		-1 -1 0 ]
+		;
+		game_state.player = 1;
+		game_state.empty_space = [1 0 0 0 0 1 0 1 0];
+		selection = better_ai_move(game_state)
+		[ 0 1 -1; ...
+		1 1 0; ...
+		-1 -1 0 ]
+		selection = better_ai_move(game_state)
+		should return
+		selection = 8
+		Running
+		game_state.data =
+		[ 0 1 -1; ...
+		1 1 0; ...
+		-1 0 -1 ]
+		;
+		game_state.player = 1;
+		game_state.empty_space = [1 0 0 0 0 1 0 1 0];
+		selection = better_ai_move(game_state)
+		[ 0 1 -1; ...
+		1 1 0; ...
+		-1 0 -1 ]
+		selection = better_ai_move(game_state)
+		should return
+		selection = 6
+		Running
+		game_state.data =
+		[ 1 0 -1; ...
+		0 1 0; ...
+		0 0 0 ]
+		;
+		game_state.player = -1;
+		game_state.empty_space = [0 1 1 1 0 1 0 1 1];
+		selection = better_ai_move(game_state)
+		[ 1 0 -1; ...
+		0 1 0; ...
+		0 0 0 ]
+		selection = better_ai_move(game_state)
+		should return
+		selection = 9
+	</code>
+</program>
+</p>
+</statement>

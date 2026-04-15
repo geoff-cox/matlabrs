@@ -1,0 +1,307 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 5 - F21</title>
+</head>
+<body>
+<p>Complete each of the programming and/or script problems below for homework 5.&nbsp;</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>If a template is provided, you can download it by clicking on the function filename. Otherwise, you must create your own functions from scratch.</p>
+<p>If no examples are given, you should come up with your own examples to test the output of your programs.</p>
+<p><em><term>Do not use any built-in MATLAB commands unless specified in the directions of the problem.</term></em></p>
+<hr><hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 263px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 11px;"><term>Function: <br></term></td>
+<td style="width: 89.8822%; height: 11px;"><code>HW5P1_put_feedback_on_gameboard_lastname.m</code></td>
+</tr>
+<tr style="height: 30px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 10px;"><term>Description:</term></td>
+<td style="width: 89.8822%; height: 10px;">In the color decoder game, after the user completes a guess, they get feedback to help them make their next guess. &nbsp;This feedback comes in the form of small black or white boxes.</td>
+</tr>
+<tr style="height: 42px;">
+<td style="width: 10.0762%; text-align: right; height: 42px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 42px;">
+<ul>
+<li>For every color in the guess that matches a color in the secret code AND is in the correct position, a black box appears on the game board next to the guess.</li>
+<li>Among the remaining colors in the guess, if any match a color in the secret code but are not in the correct position, a white box appears on the game board next to the guess.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">This function places the boxes on the game board.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 17px;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 17px;"><code>current_attempt_num</code> (double) is a number that indicates where the guess is on the game board (and therefore where the feedback should be placed)</td>
+</tr>
+<tr style="height: 30px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 21px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 21px;"><code>num_black_feedback_boxes</code> (double) is a number between 0 and 4 that indicates the number of black feedback boxes that should be added to the game board</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>num_white_feedback_boxes</code> (double) is a number between 0 and 4 that indicates the number of white feedback boxes that should be added to the game board</td>
+</tr>
+<tr style="height: 30px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 15px;"><term>Outputs:</term></td>
+<td style="width: 89.8822%; height: 15px;">none (but the boxes are placed on the game board)</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 11px;"><term>Examples <br></term></td>
+<td style="width: 89.8822%; height: 11px;">INPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 10px;"><code>3,2,1</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 15px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 15px;">Game board:</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 10px; padding-left: 40px;">
+<p><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/Screen%20Shot%202022-10-04%20at%209.21.31%20AM.png" alt="Screen Shot 2022-10-04 at 9.21.31 AM.png" width="319" height="546" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435960" data-api-returntype="File" loading="lazy"></p>
+</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 10px;">INPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 10px;"><code>1,0,2</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 23px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 23px;">Game board:</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 19px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 19px; padding-left: 40px;">
+<p><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/Screen%20Shot%202022-10-04%20at%209.26.12%20AM.png" alt="Screen Shot 2022-10-04 at 9.26.12 AM.png" width="328" height="416" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435958" data-api-returntype="File" loading="lazy"></p>
+</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 456px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; height: 16px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.5029%; height: 16px;"><code>HW5P2_check_game_over_lastname.m</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 17px; vertical-align: top;"><term>Description</term>:</td>
+<td style="width: 89.5029%; height: 17px;">In the color decoder game, there are two ways the game can end.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; vertical-align: top; height: 14px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 14px;">
+<ul>
+<li>The user's guess can match the secret code, and then the game is over and the user wins.</li>
+<li>The user can run out of attempts without ever matching the secret code, in which case the game is over and the user does not win.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 29px;">This function checks the status of the game and determines whether the game is over and whether the user has won.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; vertical-align: top; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.5029%; height: 29px;"><code>current_attempt_num</code> (double) is a number that indicates how many guesses the user has made</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 22px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 22px;"><code>num_attempts</code> (double) is a number that indicates the maximum number of attempts allowed</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 10.4555%; text-align: right; height: 53px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 53px;"><term></term><code>num_black_feedback_boxes</code> (double) is the number of black feedback boxes associated with the current guess; if <code>num_black_feedback_boxes</code> has a value of four, then the user has successfully found the secret code</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"><term>Outputs:</term></td>
+<td style="width: 89.5029%; height: 10px;"><code>is_game_over</code> (boolean) is true (or 1) if the game is over and false (or 0) if the game continues</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.4555%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 29px;"><code>is_winner</code> (boolean) is true (or 1) if the user has matched the secret code and is false (or 0) if the current guess is not correct</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"><term>Comments: <br></term></td>
+<td style="width: 89.5029%; height: 10px;">Note that if <code>is_winner</code> is true, then <code>is_game_over</code> should also be true.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 16px;"><term>Examples <br></term></td>
+<td style="width: 89.5029%; height: 16px;">INPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 10px;"><code>4</code>, <code>6</code>, <code>4</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 13px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 13px;">OUTPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 22px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 22px;"><code>[1, 1]</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 15px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 15px;">INPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 10px;"><code>7</code>, <code>7</code>, <code>4</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 21px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 21px;">OUTPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 24px;"></td>
+<td style="width: 89.5029%; height: 24px;"><code>[1, 1]</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"></td>
+<td style="width: 89.5029%; height: 10px;">INPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"></td>
+<td style="width: 89.5029%; height: 10px;"><code>10</code>, <code>10</code>, <code>2</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 17px;"></td>
+<td style="width: 89.5029%; height: 17px;">OUTPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 12px;"></td>
+<td style="width: 89.5029%; height: 12px;"><code>[1, 0]</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 14px;"></td>
+<td style="width: 89.5029%; height: 14px;">INPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 13px;"></td>
+<td style="width: 89.5029%; height: 13px;"><code>3</code>, <code>10</code>, <code>3</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"></td>
+<td style="width: 89.5029%; height: 10px;">OUTPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"></td>
+<td style="width: 89.5029%; height: 10px;"><code>[0, 0]</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 429px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; height: 10px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 10px;"><code>HW5P3_reveal_the_secret_code.m</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 10px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">This function is used at the end of the "color decoder" game. When the game is over (whether the user wins or loses), the 4-color secret code should be displayed at the top of the game board where initially there are dark grey boxes.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 10px;"><code>secret_code</code> (<img class="equation_image" title="1\times4" src="https://vmi.instructure.com/equation_images/1%255Ctimes4?scale=1" alt="LaTeX: 1\times4" data-equation-content="1\times4" data-ignore-a11y-check="" loading="lazy">) array of doubles; each number in this array is a number between 1 and 6, where each digit represents the corresponding color in <code>color_list</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 18px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 18px;"><code>color_list</code> is a string of 6 letters representing 6 among the standard colors MATLAB recognizes:</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px; padding-left: 40px;"><code>'b'</code> = blue, <code>'k'</code> = black, <code>'r'</code> = red, <code>'g'</code> = green, <code>'y'</code> = yellow, <code>'c'</code> = cyan, <code>'m'</code> = magenta, <code>'w'</code> = white</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>num_attempts</code> (double) is a number that indicates how many attempts the user get (and therefore where the dark grey boxes are positioned)</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 10px;">there are no function outputs; the dark grey boxes on the game board should be replaced with the secret code</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Examples&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">INPUT</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>[3 1 2 2], 'ygrbcm', 5</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">PLOT</td>
+</tr>
+<tr style="height: 318px;">
+<td style="width: 10.2704%; text-align: right; height: 318px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; padding-left: 40px; height: 318px;"><img id="1513923" src="$CANVAS_COURSE_REFERENCE$/file_ref/g7ed4641305fd30e798a1aff050d28616/preview" alt="HW5P3_fig.png" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/18010/files/1515904" data-api-returntype="File" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 204px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code><a id="1513930" class="instructure_file_link inline_disabled" href="$CANVAS_COURSE_REFERENCE$/file_ref/g56e5bb550d45ffd5ab26f082d159ef50?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/18010/files/1515903" data-api-returntype="File">HW5P4_color_decoder_lastname.m</a></code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; height: 10px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 10px;">This function will run the "color decoder" game. You may wish to use some of the functions you've created up to this point.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 10px;"><code>num_attempts</code> (double) is the maximum number of guesses the user is allowed</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>color_list</code> is a string of 6 letters representing 6 among the standard colors MATLAB recognizes:</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px; padding-left: 40px;"><code>'b'</code> = blue, <code>'k'</code> = black, <code>'r'</code> = red, <code>'g'</code> = green, <code>'y'</code> = yellow, <code>'c'</code> = cyan, <code>'m'</code> = magenta, <code>'w'</code> = white</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 10px;">no function outputs</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>Comments:</term></td>
+<td style="width: 89.688%;">Do not attempt to code the entire game at once.&nbsp; Write a line or two of code, then test it, and repeat.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">While you are testing, you might want to keep num_attempts small.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">While you are testing, you might want to reveal the secret code at the top of the game board. &nbsp;This will allow you to be able to visually check whether the feedback is appropriate for the given secret code.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Examples&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><iframe title="YouTube video player" src="https://www.youtube.com/embed/xVuJjUnHx_M" width="560" height="315" loading="lazy" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

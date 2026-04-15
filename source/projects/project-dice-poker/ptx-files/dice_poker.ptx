@@ -1,0 +1,102 @@
+<!--META-DATA
+{
+	"tags": ["game-loop", "struct", "functions", "io", "randomness", "control-flow"]
+}
+-->
+
+<statement>
+	<p>
+		Runs a best-of-N-round game of Dice Poker between a player and a dealer.
+	</p>
+
+	<tabular valign="top" top="minor">
+		<col width="12%"/>
+		<col width="88%"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell><p><em>None.</em></p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell><p><em>None.</em></p></cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ This is the entry point and main driver for your Dice Poker game.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>	▸ It can be broken down into three main sections:
+					<ol marker="I.">
+						<li>
+							<p>
+								Initialization
+								<ul>
+									<li>Set the number of rounds to be played, and</li>
+									<li>Initialize the game structure.</li>
+								</ul>
+							</p>
+						</li>
+						<li>
+							<p>
+								Game Loop (by round)
+								<ul>
+									<li>Use a loop for each round,</li>
+									<li>Update the game structure as necessary between rounds,</li>
+									<li>End the loop early if either the dealer or player was won more than half of the games.</li>
+								</ul>
+							</p>
+						</li>
+						<li>
+							<p>
+								Print the Overall Results
+								<ul>
+									<li>Display the score (number of rounds each player won).</li>
+									<li>Display the overall winner.</li>
+								</ul>
+							</p>
+						</li>
+					</ol>
+
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ To see a full <q>Best-of-3</q> Dice Poker Game, download this <url href="https://drive.google.com/file/d/1-MdJF8KRksg72XvVRjz7Ifaz7-QIATUx/view?usp=drive_link"><c>dice_poker</c> demo</url> and run it in MATLAB.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ This should be a self-contained game, meaning all helper functions that it depends on must be included below the <pf>dice_poker</pf> function within your <pf>dice_poker.m</pf> file.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Before turning this in, move your <pf>dice_poker.m</pf> file to a completely isolated folder on your computer and run it in MATLAB. If it runs without error and as you expect, then you should be good to go.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>init_game</pf>, <pf>play_one_round</pf></p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Start a game.
+				dice_poker()
+				% Does it play without error? Does it mimic the provided demo?
+			</code>
+		</program>
+	</p>
+</statement>
+ 

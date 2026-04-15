@@ -1,0 +1,835 @@
+<section xml:id="dice-poker-introduction"> 
+	<title>Dice Poker 🎲</title>
+
+	<introduction>
+		<p>
+			This section outlines the structure and rules you will implement for a simple Dice Poker program in MATLAB.
+		</p>
+	</introduction>
+
+	<subsection xml:id="dice-poker-ranks">
+		<title>Dice Poker Ranks</title>
+
+		<p>
+			There will be 8 primary ranks in Dice Poker.
+		</p>
+
+		<sidebyside margins="0% 0%">
+			<p>
+				<table xml:id="dice-rank-table">
+					<title>Dice Rank IDs, Names, &amp; Descriptions</title>
+					<tabular bottom="minor" halign="center">
+						<col width = "8%"/>
+						<col width = "34%"/>
+						<col width = "32%"/>
+						<col width = "22%"/>
+						<row>
+							<cell><p>ID</p></cell>
+							<cell><p>Name</p></cell>
+							<cell><p>Description</p></cell>
+							<cell><p>Example</p></cell>
+						</row>
+						<row>
+							<cell><p>1</p></cell>
+							<cell>five-of-a-kind</cell>
+							<cell><p>all five dice show the same face value</p></cell>
+							<cell>
+								<!-- <p> -->
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-1.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+									</sidebyside>
+								<!-- </p> -->
+							</cell>
+						</row>
+						<row>
+							<cell><p>2</p></cell>
+							<cell>four-of-a-kind</cell>
+							<cell><p>four dice show the same face value</p></cell>
+							<cell>
+								<!-- <p> -->
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-5.PNG"/></p>
+									</sidebyside>
+								<!-- </p> -->
+							</cell>
+						</row>
+						<row>
+							<cell><p>3</p></cell>
+							<cell><p>full-house</p></cell>
+							<cell>three-of-a-kind plus a pair</cell>
+							<cell>
+								<!-- <p> -->
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-3.PNG"/></p>
+										<p><image source="figures/die-3.PNG"/></p>
+										<p><image source="figures/die-3.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+									</sidebyside>
+								<!-- </p> -->
+							</cell>
+						</row>
+						<row>
+							<cell><p>4</p></cell>
+							<cell><p>straight</p></cell>
+							<cell><p>five consecutive values (e.g., 1–5 or 2–6)</p></cell>
+							<cell>
+								<!-- <p> -->
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-6.PNG"/></p>
+										<p><image source="figures/die-5.PNG"/></p>
+										<p><image source="figures/die-4.PNG"/></p>
+										<p><image source="figures/die-3.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+									</sidebyside>
+								<!-- </p> -->
+							</cell>
+						</row>
+						<row>
+							<cell><p>5</p></cell>
+							<cell>three-of-a-kind</cell>
+							<cell><p>three dice show the same face value</p></cell>
+							<cell>
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-4.PNG"/></p>
+										<p><image source="figures/die-4.PNG"/></p>
+										<p><image source="figures/die-4.PNG"/></p>
+										<p><image source="figures/die-6.PNG"/></p>
+										<p><image source="figures/die-3.PNG"/></p>
+									</sidebyside>
+							</cell>
+						</row>
+						<row>
+							<cell><p>6</p></cell>
+							<cell><p>two-pair</p></cell>
+							<cell>two distinct pairs</cell>
+							<cell>
+								<!-- <p> -->
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-5.PNG"/></p>
+										<p><image source="figures/die-5.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-3.PNG"/></p>
+									</sidebyside>
+								<!-- </p> -->
+							</cell>
+						</row>
+						<row>
+							<cell><p>7</p></cell>
+							<cell><p>one-pair</p></cell>
+							<cell><p>a single pair</p></cell>
+							<cell>
+								<!-- <p> -->
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-6.PNG"/></p>
+										<p><image source="figures/die-6.PNG"/></p>
+										<p><image source="figures/die-3.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+									</sidebyside>
+								<!-- </p> -->
+							</cell>
+						</row>
+						<row>
+							<cell><p>8</p></cell>
+							<cell><p>singles</p></cell>
+							<cell><p>no other pattern; highest single die decides</p></cell>
+							<cell>
+								<!-- <p> -->
+									<sidebyside widths="16% 16% 16% 16% 16%">
+										<p><image source="figures/die-6.PNG"/></p>
+										<p><image source="figures/die-5.PNG"/></p>
+										<p><image source="figures/die-3.PNG"/></p>
+										<p><image source="figures/die-2.PNG"/></p>
+										<p><image source="figures/die-1.PNG"/></p>
+									</sidebyside>
+								<!-- </p> -->
+							</cell>
+						</row>
+					</tabular>
+				</table>
+			</p>
+		</sidebyside>
+
+
+	</subsection>
+
+	<subsection xml:id="dice-poker-typical-round">
+		<title>Typical Round</title>
+
+		<introduction>
+			<p>
+				A single round of dice poker plays out in the following seven phases:		
+			</p>
+		</introduction>
+
+		<project>
+			<title>Dealer's Initial roll</title>
+			<p>
+				The dealer rolls five 6-sided dice.
+			</p>
+			<tabular halign="center">
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "4%"/>
+				<col width = "14%"/>
+				<row>
+					<cell/>
+					<cell colspan="5"><p>DEALER</p></cell>
+					<cell/>
+					<cell colspan="1"><p>RANK</p></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><p>1</p></cell>
+					<cell><p>2</p></cell>
+					<cell><p>3</p></cell>
+					<cell><p>4</p></cell>
+					<cell><p>5</p></cell>
+					<cell/>
+					<cell/>
+				</row>
+				<row>
+					<cell><p>roll 1</p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-6.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-3.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>One-Pair</p></cell>
+				</row>
+			</tabular>
+			<p>
+				This roll represents the dealer's current <q>hand</q>.
+			</p>
+		</project>
+
+		<project>
+			<title>Player's Initial roll</title>
+			<p>
+				The player rolls five 6-sided dice.
+			</p>
+			<tabular halign="center">
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "4%"/>
+				<col width = "14%"/>
+				<row>
+					<cell/>
+					<cell colspan="5"><p>PLAYER</p></cell>
+					<cell/>
+					<cell colspan="1"><p>RANK</p></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><p>1</p></cell>
+					<cell><p>2</p></cell>
+					<cell><p>3</p></cell>
+					<cell><p>4</p></cell>
+					<cell><p>5</p></cell>
+					<cell/>
+					<cell/>
+				</row>
+				<row>
+					<cell><p>roll 1</p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-1.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>Two-Pair</p></cell>
+				</row>
+			</tabular>
+			<p>
+				This roll represents the player's current <q>hand</q>.
+			</p>
+		</project>
+
+		<project>
+			<title>Dealer Selects Dice to Reroll</title>
+			<p>
+				The dealer selects up to 5 dice to re-roll to improve their roll.
+			</p>
+			<p>
+				The dealer selects to reroll dice in positions 3, 4, and 5.
+			</p>
+		</project>
+
+		<project>
+			<title>Dealer Rerolls chosen Dice</title>
+			<p>
+				Rolling dice in positions 3, 4, and 5, the dealer rolls:
+			</p>
+			<tabular halign="center">
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<row>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-1.PNG"/></p></cell>
+				</row>
+			</tabular>
+			<p>
+				The dealer's first and second rolls are:
+			</p>
+			<tabular halign="center">
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "4%"/>
+				<col width = "14%"/>
+				<row>
+					<cell/>
+					<cell colspan="5"><p>DEALER</p></cell>
+					<cell/>
+					<cell colspan="1"><p>RANK</p></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><p>1</p></cell>
+					<cell><p>2</p></cell>
+					<cell><p>3</p></cell>
+					<cell><p>4</p></cell>
+					<cell><p>5</p></cell>
+					<cell/>
+					<cell/>
+				</row>
+				<row>
+					<cell><p>roll 1</p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-6.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-3.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>Two-Pair</p></cell>
+				</row>
+				<row>
+					<cell><p>roll 2</p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-1.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>Three-of-a-Kind</p></cell>
+				</row>
+			</tabular>
+			<p>
+				The second roll represents the dealer's new current <q>hand</q>.
+			</p>
+		</project>
+
+		<project>
+			<title>Player Selects Dice to Reroll</title>
+			<p>
+				The player selects up to 5 dice to re-roll to improve their roll.
+			</p>
+			<p>
+				The player selects to reroll die in position 5.
+			</p>
+		</project>
+
+		<project>
+			<title>Player Rerolls chosen Dice</title>
+
+			<p>
+				Rolling the die in position 5, the player rolls:
+			</p>
+
+			<tabular halign="center">
+				<col width = "12%"/>
+				<row>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+				</row>
+			</tabular>
+			<p>
+				The player's first and second rolls are:
+			</p>
+			<tabular halign="center">
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "4%"/>
+				<col width = "14%"/>
+				<row>
+					<cell/>
+					<cell colspan="5"><p>PLAYER</p></cell>
+					<cell/>
+					<cell colspan="1"><p>RANK</p></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><p>1</p></cell>
+					<cell><p>2</p></cell>
+					<cell><p>3</p></cell>
+					<cell><p>4</p></cell>
+					<cell><p>5</p></cell>
+					<cell/>
+					<cell/>
+				</row>
+				<row>
+					<cell><p>roll 1</p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-1.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>Two-Pair</p></cell>
+				</row>
+				<row>
+					<cell><p>roll 2</p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>Two-Pair</p></cell>
+				</row>
+			</tabular>
+			<p>
+				The second roll represents the player's new current <q>hand</q>.
+			</p>
+		</project>
+
+		<project>
+			<title>Determine Round Winner</title>
+			<p>
+				To determine a winner, we compare the dealer's and player's second roll. The second roll with the better rank wins.
+			</p>
+			<tabular halign="center">
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "12%"/>
+				<col width = "4%"/>
+				<col width = "14%"/>
+				<row>
+					<cell/>
+					<cell colspan="5"><p>DEALER</p></cell>
+					<cell/>
+					<cell colspan="1"><p>RANK</p></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><p>1</p></cell>
+					<cell><p>2</p></cell>
+					<cell><p>3</p></cell>
+					<cell><p>4</p></cell>
+					<cell><p>5</p></cell>
+					<cell/>
+					<cell/>
+				</row>
+				<row>
+					<cell><p>roll 2</p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-1.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>Three-of-a-Kind</p></cell>
+				</row>
+				<row>
+					<cell><p>roll 2</p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-5.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-4.PNG"/></p></cell>
+					<cell><p><image source="figures/die-2.PNG"/></p></cell>
+					<cell><p>👈</p></cell>
+					<cell><p>Two-Pair</p></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><p>1</p></cell>
+					<cell><p>2</p></cell>
+					<cell><p>3</p></cell>
+					<cell><p>4</p></cell>
+					<cell><p>5</p></cell>
+					<cell/>
+					<cell/>
+				</row>
+				<row>
+					<cell/>
+					<cell colspan="5"><p>PLAYER</p></cell>
+					<cell/>
+					<cell/>
+				</row>
+			</tabular>
+			<p>
+				In this case, the dealer's hand has a better rank, so the dealer wins the round.
+			</p>
+		</project>
+
+	</subsection>
+
+	<subsection xml:id="dice-poker-counts">
+		<title>Face Counts</title>
+
+		<p>
+			A useful piece information in this game will be the counts of each face value in a roll. 
+		</p>
+
+		<p>
+			For example, suppose a roll consists of the following dice:
+		</p>
+
+		<tabular halign="center">
+			<col width = "12%"/>
+			<col width = "12%"/>
+			<col width = "12%"/>
+			<col width = "12%"/>
+			<col width = "12%"/>
+			<row>
+				<cell><p><image source="figures/die-1.PNG"/></p></cell>
+				<cell><p><image source="figures/die-2.PNG"/></p></cell>
+				<cell><p><image source="figures/die-5.PNG"/></p></cell>
+				<cell><p><image source="figures/die-5.PNG"/></p></cell>
+				<cell><p><image source="figures/die-5.PNG"/></p></cell>
+			</row>
+		</tabular>
+
+		<p>
+			In your program, such a roll would be represented as the 1 x 5 vector:
+		</p>
+
+		<program>
+			<code>
+				roll = [1 2 3 3 3]
+			</code>
+		</program>
+
+		<p>
+			Since the roll contains one 1, one 2, zero 3's, zero 4's, three 5's, and zero 6's,  the face value counts for this roll would be given by the 1 x 6 vector:
+		</p>
+
+		<program>
+			<code>
+				counts = [1 1 0 0 3 0]
+				%         1 2 3 4 5 6  &lt;- the indices are the face values
+			</code>
+		</program>
+
+		<p>
+			where the locations/indices are the face values.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="dice-poker-winner">
+		<title>Determining a Winner</title>
+
+		<p>
+			The winner is the roll with the lower (better) rank number in the table above. If the ranks are identical, you must compare appropriate tie-breakers that depend on the shared rank. As a rule of thumb, the more matches of a face value, the more powerful those dice are in breaking ties. 
+		</p>
+
+		<p>
+			The following table summarizes the the tie-breaking strategy. The dice in green determine the winner. 
+		</p>
+
+		<tabular halign="center">
+			<col width = "12%"/>
+			<col width = "50%"/>
+			<col width = "30%"/>
+			<row bottom="minor">
+				<cell><p>TIED RANK</p></cell>
+				<cell><p>TIE-BREAK</p></cell>
+				<cell><p>EXAMPLE</p></cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>five-of-a-kind</p></cell>
+				<cell><p>highest die value wins</p></cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-5-green.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>four-of-a-kind</p></cell>
+				<cell>
+					<p>
+						<line>Highest four-of-a-kind die wins.</line>
+						<line>If still tied, highest single die wins.</line>
+					</p>
+				</cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-4.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>full-house</p></cell>
+				<cell>
+					<p>
+						<line>Highest three-of-a-kind die wins.</line>
+						<line>If still tied, highest pair die wins.</line>
+					</p>
+				</cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-3-green.PNG"/></p>
+							<p><image source="figures/die-3-green.PNG"/></p>
+							<p><image source="figures/die-3-green.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-6.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>straight</p></cell>
+				<cell><p>The 2–6 stright beats the 1–5 straight</p></cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-6-green.PNG"/></p>
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-4.PNG"/></p>
+							<p><image source="figures/die-3.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-4.PNG"/></p>
+							<p><image source="figures/die-3.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>three-of-a-kind</p></cell>
+				<cell>
+					<p>
+						<line>Highest three-of-a-kind die wins.</line>
+						<line>If still tied, highest single die wins.</line>
+					</p>
+				</cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-4.PNG"/></p>
+							<p><image source="figures/die-3-green.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-4.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>two-pair</p></cell>
+				<cell>
+					<p>
+						<line>Highest pair die wins.</line>
+						<line>If still tied, 2nd highest pair die wins.</line>
+						<line>If still tied, highest single die wins.</line>
+					</p>
+				</cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+							<p><image source="figures/die-3.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-3.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>one-pair</p></cell>
+				<cell>
+					<p>
+						<line>Highest pair die wins.</line>
+						<line>If still tied, highest single die wins.</line>
+					</p>
+				</cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-3-green.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-5.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+			<row bottom="minor">
+				<cell><p>singles</p></cell>
+				<cell><p>Highest single die wins.</p></cell>
+				<cell>
+					<p>
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-5-green.PNG"/></p>
+							<p><image source="figures/die-3.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+						</sidebyside>
+						BEATS
+						<sidebyside widths="16% 16% 16% 16% 16%">
+							<p><image source="figures/die-6.PNG"/></p>
+							<p><image source="figures/die-4.PNG"/></p>
+							<p><image source="figures/die-3.PNG"/></p>
+							<p><image source="figures/die-2.PNG"/></p>
+							<p><image source="figures/die-1.PNG"/></p>
+						</sidebyside>
+					</p>
+				</cell>
+			</row>
+		</tabular>
+
+		<example>
+		<p>
+			<em>Full House Scenario (first priority: the triples)</em>
+		</p>
+		<program>
+			<code>
+				dealer = [3 3 3 6 6];   % full house (triple 3s)
+				player = [5 5 5 2 2];   % full house (triple 5s)
+			</code>
+		</program>
+		<p>
+			Both are full houses, but the player’s triple is higher (5s vs 3s), so the player wins.
+		</p>
+		</example>
+
+		<example>
+		<p>
+			<em>Two Pair Scenario (highest pair first)</em>
+		</p>
+		<program>
+			<code>
+				dealer = [6 6 4 4 1];   % two pair (6s and 4s), kicker 1
+				player = [6 6 3 3 5];   % two pair (6s and 3s), kicker 5
+			</code>
+		</program>
+		<p>
+			Both have top pair 6s. Compare the second pair: dealer has 4s vs player’s 3s; dealer wins without checking kickers.
+		</p>
+		</example>
+
+	</subsection>
+
+	<!-- <subsection>
+		<title>Sorting Dice</title>
+		<p>
+
+		</p>
+	</subsection> -->
+
+	<!-- <subsection>
+		<title>Getting a Dealer's Reroll</title>
+		<p>
+
+		</p>
+	</subsection> -->
+
+	<!-- <subsection>
+		<title>Getting a Player's Reroll</title>
+		<p>
+
+		</p>
+	</subsection> -->
+
+</section>

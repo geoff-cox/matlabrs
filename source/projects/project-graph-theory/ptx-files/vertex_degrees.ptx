@@ -1,0 +1,66 @@
+<!--META-DATA
+{
+	tags: for, vector, min, sum,
+}
+-->
+
+<statement>
+<p>
+	This function computes the degree of each vertex in an undirected graph represented by the structure &lt;pf&gt;G&lt;/pf&gt;. The degree of a vertex is the number of edges connected to it.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>G</pf> (struct) number — : A structure representing the graph containing, at minimum, the following fields:</p>
+			<p><pf>G.adj_mat</pf> (n x n) number — : The adjacency matrix of the graph.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>degrees</pf> (n x 1) double vector — : A column vector where each element represents the degree of a corresponding vertex in the graph.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Edges that are loops should only add one degree to a vertex.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>You may use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>sum</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>command for this program.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Command Window Expected Output G.adj_mat = [0 1 0; 1 0 1; 0 1 0]; degrees = HW5P3_vertex_degrees(G); degrees = 1 2 1 G.adj_mat = [1 1 0; 1 0 1; 0 1 0]; degrees = HW5P3_vertex_degrees(G); degrees = 2 2 1 G.adj_mat = [0 0 0; 0 0 0; 0 0 0]; degrees = HW5P3_vertex_degrees(G); degrees = 0 0 0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected Output</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>degrees = 1 2 1</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>degrees = 2 2 1</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>degrees = 0 0 0</p></cell>
+	</row>
+</tabular>
+
+</statement>

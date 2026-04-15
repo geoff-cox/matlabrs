@@ -1,0 +1,51 @@
+<!--META-DATA
+{
+	"tags": ["counts", "histogram", "loops", "indexing"]
+}
+-->
+
+<statement>
+	<p>
+		Counts how many times each die face (1–6) appears in a 5-die roll.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1 x 5) integer vector — roll die face values.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>counts</pf> (1 x 6) integer vector — counts for each die face in <pf>roll</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ None.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				counts = get_face_counts([2 6 6 1 5])
+				% returns counts =  1  1  0  0  1  2
+			</code>
+		</program>
+		<program>
+			<code>
+				counts = get_face_counts([3 3 3 5 5])
+				% returns counts =  0  0  3  0  2  0
+			</code>
+		</program>
+	</p>
+</statement>

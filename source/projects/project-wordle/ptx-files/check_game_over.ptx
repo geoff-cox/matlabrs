@@ -1,0 +1,55 @@
+<!--META-DATA
+{
+	tags: logical, min,
+}
+-->
+
+<statement>
+<p>
+	This function determines whether the game is over and returns two logical variables (one indicating whether the game is over and the other whether the user has won).
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>current_guess</pf> (string) number — is a five-letter guess at the secret word</p>
+			<p><pf>the_wordle_word</pf> (string) number — is a five-letter secret word</p>
+			<p><pf>current_attempt_num</pf> (double) double — is a number that indicates how many guesses the user has made</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>is_game_over</pf> (boolean) number — is true (or 1) if the game is over and false (or 0) if the game continues</p>
+			<p><pf>is_winner</pf> (boolean) number — is true (or 1) if the user has matched the secret code and is false (or 0) if the current guess is not correct</p>
+		</cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		INPUT
+		'MELON','SMART',2
+		OUTPUT
+		[0,0]
+		INPUT
+		'MELON','SMART',6
+		OUTPUT
+		[1,0]
+		INPUT
+		'MELON','MELON',2
+		OUTPUT
+		[1,1]
+		INPUT
+		'MELON','MELON',6
+		OUTPUT
+		[1,1]
+	</code>
+</program>
+</p>
+</statement>

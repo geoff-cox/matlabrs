@@ -1,0 +1,100 @@
+<!--META-DATA
+{
+	"tags": ["vector", "loops", "nearest-values", "pairwise-comparison"],
+}
+-->
+
+<statement>
+	<p>
+		Finds the two values in a list that are closest to each other.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>list</pf> (1 x N) double vector — a list of numbers.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>nearest_values</pf> (1 x 2) double vector — the pair of values in <pf>list</pf> with the smallest absolute difference.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>If <pf>list</pf> has fewer than two elements, return <pf>[]</pf>.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>
+					▸ Scan all pairs of values in <pf>list</pf> and compute their absolute differences. Keep track of the pair with the smallest difference.
+				</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Use nested <pf>while</pf> or <pf>for</pf> loops to code this.
+				</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ If more than one pair of numbers have the same distance, output the first pair found with this distance.
+				</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Challenge: Can you write a program that only computes the distance between pairs once?</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				nearest_values = list_nearest_values([10 4 22 7 5])
+				% returns [4 5]
+			</code>
+		</program>
+		<program>
+			<code>
+				nearest_values = list_nearest_values([100 101 250 500])
+				% returns [100 101]
+			</code>
+		</program>
+		<program>
+			<code>
+				nearest_values = list_nearest_values([4 -2 10 -1 -7 8])
+				% returns [-2 -1]
+			</code>
+		</program>
+		<program>
+			<code>
+				nearest_values = list_nearest_values([-3 0 -3 -3 3 1])
+				% returns [-3 -3]
+			</code>
+		</program>
+		<program>
+			<code>
+				nearest_values = list_nearest_values([42])
+				% returns []
+			</code>
+		</program>
+	</p>
+</statement>
+

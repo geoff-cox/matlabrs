@@ -1,0 +1,115 @@
+<!--META-DATA
+{
+	"tags": ["statistics", "confidence-interval", "proportion", "function", "table"]
+}
+-->
+
+<statement>
+	<p>
+		This function computes and displays a formatted confidence interval table for estimated proportions based on observed category counts. It outputs the proportion, percentage, margin of error, and confidence level for each variable.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>varNames</pf> (m x 1) cell array or string array — names or labels for each category.</p>
+				<p><pf>varCounts</pf> (m x 1) numeric vector — observed counts for each category.</p>
+				<p><pf>N</pf> (1 x 1) integer — total number of observations or trials.</p>
+				<p><pf>CL</pf> (optional, 1 x 1 integer) — desired confidence level (in percent). Default is 95.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p>Displays a MATLAB table with columns:</p>
+				<ul>
+					<li><pf>varNames</pf> — category names.</li>
+					<li><pf>varCounts</pf> — observed counts.</li>
+					<li><pf>pHat</pf> — estimated proportions (rounded to four decimals).</li>
+					<li><pf>pct</pf> — formatted percentage values.</li>
+					<li><pf>marginErr</pf> — confidence interval margin of error (± percentage form).</li>
+					<li><pf>confLvl</pf> — reported confidence level for each row.</li>
+				</ul>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ The function supports confidence levels of 99%, 95%, 90%, 80%, and 70%. The nearest available level is used if <pf>CL</pf> does not exactly match one of these.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The corresponding z-scores are assigned as follows:</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					<sidebyside widths="10% 10% 10% 10% 10%" margins="10% 10%">
+						<p>99% → 2.575</p>
+						<p>95% → 1.960</p>
+						<p>90% → 1.645</p>
+						<p>80% → 1.281</p>
+						<p>70% → 1.036</p>
+					</sidebyside>
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The sample proportions are computed as <m>\hat{p} = \text{varCounts} / N</m>.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The standard error for each estimate is <m>\text{SE} = \sqrt{ \hat{p}(1 - \hat{p}) / N }</m>.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The margin of error is <m>\text{ME} = z \times \text{SE}</m>, and the corresponding interval is <m>\hat{p} \pm \text{ME}</m>.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Notes:</p></cell>
+			<cell>
+				<p>▸ The displayed table summarizes confidence intervals in an easy-to-read format with percentages.</p>
+				<p>▸ The function does not return an output variable; it directly prints the results using <pf>disp</pf>.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: Compute 95% confidence intervals for survey responses
+				varNames  = ["Yes"; "No"; "Undecided"];
+				varCounts = [520; 430; 50];
+				N = sum(varCounts);
+				display_results(varNames, varCounts, N)
+				% Displays table with estimated proportions, margins of error, and 95% CI.
+			</code>
+		</program>
+
+		<program>
+			<code>
+				% Example 2: 99% confidence level for categorical data
+				varNames  = ["Success"; "Failure"];
+				varCounts = [240; 60];
+				display_results(varNames, varCounts, 300, 99)
+				% Displays table using z = 2.575 for 99% confidence level.
+			</code>
+		</program>
+	</p>
+</statement>

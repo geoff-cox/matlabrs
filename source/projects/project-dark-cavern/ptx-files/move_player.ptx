@@ -1,0 +1,100 @@
+<!--META-DATA
+{
+	tags: for, vector,
+}
+-->
+
+<statement>
+<p>
+	This function updates the player's position in the maze based on their input (direction). It calculates the new position, checks if the move is valid (i.e., the target position is an open path), and then updates the player&#x27;s position and number of moves.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>maze</pf> number — - A structure that contains:</p>
+			<p><pf>data</pf> (10x10 matrix) number — representing the maze, where <pf>1</pf> is a wall, and <pf>0</pf> is an open path.</p>
+			<p><pf>goal</pf> (1x2 row vector) double vector — containing the row &amp; column of the goal space.</p>
+			<p><pf>player</pf> number — - A structure that contains:</p>
+			<p><pf>position</pf> (1x2 row vector) double vector — representing the player's current (row &amp; column) position.</p>
+			<p><pf>moves</pf> (1x1 integer) integer — a counter for the number of moves the player has made.</p>
+			<p><pf>direction</pf> number — : A string that represents the direction in which the player selected. This direction is given as one of the following:</p>
+			<p><pf>'w'</pf> number — : Move up.</p>
+			<p><pf>'s'</pf> number — : Move down.</p>
+			<p><pf>'a'</pf> number — : Move left.</p>
+			<p><pf>'d'</pf> number — : Move right.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>player</pf> number — - The updated player structure that contains the new values for:</p>
+			<p><pf>position</pf> (1x2 row vector) double vector — representing the player's new (row &amp; column) position.</p>
+			<p><pf>moves</pf> (1x1 integer) integer — the updated number of moves the player has made.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The function checks if the new position is a valid move. A valid move means:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>The new position is within the maze.</li>
+					<li>The new position is an open path (<pf>0</pf>) and not a wall (<pf>1</pf>).</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>If the move is valid, the player structure is updated. Otherwise, it returns unchanged.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Use the commands below to test your code.
+		player.position = [4, 5];
+		player.moves = 6;
+		maze.data = [
+		1 1 1 1 1 1 1 1 1 1;
+		1 0 0 0 1 0 0 0 0 1;
+		1 0 1 0 1 0 1 1 0 1;
+		1 0 1 0 0 0 0 1 0 1;
+		1 0 1 1 1 1 0 1 0 1;
+		1 0 0 0 0 1 0 0 0 1;
+		1 0 1 1 0 1 1 1 0 1;
+		1 0 1 0 0 0 0 1 0 1;
+		1 0 0 0 1 0 0 0 0 1;
+		1 1 1 1 1 1 1 1 1 1
+		];
+		direction = 'd';  % Move right
+		player =
+		move_player
+		(maze, player, direction)
+		move_player
+		% returns player = struct with fields:
+		position: [4 6]
+		moves: 7
+		Change the direction by running the follow-up command
+		direction = 's';  % Move down
+		player =
+		move_player
+		(maze, player, direction);
+		move_player
+		% returns the unchanged player structure
+		player =   struct with fields:
+		position: [4 6]
+		moves: 7
+	</code>
+</program>
+</p>
+</statement>

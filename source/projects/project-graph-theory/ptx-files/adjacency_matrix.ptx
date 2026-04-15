@@ -1,0 +1,60 @@
+<!--META-DATA
+{
+	tags: for, min, graph_theory, struct
+}
+-->
+
+<statement>
+<p>
+	This function constructs the adjacency matrix for an undirected graph represented by the structure &lt;pf&gt;G&lt;/pf&gt;. The adjacency matrix is a square matrix where each element A ( i , j ) A(i, j) is the number of edges between vertex i i and vertex j j . For undirected graphs, this matrix is symmetric.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>G</pf> (struct) number — : A structure representing the graph containing, at minimum, the following fields:</p>
+			<p><pf>G.n</pf> (integer) integer — : The number of vertices in the graph.</p>
+			<p><pf>G.m</pf> (integer) integer — : The number of edges in the graph.</p>
+			<p><pf>G.edges</pf> (m x 2) number — : A matrix where each row represents an edge connecting two vertices.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>A</pf> (n x n) number — : The adjacency matrix, where n is the number of vertices in the graph.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Ensure your function handles cases with no edges (empty edge list).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Consider edge cases where multiple edges between two vertices may be present.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Command Window Expected Output G.n = 3; G.m = 2; G.edges = [1, 2; 2, 3]; A = HW5P1_adjacency_matrix(G); A = 0 1 0 1 0 1 0 1 0 G.n = 2; G.m = 2; G.edges = [1, 1; 1, 2]; A = HW5P1_adjacency_matrix(G); A = 1 1 1 0 G.n = 4; G.m = 5; G.edges = [3 4; 4 4; 1 4; 4 3; 1 1]; A = HW5P1_adjacency_matrix(G) A = 1 0 0 1 0 0 0 0 0 0 0 2 1 0 2 1</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected Output</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>A = 0 1 0 1 0 1 0 1 0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>A = 1 1 1 0</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>A = 1 0 0 1 0 0 0 0 0 0 0 2 1 0 2 1</p></cell>
+	</row>
+</tabular>
+
+</statement>

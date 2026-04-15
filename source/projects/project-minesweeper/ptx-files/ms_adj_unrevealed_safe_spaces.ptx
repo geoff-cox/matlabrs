@@ -1,0 +1,54 @@
+<!--META-DATA
+{
+	tags: min,
+}
+-->
+
+<statement>
+<p>
+	Given the row and column of a minesweeper space, S, this program returns the locations of all the adjacent safe spaces to S that have not been revealed.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>row</pf> (1 x 1) number — row of the given minesweeper space.</p>
+			<p><pf>col</pf> (1 x 1) number — column of the given minesweeper space.</p>
+			<p><pf>field</pf> (N x N) number — minesweeper map showing the mines and the number of adjacent mines.</p>
+			<p><pf>revealed</pf> (N x N) number — true/false map showing which spaces have been revealed.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>adj_spaces</pf> (k x 2) number — adjacent unrevealed and non-mine spaces to the space located at <pf>row</pf> and <pf>col</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Check out the</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>minesweeper game details here.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		spaces = MS_adj_unrevealed_safe_spaces_lastname(1,1,[2 -1 1;-1 3 2;2 -1 1],[1 0 1;0 0 1;0 0 0])
+		spaces = [2 2]
+		spaces = MS_adj_unrevealed_safe_spaces_lastname(2,2,[2 -1 1;-1 3 2;2 -1 1],[0 0 1;0 1 1;0 0 0])
+		spaces =
+		1     1
+		3     1
+		3     3
+	</code>
+</program>
+</p>
+</statement>

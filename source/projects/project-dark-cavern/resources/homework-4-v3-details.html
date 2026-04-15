@@ -1,0 +1,553 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Homework 4 v3 details</title>
+<meta name="identifier" content="gb47321cb673c89e1db3e6a0ae1bb1ca2"/>
+<meta name="editing_roles" content="teachers"/>
+<meta name="workflow_state" content="unpublished"/>
+</head>
+<body>
+<article class="w-full text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]" data-testid="conversation-turn-9" data-scroll-anchor="false">
+<div class="m-auto text-base py-[18px] px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5">
+<div class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" data-message-author-role="assistant" data-message-id="8c432156-b26f-43d2-a23f-6e7566125f8a" data-message-model-slug="gpt-4o">
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
+<div class="markdown prose w-full break-words dark:prose-invert light">
+<p>Here's a summary of the key differences between the <code>HW4_display_maze_v2</code> and <code>HW4_display_maze_v3</code> functions:</p>
+<h3>1. <term>Enhanced Visual Representation</term>:</h3>
+<ul>
+<li><term>Version 3</term> (<code>HW4_display_maze_v3</code>) uses a richer set of <term>Unicode icons</term> to visually represent different elements in the game:
+<ul>
+<li><term>Walls</term> are depicted by <code>▓</code>.</li>
+<li><term>Exit</term> is depicted by <code>⛝</code>.</li>
+<li><term>Player</term> is depicted by <code>⛄</code>.</li>
+<li><term>Key</term> is depicted by <code>⚿</code>.</li>
+<li><term>Torch</term> is depicted by <code>✨</code>.</li>
+</ul>
+</li>
+<li>In <term>Version 2</term>, the visual elements were likely simpler or limited to basic characters without using a specialized set of icons.</li>
+</ul>
+<h3>2. <term>Visibility and Line of Sight</term>:</h3>
+<ul>
+<li><term>Version 3</term> incorporates a more complex <term>line-of-sight mechanic</term>. The visibility is restricted to what the player can "see" based on their current position, potentially expanding with items like the torch.
+<ul>
+<li>This adds a layer of strategic exploration as hidden areas are only revealed when within view.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely did not include this visibility mechanic, allowing the player to see the entire maze regardless of their position.</li>
+</ul>
+<h3>3. <term>Game State Feedback</term>:</h3>
+<ul>
+<li><term>Version 3</term> dynamically updates what is displayed based on the player's <term>inventory and interaction</term> with objects:
+<ul>
+<li>If the player has not picked up the key or torch, those symbols remain visible.</li>
+<li>Once collected, they disappear from the map or trigger new game mechanics.</li>
+</ul>
+</li>
+<li><term>Version 2</term> did not incorporate this object-state-driven display. It was more static and less dependent on inventory status.</li>
+</ul>
+<h3>4. <term>Clearer Segmentation of Game Elements</term>:</h3>
+<ul>
+<li>In <term>Version 3</term>, the distinction between visible and non-visible areas is more pronounced. If a cell is not within the player's line of sight, it appears as an open space (<code> </code>), enhancing the clarity of the maze navigation.</li>
+<li><term>Version 2</term> might have shown the entire maze at once or lacked differentiation for unexplored sections.</li>
+</ul>
+<p>Overall, the main improvements in <code>HW4_display_maze_v3</code> focus on <term>enhanced graphics</term>, <term>dynamic visibility based on the player's actions</term>, and a more engaging visual feedback loop tied to game progress.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="w-full text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]" data-testid="conversation-turn-10" data-scroll-anchor="false">
+<h5 class="sr-only">You said:</h5>
+<div class="m-auto text-base py-[18px] px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5">
+<div class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" data-message-author-role="user" data-message-id="aaa2a913-7863-414e-937b-4d309ca14290">
+<div class="flex w-full flex-col gap-1 empty:hidden items-end rtl:items-start">
+<div class="relative max-w-[70%] rounded-3xl px-5 py-2.5 bg-[#f4f4f4] dark:bg-token-main-surface-secondary">
+<div class="whitespace-pre-wrap">Now do the same for HW4_initialize_game_v2 and HW4_initialize_game_v3</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="w-full text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]" data-testid="conversation-turn-11" data-scroll-anchor="false">
+<h6 class="sr-only">ChatGPT said:</h6>
+<div class="m-auto text-base py-[18px] px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5">
+<div class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" data-message-author-role="assistant" data-message-id="9e3105ac-81b7-4277-bfe7-ae1512abe4e5" data-message-model-slug="gpt-4o">
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
+<div class="markdown prose w-full break-words dark:prose-invert light">
+<p>Here's a comparison of the differences between the helper functions <code>HW4_initialize_game_v2</code> and <code>HW4_initialize_game_v3</code>:</p>
+<h3>1. <term>Object Initialization and Maze Setup</term>:</h3>
+<ul>
+<li><term>Version 3</term> (<code>HW4_initialize_game_v3</code>) includes a more complex initialization process for the maze, with additional game elements:
+<ul>
+<li>It introduces a variety of <term>icons</term> (wall, exit, player, key, torch) using specialized Unicode symbols.</li>
+<li>Version 3 initializes specific <term>items</term> such as a <term>Key</term> and a <term>Torch</term>, which play crucial roles in the gameplay.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely had a simpler setup, focusing primarily on the maze structure with fewer items or objects initialized, and did not incorporate as many visual elements.</li>
+</ul>
+<h3>2. <term>Item Placement and Reserved Spaces</term>:</h3>
+<ul>
+<li>In <term>Version 3</term>, specific locations (like the exit, key, and torch) are carefully randomized, ensuring they do not overlap or appear in reserved spots:
+<ul>
+<li>The function <code>HW4_select_random_location</code> handles the placement of these objects, respecting reserved spaces.</li>
+<li>This process is iterative, making sure objects are placed in valid locations without interfering with existing ones.</li>
+</ul>
+</li>
+<li><term>Version 2</term> either didn't include random item placement or had a less sophisticated system without careful management of reserved spaces.</li>
+</ul>
+<h3>3. <term>Player Initialization and Attributes</term>:</h3>
+<ul>
+<li><term>Version 3</term> introduces a more detailed player initialization:
+<ul>
+<li>Player attributes now include booleans for <code>has_key</code>, <code>has_torch</code>, and <code>has_sword</code>, tracking the player's inventory.</li>
+<li>A <term>line-of-sight</term> attribute is calculated and stored, determining what the player can currently see based on their position and items.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely had a simpler player setup, possibly tracking only basic movement or position without the extended inventory attributes and line-of-sight mechanics.</li>
+</ul>
+<h3>4. <term>Game Object Management</term>:</h3>
+<ul>
+<li>In <term>Version 3</term>, there's a clearer and structured definition of the game's visual elements through <code>maze.icons</code>, which improves readability and flexibility:
+<ul>
+<li>This object-based approach makes it easier to modify or expand game elements without changing core code.</li>
+</ul>
+</li>
+<li><term>Version 2</term> may have used simpler text or number-based representations for objects, limiting flexibility for visual changes.</li>
+</ul>
+<h3>5. <term>Enhanced Functionality with Items</term>:</h3>
+<ul>
+<li><term>Version 3</term> includes logic for interaction with specific items (like the key or torch), impacting how the game is played:
+<ul>
+<li>For example, the torch affects the player's line of sight, which is updated upon initialization.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely did not include item-based gameplay mechanics, focusing more on basic player movement within the maze.</li>
+</ul>
+<p>Overall, <code>HW4_initialize_game_v3</code> significantly expands the game's complexity and interactive elements by incorporating <term>visual improvements</term>, <term>randomized object management</term>, and <term>player attribute enhancements</term>, making the game more engaging and challenging compared to the simpler setup in <code>HW4_initialize_game_v2</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="w-full text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]" data-testid="conversation-turn-12" data-scroll-anchor="false">
+<h5 class="sr-only">You said:</h5>
+<div class="m-auto text-base py-[18px] px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5">
+<div class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" data-message-author-role="user" data-message-id="aaa247ea-2c57-473a-9950-02b110bb6543">
+<div class="flex w-full flex-col gap-1 empty:hidden items-end rtl:items-start">
+<div class="relative max-w-[70%] rounded-3xl px-5 py-2.5 bg-[#f4f4f4] dark:bg-token-main-surface-secondary">
+<div class="whitespace-pre-wrap">Now do the same for HW4_move_player_v2 and HW4_move_player_v3</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="w-full text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]" data-testid="conversation-turn-13" data-scroll-anchor="false">
+<h6 class="sr-only">ChatGPT said:</h6>
+<div class="m-auto text-base py-[18px] px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5">
+<div class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" data-message-author-role="assistant" data-message-id="e3691e4f-38c1-46ce-90d9-d53671b12c95" data-message-model-slug="gpt-4o">
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
+<div class="markdown prose w-full break-words dark:prose-invert light">
+<p>Here's a detailed comparison between the helper functions <code>HW4_move_player_v2</code> and <code>HW4_move_player_v3</code>:</p>
+<h3>1. <term>Player Movement &amp; Direction Tracking</term>:</h3>
+<ul>
+<li><term>Version 3</term> (<code>HW4_move_player_v3</code>) includes more detailed handling of the player's movement:
+<ul>
+<li>The player's current direction (<code>'w'</code>, <code>'s'</code>, <code>'a'</code>, <code>'d'</code> for up, down, left, right) is now tracked and stored in <code>player.direction</code>.</li>
+<li>This information is used to maintain the context of the player's movements, which can be useful for directional features like line-of-sight or orientation-based interactions.</li>
+</ul>
+</li>
+<li>In <term>Version 2</term>, the player's direction may not have been explicitly tracked, focusing primarily on updating the position.</li>
+</ul>
+<h3>2. <term>Interaction with In-Game Items</term>:</h3>
+<ul>
+<li><term>Version 3</term> introduces interactions with specific in-game items:
+<ul>
+<li>If the player moves onto the tile containing the <term>key</term>, the <code>player.has_key</code> attribute is set to <code>true</code>.</li>
+<li>Similarly, if the player moves onto the <term>torch</term>, the <code>player.has_torch</code> attribute is updated to <code>true</code>.</li>
+<li>These changes impact gameplay and what the player can do or see within the game.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely lacked item interaction, meaning player movement was only about traversing the maze without any collection-based mechanics.</li>
+</ul>
+<h3>3. <term>Conditional Movement and Wall Checking</term>:</h3>
+<ul>
+<li>In <term>Version 3</term>, the function includes conditional checks to determine if a move is valid:
+<ul>
+<li>Moves are only executed if the target cell is not a wall (<code>maze.walls(x,y) == 0</code>), preventing invalid or unintended moves.</li>
+<li>This ensures the player's position is updated only when they can legally move.</li>
+</ul>
+</li>
+<li><term>Version 2</term> probably had similar basic wall-checking but without additional mechanics tied to item interaction or the visibility system.</li>
+</ul>
+<h3>4. <term>Updating the Line of Sight</term>:</h3>
+<ul>
+<li><term>Version 3</term> involves a more sophisticated update to the player's visibility (<code>line_of_sight</code>) after each move:
+<ul>
+<li>If the player picks up a torch, the line of sight expands accordingly. This update is managed dynamically by recalculating the sight area whenever the player moves.</li>
+<li>The player's line of sight (<code>player.sight</code>) is incrementally updated, combining previously visible areas with newly revealed ones.</li>
+</ul>
+</li>
+<li><term>Version 2</term> might not have had line-of-sight calculations or visibility restrictions, likely showing the entire maze regardless of the player's movement or items.</li>
+</ul>
+<h3>5. <term>Player's State Updates</term>:</h3>
+<ul>
+<li><term>Version 3</term> keeps a count of the player's moves (<code>player.moves</code>), updating it with each valid movement.
+<ul>
+<li>This statistic can be used for gameplay purposes, such as scoring or tracking efficiency.</li>
+</ul>
+</li>
+<li>In <term>Version 2</term>, tracking player moves may not have been a focus, resulting in a simpler gameplay experience without counting actions.</li>
+</ul>
+<h3>6. <term>Expanded Game Mechanics</term>:</h3>
+<ul>
+<li><term>Version 3</term> introduces a more structured way to handle game state changes with item interactions, line-of-sight updates, and state conditions that reflect the complexity of the game's environment.</li>
+<li><term>Version 2</term> likely centered on basic player movement within the maze boundaries, without the added complexity of collecting items or dealing with visibility constraints.</li>
+</ul>
+<p>Overall, <code>HW4_move_player_v3</code> enriches the game experience by incorporating <term>item interactions</term>, <term>visibility updates</term>, and more sophisticated <term>directional tracking</term>, making the game more dynamic and engaging compared to the simpler movement logic in <code>HW4_move_player_v2</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="w-full text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]" data-testid="conversation-turn-14" data-scroll-anchor="false">
+<h5 class="sr-only">You said:</h5>
+<div class="m-auto text-base py-[18px] px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5">
+<div class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" data-message-author-role="user" data-message-id="aaa2e270-07e9-4b15-ae39-ecb6bf17af28">
+<div class="flex w-full flex-col gap-1 empty:hidden items-end rtl:items-start">
+<div class="relative max-w-[70%] rounded-3xl px-5 py-2.5 bg-[#f4f4f4] dark:bg-token-main-surface-secondary">
+<div class="whitespace-pre-wrap">Now do the same for the HW4_dark_cavern_v2 and HW4_dark_cavern_v3 game loop helper functions</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="w-full text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]" data-testid="conversation-turn-15" data-scroll-anchor="true">
+<h6 class="sr-only">ChatGPT said:</h6>
+<div class="m-auto text-base py-[18px] px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5">
+<div class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" data-message-author-role="assistant" data-message-id="f4820f21-4e94-4957-ab90-b514d3d4423d" data-message-model-slug="gpt-4o">
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
+<div class="markdown prose w-full break-words dark:prose-invert light">
+<p>Here's a detailed comparison of the game loop helper functions, <code>HW4_dark_cavern_v2</code> and <code>HW4_dark_cavern_v3</code>:</p>
+<h3>1. <term>Enhanced Initialization</term>:</h3>
+<ul>
+<li><term>Version 3</term> (<code>HW4_dark_cavern_v3</code>) uses the updated <code>HW4_initialize_game_v3</code> function for initializing the game:
+<ul>
+<li>The maze structure now includes additional elements (key, torch), and player attributes are more detailed, including inventory items.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely used a simpler initialization function with fewer items and attributes, focusing mainly on player position and a basic maze setup.</li>
+</ul>
+<h3>2. <term>Game Loop Complexity</term>:</h3>
+<ul>
+<li><term>Version 3</term> has a more detailed and interactive game loop:
+<ul>
+<li>The game loop includes conditions for checking whether the player has collected necessary items (like the key) before allowing them to proceed.</li>
+<li>If the player reaches the exit without the key, a message informs them that they need to collect the key first.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely had a simpler loop with fewer conditions, potentially just tracking the player's progress through the maze without specific item dependencies.</li>
+</ul>
+<h3>3. <term>Real-Time Player Feedback</term>:</h3>
+<ul>
+<li><term>Version 3</term> provides more feedback to the player in real time:
+<ul>
+<li>The loop displays the player's <term>inventory</term>, showing collected items such as the key and torch.</li>
+<li>It includes additional information like elapsed time and the number of moves taken by the player.</li>
+</ul>
+</li>
+<li><term>Version 2</term> probably had a simpler output, likely focusing only on player position updates or generic status messages.</li>
+</ul>
+<h3>4. <term>Inventory Management</term>:</h3>
+<ul>
+<li><term>Version 3</term> integrates the inventory system into the game loop:
+<ul>
+<li>Player actions, such as picking up the key or torch, are reflected in the inventory display during each game loop iteration.</li>
+<li>This is tied directly to gameplay, as the inventory items affect what the player can see (torch) and where they can go (key).</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely did not manage inventory items within the loop, instead presenting a more linear or straightforward gameplay without item dependencies.</li>
+</ul>
+<h3>5. <term>Dynamic Game Mechanics</term>:</h3>
+<ul>
+<li><term>Version 3</term> introduces dynamic game mechanics based on the player's actions:
+<ul>
+<li>The loop checks the player's position relative to in-game objectives (like the exit) and triggers different game states based on conditions.</li>
+<li>For example, if the player has the key and reaches the exit, the game ends successfully. Otherwise, it prompts the player to search for necessary items.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely lacked these conditional mechanics, focusing instead on a simpler "reach the exit" goal without item-related complexity.</li>
+</ul>
+<h3>6. <term>Ending the Game</term>:</h3>
+<ul>
+<li>In <term>Version 3</term>, the game loop is designed to handle the end-game state more elaborately:
+<ul>
+<li>When the player successfully completes the game, it displays a congratulatory message with detailed statistics (time taken and moves count).</li>
+<li>This enhances player experience by celebrating their success and providing feedback on performance.</li>
+</ul>
+</li>
+<li><term>Version 2</term> likely had a more basic game-ending sequence without detailed success metrics or feedback.</li>
+</ul>
+<h3>7. <term>Player Interaction with the Environment</term>:</h3>
+<ul>
+<li><term>Version 3</term> prompts the player for movement input continuously, allowing them to interact dynamically with the environment.
+<ul>
+<li>The line of sight is updated with each move, giving the player a sense of exploration as they navigate.</li>
+</ul>
+</li>
+<li><term>Version 2</term> probably had a more static exploration mechanic without the dynamic visibility adjustments provided by items like the torch.</li>
+</ul>
+<p>Overall, <code>HW4_dark_cavern_v3</code> introduces a <term>richer, item-driven game loop</term> with detailed real-time feedback, <term>conditional mechanics</term> tied to game objectives, and a stronger emphasis on player exploration and inventory management compared to the simpler, more linear loop found in <code>HW4_dark_cavern_v2</code>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Here's a thorough description and breakdown for the <code>HW4_get_line_of_sight_v3</code> helper function:</p>
+<h3><term>General Description</term></h3>
+<p>The <code>HW4_get_line_of_sight_v3</code> function is designed to determine the visible cells within a maze from the player's current position. This function implements a <term>line-of-sight mechanic</term>, simulating what the player can see based on their position, direction, and whether they possess a visibility-enhancing item (like a torch).</p>
+<p>The player's visibility is limited if they do not have a torch, only allowing them to see adjacent spaces. When the player has a torch, their field of view extends further in all directions, revealing more of the maze. The function ensures that the line of sight respects walls, meaning visibility is blocked by any obstacles.</p>
+<h3><term>Input/Output Variables</term></h3>
+<h4><term>Input Variables</term></h4>
+<ol>
+<li><term><code>maze</code></term>: A structured variable representing the maze.
+<ul>
+<li><code>maze.h</code>: Height of the maze.</li>
+<li><code>maze.w</code>: Width of the maze.</li>
+<li><code>maze.walls</code>: A 2D matrix (of size <code>maze.h x maze.w</code>) where <code>1</code> represents a wall and <code>0</code> represents a path.</li>
+</ul>
+</li>
+<li><term><code>player</code></term>: A structure representing the player's current state.
+<ul>
+<li><code>player.position</code>: A 1x2 vector <code>[row, col]</code> indicating the current position of the player in the maze.</li>
+<li><code>player.has_torch</code>: A boolean (<code>true</code> or <code>false</code>) indicating whether the player has a torch, which affects visibility.</li>
+</ul>
+</li>
+</ol>
+<h4><term>Output Variable</term></h4>
+<ul>
+<li><term><code>line_of_sight</code></term>: A logical (boolean) 2D matrix of size <code>maze.h x maze.w</code>.
+<ul>
+<li>Each element in <code>line_of_sight</code> is <code>true</code> if the corresponding cell in the maze is visible from the player's current position and <code>false</code> otherwise.</li>
+</ul>
+</li>
+</ul>
+<h3><term>Function Details</term></h3>
+<p>The function evaluates visibility in four directions (left, right, up, down) from the player's current position:</p>
+<ol>
+<li>
+<p><term>Initialization</term>:</p>
+<ul>
+<li>The <code>line_of_sight</code> matrix is initialized to <code>false</code>.</li>
+<li>The player's current cell is marked as visible.</li>
+</ul>
+</li>
+<li>
+<p><term>Directional Visibility</term>:</p>
+<ul>
+<li><term>Left</term>: Checks visibility to the left of the player's position, cell by cell, until a wall is encountered or the visibility limit is reached (if no torch).</li>
+<li><term>Right</term>: Similar to left, but visibility expands rightward.</li>
+<li><term>Up</term>: Visibility is checked upwards from the player's position.</li>
+<li><term>Down</term>: Checks cells below the player's position.</li>
+<li>If the player does not have a torch, visibility is restricted to a maximum of 1 cell away in each direction.</li>
+</ul>
+</li>
+<li>
+<p><term>Wall Interruption</term>:</p>
+<ul>
+<li>Visibility is blocked by walls (<code>maze.walls(r, c) == 1</code>), preventing further expansion in any direction.</li>
+</ul>
+</li>
+</ol>
+<h3><term>Example Test Cases</term></h3>
+<p>Here are a few test cases to illustrate how <code>HW4_get_line_of_sight_v3</code> behaves in different scenarios:</p>
+<h4><term>Test Case 1: Basic Visibility without Torch</term></h4>
+<ul>
+<li><term>Input</term>:
+<div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary">matlab</div>
+<div class="sticky top-9 md:top-[5.75rem]">
+<div class="absolute bottom-0 right-2 flex h-9 items-center">
+<div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed">Copy code</span></div>
+</div>
+</div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-matlab">maze.h = 5;
+maze.w = 5;
+maze.walls = [
+    1 1 1 1 1;
+    1 0 0 0 1;
+    1 0 1 0 1;
+    1 0 0 0 1;
+    1 1 1 1 1;
+];
+player.position = [3, 2]; % Player at (3, 2)
+player.has_torch = false; % No torch
+</code></div>
+</div>
+</li>
+<li><term>Expected Output</term>:
+<div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary">matlab</div>
+<div class="sticky top-9 md:top-[5.75rem]">
+<div class="absolute bottom-0 right-2 flex h-9 items-center">
+<div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed">Copy code</span></div>
+</div>
+</div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-matlab">line_of_sight = [
+    0 0 0 0 0;
+    0 1 1 1 0;
+    0 1 0 0 0;
+    0 1 1 1 0;
+    0 0 0 0 0;
+];
+</code></div>
+</div>
+</li>
+</ul>
+<h4><term>Test Case 2: Visibility with Torch</term></h4>
+<ul>
+<li><term>Input</term>:
+<div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary">matlab</div>
+<div class="sticky top-9 md:top-[5.75rem]">
+<div class="absolute bottom-0 right-2 flex h-9 items-center">
+<div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed">Copy code</span></div>
+</div>
+</div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-matlab">maze.h = 5;
+maze.w = 5;
+maze.walls = [
+    1 1 1 1 1;
+    1 0 0 0 1;
+    1 0 1 0 1;
+    1 0 0 0 1;
+    1 1 1 1 1;
+];
+player.position = [3, 2]; % Player at (3, 2)
+player.has_torch = true; % Torch in possession
+</code></div>
+</div>
+</li>
+<li><term>Expected Output</term>:
+<div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary">matlab</div>
+<div class="sticky top-9 md:top-[5.75rem]">
+<div class="absolute bottom-0 right-2 flex h-9 items-center">
+<div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed">Copy code</span></div>
+</div>
+</div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-matlab">line_of_sight = [
+    0 1 1 1 0;
+    1 1 1 1 1;
+    1 1 0 1 1;
+    1 1 1 1 1;
+    0 1 1 1 0;
+];
+</code></div>
+</div>
+</li>
+</ul>
+<h4><term>Test Case 3: Wall Blocking Visibility</term></h4>
+<ul>
+<li><term>Input</term>:
+<div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary">matlab</div>
+<div class="sticky top-9 md:top-[5.75rem]">
+<div class="absolute bottom-0 right-2 flex h-9 items-center">
+<div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed">Copy code</span></div>
+</div>
+</div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-matlab">maze.h = 5;
+maze.w = 5;
+maze.walls = [
+    1 1 1 1 1;
+    1 0 1 0 1;
+    1 0 1 0 1;
+    1 0 0 0 1;
+    1 1 1 1 1;
+];
+player.position = [4, 2]; % Player at (4, 2)
+player.has_torch = true; % Torch in possession
+</code></div>
+</div>
+</li>
+<li><term>Expected Output</term>:
+<div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary">matlab</div>
+<div class="sticky top-9 md:top-[5.75rem]">
+<div class="absolute bottom-0 right-2 flex h-9 items-center">
+<div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed">Copy code</span></div>
+</div>
+</div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-matlab">line_of_sight = [
+    0 0 0 0 0;
+    0 1 0 1 0;
+    0 1 0 1 0;
+    0 1 1 1 0;
+    0 0 0 0 0;
+];
+</code></div>
+</div>
+</li>
+</ul>
+<h3><term>Summary</term></h3>
+<p>The <code>HW4_get_line_of_sight_v3</code> function enhances the player's exploration experience by implementing a realistic visibility mechanic that adapts based on in-game conditions, such as having a torch. It balances gameplay complexity by revealing parts of the maze strategically while respecting walls and item effects.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</body>
+</html>

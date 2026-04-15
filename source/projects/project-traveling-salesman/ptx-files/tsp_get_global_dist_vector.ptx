@@ -1,0 +1,55 @@
+<!--META-DATA
+{
+	tags: vector,
+}
+-->
+
+<statement>
+<p>
+	where is the global distance between and .
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>pt_list</pf> (N x 2) number — list of GPS (degree) coordinates.</p>
+			<p><pf>P0</pf> (1 x 2) number — single GPS (degree) coordinate.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>distances</pf> (N x 1) number — list of distances between all the points in <pf>pt_list</pf> and <pf>P0</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Use your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>TSP_global_dist</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>code.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		d_vector = TSP_get_global_dist_vector_lastname([111 -90; 20 66; -167 42],[90 90])
+		d_vector =
+		1.0e+03 *
+		1.4510
+		4.8368
+		7.1171
+	</code>
+</program>
+</p>
+</statement>

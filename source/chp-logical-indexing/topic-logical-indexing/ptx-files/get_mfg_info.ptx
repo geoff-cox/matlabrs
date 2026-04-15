@@ -1,0 +1,90 @@
+<!--META-DATA
+{
+	tags: ["struct", "substruct", "function_calls", "logical_indexing"],
+}
+-->
+
+<statement>
+	<p>
+		Given the car data set and a manufacturer, gather summary information about the manufacturer's cars.
+	</p>
+	
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+			<row>
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>data</pf> (1 x 1) struct — from <pf>'carbig.mat'</pf></p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p><pf>feature</pf> (1 x N) char vector — field of <pf>data</pf> (e.g., <pf>'Model'</pf>, <pf>'Weight'</pf>)</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+				<cell/>
+			<cell>
+				<p><pf>value</pf> (1 x 1) double or (1 x M) char vector — the value to match</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>index_list</pf> (R x 1) logical vector — <pf>index_list(k)</pf> is <pf>true</pf> if the <pf>feature</pf> is a field of <pf>data</pf> AND equals <pf>value</pf>; <pf>false</pf> otherwise.</p>
+			</cell>
+		</row>
+			<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>Use <pf>numel</pf>, <pf>size</pf>, or <pf>length</pf> to get the number of values in the list.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p>Initialize the output variable as a logical vector of all <pf>true</pf> or all <pf>false</pf> values. You may use <pf>true(m,1)</pf> or <pf>false(m,1)</pf> to do this.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p>Use a loop to update the default values in the output vector.</p>
+			</cell>
+		</row>
+			<row>
+				<cell/>
+			<cell>
+				<p>The input <pf>data</pf> is loaded from <pf>'carbig.mat'</pf> (see below).</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+				<cell/>
+			<cell>
+				<p>Use <pf>isfield</pf> to test if a char vector names a field; use <pf>isa</pf> to distinguish text vs numbers.</p>
+			</cell>
+		</row>
+
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				car_data = load('carbig.mat');
+				mfg_info = get_mfg_info(car_data, 'amc')
+				% should return a struct like:
+				% manufacturer: 'amc'
+				% country: 'USA   '      % note padded spaces
+				% number_of_models: 29
+				% acceleration: struct with fields min, max, avg (e.g., min 8.5, max 20.5, avg ~15.12)
+				% displacement: struct with fields min, max, avg
+				% horsepower:   struct with fields min, max, avg
+				% mpg:          struct with fields min, max, avg (e.g., min 13, max 27.4, avg ~18.25)
+				% weight:       struct with fields min, max, avg
+			</code>
+		</program>
+	</p>
+</statement>

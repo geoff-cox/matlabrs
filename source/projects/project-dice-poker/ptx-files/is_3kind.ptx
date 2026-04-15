@@ -1,0 +1,69 @@
+<!--META-DATA
+{
+	"tags": ["pattern-checking", "dice", "logical"]
+}
+-->
+
+<statement>
+	<p>
+		Checks whether a given roll contains a three-of-a-kind. A three-of-a-kind consists of all dice with the same face value and the other two are unique singles. For example,
+		<me>\LARGE ⚁\ ⚁\ ⚁\ ⚂\ ⚀</me>
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1 x 5) integer vector — dice values sorted into rank order.</p>
+			</cell>
+		</row>
+		
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>counts</pf> (1 x 6) integer vector — counts of each die face in <pf>roll</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>tf</pf> (1 x 1) logical — <pf>true</pf> if <pf>roll</pf> is a three-of-a-kind; <pf>false</pf> otherwise.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ You may assume that the input <pf>roll</pf> will be sorted by rank.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ Both <pf>roll</pf> and <pf>counts</pf> are provided as inputs. You may use one or both to code this. If one is not used, replace the input variable with <pf>~</pf>.</p></cell>
+		</row>
+		
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Your <pf>list_occurrences</pf> program may be useful.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				tf = is_3kind([4 4 2 2 5], [0 2 0 2 1 0])
+				% returns tf  =  (logical)  0
+			</code>
+		</program>
+		<program>
+			<code>
+				tf = is_3kind([3 3 3 5 4], [0 0 3 1 1 0])
+				% returns tf  =  (logical)  1
+			</code>
+		</program>
+	</p>
+</statement>

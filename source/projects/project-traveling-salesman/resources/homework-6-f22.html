@@ -1,0 +1,287 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 6 - F22</title>
+</head>
+<body>
+<p>Complete each of the programming and script problems below for homework 6.&nbsp;</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Click on the function filename to download the template for that problem.</p>
+<p>Follow the templates. Do not use any built-in MATLAB commands unless specified in the directions of the problem.</p>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 207px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:</td>
+<td style="width: 89.688%; height: 28px;"><code>TSP_global_path_dist_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:</td>
+<td style="width: 89.688%; height: 28px;">Given a list of GPS coordinates, <img class="equation_image" title="P_1, P_2, ..., P_N" src="https://vmi.instructure.com/equation_images/P_1%252C%2520P_2%252C%2520...%252C%2520P_N" alt="LaTeX: P_1, P_2, ..., P_N" data-equation-content="P_1, P_2, ..., P_N" loading="lazy">, on earth, this program computes the total distance traveled moving through all the points in the list and returning back to the starting point. That is,</td>
+</tr>
+<tr style="height: 16px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 16px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 16px;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="\text{total distance} = d(P_1,P_2) + d(P_2,P_3) + ... + d(P_N−1,P_N) + d(P_N,P_1)" src="https://vmi.instructure.com/equation_images/%255Ctext%257Btotal%2520distance%257D%2520%253D%2520d(P_1%252CP_2)%2520%252B%2520d(P_2%252CP_3)%2520%252B%2520...%2520%252B%2520d(P_N%25E2%2588%25921%252CP_N)%2520%252B%2520d(P_N%252CP_1)" alt="LaTeX: \text{total distance} = d(P_1,P_2) + d(P_2,P_3) + ... + d(P_N−1,P_N) + d(P_N,P_1)" data-equation-content="\text{total distance} = d(P_1,P_2) + d(P_2,P_3) + ... + d(P_N−1,P_N) + d(P_N,P_1)" loading="lazy"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">where <img class="equation_image" title="d(P_i,P_j)" src="https://vmi.instructure.com/equation_images/d(P_i%252CP_j)" alt="LaTeX: d(P_i,P_j)" data-equation-content="d(P_i,P_j)" loading="lazy">&nbsp;is the global distance between <img class="equation_image" title="P_i" src="https://vmi.instructure.com/equation_images/P_i" alt="LaTeX: P_i" data-equation-content="P_i" loading="lazy"> and <img class="equation_image" title="P_j" src="https://vmi.instructure.com/equation_images/P_j" alt="LaTeX: P_j" data-equation-content="P_j" loading="lazy">.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>pt_list</code> (N x 2) list of GPS (degree) coordinates.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>total_dist</code> (1 x 1) closed distance between all the points in <code>pt_list</code>.</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 10px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 10px;">Use your <code>TSP_global_dist</code> code.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>Examples:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>tot_dist = TSP_global_path_dist_lastname([111 -90; 20 66; -167 42])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>tot_dist = 2.2352e+04</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 344px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 9.5144%; height: 28px; text-align: right;"><term>Function</term>:</td>
+<td style="width: 90.444%; height: 28px;"><code>TSP_get_global_dist_vector_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 9.5144%; height: 28px; text-align: right;"><term>Description</term>:</td>
+<td style="width: 90.444%; height: 28px;">Given a list of GPS coordinates, <img class="equation_image" title="P_1, P_2, ..., P_N" src="https://vmi.instructure.com/equation_images/P_1%252C%2520P_2%252C%2520...%252C%2520P_N" alt="LaTeX: P_1, P_2, ..., P_N" data-equation-content="P_1, P_2, ..., P_N" loading="lazy">, and another point, <img class="equation_image" title="P_0" src="https://vmi.instructure.com/equation_images/P_0" alt="LaTeX: P_0" data-equation-content="P_0" loading="lazy"> , on earth, this program computes all of the distances between <img class="equation_image" title="P_i" src="https://vmi.instructure.com/equation_images/P_i" alt="LaTeX: P_i" data-equation-content="P_i" loading="lazy"> and <img class="equation_image" title="P_0" src="https://vmi.instructure.com/equation_images/P_0" alt="LaTeX: P_0" data-equation-content="P_0" loading="lazy">. That is,</td>
+</tr>
+<tr style="height: 142px;">
+<td style="width: 9.5144%; text-align: right; height: 142px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 142px;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="\text{distances} = \begin{bmatrix} 
+d(P_1,P_0) \\ 
+d(P_2,P_0) \\ 
+\vdots \\
+d(P_N,P_0) 
+\end{bmatrix} " src="https://vmi.instructure.com/equation_images/%255Ctext%257Bdistances%257D%2520%253D%2520%255Cbegin%257Bbmatrix%257D%2520%250Ad(P_1%252CP_0)%2520%255C%255C%2520%250Ad(P_2%252CP_0)%2520%255C%255C%2520%250A%255Cvdots%2520%255C%255C%250Ad(P_N%252CP_0)%2520%250A%255Cend%257Bbmatrix%257D%2520" alt="LaTeX: \text{distances} = \begin{bmatrix} 
+d(P_1,P_0) \\ 
+d(P_2,P_0) \\ 
+\vdots \\
+d(P_N,P_0) 
+\end{bmatrix} " data-equation-content="\text{distances} = \begin{bmatrix} 
+d(P_1,P_0) \\ 
+d(P_2,P_0) \\ 
+\vdots \\
+d(P_N,P_0) 
+\end{bmatrix} " loading="lazy"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;">where <img class="equation_image" title="d(P_i,P_0)" src="https://vmi.instructure.com/equation_images/d(P_i%252CP_0)" alt="LaTeX: d(P_i,P_0)" data-equation-content="d(P_i,P_0)" loading="lazy"> is the global distance between <img class="equation_image" title="P_i" src="https://vmi.instructure.com/equation_images/P_i" alt="LaTeX: P_i" data-equation-content="P_i" loading="lazy"> and <img class="equation_image" title="P_0" src="https://vmi.instructure.com/equation_images/P_0" alt="LaTeX: P_0" data-equation-content="P_0" loading="lazy">.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; height: 29px; vertical-align: top;"><term>Inputs:</term></td>
+<td style="width: 90.444%; height: 29px;"><code>pt_list</code> (N x 2) list of GPS (degree) coordinates.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 29px;"><code>P0</code> (1 x 2) single GPS (degree) coordinate.</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 10px;"><term>Outputs:</term></td>
+<td style="width: 90.444%; height: 10px;"><code>distances</code> (N x 1) list of distances between all the points in <code>pt_list</code> and <code>P0</code>.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.5144%; text-align: right; height: 10px; vertical-align: top;"><term>Comments:</term></td>
+<td style="width: 90.444%; height: 10px;">Use your <code>TSP_global_dist</code> code.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>Examples:</term></td>
+<td style="width: 90.444%; height: 29px;"><code>d_vector = TSP_get_global_dist_vector_lastname([111 -90; 20 66; -167 42],[90 90])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.444%; height: 10px;">
+<pre>d_vector =<br><br>&nbsp; &nbsp;1.0e+03 *<br><br>&nbsp; &nbsp; 1.4510<br>&nbsp; &nbsp; 4.8368<br>&nbsp; &nbsp; 7.1171</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 194px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:</td>
+<td style="width: 89.688%; height: 28px;"><code>KNN_get_dist_vector_lastname.m</code></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 10px; text-align: right; vertical-align: top;"><term>Description</term>:</td>
+<td style="width: 89.688%; height: 10px;">Given a list of points coordinates, <img class="equation_image" title="P_1, P_2, ..., P_N" src="https://vmi.instructure.com/equation_images/P_1%252C%2520P_2%252C%2520...%252C%2520P_N" alt="LaTeX: P_1, P_2, ..., P_N" data-equation-content="P_1, P_2, ..., P_N" loading="lazy">, (with dimension M) and another point, <img class="equation_image" title="P_0" src="https://vmi.instructure.com/equation_images/P_0" alt="LaTeX: P_0" data-equation-content="P_0" loading="lazy"> , this program computes all of the distances between <img class="equation_image" title="P_i" src="https://vmi.instructure.com/equation_images/P_i" alt="LaTeX: P_i" data-equation-content="P_i" loading="lazy"> and <img class="equation_image" title="P_0" src="https://vmi.instructure.com/equation_images/P_0" alt="LaTeX: P_0" data-equation-content="P_0" loading="lazy">. That is,</td>
+</tr>
+<tr style="height: 33px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="\text{distances} = \begin{bmatrix} 
+d(P_1,P_0) \\ 
+d(P_2,P_0) \\ 
+\vdots \\
+d(P_N,P_0) 
+\end{bmatrix} " src="https://vmi.instructure.com/equation_images/%255Ctext%257Bdistances%257D%2520%253D%2520%255Cbegin%257Bbmatrix%257D%2520%250Ad(P_1%252CP_0)%2520%255C%255C%2520%250Ad(P_2%252CP_0)%2520%255C%255C%2520%250A%255Cvdots%2520%255C%255C%250Ad(P_N%252CP_0)%2520%250A%255Cend%257Bbmatrix%257D%2520" alt="LaTeX: \text{distances} = \begin{bmatrix} 
+d(P_1,P_0) \\ 
+d(P_2,P_0) \\ 
+\vdots \\
+d(P_N,P_0) 
+\end{bmatrix} " data-equation-content="\text{distances} = \begin{bmatrix} 
+d(P_1,P_0) \\ 
+d(P_2,P_0) \\ 
+\vdots \\
+d(P_N,P_0) 
+\end{bmatrix} " loading="lazy"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">where <img class="equation_image" title="d(P_i,P_0)" src="https://vmi.instructure.com/equation_images/d(P_i%252CP_0)" alt="LaTeX: d(P_i,P_0)" data-equation-content="d(P_i,P_0)" loading="lazy"> is the euclidean distance between <img class="equation_image" title="P_i" src="https://vmi.instructure.com/equation_images/P_i" alt="LaTeX: P_i" data-equation-content="P_i" loading="lazy"> and <img class="equation_image" title="P_0" src="https://vmi.instructure.com/equation_images/P_0" alt="LaTeX: P_0" data-equation-content="P_0" loading="lazy">.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>Background:</term></td>
+<td style="width: 89.688%;">A point, <img class="equation_image" title="P" src="https://vmi.instructure.com/equation_images/P" alt="LaTeX: P" data-equation-content="P" loading="lazy">, has dimension <img class="equation_image" title="m" src="https://vmi.instructure.com/equation_images/m" alt="LaTeX: m" data-equation-content="m" loading="lazy"> if it has <img class="equation_image" title="m" src="https://vmi.instructure.com/equation_images/m" alt="LaTeX: m" data-equation-content="m" loading="lazy"> coordinates: &nbsp;<img class="equation_image" title="P = (p_1, p_2,..., p_m)" src="https://vmi.instructure.com/equation_images/P%2520%253D%2520(p_1%252C%2520p_2%252C...%252C%2520p_m)" alt="LaTeX: P = (p_1, p_2,..., p_m)" data-equation-content="P = (p_1, p_2,..., p_m)" loading="lazy">.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">For example, the point <img class="equation_image" title="P = (5, -3.3)" src="https://vmi.instructure.com/equation_images/P%2520%253D%2520(5%252C%2520-3.3)" alt="LaTeX: P = (5, -3.3)" data-equation-content="P = (5, -3.3)" loading="lazy"> has dimension 2 and the point <img class="equation_image" title="P = (5, -3.3,0,1.2222)" src="https://vmi.instructure.com/equation_images/P%2520%253D%2520(5%252C%2520-3.3%252C0%252C1.2222)" alt="LaTeX: P = (5, -3.3,0,1.2222)" data-equation-content="P = (5, -3.3,0,1.2222)" loading="lazy">&nbsp;has dimension 4.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">The (Euclidean) distance between <img class="equation_image" title="P = (p_1, p_2,..., p_m)" src="https://vmi.instructure.com/equation_images/P%2520%253D%2520(p_1%252C%2520p_2%252C...%252C%2520p_m)" alt="LaTeX: P = (p_1, p_2,..., p_m)" data-equation-content="P = (p_1, p_2,..., p_m)" loading="lazy">&nbsp;and <img class="equation_image" title="Q = (q_1, q_2,..., q_m)" src="https://vmi.instructure.com/equation_images/Q%2520%253D%2520(q_1%252C%2520q_2%252C...%252C%2520q_m)" alt="LaTeX: Q = (q_1, q_2,..., q_m)" data-equation-content="Q = (q_1, q_2,..., q_m)" loading="lazy"> is defined to be</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img class="equation_image" style="display: block; margin-left: auto; margin-right: auto;" title="d(P,Q) = \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2 + \cdots + (p_m-q_m)^2 }" src="https://vmi.instructure.com/equation_images/d(P%252CQ)%2520%253D%2520%255Csqrt%257B(p_1-q_1)%255E2%2520%252B%2520(p_2-q_2)%255E2%2520%252B%2520%255Ccdots%2520%252B%2520(p_m-q_m)%255E2%2520%257D" alt="LaTeX: d(P,Q) = \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2 + \cdots + (p_m-q_m)^2 }" data-equation-content="d(P,Q) = \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2 + \cdots + (p_m-q_m)^2 }" loading="lazy"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>pt_list</code> (N x m) list of m-dimensional points.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>P0</code> (1 x m) single m-dimensional point.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>distances</code> (N x 1) list of distances between all the points in <code>pt_list</code> and <code>P0</code>.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>Examples:</term></td>
+<td style="width: 89.688%; height: 10px;"><code>d_vector = KNN_get_dist_vector_lastname([1 1 1 -9; 2 0 6 6; -1 6 7 4],[1 0 0 2])</code> returns</td>
+</tr>
+<tr style="height: 34px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">
+<pre>d_vector =<br><br>&nbsp; &nbsp;11.0905<br>&nbsp; &nbsp; 7.2801<br>&nbsp; &nbsp; 9.6437</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 155px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><code>KNN_convert_labels_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">Given a list of data labels that are character arrays, this program converts these labels into a positive integer value as well as a key for this conversion.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>labels</code> (M x 1) column vector of single characters.&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Outputs:</term></td>
+<td style="width: 89.8822%;"><code>int_labels</code> (M x 1) integer labels.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"></td>
+<td style="width: 89.8822%; height: 29px;"><code>label_key</code> (Q x 1) list of Q unique character labels in <code>labels</code>.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">In a past assignment, you wrote a <code>unique_values</code> program. Even though it was written to find unique numbers, it turns out that it also works for single characters. Use this code to generate the <code>label_key</code>.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Examples:</term></td>
+<td style="width: 89.8822%;"><code>[num_labels,key] = KNN_convert_labels_Key(['f';'m';'m';'f';'m';'f'])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<pre>num_labels =<br><br>&nbsp; &nbsp; &nbsp;1<br>&nbsp; &nbsp; &nbsp;2<br>&nbsp; &nbsp; &nbsp;2<br>&nbsp; &nbsp; &nbsp;1<br>&nbsp; &nbsp; &nbsp;2<br>&nbsp; &nbsp; &nbsp;1<br><br>key =<br><br>&nbsp; 2×1 char array<br><br>&nbsp; &nbsp; 'f'<br>&nbsp; &nbsp; 'm'</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 269px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><code>MS_adj_unrevealed_safe_spaces_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">Given the row and column of a minesweeper space, S, this program returns the locations of all the adjacent <span style="text-decoration: underline;">safe</span> spaces to S that have not been revealed.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px; vertical-align: top;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>row</code> (1 x 1) row of the given minesweeper space.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>col</code> (1 x 1) column of the given minesweeper space.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>field</code> (N x N) minesweeper map showing the mines and the number of adjacent mines.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>revealed</code> (N x N) true/false map showing which spaces have been revealed.&nbsp;</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px; vertical-align: top;"><term>Outputs:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>adj_spaces</code> (k x 2) adjacent unrevealed and non-mine spaces to the space located at <code>row</code> and <code>col</code>.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 10px; vertical-align: top;"><term>Examples:</term></td>
+<td style="width: 89.8822%; height: 10px;"><code>spaces = MS_adj_unrevealed_safe_spaces_lastname(1,1,[2 -1 1;-1 3 2;2 -1 1],[1 0 1;0 0 1;0 0 0])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>spaces = [2 2]</code></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>spaces = MS_adj_unrevealed_safe_spaces_lastname(2,2,[2 -1 1;-1 3 2;2 -1 1],[0 0 1;0 1 1;0 0 0])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<pre>spaces =<br><br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 1<br>&nbsp; &nbsp; &nbsp;3 &nbsp; &nbsp; 1<br>&nbsp; &nbsp; &nbsp;3 &nbsp; &nbsp; 3</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Comments:</term></td>
+<td style="width: 89.8822%;">Check out the <a class="instructure_file_link inline_disabled" title="Demo_MS_Game.html" href="$IMS-CC-FILEBASE$/03--Class%20Notes/Demo_MS_Game.html?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435983" data-api-returntype="File">minesweeper game details here.</a>&nbsp;&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<h3><term><span style="font-size: 14pt;">Script Problems</span></term></h3>
+<p><span style="font-size: 12pt;">Click on the Script filename to download the template for that problem.</span></p>
+</body>
+</html>

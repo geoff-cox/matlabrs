@@ -1,0 +1,445 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 8 - part 1 - F21</title>
+</head>
+<body>
+<p>Complete each of the programming and script problems below for homework 8. This assignment is part 1 of a more extensive assignment.</p>
+<p>The goal of this final assignment is to write a MATLAB script that performs the following two primary tasks:</p>
+<ul style="list-style-type: square;">
+<li>Allows a user to create a 2D polygon on a set of axes, then</li>
+<li>computes and displays the approximate and exact area of this polygon back to the user.</li>
+</ul>
+<p>You will complete this script through a series of helper functions described below.</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>If a template for a program exists, you can download it by clicking on the function filename. Otherwise, you must create your own functions from scratch.</p>
+<p>Additionally, if there are no examples, then it is expected that you should come up with your own to test the output of your programs.</p>
+<p><em><term>Do not use any built-in MATLAB commands unless specified in the directions of the problem.</term></em></p>
+<hr><hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 771px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW8P1_initial_display_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">This program produces the interface that the user will click on to create the polygon.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Use the tools you learned so far to create the figure below.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 382px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 382px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/Polygon_Area_Initial_Fig.png" alt="Polygon_Area_Initial_Fig.png" width="360" height="377" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435981" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">In the figure above, we were given the range of the x and y-values (see inputs below).&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">Use the following commands to remove MATLAB Toolbar and Menubar.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 34px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 14px;">
+<div class="rtcContent">
+<pre class="lineNode"><span>set(fig, 'ToolBar', 'none'); set(fig, 'MenuBar', 'none')</span></pre>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">
+<div class="rtcContent"><span>where <code>fig</code> is the variable set to the figure you defined in your code.</span></div>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">At the beginning of your program, close any open figures.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">At the end of this program, use the <code>hold on</code> command to allow multiple plots to appear on the figure.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>x_min</code> (integer) minimum x-value on the figure interface.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>x_max</code> (integer) maximum x-value on the figure interface.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>y_min</code> (integer) minimum y-value on the figure interface.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>y_max</code> (integer) maximum y-value on the figure interface.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><span style="font-family: monospace;">none</span></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 10px;">none</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;Examples:</term></td>
+<td style="width: 89.688%;"><a class="instructure_file_link inline_disabled" title="Examples_for_HW8P1.mlx" href="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Examples_for_HW8P1.mlx?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435937" data-api-returntype="File">Examples_for_HW8P1.mlx</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 483px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW8P2_is_pt_on_line_segment_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">This function returns true if a point, <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">, lies on a line segment between the points, <img class="equation_image" title="\left(x_1,y_1\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_1%252Cy_1%255Cright)?scale=1" alt="LaTeX: \left(x_1,y_1\right)" data-equation-content="\left(x_1,y_1\right)" data-ignore-a11y-check="" loading="lazy"> and <img class="equation_image" title="\left(x_2,y_2\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_2%252Cy_2%255Cright)?scale=1" alt="LaTeX: \left(x_2,y_2\right)" data-equation-content="\left(x_2,y_2\right)" data-ignore-a11y-check="" loading="lazy">. It returns false otherwise.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Don't assume <img class="equation_image" title="x_1\le x_2" src="https://vmi.instructure.com/equation_images/x_1%255Cle%2520x_2?scale=1" alt="LaTeX: x_1\le x_2" data-equation-content="x_1\le x_2" data-ignore-a11y-check="" loading="lazy"> or <img class="equation_image" title="y_1\le y_2" src="https://vmi.instructure.com/equation_images/y_1%255Cle%2520y_2?scale=1" alt="LaTeX: y_1\le y_2" data-equation-content="y_1\le y_2" data-ignore-a11y-check="" loading="lazy">.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>x0</code> (double) x-coordinate of the point <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>y0</code> (double) y-coordinate of the point <img class="equation_image" title="\left(x_0,y_0\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_0%252Cy_0%255Cright)?scale=1" alt="LaTeX: \left(x_0,y_0\right)" data-equation-content="\left(x_0,y_0\right)" data-ignore-a11y-check="" loading="lazy">.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>line</code> (struct with 4 fields) structure containing the endpoints of the line segment.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span><code>is_on_line</code> (logical) : is <code>true</code> if (<code>x0</code>,<code>y0</code>) lies on <code>line</code>. <code>false</code>, otherwise.&nbsp;</span></div>
+</div>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Comments: <br></term></td>
+<td style="width: 89.688%; height: 28px;">The output structure, <code>line</code>, contains the following fields:&nbsp;</td>
+</tr>
+<tr style="height: 63px;">
+<td style="width: 10.2704%; text-align: right; height: 63px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 63px;">
+<ul style="list-style-type: square;">
+<li><code>line.x1</code> : x-value from <img class="equation_image" title="\left(x_1,y_1\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_1%252Cy_1%255Cright)?scale=1" alt="LaTeX: \left(x_1,y_1\right)" data-equation-content="\left(x_1,y_1\right)" data-ignore-a11y-check="" loading="lazy"></li>
+<li><code>line.y1</code>&nbsp;: y-value from <img class="equation_image" title="\left(x_1,y_1\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_1%252Cy_1%255Cright)?scale=1" alt="LaTeX: \left(x_1,y_1\right)" data-equation-content="\left(x_1,y_1\right)" data-ignore-a11y-check="" loading="lazy"></li>
+<li><code>line.x2</code>&nbsp;: x-value from <img class="equation_image" title="\left(x_2,y_2\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_2%252Cy_2%255Cright)?scale=1" alt="LaTeX: \left(x_2,y_2\right)" data-equation-content="\left(x_2,y_2\right)" data-ignore-a11y-check="" loading="lazy"></li>
+<li><code>line.y2</code> : y-value from <img class="equation_image" title="\left(x_2,y_2\right)" src="https://vmi.instructure.com/equation_images/%255Cleft(x_2%252Cy_2%255Cright)?scale=1" alt="LaTeX: \left(x_2,y_2\right)" data-equation-content="\left(x_2,y_2\right)" data-ignore-a11y-check="" loading="lazy"></li>
+</ul>
+</td>
+</tr>
+<tr style="height: 42px;">
+<td style="width: 10.2704%; text-align: right; height: 42px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 42px;">A mathematical concept that determines if a number lies between two other numbers is as follows:</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">
+<div class="rtcContent">
+<div class="lineNode"><span>Let <img class="equation_image" title="a" src="https://vmi.instructure.com/equation_images/a?scale=1" alt="LaTeX: a" data-equation-content="a" data-ignore-a11y-check="" loading="lazy">, <img class="equation_image" title="b" src="https://vmi.instructure.com/equation_images/b?scale=1" alt="LaTeX: b" data-equation-content="b" data-ignore-a11y-check="" loading="lazy">, and <img class="equation_image" title="c" src="https://vmi.instructure.com/equation_images/c?scale=1" alt="LaTeX: c" data-equation-content="c" data-ignore-a11y-check="" loading="lazy"> be any three numbers. We can say <img class="equation_image" title="c" src="https://vmi.instructure.com/equation_images/c?scale=1" alt="LaTeX: c" data-equation-content="c" data-ignore-a11y-check="" loading="lazy"> is strictly between <img class="equation_image" title="a" src="https://vmi.instructure.com/equation_images/a?scale=1" alt="LaTeX: a" data-equation-content="a" data-ignore-a11y-check="" loading="lazy"> and <img class="equation_image" title="b" src="https://vmi.instructure.com/equation_images/b?scale=1" alt="LaTeX: b" data-equation-content="b" data-ignore-a11y-check="" loading="lazy"> if the following is true:</span></div>
+</div>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px; text-align: center;"><img class="equation_image" title="(c-a)(c-b)<0" src="https://vmi.instructure.com/equation_images/(c-a)(c-b)%253C0?scale=1" alt="LaTeX: (c-a)(c-b)<0" data-equation-content="(c-a)(c-b)<0" data-ignore-a11y-check="" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Convince yourself that this makes sense by drawing out a number line and considering the sign of both <img class="equation_image" title="(c-a)" src="https://vmi.instructure.com/equation_images/(c-a)?scale=1" alt="LaTeX: (c-a)" data-equation-content="(c-a)" data-ignore-a11y-check="" loading="lazy"> and <img class="equation_image" title="(c-b)" src="https://vmi.instructure.com/equation_images/(c-b)?scale=1" alt="LaTeX: (c-b)" data-equation-content="(c-b)" data-ignore-a11y-check="" loading="lazy"> in different scenarios.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">Below, assume <img class="equation_image" title="a<b" src="https://vmi.instructure.com/equation_images/a%253Cb?scale=1" alt="LaTeX: a<b" data-equation-content="a<b" data-ignore-a11y-check="" loading="lazy">, but the same results would be true if <img class="equation_image" title="b<a" src="https://vmi.instructure.com/equation_images/b%253Ca?scale=1" alt="LaTeX: b<a" data-equation-content="b<a" data-ignore-a11y-check="" loading="lazy">.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img class="equation_image" title="c<a<b" src="https://vmi.instructure.com/equation_images/c%253Ca%253Cb?scale=1" alt="LaTeX: c<a<b" data-equation-content="c<a<b" data-ignore-a11y-check="" loading="lazy">:&nbsp; &nbsp; &nbsp; <img class="equation_image" title="(c-a)(c-b)=negative\cdot negative=positive>0" src="https://vmi.instructure.com/equation_images/(c-a)(c-b)%253Dnegative%255Ccdot%2520negative%253Dpositive%253E0?scale=1" alt="LaTeX: (c-a)(c-b)=negative\cdot negative=positive>0" data-equation-content="(c-a)(c-b)=negative\cdot negative=positive>0" data-ignore-a11y-check="" loading="lazy"></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img class="equation_image" title="a<c<b" src="https://vmi.instructure.com/equation_images/a%253Cc%253Cb?scale=1" alt="LaTeX: a<c<b" data-equation-content="a<c<b" data-ignore-a11y-check="" loading="lazy"> :&nbsp; &nbsp; &nbsp;<img class="equation_image" title="(c-a)(c-b)=positive\cdot negative=negative<0" src="https://vmi.instructure.com/equation_images/(c-a)(c-b)%253Dpositive%255Ccdot%2520negative%253Dnegative%253C0?scale=1" alt="LaTeX: (c-a)(c-b)=positive\cdot negative=negative<0" data-equation-content="(c-a)(c-b)=positive\cdot negative=negative<0" data-ignore-a11y-check="" loading="lazy"></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img class="equation_image" title="a<b<c" src="https://vmi.instructure.com/equation_images/a%253Cb%253Cc?scale=1" alt="LaTeX: a<b<c" data-equation-content="a<b<c" data-ignore-a11y-check="" loading="lazy"> : &nbsp; &nbsp; <img class="equation_image" title="(c-a)(c-b)=positive\cdot positive=positive>0" src="https://vmi.instructure.com/equation_images/(c-a)(c-b)%253Dpositive%255Ccdot%2520positive%253Dpositive%253E0?scale=1" alt="LaTeX: (c-a)(c-b)=positive\cdot positive=positive>0" data-equation-content="(c-a)(c-b)=positive\cdot positive=positive>0" data-ignore-a11y-check="" loading="lazy"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">This concept will be helpful in this program and possibly other programs in this assignment.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;Examples:<br></term></td>
+<td style="width: 89.688%; height: 10px;"><a class="instructure_file_link inline_disabled" title="Examples_for_HW8P2.mlx" href="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Examples_for_HW8P2.mlx?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435996" data-api-returntype="File">Examples_for_HW8P2.mlx</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 408px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW8P3_do_line_segments_intersect_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; vertical-align: top; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span>This program determines the intersection point of two line segments, if </span><span>it exists, via the two primary tasks:</span></div>
+</div>
+</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; vertical-align: top; height: 10px;">
+<div class="rtcContent">
+<div class="rtcContent">
+<ol>
+<li class="lineNode"><span>locates the theoretical intersection point of extended line segments</span></li>
+<li class="lineNode"><span style="color: var(--ic-brand-font-color-dark); font-family: inherit; font-size: 1rem;">checks if that point is on the actual line segments</span></li>
+</ol>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>line1</code> (struct with 4 fields) structure containing the endpoints of the first line segment.&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>line2</code>&nbsp;(struct with 4 fields) structure containing the endpoints of the second line segment.&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>intersect</code> (<span>logical) : is <code>true</code> if&nbsp;<code>line1</code> intersects with <code>line2</code>. <code>false</code>, otherwise.&nbsp;</span></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Comments: </term></td>
+<td style="width: 89.688%; height: 28px;">The output structure, <code>line1</code>, contains the following fields:&nbsp;</td>
+</tr>
+<tr style="height: 107px;">
+<td style="width: 10.2704%; text-align: right; height: 107px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 107px;">
+<ul style="list-style-type: square;">
+<li><code>line1.x1</code> : x-value of the first endpoint of the first line segment.</li>
+<li><code>line1.y1</code> : y-value of the first endpoint of the first line segment.</li>
+<li><code>line1.x2</code> : x-value of the second endpoint of the first line segment.</li>
+<li><code>line1.y2</code> : y-value of the second endpoint of the first line segment.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">The output <code>line2</code> is defined similarly.</td>
+</tr>
+<tr style="height: 33px;">
+<td style="width: 10.2704%; text-align: right; height: 33px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 33px;">You should also call your <code>HW8P2_is_pt_on_line_segment</code> within this program.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">This problem is easy to understand but is tricky to program.&nbsp;</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">You should probably break this problem down into a few special sub-cases.</td>
+</tr>
+<tr style="height: 13px;">
+<td style="width: 10.2704%; text-align: right; height: 13px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 13px;">Please take a look at the class notes on this topic for guidance.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Examples: <br></term></td>
+<td style="width: 89.688%; vertical-align: top; height: 10px;"><a class="instructure_file_link inline_disabled" title="Examples_for_HW8P3.mlx" href="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Examples_for_HW8P3.mlx?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436018" data-api-returntype="File">Examples_for_HW8P3.mlx</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 209px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW8P4_is_new_vertex_valid_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">
+<div class="rtcContent">
+<div class="lineNode"><span>This program determines if the x and y value of the user's mouse click is a valid vertex for the polygon. In this case, valid means the new edge formed from the last vertex in the collection to the new vertex would not intersect with any of the current edges of the partially constructed polygon.&nbsp;</span></div>
+</div>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>vx</code> (integer) x-value of a potential new vertex (rounded from the user mouse click).</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>vy</code> (integer) y-value of a potential new vertex (rounded from the user mouse click).</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>vertices</code> (1 x N struct with 2 fields) structure array containing a complete or partial set of the vertices (x and y-values) of a polygon.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>valid</code>&nbsp;(<span>logical) : is <code>true</code> if the new mouse click is a valid vertex. Is <code>false</code>, otherwise.&nbsp;</span></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 29px;">There are two special cases of this program that you should be aware of:</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">
+<ul>
+<li>If there is only one vertex in <code>vertices</code>, then any new vertex is valid as long as it is not equal to the first vertex.</li>
+<li>If there are two or more vertices in <code>vertices</code>, then the edge connecting the previous vertex in <code>vertices</code> to the new vertex must share a vertex. Keep this in mind when checking if the new edge intersects with any of the current edges of the polygon.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">You may find your <code>HW8P2_is_pt_on_line_segment</code> and <code>HW8P3_do_line_segments_intersect</code> codes helpful here.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Examples: <br></term></td>
+<td style="width: 89.688%; height: 10px;"><a class="instructure_file_link inline_disabled" title="Examples_for_HW8P4.mlx" href="$IMS-CC-FILEBASE$/02--Homework/HW%2008/Examples_for_HW8P4.mlx?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435995" data-api-returntype="File">Examples_for_HW8P4.mlx</a></td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Script Problem</term></span></h3>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 1182px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Script: <br></term></td>
+<td style="width: 89.8822%; height: 28px;"><code>HW8_polygon_area_part_1_version_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Description:<br></term></td>
+<td style="width: 89.8822%; height: 28px;">This script creates an interface for a user to click on that allows them to build a simple polygon by specifying the locations of the vertices.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">Your script should have two main sections:&nbsp;</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><term><span style="text-decoration: underline;">Section 1: Set-up.</span></term></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">This section should perform the following tasks:</td>
+</tr>
+<tr style="height: 131px;">
+<td style="width: 10.0762%; text-align: right; height: 131px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 131px;">
+<ul style="list-style-type: square;">
+<li>Define variables that store the minimum and maximum values for the x and y-values of the figure.</li>
+<li><span>Defines a variable that stores the max number of allowable vertices (set the value to 25)</span><span>.</span></li>
+<li>
+<div class="rtcContent">
+<div class="lineNode">
+<div class="rtcContent">
+<div class="lineNode"><span>Pre-allocates the 1 x N vertices structure array where N is the max number of allowable vertices.&nbsp;</span></div>
+</div>
+</div>
+</div>
+</li>
+<li><span>Defines a variable that tracks the number of vertices that have been added to the polygon.</span></li>
+<li>
+<div class="rtcContent">
+<div class="lineNode"><span><span style="color: var(--ic-brand-font-color-dark); font-family: inherit; font-size: 1rem;">Display the initial interface to the user.</span></span></div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><term><span style="text-decoration: underline;">Section 2: User Interaction (building the polygon).</span></term></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">This section should perform the following tasks:</td>
+</tr>
+<tr style="height: 275px;">
+<td style="width: 10.0762%; text-align: right; height: 275px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 275px;">
+<ul style="list-style-type: square;">
+<li>Get the first vertex (mouse click) from the user.</li>
+<li>Rounds this x and y value to the nearest whole number and adds it to the <span>vertices structure array.</span></li>
+<li><span>Plots the first vertex</span></li>
+<li><span>Use a loop to</span>
+<ul style="list-style-type: square;">
+<li><span>get a new vertex, </span></li>
+<li><span>round it,</span></li>
+<li><span>check to see if it closes the polygon,</span></li>
+<li><span>if it can be added, add it to the collection of vertices and plot the vertex and new edge.</span></li>
+</ul>
+</li>
+<li><span>Stop looping if </span>
+<ul style="list-style-type: square;">
+<li><span>the user closes the polygon by clicking on the first vertex for a second time, or</span></li>
+<li><span>the max number of vertices was reached. In this case, make sure the final edge also gets plotted.</span></li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><em>Note: A polygon must have at least 3 vertices. Therefore, the user can "close" a polygon only after 3 vertices have been selected.</em></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><term><span style="text-decoration: underline;">Section 3: Post Interaction.</span></term></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">This section should perform the following tasks:</td>
+</tr>
+<tr style="height: 59px;">
+<td style="width: 10.0762%; text-align: right; height: 59px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 59px;">
+<ul style="list-style-type: square;">
+<li>Fill the completed polygon with a transparent color.&nbsp; To get a transparent color you can use the <code>'FaceAlpha'</code> parameter of the <code>fill</code> command.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Comments:</term></td>
+<td style="width: 89.8822%; height: 28px;">The tasks listed above are guidelines for the general structure of your script. The details are left to you.&nbsp;</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>Examples:</term></td>
+<td style="width: 89.8822%; height: 29px;">Here is a figure of a sample run of this script.</td>
+</tr>
+<tr style="height: 372px;">
+<td style="width: 10.0762%; text-align: right; height: 372px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 372px;"><img id="1561620" style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/02--Homework/HW%2008/First_Script_Fig.PNG" alt="First_Script_Fig.PNG" width="350" height="368" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435997" data-api-returntype="File" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

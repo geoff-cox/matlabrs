@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Data Cleaning</title>
+</head>
+<body>
+<h1>Data Cleaning and Preprocessing Pipeline</h1>
+<h2>Objective</h2>
+<p>In this assignment, you will create a data preprocessing pipeline in MATLAB. This pipeline will include handling missing values, removing outliers, normalizing data, and encoding categorical variables. The goal is to implement these steps from scratch, without relying on high-level MATLAB functions.</p>
+<h2>Assumptions</h2>
+<ul>
+<li>The input dataset may contain missing values (NaNs), numeric and categorical data.</li>
+<li>Outliers are defined as data points with a Z-score greater than a specified threshold (e.g., 3).</li>
+<li>Categorical data is represented as strings (e.g., 'red', 'blue', 'green').</li>
+</ul>
+<h2>Input Variables</h2>
+<ul>
+<li>
+<code>data</code>: A matrix or cell array containing the dataset. Numeric data should be stored as doubles, and categorical data as strings.</li>
+<li>
+<code>categoricalCols</code>: A vector of column indices indicating which columns contain categorical data.</li>
+<li>
+<code>threshold</code>: (Optional) A numeric value specifying the Z-score threshold for outlier removal. Default is 3.</li>
+</ul>
+<h2>Output Variables</h2>
+<ul>
+<li>
+<code>preprocessedData</code>: The cleaned and preprocessed dataset, ready for further analysis or modeling.</li>
+</ul>
+<h2>Steps to Implement</h2>
+<ol>
+<li>Handle missing values by replacing them with the mean of the corresponding column.</li>
+<li>Remove outliers based on Z-score thresholding.</li>
+<li>Normalize numeric data using min-max normalization.</li>
+<li>Encode categorical variables using one-hot encoding.</li>
+<li>Combine all the steps into a single preprocessing function.</li>
+</ol>
+<h2>Hints</h2>
+<div class="hint">
+<p><term>Hint 1:</term> To handle missing values, use <code>isnan()</code> to detect NaNs and <code>mean()</code> to calculate the mean of a column, excluding NaNs.</p>
+<p><term>Hint 2:</term> For outlier removal, calculate the Z-score for each element using <code>zscore()</code> or manually compute it using the mean and standard deviation of each column.</p>
+<p><term>Hint 3:</term> For min-max normalization, use the formula: <code>(x - min) / (max - min)</code>.</p>
+<p><term>Hint 4:</term> One-hot encoding can be done by iterating over the unique categories in a column and creating binary vectors for each category.</p>
+</div>
+<h2>Example Input/Output</h2>
+<div class="example">
+<h3>Example 1</h3>
+<p><term>Input:</term></p>
+<pre><code>data = [1, NaN, 3, 'red'; 
+                4, 5, NaN, 'blue'; 
+                7, 8, 9, 'green']</code></pre>
+<p><term>categoricalCols:</term> <code>[4]</code></p>
+<p><term>Output:</term></p>
+<pre><code>preprocessedData = [1, 6.5, 3, 1, 0, 0; 
+                          4, 5, 6, 0, 1, 0; 
+                          7, 8, 9, 0, 0, 1]</code></pre>
+<p><em>Explanation:</em> Missing values are replaced with the mean of the column, outliers are removed, numeric data is normalized, and categorical data is one-hot encoded.</p>
+</div>
+<div class="example">
+<h3>Example 2</h3>
+<p><term>Input:</term></p>
+<pre><code>data = [2, 150, 'small'; 
+                3, 300, 'medium'; 
+                4, 450, 'large']</code></pre>
+<p><term>categoricalCols:</term> <code>[3]</code></p>
+<p><term>Output:</term></p>
+<pre><code>preprocessedData = [0, 0, 1, 0, 0;
+                          0.5, 0.5, 0, 1, 0; 
+                          1, 1, 0, 0, 1]</code></pre>
+<p><em>Explanation:</em> The numeric columns are normalized, and the categorical column is one-hot encoded.</p>
+</div>
+<h2>Deliverables</h2>
+<ul>
+<li>A MATLAB script or function file that implements the complete data preprocessing pipeline.</li>
+<li>Test your function on different datasets and include a short report explaining how your function handles each preprocessing step.</li>
+</ul>
+</body>
+</html>

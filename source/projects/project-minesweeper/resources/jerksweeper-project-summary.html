@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Jerksweeper Project Summary</title>
+<meta name="identifier" content="g5d9a3d138dfba5325f8f16009e524afc"/>
+<meta name="editing_roles" content="teachers"/>
+<meta name="workflow_state" content="unpublished"/>
+</head>
+<body>
+<p><span style="text-decoration: underline;">Here is where we are so far:</span></p>
+<ul style="list-style-type: disc;">
+<li>Coded the <code>set_initial_game_state</code> helper function together in class.<br><a class="instructure_file_link instructure_scribd_file inline_disabled" title="set_initial_game_state.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/gd4ef25c1549226d2f0db8a7d34f7af74?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/19751/files/1897133" data-api-returntype="File">Here is the code</a></li>
+<li>Discussed the state variables defined in&nbsp;<code>set_initial_game_state</code>.</li>
+<li>Coded part of the <code>display_initial_board</code> helper function in class.<br><a class="instructure_file_link instructure_scribd_file inline_disabled" title="display_initial_board.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/gd5397105022f61a00e1e9bcafab3f7fe?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/19751/files/1897132" data-api-returntype="File">Here is the code</a></li>
+<li>Created a simple test script for you to run when you want to test your code. See below for sample codes.</li>
+<li>Discussed how to display flags on the game board.</li>
+<li>Discuss how <code>nargin</code> and <code>tic</code>/<code>toc</code> will be used in the <code>jerksweeper</code> main function.&nbsp;</li>
+<li>Discuss part of the <code>game_loop</code> helper function. In particular,
+<ul>
+<li>How to use <code>waitforbuttonpress</code>.</li>
+<li>How to get the click location from the <code>axes</code> object.</li>
+<li>How to determine if a left or right mouse button was clicked from the <code>figure</code> object.</li>
+</ul>
+</li>
+<li>Discuss parts of the <code>display_results</code> helper function. In particular, how to use <code>.mat</code> files to save data after your program closes.</li>
+</ul>
+<p>&nbsp;</p>
+<p><span style="text-decoration: underline;">Sample Test Script</span></p>
+<p>Until you get your <code>random_jerk_generator</code> and <code>compute_data_matrix</code> helper functions up and running, you can use the data matrix below for testing.</p>
+<p><term>5 x 5 Test Script</term></p>
+<pre>state = set_initial_game_state(5, 'easy');<br><br>state.data = [ 1 &nbsp;1 &nbsp;2 -1 &nbsp;1; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 -1 &nbsp;3 &nbsp;1 &nbsp;1; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3 -1 &nbsp;3 &nbsp;0 &nbsp;0; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 -1 &nbsp;2 &nbsp;0 &nbsp;0; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;0 &nbsp;0 ];<br><br>state = display_initial_board(state);</pre>
+<p><term>10 x 10 Test Script</term></p>
+<div class="rtcContent">
+<pre>state = set_initial_game_state(10, 'easy');<br><br>state.data = [ 0 &nbsp;1 -1 &nbsp;2 -1 &nbsp;2 &nbsp;1 &nbsp;0 &nbsp;0 &nbsp;0; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 &nbsp;1 &nbsp;1 &nbsp;2 &nbsp;2 -1 &nbsp;1 &nbsp;0 &nbsp;0 &nbsp;0; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;0 &nbsp;0 &nbsp;0; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1 &nbsp;1; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1 &nbsp;1 &nbsp;1 &nbsp;1 -1; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1 -1 &nbsp;2 &nbsp;2 &nbsp;2; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &nbsp;1 &nbsp;0 &nbsp;0 &nbsp;1 &nbsp;2 &nbsp;2 &nbsp;2 -1 &nbsp;1; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -1 &nbsp;2 &nbsp;0 &nbsp;0 &nbsp;2 -1 &nbsp;2 &nbsp;1 &nbsp;1 &nbsp;1; ...<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -1 &nbsp;2 &nbsp;0 &nbsp;0 &nbsp;2 -1 &nbsp;2 &nbsp;0 &nbsp;0 &nbsp;0 ];<br><br>state = display_initial_board(state);<span><br></span></pre>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!--META-DATA
+{
+	tags: min,
+}
+-->
+
+<statement>
+<p>
+	This function determines the visible spaces within a maze from the player&#x27;s current position. It implements a line-of-sight mechanic , simulating what the player can see based on their position, direction, and whether they possess a visibility-enhancing item (i.e., the torch).
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>maze</pf> (struct) number — : The structure representing the maze. It includes all the fields described in <pf>HW4_initialize_game</pf>.</p>
+			<p><pf>player</pf> (struct) number — - The structure representing the player's current state. It includes all the fields described in <pf>HW4_initialize_game</pf>.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>player</pf> (struct) number — : The updated player structure reflects the new position, number of moves, and whether the key has been collected.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Only adjacent spaces are visible if the player does not have the torch.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>If the player has the torch, they can see down corridors in every direction until the first wall. Additionally, they can see all spaces adjacent to an "open" space along each corridor. See below.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Without Torch With Torch</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>With Torch</p></cell>
+	</row>
+</tabular>
+
+</statement>

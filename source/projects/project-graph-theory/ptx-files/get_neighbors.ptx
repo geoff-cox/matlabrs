@@ -1,0 +1,72 @@
+<!--META-DATA
+{
+	tags: min,
+}
+-->
+
+<statement>
+<p>
+	Given the lower-left corner (x,y) of a space, this function returns a list of x and y coordinates of the lower-left corner of all the spaces touching the given space.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>x</pf> (1 x 1) integer — integer representing the x-coordinate of the lower left corner of a given space.</p>
+			<p><pf>y</pf> (1 x 1) integer — integer representing the y-coordinate of the lower left corner of a given space.</p>
+			<p><pf>N</pf> (1 x 1) integer — integer representing the number of spaces on one side of the grid.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>neighbors</pf> (K x 2) number — two-column matrix containing the x and y coordinates of the lower-left corner of every space touching the given space.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>This is a pretty straight forward coding exercise, but be careful at the boundaries.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>This function does not update the game state in any way.</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>The order of each neighbor must match with the examples below. Look carefully at the output to determine the general pattern.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		neighbors = get_neighbors(3, 3, 5)
+		neighbors =
+		2     2
+		2     3
+		2     4
+		3     2
+		3     4
+		4     2
+		4     3
+		4     4
+		neighbors = get_neighbors(3, 3, 3)
+		neighbors =
+		2     2
+		2     3
+		3     2
+		neighbors = get_neighbors(7, 6, 7)
+		neighbors =
+		6     5
+		6     6
+		6     7
+		7     5
+		7     7
+	</code>
+</program>
+</p>
+</statement>

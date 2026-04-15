@@ -1,0 +1,66 @@
+<!--META-DATA
+{
+	tags: indexing,
+}
+-->
+
+<statement>
+<p>
+	Choose an available space randomly where all spaces are equally likely to be selected ( Yes, this is a dumb strategy ).
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object containing the state of the current tic-tac-toe game.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>selection</pf> (1 x 1) integer — The absolute index of the chosen space.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>You may use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>randi</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>command to generate a random number.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		state.data = [0 -1 -1; -1 1 -1; 1 1 -1];
+		state.empty_space = [1 0 0 0 0 0 0 0 0];
+		state.data = [0 -1 -1; -1 1 -1; 1 1 -1];
+		state.empty_space = [1 0 0 0 0 0 0 0 0];
+		dumb_ai_move(state)
+		1
+		state.data = [0 0 0; 0 1 0; 0 0 0];
+		state.empty_space = [1 1 1 1 0 1 1 1 1];
+		state.data = [0 0 0; 0 1 0; 0 0 0];
+		state.empty_space = [1 1 1 1 0 1 1 1 1];
+		dumb_ai_move(state)
+		7
+		state.data = [1 -1 -1; -1 1 -1; 1 1 -1];
+		state.empty_space = [0 0 0 0 0 0 0 0 0];
+		state.data = [1 -1 -1; -1 1 -1; 1 1 -1];
+		state.empty_space = [0 0 0 0 0 0 0 0 0];
+		dumb_ai_move(state)
+		[]
+	</code>
+</program>
+</p>
+</statement>

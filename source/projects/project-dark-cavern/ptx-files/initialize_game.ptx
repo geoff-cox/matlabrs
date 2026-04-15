@@ -1,0 +1,121 @@
+<!--META-DATA
+{
+	tags: for, vector,
+}
+-->
+
+<statement>
+<p>
+	This function sets up the maze and the player&#x27;s initial state. It creates a 10x10 maze grid with walls (1s) and open paths (0s), assigns a random goal position, and initializes the player's position and move count.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>This</pf> number — function does not take any input arguments.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>maze</pf> number — - A structure that contains:</p>
+			<p><pf>data</pf> (10x10 matrix) number — representing the maze, where <pf>1</pf> is a wall, and <pf>0</pf> is an open path.</p>
+			<p><pf>goal</pf> (1x2 row vector) double vector — specifying the randomly selected goal (row &amp; column) position in the maze.</p>
+			<p><pf>player</pf> number — - A structure that contains:</p>
+			<p><pf>position</pf> (1x2 row vector) double vector — representing the player's current (row &amp; column) position (initialized to <pf>[2, 2]</pf>).</p>
+			<p><pf>moves</pf> (1x1 integer) integer — a counter for the number of moves the player has made (initialized to <pf>0</pf>).</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The maze is represented as a 10x10 matrix where:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li><pf>1</pf>s indicate walls.</li>
+					<li><pf>0</pf>s indicate paths where the player can move.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>For this function, we will hardcode the maze configuration as</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>maze.data = [ 1 1 1 1 1 1 1 1 1 1; 1 0 0 0 1 0 0 0 0 1; 1 0 1 0 1 0 1 1 0 1; 1 0 1 0 0 0 0 1 0 1; 1 0 1 1 1 1 0 1 0 1; 1 0 0 0 0 1 0 0 0 1; 1 0 1 1 0 1 1 1 0 1; 1 0 1 0 0 0 0 1 0 1; 1 0 0 0 1 0 0 0 0 1; 1 1 1 1 1 1 1 1 1 1 ]</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Note that the newest version of MATLAB supports defining matrices using multiple lines. If this is giving you an error, use <pf>...</pf> at the end of each line.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>A random goal is selected in the maze using your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>HW3P7_select_goal</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>program. Until you write this, hardcode the goal in the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>[9 9]</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>space. Remember to come back and update this before you submit the HW.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>For this program, the player will start at the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>[2, 2]</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>space.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		[maze, player] = initialize_game()
+		% returns maze =    struct with fields:
+		data: [10×10 double]
+		goal: [8 9]
+		player =   struct with fields:
+		position: [2 2]
+		moves: 0
+		maze.data
+		ans =
+		1 1 1 1 1 1 1 1 1 1
+		1 0 0 0 1 0 0 0 0 1
+		1 0 1 0 1 0 1 1 0 1
+		1 0 1 0 0 0 0 1 0 1
+		1 0 1 1 1 1 0 1 0 1
+		1 0 0 0 0 1 0 0 0 1
+		1 0 1 1 0 1 1 1 0 1
+		1 0 1 0 0 0 0 1 0 1
+		1 0 0 0 1 0 0 0 0 1
+		1 1 1 1 1 1 1 1 1 1
+		maze.goal
+		select_goal
+	</code>
+</program>
+</p>
+</statement>

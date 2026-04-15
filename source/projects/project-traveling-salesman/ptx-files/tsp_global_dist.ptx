@@ -1,0 +1,85 @@
+<!--META-DATA
+{
+	tags: while, for,
+}
+-->
+
+<statement>
+<p>
+	Given two points on the earth (in longitude/latitude coordinates, ) create a program that computes the distance between these two points along the earth's surface.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+			<p><pf>P</pf> (2 x 2) number — GPS (degree) coordinates. Each row contains the GPS coordinates (lat,lon) of one point on earth.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+			<p><pf>g_dist</pf> (1 x 1) number — global distance between the two points in <pf>P</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Consider two points and on a sphere of radius where are latitude angles and are longitude angles. The distance, , between these two points is related to and the angle between two lines from the origin to these points, by the formula</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>So the distance, , is given by</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>We usually know but not . It turns out that can be approximated from the longitude and latitude coordinates of the two points by using the haversine formula:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Putting these two equations together gives an equation for the distance between and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The first coordinates, and , are the latitude while the second coordinates, and , are longitude of the two points (in radians).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use mi (radius of the earth)</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>We will be using the same GPS coordinates as google maps where any latitudes south of the equator and any longitudes west of the prime meridian are negative values. Also, these GPS coordinates are given in degrees, not radians, so adjust accordingly.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>You can test your code with the following GPS coordinates:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Los Angeles: and San Fransisco:</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>Distance miles (as the crow flies)</p></cell>
+	</row>
+</tabular>
+
+</statement>

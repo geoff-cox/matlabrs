@@ -1,0 +1,86 @@
+<!--META-DATA
+{
+	tags: for, vector, min, sum,
+}
+-->
+
+<statement>
+<p>
+	This program applies the nearest neighbor algorithm to the traveling salesman problem.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>pt_list</pf> (N x 2) number — list of GPS (degree) coordinates.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>route_order</pf> (1 x N) double vector — vector specifying the route order of the NN method.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>You may use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>min</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>command.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>TSP_get_global_dist_vector</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>code in this program.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>In your code, assume every possible route starts and ends at the first value in</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>pt_list</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>. This means every possible route should have a 1 as its first value.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Check out</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>this document</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>for more information about the traveling salesman problem.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		NN_route = TSP_NN_lastname([0 0;4 4;2 5;4 1;1 1])
+		NN_route = [1 5 4 2 3]
+	</code>
+</program>
+</p>
+</statement>

@@ -1,0 +1,358 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 4 - F24</title>
+</head>
+<body>
+<h3>Homework 4: <term>Dark Cavern Game - Version 3</term></h3>
+<p>Below is a summary of the key differences between the <code>HW4_display_maze_v2</code> and <code>HW4_display_maze_v3</code> functions. For program-specific directions, keep scrolling down.</p>
+<p><term>Version 3</term> incorporates the following new mechanics</p>
+<ul style="list-style-type: square;">
+<li><term>Line-of-sight</term>. Now, the maze will be hidden until explored.</li>
+<li><term>Torch</term> <term>object</term>. This new object affects the line of sight distance.</li>
+<li><term>Dynamic Inventory Display</term>. Your game will display the player's inventory.</li>
+</ul>
+<h3>Instructions:</h3>
+<ul>
+<li>Ensure the game works as intended, responding correctly to player inputs and updating the display accordingly.</li>
+<li>Test the game thoroughly with different maze sizes to confirm its functionality.</li>
+<li>When you have completed these programs, UPLOAD THEM TO THIS ASSIGNMENT.</li>
+<li>A complete submission will include the files below, which <code>lastname</code> should be replaced with your last name.</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><code>HW4_select_random_location_lastname.m</code></li>
+<li><code>HW4_initialize_game_v3_lastname.m</code></li>
+<li><code>HW4_display_maze_v3_lastname.m</code></li>
+<li><code>HW4_move_player_v3_lastname.m</code></li>
+<li><code>HW4_line_of_sight_v3_lastname.m</code></li>
+<li><code>HW4_dark_cavern_v3_lastname.m</code></li>
+</ul>
+</li>
+</ul>
+<h3>Notes:</h3>
+<ul>
+<li>Each of these files should contain a single function. So, there should be NO commands above or below the defined function inside the file. However, comments outside the function are ok.</li>
+<li>If you do not use descriptive variable names, you must describe every variable you define with code comments.</li>
+<li>The file names must match the format specified below to grade your programs. Misspellings and deviations from the naming convention will lead to errors when I run your code, and I will not manually retype your function names to make them work. So please double-check each file name before uploading it.</li>
+</ul>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Do not use any built-in MATLAB commands unless specified in the directions of the problem. Here is a list of approved MATLAB built-in functions you are free to use:</p>
+<p><code>length</code>, <code>numel</code>, <code>size</code>, <code>mod</code>, <code>sum</code>, <code>zeros</code>, <code>ones</code>, <code>primes</code>, <code>height</code>, <code>floor</code>, <code>ceil</code>, <code>max</code>, <code>min</code>, <code>isnan</code>, <code>isfield</code></p>
+<hr><hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 38px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.41737%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.541%; height: 0px;"><code>HW4_select_random_location.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.41737%; height: 10px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.541%; height: 10px;">This function is the same as in previous versions of the game. Please upload your final version of this function with this assignment.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 98px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW4_initialize_game_v3_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 10px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 10px;">This function sets up the game environment, including the player, the maze structure, and fundamental gameplay elements. The new components are highlighted below.</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>height</code> (integer): The number of rows in the maze, representing its height.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;"><code>width</code> (integer): The number of columns in the maze, representing its width.</td>
+</tr>
+<tr style="vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>maze</code> (struct): A structure containing information about the randomly generated maze. It includes:</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.51149%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 10px;">
+<ul style="list-style-type: square;">
+<li><code>maze.walls</code>: A 2D matrix of size <code>height</code> x <code>width</code> where <code>1</code> represents a wall and <code>0</code> represents an open path.</li>
+<li><code>maze.h</code>: The height of the maze (i.e., the number of rows in the <code>walls</code> matrix).</li>
+<li><code>maze.w</code>: The width of the maze (i.e., the number of rows in the <span style="font-size: 12pt;"><code style="color: var(--ic-brand-font-color-dark);">walls</code></span><span style="color: var(--ic-brand-font-color-dark); font-family: inherit; font-size: 1rem;"> matrix).</span></li>
+<li><code>maze.exit</code>: A 1x2 vector <code>[row, col]</code> representing the randomly selected exit position.</li>
+<li><code>maze.key</code>: A 1x2 vector <code>[row, col]</code> representing the randomly selected key position.</li>
+<li><span style="background-color: #fbeeb8;"><code>maze.torch</code>: A 1x2 vector <code>[row, col]</code> representing the randomly selected torch position.</span></li>
+<li><code>maze.icons</code>: A struct containing the visual symbols used for displaying the maze:
+<ul>
+<li><code>maze.icons.wall</code>: Icon for walls (<code>'▓'</code>).</li>
+<li><code>maze.icons.open</code>: Icon for open paths (<code>'⛆'</code>).</li>
+<li><code>maze.icons.exit</code>: Icon for the exit (<code>'⛝'</code>).</li>
+<li><code>maze.icons.player</code>: Icon for the player's appearance (<code>'⛄'</code>).</li>
+<li><code>maze.icons.key</code>: Icon for the key (<code>'⚿'</code>).</li>
+<li><span style="background-color: #fbeeb8;"><code>maze.icons.torch</code>: Icon for the torch (</span><code>'✨'</code><span style="background-color: #fbeeb8;">).</span></li>
+<li><span style="background-color: #fbeeb8;"><code>maze.icons.dark</code>: Icon for unexplored areas (<code><span>'█'</span> or </code></span><code>'▓'</code><span style="background-color: #fbeeb8;">)&nbsp;</span></li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.51149%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 10px;"><code>player</code> (struct): A structure representing the player's current state. It includes:</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.51149%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 10px;">
+<ul style="list-style-type: square;">
+<li><code>player.position</code>: A 1x2 vector <code>[row, col]</code> representing the player's starting position (fixed at <code>[2, 2]</code>).</li>
+<li><code>player.moves</code>: An integer representing the number of moves the player has made (initially <code>0</code>).</li>
+<li><code>player.direction</code>: A character representing the direction the player faces (initially <code>'s'</code> for south).</li>
+<li><code>player.has_key</code>: A logical value initialized to <code>false</code>, indicating whether the player has the key.</li>
+<li><code><span style="background-color: #fbeeb8;">player.has_torch</span></code> <span style="background-color: #fbeeb8;">: A logical value initialized to</span>&nbsp;<span style="font-size: 12pt;"><code style="color: var(--ic-brand-font-color-dark); background-color: #fbeeb8;">false</code></span> <span style="background-color: #fbeeb8;">, indicating whether the player has the torch.</span></li>
+<li><span style="background-color: #fbeeb8;"><span style="font-size: 12pt;"><code style="color: var(--ic-brand-font-color-dark); background-color: #fbeeb8;">player.sight</code></span></span><span style="font-size: 12pt;">&nbsp;</span><span style="background-color: #fbeeb8;">: <span style="font-size: 12pt; background-color: #fbeeb8;">A</span></span><span style="font-size: 12pt;">&nbsp;<code style="color: var(--ic-brand-font-color-dark); background-color: #fbeeb8;">height</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> </span></span><span style="background-color: #fbeeb8;"><span style="font-size: 12pt;"><span style="color: var(--ic-brand-font-color-dark); font-family: inherit; background-color: #fbeeb8;">x</span></span></span><span style="font-size: 12pt;"><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> </span><code style="color: var(--ic-brand-font-color-dark); background-color: #fbeeb8;">width</code>&nbsp;</span><span style="background-color: #fbeeb8;"><span style="font-size: 12pt;">logical</span> matrix the same size as the wall matrix (initialized to</span> <span style="font-size: 12pt;"><code style="color: var(--ic-brand-font-color-dark); background-color: #fbeeb8;">false</code></span><span style="background-color: #fbeeb8;">), indicating whether a space can be seen.</span></li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 10px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 10px;">You will need the same <code>generate_maze</code> program as in the previous version.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 204px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.37032%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.5881%; height: 0px;"><code>HW4_display_maze_v3_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.37032%; height: 10px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.5881%; height: 10px;">This&nbsp;function visually displays the maze's current state, including the player's position, walls, exit, and objects (if the player hasn't collected them yet).&nbsp;</td>
+</tr>
+<tr style="vertical-align: top;">
+<td style="width: 9.37032%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.5881%; height: 0px;"><code>maze</code> (struct): The structure representing the maze. It includes all the fields described in <code>HW4_initialize_game</code>.</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.37032%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.5881%; height: 10px;"><code>player</code> (struct) - The structure representing the player's current state. It includes all the fields described in <code>HW4_initialize_game</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.37032%; height: 0px; text-align: right; vertical-align: top;"><term>Outputs</term>:&nbsp;</td>
+<td style="width: 90.5881%; height: 0px;">This function has no explicit return values. Its primary purpose is to clear the console and display the maze's current state using <code>fprintf</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.37032%; text-align: right; height: 10px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.5881%; height: 10px;"><span style="background-color: #fbeeb8;">This function must consider the player's line of sight. If the player cannot "see" a wall or object, it should be displayed using the "dark" icon.</span></td>
+</tr>
+<tr>
+<td style="width: 9.37032%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 90.5881%;"><span style="background-color: #fbeeb8;">This function does not display the inventory items, only the maze.</span></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 386px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.6352%; height: 0px;"><code>HW4_move_player_v3_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.6352%; height: 0px;">This function is responsible for handling the player's movement within the maze. The player's position is updated based on the input direction, provided the new location is not a wall. Additionally, this function handles the player's collection of the key or torch if they move to its location.&nbsp;</td>
+</tr>
+<tr style="vertical-align: top;">
+<td style="width: 9.32326%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.6352%; height: 0px;"><code>maze</code> (struct): The structure representing the maze. It includes all the fields described in <code>HW4_initialize_game</code>.</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.32326%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.6352%; height: 10px;"><code>player</code> (struct) - The structure representing the player's current state. It includes all the fields described in <code>HW4_initialize_game</code>.</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.32326%; text-align: right; height: 0px;"><term>&nbsp;</term></td>
+<td style="width: 90.6352%; height: 0px;"><code>direction</code> (char): The direction in which the player intends to move. It can be one of the following.</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.32326%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.6352%; height: 10px;">
+<ul style="list-style-type: square;">
+<li><code>'w'</code>:&nbsp; Move up.</li>
+<li><code>'s'</code>:&nbsp; Move down.</li>
+<li><code>'a'</code>:&nbsp; Move left.</li>
+<li><code>'d'</code>:&nbsp; Move right.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right; vertical-align: top;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.6352%; height: 0px;"><code>player</code> (struct): The updated player structure reflects the new position, number of moves, and whether the key has been collected.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right; vertical-align: top;"><term>Comments</term>:&nbsp;</td>
+<td style="width: 90.6352%; height: 0px;"><span style="background-color: #fbeeb8;">If necessary, this function should update ALL of the fields of the player structure, including the sight.</span></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.32326%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.6352%; height: 28px;">The <code>direction</code> field should be updated even if the player tries to move into a wall; however, the <code>moves</code> field should not.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 361px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.6352%; height: 0px;"><code>HW4_line_of_sight_v3_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.6352%; height: 0px;">This function determines the visible spaces within a maze from the player's current position. It implements a <term>line-of-sight mechanic</term>, simulating what the player can see based on their position, direction, and whether they possess a visibility-enhancing item (i.e., the torch).</td>
+</tr>
+<tr style="vertical-align: top;">
+<td style="width: 9.32326%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.6352%; height: 0px;"><code>maze</code> (struct): The structure representing the maze. It includes all the fields described in <code>HW4_initialize_game</code>.</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.32326%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.6352%; height: 10px;"><code>player</code> (struct) - The structure representing the player's current state. It includes all the fields described in <code>HW4_initialize_game</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right; vertical-align: top;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.6352%; height: 0px;"><code>player</code> (struct): The updated player structure reflects the new position, number of moves, and whether the key has been collected.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 10px; text-align: right; vertical-align: top;"><term>Comments</term>:&nbsp;</td>
+<td style="width: 90.6352%; height: 10px;">Only adjacent spaces are visible if the player does not have the torch.&nbsp;</td>
+</tr>
+<tr style="height: 52px;">
+<td style="width: 9.32326%; text-align: right; vertical-align: top; height: 52px;"><term>&nbsp;</term></td>
+<td style="width: 90.6352%; height: 52px;">If the player has the torch, they can see down corridors in every direction until the first wall. Additionally, they can see all spaces adjacent to an "open" space along each corridor. See below.</td>
+</tr>
+<tr style="height: 289px;">
+<td style="width: 9.32326%; vertical-align: top; text-align: center; height: 289px;"><term>&nbsp;</term></td>
+<td style="width: 90.6352%; text-align: center; height: 289px;">
+<table style="border-collapse: collapse; width: 99.5657%; height: 283px;" border="1">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 49.9387%; height: 28px;">Without Torch</td>
+<td style="width: 49.9387%; height: 28px;">With Torch</td>
+</tr>
+<tr style="height: 255px;">
+<td style="width: 49.9387%; height: 255px;"><img id="2185496" src="$IMS-CC-FILEBASE$/02--Homework/HW%2004/No-torch.png" alt="No-torch.png" width="220" height="251" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436107" data-api-returntype="File" loading="lazy"></td>
+<td style="width: 49.9387%; height: 255px;"><img id="2185497" src="$IMS-CC-FILEBASE$/02--Homework/HW%2004/With-torch.png" alt="With-torch.png" width="220" height="250" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436106" data-api-returntype="File" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 374px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.6351%; height: 0px;"><code>HW4_dark_cavern_v3_lastname.m</code></td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 9.32326%; height: 10px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.6351%; height: 10px;">This<term></term> function is the main driver for the Dark Cavern game. It initializes the maze and player and then enters a game loop in which the player navigates the maze, collects the key/torch, and ultimately reaches the exit. The function tracks both the number of moves and the elapsed time. The game ends when the player has successfully found the key and reached the exit.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; height: 0px; text-align: right; vertical-align: top;"><term>Inputs</term>:&nbsp;</td>
+<td style="width: 90.6351%; height: 0px;"><term>There are no inputs.</term> The function runs the game loop by calling the necessary helper functions to initialize the game, move the player, and display the maze.</td>
+</tr>
+<tr style="vertical-align: top;">
+<td style="width: 9.32326%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.6351%; height: 0px;"><term>There are no explicit return values.</term> However, the function continuously updates the game state and prints information to the console, such as the maze layout, player position, and the congratulatory message when the game is won.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.32326%; text-align: right; height: 10px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.6351%; height: 10px;">To keep track of the time using MATLAB's <code>tic</code>, <code>toc</code> commands. Here is an example of how it is used to time a code block.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.32326%; text-align: right; height: 28px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.6351%; height: 28px;">Test that the game can be exited by pressing the <code>'x'</code> key.</td>
+</tr>
+<tr style="height: 82px;">
+<td style="width: 9.32326%; text-align: right; height: 82px;"><term>&nbsp;</term></td>
+<td style="width: 90.6351%; height: 82px;">Expected behavior:<br>
+<ul style="list-style-type: square;">
+<li>Pressing <code>'x'</code> at any point should immediately end the game and clear the screen.</li>
+<li>The game should terminate without displaying the congratulatory message.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.32326%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.6351%; height: 28px;">Test the overall game flow, including movement, key<span style="background-color: #fbeeb8;">/torch</span> collection, and reaching the exit.</td>
+</tr>
+<tr style="height: 106px;">
+<td style="width: 9.32326%; text-align: right; height: 106px;"><term>&nbsp;</term></td>
+<td style="width: 90.6351%; height: 106px;">Expected behavior:<br>
+<ul style="list-style-type: square;">
+<li>The key<span style="background-color: #fbeeb8;">/torch</span> should be displayed until collected.</li>
+<li>The number of moves and elapsed time should be displayed along with the maze.</li>
+<li><span style="background-color: #fbeeb8;">The inventory should also be displayed underneath the moves and elapsed time.</span></li>
+<li>The player must collect the key before being able to exit the maze.</li>
+<li>Upon reaching the exit with the key, the game should end with a success message.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.32326%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.6351%; height: 28px;">Test that the player cannot move into walls and that the game handles invalid input.</td>
+</tr>
+<tr style="height: 82px;">
+<td style="width: 9.32326%; text-align: right; height: 82px;"><term>&nbsp;</term></td>
+<td style="width: 90.6351%; height: 82px;">Expected behavior:<br>
+<ul style="list-style-type: square;">
+<li>The player should not be able to move into walls.</li>
+<li>Invalid inputs should not crash the game.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 9.32326%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 90.6351%;">Here are some screenshots.</td>
+</tr>
+<tr>
+<td style="width: 9.32326%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 90.6351%;">
+<table style="border-collapse: collapse; width: 99.7928%;" border="1">
+<tbody>
+<tr>
+<td style="width: 49.9875%; text-align: center;"><span style="font-size: 10pt;"><term>Beginning of the game</term></span></td>
+<td style="width: 49.988%; text-align: center;"><span style="font-size: 10pt;"><term>Standing on the exit with the torch and no key.</term></span></td>
+</tr>
+<tr>
+<td style="width: 49.9875%; text-align: center;"><img id="2185501" src="$IMS-CC-FILEBASE$/02--Homework/HW%2004/full-display-0.png" alt="full-display-0.png" width="325" height="380" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436109" data-api-returntype="File" loading="lazy"></td>
+<td style="width: 49.988%; text-align: center;"><img id="2185500" src="$IMS-CC-FILEBASE$/02--Homework/HW%2004/full-display-1.png" alt="full-display-1.png" width="325" height="403" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436110" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr>
+<td style="width: 49.9875%; text-align: center;"><term><span style="font-size: 10pt;">After picking up the key.</span></term></td>
+<td style="width: 49.988%; text-align: center;"><term><span style="font-size: 10pt;">Going back to the exit</span></term></td>
+</tr>
+<tr>
+<td style="width: 49.9875%; text-align: center;"><img id="2185498" src="$IMS-CC-FILEBASE$/02--Homework/HW%2004/full-display-2.png" alt="full-display-2.png" width="325" height="417" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436108" data-api-returntype="File" loading="lazy"></td>
+<td style="width: 49.988%; text-align: center;"><img id="2185499" src="$IMS-CC-FILEBASE$/02--Homework/HW%2004/full-display-3.png" alt="full-display-3.png" width="325" height="362" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436111" data-api-returntype="File" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3><term><span style="font-size: 14pt;">Script Problems</span></term></h3>
+<p>&nbsp;</p>
+</body>
+</html>

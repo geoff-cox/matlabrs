@@ -1,0 +1,49 @@
+<!--META-DATA
+{
+	"tags": ["vector", "for", "if", "peaks", "logical-indexing"]
+}
+-->
+
+<statement>
+	<p>
+		Returns the index location of all <em>peaks</em> in a list. A peak is any entry that is strictly greater than its immediate neighbors.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell><p><pf>list</pf> (1 x N) double vector.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell><p><pf>peaks</pf> (1 x M) double vector — the indices of all peaks in <pf>list</pf>. If there are no peaks, output <pf>[]</pf>.</p></cell>
+		</row>
+		<row>
+			<cell>Details:</cell>
+			<cell><p>▸ Use a loop to code this.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell></cell>
+			<cell><p>▸ The first and last values in <pf>list</pf> cannot be peaks since they are missing a neighbor.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				peaks = list_peak_locations([1 3 -3 5 4.5 7 2])
+				% returns [2 4 6]
+			</code>
+		</program>
+		<program>
+			<code>
+				peaks = list_peak_locations([7 6 5])
+				% returns []  (no peaks)
+			</code>
+		</program>
+	</p>
+</statement>

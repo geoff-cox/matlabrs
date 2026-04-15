@@ -1,0 +1,63 @@
+<!--META-DATA
+{
+	tags: for, vector, logical,
+}
+-->
+
+<statement>
+<p>
+	This function sets up the game environment, including the player, the maze structure, and fundamental gameplay elements. The new components are highlighted below.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>height</pf> (integer) integer — : The number of rows in the maze, representing its height.</p>
+			<p><pf>width</pf> (integer) integer — : The number of columns in the maze, representing its width.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>maze</pf> (struct) number — : A structure containing information about the randomly generated maze. It includes:</p>
+			<p><pf>maze.walls</pf> number — : A 2D matrix of size <pf>height</pf> x <pf>width</pf> where <pf>1</pf> represents a wall and <pf>0</pf> represents an open path.</p>
+			<p><pf>maze.h</pf> (i.e., the number of rows in the <pf>walls</pf> matrix) number — : The height of the maze (i.e., the number of rows in the <pf>walls</pf> matrix).</p>
+			<p><pf>maze.w</pf> (i.e., the number of rows in the walls matrix) number — : The width of the maze (i.e., the number of rows in the walls matrix).</p>
+			<p><pf>maze.exit</pf> double vector — : A 1x2 vector <pf>[row, col]</pf> representing the randomly selected exit position.</p>
+			<p><pf>maze.key</pf> double vector — : A 1x2 vector <pf>[row, col]</pf> representing the randomly selected key position.</p>
+			<p><pf>maze.torch</pf> double vector — : A 1x2 vector <pf>[row, col]</pf> representing the randomly selected torch position.</p>
+			<p><pf>maze.icons</pf> (<pf>'▓'</pf>) number — : A struct containing the visual symbols used for displaying the maze: <pf>maze.icons.wall</pf>: Icon for walls (<pf>'▓'</pf>). <pf>maze.icons.open</pf>: Icon for open paths (<pf>'⛆'</pf>). <pf>maze.icons.exit</pf>: Icon for the exit (<pf>'⛝'</pf>). <pf>maze.icons.player</pf>: Icon for the player's appearance (<pf>'⛄'</pf>). <pf>maze.icons.key</pf>: Icon for the key (<pf>'⚿'</pf>). <pf>maze.icons.torch</pf>: Icon for the torch ( <pf>'✨'</pf> ). <pf>maze.icons.dark</pf>: Icon for unexplored areas (<pf> '█' or </pf> <pf>'▓'</pf> )</p>
+			<p><pf>maze.icons.wall</pf> (<pf>'▓'</pf>) number — : Icon for walls (<pf>'▓'</pf>).</p>
+			<p><pf>maze.icons.open</pf> (<pf>'⛆'</pf>) number — : Icon for open paths (<pf>'⛆'</pf>).</p>
+			<p><pf>maze.icons.exit</pf> (<pf>'⛝'</pf>) number — : Icon for the exit (<pf>'⛝'</pf>).</p>
+			<p><pf>maze.icons.player</pf> (<pf>'⛄'</pf>) number — : Icon for the player's appearance (<pf>'⛄'</pf>).</p>
+			<p><pf>maze.icons.key</pf> (<pf>'⚿'</pf>) number — : Icon for the key (<pf>'⚿'</pf>).</p>
+			<p><pf>maze.icons.torch</pf> ( <pf>'✨'</pf> ) number — : Icon for the torch ( <pf>'✨'</pf> ).</p>
+			<p><pf>maze.icons.dark</pf> (<pf> '█' or </pf> <pf>'▓'</pf> ) number — : Icon for unexplored areas (<pf> '█' or </pf> <pf>'▓'</pf> )</p>
+			<p><pf>player</pf> (struct) number — : A structure representing the player's current state. It includes:</p>
+			<p><pf>player.position</pf> (fixed at <pf>[2, 2]</pf>) double vector — : A 1x2 vector <pf>[row, col]</pf> representing the player's starting position (fixed at <pf>[2, 2]</pf>).</p>
+			<p><pf>player.moves</pf> (initially <pf>0</pf>) integer — : An integer representing the number of moves the player has made (initially <pf>0</pf>).</p>
+			<p><pf>player.direction</pf> (initially <pf>'s'</pf> for south) number — : A character representing the direction the player faces (initially <pf>'s'</pf> for south).</p>
+			<p><pf>player.has_key</pf> logical — : A logical value initialized to <pf>false</pf>, indicating whether the player has the key.</p>
+			<p><pf>player.has_torch</pf> logical — : A logical value initialized to false , indicating whether the player has the torch.</p>
+			<p><pf>player.sight</pf> (initialized to false ) logical — : A height x width logical matrix the same size as the wall matrix (initialized to false ), indicating whether a space can be seen.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>You will need the same</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>generate_maze</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>program as in the previous version.</p></cell>
+	</row>
+</tabular>
+
+</statement>

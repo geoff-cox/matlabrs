@@ -1,0 +1,78 @@
+<!--META-DATA
+{
+	"tags": ["monte-carlo", "pi", "estimation", "simulation", "function"]
+}
+-->
+
+<statement>
+	<p>
+		This function uses Monte Carlo simulation to estimate the value of <m>\pi</m>.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>N</pf> (1x1) integer — number of experiment trials. Default: <pf>1e5</pf></p>
+				<p><pf>seed</pf> (1x1) integer — optional rng seed for reproducibility.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p>
+					<pf>simResults</pf> (1x1) struct containing the fields:
+					<ul>
+						<li><pf>N</pf> (1x1) integer — number of experiment trials.</li>
+						<li><pf>CL</pf> (1x1) double — confidence level between 0-1.</li>
+						<li><pf>ME</pf> (1x1) double — confidence interval margin of error.</li>
+						<li><pf>approxPi</pf> (1x1) double — Monte Carlo estimate of <m>\pi</m></li>
+					</ul>
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ This simulation can be approached very similarly to the in-class demonstration where we approximated the area of a circle of radius r. Think about the connection of <m>\pi</m> to this problem.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Handle the special inputs options as follows:
+					<ul marker="square">
+						<li>If <pf>seed</pf> is provided, set the random number generator to this seed using the command: <pf>rng(seed,'twister')</pf></li>
+						<li>If no inputs are provided, set <pf>N=1e5</pf> (shorthand for <m>10^5</m>).</li>
+					</ul>
+				</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: Estimate pi using 10,000 random points
+				approx_pi = mc_approx_pi(10000)
+				% returns a value near 3.14
+			</code>
+		</program>
+
+		<program>
+			<code>
+				% Example 2: Reproducible estimate with fixed seed
+				approx_pi = mc_approx_pi(1e6, 1234)
+				% returns approximately 3.1417
+			</code>
+		</program>
+	</p>
+</statement>

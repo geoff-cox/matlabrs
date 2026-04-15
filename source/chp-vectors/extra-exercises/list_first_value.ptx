@@ -1,0 +1,58 @@
+<!--META-DATA
+{
+tags: while, if, vector, logical,
+}
+-->
+
+<statement>
+	<p>
+		Returns the <pf>location</pf> of the first value in a list of numbers that is equal to a given number.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+			<p><pf>list</pf> (1 x N) double vector — list of numbers</p>
+			<p><pf>num</pf> (1 x 1) double — the number we are comparing to the values in <pf>list</pf></p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+			<p><pf>location</pf> (1 x 1) integer — index of the first value in <pf>list</pf> that equals <pf>num</pf>, or <pf>[]</pf> if not found</p>
+			</cell>
+		</row>
+		<row>
+			<cell>Details:</cell>
+			<cell><p>▸ Use <pf>numel</pf>, <pf>size</pf>, or <pf>length</pf> to get the number of values in <pf>list</pf>.</p></cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ Use a <pf>while</pf> loop and/or an <pf>if</pf>-statement ONLY for this problem; don't use a <pf>for</pf>-loop.</p></cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ A <pf>while</pf> loop continues as long as a condition is true. You will need to combine two conditions using <pf>&amp;</pf> (and) or <pf>|</pf> (or).</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ If no matching value exists, return the empty bracket <pf>[]</pf>.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example calls and expected results
+				location = first_value([1 1 1 -9 0 0 6 6 -1 6 7 1 2], 6)
+				% returns 7
+				location = first_value([1 2 3], 5)
+				% returns []
+			</code>
+		</program>
+	</p>
+</statement>

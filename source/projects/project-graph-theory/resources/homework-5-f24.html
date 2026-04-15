@@ -1,0 +1,911 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 5 - F24</title>
+</head>
+<body>
+<h3>Homework 5: <term>Graph Theory Concepts &amp; Definitions</term></h3>
+<h3>Instructions:</h3>
+<ul>
+<li>When you have completed these programs, UPLOAD THEM TO THIS ASSIGNMENT.</li>
+<li>A complete submission will include the files below, which <code>lastname</code> should be replaced with your last name.</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><code>HW5P1_adjacency_matrix_lastname.m</code></li>
+<li><code>HW5P2_incidence_matrix_lastname.m</code></li>
+<li><code>HW5P3_vertex_degrees_lastname.m</code></li>
+<li><code>HW5P4_is_simple_lastname.m</code></li>
+<li><code>HW5P5_has_cycle_lastname.m</code></li>
+<li><code>HW5P6_get_neighbors_lastname.m</code></li>
+<li><code>HW5P7_is_connected_lastname.m</code></li>
+<li><code>HW5P8_is_eulerian_lastname.m</code></li>
+<li><code>HW5P9_is_tree_lastname.m</code></li>
+<li><code>HW5P10_is_bipartite_lastname.m</code></li>
+<li><code>HW5P11_construct_graph_lastname.m</code></li>
+</ul>
+</li>
+</ul>
+<h3>Notes:</h3>
+<ul>
+<li>Each of these files should contain a single function. So, there should be NO commands above or below the defined function inside the file. However, comments outside the function are ok.</li>
+<li>If you do not use descriptive variable names, you must describe every variable you define with code comments.</li>
+<li>To grade your programs, the file names must match the format specified below. Misspellings and deviations from the naming convention will lead to errors when I run your code, and I will not manually retype your function names to make them work. So please double-check each file name before uploading it.</li>
+</ul>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Do not use any built-in MATLAB commands unless specified in the directions of the problem. Here is a list of approved MATLAB built-in functions you are free to use:</p>
+<p><code>length</code>, <code>numel</code>, <code>size</code>, <code>mod</code>, <code>sum</code>, <code>zeros</code>, <code>ones</code>, <code>primes</code>, <code>height</code>, <code>floor</code>, <code>ceil</code>, <code>max</code>, <code>min</code>, <code>isnan</code>, <code>isfield</code></p>
+<hr><hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 28px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P1_adjacency_matrix_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function constructs the adjacency matrix for an undirected graph represented by the structure <code>G</code>. The adjacency matrix is a square matrix where each element <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>A</mi> <mo stretchy="false">(</mo> <mi>i</mi> <mo separator="true">,</mo> <mi>j</mi> <mo stretchy="false">)</mo> </mrow> <annotation encoding="application/x-tex">A(i, j)</annotation> </semantics> </math></span></span>&nbsp;is the number of edges between vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>i</mi> </mrow> <annotation encoding="application/x-tex">i</annotation> </semantics> </math></span></span> and vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>j</mi> </mrow> <annotation encoding="application/x-tex">j</annotation> </semantics> </math></span></span>. For undirected graphs, this matrix is symmetric.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.m</code> (integer): The number of edges in the graph.</li>
+<li><code>G.edges</code> (m x 2): A matrix where each row represents an edge connecting two vertices.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 10px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 10px;"><code>A</code> (n x n): The adjacency matrix, where n is the number of vertices in the graph.</td>
+</tr>
+<tr>
+<td style="width: 9.51149%; text-align: right;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%;">Ensure your function handles cases with no edges (empty edge list).</td>
+</tr>
+<tr>
+<td style="width: 9.51149%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%;">Consider edge cases where multiple edges between two vertices may be present.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 55.9853%; text-align: center;">Command Window</td>
+<td style="width: 43.9897%; text-align: center;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 55.9853%;">
+<pre>G.n = 3;<br>G.m = 2;<br>G.edges = [1, 2; 2, 3];<br>A = HW5P1_adjacency_matrix(G);</pre>
+</td>
+<td style="width: 43.9897%;">
+<pre>A =<br>  &nbsp; &nbsp;0 &nbsp; &nbsp; 1 &nbsp; &nbsp; 0<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 0 &nbsp; &nbsp; 1<br>&nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp; 1 &nbsp; &nbsp; 0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 55.9853%;">
+<pre>G.n = 2;<br>G.m = 2;<br>G.edges = [1, 1; 1, 2];<br>A = HW5P1_adjacency_matrix(G);</pre>
+</td>
+<td style="width: 43.9897%;">
+<pre>A =<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 1<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 55.9853%;">
+<pre>G.n = 4;<br>G.m = 5;<br>G.edges = [3 4; 4 4; 1 4; 4 3; 1 1];<br>A = HW5P1_adjacency_matrix(G)</pre>
+</td>
+<td style="width: 43.9897%;">
+<pre>A =<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 0 &nbsp; &nbsp; 0 &nbsp; &nbsp; 1<br>&nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp; 0 &nbsp; &nbsp; 0 &nbsp; &nbsp; 0<br>&nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp; 0 &nbsp; &nbsp; 0 &nbsp; &nbsp; 2<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 0 &nbsp; &nbsp; 2 &nbsp; &nbsp; 1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 147px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P2_incidence_matrix_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function constructs the incidence matrix for an undirected graph represented by the structure <code>G</code>. The incidence matrix represents the connections between vertices and edges, with rows corresponding to vertices and columns to edges. For each edge, the matrix contains values indicating which vertices are connected by that edge.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.m</code> (integer): The number of edges in the graph.</li>
+<li><code>G.edges</code> (m x 2): A matrix where each row represents an edge connecting two vertices.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>I</code> (n x m): The incidence matrix, where each row represents a vertex, each column an edge, and each element indicates whether a vertex is incident to an edge:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 58px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 58px;">
+<ul>
+<li>If vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>i</mi> </mrow> <annotation encoding="application/x-tex">i</annotation> </semantics> </math></span></span> is incident to edge <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>e</mi> </mrow> <annotation encoding="application/x-tex">e</annotation> </semantics> </math></span></span>, then <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>I</mi> <mo stretchy="false">(</mo> <mi>i</mi> <mo separator="true">,</mo> <mi>e</mi> <mo stretchy="false">)</mo> <mo>=</mo> <mn>1</mn> </mrow> <annotation encoding="application/x-tex">I(i, e) = 1</annotation> </semantics> </math></span></span></li>
+<li>If vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>i</mi> </mrow> <annotation encoding="application/x-tex">i</annotation> </semantics> </math></span></span> is not incident to edge <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>e</mi> </mrow> <annotation encoding="application/x-tex">e</annotation> </semantics> </math></span></span>, then <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>I</mi> <mo stretchy="false">(</mo> <mi>i</mi> <mo separator="true">,</mo> <mi>e</mi> <mo stretchy="false">)</mo> <mo>=</mo> <mn>0</mn> </mrow> <annotation encoding="application/x-tex">I(i, e) = 0</annotation> </semantics> </math></span></span></li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">Your function should handle cases with no edges (empty edge list).</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">For self-loops, only a single 1 should be assigned in the row of the vertex in the column corresponding to the edge.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 10px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 10px;">
+<table style="border-collapse: collapse; width: 99.7924%;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 59.9099%; text-align: center;">Command Window</td>
+<td style="width: 40.0651%; text-align: center;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 59.9099%;">
+<pre>G.n = 3;<br>G.m = 2;<br>G.edges = [1, 2; 2, 3];<br>I = HW5P2_incidence_matrix(G);</pre>
+</td>
+<td style="width: 40.0651%;">
+<pre>I =<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 0<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 1<br>&nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp; 1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 59.9099%;">
+<pre>G.n = 2;<br>G.m = 2;<br>G.edges = [1, 1; 1, 2];<br>I = HW5P2_incidence_matrix(G);</pre>
+</td>
+<td style="width: 40.0651%;">
+<pre>I =<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 1<br>&nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp; 1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 59.9099%;">
+<pre>G.n = 3;<br>G.m = 0;<br>G.edges = [];<br>I = HW5P2_incidence_matrix(G);</pre>
+</td>
+<td style="width: 40.0651%;">
+<pre>I =<br>&nbsp; 3×0 empty double matrix</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 0px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P3_vertex_degrees_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function computes the degree of each vertex in an undirected graph represented by the structure <code>G</code>. The degree of a vertex is the number of edges connected to it.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<ul style="list-style-type: square;">
+<li><code>G.adj_mat</code> (n x n): The adjacency matrix of the graph.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>degrees</code> (n x 1): A column vector where each element represents the degree of a corresponding vertex in the graph.</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">Edges that are loops should only add one degree to a vertex.</td>
+</tr>
+<tr>
+<td style="width: 9.51149%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%;">You may use MATLAB's <code>sum</code> command for this program.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 0px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.8465%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 36.1285%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.8465%; height: 0px;">
+<pre>G.adj_mat = [0 1 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0];<br>degrees = HW5P3_vertex_degrees(G);</pre>
+</td>
+<td style="width: 36.1285%; height: 0px;">
+<pre>degrees =<br>&nbsp; &nbsp; &nbsp;1<br>&nbsp; &nbsp; &nbsp;2<br>&nbsp; &nbsp; &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.8465%; height: 0px;">
+<pre>G.adj_mat = [1 1 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0];<br>degrees = HW5P3_vertex_degrees(G);</pre>
+</td>
+<td style="width: 36.1285%; height: 0px;">
+<pre>degrees =<br>&nbsp; &nbsp; &nbsp;2<br>&nbsp; &nbsp; &nbsp;2<br>&nbsp; &nbsp; &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.8465%; height: 0px;">
+<pre>G.adj_mat = [0 0 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0];<br>degrees = HW5P3_vertex_degrees(G);</pre>
+</td>
+<td style="width: 36.1285%; height: 0px;">
+<pre>degrees =<br>&nbsp; &nbsp; &nbsp;0<br>&nbsp; &nbsp; &nbsp;0<br>&nbsp; &nbsp; &nbsp;0<br><br></pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 54px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P4_is_simple_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function determines whether an undirected graph is <term>simple</term>. A graph is considered simple if it has no self-loops (edges that connect a vertex to itself) and no multiple edges (more than one edge between any pair of vertices).</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<ul style="list-style-type: square;">
+<li><code>G.adj_mat</code> (n x n): The adjacency matrix of the graph.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>result</code> (logical): Returns <code style="color: var(--ic-brand-font-color-dark);">true</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> if the graph is simple, </span><code style="color: var(--ic-brand-font-color-dark);">false</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> otherwise.</span></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">This program is relatively easy. The key is to use the adjacency matrix to detect loops or parallel edges in the graph.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 0px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 38.0359%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [0 1 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0];<br>result = HW5P4_is_simple(G);</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [1 1 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0];<br>result = HW5P4_is_simple(G);</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [0 2 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2 0 1;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0];<br>result = HW5P4_is_simple(G);</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [0 0 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0;<br>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0];<br>result = HW5P4_is_simple(G);</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>&nbsp; &nbsp;1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 49px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P5_has_cycle_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function determines if an undirected graph contains any cycles. A cycle is a path that starts and ends at the same vertex without retracing any edge.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<ul style="list-style-type: square;">
+<li><code>G.adj_mat</code> (n x n): The adjacency matrix of the graph.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>result</code> (logical): Returns <code style="color: var(--ic-brand-font-color-dark);">true</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> if the graph has at least one cycle, </span><code style="color: var(--ic-brand-font-color-dark);">false</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> otherwise.</span></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">Check back for hints on possible strategies for this program.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 0px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 62.0904%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 37.8846%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 62.0904%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0];<br>result = HW5P5_has_cycle(G)</pre>
+</td>
+<td style="width: 37.8846%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 62.0904%; height: 0px;">
+<pre>G.adj_mat = [0 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0];<br>result = HW5P5_has_cycle(G)</pre>
+</td>
+<td style="width: 37.8846%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 62.0904%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0 0];<br>result = HW5P5_has_cycle(G)</pre>
+</td>
+<td style="width: 37.8846%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 62.0904%; height: 0px;">
+<pre>G.adj_mat = [0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0];<br>result = HW5P5_has_cycle(G)</pre>
+</td>
+<td style="width: 37.8846%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;0</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 108px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P6_get_neighbors_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function returns the neighbors of a specified vertex in an undirected graph. A neighbor of a vertex is any other vertex directly connected to it by an edge.&nbsp;</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>vertex</code> (integer): The index of the vertex whose neighbors you want to retrieve.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"></td>
+<td style="width: 90.4469%; height: 0px;">
+<ul style="list-style-type: square;">
+<li><code>G.adj_mat</code> (n x n): The adjacency matrix of the graph.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>neighbors</code> (1 x m): A row vector containing the indices of all neighbors of the specified vertex. If the vertex has no neighbors, return an empty array.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">Ensure the function returns an empty array if the vertex has no neighbors.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">Self-loops should not be included in the neighbor list; only distinct, directly connected vertices should be considered.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">You can assume that the input <code>vertex</code> will be a valid vertex index.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 0px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.107%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 38.868%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.107%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0];<br>vertex = 1;<br>neighbors = HW5P6_get_neighbors(vertex, G)</pre>
+</td>
+<td style="width: 38.868%; height: 0px;">
+<pre>neighbors =<br>&nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; 4</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.107%; height: 0px;">
+<pre>G.adj_mat = [0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0];<br>vertex = 2;<br>neighbors = HW5P6_get_neighbors(vertex, G)</pre>
+</td>
+<td style="width: 38.868%; height: 0px;">
+<pre>neighbors =<br>&nbsp; 1×0 empty double row vector</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.107%; height: 0px;">
+<pre>G.adj_mat = [1 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0];<br>vertex = 1;<br>neighbors = HW5P6_get_neighbors(vertex, G)</pre>
+</td>
+<td style="width: 38.868%; height: 0px;">
+<pre>neighbors =<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 2</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.107%; height: 0px;">
+<pre>G.adj_mat = [0 1 1 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 0 1 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 0 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 1 0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 1 0 0];<br>vertex = 2;<br>neighbors = HW5P6_get_neighbors(vertex, G)</pre>
+</td>
+<td style="width: 38.868%; height: 0px;">
+<pre>neighbors =<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 4 &nbsp; &nbsp; 5</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 132px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P7_is_connected_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function determines if an undirected graph is <term>connected</term>. A graph is considered connected if a path exists between every pair of vertices.&nbsp;</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 58px;">
+<td style="width: 9.51149%; text-align: right; height: 58px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 58px;">
+<ul style="list-style-type: square;">
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.adj_mat</code> (n x n): The adjacency matrix of the graph.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>result</code> (logical): Returns <code style="color: var(--ic-brand-font-color-dark);">true</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> if the graph is connected, </span><code style="color: var(--ic-brand-font-color-dark);">false</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> otherwise.</span></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">This function should work for disconnected and connected graphs of any size.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">If the graph is empty or contains a single vertex, consider it trivially connected.</td>
+</tr>
+<tr>
+<td style="width: 9.51149%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%;">Check back for hints on possible strategies for this program.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 0px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.1494%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 36.8256%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.1494%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0];<br>G.n = 4;<br>result = HW5P7_is_connected(G)</pre>
+</td>
+<td style="width: 36.8256%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.1494%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 1 0];<br>G.n = 4;<br>result = HW5P7_is_connected(G)</pre>
+</td>
+<td style="width: 36.8256%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.1494%; height: 0px;">
+<pre>G.adj_mat = [0];<br>G.n = 1;<br>result = HW5P7_is_connected(G)</pre>
+</td>
+<td style="width: 36.8256%; height: 0px;">
+<pre>result =<br>  logical<br>   1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 63.1494%; height: 0px;">
+<pre>G.adj_mat = [];<br>G.n = 0;<br>result = HW5P7_is_connected(G)</pre>
+</td>
+<td style="width: 36.8256%; height: 0px;">
+<pre>result =<br>  logical<br>&nbsp; &nbsp;1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 100px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P8_is_eulerian_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 10px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 10px;">This function determines if an undirected graph is Eulerian. An Eulerian graph is a connected graph that can traverse every edge exactly once and return to the starting point.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 34px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 34px;">
+<ul style="list-style-type: square;">
+<li><code>G.degrees</code> (n x 1): A column vector where each element represents the degree of a corresponding vertex in the graph.</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.connected</span></code> (1 x 1, logical): <code>true</code> if the graph is connected. <code>false</code>, otherwise</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>result</code> (logical): Returns <code style="color: var(--ic-brand-font-color-dark);">true</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> if the graph is Eulerian (all vertices have even degree), </span><code style="color: var(--ic-brand-font-color-dark);">false</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> otherwise.</span></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 28px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">To code this, use the theorem: "A connected graph is Eulerian if every vertex has an even degree."</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 0px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.8634%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 38.1116%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.8634%; height: 0px;">
+<pre>G.connected = true;<br>G.degrees = [2; 2; 2; 2];<br>result = HW5P8_is_eulerian(G);</pre>
+</td>
+<td style="width: 38.1116%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.8634%; height: 0px;">
+<pre>G.connected = true;<br>G.degrees = [1; 2; 3; 2];<br>result = HW5P8_is_eulerian(G);</pre>
+</td>
+<td style="width: 38.1116%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;0</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 61.8634%;">
+<pre>G.connected = false;<br>G.degrees = [1; 2; 3; 2];<br>result = HW5P8_is_eulerian(G);</pre>
+</td>
+<td style="width: 38.1116%;">
+<pre>result =<br>  logical<br>  &nbsp;0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.8634%; height: 0px;">
+<pre>G.connected = true;<br>G.degrees = [0];<br>result = HW5P8_is_eulerian(G);</pre>
+</td>
+<td style="width: 38.1116%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 74px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 10px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 10px;"><code>HW5P9_is_tree_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function determines if an undirected graph is a <term>tree</term>. A tree is a connected, acyclic graph, meaning that it has no cycles and a unique path exists between every pair of vertices.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.m</code> (integer): The number of edges in the graph.</li>
+<li><code>G.adj_mat</code> (n x n): The adjacency matrix of the graph.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>result</code> (logical): Returns <code style="color: var(--ic-brand-font-color-dark);">true</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> if the graph is a tree, </span><code style="color: var(--ic-brand-font-color-dark);">false</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> otherwise.</span></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">Handle edge cases such as a single vertex graph, which is trivially a tree.</td>
+</tr>
+<tr>
+<td style="width: 9.51149%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%;">Using your other functions in this assignment can make this an easy problem.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 0px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 38.0359%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 1 0];<br>G.n = 4;<br>G.m = 3;<br>result = HW5P9_is_tree(G)</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [0 1 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 1 0];<br>G.n = 3;<br>G.m = 3;<br>result = HW5P9_is_tree(G)</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 1 0];<br>G.n = 4;<br>G.m = 2;<br>result = HW5P9_is_tree(G)</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 61.9391%; height: 0px;">
+<pre>G.adj_mat = [0];<br>G.n = 1;<br>G.m = 0;<br>result = HW5P9_is_tree(G)</pre>
+</td>
+<td style="width: 38.0359%; height: 0px;">
+<pre>result =<br>  logical<br>&nbsp; &nbsp;1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 74px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;"><code>HW5P10_is_bipartite_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function determines if an undirected graph is <term>bipartite</term>. A graph is bipartite if its vertices can be divided into two disjoint sets such that no two vertices within the same set are adjacent.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:</td>
+</tr>
+<tr style="height: 58px;">
+<td style="width: 9.51149%; text-align: right; height: 58px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 58px;">
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.adj_mat</code> (n x n): The adjacency matrix of the graph.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>result</code> (logical): Returns <code style="color: var(--ic-brand-font-color-dark);">true</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> if the graph is bipartite, </span><code style="color: var(--ic-brand-font-color-dark);">false</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> otherwise.</span></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">For this problem, implement a coloring algorithm using a queue/stack. We will go over this in class.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 0px;"><term>Test Cases:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">
+<table style="border-collapse: collapse; width: 99.7924%; height: 10px;" border="1">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 65.6456%; text-align: center; height: 0px;">Command Window</td>
+<td style="width: 34.3294%; text-align: center; height: 0px;">Expected Output</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 65.6456%; height: 0px;">
+<pre>G.adj_mat = [0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1 0];<br>G.n = 4;<br>result = HW5P10_is_bipartite(G)</pre>
+</td>
+<td style="width: 34.3294%; height: 0px;">
+<pre>result =<br>  logical<br>  &nbsp;1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 65.6456%; height: 0px;">
+<pre>G.adj_mat = [0 1 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 1 0];<br>G.n = 3;<br>result = HW5P10_is_bipartite(G)</pre>
+</td>
+<td style="width: 34.3294%; height: 0px;">
+<pre>result =<br>  logical<br>   0</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 65.6456%; height: 10px;">
+<pre>G.adj_mat = [0 1 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 0 0 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 0 1;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 0 1 0];<br>G.n = 4;<br>result = HW5P10_is_bipartite(G)</pre>
+</td>
+<td style="width: 34.3294%; height: 10px;">
+<pre>result =<br>  logical<br>   1</pre>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 65.6456%; height: 0px;">
+<pre>G.adj_mat = [];<br>G.n = 0;<br>result = HW5P10_is_bipartite(G)</pre>
+</td>
+<td style="width: 34.3294%; height: 0px;">
+<pre>result =<br>  logical<br>&nbsp; &nbsp;1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 132px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 10px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 10px;"><code>HW5P11_construct_graph_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; height: 0px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 90.4469%; height: 0px;">This function constructs a graph structure from a given set of vertices and edges. It also labels a graph with the properties listed in the output details below.&nbsp;</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 28px;"><term>Inputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;"><code>vertices</code> (n x 1, integer): A list of vertex IDs.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;"><code>edges</code> (m x 2, integer): A list of edges where each row contains the starting and ending vertex IDs.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;"><code>graph_name</code> (string): A name for the graph stored as part of the output structure.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Outputs:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 10px;">
+<ol style="list-style-type: decimal;">
+<li><code>G.name</code> (string): The name of the graph as provided in <code>graph_name</code>.</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.vertices</span></code> (n x 1, integers): List of vertex index IDs</li>
+<li><code>G.edges</code> (m x 2): A matrix where each row represents an edge connecting two vertices.</li>
+<li><code style="color: var(--ic-brand-font-color-dark);">G.n</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">&nbsp;(integer): The number of vertices in the graph.</span></li>
+<li><code style="color: var(--ic-brand-font-color-dark);">G.m</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> (integer): The number of edges in the graph.</span></li>
+<li><code style="color: var(--ic-brand-font-color-dark);">G.adj_mat</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> (n x n double array): The adjacency matrix of the graph.</span></li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.inc_mat</span></code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> (n x m double array): The incidence matrix of the graph.</span></li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.degrees</span></code> (n x 1, integers): List of vertex degrees.</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.simple</span></code> (1 x 1, logical): <code>true</code> if the graph is simple. <code>false</code>, otherwise</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.has_cycle</span></code> (1 x 1, logical): <code>true</code> if the graph contains a cycle. <code>false</code>, otherwise</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.connected</span></code> (1 x 1, logical): <code>true</code> if the graph is connected. <code>false</code>, otherwise</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.eulerian</span></code> (1 x 1, logical): <code>true</code> if the graph is Eulerian. <code>false</code>, otherwise.</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.tree</span></code> (1 x 1, logical): <code>true</code> if the graph is a tree. <code>false</code>, otherwise</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.bipartite</span></code> (1 x 1, logical): <code>true</code> if the graph is bipartite. <code>false</code>, otherwise</li>
+</ol>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 9.51149%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 90.4469%; height: 28px;">Note: The values of the fields 6 through 14 should come from the output of one of the programs you wrote in this assignment.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 9.51149%; text-align: right; height: 0px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 90.4469%; height: 0px;">This problem is relatively easy since you mainly call all the previous functions you wrote in this assignment to set the properties on a given graph.</td>
+</tr>
+</tbody>
+</table>
+<h3><term><span style="font-size: 14pt;">Script Problems</span></term></h3>
+<p>&nbsp;</p>
+</body>
+</html>

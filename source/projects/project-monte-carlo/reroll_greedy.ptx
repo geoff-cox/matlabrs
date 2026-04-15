@@ -1,0 +1,54 @@
+<!--META-DATA
+{
+	"tags": ["dice", "poker", "reroll-policy", "function", "selection-mask"]
+}
+-->
+
+<statement>
+	<p>
+		<pf>reroll_greedy</pf> keeps the modal face(s) in the current hand and marks all other dice for reroll. This maximizes immediate matching (e.g., push toward three-/four-/five-of-a-kind).
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1x5) integer — current dice (faces 1–6). Preferably sorted by rank.</p>
+				<p><pf>counts</pf> (1x6) integer — face counts from <pf>get_face_counts</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell><p><pf>sel</pf> (1x5) logical — <q>true</q> for dice to reroll; non-modal faces are marked true.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ Let <m>m = \max(\text{counts}(\text{roll}))</m>. Any die whose face occurs fewer than <m>m</m> times is marked for reroll.</p>
+				<p>▸ Ties for the mode are kept (all faces with multiplicity <m>m</m> are held).</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Notes:</p></cell>
+			<cell><p>▸ Works best when <pf>roll</pf> was previously standardized (e.g., via <pf>sort_by_rank</pf>).</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Example:
+		<program>
+			<code>
+				roll   = [5 5 3 2 5];
+				counts = get_face_counts(roll);  % e.g., [0 1 1 0 3 0]
+				sel = reroll_greedy(roll, counts)
+				% Keep 5s, reroll others -> sel = [0 0 1 1 0]
+			</code>
+		</program>
+	</p>
+</statement>

@@ -1,0 +1,490 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 4 - F22</title>
+</head>
+<body>
+<p>Complete each of the programming and script problems below for homework 4.&nbsp;</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Click on the function filename to download the template for that problem.</p>
+<p>Follow the templates. Do not use any built-in MATLAB commands unless specified in the directions of the problem.</p>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 452px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="P41_kaprekar_steps_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g2cea34877835f5763321bed5d6042f2f?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1185040" data-api-returntype="File"><code>P41_kaprekar_steps_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;">Given a positive integer, n, this program returns the number of steps&nbsp;required to reach the Keprekar constant = 6174.</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 10.2704%; text-align: right; height: 20px; vertical-align: top;"></td>
+<td style="width: 89.688%; height: 20px;">This program deals with the odd number 6174, known as the Kaprekar constant. It turns out that you can reduce all positive integers less than 10,000 (except some with the same digits) to 6174 in the following way:</td>
+</tr>
+<tr style="height: 52px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 13px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 13px;">Given <img class="equation_image" title="n" src="https://vmi.instructure.com/equation_images/n" alt="LaTeX: n" data-equation-content="n" loading="lazy">, order the digits of <img class="equation_image" title="n" src="https://vmi.instructure.com/equation_images/n" alt="LaTeX: n" data-equation-content="n" loading="lazy"> in descending and ascending order and compute the difference. Repeat the process on the result of the difference until you get <img class="equation_image" title="6174" src="https://vmi.instructure.com/equation_images/6174" alt="LaTeX: 6174" data-equation-content="6174" loading="lazy">.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">For example, suppose <img class="equation_image" title="n_{1} = 2376" src="https://vmi.instructure.com/equation_images/n_%257B1%257D%2520%253D%25202376" alt="LaTeX: n_{1} = 2376" data-equation-content="n_{1} = 2376" loading="lazy">&nbsp;and then you define the following numbers:</td>
+</tr>
+<tr style="height: 30px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 30px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 30px;"><img class="equation_image" title="\underline{n}_{1} = 7632" src="https://vmi.instructure.com/equation_images/%255Cunderline%257Bn%257D_%257B1%257D%2520%253D%25207632" alt="LaTeX: \underline{n}_{1} = 7632" data-equation-content="\underline{n}_{1} = 7632" loading="lazy"> (digits of <img class="equation_image" title="n" src="https://vmi.instructure.com/equation_images/n" alt="LaTeX: n" data-equation-content="n" loading="lazy"> in descending order)</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><img class="equation_image" title="\overline{n}_{1}  = 2367" src="https://vmi.instructure.com/equation_images/%255Coverline%257Bn%257D_%257B1%257D%2520%2520%253D%25202367" alt="LaTeX: \overline{n}_{1}  = 2367" data-equation-content="\overline{n}_{1}  = 2367" loading="lazy"> (digits of <img class="equation_image" title="n" src="https://vmi.instructure.com/equation_images/n" alt="LaTeX: n" data-equation-content="n" loading="lazy"> in ascending order)</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Step 1: <img class="equation_image" title="\underline{n}_{1} - \overline{n}_{1} = 7632 - 2367 = 5265" src="https://vmi.instructure.com/equation_images/%255Cunderline%257Bn%257D_%257B1%257D%2520-%2520%255Coverline%257Bn%257D_%257B1%257D%2520%253D%25207632%2520-%25202367%2520%253D%25205265" alt="LaTeX: \underline{n}_{1} - \overline{n}_{1} = 7632 - 2367 = 5265" data-equation-content="\underline{n}_{1} - \overline{n}_{1} = 7632 - 2367 = 5265" loading="lazy"> ← not the Kaprekar constant; repeat with <img class="equation_image" title="n_{2} = 5265" src="https://vmi.instructure.com/equation_images/n_%257B2%257D%2520%253D%25205265" alt="LaTeX: n_{2} = 5265" data-equation-content="n_{2} = 5265" loading="lazy"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Step 2: <img class="equation_image" title="\underline{n}_{2} - \overline{n}_{2} = 6552 - 2556  = 3996" src="https://vmi.instructure.com/equation_images/%255Cunderline%257Bn%257D_%257B2%257D%2520-%2520%255Coverline%257Bn%257D_%257B2%257D%2520%253D%25206552%2520-%25202556%2520%2520%253D%25203996" alt="LaTeX: \underline{n}_{2} - \overline{n}_{2} = 6552 - 2556  = 3996" data-equation-content="\underline{n}_{2} - \overline{n}_{2} = 6552 - 2556  = 3996" loading="lazy"> ← not the Kaprekar constant; repeat with <img class="equation_image" title="n_{3} = 3996" src="https://vmi.instructure.com/equation_images/n_%257B3%257D%2520%253D%25203996" alt="LaTeX: n_{3} = 3996" data-equation-content="n_{3} = 3996" loading="lazy"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Step 3: <img class="equation_image" title="\underline{n}_{3} - \overline{n}_{3} = 9963 - 3699  = 6264" src="https://vmi.instructure.com/equation_images/%255Cunderline%257Bn%257D_%257B3%257D%2520-%2520%255Coverline%257Bn%257D_%257B3%257D%2520%253D%25209963%2520-%25203699%2520%2520%253D%25206264" alt="LaTeX: \underline{n}_{3} - \overline{n}_{3} = 9963 - 3699  = 6264" data-equation-content="\underline{n}_{3} - \overline{n}_{3} = 9963 - 3699  = 6264" loading="lazy"> ← not the Kaprekar constant; repeat with <img class="equation_image" title="n_{4} = 6264" src="https://vmi.instructure.com/equation_images/n_%257B4%257D%2520%253D%25206264" alt="LaTeX: n_{4} = 6264" data-equation-content="n_{4} = 6264" loading="lazy"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Step 4: <img class="equation_image" title="\underline{n}_{4} - \overline{n}_{4} = 6642 - 2466  = 4176" src="https://vmi.instructure.com/equation_images/%255Cunderline%257Bn%257D_%257B4%257D%2520-%2520%255Coverline%257Bn%257D_%257B4%257D%2520%253D%25206642%2520-%25202466%2520%2520%253D%25204176" alt="LaTeX: \underline{n}_{4} - \overline{n}_{4} = 6642 - 2466  = 4176" data-equation-content="\underline{n}_{4} - \overline{n}_{4} = 6642 - 2466  = 4176" loading="lazy"> ← not the Kaprekar constant; repeat with <img class="equation_image" title="n_{5} = 4176" src="https://vmi.instructure.com/equation_images/n_%257B5%257D%2520%253D%25204176" alt="LaTeX: n_{5} = 4176" data-equation-content="n_{5} = 4176" loading="lazy"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">Step 5: <img class="equation_image" title="\underline{n}_{5} - \overline{n}_{5} = 7641 - 1467  = 6174" src="https://vmi.instructure.com/equation_images/%255Cunderline%257Bn%257D_%257B5%257D%2520-%2520%255Coverline%257Bn%257D_%257B5%257D%2520%253D%25207641%2520-%25201467%2520%2520%253D%25206174" alt="LaTeX: \underline{n}_{5} - \overline{n}_{5} = 7641 - 1467  = 6174" data-equation-content="\underline{n}_{5} - \overline{n}_{5} = 7641 - 1467  = 6174" loading="lazy"> ← STOP! This Kaprekar constant.&nbsp;</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">WTF, this always happens? Yep, pretty much.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">In conclusion, we say that <img class="equation_image" title="2376" src="https://vmi.instructure.com/equation_images/2376" alt="LaTeX: 2376" data-equation-content="2376" loading="lazy"> has a kaprekar number of <img class="equation_image" title="5" src="https://vmi.instructure.com/equation_images/5" alt="LaTeX: 5" data-equation-content="5" loading="lazy">.</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 53px;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.688%; height: 53px;">Numbers such as 2222 will yield a difference of zero and will never result in 6174. In this case, we say the number of Kaprekar steps is infinity since we will never get there. As such, your program should output <code>inf</code>, MATLAB's notation for infinity.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">For numbers less than 1000, the descending digits must have trailing zeros. For example, if n = 7 (i.e. 0007), then the subtraction step is 7<term>000</term> − 7 = 6993.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">This program should use multiple programs from the previous homework assignment.&nbsp; Make sure you paste a working copy of each of the programs that you want to call at the bottom of this program.&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 140px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="P42_find_replace_char_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/gea0d03b950c3d63cf901aee1808ab021?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1185024" data-api-returntype="File"><code>P42_find_replace_char_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">This program replaces every instance of a given character in a character array with a specified character.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">Character Arrays are particular types of matrices in MATLAB. See the class demo for more information about working this these.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">The concept of the absolute index will also be helpful in this program. See the class demo for this as well.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">To simplify this program, assume we are replacing a single character with another single character.&nbsp; In addition, assume the replacement is case sensitive, meaning lower case characters are different than upper case characters.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Examples:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>result = P42_find_replace_char_lastname('hello cat','o',' ')</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>result = 'hell&nbsp; cat'</code></td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>result = P42_find_replace_char_lastname('Im referring to the latter','t','d')</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>result = 'I'm referring to dhe ladder'</code></td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"><code>result = P42_find_replace_char_lastname(['pizza ';'parrot';'lizard';'Zebra '],'z','l')</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">
+<pre>result = <br><br> 'pilla '<br> 'parrot'<br> 'lilard'<br> 'Zebra '</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 448px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT41_winner_check_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g6d2a251aab4bdfbd478f08206c110c27?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1189210" data-api-returntype="File"><code>TTT41_winner_check_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">This program returns the winner of the current Tic-Tac-Toe game board matrix if one exists.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">This program is your first helper function for the Tic-Tac-Toe game you will design in the following few homework assignments.</td>
+</tr>
+<tr style="height: 110px;">
+<td style="width: 10.0762%; text-align: right; height: 110px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 110px;">For example, the following game boards should not detect a winner:<br><img class="equation_image" title="\begin{array}{c|c|c}
+\texttt{ } &amp; \texttt{O} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{X} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" src="https://vmi.instructure.com/equation_images/%255Cbegin%257Barray%257D%257Bc%257Cc%257Cc%257D%250A%255Ctexttt%257B%2520%257D%2520%2526%2520%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BO%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Cend%257Barray%257D" alt="LaTeX: \begin{array}{c|c|c}
+\texttt{ } &amp; \texttt{O} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{X} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" data-equation-content="\begin{array}{c|c|c}
+\texttt{ } &amp; \texttt{O} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{X} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" loading="lazy"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img class="equation_image" title="\begin{array}{c|c|c}
+\texttt{ } &amp; \texttt{} &amp; \texttt{}\\
+\hline
+\texttt{} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{O} &amp; \texttt{}\\
+\end{array}" src="https://vmi.instructure.com/equation_images/%255Cbegin%257Barray%257D%257Bc%257Cc%257Cc%257D%250A%255Ctexttt%257B%2520%257D%2520%2526%2520%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257B%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257B%257D%255C%255C%250A%255Cend%257Barray%257D" alt="LaTeX: \begin{array}{c|c|c}
+\texttt{ } &amp; \texttt{} &amp; \texttt{}\\
+\hline
+\texttt{} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{O} &amp; \texttt{}\\
+\end{array}" data-equation-content="\begin{array}{c|c|c}
+\texttt{ } &amp; \texttt{} &amp; \texttt{}\\
+\hline
+\texttt{} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{O} &amp; \texttt{}\\
+\end{array}" loading="lazy"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img class="equation_image" title="\begin{array}{c|c|c}
+\texttt{O} &amp; \texttt{X} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{ } &amp; \texttt{ } &amp; \texttt{ }\\
+\end{array}" src="https://vmi.instructure.com/equation_images/%255Cbegin%257Barray%257D%257Bc%257Cc%257Cc%257D%250A%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BO%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257B%2520%257D%2520%2526%2520%255Ctexttt%257B%2520%257D%2520%2526%2520%255Ctexttt%257B%2520%257D%255C%255C%250A%255Cend%257Barray%257D" alt="LaTeX: \begin{array}{c|c|c}
+\texttt{O} &amp; \texttt{X} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{ } &amp; \texttt{ } &amp; \texttt{ }\\
+\end{array}" data-equation-content="\begin{array}{c|c|c}
+\texttt{O} &amp; \texttt{X} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{ } &amp; \texttt{ } &amp; \texttt{ }\\
+\end{array}" loading="lazy"></td>
+</tr>
+<tr style="height: 110px;">
+<td style="width: 10.0762%; text-align: right; height: 110px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 110px;">However, these game boards would have a winner.<br><img class="equation_image" title="\begin{array}{c|c|c}
+\texttt{X} &amp; \texttt{O} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{X} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" src="https://vmi.instructure.com/equation_images/%255Cbegin%257Barray%257D%257Bc%257Cc%257Cc%257D%250A%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BO%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Cend%257Barray%257D" alt="LaTeX: \begin{array}{c|c|c}
+\texttt{X} &amp; \texttt{O} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{X} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" data-equation-content="\begin{array}{c|c|c}
+\texttt{X} &amp; \texttt{O} &amp; \texttt{O}\\
+\hline
+\texttt{O} &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{X} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" loading="lazy"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img class="equation_image" title="\begin{array}{c|c|c}
+\texttt{O} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" src="https://vmi.instructure.com/equation_images/%255Cbegin%257Barray%257D%257Bc%257Cc%257Cc%257D%250A%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257B%257D%2520%2526%2520%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Cend%257Barray%257D" alt="LaTeX: \begin{array}{c|c|c}
+\texttt{O} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" data-equation-content="\begin{array}{c|c|c}
+\texttt{O} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{} &amp; \texttt{X}\\
+\hline
+\texttt{} &amp; \texttt{O} &amp; \texttt{X}\\
+\end{array}" loading="lazy"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img class="equation_image" title="\begin{array}{c|c|c}
+\texttt{X} &amp; \texttt{ } &amp; \texttt{O}\\
+\hline
+\texttt{ } &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{O} &amp; \texttt{O} &amp; \texttt{O}\\
+\end{array}" src="https://vmi.instructure.com/equation_images/%255Cbegin%257Barray%257D%257Bc%257Cc%257Cc%257D%250A%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257B%2520%257D%2520%2526%2520%255Ctexttt%257BO%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257B%2520%257D%2520%2526%2520%255Ctexttt%257BX%257D%2520%2526%2520%255Ctexttt%257BX%257D%255C%255C%250A%255Chline%250A%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BO%257D%2520%2526%2520%255Ctexttt%257BO%257D%255C%255C%250A%255Cend%257Barray%257D" alt="LaTeX: \begin{array}{c|c|c}
+\texttt{X} &amp; \texttt{ } &amp; \texttt{O}\\
+\hline
+\texttt{ } &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{O} &amp; \texttt{O} &amp; \texttt{O}\\
+\end{array}" data-equation-content="\begin{array}{c|c|c}
+\texttt{X} &amp; \texttt{ } &amp; \texttt{O}\\
+\hline
+\texttt{ } &amp; \texttt{X} &amp; \texttt{X}\\
+\hline
+\texttt{O} &amp; \texttt{O} &amp; \texttt{O}\\
+\end{array}" loading="lazy"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">See class notes for how the game board state is defined.&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">You will want to use your <code>P32_matrix_sums</code> program from the previous assignment.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term><term>Examples&nbsp;</term></term></td>
+<td style="height: 29px;"><code>winner = TTT41_winner_check_lastname([0 0 0; 0 1 0; 0 0 0])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term><term>&nbsp;</term></term></td>
+<td style="height: 29px;"><code>winner = 0</code> (no winner yet)</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term><term>&nbsp;</term></term></td>
+<td style="height: 29px;"><code>winner = TTT41_winner_check_lastname([1 -1 -1; 0 1 -1; 1 0 -1])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term><term>&nbsp;</term></term></td>
+<td style="height: 29px;"><code>winner = -1</code> (player 'O' won)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 87px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT42_get_open_spaces_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/ge4001d398acd8d49a7bad6c1a909a9c5?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1185025" data-api-returntype="File"><code>TTT42_get_open_spaces_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;">This program returns a list of available spaces (as an absolute index) in a Tic-Tac-Toe game.</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 10.2704%; text-align: right; height: 31px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.688%; height: 31px;">This program aims to provide a list of available spaces where a player could place an 'X' or 'O'.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>Examples&nbsp;</term></td>
+<td style="width: 89.688%;"><code>spaces = TTT42_get_open_spaces_lastname([0 0 0; 0 1 0; 0 0 0])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>spaces = [1 2 3 4 6 7 8 9]</code></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>spaces = TTT42_get_open_spaces_lastname([1 -1 -1; 0 1 -1; 1 0 -1])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>spaces = [2 6]</code></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>spaces = TTT42_get_open_spaces_lastname([1 -1 -1; -1 1 -1; 1 1 -1])</code> returns</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><code>spaces = []</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 125px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT43_display_board_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g28b40eabc6a8958f5c9ccb1e1a5ff662?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1185023" data-api-returntype="File"><code>TTT43_display_board_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;">This program provides a visual version of the current state of the Tic-Tac_Toe game board. The board should be a character array that can be displayed using MATLAB's <code>disp</code> command. Your visual game board should contain the available spaces as an absolute index location and the spaces&nbsp;occupied by either X or O. A template board is provided.</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 10.2704%; text-align: right; height: 31px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.688%; height: 31px;">You may want to use your <code>P42</code> program here.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; height: 28px; vertical-align: top;"><term>Examples&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>gameboard = TTT43_display_board_lastname([0 0 0; 0 1 0; 0 0 0])</code> returns</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">
+<pre>disp(' ');disp(gameboard)<br><br> 1 | 4 | 7 <br>-----------<br> 2 | X | 8&nbsp;<br>-----------<br>&nbsp;3 | 6 | 9&nbsp;</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 278px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT44_ai_move_1_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/gee05cceddf8c5c58604b6e96a6fec8bc?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1185026" data-api-returntype="File"><code>TTT44_ai_move_1_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;">This program returns an AI move to an available space in a Tic-Tac-Toe game based on the following strategy:</td>
+</tr>
+<tr style="height: 33px;">
+<td style="width: 10.2704%; text-align: right; height: 33px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 33px;">Chose an available space at random from a uniform distribution (i.e., all spaces are equally likely to be selected).</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 10.2704%; text-align: right; height: 31px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.688%; height: 31px;">You may use MATLAB's <code>randi</code> command to generate a random number.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">You may want to use your <code>TTT42</code> program here.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px; vertical-align: top;"><term>Examples:&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>move_to = TTT44_ai_move_1_lastname([0 -1 -1; -1 1 -1; 1 1 -1])</code> returns</td>
+</tr>
+<tr style="height: 34px;">
+<td style="width: 10.2704%; text-align: right; height: 34px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 34px;"><code>move_to = 1</code> (only choice)</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; height: 28px; vertical-align: top;"></td>
+<td style="width: 89.688%; height: 28px;"><code>move_to = TTT44_ai_move_1_lastname([0 0 0; 0 1 0; 0 0 0])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>move_to = 7</code> (since your program chooses this value at random from 8 possibilities, your output might be different)</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; text-align: right; height: 28px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>move_to = TTT44_ai_move_1_lastname([1 -1 -1; -1 1 -1; 1 1 -1])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 10px; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>move_to = []</code> (nowhere to go)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 150px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><code><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT45_get_player_move_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g844b91bb7936d3aa103baf371b4240e9?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1190749" data-api-returntype="File">TTT45_get_player_move_lastname.m</a></code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">This program prompts the current player to choose a move on the Tic-Tac-Toe game board.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">You will need MATLAB's <code>input</code> command to prompt the current player to choose a space.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">Once the current player picks a space, your code should check if the chosen move is invalid (i.e., they chose an occupied space or one that is outside the 1-9 range). Since the player can enter multiple invalid moves, you will need a while-loop to continue asking the player for a valid space.&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">Once the current player selects a valid, add their move to the game state matrix and return this new game state.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 103px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT_main_pvp_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g805665488a8a247b0f1974f10e8827ce?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1190750" data-api-returntype="File"><code>TTT_main_pvp_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">This program combines all the helper functions written above to create a player versus player implementation of Tic-Tac-Toe.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px; vertical-align: top;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">There are three main parts to this program:<br>
+<ul style="list-style-type: square;">
+<li><term>Initialization</term> of the game variables: <code>winner</code>, <code>game_state</code>, <code>player</code>, <code>moves</code> and any other variables you decide to use.</li>
+<li>The <term>game loop</term> where the player moves take place until a winner is detected.</li>
+<li>The <term>results</term> of the Tic-Tac-Toe game.&nbsp;</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">You will need to call your <code>TTT41</code>, <code>TTT43</code>, and <code>TTT45</code> programs within this program.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 19px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 19px;">Once completed, this program should play a complete game of tic-tac-toe between two human players.</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<h3><term><span style="font-size: 14pt;">Script Problems</span></term></h3>
+<p><span style="font-size: 12pt;">Click on the Script filename to download the template for that problem.</span></p>
+<table style="border-collapse: collapse; width: 97.8605%; height: 42px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 14px; text-align: right; vertical-align: top;"><term>Script</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 14px;"></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Objectives</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>Directions:&nbsp;</term></td>
+<td style="width: 89.688%;"></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

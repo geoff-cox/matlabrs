@@ -1,0 +1,62 @@
+<!--META-DATA
+{
+	tags: vector,
+}
+-->
+
+<statement>
+<p>
+	This function identifies all connected components in a directed graph represented by the structure &lt;pf&gt;G&lt;/pf&gt;. A component is a subgraph where any two vertices are connected by a path.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>G.n</pf> (integer) integer — : The number of vertices in the graph.</p>
+			<p><pf>G.edges</pf> (m x 2) number — : A matrix where each row represents an undirected edge [vertex1, vertex2].</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>components</pf> (1 x k) double vector — : A cell array where each element <pf>components{i}</pf> is a vector containing the vertices in the <pf>i</pf>th connected component.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Ensure your function handles cases with no edges (empty edge list).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Support graphs with self-loops, where an edge starts and ends at the same vertex.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>In MATLAB, cell arrays are like matrices, except you can store different types of objects. This new structure is needed to store each path as a vector.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Command Window Expected Output V = 1:5; E = [ 1 2; 2 3; 4 5 ] G = HW6P5_construct_directed_graph(V,E,'G'); components = HW6P6_get_components(G); components = {[1 2 3], [4 5]} V = 1:3; E = [ 1 2 5; 2 3 1; 1 3 7 ]; G = HW6P5_construct_directed_graph(V,E,'G'); components = HW6P6_get_components(G); components = {[1 2 3]} V = 1:4; E = []; G = HW6P5_construct_directed_graph(V,E,'G'); components = HW6P6_get_components(G); components = {[1], [2], [3], [4]}</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected Output</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>components = {[1 2 3], [4 5]}</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>components = {[1 2 3]}</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>components = {[1], [2], [3], [4]}</p></cell>
+	</row>
+</tabular>
+
+</statement>

@@ -1715,13 +1715,26 @@
         </p>
 
         <p>
-          Use a <pf>while</pf>-loop that performs the following for each iteration: 
-          <ul>
-            <li>Extract the rightmost digit as the remainder from dividing by 10.</li>
-            <li>Remove the rightmost digit by dividing by 10 and rounding down.</li>
-          </ul>
-          The number of iterations gives the digit count.
+          Use a <pf>while</pf>-loop that repeatedly removes the rightmost digit of <pf>n</pf> by 
+          dividing by 10 and rounding down (via MATLAB's <pf>floor()</pf>).  When the number becomes 0, 
+          you are done. The output is just the number of digits you removed. For example, if
+          <m>n = 946</m>, then we remove 3 digits:
         </p>
+
+        <tabular halign="center" >
+          <row bottom="minor">
+            <cell>loop</cell><cell>divide by 10</cell><cell>floor</cell><cell>result</cell>
+          </row>
+          <row>
+            <cell>1</cell><cell><m>946/10</m></cell><cell><m>\lfloor 94.6  \rfloor</m></cell><cell><m>94</m></cell>
+          </row>
+          <row>
+            <cell>2</cell><cell><m>94/10</m></cell><cell><m>\lfloor 9.4   \rfloor</m></cell><cell><m>9</m></cell>
+          </row>
+          <row>
+            <cell>3</cell><cell><m>9/10</m></cell><cell><m>\lfloor 0.9   \rfloor</m></cell><cell><m>0</m></cell>
+          </row>
+        </tabular>
 
         <tabular valign="top" top="minor">
           <col width="11%" halign="right" />

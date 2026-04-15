@@ -1,0 +1,70 @@
+<!--META-DATA
+{
+	"tags": ["vector", "for", "histogram", "binning"]
+}
+-->
+
+<statement>
+	<p>
+		Bins values in <m>[0,1]</m> into <m>k</m> equal-width histogram bins and returns the bin counts.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell>Inputs:</cell>
+			<cell><p><pf>list</pf> (1 x N) double vector — values in <m>[0,1]</m>.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p><pf>k</pf> (1 x 1) positive integer — number of bins.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell><p><pf>counts</pf> (1 x k) integer vector — counts per bin.</p></cell>
+		</row>
+
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>▸ For each <m>x</m> in <pf>list</pf>, use the rule
+					<me>
+						\text{bin}(x) =
+						\begin{cases}
+							k, &amp; x = 1 \\
+							\lfloor kx \rfloor + 1, &amp; 0 \le x &lt; 1
+						\end{cases}
+					</me>
+					where <m>\lfloor kx \rfloor</m> is the <q>floor</q> of <m>kx</m>.
+				</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ Iterate over the data, compute the bin index, and increment the corresponding entry of <pf>counts</pf>.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Use a <pf>for</pf> loop; do not call MATLAB's <pf>histcounts</pf>.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				c = list_histogram_bins([0.1 0.3 0.25 0.5 0.9 1.0], 4)
+				% returns [1 2 1 2]
+			</code>
+		</program>
+		<program>
+			<code>
+				c = list_histogram_bins([0 0.24 0.2499 0.75 0.9999 1], 4)
+				% returns [3 0 1 2]
+			</code>
+		</program>
+	</p>
+</statement>

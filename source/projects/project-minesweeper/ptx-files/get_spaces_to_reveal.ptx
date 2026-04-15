@@ -1,0 +1,246 @@
+<!--META-DATA
+{
+	tags: for, min, sum, zeros,
+}
+-->
+
+<statement>
+<p>
+	This program returns all the spaces that need to be reveal following a valid left-click. This is easily the most challenging program of the assignment and is the program for those seeking an A in the class. If you haven&#x27;t finished the other helper functions, do those first to optimize your homework grade.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>x</pf> (1 x 1) integer — integer representing the x-coordinate of the lower left corner of a given space.</p>
+			<p><pf>y</pf> (1 x 1) integer — integer representing the y-coordinate of the lower left corner of a given space.</p>
+			<p><pf>state</pf> (1 x 1) number — struct object representing the current game state.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>reveal_list</pf> (K x 2) number — two-column matrix containing the x and y coordinates of the lower-left corner of every space that should be revealed.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Think about what spaces are revealed after a "valid" left-click.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Play the demo again to refresh your memory.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>This function does not update the game state in any way. It only generates a list of spaces that need to be revealed.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>This function can assume the following:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ol>
+					<li>A click was received and stored in <pf>state.last_x</pf> and <pf>state.last_y</pf>.</li>
+					<li>The click is valid (i.e. in range and not revealed)</li>
+					<li>The click was a left-click.</li>
+				</ol>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Therefore, you do not need to check any of the things above.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Possible Strategy:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>First of all, if the data value of the clicked space is not 0, then the only thing to return is the last x and y click. DONE. Therefore, we will only discuss the strategy when the data value is zero.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Assuming the value is zero then all neighbors of the clicked space should be revealed if (a) they have not already been revealed and (b) the space is not flagged. The tricky part is that if a neighbor also has a zero data value then all if it's neighbors also need to be revealed. This keeps chaining until no more neighbors have zero data values.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>So I think it will be helpful to introduce two variables.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>A N x 2 matrix, called <pf>chain</pf>, that contains all the locations that are connected to the current chain and have to eventually be added to the <pf>revealed_list</pf> output.</li>
+					<li>A copy of the current <pf>state.revealed</pf> matrix. We can call it <pf>explored</pf> for this discussion. This will track which spaces got added to the <pf>revealed_list</pf> already. This will help prevent duplicate values.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Strategy:</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>Start by adding original clicked value to the <pf>chain</pf> and mark it as being <pf>explored</pf>.</li>
+					<li>As long as the <pf>chain</pf> still has values, repeat the following: Get the data value of the location on the top of the <pf>chain</pf>. if it is zero, then do the following: get the neighbors of this location. for each neighbor if the neighbor has not been explored, then add it to the <pf>chain</pf> and mark it as <pf>explored</pf>. if the top location on the <pf>chain</pf> has not been flagged, then add it to the <pf>revealed_list</pf>. delete the top location on the <pf>chain</pf>.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Define a test state
+		state.n = 10;
+		state.revealed = zeros(10);
+		state.flags = false(10);
+		state.data = [ 0  1 -1  2 -1  2  1  0  0  0; ...
+		0  1  1  2  2 -1  1  0  0  0; ...
+		0  0  0  0  1  1  1  0  0  0; ...
+		0  0  0  0  0  0  0  0  0  0; ...
+		0  0  0  0  0  0  0  0  1  1; ...
+		0  0  0  0  0  1  1  1  1 -1; ...
+		0  0  0  0  0  1 -1  2  2  2; ...
+		1  1  0  0  1  2  2  2 -1  1; ...
+		-1  2  0  0  2 -1  2  1  1  1; ...
+		-1  2  0  0  2 -1  2  0  0  0 ];
+		state.n = 10;
+		state.revealed = zeros(10);
+		state.flags = false(10);
+		state.data = [ 0  1 -1  2 -1  2  1  0  0  0; ...
+		0  1  1  2  2 -1  1  0  0  0; ...
+		0  0  0  0  1  1  1  0  0  0; ...
+		0  0  0  0  0  0  0  0  0  0; ...
+		0  0  0  0  0  0  0  0  1  1; ...
+		0  0  0  0  0  1  1  1  1 -1; ...
+		0  0  0  0  0  1 -1  2  2  2; ...
+		1  1  0  0  1  2  2  2 -1  1; ...
+		-1  2  0  0  2 -1  2  1  1  1; ...
+		-1  2  0  0  2 -1  2  0  0  0 ];
+		reveal_list = get_spaces_to_reveal(10, 10, state)
+		Running
+		reveal_list = get_spaces_to_reveal(10, 10, state)
+		should return
+		reveal_list =
+		10    10
+		9     9
+		9    10
+		10     9
+		9     8
+		10     8
+		9     7
+		10     7
+		reveal_list =
+		10    10
+		9     9
+		9    10
+		10     9
+		9     8
+		10     8
+		9     7
+		10     7
+		reveal_list = get_spaces_to_reveal(8, 9, state)
+		Running
+		reveal_list = get_spaces_to_reveal(8, 9, state)
+		should return
+		reveal_list =
+		8     9
+		reveal_list = get_spaces_to_reveal(6, 5, state)
+		Running
+		reveal_list = get_spaces_to_reveal(6, 5, state)
+		should return
+		reveal_list =
+		6     5
+		5     4
+		5     5
+		5     6
+		6     4
+		6     6
+		7     4
+		7     5
+		7     6
+		4     3
+		4     4
+		4     5
+		5     3
+		6     3
+		4     6
+		4     7
+		5     7
+		6     7
+		7     3
+		8     3
+		8     4
+		8     5
+		8     6
+		3     2
+		3     3
+		3     4
+		4     2
+		5     2
+		3     5
+		3     6
+		6     2
+		7     2
+		3     7
+		3     8
+		4     8
+		5     8
+		6     8
+		8     2
+		9     2
+		9     3
+		9     4
+		9     5
+		2     1
+		2     2
+		2     3
+		3     1
+		4     1
+		2     4
+		2     5
+		5     1
+		6     1
+		7     1
+		8     1
+		2     7
+		2     8
+		2     9
+		3     9
+		4     9
+		5     9
+		6     9
+		10     2
+		10     3
+		10     4
+		10     5
+		1     1
+		1     2
+		1     7
+		1     8
+		1     9
+		1    10
+		2    10
+		3    10
+		4    10
+		5    10
+	</code>
+</program>
+</p>
+</statement>

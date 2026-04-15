@@ -1,0 +1,51 @@
+<!--META-DATA
+{
+tags: for, while, vector, indexing, second-largest,
+}
+-->
+<statement>
+	<p>
+		Returns the second largest value in the list and its index location.
+	</p>
+
+	<tabular valign="top" top="minor">
+		<col width="12%"/>
+		<col width="88%"/>
+
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+			<p><pf>list</pf> (1 x N) double vector — list of numbers</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+			<p><pf>val</pf> (1 x 1) double — second largest value in <pf>list</pf></p>
+			<p><pf>loc</pf> (1 x 1) integer — index of the second largest value</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Details:</cell>
+			<cell><p>▸ Use a <pf>for</pf> or <pf>while</pf> loop with <pf>if</pf>-logic. You may call your own <pf>vector_max</pf> or <pf>list_min</pf> helper if useful.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ If the maximum occurs multiple times, treat the second largest as the largest value <pf>&lt;</pf> max (first such index).</p></cell>
+		</row>
+	</tabular>
+
+    <p>
+		Examples:
+		<program>
+			<code>
+				% Example call and expected result
+				[value, location] = second_largest([1 1 1 -9 0 0 6 6 -1 6 7 1 2])
+				% returns value = 6
+				%         location = 7
+			</code>
+		</program>
+	</p>
+</statement>

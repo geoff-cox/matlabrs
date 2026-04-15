@@ -298,7 +298,7 @@
 		<table>
 			<title>Positions vs. Values</title>
 			<tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-				<row header="yes">
+				<row>
 					<cell>Position (index)</cell>
 					<cell><pf>1</pf></cell>
 					<cell><pf>2</pf></cell>
@@ -337,25 +337,58 @@
 		</aside>
 
 		<p>
-			MATLAB also provides the special keyword <pf>end</pf>, which always refers to the last position in the vector. This is useful when you do not know (or do not want to count) how many elements a vector has:
+			MATLAB also provides the special keyword <pf>end</pf>, which always refers to the last position in the vector. This is useful when you want to quickly access the last element.
 		</p>
 
 		<sage language="octave">
 			<input>
 				temps = [68, 71, 75, 74, 69, 72, 70]
-				temps(end)
-				temps(end - 1)
+				temps(end)       % last value
+				temps(end - 1)   % second-to-last value
 			</input>
 		</sage>
 
 		<p>
-			<pf>temps(end)</pf> returns the last value, and <pf>temps(end - 1)</pf> returns the second-to-last. You can do arithmetic on <pf>end</pf> just like any other number.
+			Think of <pf>end</pf> as a variable that has the value 7 (the length of <pf>temps</pf>). That is why <pf>temps(end - 1)</pf> and <pf>temps(end - 2)</pf> are valid ways to access elements.
 		</p>
 
 		<p>
-			Asking for an index that does not exist — like <pf>temps(20)</pf> when <pf>temps</pf> has only seven elements — is an error. MATLAB will stop the program and tell you the index is out of bounds.
+			Using a position outside the length of the vector will cause an error. Here are some examples of such errors:
 		</p>
 
+		<sidebyside widths="30% 68%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					temps(0)
+					temps(-3)
+				</program>
+			</stack>
+			<stack>
+				<p>Error ⤵︎</p>
+				<program language="matlab">
+					Array indices must be positive integers 
+					or logical values.
+				</program>
+			</stack>
+		</sidebyside>
+
+		<sidebyside widths="30% 68%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					temps(8)
+					temps(20)
+				</program>
+			</stack>
+			<stack>
+				<p>Error ⤵︎</p>
+				<program language="matlab">
+					Index exceeds the number of array elements. 
+					Index must not exceed 7.
+				</program>
+			</stack>
+		</sidebyside>
 	</subsection>
 
 	<subsection xml:id="subsec-slicing-vectors">
@@ -366,7 +399,7 @@
 		</p>
 
 		<p>
-			The most common way to slice is with colon notation, which you already know how to use. Writing <pf>temps(2:4)</pf> asks for positions 2 through 4 — a contiguous chunk of the original vector:
+			The most common way to slice is with colon notation, which you already know how to use. Writing <pf>temps(2:4)</pf> asks for positions 2 through 4, a smaller chunk of the original vector:
 		</p>
 
 		<sage language="octave">
@@ -404,7 +437,7 @@
 		</p>
 
 		<p>
-			Colon notation is not the only option. You can also supply an explicit list of indices inside square brackets, and they do not have to be in order or contiguous:
+			Colon notation is not the only option. You can also supply an explicit list of indices inside square brackets, and they do not have to be in order or consecutive:
 		</p>
 
 		<sage language="octave">
@@ -477,7 +510,7 @@
 		</sage>
 
 		<p>
-			The vector now has eight elements, with <pf>66</pf> tacked on at the end. This works because <pf>end</pf> currently refers to position 7, so <pf>end + 1</pf> refers to position 8 — a new position that MATLAB creates automatically.
+			The vector now has eight elements, with <pf>66</pf> tacked on at the end. This works because <pf>end</pf> currently refers to position 7, so <pf>end + 1</pf> is position 8, a new position that MATLAB creates automatically.
 		</p>
 
 		<aside>

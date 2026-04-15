@@ -1,0 +1,641 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 6 - F24</title>
+</head>
+<body>
+<h3>Homework 6: <term>Directed Graph Theory Concepts &amp; Definitions</term></h3>
+<h3>Instructions:</h3>
+<ul>
+<li>When you have completed these programs, UPLOAD THEM TO THIS ASSIGNMENT.</li>
+<li>A complete submission will include the files below, which <code>lastname</code> should be replaced with your last name.</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><code>HW6P1_directed_adjacency_matrix_lastname.m</code></li>
+<li><code>HW6P2_cost_matrix_lastname.m</code></li>
+<li><code>HW6P3_out_degrees_lastname.m</code></li>
+<li><code>HW6P4_in_degrees_lastname.m</code></li>
+<li><code>HW6P5_construct_directed_graph_lastname.m</code></li>
+<li><code>HW6P6_get_components_lastname.m</code></li>
+<li><code>HW6P7_min_cost_paths_lastname.m</code></li>
+</ul>
+</li>
+</ul>
+<h3>Notes:</h3>
+<ul>
+<li>Each of these files should contain a single function. So, there should be NO commands above or below the defined function inside the file. However, comments outside the function are ok.</li>
+<li>If you do not use descriptive variable names, you must describe every variable you define with code comments.</li>
+<li>The file names must match the format specified below to grade your programs. Misspellings and deviations from the naming convention will lead to errors when I run your code, and I will not manually retype your function names to make them work. So please double-check each file name before uploading it.</li>
+</ul>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Do not use any built-in MATLAB commands unless specified in the directions of the problem. Here is a list of approved MATLAB built-in functions you are free to use:</p>
+<table style="border-collapse: collapse; width: 97.9206%; height: 0%;" border="1">
+<tbody>
+<tr>
+<td style="width: 49.9807%; height: 0%; text-align: center;">Matrix Size</td>
+<td style="width: 49.9807%; height: 0%;"><code>length, numel, size, height, width</code></td>
+</tr>
+<tr>
+<td style="width: 49.9807%; height: 0%; text-align: center;">Matrix Operations</td>
+<td style="width: 49.9807%; height: 0%;"><code>sum, prod, mod, floor, ceil, max, min, transpose</code></td>
+</tr>
+<tr>
+<td style="width: 49.9807%; height: 0%; text-align: center;">Matrix Generators</td>
+<td style="width: 49.9807%; height: 0%;"><code>zeros, ones, inf, nan, primes</code></td>
+</tr>
+<tr>
+<td style="width: 49.9807%; height: 0px; text-align: center;">Type Detection</td>
+<td style="width: 49.9807%; height: 0px;"><code>isempty, isequal, isnan, isfield, isinf</code></td>
+</tr>
+<tr>
+<td style="width: 49.9807%; height: 0%; text-align: center;">Other</td>
+<td style="width: 49.9807%; height: 0%;"></td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<table style="width: 98.0602%; height: 0px;">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.53664%; height: 0px; text-align: right;"><span style="font-size: 10pt;"><term>Function</term>:&nbsp;</span></td>
+<td style="width: 88.3768%; height: 0px;"><code>HW6P1_directed_adjacency_matrix_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.53664%; height: 0px; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Description</term>:&nbsp;</span></td>
+<td style="width: 88.3768%; height: 0px;">This function constructs the adjacency matrix for a directed graph represented by the structure <code>G</code>.&nbsp;</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 5.53664%; text-align: right; vertical-align: top; height: 28px;"><span style="font-size: 10pt;"><term>&nbsp;</term></span></td>
+<td style="width: 88.3768%; height: 28px;">The adjacency matrix is a square matrix where each element <span class="katex"> <span class="katex-mathml"> <math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>A</mi> <mo stretchy="false">(</mo> <mi>i</mi> <mo separator="true">,</mo> <mi>j</mi> <mo stretchy="false">)</mo> </mrow> </semantics> </math> </span> </span> represents the number of directed edges from vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>i</mi> </mrow> </semantics> </math></span></span> to vertex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi>j</mi> </mrow> </semantics> </math></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <semantics> <mrow> <mi> .</mi> </mrow> </semantics> </math></span></span></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.53664%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Inputs:&nbsp;</term></span></td>
+<td style="width: 88.3768%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.m</code> (integer): The number of edges in the graph.</li>
+<li><code>G.edges</code> (m x 2): A matrix where each row represents an edge. connecting two vertices.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.53664%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Outputs:&nbsp;&nbsp;</term></span></td>
+<td style="width: 88.3768%; height: 0px;"><code>A</code> (n x n): The adjacency matrix, where n is the number of vertices in the graph.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.53664%; text-align: right; vertical-align: top; height: 0px;"></td>
+<td style="width: 88.3768%; height: 10px;">Ensure your function handles cases with no edges (empty edge list).</td>
+</tr>
+<tr>
+<td style="width: 5.53664%; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Comments:&nbsp;</term></span></td>
+<td style="width: 88.3768%; height: 28px;">Consider edge cases where multiple edges between two vertices may be present.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.53664%; text-align: right; vertical-align: top; height: 10px;"><span style="font-size: 10pt;"><term>Test Cases:&nbsp;</term></span></td>
+<td style="width: 88.3768%; height: 0px;">
+<table style="width: 100.042%; height: 0px;">
+<tbody>
+<tr style="height: 0px;">
+<th style="width: 67.3957%; height: 0px;">Command Window</th>
+<th style="width: 32.4378%; height: 0px;">Expected Output</th>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 67.3957%; height: 0px;">
+<pre>G.vertices = 1:3;<br>G.n = 3;
+G.m = 2;
+G.edges = [1, 2; 2, 3];
+A = HW6P1_directed_adjacency_matrix(G);</pre>
+</td>
+<td style="width: 32.4378%; height: 0px;">
+<pre>A =
+    0    1    0
+    0    0    1
+    0    0    0</pre>
+</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 67.3957%; height: 0px;">
+<pre>G.vertices = 1:2;<br>G.n = 2;
+G.m = 2;
+G.edges = [1, 1, 4; 1, 2, 5];
+A = HW6P1_directed_adjacency_matrix(G);</pre>
+</td>
+<td style="width: 32.4378%; height: 0px;">
+<pre>A =
+    1    1
+    0    0</pre>
+</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 67.3957%; height: 0px;">
+<pre>G.vertices = 1:4;<br>G.n = 4;
+G.m = 5;
+G.edges = [3 4; 4 4; 1 4; 4 3; 1 1];
+A = HW6P1_directed_adjacency_matrix(G);</pre>
+</td>
+<td style="width: 32.4378%; height: 0px;">
+<pre>A =
+    1    0    0    1
+    0    0    0    0
+    0    0    0    1
+    0    0    1    1    </pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<table style="width: 98.1699%; height: 94px;">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.59096%; height: 0px; text-align: right;"><span style="font-size: 10pt;"><term>Function</term>:&nbsp;</span></td>
+<td style="width: 88.916%; height: 0px;"><code>HW6P2_cost_matrix_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.59096%; height: 0px; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Description</term>:&nbsp;</span></td>
+<td style="width: 88.916%; height: 0px;">This function constructs the cost matrix for a directed graph represented by the structure <code>G</code>. The cost matrix is a square matrix where each element <img class="equation_image" title="C(i, j)" src="https://vmi.instructure.com/equation_images/C(i%252C%2520j)?scale=1" alt="LaTeX: C(i, j)" data-equation-content="C(i, j)" data-ignore-a11y-check="" loading="lazy"> represents the cost of the edge from vertex <img class="equation_image" title="i" src="https://vmi.instructure.com/equation_images/i?scale=1" alt="LaTeX: i" data-equation-content="i" data-ignore-a11y-check="" loading="lazy"> to vertex <img class="equation_image" title="j" src="https://vmi.instructure.com/equation_images/j?scale=1" alt="LaTeX: j" data-equation-content="j" data-ignore-a11y-check="" loading="lazy">. If no edge exists, the cost is set to <code>inf</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.59096%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Inputs:&nbsp;</term></span></td>
+<td style="width: 88.916%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.m</code> (integer): The number of edges in the graph.</li>
+<li><code>G.edges</code> (m x 3): A matrix where each row represents an edge connecting two vertices with a cost, formatted as [from, to, cost].</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.59096%; text-align: right; height: 10px;"><span style="font-size: 10pt;"><term>Outputs:&nbsp;</term></span></td>
+<td style="width: 88.916%; height: 10px;"><code>C</code> (n x n): The cost matrix, where <img class="equation_image" title="n" src="https://vmi.instructure.com/equation_images/n?scale=1" alt="LaTeX: n" data-equation-content="n" data-ignore-a11y-check="" loading="lazy"> is the number of vertices in the graph. Nonexistent edges have a cost of <code>inf</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.59096%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Comments:&nbsp;</term></span></td>
+<td style="width: 88.916%; height: 28px;">Ensure your function handles cases with no edges (empty edge list).</td>
+</tr>
+<tr>
+<td style="width: 5.59096%; text-align: right; vertical-align: top;"></td>
+<td style="width: 88.916%; height: 0px;">Handle self-loops with their specified cost; otherwise, give them a zero cost.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 5.59096%; height: 28px;"><span style="font-size: 10pt;"><term>&nbsp;</term></span></td>
+<td style="width: 88.916%; height: 28px;">Verify that multiple edges between the same vertices result in the minimum cost being used.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.59096%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Test Cases:&nbsp;</term></span></td>
+<td style="width: 88.916%; height: 0px;">
+<table style="width: 100.074%; height: 106px;">
+<tbody>
+<tr style="height: 26px;">
+<th style="width: 67.3939%; height: 26px;">Command Window</th>
+<th style="width: 32.5444%; height: 26px;">Expected Output</th>
+</tr>
+<tr style="height: 60px;">
+<td style="width: 67.3939%; height: 60px;">
+<pre>G.n = 3;
+G.m = 2;
+G.edges = [1, 2, 5; 2, 3, 10];
+C = HW6P2_cost_matrix(G);</pre>
+</td>
+<td style="width: 32.5444%; height: 60px;">
+<pre>C =
+    0    5  inf
+  inf    0   10
+  inf  inf    0 </pre>
+</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 67.3939%; height: 10px;">
+<pre>G.n = 2;
+G.m = 2;
+G.edges = [1, 1, 3; 1, 2, 7];
+C = HW6P2_cost_matrix(G);</pre>
+</td>
+<td style="width: 32.5444%; height: 10px;">
+<pre>C =
+    3    7
+  inf    0 </pre>
+</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 67.3939%; height: 10px;">
+<pre>G.n = 4;
+G.m = 5;
+G.edges = [1, 2, 6; 1, 3, 3; 2, 4, 8; 3, 4, 2; 4, 1, 7];
+C = HW6P2_cost_matrix(G);</pre>
+</td>
+<td style="width: 32.5444%; height: 10px;">
+<pre>C =
+    0    6    3  inf
+  inf    0  inf    8
+  inf  inf    0    2
+    7  inf  inf    0</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<table style="width: 98.369%;">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89896%; height: 0px; text-align: right;"><span style="font-size: 10pt;"><term>Function</term>:&nbsp;</span></td>
+<td style="width: 93.6256%;"><code>HW6P3_out_degrees_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89896%; height: 0px; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Description</term>:&nbsp;</span></td>
+<td style="width: 93.6256%;">This function calculates the out-degrees of all vertices in a directed graph represented by the structure <code>G</code>. The out-degree of a vertex is the number of edges leaving the vertex.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89896%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Inputs:&nbsp;</term></span></td>
+<td style="width: 93.6256%;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.m</code> (integer): The number of edges in the graph.</li>
+<li><code>G.edges</code> (m x 2): A matrix where each row represents an edge [from, to].</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89896%; text-align: right; height: 10px;"><span style="font-size: 10pt;"><term>Outputs:&nbsp;</term></span></td>
+<td style="width: 93.6256%;"><code>out_degrees</code> (1 x n): A row vector where each element <code>out_degrees(i)</code> represents the number of edges leaving vertex <code>i</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89896%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Comments:&nbsp;</term></span></td>
+<td style="width: 93.6256%;">Ensure your function handles cases with no edges (empty edge list).</td>
+</tr>
+<tr>
+<td style="width: 5.89896%; text-align: right; vertical-align: top;"></td>
+<td style="width: 93.6256%;">Support graphs with self-loops, where an edge starts and ends at the same vertex.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89896%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Test Cases:&nbsp;</term></span></td>
+<td style="width: 93.6256%;">
+<table style="width: 100.057%; height: 0px;">
+<tbody>
+<tr style="height: 0px;">
+<th style="width: 67.2497%; height: 0px;">Command Window</th>
+<th style="width: 32.6835%; height: 0px;">Expected Output</th>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 67.2497%; height: 0px;">
+<pre>G.n = 3;
+G.m = 2;
+G.edges = [1, 2; 2, 3];
+out_degrees = HW6P3_out_degrees(G);</pre>
+</td>
+<td style="width: 32.6835%; height: 0px;">
+<pre>out_degrees =
+    1    1    0</pre>
+</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 67.2497%; height: 0px;">
+<pre>G.n = 2;
+G.m = 2;
+G.edges = [1, 1; 1, 2];
+out_degrees = HW6P3_out_degrees(G);</pre>
+</td>
+<td style="width: 32.6835%; height: 0px;">
+<pre>out_degrees =
+    2    0</pre>
+</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 67.2497%; height: 0px;">
+<pre>G.n = 4;
+G.m = 5;
+G.edges = [3, 4; 4, 4; 1, 4; 4, 3; 1, 1];
+out_degrees = HW6P3_out_degrees(G);</pre>
+</td>
+<td style="width: 32.6835%; height: 0px;">
+<pre>out_degrees =
+    2    0    1    2</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<table style="width: 98.3773%; height: 0px;">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94912%; height: 0px; text-align: right;"><span style="font-size: 10pt;"><term>Function</term>:&nbsp;</span></td>
+<td style="width: 93.4577%; height: 0px;"><code>HW6P4_in_degrees_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94912%; height: 0px; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Description</term>:&nbsp;</span></td>
+<td style="width: 93.4577%; height: 0px;">This function calculates the in-degrees of all vertices in a directed graph represented by the structure <code>G</code>. The in-degree of a vertex is the number of edges entering the vertex.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94912%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Inputs:&nbsp;</term></span></td>
+<td style="width: 93.4577%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.m</code> (integer): The number of edges in the graph.</li>
+<li><code>G.edges</code> (m x 2): A matrix where each row represents an edge [from, to].</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 5.94912%; text-align: right; height: 10px;"><span style="font-size: 10pt;"><term>Outputs:&nbsp;</term></span></td>
+<td style="width: 93.4577%; height: 10px;"><code>in_degrees</code> (1 x n): A row vector where each element <code>in_degrees(i)</code> represents the number of edges entering vertex <code>i</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94912%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Comments:&nbsp;</term></span></td>
+<td style="width: 93.4577%; height: 28px;">Ensure your function handles cases with no edges (empty edge list).</td>
+</tr>
+<tr>
+<td style="width: 5.94912%; text-align: right; vertical-align: top;"></td>
+<td style="width: 93.4577%; height: 0px;">Support graphs with self-loops, where an edge starts and ends at the same vertex.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 5.94912%; text-align: right; vertical-align: top; height: 10px;"><span style="font-size: 10pt;"><term>Test Cases:&nbsp;</term></span></td>
+<td style="width: 93.4577%; height: 10px;">
+<table style="width: 100.057%; height: 235px;">
+<tbody>
+<tr style="height: 26px;">
+<th style="width: 67.4985%; height: 26px;">Command Window</th>
+<th style="width: 32.4347%; height: 26px;">Expected Output</th>
+</tr>
+<tr style="height: 93px;">
+<td style="width: 67.4985%; height: 93px;">
+<pre>G.n = 3;
+G.m = 2;
+G.edges = [1, 2; 2, 3];
+in_degrees = HW6P4_in_degrees(G);</pre>
+</td>
+<td style="width: 32.4347%; height: 93px;">
+<pre>in_degrees =
+    0    1    1</pre>
+</td>
+</tr>
+<tr style="height: 49px;">
+<td style="width: 67.4985%; height: 49px;">
+<pre>G.n = 2;
+G.m = 2;
+G.edges = [1, 1; 1, 2];
+in_degrees = HW6P4_in_degrees(G);</pre>
+</td>
+<td style="width: 32.4347%; height: 49px;">
+<pre>in_degrees =
+    1    1</pre>
+</td>
+</tr>
+<tr style="height: 67px;">
+<td style="width: 67.4985%; height: 67px;">
+<pre>G.n = 4;
+G.m = 5;
+G.edges = [3, 4; 4, 4; 1, 4; 4, 3; 1, 1];
+in_degrees = HW6P4_in_degrees(G);</pre>
+</td>
+<td style="width: 32.4347%; height: 67px;">
+<pre>in_degrees =
+    1    0    1    3</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 132px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94544%; height: 10px; text-align: right;"><span style="font-size: 10pt;"><term>Function</term>:&nbsp;</span></td>
+<td style="width: 94.013%; height: 10px;"><code>HW6P5_construct_directed_graph_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94544%; height: 0px; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Description</term>:&nbsp;</span></td>
+<td style="width: 94.013%; height: 0px;">This function constructs a directed graph structure from a given set of vertices and edges. It also computes the graph properties listed in the output details below.&nbsp;</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 5.94544%; text-align: right; vertical-align: top; height: 28px;"><span style="font-size: 10pt;"><term>Inputs:&nbsp;</term></span></td>
+<td style="width: 94.013%; height: 28px;"><code>vertices</code> (n x 1, integer): A list of vertex IDs.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 5.94544%; text-align: right; vertical-align: top; height: 28px;"><span style="font-size: 10pt;"><term>&nbsp;</term></span></td>
+<td style="width: 94.013%; height: 28px;"><code>edges</code> (m x 2 or m x 3, integer): A list of edges where each row contains the starting and ending vertex IDs.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 5.94544%; text-align: right; vertical-align: top; height: 28px;"><span style="font-size: 10pt;"><term>&nbsp;</term></span></td>
+<td style="width: 94.013%; height: 28px;"><code>graph_name</code> (string): A name for the graph stored as part of the output structure.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94544%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Outputs:&nbsp;</term></span></td>
+<td style="width: 94.013%; height: 0px;"><code>G</code> (struct): A structure representing the graph containing the following fields:</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94544%; text-align: right; height: 10px;"><span style="font-size: 10pt;"><term>&nbsp;</term></span></td>
+<td style="width: 94.013%; height: 10px;">
+<ol style="list-style-type: decimal;">
+<li><code>G.name</code> (string): The name of the graph as provided in <code>graph_name</code>.</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.vertices</span></code> (n x 1, integers): List of vertex index IDs</li>
+<li><code>G.edges</code> (m x 3): A matrix where each row represents an edge connecting two vertices.</li>
+<li><code style="color: var(--ic-brand-font-color-dark);">G.n</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">&nbsp;(integer): The number of vertices in the graph.</span></li>
+<li><code style="color: var(--ic-brand-font-color-dark);">G.m</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> (integer): The number of edges in the graph.</span></li>
+<li><code style="color: var(--ic-brand-font-color-dark);">G.adj_mat</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> (n x n double array): The adjacency matrix of the graph.</span></li>
+<li><code style="color: var(--ic-brand-font-color-dark);">G.cost_mat</code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;"> (n x n double array): The cost/weight matrix of the graph.</span></li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.out_degrees</span></code> (n x 1, integers): List of vertex out-degrees.</li>
+<li><code><span style="color: var(--ic-brand-font-color-dark); font-family: inherit;">G.in_degrees</span></code> (n x 1, integers): List of vertex in-degrees.</li>
+</ol>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.94544%; text-align: right; vertical-align: top; height: 0px;"></td>
+<td style="width: 94.013%; height: 28px;">Note: The values of the fields 6 through 9 should come from the output of <code>HW6P1</code> - <code>HW6P4</code>, respectively.</td>
+</tr>
+<tr>
+<td style="width: 5.94544%; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Comments:&nbsp;</term></span></td>
+<td style="width: 94.013%;">If the edges matrix is input without weights (i.e., a 3rd column), give each edge a default weight of 1.</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<table style="width: 98.3326%;">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89735%; height: 0px; text-align: right;"><span style="font-size: 10pt;"><term>Function</term>:&nbsp;</span></td>
+<td style="width: 93.7048%;"><code>HW6P6_get_components_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89735%; height: 0px; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Description</term>:&nbsp;</span></td>
+<td style="width: 93.7048%;">This function identifies all connected components in a directed graph represented by the structure <code>G</code>. A component is a subgraph where any two vertices are connected by a path.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89735%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Inputs:&nbsp;</term></span></td>
+<td style="width: 93.7048%;"><code>G</code> (struct): A structure representing the graph containing, at minimum, the following fields:
+<ul>
+<li><code>G.n</code> (integer): The number of vertices in the graph.</li>
+<li><code>G.edges</code> (m x 2): A matrix where each row represents an undirected edge [vertex1, vertex2].</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89735%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Outputs:&nbsp;</term></span></td>
+<td style="width: 93.7048%;"><code>components</code> (1 x k): A cell array where each element <code>components{i}</code> is a vector containing the vertices in the <code>i</code>th connected component.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.89735%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Comments:&nbsp;</term></span></td>
+<td style="width: 93.7048%; height: 28px;">Ensure your function handles cases with no edges (empty edge list).</td>
+</tr>
+<tr>
+<td style="width: 5.89735%; text-align: right; vertical-align: top;"></td>
+<td style="width: 93.7048%; height: 0px;">Support graphs with self-loops, where an edge starts and ends at the same vertex.</td>
+</tr>
+<tr>
+<td style="width: 5.89735%; text-align: right; vertical-align: top;"></td>
+<td style="width: 93.7048%;">In MATLAB, cell arrays are like matrices, except you can store different types of objects. This new structure is needed to store each path as a vector.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 5.89735%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Test Cases:&nbsp;</term></span></td>
+<td style="width: 93.7048%;">
+<table style="width: 100.097%; height: 0px;">
+<tbody>
+<tr style="height: 0px;">
+<th style="width: 59.8322%; height: 0px;">Command Window</th>
+<th style="width: 40.0649%; height: 0px;">Expected Output</th>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 59.8322%; height: 0px;">
+<pre>V = 1:5;<br>E = [ 1 2;&nbsp;<br>&nbsp; &nbsp; &nbsp; 2 3;&nbsp;<br>&nbsp; &nbsp; &nbsp; 4 5 ]<br>G = HW6P5_construct_directed_graph(V,E,'G');<br>components = HW6P6_get_components(G);</pre>
+</td>
+<td style="width: 40.0649%; height: 0px;">
+<pre>components =
+    {[1 2 3], [4 5]}</pre>
+</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 59.8322%; height: 0px;">
+<pre>V = 1:3;<br>E = [ 1 2 5;&nbsp;<br>&nbsp; &nbsp; &nbsp; 2 3 1;&nbsp;<br>&nbsp; &nbsp; &nbsp; 1 3 7 ];<br>G = HW6P5_construct_directed_graph(V,E,'G');<br>components = HW6P6_get_components(G);</pre>
+</td>
+<td style="width: 40.0649%; height: 0px;">
+<pre>components =
+    {[1 2 3]}</pre>
+</td>
+</tr>
+<tr style="height: 0px;">
+<td style="width: 59.8322%; height: 0px;">
+<pre>V = 1:4;<br>E = [];<br>G = HW6P5_construct_directed_graph(V,E,'G');<br>components = HW6P6_get_components(G);</pre>
+</td>
+<td style="width: 40.0649%; height: 0px;">
+<pre>components =
+    {[1], [2], [3], [4]}</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<table style="color: var(--ic-brand-font-color-dark); font-family: inherit; font-size: 1rem; width: 98.4021%;">
+<tbody>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.92485%; height: 0px; text-align: right;"><span style="font-size: 10pt;"><term>Function</term>:&nbsp;</span></td>
+<td style="width: 93.8699%;"><code>HW6P7_min_cost_paths_lastname.m</code></td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.92485%; height: 0px; text-align: right; vertical-align: top;"><span style="font-size: 10pt;"><term>Description</term>:&nbsp;</span></td>
+<td style="width: 93.8699%;">Given a starting vertex, this function computes both the shortest distance and path to every other vertex in a directed graph <code>G</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.92485%; text-align: right; height: 0px;"><span style="font-size: 10pt;"><term>Inputs:&nbsp;</term></span></td>
+<td style="width: 93.8699%;"><code>G</code> (struct): A structure representing the directed graph.</td>
+</tr>
+<tr>
+<td style="width: 5.92485%; text-align: right;"><span style="font-size: 10pt;"><term>&nbsp;</term></span></td>
+<td style="width: 93.8699%;"><code>source</code> (integer): The index of the source vertex from which shortest paths are calculated.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 5.92485%; text-align: right; height: 10px;"><span style="font-size: 10pt;"><term>Outputs:&nbsp;</term></span></td>
+<td style="width: 93.8699%;"><code>distances</code> (1 x n): A row vector where each element <code>distances(i)</code> represents the shortest distance from the source vertex to vertex <code>i</code>. If a vertex is unreachable, its distance is <code>inf</code>.</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 5.92485%; text-align: right; height: 28px;"></td>
+<td style="width: 93.8699%;"><code>paths</code> (1 x n): A cell array where each element <code>paths{i}</code> is a vector representing the shortest path from the source vertex to vertex <code>i</code>.</td>
+</tr>
+<tr style="height: 0px; vertical-align: top;">
+<td style="width: 5.92485%; text-align: right; vertical-align: top; height: 0px;"><span style="font-size: 10pt;"><term>Comments:&nbsp;</term></span></td>
+<td style="width: 93.8699%; height: 28px;">Ensure your function handles cases with no edges (empty edge list).</td>
+</tr>
+<tr>
+<td style="width: 5.92485%; text-align: right; vertical-align: top;"></td>
+<td style="width: 93.8699%; height: 0px;">In MATLAB, cell arrays are like matrices, except you can store different types of objects. This new structure is needed to store each path as a vector.</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 5.92485%; text-align: right; vertical-align: top; height: 10px;"><span style="font-size: 10pt;"><term>Test Cases:&nbsp;</term></span></td>
+<td style="width: 93.8699%;">
+<table style="width: 100.139%;">
+<tbody>
+<tr>
+<th style="width: 58.8615%;">Command Window</th>
+<th style="width: 41.0767%;">Expected Output</th>
+</tr>
+<tr>
+<td style="width: 58.8615%;">
+<pre>V = 1:6;<br>E = [ 1 2 1;&nbsp;<br>  &nbsp;   1 3 7; <br>  &nbsp; &nbsp; 1 4 6; <br>    &nbsp; 2 3 2; <br>  &nbsp;   3 4 8; <br>  &nbsp; &nbsp; 3 5 3; <br>    &nbsp; 4 5 4; <br>  &nbsp;   4 6 6; <br>  &nbsp; &nbsp; 5 6 4 ];<br>G = HW6P5_construct_directed_graph(V,E,'G');<br>[distances, paths] = HW6P7_min_cost_paths(G,1)</pre>
+</td>
+<td style="width: 41.0767%;">
+<pre>distances = <br> &nbsp; &nbsp;0 &nbsp; &nbsp; 1 &nbsp; &nbsp; 3 &nbsp; &nbsp; 6 &nbsp; &nbsp; 6 &nbsp; &nbsp;10 <br>paths = <br> &nbsp;{[1], [1 2], [1 2 3], [1 4], ...<br>        [1 2 3 5], [1 2 3 5 6]}</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 58.8615%;">
+<pre>V = 1:4;<br>E = [ 1 2 3;<br>  &nbsp;   1 3 1;<br>  &nbsp;   2 4 2;<br>  &nbsp;   3 4 6 ];<br>G = HW6P5_construct_directed_graph(V,E,'G');<br>[distances, paths] = HW6P7_min_cost_paths(G,1)</pre>
+</td>
+<td style="width: 41.0767%;">
+<pre>distances =
+    0   3   1   5
+paths =
+    {[1], [1 2], [1 3], [1 2 4]}</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 58.8615%;">
+<pre>V = 1:3;<br>E = [ 1 2 5; <br>  &nbsp;   2 3 4 ];<br><code>G = HW6P5_construct_directed_graph(V,E,'G');</code><br>[distances, paths] = HW6P<code>7_min_cost_paths</code>(G,2);</pre>
+</td>
+<td style="width: 41.0767%;">
+<pre>distances =
+    Inf   0   4
+paths =
+    {0×0 double, [2], [2 3]}</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 58.8615%;">
+<pre>V = 1:3;<br>E = [];<br><code>G = HW6P5_construct_directed_graph(V,E,'G');</code><br>[distances, paths] = HW6P<code>7_min_cost_paths</code>(G,3);</pre>
+</td>
+<td style="width: 41.0767%;">
+<pre>distances =
+    Inf &nbsp;Inf  0
+paths =
+    {0×0 double, 0×0 double, [3]}</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

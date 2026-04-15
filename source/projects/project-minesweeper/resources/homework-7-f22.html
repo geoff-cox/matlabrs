@@ -1,0 +1,318 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 7 - F22</title>
+</head>
+<body>
+<p>Complete each of the programming and script problems below for homework 7.&nbsp;</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>Click on the function filename to download the template for that problem.</p>
+<p>Follow the templates. Do not use any built-in MATLAB commands unless specified in the directions of the problem.</p>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 317px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:</td>
+<td style="width: 89.8822%; height: 28px;"><code>MS_to_reveal_blank_click_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:</td>
+<td style="width: 89.8822%; height: 28px;">Given a blank minesweeper space, S, this program returns the locations of all the spaces that should be revealed based on this blank space being pressed.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 29px;">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><span><code>row</code> (1 x 1) row of the given blank minesweeper space.</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>col</code> (1 x 1) column of the given blank minesweeper space.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>field</code> (N x N) minesweeper map showing the mines and the number of adjacent mines.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>revealed</code> (N x N) true/false map showing which spaces have been revealed.&nbsp;</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>Outputs:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>to_reveal</code> (K x 2) a list of all spaces to reveal.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>Examples:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>spaces = MS_to_reveal_blank_click_lastname(1,4,[1 1 0 0;-1 2 1 0;2 -1 1 0;1 1 1 0],[0 0 0 0;0 0 1 0;0 0 1 0;1 1 0 0])</code> returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">
+<pre>spaces =<br><br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 4<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 3<br>&nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; 4<br>&nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp; 2<br>&nbsp; &nbsp; &nbsp;2 &nbsp; &nbsp; 2<br>&nbsp; &nbsp; &nbsp;3 &nbsp; &nbsp; 4<br>&nbsp; &nbsp; &nbsp;4 &nbsp; &nbsp; 3<br>&nbsp; &nbsp; &nbsp;4 &nbsp; &nbsp; 4</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>Comments:</term></td>
+<td style="width: 89.8822%;">Use your <code>MS_adj_unrevealed_safe_spaces</code> code in this program.</td>
+</tr>
+<tr>
+<td style="width: 10.0762%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%;">Check out the <a class="instructure_file_link inline_disabled" title="Demo_MS_Game.html" href="$IMS-CC-FILEBASE$/03--Class%20Notes/Demo_MS_Game.html?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435983" data-api-returntype="File">minesweeper game details here.</a>&nbsp;&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 723px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="MS_display_interface_lastname.m" href="$CANVAS_COURSE_REFERENCE$/file_ref/g56f439affae2de44199a3865ef61194a?wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/15159/files/1221112" data-api-returntype="File"><code>MS_display_interface_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.8822%; height: 28px;">Given the size of the square grid, N, this program displays the starting game board and returns the rectangle objects that represent each space on the grid.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>N</code> (1 x 1) size of the N x N square grid.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>Outputs:</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>rects</code> (N x N) array of rectangle objects.</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 10px;"><term>Examples:</term></td>
+<td style="width: 89.8822%; height: 10px;"><code>Rect_objs = MS_display_interface_Key(6)</code> returns</td>
+</tr>
+<tr style="height: 277px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 277px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 277px;">
+<pre>Rect_objs =&nbsp;<br><br>&nbsp; 6×6 Rectangle array:<br><br>&nbsp; &nbsp; Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle<br>&nbsp; &nbsp; Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle<br>&nbsp; &nbsp; Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle<br>&nbsp; &nbsp; Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle<br>&nbsp; &nbsp; Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle<br>&nbsp; &nbsp; Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle &nbsp; &nbsp;Rectangle</pre>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;">and displays the following figure:</td>
+</tr>
+<tr style="height: 254px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 254px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 254px;"><img id="1217718" style="display: block; margin-left: auto; margin-right: auto;" src="$IMS-CC-FILEBASE$/03--Class%20Notes/MS_Display_Example.PNG" alt="MS_Display_Example.PNG" width="233" height="249" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435984" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.0762%; text-align: right; vertical-align: top; height: 29px;"><term>Comments:</term></td>
+<td style="width: 89.8822%; height: 29px;">See the template and <a class="instructure_file_link inline_disabled" title="Demo_Rectangle_Objects.html" href="$IMS-CC-FILEBASE$/03--Class%20Notes/Demo_Rectangle_Objects.html?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435985" data-api-returntype="File">class demos</a> for guidance on how to display the interface.&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 241px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 24px; text-align: right; vertical-align: top;"><term>Function</term>:</td>
+<td style="width: 89.688%; height: 24px;"><code>TSP_BF_lastname.m</code></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Background:</term></td>
+<td style="width: 89.688%; height: 29px;">The Traveling Salesman Problem is defined as follows:</td>
+</tr>
+<tr style="height: 24px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 24px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 24px;"><em>Given a set of points and a starting location, find the shortest (closed) route that passes through all these points.</em></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right; vertical-align: top;"><term>Description</term>:</td>
+<td style="width: 89.688%; height: 28px;">This program uses brute force to solve the traveling salesman problem.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>pt_list</code> (N x 2) list of GPS (degree) coordinates.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>route_order</code> (1 x N) vector specifying the shortest route order.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>Examples:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>BF_route = TSP_BF_lastname([0 0;4 4;2 5;4 1;1 1])</code>&nbsp;returns</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;"><code>BF_route = [1 4 2 3 5]</code></td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 10px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 10px;">You may use MATLAB's <code>perms</code> command.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">Use your <code>TSP_global_path_dist</code> code in this program.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">In your code, assume every possible route starts and ends at the first value in <code>pt_list</code>.&nbsp; This means every possible route should have a 1 as its first value.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">Check out <a class="instructure_file_link inline_disabled" title="Demo_TSP.html" href="$IMS-CC-FILEBASE$/03--Class%20Notes/Demo_TSP.html?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435982" data-api-returntype="File">this document</a> for more information about the traveling salesman problem.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 158px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 9.5144%; height: 28px; text-align: right;"><term>Function</term>:</td>
+<td style="width: 89.688%; height: 28px;"><code>TSP_NN_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 9.5144%; height: 13px; text-align: right;"><term>Description</term>:</td>
+<td style="width: 89.688%; height: 13px;">This program applies the nearest neighbor algorithm to the traveling salesman problem.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; height: 29px; vertical-align: top;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>pt_list</code> (N x 2) list of GPS (degree) coordinates.</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 10px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 10px;"><code>route_order</code> (1 x N) vector specifying the route order of the NN method.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>Examples:</term></td>
+<td style="width: 89.688%; height: 29px;"><code>NN_route = TSP_NN_lastname([0 0;4 4;2 5;4 1;1 1])</code>&nbsp;returns</td>
+</tr>
+<tr style="height: 38px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;"><code>NN_route = [1 5 4 2 3]</code></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 29px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 29px;">You may use MATLAB's <code>min</code> command.</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 9.5144%; text-align: right; vertical-align: top; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 10px;">Use your <code>TSP_get_global_dist_vector</code> code in this program.</td>
+</tr>
+<tr>
+<td style="width: 9.5144%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">In your code, assume every possible route starts and ends at the first value in <code>pt_list</code>.&nbsp; This means every possible route should have a 1 as its first value.</td>
+</tr>
+<tr>
+<td style="width: 9.5144%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">Check out <a class="instructure_file_link inline_disabled" title="Demo_TSP.html" href="$IMS-CC-FILEBASE$/03--Class%20Notes/Demo_TSP.html?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435982" data-api-returntype="File">this document</a> for more information about the traveling salesman problem.</td>
+</tr>
+</tbody>
+</table>
+<hr><hr>
+<h3><term><span style="font-size: 14pt;">Script Problems</span></term></h3>
+<p><span style="font-size: 12pt;">Click on the Script filename to download the template for that problem.</span></p>
+<table style="border-collapse: collapse; width: 97.8605%; height: 61px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 14px; text-align: right; vertical-align: top;"><term>Script:</term></td>
+<td style="width: 89.688%; height: 14px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="TTT_Script_lastname.m" href="$IMS-CC-FILEBASE$/02--Homework/HW%2007/TTT_Script_lastname.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436000" data-api-returntype="File"><code>TTT_Script_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 18px; text-align: right; vertical-align: top;"><term>Description:</term></td>
+<td style="width: 89.688%; height: 18px;">Write a script that plays a game of tic-tac-toe with a graphical interface.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>Directions:</term></td>
+<td style="width: 89.688%; height: 29px;">When you click run, your script should perform the following tasks:</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;">&nbsp;</td>
+<td style="width: 89.688%;">
+<ul style="list-style-type: square;">
+<li>Display welcome message to MATLAB's command window.&nbsp; Use <code>fprintf.</code></li>
+<li>Define your game state variables (examples: <code>game_state</code>, <code>winner</code>, <code>player</code>, <code>moves</code>, etc.)</li>
+<li>Using <code>input,</code> prompt the user for the number of players (options: 0,1, or 2).
+<ul style="list-style-type: square;">
+<li>If the number of players is 0, prompt the user to select the AI ability level for X (options: 1, 2, or 3) and then the AI ability level for O (options: 1, 2, or 3).</li>
+<li>If the number of players is 1, prompt the user to select if they will be X (move first) or O, then prompt them to select the AI ability level for their opponent.</li>
+<li>If the number of players is 2, no other input is needed and the game should begin.</li>
+</ul>
+</li>
+<li>Display blank game interface using a MATLAB figure containing a plot.&nbsp; Here is some example code that you may use<br>
+<pre>figure('Position',[100,100,650,600]);<br>axis([0 5 0 5]);&nbsp;<br>axis equal;<br>plot([2 2],[1 4],'k',[3 3],[1 4],'k',[1 4],[2 2],'k',[1 4],[3 3],'k','LineWidth',3)<br>ax = gca; ax.XColor = 'none'; ax.YColor = 'none';</pre>
+</li>
+<li>Write a game loop that plays tic-tac-toe according to the user's game selections.</li>
+<li>When the game is complete, post a message about the outcome of the game in the title of the plot. Use the <code>title</code> command.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>Comments:</term></td>
+<td style="width: 89.688%;">If you want a short pause between AI moves in the AI vs AI mode, you can use MATLAB's <a class="inline_disabled" href="https://www.mathworks.com/help/matlab/ref/pause.html" target="_blank"><code>pause</code></a> command.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">If a player clicks on a space that is either already taken or outside the game area, nothing should happen. This requires a while loop that continues to take mouse clicks until a valid click has been received.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>Example:</term></td>
+<td style="width: 89.688%;">You can run <a class="instructure_file_link inline_disabled" title="TTT_Script_Key.p" href="$IMS-CC-FILEBASE$/02--Homework/HW%2007/TTT_Script_Key.p?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436012" data-api-returntype="File">this code</a> to see a sample script running Tic-Tac-Toe. Just download the file, locate the file inside MATLAB, right-click on the file and select "Run."</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 375px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 14px; text-align: right; vertical-align: top;"><term>Script:</term></td>
+<td style="width: 89.688%; height: 14px;"><a class="instructure_file_link instructure_scribd_file inline_disabled" title="MS_Script_lastname.m" href="$IMS-CC-FILEBASE$/02--Homework/HW%2007/MS_Script_lastname.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435999" data-api-returntype="File"><code>MS_Script_lastname.m</code></a></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.2704%; height: 18px; text-align: right; vertical-align: top;"><term>Description:</term></td>
+<td style="width: 89.688%; height: 18px;">Write a script that plays a game of minesweeper with a graphical interface.</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>Directions:</term></td>
+<td style="width: 89.688%; height: 29px;">When you click run, your script should perform the following tasks:</td>
+</tr>
+<tr style="height: 155px;">
+<td style="width: 10.2704%; text-align: right; height: 155px;">&nbsp;</td>
+<td style="width: 89.688%; height: 155px;">
+<ul style="list-style-type: square;">
+<li>Display welcome message to MATLAB's command window.&nbsp; Use <code>fprintf.</code></li>
+<li>Using <code>input</code>, prompt the user for the grid size and number of mines.</li>
+<li>Based on the user's inputs, create a minefield with the specified number of mines randomly placed on the grid.</li>
+<li>Define any game state variables you plan to use.</li>
+<li>Display a blank game interface using the code you wrote in the previous homework assignment.</li>
+<li>Write a game loop that plays minesweeper according to the rules in <a class="instructure_file_link inline_disabled" title="Demo_MS_Game.html" href="$IMS-CC-FILEBASE$/03--Class%20Notes/Demo_MS_Game.html?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435983" data-api-returntype="File">this document</a>.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 53px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 53px;">As with Tic-Tac-Toe, if a player clicks on a space that is outside the game area, already revealed, or a flagged space, then nothing should happen. A flagged space must first be unflagged before it can be revealed.</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 10.2704%; text-align: right; height: 53px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 53px;">The main job of your game loop is to wait for a player to click in the game area, process the location of the click, and perform the appropriate action.&nbsp;</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 10.2704%; text-align: right; vertical-align: top; height: 53px;"><term>Example:</term></td>
+<td style="width: 89.688%; height: 53px;">You can run <a class="instructure_file_link inline_disabled" title="MS_Script_Key.p" href="$IMS-CC-FILEBASE$/02--Homework/HW%2007/MS_Script_Key.p?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2436014" data-api-returntype="File">this code</a> to see a sample script running Minesweeper. Just download the file, locate the file inside MATLAB, right-click on the file and select "Run."</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!--META-DATA
+{
+	"tags": ["dice", "poker", "reroll-policy", "function", "selection-mask"]
+}
+-->
+
+<statement>
+	<p>
+		<pf>reroll_all</pf> implements an always-reroll strategy that marks every die for reroll, regardless of the current hand.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (ignored) — placeholder for a 1x5 integer vector of dice values.</p>
+				<p><pf>counts</pf> (ignored) — placeholder for a 1x6 integer vector of face counts.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell><p><pf>sel</pf> (1x5) logical — all <q>true</q>, i.e., mark every die to reroll.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ Returns <pf>true(1,5)</pf>, indicating a full reroll with no conditions.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Use case:</p></cell>
+			<cell><p>▸ Baseline or stress-test policy; often used for comparison against smarter strategies.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Example:
+		<program>
+			<code>
+				sel = reroll_all([], [])
+				% sel = [1 1 1 1 1]
+			</code>
+		</program>
+	</p>
+</statement>

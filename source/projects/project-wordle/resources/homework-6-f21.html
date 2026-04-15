@@ -1,0 +1,565 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Homework 6 - F21</title>
+</head>
+<body>
+<p>Complete each of the programming and/or script problems below for homework 6.&nbsp;</p>
+<hr><hr>
+<h3><span style="font-size: 14pt;"><term>Programming Problems</term></span></h3>
+<p>If a template is provided, you can download it by clicking on the function filename. Otherwise, you must create your own functions from scratch.</p>
+<p>If no examples are given, you should come up with your own examples to test the output of your programs.</p>
+<p><em><term>Do not use any built-in MATLAB commands unless specified in the directions of the problem.</term></em></p>
+<hr><hr>
+<table style="border-collapse: collapse; width: 98.2291%; height: 216px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW6P1_is_point_valid_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;">This function will be used in the Wordle game we are developing.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">If the given point is in the keyboard area of the game board, then the point is valid.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 20px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 20px;">Otherwise, the point is not valid.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>x</code> (double) is the <em>x</em>-value of a point on the Wordle game board</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>y</code> (double) is the <em>y</em>-value of a point on the Wordle game board</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>is_valid</code> (boolean) is true (or 1) if the point is valid and is false (or 0) if the point is not valid</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>Comments:&nbsp;</term></td>
+<td style="width: 89.688%;">While you are developing this code, it may be helpful to think about a game board.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;"><img id="1526859" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/game_board_valid_region.png" alt="game_board_valid_region.png" width="426" height="319" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435966" data-api-returntype="File" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2291%; height: 170px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW6P2_get_valid_click_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;">This function uses <code>ginput</code> to get the coordinates of a point from the user, and continues to "request" a point until the user clicks on a valid point.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:<br></term></td>
+<td style="width: 89.688%; height: 28px;">no function inputs</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>x</code> (double) is the x-coordinate of the point</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>y</code> (double) is the y-coordinate of the point</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Comments:</term></td>
+<td style="width: 89.688%; height: 28px;">In order to test this function, it may be helpful to have a primitive mock-up of the game board to view.&nbsp; You may use <a id="1530936" class="instructure_file_link inline_disabled" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/fake_gameboard_script.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435962" data-api-returntype="File">this script</a> while you are testing.&nbsp; DO NOT CALL THE SCRIPT/USE THIS CODE IN ANY OF THE PROGRAMS/SCRIPTS YOU SUBMIT.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 270px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:</td>
+<td style="width: 89.688%; height: 28px;"><code>HW6P3_get_word_lists_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Description:</term></td>
+<td style="width: 89.688%; height: 28px;">This function will create two arrays of strings:</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 63px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 63px;">
+<ul>
+<li>The first will be a 14854<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">1 array of strings, where each element in the array is a valid 5-letter word. In other words, this is the "dictionary" of all 5-letter words that will be allowed to be guesses.</li>
+<li>The second will be a 200<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">1 array of strings, where each element in the array is a valid 5-letter word. This is the curated list of words that might be the secret word.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 10.2704%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 29px;">You should use the <code>readlines</code> command to import the words from these text files:<br>
+<ul>
+<li><a class="instructure_file_link instructure_scribd_file inline_disabled" title="wordle_dictionary.txt" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/wordle_dictionary.txt?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435972" data-api-returntype="File">wordle_dictionary.txt</a>&nbsp;</li>
+<li><a class="instructure_file_link instructure_scribd_file inline_disabled" title="some_wordle_words.txt" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/some_wordle_words.txt?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435967" data-api-returntype="File">some_wordle_words.txt</a>&nbsp;</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 10px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 10px;">no function inputs</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>dictionary_words</code> (14854<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">1) array of strings.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>wordle_words</code> (200<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">1) array of strings.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Example: <br></term></td>
+<td style="width: 89.688%; height: 28px;">you should be able to run the function by typing the following in the command window:</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; padding-left: 40px; height: 28px;"><code>[dictionary_words, wordle_words] = HW6_get_word_lists_Key()</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 283px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW6P4_determine_if_guess_in_dictionary_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Description</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px; vertical-align: top;">This function will determine if the user's guess is a valid guess.&nbsp; That is, it an actual word in the dictionary.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>current_guess</code> (string) is a five-letter string</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>dictionary_words</code> (14854<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">5) is an array of strings, where each element in the array is a valid 5-letter word. In other words, this will serve as the "dictionary" of all 5-letter words.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>is_a_word</code> (boolean) returns true (or 1) if the current guess matches with one of the dictionary words, and returns false (or 0) if the current guess if not among any of the words in the dictionary</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Examples&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'LAMPS'</code>, <code>dictionary_words</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>1 (logical)</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'ZZSUF'</code>, <code>dictionary_words</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>0 (logical)</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 97.8605%; height: 399px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.688%; height: 28px;"><code>HW6P5_get_current_guess_colors_lastname.m</code></td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>Description:&nbsp;</term></td>
+<td style="width: 89.688%; vertical-align: top;">This function will be used in the game Wordle to determine the color feedback that should be provided for a given guess.&nbsp; The output is the string of five letters representing the colors that should eventually be displayed on the game board.</td>
+</tr>
+<tr>
+<td style="width: 10.2704%; text-align: right; vertical-align: top;"><term>&nbsp;</term></td>
+<td style="width: 89.688%;">Note: this function does not display anything on the game board; it only determines the color string.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Inputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>guess</code> (string) is a five-letter string; this a guess at the secret word</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>word</code> (string) is a five-letter string; this is the secret word</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.688%; height: 28px;"><code>colors</code> (string) is a five-letter string representing the colors; the only letters that should appear in the string are w, g, and y (because the only colors that should appear in the guess boxes are white, green and yellow.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>Examples&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'SLANT'</code>, <code>'ANGLE'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'wyyyw'<br></code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'PUPPY'</code>, <code>'APPLE'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'ywgww'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">INPUTS</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'AREAS'</code>, <code>'APPLE'</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.2704%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.688%; height: 28px;"><code>'gwyww'</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="color: var(--ic-brand-font-color-dark); font-family: inherit; font-size: 1rem; width: 98.2295%; height: 699px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Function: <br></term></td>
+<td style="width: 89.8822%; height: 28px;"><code>HW6P6_check_game_over_lastname.m</code></td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Description:</term></td>
+<td style="width: 89.8822%; height: 28px;">In Wordle, there are two ways the game might be over:</td>
+</tr>
+<tr style="height: 33px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 33px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 33px;">
+<ul>
+<li>the user correctly guesses the word, or</li>
+<li>the user doesn't guess the correct word and has reached the 6-word limit.</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 52px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 52px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 52px;">This function determines whether the game is over and returns two logical variables (one indicating whether the game is over and the other whether the user has won).</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 19px;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 19px;"><code>current_guess</code> (string) is a five-letter guess at the secret word</td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 29px;"><code>the_wordle_word</code> (string) is a five-letter secret word</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>current_attempt_num</code> (double) is a number that indicates how many guesses the user has made</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>is_game_over</code> (boolean) is true (or 1) if the game is over and false (or 0) if the game continues</td>
+</tr>
+<tr style="height: 53px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 10px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 10px;"><code>is_winner</code> (boolean) is true (or 1) if the user has matched the secret code and is false (or 0) if the current guess is not correct</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Examples <br></term></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>'MELON','SMART',2</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>[0,0]</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>'MELON','SMART',6</code></td>
+</tr>
+<tr style="height: 19px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 19px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 19px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 29px;"></td>
+<td style="width: 89.8822%; height: 29px;"><code>[1,0]</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.0762%; height: 29px;"></td>
+<td style="width: 89.8822%; height: 29px;"><code>'MELON','MELON',2</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.0762%; height: 29px;"></td>
+<td style="width: 89.8822%; height: 29px;"><code>[1,1]</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.0762%; height: 29px;"></td>
+<td style="width: 89.8822%; height: 29px;"><code>'MELON','MELON',6</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.0762%; height: 29px;"></td>
+<td style="width: 89.8822%; height: 29px;"><code>[1,1]</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 1578px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; height: 28px; text-align: right;"><term>Function</term>:&nbsp;</td>
+<td style="width: 89.5029%; height: 28px;"><code>HW6P7_create_guess_boxes_struct_lastname.m</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>Description:</term></td>
+<td style="width: 89.5029%; height: 28px;">In the Wordle game we develop, we will have to "refresh" the game board every time the user completes a guess.</td>
+</tr>
+<tr style="height: 332px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 332px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 332px;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/game_board_guess_boxes.png" alt="game_board_guess_boxes.png" width="437" height="328" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435964" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 28px;">Each "guess box" on the game board has several attributes:</td>
+</tr>
+<tr style="height: 155px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 155px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 155px;">
+<ul>
+<li><em>The letter in the box</em>.&nbsp; This is either the letter that the user has guessed or, if the user hasn't yet made a guess, we would just store an empty string.</li>
+<li><em>The color </em>the box should be filled with.&nbsp; Initially, all boxes start as white. If the letter is the correct letter and is in the right place, then the fill color should be changed to green. If the letter is in the word, but not in the right location, the fill color should be yellow.</li>
+<li><em>The x-coordinates</em> of the boundary box. These are the x-values that will be used in the fill command,</li>
+<li><em>The y-coordinates</em> of the boundary box.&nbsp;</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 29px;">In this function, we need to create a 6 by 5 array of structures named <code>guess_boxes</code>, as shown below.</td>
+</tr>
+<tr style="height: 244px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 244px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 244px;"><em><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/guess_boxes_struct_1.png" alt="guess_boxes_struct_1.png" width="491" height="240" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435963" data-api-returntype="File" loading="lazy"></em></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 28px;">Note that each structure&nbsp; contains the four fields mentioned above. As an example, let's examine the guess box associated row 3, column 2 on the game board.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 28px;"><em><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/game_board_3_2_example.png" alt="game_board_3_2_example.png" width="444" height="333" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435965" data-api-returntype="File" loading="lazy"></em></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 28px;">Note that the corners of this one guess box are: (4.2, 20.2), (7.8, 20.2), (7.8, 23.8) (4.2, 23.8).</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 28px;">The structure associated with this box should look like the following.</td>
+</tr>
+<tr style="height: 360px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 360px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 360px;"><em><img id="1531623" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/guess_boxes_struct_3.png" alt="guess_boxes_struct_3.png" width="549" height="355" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435970" data-api-returntype="File" loading="lazy"></em></td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 29px;">Take note of the <code>xvals</code> and <code>yvals</code>, and how they correspond to the points mentioned above.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 28px;">As one last example, please see the image below of the struct associated with the guess box in the (5,5) position.</td>
+</tr>
+<tr style="height: 110px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 110px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 110px;"><em><img id="1531624" src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/guess_boxes_struct_4-1.png" alt="guess_boxes_struct_4.png" width="290" height="105" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435969" data-api-returntype="File" loading="lazy"></em></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px; vertical-align: top;"><term>Inputs:</term></td>
+<td style="width: 89.5029%; height: 28px;">none</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 28px;"><term>Output:</term></td>
+<td style="width: 89.5029%; height: 28px;"><code>guess_boxes</code> (6<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">5 struct with 4 fields)</td>
+</tr>
+<tr style="height: 10px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 10px;"><term>Comments:<br></term></td>
+<td style="width: 89.5029%; height: 10px;">Note that this function does not display the game board or the guess boxes.&nbsp; No plot/figure is involved in this function.</td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.4555%; text-align: right; height: 29px;"><term>&nbsp;</term></td>
+<td style="width: 89.5029%; height: 29px;">The purpose of this function is only to create the <code>guess_boxes</code> structure.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table style="border-collapse: collapse; width: 98.2295%; height: 898px; border-style: none;" border="0">
+<tbody>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Function: <br></term></td>
+<td style="width: 89.8822%; height: 28px;"><code><a class="instructure_file_link instructure_scribd_file inline_disabled" title="HW6P8_display_guess_boxes_lastname.m" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/HW6P8_display_guess_boxes_lastname.m?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435976" data-api-returntype="File">HW6P8_display_guess_boxes_lastname.</a>m</code></td>
+</tr>
+<tr style="height: 29px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 29px;"><term>Description:<br></term></td>
+<td style="width: 89.8822%; height: 29px;">This function will display the guess boxes on the game board by pulling information that is stored in the <code>guess_boxes</code> struct.</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 19px;"><term>Inputs:</term></td>
+<td style="width: 89.8822%; height: 19px;"><code>guess_boxes</code> (6<img class="equation_image" title="\times" src="https://vmi.instructure.com/equation_images/%255Ctimes?scale=1" alt="LaTeX: \times" data-equation-content="\times" data-ignore-a11y-check="" loading="lazy">5 struct with 4 fields)</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Outputs:</term></td>
+<td style="width: 89.8822%; height: 28px;">no function outputs, but the guess box portion of the game board is displayed</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Comments:</term></td>
+<td style="width: 89.8822%; height: 28px;">Download the template provided to get started.</td>
+</tr>
+<tr style="height: 52px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 52px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 52px;">In order to test this function, you should save <a class="instructure_file_link inline_disabled" title="guess_boxes_inputs.mat" href="$IMS-CC-FILEBASE$/04--Uploaded%20Media/guess_boxes_inputs.mat?canvas_=1&amp;canvas_qs_wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435971" data-api-returntype="File">this .mat file</a> that contains some sample input in the space where you are running code.&nbsp; Use the load command as shown and you will see the four sample inputs in the workspace.&nbsp; Then you can test your function, as shown</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/disp_guess_boxes_load_mat-2.png" alt="disp_guess_boxes_load_mat-2.png" width="882" height="98" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435974" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>Examples <br></term></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>guess_boxes1</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px; padding-left: 40px;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/disp_guess_boxes1.png" alt="disp_guess_boxes1.png" width="205" height="314" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435961" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 28px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 28px;"><code>guess_boxes2</code></td>
+</tr>
+<tr style="height: 19px; vertical-align: top;">
+<td style="width: 10.0762%; text-align: right; height: 19px;"><term>&nbsp;</term></td>
+<td style="width: 89.8822%; height: 19px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px; padding-left: 40px;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/disp_guess_boxes2.png" alt="disp_guess_boxes2.png" width="202" height="311" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435975" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;"><code>guess_boxes3</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px; padding-left: 40px;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/disp_guess_boxes3.png" alt="disp_guess_boxes3.png" width="200" height="309" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435968" data-api-returntype="File" loading="lazy"></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">INPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;"><code>guess_boxes4</code></td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px;">OUTPUT</td>
+</tr>
+<tr style="height: 28px; vertical-align: top;">
+<td style="width: 10.0762%; height: 28px;"></td>
+<td style="width: 89.8822%; height: 28px; padding-left: 40px;"><img src="$IMS-CC-FILEBASE$/04--Uploaded%20Media/disp_guess_boxes4.png" alt="disp_guess_boxes4.png" width="199" height="304" data-api-endpoint="https://vmi.instructure.com/api/v1/courses/23994/files/2435973" data-api-returntype="File" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</body>
+</html>

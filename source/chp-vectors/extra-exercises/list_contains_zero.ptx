@@ -1,0 +1,56 @@
+<!--META-DATA
+{
+	tags: ["if", "for", "while", "vector"],
+}
+-->
+
+<statement>
+	<p>
+		Returns <pf>true</pf> if a list contains any zeros. The list may have any length.
+    </p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+		<row bottom="minor">
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>list</pf> (1 x N) — list of numeric values (doubles)</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>result</pf> (1 x 1) — <pf>true</pf> if <pf>list</pf> contains a zero value.</p>
+			</cell>
+		</row>
+			<row>
+			<cell>Details:</cell>
+			<cell><p>▸ Use <pf>numel</pf>, <pf>size</pf>, or <pf>length</pf> to get the number of values in the list.</p></cell>
+		</row>
+			<row>
+				<cell/>
+			<cell><p>▸ Use a <pf>for</pf> or <pf>while</pf> loop together with an <pf>if</pf>-statement.</p></cell>
+		</row>
+		<row bottom="minor">
+				<cell/>
+			<cell><p>▸ No other built-in MATLAB commands are allowed.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				result = list_contains_zero([111 -90 20 66 -167 42])
+				% returns false (0)
+			</code>
+		</program>
+		<program>
+			<code>
+				result = list_contains_zero([1 1 1 0 1 2 3 9 7 5 0 9 9 4])
+				% returns true  (1)
+			</code>
+		</program>
+	</p>
+</statement>

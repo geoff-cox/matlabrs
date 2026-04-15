@@ -1,0 +1,211 @@
+<!--META-DATA
+{
+	"tags": ["display", "string", "struct", "formatting", "clc", "disp"]
+}
+-->
+
+<statement>
+	<p>
+		This helper displays the current state of a Dice Poker game as ASCII text, showing dealer and player rolls, rerolls, and roll ranks.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell><p><pf>g</pf> (1 x 1) struct — current game structure. Same fields that were initialized in <pf>init_game</pf>.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p><pf>phaseMsg</pf> (1 x 1) string — describes the current phase of the game.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>actionMsg</pf> (1 x 1) string — describes actions or results of a phase.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell><p><em>None</em></p></cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ Create a template for the game area. For example:</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					<program>
+						<code>
+							gameArea = [ ...
+							" DICE POKER (Best of MAXRDS)          ROUND: RD"; ...
+							"==============================================="; ...
+							" DEALER: D-WINS                                "; ...
+							"       ROLL: D-ROLL1    D-RANK1                "; ...
+							"     REROLL: D-ROLL2    D-RANK2                "; ...
+							"==============================================="; ...
+							" PLAYER: P-WINS                                "; ...
+							"       ROLL: P-ROLL1    P-RANK1                "; ...
+							"     REROLL: P-ROLL2    P-RANK2                "; ...
+							"==============================================="; ...
+							"PHASEMSG                                       "; ...
+							"ACTIONMSG                                      "; ...
+							];
+						</code>
+					</program>
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ The goal is to replace all the generic labels, below, with the current values from the game inside <pf>g</pf>.
+					<ul>
+						<li>Round Info: MAXRDS, RD</li>
+						<li>Dealer Info: D-WINS, D-ROLL1, D-RANK1, D-ROLL2, D-RANK2</li>
+						<li>Player Info: P-WINS, P-ROLL1, P-RANK1, P-ROLL2, P-RANK2</li>
+						<li>Game Narration: PHASEMSG, ACTIONMSG</li>
+					</ul>
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ You can use MATLAB's <pf>replace</pf> function to find &amp; replace the generic labels in <pf>gameArea</pf> with their corresponding game values.
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ Any game value that is a string in <pf>g</pf> can replace its generic label directly. Numeric values should be converted to a string with <pf>num2str</pf>.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Converting a roll (1x5 integer vector) requires a two step process:
+					<ol marker="(1)">
+						<li>
+							Create a 1x5 string vector of dice icons matching the roll values:
+							<sidebyside widths="25% 9% 46%" margins="9% 9%" halign="center">
+								<p><pf>[6 6 5 3 1]</pf></p>
+								<p>➜</p>
+								<p><pf>["⚅" "⚅" "⚄" "⚂" "⚀"]</pf></p>
+							</sidebyside>
+						</li>
+						<li>
+							Next, use MATLAB's <pf>join</pf> to convert a 1x5 string to a 1x1 string:
+							<sidebyside widths="46% 9% 25%" margins="9% 9%" halign="center">
+								<p><pf>["⚅" "⚅" "⚄" "⚂" "⚀"]</pf></p>
+								<p>➜</p>
+								<p><pf>"⚅ ⚅ ⚄ ⚂ ⚀"</pf></p>
+							</sidebyside>
+						</li>
+					</ol>
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ Any empty rolls (<pf>[]</pf>) should replace its generic label with the empty string <pf>""</pf>.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>
+					▸ Once the <pf>gameArea</pf> has the correct values, clear the Command Window with <pf>clc</pf> &amp; display the game area with <pf>disp(char(gameArea))</pf>. Displaying the game area as a character array with <pf>char</pf> removes the <pf>"</pf> <pf>"</pf> characters from the sides of the game area. 
+				</p>
+			</cell>
+		</row>
+
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1
+				g = init_game(3);
+				g.dHand = init_hand();
+				g.pHand = init_hand();
+				g.dHand.roll1 = [6 6 5 3 2];
+				g.dHand.rank1 = 'one-pair';
+				display_game_area(g, ":: Dealer's Initial Roll ::", "");
+			</code>
+		</program>
+		<program>
+			<code>
+				% The commands above should clear the command window and display:
+				 DICE POKER (Best of 3)          ROUND: 1
+				===============================================
+				 DEALER: 0
+				       ROLL: ⚅ ⚅ ⚄ ⚂ ⚁    one-pair
+				     REROLL:
+				===============================================
+				 PLAYER: 0 
+				       ROLL:
+				     REROLL:
+				===============================================
+				:: Dealer's Initial Roll ::
+				
+				% There should be a blank line above since actionMsg = ""
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 2
+				g = init_game(3);
+				g.round = 2;
+				g.dWins = 1;
+				g.dHand = init_hand();
+				g.pHand = init_hand();
+				g.dHand.roll1 = [6 6 5 3 2];
+				g.dHand.rank1 = 'one-pair';
+				g.dHand.roll2 = [6 6 2 2 5];
+				g.dHand.rank2 = 'two-pair';
+				g.pHand.roll1 = [6 5 4 3 2];
+				g.pHand.rank1 = 'straight';
+				phase_msg = ":: Player's Selection ::";
+				action_msg = "Player keeps all Dice.";
+				display_game_area(g, phase_msg, action_msg);
+			</code>
+		</program>
+		<program>
+			<code>
+				% The commands above should clear the command window and display:
+				 DICE POKER (Best of 3)          ROUND: 2
+				===============================================
+				 DEALER: 1
+				       ROLL: ⚅ ⚅ ⚄ ⚂ ⚁    one-pair                             
+				     REROLL: ⚅ ⚅ ⚁ ⚁ ⚄    two-pair
+				===============================================
+				 PLAYER: 0 
+				       ROLL: ⚅ ⚄ ⚃ ⚂ ⚁    straight
+				     REROLL:
+				===============================================
+				:: Player's Selection ::
+				Player keeps all Dice.
+			</code>
+		</program>
+	</p>
+</statement>

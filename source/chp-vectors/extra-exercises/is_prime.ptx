@@ -1,0 +1,69 @@
+<!--META-DATA
+{
+	tags: while, for, vector, sum,
+}
+-->
+
+<statement>
+<p>
+	Given a positive integer, this program returns true if the number is prime.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>n</pf> (1 x 1) integer — integer value.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>result</pf> (1 x 1) number — <pf>true</pf> if <pf>n</pf> is prime. <pf>false</pf>, otherwise.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>We wrote a version of this algorithm in a class demo. Write an improved version that is much faster and is based on the following idea:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>If one of the possible numbers is not a factor of , then neither is any multiple of that number. For example, if is not a factor of , then it is redundant to check if , are factors of .</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Code this program using the following strategy:</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>Use MATLAB's true Initialize a vector of all possible factors of . I will call it possible_factors here. I will leave it up to you to decide how to initialize it.</li>
+					<li>Use a while loop to repeat the following tasks as long as there are still numbers in possible_factors Check if the first number in possible_factors is a factor of n. If yes, then you know the number is not prime. If no, then delete this number and all multiples of this number possible_factors</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		S = list_sum([2 1 3 -1])
+		S = 5
+		S = list_sum([-2 1 0 -8 10 9 0 3.22 9 -1 -100 9.54])
+		S = -69.2400
+	</code>
+</program>
+</p>
+</statement>

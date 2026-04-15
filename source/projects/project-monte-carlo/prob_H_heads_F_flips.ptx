@@ -1,0 +1,82 @@
+<!--META-DATA
+{
+	"tags": ["monte-carlo", "probability", "simulation", "function"]
+}
+-->
+
+<statement>
+	<p>
+		This function estimates the probability of obtaining exactly <m>H</m> heads when flipping a fair coin <m>F</m> times, using Monte Carlo simulation.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>H</pf> (1 x 1) integer — desired number of heads.</p>
+				<p><pf>F</pf> (1 x 1) integer — number of coin flips per trial.</p>
+				<p><pf>trials</pf> (1 x 1) integer — number of Monte Carlo trials to perform.</p>
+				<p><pf>seed</pf> (optional, 1 x 1 integer) — random number generator seed for reproducibility.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>prob</pf> (1 x 1) double — estimated probability of getting exactly <m>H</m> heads in <m>F</m> flips.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ The simulation performs <pf>trials</pf> independent experiments. In each trial, <pf>F</pf> random numbers are drawn uniformly between 0 and 1 using <pf>rand</pf>.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ A flip is counted as "heads" if the random number is less than 0.5.</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The number of heads per trial is computed and compared to <pf>H</pf>; if equal, it counts as a "hit."</p></cell>
+		</row>
+
+		<row>
+			<cell/>
+			<cell><p>▸ The final probability is computed as the ratio of hits to total trials.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Notes:</p></cell>
+			<cell>
+				<p>▸ If <pf>seed</pf> is provided, the random number generator is initialized with <pf>rng(seed,'twister')</pf> for reproducibility.</p>
+				<p>▸ For large <pf>trials</pf>, the estimate converges to the true binomial probability <m>P(H) = \binom{F}{H} (0.5)^F</m>.</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: Estimate P(2 heads in 3 flips)
+				prob = prob_H_heads_F_flips(2, 3, 10000)
+				% returns a value close to 0.375
+			</code>
+		</program>
+
+		<program>
+			<code>
+				% Example 2: Reproducible simulation with fixed seed
+				prob = prob_H_heads_F_flips(5, 10, 1e6, 42)
+				% returns approximately 0.246
+			</code>
+		</program>
+	</p>
+</statement>

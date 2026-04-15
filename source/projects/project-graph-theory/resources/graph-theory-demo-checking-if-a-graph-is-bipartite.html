@@ -1,0 +1,168 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Graph Theory Demo: Checking If a Graph is Bipartite </title>
+<meta name="identifier" content="g4292f99509cf2c9144bb6989c6c740f9"/>
+<meta name="editing_roles" content="teachers"/>
+<meta name="workflow_state" content="unpublished"/>
+</head>
+<body>
+<h3><term>Graph Theory Homework Demo</term></h3>
+<p>Here's an in-class demonstration for understanding the bipartiteness check algorithm in the <code>HW5P10_is_bipartite</code> function. This function uses a graph coloring algorithm to determine if an undirected graph is bipartite, which means its vertices can be divided into two sets such that no two vertices within the same set are adjacent.</p>
+<hr>
+<h3><term>Demonstration: Checking If a Graph is Bipartite</term></h3>
+<h4><term>Objective</term></h4>
+<p>To help students understand how to determine if an undirected graph is bipartite by attempting to color it with two colors. If the graph can be colored such that no two adjacent vertices share the same color, it is bipartite.</p>
+<h4><term>Steps in the Algorithm</term></h4>
+<ol>
+<li>
+<p><term>Initialize Starting Conditions</term>:</p>
+<ul>
+<li>Choose a starting vertex, assign it the first color (e.g., <code>1</code>), and add it to a <term>queue</term>.</li>
+<li>Create a color array where each vertex starts uncolored (<code>0</code>).</li>
+</ul>
+</li>
+<li>
+<p><term>Color and Traverse Each Vertex</term>:</p>
+<ul>
+<li><term>Dequeue</term> a vertex from the queue.</li>
+<li>Examine each of its <term>neighbors</term>.</li>
+<li>For each neighbor:
+<ul>
+<li>If the neighbor is uncolored, assign it the opposite color of the current vertex and enqueue it.</li>
+<li>If the neighbor is already colored and has the same color as the current vertex, the graph is <term>not bipartite</term> (a conflict exists).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><term>Repeat</term>:</p>
+<ul>
+<li>Continue dequeuing vertices and assigning colors to their neighbors until the queue is empty, meaning all reachable vertices have been processed.</li>
+</ul>
+</li>
+<li>
+<p><term>Check Result</term>:</p>
+<ul>
+<li>If the algorithm completes without any color conflicts, the graph is <term>bipartite</term>.</li>
+<li>If any color conflict is found during traversal, the graph is <term>not bipartite</term>.</li>
+</ul>
+</li>
+</ol>
+<h4><term>Example Walkthrough</term></h4>
+<p>Let's demonstrate with an example graph:</p>
+<ul>
+<li>
+<p><term>Graph Vertices and Edges</term>: Consider a graph with vertices <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">V = \{1, 2, 3, 4\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">V</span><span class="mrel">=</span></span><span class="base"><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mord">2</span><span class="mpunct">,</span><span class="mord">3</span><span class="mpunct">,</span><span class="mord">4</span><span class="mclose">}</span></span></span></span> and edges <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>4</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">E = \{(1,2), (2,3), (3,4), (4,1)\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">E</span><span class="mrel">=</span></span><span class="base"><span class="mopen">{(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mord">2</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mord">3</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mord">4</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord">4</span><span class="mpunct">,</span><span class="mord">1</span><span class="mclose">)}</span></span></span></span>.</p>
+</li>
+<li>
+<p><term>Adjacency Matrix</term> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">A</span></span></span></span>:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mo>=</mo><mrow><mo fence="true">[</mo><mtable columnalign="center center center center" rowspacing="0.16em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">A = \begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ \end{bmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">A</span><span class="mrel">=</span></span><span class="base"><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>0</span><span>1</span><span>0</span><span>1</span></span><span class="vlist-s">​</span></span></span></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>1</span><span>0</span><span>1</span><span>0</span></span><span class="vlist-s">​</span></span></span></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>0</span><span>1</span><span>0</span><span>1</span></span><span class="vlist-s">​</span></span></span></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span>1</span><span>0</span><span>1</span><span>0</span></span><span class="vlist-s">​</span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist-s">​</span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+<p><term>Algorithm Execution</term>:</p>
+<ol>
+<li>
+<p><term>Initialize</term>:</p>
+<ul>
+<li>Start from vertex 1, color it <code>1</code>, and enqueue it.</li>
+<li>Color array: <code>[1, 0, 0, 0]</code></li>
+<li>Queue: <code>[1]</code></li>
+</ul>
+</li>
+<li>
+<p><term>Process Queue</term>:</p>
+<ul>
+<li>
+<p><term>Dequeue 1</term>:</p>
+<ul>
+<li>Neighbors of 1: <code>{2, 4}</code></li>
+<li>Vertex 2 is uncolored, so color it <code>-1</code> and enqueue.</li>
+<li>Vertex 4 is uncolored, so color it <code>-1</code> and enqueue.</li>
+<li>Color array: <code>[1, -1, 0, -1]</code></li>
+<li>Queue: <code>[2, 4]</code></li>
+</ul>
+</li>
+<li>
+<p><term>Dequeue 2</term>:</p>
+<ul>
+<li>Neighbors of 2: <code>{1, 3}</code></li>
+<li>Vertex 1 is already colored with <code>1</code> (no conflict).</li>
+<li>Vertex 3 is uncolored, so color it <code>1</code> and enqueue.</li>
+<li>Color array: <code>[1, -1, 1, -1]</code></li>
+<li>Queue: <code>[4, 3]</code></li>
+</ul>
+</li>
+<li>
+<p><term>Dequeue 4</term>:</p>
+<ul>
+<li>Neighbors of 4: <code>{1, 3}</code></li>
+<li>Vertex 1 is already colored with <code>1</code> (no conflict).</li>
+<li>Vertex 3 is already colored with <code>1</code> (no conflict).</li>
+</ul>
+</li>
+<li>
+<p><term>Dequeue 3</term>:</p>
+<ul>
+<li>Neighbors of 3: <code>{2, 4}</code></li>
+<li>Both neighbors are colored <code>-1</code> (no conflict).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><term>Final Check</term>:</p>
+<ul>
+<li>The algorithm completes without conflicts, so the graph is <term>bipartite</term>.</li>
+</ul>
+</li>
+</ol>
+<h4><term>MATLAB Code Demonstration</term></h4>
+<div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary dark:bg-gray-950">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary">matlab</div>
+<div class="sticky top-9 md:top-[5.75rem]">
+<div class="absolute bottom-0 right-2 flex h-9 items-center">
+<div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed">Copy code</span></div>
+</div>
+</div>
+<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-matlab">function result = HW5P10_is_bipartite(G)
+    % Initialize color array, queue, and result
+    color = zeros(1, G.v_count); % 0 means uncolored, 1 and -1 for colors
+    queue = 1; % Start with the first vertex
+    color(1) = 1; % Assign the first color to the first vertex
+    result = true;
+
+    % Perform BFS-like traversal to check bipartiteness
+    while ~isempty(queue)
+        % Dequeue the first element
+        current = queue(1);
+        queue(1) = []; % Remove the processed vertex
+
+        % Get neighbors of the current vertex
+        neighbors = HW5P7_get_neighbors(current, G.adj_mat);
+
+        for neighbor = neighbors
+            if color(neighbor) == 0
+                % Assign the opposite color and enqueue the neighbor
+                color(neighbor) = -color(current);
+                queue(end + 1) = neighbor;
+            elseif color(neighbor) == color(current)
+                % Conflict found, graph is not bipartite
+                result = false;
+                return;
+            end
+        end
+    end
+end
+</code></div>
+</div>
+<hr>
+<h3><term>Key Points for Students</term></h3>
+<ul>
+<li><term>Two-Coloring Concept</term>: This algorithm uses two colors to check if a graph is bipartite, representing the two disjoint sets required by a bipartite graph.</li>
+<li><term>Conflict Detection</term>: The algorithm immediately identifies non-bipartite structures by detecting color conflicts between adjacent vertices.</li>
+<li><term>Breadth-First Search (BFS) Traversal</term>: This approach ensures that the graph is fully traversed and correctly colored for bipartiteness, building on previous concepts of BFS learned in graph traversal.</li>
+</ul>
+<hr>
+<p>This demonstration illustrates how graph coloring and BFS can be combined to solve real-world graph problems, such as bipartite checking, in an efficient and understandable way.</p>
+</body>
+</html>

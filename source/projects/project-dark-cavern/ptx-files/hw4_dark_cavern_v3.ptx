@@ -1,0 +1,133 @@
+<!--META-DATA
+{
+	tags: for, min,
+}
+-->
+
+<statement>
+<p>
+	This function is the main driver for the Dark Cavern game. It initializes the maze and player and then enters a game loop in which the player navigates the maze, collects the key/torch, and ultimately reaches the exit. The function tracks both the number of moves and the elapsed time. The game ends when the player has successfully found the key and reached the exit.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>There</pf> number — are no inputs. The function runs the game loop by calling the necessary helper functions to initialize the game, move the player, and display the maze.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>There</pf> number — are no explicit return values. However, the function continuously updates the game state and prints information to the console, such as the maze layout, player position, and the congratulatory message when the game is won.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>To keep track of the time using MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>tic</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>,</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>toc</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>commands. Here is an example of how it is used to time a code block.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Test that the game can be exited by pressing the <pf>'x'</pf> key.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected behavior:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>Pressing <pf>'x'</pf> at any point should immediately end the game and clear the screen.</li>
+					<li>The game should terminate without displaying the congratulatory message.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Test the overall game flow, including movement, key</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>/torch</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>collection, and reaching the exit.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected behavior:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>The key /torch should be displayed until collected.</li>
+					<li>The number of moves and elapsed time should be displayed along with the maze.</li>
+					<li>The inventory should also be displayed underneath the moves and elapsed time.</li>
+					<li>The player must collect the key before being able to exit the maze.</li>
+					<li>Upon reaching the exit with the key, the game should end with a success message.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Test that the player cannot move into walls and that the game handles invalid input.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected behavior:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>The player should not be able to move into walls.</li>
+					<li>Invalid inputs should not crash the game.</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Here are some screenshots.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Beginning of the game Standing on the exit with the torch and no key. After picking up the key. Going back to the exit</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Standing on the exit with the torch and no key.</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>Going back to the exit</p></cell>
+	</row>
+</tabular>
+
+</statement>

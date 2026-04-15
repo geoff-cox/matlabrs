@@ -1,0 +1,83 @@
+<!--META-DATA
+{
+	"tags": ["comparison", "ranking", "tie-break", "struct", "control-flow"]
+}
+-->
+
+<statement>
+	<p>
+		Given a roll and counts vector, this function return the rank name and ID. 
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1 x 5) integer vector — dealer's initial roll sorted by rank order.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>counts</pf> (1 x 6) integer vector — counts of each die face in <pf>roll</pf>.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p><pf>id</pf> (1 x 1) integer — rank ID.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>name</pf> (1 x 1) string — rank name.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ To get full-credit on the test cases, you must spell each rank name exactly as it reads in <xref ref="dice-rank-table" text="custom">the Dice Rank Table</xref>.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ You can assume that <pf>roll</pf> and <pf>counts</pf> will be valid numeric vectors.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>is_1pair</pf>, <pf>is_2pair</pf>, ... Basically all of your <pf>is_*</pf> helpers.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1
+				roll = [3 3 3 4 1];
+				counts = [1 0 3 1 0 0];
+				[id,name] = get_rank(roll, counts)
+				% returns  
+				%    id  =  5
+				%    name  =  "three-of-a-kind"
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 2
+				roll = [4 4 4 6 6];
+				counts = [0 0 0 3 0 2];
+				[id,name] = get_rank(roll, counts)
+				% returns  
+				%    id  =  3
+				%    name  =  "full-house"
+			</code>
+		</program>
+	</p>
+</statement>

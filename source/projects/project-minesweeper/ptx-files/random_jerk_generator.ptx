@@ -1,0 +1,187 @@
+<!--META-DATA
+{
+	tags: for, zeros,
+}
+-->
+
+<statement>
+<p>
+	This helper function computes the game state jerk matrix and also adds the jerks to the game state data matrix. It is called inside your &lt;pf&gt;set_initial_game_state&lt;/pf&gt; helper function.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object representing the current game state.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object containing an updated version of the state.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The initial state (from the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p><pf>set_initial_game_state</pf></p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>helper function) enters this program and returns a new state with the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>jerks</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>data</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>fields updated.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>To be clear, the input state will enter with the following values:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.jerks</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>= all false matrix</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.data</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>= all zero matrix</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Suppose there are j=10 jerks, then the output state will leave looking like</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.jerks</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>= all</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>false</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>matrix except with 10 random</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>true</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>values</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.data</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>= all</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>zeros</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>matrix except with 10 random</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>-1</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>values</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>true</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>values and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>-1</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>values will be same locations for both matrices.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>NOTE: The state.jerks matrix will never change for the entire game, but the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.data</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>still needs a few more values.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Since the locations are random, all examples will produce a different result. However, let
+		state.n = 5;
+		state.j = 4;
+		state.jerks = false(5);
+		state.data = zeros(5);
+		Then one possible output of running
+		state = random_jerk_generator(state)
+		Could look like
+		(not all the state variables are listed)
+		state.jerks = [ 0 0 0 1 0; ...
+		0 1 0 0 0; ...
+		0 1 0 0 0; ...
+		0 1 0 0 0; ...
+		0 0 0 0 0 ]
+		state.data = [ 0 0 0 -1 0; ...
+		0 -1 0 0 0; ...
+		0 -1 0 0 0; ...
+		0 -1 0 0 0; ...
+		0 0 0 0 0 ]
+	</code>
+</program>
+</p>
+</statement>

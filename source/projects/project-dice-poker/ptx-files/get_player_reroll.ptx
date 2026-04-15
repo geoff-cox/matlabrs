@@ -1,0 +1,86 @@
+<!--META-DATA
+{
+	"tags": ["input", "validation", "strings", "conversion", "control-flow"]
+}
+-->
+
+<statement>
+	<p>
+		Prompts the player to select which dice (positions 1–5) to reroll and validates the player's  answer. An empty or invalid response results in keeping all dice.
+	</p>
+
+	<tabular valign="top" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell><p><em>None (reads from user input).</em></p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p>
+					<pf>sel</pf> (1 x M) integer vector — indices (1–5) of dice to reroll. If the player keeps all dice or the input is invalid, returns <pf>[]</pf>.
+				</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ Get the user's selection using the command:</p></cell>
+		</row>
+		<row>
+			<cell colspan="2"><p><program><code>sel = input('Select dice to reroll (1–5). ENTER to keep all: ','s')</code></program></p></cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ The <pf>'s'</pf> argument means that <pf>sel</pf> will be saved as a string from the player's input.</p></cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ As long as the player entered numbers separated by spaces or commas, you can convert the input to a numerical vector using <pf>str2num</pf>.</p></cell>
+		</row>
+		<row>
+			<cell/>
+			<cell><p>▸ If non-number text was entered then <pf>str2num</pf> will return empty. If this happens, the player will keep all dice by default and the function should return empty.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell><p>▸ Next, validate the selection by calling your <pf>is_between</pf> helper function. If validation fails, print a brief message and set <pf>sel</pf> to empty (keep all). Otherwise, do nothing since <pf>sel</pf> is already set.</p></cell>
+		</row>
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>is_between</pf></p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example 1: player keeps all
+				sel = get_player_reroll()
+				% (Player presses ENTER)
+				% returns: sel  =  []
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 2: player rerolls dice in position 2 and 5
+				sel = get_player_reroll()
+				% (Player types: 2 5)
+				% returns: sel  =   2  5
+			</code>
+		</program>
+		<program>
+			<code>
+				% Example 3: invalid entry (e.g., "0 6" or "hello")
+				sel = get_player_reroll()
+				% prints: "Invalid selection. Keeping all."
+				% returns: sel  =  []
+			</code>
+		</program>
+	</p>
+</statement>

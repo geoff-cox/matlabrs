@@ -1,0 +1,50 @@
+<!--META-DATA
+{
+  tags: for, while, vector, indexing, sum, exclude-ends,
+}
+-->
+
+<statement>
+	<p>
+		Returns the sum of a list of values, <pf>excluding</pf> the first and the last value in the list.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>list</pf> (1 x N) double vector — list of numbers</p>
+		</cell>
+		</row>
+
+		<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>s</pf> (1 x 1) double — sum of the values in <pf>list</pf> excluding the first and last entries</p>
+		</cell>
+		</row>
+
+		<row>
+		<cell>Details:</cell>
+		<cell><p>▸ Use a <pf>for</pf> or <pf>while</pf> loop. Do not use the <pf>sum</pf> command.</p></cell>
+		</row>
+		<row bottom="minor">
+		<cell/>
+		<cell><p>▸ Preallocate any arrays you create. (See the preallocation script.)</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				% Example call and expected result
+				s = inner_sum([111 -90 20 66 -167 42])
+				% returns -171
+			</code>
+		</program>
+	</p>
+</statement>

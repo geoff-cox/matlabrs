@@ -1,0 +1,112 @@
+<!--META-DATA
+{
+	"tags": ["vector", "average", "running-statistics", "nargin"],
+}
+-->
+
+<statement>
+	<p>
+		Computes the running average of a list of numbers, optionally continuing from a previous average and count.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell>Inputs:</cell>
+			<cell>
+				<p><pf>list</pf> (1 x N) double vector — new data values to be averaged.</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p><pf>avg0</pf> (1 x 1) double — previous average (optional).</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>n0</pf> (1 x 1) integer — previous count of values averaged (optional).</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell>Outputs:</cell>
+			<cell>
+				<p><pf>avg</pf> (1 x 1) double — updated average after including <pf>list</pf>.</p>
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p><pf>n</pf> (1 x 1) integer — updated total number of values used to find <pf>avg</pf>.</p>
+			</cell>
+		</row>
+		<row>
+			<cell>Details:</cell>
+			<cell>
+				<p>
+					▸ Part of this exercise is to come up with a way to compute an updated average (<pf>avg</pf>) from a known previous average (<pf>avg0</pf> &amp; <pf>n0</pf>). Don't ask me for the formula. Instead get out a pen and paper and figure it out.
+				</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Both inputs, <pf>avg0</pf> and <pf>n0</pf>, are optional. Meaning if they are not given, then your code should assume they are both zero and output the standard average.
+				</p>
+			</cell>
+		</row>
+		<row>
+			<cell/>
+			<cell>
+				<p>
+					▸ Your code can count the number of inputs that were used to call your function using the builtin <pf>nargin</pf> variable. If <pf>nargin</pf> is <pf>1</pf> then only 1 input was provided. In this case, it would mean that only <pf>list</pf> was given and you should set both <pf>avg0</pf> &amp; <pf>n0</pf> to <pf>0</pf> by default.
+				</p> 
+			</cell>
+		</row>
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>
+					▸ If for some reason two inputs were given, ignore the second input and use the default values above. You can assume that at least a <pf>list</pf> will be given and the number of inputs will not be more than 3.
+				</p> 
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				[a,n] = list_avg([4 0 1 9 0])
+				% returns a = 2.8000
+				%         n = 5
+			</code>
+		</program>
+		<program>
+			<code>
+				[a,n] = list_avg([4 -3 1 9 7 -8 3], -45)
+				% returns a = 1.8571
+				%         n = 7
+			</code>
+		</program>
+		<program>
+			<code>
+				[a,n] = list_avg([4 -3 1 9 7 -8 3], 2.8, 5)
+				% returns a = 2.2500
+				%         n = 12
+			</code>
+		</program>
+		<program>
+			<code>
+				[a,n] = list_avg([4 0 1 9 0 4 -3 1 9 7 -8 3])
+				% returns a = 2.2500
+				%         n = 12
+			</code>
+		</program>
+	</p>
+</statement>

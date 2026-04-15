@@ -1,0 +1,77 @@
+<!--META-DATA
+{
+	tags: for, indexing,
+}
+-->
+
+<statement>
+<p>
+	This program detects if either player has an immediate winning move.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>game_state</pf> (3 x 3) number — the current state of the TTT game board</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>player_status</pf> (1 x 2) number — has the value: [ winning space for player X, winning space for player O ]</p>
+			<p><pf>where</pf> integer — "winning space" is the absolute index of the space that would result in a win.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>If a player does not have a direct winning move the value in the output corresponding to that player should be</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>0</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>TTT_get_open_spaces</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>TTT_winner_check</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>codes will be helpful in this function.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		win_status = TTT_detect_winning_move_lastname([0 -1 1; -1 1 -1; 0 1 -1])
+		win_status = [3 0]
+		win_status = TTT_detect_winning_move_lastname([0 -1 0; -1 1 -1; 0 1 -1])
+		win_status = [0 7]
+		win_status = TTT_detect_winning_move_lastname([-1 1 0; 0 -1 -1; 1 1 0])
+		win_status = [9 2]
+		win_status = TTT_detect_winning_move_lastname([0 0 0; 0 1 0; 0 0 0])
+		win_status = [0 0]
+	</code>
+</program>
+</p>
+</statement>

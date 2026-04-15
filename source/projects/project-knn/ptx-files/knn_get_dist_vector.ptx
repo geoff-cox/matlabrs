@@ -1,0 +1,70 @@
+<!--META-DATA
+{
+	tags: for, vector,
+}
+-->
+
+<statement>
+<p>
+	where is the euclidean distance between and .
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>pt_list</pf> (N x m) number — list of m-dimensional points.</p>
+			<p><pf>P0</pf> (1 x m) number — single m-dimensional point.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>distances</pf> (N x 1) number — list of distances between all the points in <pf>pt_list</pf> and <pf>P0</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>A point, , has dimension if it has coordinates: .</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>For example, the point</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>has dimension 2 and the point</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>has dimension 4.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The (Euclidean) distance between</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>is defined to be</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		d_vector = KNN_get_dist_vector_lastname([1 1 1 -9; 2 0 6 6; -1 6 7 4],[1 0 0 2])
+		d_vector =
+		11.0905
+		7.2801
+		9.6437
+	</code>
+</program>
+</p>
+</statement>

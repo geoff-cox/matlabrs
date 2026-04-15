@@ -1,0 +1,230 @@
+<!--META-DATA
+{
+	tags: for, find,
+}
+-->
+
+<statement>
+<p>
+	This function prepares the interface for the game as a MATLAB &lt;pf&gt;figure&lt;/pf&gt; object.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object representing the current game state.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object containing an updated version of the state.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The code that creates the figure covered in class.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The input state for this function is the product of the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>compute_data_matrix</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>helper function.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The double for loop plots all the data values, jerks, the shapes used to hide this information, and place holders for the flags.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The numbers, jerks, and flags will all be MATLAB</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>text</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>objects. Type</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>doc text</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>in MATLAB's command window for more information.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The shapes used to hide the numbers and jerks are MATLAB</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>rectangle</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>objects. Type</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>doc rectangle</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>in MATLAB's command window for more information.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The options I found useful for</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>text</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>rectangle</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>objects are listed below, but you can use whatever you like to customize the appearance.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>text</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>options:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li><pf>FontSize</pf></li>
+					<li><pf>HorizontalAlignment</pf></li>
+					<li><pf>FontWeight</pf></li>
+					<li><pf>Color</pf></li>
+					<li><pf>Visible</pf></li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>This</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>link</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>contains a complete list of all the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>text</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>object Properties you can adjust. Double-check the default values so you don't add a bunch of redundant lines of code.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>rectangle</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>options:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li><pf>Position</pf></li>
+					<li><pf>FaceColor</pf></li>
+					<li><pf>Curvature</pf></li>
+					<li><pf>AlignVertexCenters</pf></li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Here is a</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>link</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>containing all the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>rectangle</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>object Properties you can adjust.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Important: Within the template for this code, you will find two lines of code that will need to be adjusted in order for the reset and new buttons to work. In particular, the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>jerksweeper</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>in lines</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>'ButtonDownFcn', @(~,~) jerksweeper</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p><pf>'ButtonDownFcn', @(~,~) jerksweeper_lastname(N,D)</pf></p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>should be changed to match the name of your main file, <pf>jerksweeper_lastname</pf>.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		If you coded everything correctly, running the main game file up to this function should produce the following figures:
+		Selecting N = 5, difficulty = 'easy'
+		Selecting N = 10, difficulty = 'easy'
+	</code>
+</program>
+</p>
+</statement>

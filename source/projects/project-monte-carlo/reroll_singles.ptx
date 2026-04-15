@@ -1,0 +1,60 @@
+<!--META-DATA
+{
+	"tags": ["dice", "poker", "reroll-policy", "function", "selection-mask"]
+}
+-->
+
+<statement>
+	<p>
+		<pf>reroll_singles</pf> marks all singletons for reroll (faces appearing exactly once), while keeping any pairs-or-better—except in the special case of a straight, which is kept intact.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (1x5) integer — current dice (faces 1–6). Preferably sorted by rank.</p>
+				<p><pf>counts</pf> (1x6) integer — face counts from <pf>get_face_counts</pf>.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Output:</p></cell>
+			<cell><p><pf>sel</pf> (1x5) logical — <q>true</q> for dice to reroll; singles are marked true.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>▸ If <pf>is_straight(roll, counts)</pf> is true, the function design returns an empty selection (<pf>[]</pf>) to indicate <q>no change</q> (keep the straight). In practice, many pipelines interpret this as <q>no reroll</q>. If needed, normalize to <pf>false(1,5)</pf>.</p>
+				<p>▸ Otherwise, set <pf>sel = (counts(roll) == 1)</pf>, which marks all singletons for reroll.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Caution:</p></cell>
+			<cell><p>▸ If your calling code expects a 1x5 logical, consider converting <pf>[]</pf> (straight case) to <pf>false(1,5)</pf> for consistency.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Helpers:</p></cell>
+			<cell><p><pf>is_straight</pf>, <pf>get_face_counts</pf>, <pf>sort_by_rank</pf></p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Example:
+		<program>
+			<code>
+				roll   = [3 3 4 6 1];
+				counts = get_face_counts(roll);  % singles at 4 and 1
+				roll   = sort_by_rank(roll, counts);
+				sel = reroll_singles(roll, counts)
+				% Marks singles for reroll (two 3s are kept).
+			</code>
+		</program>
+	</p>
+</statement>

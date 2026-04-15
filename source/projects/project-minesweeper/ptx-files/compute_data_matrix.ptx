@@ -1,0 +1,65 @@
+<!--META-DATA
+{
+	tags: general,
+}
+-->
+
+<statement>
+<p>
+	This helper function computes the numeric values that indicate how many jerks surround a given space. It is called inside your &lt;pf&gt;set_initial_game_state&lt;/pf&gt; helper function.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object representing the current game state.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>state</pf> (1 x 1) number — struct object containing an updated version of the state.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The input state will enter with the jerks already placed in the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>state.data</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>matrix and this function returns it with all the numeric counts of adjacent jerks added.</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>This program just seeks to count all the -1's surrounding a given space and puts that value in the corresponding location of the data matrix.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		Suppose
+		state.data = [ 0 0 0 -1 0; ...
+		0 -1 0 0 0; ...
+		0 -1 0 0 0; ...
+		0 -1 0 0 0; ...
+		0 0 0 0 0 ]
+		compute_data_matrix(state)
+		should return
+		state.data = [ 1 1 2 -1 1; ...
+		2 -1 3 1 1; ...
+		3 -1 3 0 0; ...
+		2 -1 2 0 0; ...
+		1 1 1 0 0 ]
+	</code>
+</program>
+</p>
+</statement>

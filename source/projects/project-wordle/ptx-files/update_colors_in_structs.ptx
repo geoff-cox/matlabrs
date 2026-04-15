@@ -1,0 +1,112 @@
+<!--META-DATA
+{
+	tags: for, script,
+}
+-->
+
+<statement>
+<p>
+	As the Wordle game is played, the user makes a guess, and the feedback the user has before they make their next guess is provided in the form of colors that appear in two places: on the guess boxes and on the keyboard. This function takes in the colors (as a five-letter string) that should appear in the guess boxes on the game board, and then updates the colors stored in the both the &lt;pf&gt;guess_box&lt;/pf&gt; structure and the &lt;pf&gt;keyboard&lt;/pf&gt; structure.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>guess_boxes</pf> (65 struct with 4 fields) number — as described previously</p>
+			<p><pf>keyboard</pf> (struct) number — is a structure containing 26 fields (one for each letter); each of the letters contains a struct with three fields; described in detail previously</p>
+			<p><pf>attempt_num</pf> (double) double — is a number that indicates how many guesses the user has made</p>
+			<p><pf>colors</pf> (string) number — is a five-letter string representing the guess box colors associated with the current guess; the only letters in the string are w, g, and y (because the only colors that should appear in the guess boxes are white, green and yellow).</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>guess_boxes</pf> (struct) number — value</p>
+			<p><pf>keyboard</pf> (struct) number — value</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Note that this function does not display the game board or the keyboard.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>No plot/figure is involved in this function</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>. The purpose of this function is to edit the appropriate color fields in the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>guess_boxes</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>and</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>keyboard</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>structures.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>However, it's easiest to test this function by displaying the game board with the given inputs and then displaying the game board after the function has been run. Some sample inputs are provided in</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>this .mat file</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>. You may also wish to use</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>this script</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>for testing.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		INPUT
+		guess_boxes1
+		keyboard1
+		3
+		'wwgyy'
+		PLOTS
+		INPUT
+		guess_boxes2
+		keyboard2
+		4
+		'yywyw'
+		PLOTS
+		INPUT
+		guess_boxes3
+		keyboard3
+		6
+		'ggggg'
+		PLOTS
+		INPUT
+		guess_boxes4
+		keyboard4
+		5
+		'wgwyw'
+		PLOTS
+	</code>
+</program>
+</p>
+</statement>

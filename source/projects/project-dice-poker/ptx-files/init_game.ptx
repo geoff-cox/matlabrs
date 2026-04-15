@@ -1,0 +1,95 @@
+<!--META-DATA
+{
+	"tags": ["struct", "initialization", "strings", "unicode"]
+}
+-->
+
+<statement>
+	<p>
+		This helper defines and initializes the default values for the fields of a Dice Poker game structure. The <pf>glyphs</pf> and <pf>maxRounds</pf> fields will remain static throughout the game, while the others may change as the game is played.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row bottom="minor">
+			<cell><p>Inputs:</p></cell>
+			<cell><p><pf>N</pf> (1x1) integer — maximum number of rounds to play (default <pf>1</pf>)</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Outputs:</p></cell>
+			<cell>
+				<p>
+					<pf>game</pf> (1x1) struct with fields:
+					<ul>
+						<li><pf>round</pf> (1x1) integer — starting round (<pf>1</pf>)</li>
+						<li><pf>maxRounds</pf> (1x1) integer — should be <pf>N</pf> or (<pf>1</pf>)</li>
+						<li><pf>glyphs</pf> (1x6) string vector — die faces <m>⚀</m>–<m>⚅</m> (for display)</li>
+						<li><pf>dWins</pf> (1x1) integer — numbers of rounds won by the dealer (<pf>0</pf>)</li>
+						<li><pf>pWins</pf> (1x1) integer — numbers of rounds won by the player (<pf>0</pf>)</li>
+						<li><pf>dHand</pf> (1x1) struct — dealer dice hand (<pf>struct()</pf>)</li>
+						<li><pf>pHand</pf> (1x1) struct — player dice hand (<pf>struct()</pf>)</li>
+					</ul>
+				</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Note:</p></cell>
+			<cell>
+				<p>The values in parentheses are default values for each field.</p>
+			</cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell>
+				<p>
+					▸ Except for possibly <pf>maxRounds</pf>, the values in the output structure should match the default values.
+				</p>
+			</cell>
+		</row>
+		
+		<row bottom="minor">
+			<cell/>
+			<cell>
+				<p>
+					▸ The dice icons (i.e., glyphs) we will use to visualize the dice are
+					<program>
+						<code>
+							["⚀" "⚁" "⚂" "⚃" "⚄" "⚅"]
+						</code>
+					</program>
+					These will be used in your <pf>display_game_area</pf> helper.
+				</p>
+			</cell>
+		</row>
+	</tabular>
+
+	<p>
+		Examples:
+		<program>
+			<code>
+				g = init_game(3)
+				% 
+				% struct with fields:
+				%   	round: 1
+				% 		maxRounds: 3
+				%       glyphs: ["⚀"  "⚁"  "⚂"  "⚃"  "⚄"  "⚅"]
+				%   	dWins: 0
+				%   	pWins: 0
+				%       dHand: [1×1 struct]
+				%       pHand: [1×1 struct]
+			</code>
+		</program>
+		<program>
+			<code>
+				g.dHand
+				% 
+				%   struct with no fields.
+			</code>
+		</program>
+	</p>
+</statement>

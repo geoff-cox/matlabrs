@@ -1,0 +1,99 @@
+<!--META-DATA
+{
+	tags: while, for,
+}
+-->
+
+<statement>
+<p>
+	This function plays the maze game and manages the game flow using helper functions. It initializes the game, contains the game loop where the player makes moves, and handles the end-of-game message when the player reaches the goal.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>This</pf> number — function does not take any input arguments.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>This</pf> number — function does not return any outputs. It displays information to the command window.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>The game begins by calling your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>HW3P6_initialize_game</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>function.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>This function will get user interaction from the</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>getkey</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>function (provided in canvas) must be present directly in your current for it to work.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>The function enters a</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>while</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>loop until the player reaches the goal. Inside the loop, several tasks are performed:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>The initial state of the maze is displayed.</li>
+					<li>The function waits for the player to input a direction (<pf>'w'</pf>,<pf>'s'</pf>, <pf>'a'</pf>, <pf>'d'</pf>) using the <pf>getkey</pf> function. The input should work for both upper and lower-case letters.</li>
+					<li>If the player presses <pf>'x'</pf>, the game is cleared, and the program ends early.</li>
+					<li>The player's icon <pf>':)'</pf> should move based on the selected direction.</li>
+					<li>The loop continues until the player's position matches the goal. Once the goal is reached, the game exits the loop and displays a final congratulations message, such as</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>Congratulations! You reached the goal in 10 moves.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		When you run this function, the game should start, and you should see:
+		[2, 2]
+		The maze is displayed, with the player starting at the position
+		[2, 2]
+		.
+		Using the keyboard, the player is prompted to enter a move (up, down, left, or right).
+		After each move, the maze is updated, and the player's position is displayed.
+		The game continues until the player reaches the randomly selected goal position.
+		Once the player reaches the goal, the game ends with a congratulatory message and the number of moves.
+	</code>
+</program>
+</p>
+</statement>

@@ -1,0 +1,49 @@
+<!--META-DATA
+{
+	"tags": ["dice", "poker", "reroll-policy", "function", "selection-mask"]
+}
+-->
+
+<statement>
+	<p>
+		<pf>reroll_none</pf> is a conservative policy that keeps the entire hand; no dice are marked for reroll.
+	</p>
+
+	<tabular valign="top" halign="right" top="minor">
+		<col width="12%"/>
+		<col width="88%" halign="left"/>
+
+		<row>
+			<cell><p>Inputs:</p></cell>
+			<cell>
+				<p><pf>roll</pf> (ignored) — placeholder for a 1x5 integer vector of dice values.</p>
+				<p><pf>counts</pf> (ignored) — placeholder for a 1x6 integer vector of face counts.</p>
+			</cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Outputs:</p></cell>
+			<cell><p><pf>sel</pf> (1x5) logical — all <q>false</q>, i.e., keep every die.</p></cell>
+		</row>
+
+		<row>
+			<cell><p>Details:</p></cell>
+			<cell><p>▸ Returns <pf>false(1,5)</pf>, indicating no rerolls.</p></cell>
+		</row>
+
+		<row bottom="minor">
+			<cell><p>Use case:</p></cell>
+			<cell><p>▸ Serves as a baseline against which to compare the value of rerolling.</p></cell>
+		</row>
+	</tabular>
+
+	<p>
+		Example:
+		<program>
+			<code>
+				sel = reroll_none([], [])
+				% sel = [0 0 0 0 0]
+			</code>
+		</program>
+	</p>
+</statement>

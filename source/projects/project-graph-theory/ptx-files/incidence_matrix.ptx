@@ -1,0 +1,62 @@
+<!--META-DATA
+{
+	tags: for, min,
+}
+-->
+
+<statement>
+<p>
+	This function constructs the incidence matrix for an undirected graph represented by the structure &lt;pf&gt;G&lt;/pf&gt;. The incidence matrix represents the connections between vertices and edges, with rows corresponding to vertices and columns to edges. For each edge, the matrix contains values indicating which vertices are connected by that edge.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>G</pf> (struct) number — : A structure representing the graph containing, at minimum, the following fields:</p>
+			<p><pf>G.n</pf> (integer) integer — : The number of vertices in the graph.</p>
+			<p><pf>G.m</pf> (integer) integer — : The number of edges in the graph.</p>
+			<p><pf>G.edges</pf> (m x 2) number — : A matrix where each row represents an edge connecting two vertices.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>I</pf> (n x m) number — : The incidence matrix, where each row represents a vertex, each column an edge, and each element indicates whether a vertex is incident to an edge:</p>
+			<p><pf>If</pf> ( i , e ) number — vertex i i is incident to edge e e , then I ( i , e ) = 1 I(i, e) = 1</p>
+			<p><pf>If</pf> ( i , e ) number — vertex i i is not incident to edge e e , then I ( i , e ) = 0 I(i, e) = 0</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>Your function should handle cases with no edges (empty edge list).</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>For self-loops, only a single 1 should be assigned in the row of the vertex in the column corresponding to the edge.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Command Window Expected Output G.n = 3; G.m = 2; G.edges = [1, 2; 2, 3]; I = HW5P2_incidence_matrix(G); I = 1 0 1 1 0 1 G.n = 2; G.m = 2; G.edges = [1, 1; 1, 2]; I = HW5P2_incidence_matrix(G); I = 1 1 0 1 G.n = 3; G.m = 0; G.edges = []; I = HW5P2_incidence_matrix(G); I = 3×0 empty double matrix</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Expected Output</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>I = 1 0 1 1 0 1</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>I = 1 1 0 1</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>I = 3×0 empty double matrix</p></cell>
+	</row>
+</tabular>
+
+</statement>

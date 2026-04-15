@@ -1,0 +1,64 @@
+<!--META-DATA
+{
+	tags: for, vector,
+}
+-->
+
+<statement>
+<p>
+	This program is an implementation of the K-nearest neighbors algorithm for data label prediction.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>k</pf> (1x1) number — number of neighboring points used to predict each unknown label (category).</p>
+			<p><pf>data</pf> ( ) number — numeric matrix containing labeled data features in each row.</p>
+			<p><pf>labels</pf> ( ) number — character array containing the labels for each row in <pf>data</pf>.</p>
+			<p><pf>new_data</pf> ( ) number — numeric matrix containing unlabeled data features in each row.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>new_labels</pf> ( ) number — character array containing the labels for each row in <pf>new_data</pf>.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>You may use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>sort</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>command.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Use your</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>TSP_get_global_dist_vector</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>code in this program.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		learned_labels = KNN_lastname(3, [0 0;4 4;2 5;4 1;1 1], ['a';'b';'b';'c';'a'], [2 4;3 1] learned_labels = 'b' 'a' learned_labels = KNN_lastname(1, [0 0;4 4;2 5;4 1;1 1], ['a';'b';'b';'c';'a'], [2 4;3 1] learned_labels = 'b' 'c'
+	</code>
+</program>
+</p>
+</statement>

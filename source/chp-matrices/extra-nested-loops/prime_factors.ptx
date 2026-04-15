@@ -1,0 +1,96 @@
+<!--META-DATA
+{
+	tags: while, for, preallocation, vector, find, zeros,
+}
+-->
+
+<statement>
+<p>
+	These primes are called the prime factors of a number. The prime factor of a prime number is just the number itself.
+</p>
+
+<tabular valign="top" top="minor">
+	<col width="12%"/>
+	<col width="88%"/>
+	<row bottom="minor">
+		<cell>Inputs:</cell>
+		<cell>
+			<p><pf>number</pf> (1 x 1) integer — positive integer.</p>
+		</cell>
+	</row>
+	<row bottom="minor">
+		<cell>Outputs:</cell>
+		<cell>
+			<p><pf>pfactors</pf> (1 x N) double vector — row vector containing the <pf>number</pf>'s prime factors.</p>
+		</cell>
+	</row>
+	<row>
+		<cell>Details:</cell>
+		<cell><p>This can be a tricky program since I expect you to write it using a double-loop. You can use either</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>for</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>or</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>while</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>loops or a mixture of both.</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>Here is one potential approach:</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell>
+			<p>
+				<ul>
+					<li>Use MATLAB's primes function to get a list of prime numbers up to the given number (input).</li>
+					<li>Preallocate a vector that will store the list of prime factors. Since you don't know how many you'll need, over-allocate this vector. The allocation length should depend on the input value (Don't just over-allocate it with 10,000 zeros).</li>
+					<li>You will then use a double for loop.</li>
+					<li>The inner loop will look for the smallest prime that divides the <pf>number</pf> (evenly). Once it finds this prime, break out of the loop.</li>
+					<li>"Divide out" the prime from the <pf>number</pf> and put it in the output vector.</li>
+					<li>The outer loop ends the process of finding the smallest prime and resets any variables needed in the inner loop.</li>
+					<li>Here is an example of the sequence: Suppose number = 4116 (223777) smallest prime = 2 divide number by 2, number = 2058 (23777) smallest prime = 2 divide number by 2, number = 1029 (3777) smallest prime = 3 divide number by 3, number = 343 (777) smallest prime = 7 divide number by 7, number = 49 (77) smallest prime = 7 divide number by 7, number = 7 (7) smallest prime = 7 divide number by 7, number = 1 Done</li>
+				</ul>
+			</p>
+		</cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>You may use MATLAB's</p></cell>
+	</row>
+	<row>
+		<cell/>
+		<cell><p>primes</p></cell>
+	</row>
+	<row bottom="minor">
+		<cell/>
+		<cell><p>function to generate a list of all prime numbers up to a given number.</p></cell>
+	</row>
+</tabular>
+
+<p>
+	Examples:
+<program>
+	<code>
+		prime_factors(81)
+		3  3  3  3
+		prime_factors(18112)
+		2  2  2  2  2  2  283
+		prime_factors(1850)
+		2  5  5  37
+		prime_factors(11)
+		11
+	</code>
+</program>
+</p>
+</statement>
