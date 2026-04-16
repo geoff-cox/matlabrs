@@ -3,6 +3,7 @@
 
 	<subsection xml:id="subsec-continue-break-return">
 		<title>Syntax and Usage</title>
+
 		<p>
 			MATLAB provides commands that modify the normal flow of code. In particular, you can skip the current loop iteration or even exit a loop entirely. It is also possible to end a function early if your code already knows the output.
 		</p>
@@ -80,65 +81,10 @@
 
 		</example>
 
-		<example xml:id="example-continue-skip-multiples">
-			<title>Skipping Multiples with continue</title>
-
-			<statement>
-				<p>
-					Sometimes you want to skip certain iterations in a loop without exiting early. The <pf>continue</pf> command jumps to the next iteration immediately, skipping any remaining code in the current iteration.
-				</p>
-
-				<p>
-					For example, suppose you want to print all numbers from 1 to 10, but skip multiples of 3:
-				</p>
-
-				<program language="matlab">
-					for num = 1:10
-						if mod(num, 3) == 0
-							continue
-						end
-						fprintf('%i ', num)
-					end
-					fprintf('\n')
-				</program>
-
-				<p>
-					Output: <c>1 2 4 5 7 8 10</c>
-				</p>
-
-				<p>
-					When <pf>num</pf> is 3, 6, or 9, the <pf>continue</pf> command skips the <pf>fprintf</pf> statement and moves directly to the next value. This is cleaner than nesting the print statement inside an <pf>else</pf> block.
-				</p>
-			</statement>
-
-		</example>
-
 		<example xml:id="example-return-early-exit">
 			<title>Early Exit with return</title>
 
 			<statement>
-				<p>
-					When writing a function that searches for something, you can use <pf>return</pf> to exit the function as soon as the answer is known. Unlike <pf>break</pf>, which only exits the loop, <pf>return</pf> exits the entire function.
-				</p>
-
-				<p>
-					For example, this function checks whether a positive integer is even by testing if it is divisible by 2:
-				</p>
-
-				<program language="matlab">
-					function result = isEven(n)
-						if mod(n, 2) == 0
-							result = 1;
-							return          % exit immediately; no need to continue
-						end
-						result = 0;
-					end
-				</program>
-
-				<p>
-					If <pf>n</pf> is even, MATLAB sets <pf>result = 1</pf> and exits immediately via <pf>return</pf>, skipping the line <pf>result = 0</pf>. If <pf>n</pf> is odd, MATLAB never enters the <pf>if</pf> block, so it reaches <pf>result = 0</pf> normally.
-				</p>
-
 				<p>
 					The <pf>return</pf> command is especially useful inside loops. Here is a function that finds the smallest divisor of <pf>n</pf> greater than 1:
 				</p>
