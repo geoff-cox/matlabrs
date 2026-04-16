@@ -377,7 +377,7 @@ true);
 <div class="toc-title-box"><a href="sec-creating-vectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Creating, Indexing &amp; Modifying Vectors</span></a></div>
 <ul class="structural toc-item-list">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-brackets.html" class="internal"><span class="title">Building Vectors with Brackets</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Building Vectors with the Colon Operator</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-vectors-with-colon.html" class="internal"><span class="title">Bulk Building Vectors</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-indexing-vectors.html" class="internal"><span class="title">Indexing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-slicing-vectors.html" class="internal"><span class="title">Slicing a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-vectors.html" class="internal"><span class="title">Modifying a Vector</span></a></div></li>
@@ -398,7 +398,6 @@ true);
 <li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="subsec-loop-by-index.html" class="internal"><span class="title">Looping Over a Vector by Index</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-loop-over-values.html" class="internal"><span class="title">Looping Over a Vector by Value</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-building-result-vectors.html" class="internal"><span class="title">Building a Vector Inside a Loop</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-preallocation.html" class="internal"><span class="title">Preallocating Result Vectors</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-exercises"><div class="toc-title-box"><a href="vectors-coding-exercises.html" class="internal"><span class="codenumber">5.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
@@ -473,7 +472,7 @@ true);
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="subsection" id="subsec-loop-by-index"><h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Looping Over a Vector by Index</span>
 </h2>
-<div class="para" id="subsec-loop-by-index-2">Vectorization covers a lot of ground, but not everything. Some calculations depend on earlier results, some need to compare an element with its neighbor, and some just do not fit cleanly into a single expression. For those cases, you still need a for-loop — and now that loop has something new to iterate over: a vector of data.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-loop-by-index-2">Some calculations depend on earlier results, some need to compare an element with its neighbor, and some just do not fit cleanly into a single expression. For those cases, you still need a for-loop.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para logical" id="subsec-loop-by-index-3">
 <div class="para">The most common pattern is to loop over the <em class="emphasis">positions</em> of a vector, visiting each element by its index. To do this, you need to know how many elements the vector has. MATLAB provides two built-in functions for that:</div>
@@ -481,14 +480,15 @@ true);
 <dt id="subsec-loop-by-index-3-2-1">
 <code class="code-inline tex2jax_ignore language-matlab">length(v)</code><div class="autopermalink" data-description="Item: length(v)"><a href="#subsec-loop-by-index-3-2-1" title="Copy heading and permalink for Item: length(v)" aria-label="Copy heading and permalink for Item: length(v)">🔗</a></div>
 </dt>
-<dd><div class="para" id="subsec-loop-by-index-3-2-1-2">Returns the number of elements in the vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-3-2-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<dd><div class="para" id="subsec-loop-by-index-3-2-1-2">Returns the number of rows or columns, whichever is larger.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-3-2-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div></dd>
 <dt id="subsec-loop-by-index-3-2-2">
 <code class="code-inline tex2jax_ignore language-matlab">numel(v)</code><div class="autopermalink" data-description="Item: numel(v)"><a href="#subsec-loop-by-index-3-2-2" title="Copy heading and permalink for Item: numel(v)" aria-label="Copy heading and permalink for Item: numel(v)">🔗</a></div>
 </dt>
-<dd><div class="para" id="subsec-loop-by-index-3-2-2-2">Returns the same thing — the total number of elements. The two are interchangeable for vectors.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-3-2-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<dd><div class="para" id="subsec-loop-by-index-3-2-2-2">Returns the total number of elements.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-3-2-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div></dd>
 </dl>
+<div class="para">Since vectors have size 1 x n (row vector) or n x 1 (column vector), <code class="code-inline tex2jax_ignore language-matlab">length(v)</code> and <code class="code-inline tex2jax_ignore language-matlab">numel(v)</code> will return the same value and can be used interchangeably.</div>
 <div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div id="subsec-loop-by-index-4" class="ptx-sagecell sagecell-octave"><script type="text/x-sage">temps = [68, 71, 75, 74, 69, 72, 70]
@@ -502,14 +502,11 @@ for i = 1:length(temps)
 	fprintf('Day %d: %d degrees\n', i, temps(i))
 end
 </script></div>
-<div class="para" id="subsec-loop-by-index-7">The loop variable <code class="code-inline tex2jax_ignore language-matlab">i</code> takes the values <code class="code-inline tex2jax_ignore language-matlab">1, 2, 3, ..., 7</code>, one per iteration. Inside the loop body, <code class="code-inline tex2jax_ignore language-matlab">temps(i)</code> pulls out the value at the current position. This is the workhorse pattern for looping over a vector, and it shows up in essentially every language — the syntax changes, but the shape is always the same: count from the first position to the last, and use the counter to index into the collection.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-loop-by-index-7">The loop variable <code class="code-inline tex2jax_ignore language-matlab">i</code> takes the values <code class="code-inline tex2jax_ignore language-matlab">1, 2, 3, ..., 7</code>, one per iteration. Inside the loop body, <code class="code-inline tex2jax_ignore language-matlab">temps(i)</code> pulls out the value at the <code class="code-inline tex2jax_ignore language-matlab">i</code>-th position. This is the workhorse pattern for looping over a vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<details id="subsec-loop-by-index-8" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Why <code class="code-inline tex2jax_ignore language-matlab">1:length(v)</code> and not <code class="code-inline tex2jax_ignore language-matlab">1:7</code>?</span>
-</h3></summary><aside class="aside aside-like knowl__content"><div class="para" id="subsec-loop-by-index-8-2">You could write <code class="code-inline tex2jax_ignore language-matlab">for i = 1:7</code> and it would work for this particular vector. But the moment <code class="code-inline tex2jax_ignore language-matlab">temps</code> changes size — maybe you add an eighth day of data — the hard-coded <code class="code-inline tex2jax_ignore language-matlab">7</code> becomes wrong, and the loop either skips elements or crashes with an out-of-bounds error. Writing <code class="code-inline tex2jax_ignore language-matlab">1:length(temps)</code> makes the loop adapt automatically to whatever size the vector happens to be. Hard-coded sizes are a common source of bugs; asking the vector how long it is avoids the problem entirely.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-8-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></aside></details><div class="para" id="subsec-loop-by-index-9">Here is a slightly more interesting example. Suppose you want to find the largest temperature in the vector. You cannot do this with a single vectorized expression using only what you know so far — you have to walk the vector one element at a time and keep track of the biggest value you have seen:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-loop-by-index-8">Here is a slightly more interesting example. Suppose you want to find the largest temperature in the vector. You can scan the vector one element at a time and keep track of the biggest value you have seen:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div id="subsec-loop-by-index-10" class="ptx-sagecell sagecell-octave"><script type="text/x-sage">temps = [68, 71, 75, 74, 69, 72, 70]
+<div id="subsec-loop-by-index-9" class="ptx-sagecell sagecell-octave"><script type="text/x-sage">temps = [68, 71, 75, 74, 69, 72, 70]
 
 biggest = temps(1);
 for i = 2:length(temps)
@@ -520,7 +517,7 @@ end
 
 fprintf('Largest temperature: %d\n', biggest)
 </script></div>
-<div class="para" id="subsec-loop-by-index-11">The loop starts at position <code class="code-inline tex2jax_ignore language-matlab">2</code> rather than <code class="code-inline tex2jax_ignore language-matlab">1</code> because <code class="code-inline tex2jax_ignore language-matlab">biggest</code> is initialized to the first element — there is no need to compare it with itself. Each iteration compares the current element with the running maximum and updates <code class="code-inline tex2jax_ignore language-matlab">biggest</code> if a larger value is found. This is the same accumulation pattern from the for-loops chapter, just applied to data stored in a vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-loop-by-index-10">The loop starts at position <code class="code-inline tex2jax_ignore language-matlab">2</code> rather than <code class="code-inline tex2jax_ignore language-matlab">1</code> because <code class="code-inline tex2jax_ignore language-matlab">biggest</code> is initialized to the first element and there is no need to compare it with itself. Each iteration compares the current element with the running maximum and updates <code class="code-inline tex2jax_ignore language-matlab">biggest</code> if a larger value is found. This is the same accumulation pattern from the for-loops chapter, just applied to data stored in a vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-loop-by-index-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" data-description="Subsection: Looping Over a Vector by Index"><a href="#subsec-loop-by-index" title="Copy heading and permalink for Subsection: Looping Over a Vector by Index" aria-label="Copy heading and permalink for Subsection: Looping Over a Vector by Index">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
