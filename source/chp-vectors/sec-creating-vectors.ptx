@@ -211,7 +211,7 @@
 	</subsection>
 
 	<subsection xml:id="subsec-building-vectors-with-colon">
-		<title>Building Vectors with the Colon Operator</title>
+		<title>Bulk Building Vectors</title>
 
 		<p>
 			Another common way to build a vector is with <term>colon notation</term>, which you should find familiar from the for-loop chapter. Use <pf>start:stop</pf> for a range of integers stepping by 1, or <pf>start:step:stop</pf> to choose a different step size:	
@@ -246,12 +246,47 @@
 			</stack>
 		</sidebyside>
 
+		<p>
+			Sometimes you do not yet know what values a vector should hold, you just need a vector of a certain size that you will fill in later. The functions <pf>zeros</pf> and <pf>ones</pf> create a placeholder vector of all zeros or all ones:
+		</p>
+
+		<aside>
+			<title>What does <pf>zeros(6)</pf> produce?</title>
+			<p>
+				It is tempting to think that <pf>zeros(6)</pf> creates a vector of six zeros, however, it actually creates a 6 x 6 matrix of zeros.
+			</p>
+			<p>
+				Make sure to include both dimensions when using <pf>zeros</pf> and <pf>ones</pf> to create vectors.
+			</p>
+		</aside>
+
+		<sidebyside widths="38% 58%">
+			<stack>
+				<p>Command ⤵︎</p>
+				<program language="matlab">
+					z = zeros(1, 6)           
+					w = ones(1, 4)
+				</program>
+			</stack>
+			<stack>
+				<p>Result ⤵︎</p>
+				<program language="matlab">
+					z = [0, 0, 0, 0, 0, 0]
+					w = [1, 1, 1, 1]
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			The functions <pf>zeros</pf> and <pf>ones</pf> are designed to build matrices, that is why there are two input values: the number of rows and the number of columns. Since we are working with row vectors, the first argument is always <pf>1</pf>. A column vector would be <pf>zeros(6, 1)</pf>.
+		</p>
+
 		<table>
 			<title>Common Ways to Build a Vector</title>
 			<tabular top="minor" bottom="minor" left="minor" right="minor">
-				<col halign="center" width="20%" />
-				<col halign="center" width="40%" />
-				<col halign="left" width="40%" />
+				<col halign="center" width="12%" />
+				<col halign="center" width="38%" />
+				<col halign="left" width="50%" />
 				<row header="yes">
 					<cell><p>Technique</p></cell>
 					<cell><p>Example</p></cell>
@@ -266,6 +301,16 @@
 					<cell><p>Colon notation</p></cell>
 					<cell><p><pf>0:2:10</pf></p></cell>
 					<cell><p>The values follow a regular pattern with a known step.</p></cell>
+				</row>
+				<row>
+					<cell><p><pf>zeros</pf></p></cell>
+					<cell><p><pf>zeros(1, 6)</pf></p></cell>
+					<cell><p>You need a placeholder of all zeros and known size to fill in later.</p></cell>
+				</row>
+				<row>
+					<cell><p><pf>ones</pf></p></cell>
+					<cell><p><pf>ones(1, 4)</pf></p></cell>
+					<cell><p>You need a placeholder of all ones and known size to fill in later.</p></cell>
 				</row>
 			</tabular>
 		</table>

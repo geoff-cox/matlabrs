@@ -1,0 +1,74 @@
+<task label="vectors-coding-nearestPair">
+    <statement>
+        <p>
+            Write a function <pf>nearestPair()</pf> that takes a vector <pf>v</pf> and returns the pair of values in <pf>v</pf> with the smallest absolute difference. If <pf>v</pf> has fewer than two elements, return <pf>[]</pf>. If more than one pair is tied for closest, return the first pair found. Use nested loops.
+        </p>
+
+        <tabular valign="top" top="minor">
+            <col width="11%" halign="right" />
+            <col width="15%" halign="left" />
+            <col width="28%" halign="center" />
+            <col width="46%" halign="left" />
+            <row>
+                <cell>Inputs:</cell>
+                <cell><p><pf>v</pf></p></cell>
+                <cell><p>(1xn) double</p></cell>
+                <cell><p>vector of any length</p></cell>
+            </row>
+            <row bottom="minor">
+                <cell>Outputs:</cell>
+                <cell><p><pf>pair</pf></p></cell>
+                <cell><p>(1x2) double</p></cell>
+                <cell><p>closest pair of values in <pf>v</pf>, or <pf>[]</pf> if <pf>v</pf> has fewer than two elements</p></cell>
+            </row>
+        </tabular>
+
+        <sidebyside widths="58% 40%">
+            <stack>
+                <p>Test Cases ⤵︎</p>
+                <program language="matlab">
+                    pair = nearestPair([10, 4, 22, 7, 5])
+                    pair = nearestPair([100, 101, 250, 500])
+                    pair = nearestPair([-3, 0, -3, -3, 3, 1])
+                    pair = nearestPair([42])
+                </program>
+            </stack>
+            <stack>
+                <p>Expected ⤵︎</p>
+                <program language="matlab">
+                    pair = [4, 5]
+                    pair = [100, 101]
+                    pair = [-3, -3]
+                    pair = []
+                </program>
+            </stack>
+        </sidebyside>
+    </statement>
+
+    <solution component="exercise-solution">
+        <p>
+            Here is one possible solution. The outer loop chooses the first value in the pair, and the inner loop checks every later value against it.
+        </p>
+        <program language="matlab">
+            function pair = nearestPair(v)
+                if length(v) &lt; 2
+                    pair = [];
+                    return
+                end
+
+                pair = [v(1), v(2)];
+                bestDist = abs(v(1) - v(2));
+
+                for i = 1:(length(v) - 1)
+                    for j = (i + 1):length(v)
+                        d = abs(v(i) - v(j));
+                        if d &lt; bestDist
+                            bestDist = d;
+                            pair = [v(i), v(j)];
+                        end
+                    end
+                end
+            end
+        </program>
+    </solution>
+</task>

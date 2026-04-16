@@ -1,0 +1,63 @@
+<appendix xml:id="appdx-preallocating" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Preallocation</title>
+    <p>
+        In the previous subsection, every result vector was created with <pf>zeros</pf> before the loop started. This step is called <term>preallocation</term> — setting aside a vector of the right size up front, so the loop can fill it in without changing its size at each step. Preallocation is a habit worth forming early, and this subsection explains why.
+    </p>
+
+    <p>
+        You already know an alternative: growing a vector one element at a time using <pf>v(end + 1) = ...</pf>. The Fahrenheit-to-Celsius example could have been written that way instead:
+    </p>
+
+    <sidebyside widths="48% 48%">
+        <stack>
+            <p>Preallocated ⤵︎</p>
+            <program language="matlab">
+                fahrenheit = [32, 50, 68, 86, 104];
+                celsius = zeros(1, length(fahrenheit));
+
+                for i = 1:length(fahrenheit)
+                    celsius(i) = (fahrenheit(i) - 32) * 5/9;
+                end
+            </program>
+        </stack>
+        <stack>
+            <p>Grown one at a time ⤵︎</p>
+            <program language="matlab">
+                fahrenheit = [32, 50, 68, 86, 104];
+                celsius = [];
+
+                for i = 1:length(fahrenheit)
+                    celsius(end + 1) = (fahrenheit(i) - 32) * 5/9;
+                end
+            </program>
+        </stack>
+    </sidebyside>
+
+    <p>
+        Both versions produce the same <pf>celsius</pf> vector. So why prefer the preallocated version?
+    </p>
+
+    <p>
+        The reason is what happens behind the scenes. When you grow a vector by writing <pf>celsius(end + 1) = ...</pf>, MATLAB has to find a new spot in memory that is one element larger than the current vector, copy all of the existing values into the new spot, and then add the new value at the end. For a five-element vector, this is invisible. For a vector with thousands or millions of elements, the copying adds up — every single iteration of the loop is doing more and more work as the vector grows.
+    </p>
+
+    <p>
+        Preallocating with <pf>zeros</pf> avoids this entirely. MATLAB sets aside the full block of memory once, before the loop starts, and the loop just writes into slots that are already there. No copying, no resizing, no extra work per iteration.
+    </p>
+
+    <aside>
+        <title>A general programming habit</title>
+        <p>
+            This is not a MATLAB quirk. The same advice applies in NumPy, Julia, C++, Java, and most other languages: if you know how big a collection needs to be, create it at full size up front rather than growing it incrementally. The vocabulary is the same across languages, too — you will hear about <q>preallocating</q> or <q>reserving capacity</q> regardless of which language you find yourself in.
+        </p>
+    </aside>
+
+    <p>
+        Of course, preallocation is only possible when you know the final size of the result vector before the loop starts. In the Fahrenheit example, the answer is obvious: the output vector needs one element for each input element, so <pf>zeros(1, length(fahrenheit))</pf> is exactly the right size. Most loops that build a result vector follow this pattern, and preallocation is straightforward.
+    </p>
+
+    <p>
+        When the final size genuinely is not known ahead of time — for example, when the loop is searching for matches and you do not know how many it will find — growing the vector with <pf>end + 1</pf> is still the right tool. The advice is not <q>never grow vectors,</q> but <q>preallocate when you can.</q>
+    </p>
+
+</appendix>

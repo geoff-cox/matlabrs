@@ -233,7 +233,7 @@
 		<task label="vectors-coding-reverseVector">
 			<statement>
 				<p>
-					Write a function <pf>reverseVector()</pf> that takes a vector <pf>v</pf> and returns a new vector with the elements in reverse order. Use slicing — do not use a loop.
+					Write a function <pf>reverseVector()</pf> that takes a vector <pf>v</pf> and returns a new vector with the elements in reverse order. Use slicing, not a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -281,6 +281,65 @@
 				<program language="matlab">
 					function w = reverseVector(v)
 						w = v(end:-1:1);
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="vectors-coding-innerSum">
+			<statement>
+				<p>
+					Write a function <pf>innerSum()</pf> that takes a vector <pf>v</pf> and returns the sum of all elements except the first and last. If <pf>v</pf> has fewer than three elements, return <pf>0</pf>. Use slicing and the <pf>sum</pf> function.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>v</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>vector of any length</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>s</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>sum of all elements of <pf>v</pf> except the first and last</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="72% 26%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							s = innerSum([111, -90, 20, 66, -167, 42])
+							s = innerSum([10, 20, 30, 40])
+							s = innerSum([4, 9])
+							s = innerSum([7])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							s = -171
+							s = 50
+							s = 0
+							s = 0
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The slice <pf>2:end - 1</pf> selects all elements except the first and last.
+				</p>
+				<program language="matlab">
+					function s = innerSum(v)
+						s = sum(v(2:end - 1));
 					end
 				</program>
 			</solution>
@@ -648,7 +707,7 @@
 			</statement>
 			<solution component="exercise-solution">
 				<p>
-					Here is one possible solution. Note the dot in <pf>.^</pf> — this is what tells MATLAB to square each element individually rather than perform a matrix operation.
+					Here is one possible solution. Note the dot in <pf>.^</pf>. This tells MATLAB to square each element individually rather than perform a matrix operation.
 				</p>
 				<program language="matlab">
 					function A = circleAreas(r)
@@ -661,7 +720,7 @@
 		<task label="vectors-coding-magnitudes">
 			<statement>
 				<p>
-					A two-dimensional vector with components <m>(x, y)</m> has magnitude <m>\sqrt{x^2 + y^2}</m>. Write a function <pf>magnitudes()</pf> that takes two equal-length vectors <pf>x</pf> and <pf>y</pf> — the <m>x</m>- and <m>y</m>-components of a collection of vectors — and returns a vector of their magnitudes. Do not use a loop.
+					A two-dimensional vector with components <m>(x, y)</m> has magnitude <m>\sqrt{x^2 + y^2}</m>. Write a function <pf>magnitudes()</pf> that takes two equal-length vectors <pf>x</pf> and <pf>y</pf> — the <m>x</m>- and <m>y</m>-components of a collection of vectors and returns a vector of their magnitudes. Do not use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -942,7 +1001,7 @@
 		<task label="vectors-coding-mySum">
 			<statement>
 				<p>
-					Write a function <pf>mySum()</pf> that takes a vector <pf>v</pf> and returns the sum of all its elements. Use a loop. The point of this exercise is to understand how a reduction works by building one yourself, so do not use the built-in <pf>sum</pf> function — write the loop by hand.
+					Write a function <pf>mySum()</pf> that takes a vector <pf>v</pf> and returns the sum of all its elements. Use a loop and do not use the built-in <pf>sum</pf> function.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -999,7 +1058,7 @@
 		<task label="vectors-coding-myMax">
 			<statement>
 				<p>
-					Write a function <pf>myMax()</pf> that takes a vector <pf>v</pf> and returns its largest element. Use a loop — do not use any built-in aggregate functions.
+					Write a function <pf>myMax()</pf> that takes a vector <pf>v</pf> and returns its largest element. Use a loop and do not use the built-in <pf>max</pf> function.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1060,7 +1119,7 @@
 		<task label="vectors-coding-myMin">
 			<statement>
 				<p>
-					Write a function <pf>myMin()</pf> that takes a vector <pf>v</pf> and returns its smallest element. Use a loop — do not use any built-in aggregate functions.
+					Write a function <pf>myMin()</pf> that takes a vector <pf>v</pf> and returns its smallest element. Use a loop and do not use the built-in <pf>min</pf> function.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1119,7 +1178,7 @@
 		<task label="vectors-coding-myMean">
 			<statement>
 				<p>
-					Write a function <pf>myMean()</pf> that takes a vector <pf>v</pf> and returns the average (arithmetic mean) of its elements. Use a loop — do not use any built-in aggregate functions.
+					Write a function <pf>myMean()</pf> that takes a vector <pf>v</pf> and returns the average (arithmetic mean) of its elements. Use a loop and do not use the built-in <pf>mean</pf> function.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1177,7 +1236,7 @@
 		<task label="vectors-coding-countAbove">
 			<statement>
 				<p>
-					Write a function <pf>countAbove()</pf> that takes a vector <pf>v</pf> and a threshold <pf>t</pf>, and returns the number of elements in <pf>v</pf> that are strictly greater than <pf>t</pf>. Use a loop.
+					⭐ Write a function <pf>countAbove()</pf> that takes a vector <pf>v</pf> and a threshold <pf>t</pf>, and returns the number of elements in <pf>v</pf> that are strictly greater than <pf>t</pf>. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1244,7 +1303,7 @@
 		<task label="vectors-coding-firstAbove">
 			<statement>
 				<p>
-					Write a function <pf>firstAbove()</pf> that takes a vector <pf>v</pf> and a threshold <pf>t</pf>, and returns the position of the <em>first</em> element in <pf>v</pf> that is strictly greater than <pf>t</pf>. If no such element exists, return <pf>-1</pf>. Use a loop, and use <pf>return</pf> to stop the loop as soon as you find a match.
+					⭐ Write a function <pf>firstAbove()</pf> that takes a vector <pf>v</pf> and a threshold <pf>t</pf>, and returns the position of the <em>first</em> element in <pf>v</pf> that is strictly greater than <pf>t</pf>. If no such element exists, return <pf>-1</pf>. Use a loop, and use <pf>return</pf> to stop the loop as soon as you find a match.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1439,7 +1498,7 @@
 		<task label="vectors-coding-reverseWithLoop">
 			<statement>
 				<p>
-					Earlier in this chapter you wrote <pf>reverseVector</pf> using slicing. Now write a function <pf>reverseWithLoop()</pf> that does the same job — returning a new vector with the elements of <pf>v</pf> in reverse order — but using a loop instead of slicing. Preallocate the result vector with <pf>zeros</pf>.
+					Earlier in this chapter you wrote <pf>reverseVector</pf> using slicing. Now write a function <pf>reverseWithLoop()</pf> that does the same job, but using a loop instead of slicing. Preallocate the result vector with <pf>zeros</pf>.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1482,7 +1541,7 @@
 			</statement>
 			<solution component="exercise-solution">
 				<p>
-					Here is one possible solution. As <pf>i</pf> walks forward through <pf>w</pf>, the expression <pf>length(v) - i + 1</pf> walks backward through <pf>v</pf> — pairing the first slot of the output with the last element of the input, and so on.
+					Here is one possible solution. As <pf>i</pf> walks forward through <pf>w</pf>, the expression <pf>length(v) - i + 1</pf> walks backward through <pf>v</pf> and pairs the first slot of the output with the last element of the input, and so on.
 				</p>
 				<program language="matlab">
 					function w = reverseWithLoop(v)
@@ -1498,7 +1557,7 @@
 		<task label="vectors-coding-interleave">
 			<statement>
 				<p>
-					Write a function <pf>interleave()</pf> that takes two equal-length vectors <pf>v</pf> and <pf>u</pf> and returns a new vector that alternates between them: the first element of <pf>v</pf>, then the first element of <pf>u</pf>, then the second of <pf>v</pf>, then the second of <pf>u</pf>, and so on. Preallocate the result vector with <pf>zeros</pf>.
+					⭐ Write a function <pf>interleave()</pf> that takes two equal-length vectors <pf>v</pf> and <pf>u</pf> and returns a new vector that alternates between them: the first element of <pf>v</pf>, then the first element of <pf>u</pf>, then the second of <pf>v</pf>, then the second of <pf>u</pf>, and so on. Preallocate the result vector with <pf>zeros</pf>.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1564,7 +1623,7 @@
 		<task label="vectors-coding-countEvens">
 			<statement>
 				<p>
-					Write a function <pf>countEvens()</pf> that takes a vector <pf>v</pf> of integers and returns the number of even elements. Recall that an integer <pf>x</pf> is even when <pf>mod(x, 2)</pf> equals <pf>0</pf>. Use a loop.
+					⭐ Write a function <pf>countEvens()</pf> that takes a vector <pf>v</pf> of integers and returns the number of even elements. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1625,7 +1684,7 @@
 		<task label="vectors-coding-indexOfMax">
 			<statement>
 				<p>
-					Write a function <pf>indexOfMax()</pf> that takes a vector <pf>v</pf> and returns the <em>position</em> of its largest element — not the value itself. If the largest value appears more than once, return the position of the first occurrence. Use a loop.
+					⭐ Write a function <pf>indexOfMax()</pf> that takes a vector <pf>v</pf> and returns the <em>position</em> of its largest element, not the value itself. If the largest value appears more than once, return the position of the first occurrence. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1685,10 +1744,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-replaceNegatives">
+		<task label="vectors-coding-replaceValues">
 			<statement>
 				<p>
-					Write a function <pf>replaceNegatives()</pf> that takes a vector <pf>v</pf> and a value <pf>newval</pf>, and returns a new vector where every negative element of <pf>v</pf> has been replaced by <pf>newval</pf>. Non-negative elements should be left alone. Use a loop.
+					⭐ Write a function <pf>replaceValues()</pf> that replaces all occurrences of a value <pf>val</pf> in a vector <pf>v</pf> with a new value <pf>newVal</pf>. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1704,15 +1763,21 @@
 					</row>
 					<row>
 						<cell></cell>
-						<cell><p><pf>newval</pf></p></cell>
+						<cell><p><pf>val</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>replacement value for negative entries</p></cell>
+						<cell><p>value to search for</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>newVal</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>value to replace with</p></cell>
 					</row>
 					<row bottom="minor">
 						<cell>Outputs:</cell>
 						<cell><p><pf>w</pf></p></cell>
 						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector with negative elements replaced</p></cell>
+						<cell><p>vector with specified elements replaced</p></cell>
 					</row>
 				</tabular>
 
@@ -1720,19 +1785,19 @@
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							w = replaceNegatives([1, -2, 3, -4, 5], 0)
-							w = replaceNegatives([-1, -2, -3], 99)
-							w = replaceNegatives([1, 2, 3], 0)
-							w = replaceNegatives([0, -1, 0, -2], 100)
+							w = replaceValues([1, 9, 3, 9, 9], 9, 0)
+							w = replaceValues([1, 2, 3], 2, 99)
+							w = replaceValues([2, 2, 2], 5, 0)
+							w = replaceValues([6, 6, 6, 6], 6, 66)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							w = [1, 0, 3, 0, 5]
-							w = [99, 99, 99]
-							w = [1, 2, 3]
-							w = [0, 100, 0, 100]
+							w = [1, 0, 3, 0, 0]
+							w = [1, 99, 3]
+							w = [2, 2, 2]
+							w = [66, 66, 66, 66]
 						</program>
 					</stack>
 				</sidebyside>
@@ -1742,11 +1807,11 @@
 					Here is one possible solution. Starting with a copy of <pf>v</pf> and only modifying the positions that need changing is cleaner than rebuilding the whole vector from scratch.
 				</p>
 				<program language="matlab">
-					function w = replaceNegatives(v, newval)
+					function w = replaceValues(v, val, newVal)
 						w = v;
 						for i = 1:length(v)
-							if w(i) &lt; 0
-								w(i) = newval;
+							if w(i) == val
+								w(i) = newVal;
 							end
 						end
 					end
@@ -1757,7 +1822,7 @@
 		<task label="vectors-coding-vectorContains">
 			<statement>
 				<p>
-					Write a function <pf>vectorContains()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns <pf>true</pf> if <pf>target</pf> appears anywhere in <pf>v</pf>, and <pf>false</pf> otherwise. Use a loop, and use <pf>return</pf> to stop the loop as soon as you find a match.
+					⭐ Write a function <pf>vectorContains()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns <pf>true</pf> if <pf>target</pf> appears anywhere in <pf>v</pf>, and <pf>false</pf> otherwise. Use a loop, and use <pf>return</pf> to stop the loop as soon as you find a match.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1827,7 +1892,7 @@
 		<task label="vectors-coding-findClosest">
 			<statement>
 				<p>
-					Write a function <pf>findClosest()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the element of <pf>v</pf> that is closest to <pf>target</pf>. The closest element is the one whose absolute difference from <pf>target</pf> is smallest. If two elements are equally close, return the one that appears first. Use a loop.
+					⭐ Write a function <pf>findClosest()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the element of <pf>v</pf> that is closest to <pf>target</pf>. The closest element is the one whose absolute difference from <pf>target</pf> is smallest. If two elements are equally close, return the one that appears first. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1900,7 +1965,7 @@
 		<task label="vectors-coding-findAllIndices">
 			<statement>
 				<p>
-					Write a function <pf>findAllIndices()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns a vector containing every position where <pf>target</pf> appears in <pf>v</pf>. If <pf>target</pf> does not appear in <pf>v</pf>, return <pf>[]</pf>. Use a loop. Do not use the built-in <pf>find</pf> function.
+					⭐ Write a function <pf>findAllIndices()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns a vector containing every position where <pf>target</pf> appears in <pf>v</pf>. If <pf>target</pf> does not appear in <pf>v</pf>, return <pf>[]</pf>. Use a loop. Do not use the built-in <pf>find</pf> function.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -1928,21 +1993,23 @@
 					</row>
 				</tabular>
 
-				<sidebyside widths="100%">
+				<sidebyside widths="71% 27%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							idx = findAllIndices([1, 1, 1, -9, 0, 0, 6, 6, -1, 6, 7, 0, 2], 0)
-							idx = findAllIndices([1, 1, 1, -9, 0, 0, 6, 6, -1, 6, 7, 0, 2], 1)
-							idx = findAllIndices([4, 8, 15, 16, 23, 42], 7)
-							idx = findAllIndices([5, 2, 5, 2, 5], 5)
+							idx = findAllIndices([1, 0, 0, 6, 1, 0, 2], 0)
+							idx = findAllIndices([1, 0, 0, 6, 1, 0, 2], 1)
+							idx = findAllIndices([1, 0, 0, 6, 1, 0, 2], 2)
+							idx = findAllIndices([1, 0, 0, 6, 1, 0, 2], 3)
 						</program>
+					</stack>
+					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							idx = [5, 6, 12]
-							idx = [1, 2, 3]
+							idx = [2, 3, 6]
+							idx = [1, 5]
+							idx = [7]
 							idx = []
-							idx = [1, 3, 5]
 						</program>
 					</stack>
 				</sidebyside>
@@ -1974,7 +2041,7 @@
 		<task label="vectors-coding-firstIndexOf">
 			<statement>
 				<p>
-					Write a function <pf>firstIndexOf()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the position of the first time <pf>target</pf> appears in <pf>v</pf>. If <pf>target</pf> does not appear in <pf>v</pf>, return <pf>[]</pf>. Use a <pf>while</pf> loop. Do not use the built-in <pf>find</pf> function.
+					⭐ Write a function <pf>firstIndexOf()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the position of the first time <pf>target</pf> appears in <pf>v</pf>. If <pf>target</pf> does not appear in <pf>v</pf>, return <pf>[]</pf>. Use a <pf>while</pf> loop. Do not use the built-in <pf>find</pf> function.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2045,10 +2112,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-containsZero">
+		<task label="vectors-coding-containsVal">
 			<statement>
 				<p>
-					Write a function <pf>containsZero()</pf> that takes a vector <pf>v</pf> and returns <pf>true</pf> if any element of <pf>v</pf> is equal to <pf>0</pf>, and <pf>false</pf> otherwise. Use a loop. Do not use the built-in <pf>find</pf> or <pf>any</pf> functions.
+					⭐ Write a function <pf>containsVal()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns <pf>true</pf> if any element of <pf>v</pf> is equal to <pf>target</pf>, and <pf>false</pf> otherwise. Use a loop. Do not use the built-in <pf>find</pf> or <pf>any</pf> functions.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2066,7 +2133,7 @@
 						<cell>Outputs:</cell>
 						<cell><p><pf>found</pf></p></cell>
 						<cell><p>(1x1) logical</p></cell>
-						<cell><p><pf>true</pf> if <pf>v</pf> contains at least one zero, otherwise <pf>false</pf></p></cell>
+						<cell><p><pf>true</pf> if <pf>v</pf> contains at least one occurrence of <pf>target</pf>, otherwise <pf>false</pf></p></cell>
 					</row>
 				</tabular>
 
@@ -2074,10 +2141,10 @@
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							found = containsZero([111, -90, 20, 66])
-							found = containsZero([1, 1, 1, 0, 1])
-							found = containsZero([0])
-							found = containsZero([])
+							found = containsVal([111, -90, 20, 66], 0)
+							found = containsVal([1, 1, 1, 0, 1], 1)
+							found = containsVal([0], 0)
+							found = containsVal([], 3)
 						</program>
 					</stack>
 					<stack>
@@ -2095,13 +2162,13 @@
 
 			<solution component="exercise-solution">
 				<p>
-					Here is one possible solution. The function assumes zero is not present and returns <pf>true</pf> as soon as it finds a zero.
+					Here is one possible solution. The function assumes the target is not present and returns <pf>true</pf> as soon as it finds the target.
 				</p>
 				<program language="matlab">
-					function found = containsZero(v)
+					function found = containsVal(v, target)
 						found = false;
 						for x = v
-							if x == 0
+							if x == target
 								found = true;
 								return
 							end
@@ -2136,7 +2203,7 @@
 					</row>
 				</tabular>
 
-				<sidebyside widths="48% 48%">
+				<sidebyside widths="60% 38%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
@@ -2174,7 +2241,7 @@
 		<task label="vectors-coding-extractDigits">
 			<statement>
 				<p>
-					Write a function <pf>extractDigits()</pf> that takes a nonnegative integer <pf>n</pf> and returns a row vector containing its decimal digits in order. Use a <pf>while</pf> loop. Do not convert the number to text with <pf>num2str</pf>.
+					⭐ Write a function <pf>extractDigits()</pf> that takes a nonnegative integer <pf>n</pf> and returns a row vector containing its decimal digits in order. Use a <pf>while</pf> loop. Do not convert the number to text with <pf>num2str</pf>.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2233,75 +2300,6 @@
 							digits = [digit, digits];
 							n = floor(n / 10);
 						end
-					end
-				</program>
-			</solution>
-		</task>
-
-		<task label="vectors-coding-highestCommonFactor">
-			<statement>
-				<p>
-					Write a function <pf>highestCommonFactor()</pf> that takes two positive integers and returns their highest common factor. The highest common factor is the largest positive integer that divides both numbers evenly. Use a loop. Do not use MATLAB’s built-in <pf>gcd</pf> function.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>a</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>first positive integer</p></cell>
-					</row>
-					<row>
-						<cell></cell>
-						<cell><p><pf>b</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>second positive integer</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>h</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>highest common factor of <pf>a</pf> and <pf>b</pf></p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="48% 48%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							h = highestCommonFactor(180, 640)
-							h = highestCommonFactor(15, 17)
-							h = highestCommonFactor(210, 900)
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							h = 20
-							h = 1
-							h = 30
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-
-			<solution component="exercise-solution">
-				<p>
-					Here is one possible solution using the Euclidean algorithm. Each step replaces the pair <pf>(a, b)</pf> with <pf>(b, mod(a, b))</pf> until the remainder becomes zero.
-				</p>
-				<program language="matlab">
-					function h = highestCommonFactor(a, b)
-						while b ~= 0
-							temp = b;
-							b = mod(a, b);
-							a = temp;
-						end
-
-						h = a;
 					end
 				</program>
 			</solution>
@@ -2385,7 +2383,7 @@
 		<task label="vectors-coding-isSymmetric">
 			<statement>
 				<p>
-					Write a function <pf>isSymmetric()</pf> that takes a vector <pf>v</pf> and returns <pf>true</pf> if <pf>v</pf> reads the same forward and backward, and <pf>false</pf> otherwise. Use a loop.
+					⭐ Write a function <pf>isSymmetric()</pf> that takes a vector <pf>v</pf> and returns <pf>true</pf> if <pf>v</pf> reads the same forward and backward, and <pf>false</pf> otherwise. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2452,85 +2450,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-nearestPair">
-			<statement>
-				<p>
-					Write a function <pf>nearestPair()</pf> that takes a vector <pf>v</pf> and returns the pair of values in <pf>v</pf> with the smallest absolute difference. If <pf>v</pf> has fewer than two elements, return <pf>[]</pf>. If more than one pair is tied for closest, return the first pair found. Use nested loops.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>v</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector of any length</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>pair</pf></p></cell>
-						<cell><p>(1x2) double</p></cell>
-						<cell><p>closest pair of values in <pf>v</pf>, or <pf>[]</pf> if <pf>v</pf> has fewer than two elements</p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="58% 40%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							pair = nearestPair([10, 4, 22, 7, 5])
-							pair = nearestPair([100, 101, 250, 500])
-							pair = nearestPair([-3, 0, -3, -3, 3, 1])
-							pair = nearestPair([42])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							pair = [4, 5]
-							pair = [100, 101]
-							pair = [-3, -3]
-							pair = []
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-
-			<solution component="exercise-solution">
-				<p>
-					Here is one possible solution. The outer loop chooses the first value in the pair, and the inner loop checks every later value against it.
-				</p>
-				<program language="matlab">
-					function pair = nearestPair(v)
-						if length(v) &lt; 2
-							pair = [];
-							return
-						end
-
-						pair = [v(1), v(2)];
-						bestDist = abs(v(1) - v(2));
-
-						for i = 1:(length(v) - 1)
-							for j = (i + 1):length(v)
-								d = abs(v(i) - v(j));
-								if d &lt; bestDist
-									bestDist = d;
-									pair = [v(i), v(j)];
-								end
-							end
-						end
-					end
-				</program>
-			</solution>
-		</task>
-
 		<task label="vectors-coding-countNegatives">
 			<statement>
 				<p>
-					Write a function <pf>countNegatives()</pf> that takes a vector <pf>v</pf> and returns the number of negative elements in <pf>v</pf>. Use a loop.
+					⭐ Write a function <pf>countVals()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the number of occurrences of <pf>target</pf> in <pf>v</pf>. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2548,24 +2471,24 @@
 						<cell>Outputs:</cell>
 						<cell><p><pf>count</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of negative elements in <pf>v</pf></p></cell>
+						<cell><p>number of occurrences of <pf>target</pf> in <pf>v</pf></p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="50% 48%">
+				<sidebyside widths="68% 30%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							count = countNegatives([111, -90, 20, 66, -167, 42])
-							count = countNegatives([1, 1, 1, 0, 1])
-							count = countNegatives([-1, -2, -3])
-							count = countNegatives([])
+							count = countVals([1, 9, 2, 6, -1, 4], 9)
+							count = countVals([1, 1, 1, 0, 1], 2)
+							count = countVals([-2, -2, -2], -2)
+							count = countVals([], 5)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							count = 2
+							count = 1
 							count = 0
 							count = 3
 							count = 0
@@ -2576,14 +2499,14 @@
 
 			<solution component="exercise-solution">
 				<p>
-					Here is one possible solution. The function scans the vector and increments a counter each time it finds a negative value.
+					Here is one possible solution. The function scans the vector and increments a counter each time it finds the target value.
 				</p>
 				<program language="matlab">
-					function count = countNegatives(v)
+					function count = countVals(v, target)
 						count = 0;
 
 						for x = v
-							if x &lt; 0
+							if x == target
 								count = count + 1;
 							end
 						end
@@ -2664,73 +2587,12 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-innerSum">
+
+
+		<task label="vectors-coding-dropEqualNeighbors">
 			<statement>
 				<p>
-					Write a function <pf>innerSum()</pf> that takes a vector <pf>v</pf> and returns the sum of all elements except the first and last. If <pf>v</pf> has fewer than three elements, return <pf>0</pf>. Use a loop. Do not use the built-in <pf>sum</pf> function.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>v</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector of any length</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>s</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>sum of all elements of <pf>v</pf> except the first and last</p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="54% 44%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							s = innerSum([111, -90, 20, 66, -167, 42])
-							s = innerSum([10, 20, 30, 40])
-							s = innerSum([4, 9])
-							s = innerSum([7])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							s = -171
-							s = 50
-							s = 0
-							s = 0
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-
-			<solution component="exercise-solution">
-				<p>
-					Here is one possible solution. The loop starts at position <pf>2</pf> and stops at the second-to-last position.
-				</p>
-				<program language="matlab">
-					function s = innerSum(v)
-						s = 0;
-
-						for i = 2:(length(v) - 1)
-							s = s + v(i);
-						end
-					end
-				</program>
-			</solution>
-		</task>
-
-		<task label="vectors-coding-removeConsecutiveDuplicates">
-			<statement>
-				<p>
-					Write a function <pf>removeConsecutiveDuplicates()</pf> that takes a vector <pf>v</pf> and returns a new vector with consecutive duplicate values merged together. In other words, whenever the same value appears several times in a row, keep only the first one. Use a <pf>while</pf> loop.
+					⭐ Write a function <pf>dropEqualNeighbors()</pf> that takes a vector <pf>v</pf> and returns a new vector with consecutive duplicate values merged together. In other words, whenever the same value appears several times in a row, keep only the first one. Use a <pf>while</pf> loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2752,20 +2614,20 @@
 					</row>
 				</tabular>
 
-				<sidebyside widths="58% 40%">
+				<sidebyside widths="70% 28%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							w = removeConsecutiveDuplicates([1, 1, 2, 2, 2, 3, 1, 1, 4])
-							w = removeConsecutiveDuplicates([5, 5, 5, 5, 5])
-							w = removeConsecutiveDuplicates([7, 8, 9])
-							w = removeConsecutiveDuplicates([])
+							w = dropEqualNeighbors([1, 1, 2, 2, 2, 3, 3])
+							w = dropEqualNeighbors([5, 5, 5, 5, 5])
+							w = dropEqualNeighbors([7, 8, 9])
+							w = dropEqualNeighbors([])
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							w = [1, 2, 3, 1, 4]
+							w = [1, 2, 3]
 							w = [5]
 							w = [7, 8, 9]
 							w = []
@@ -2779,7 +2641,7 @@
 					Here is one possible solution. When two neighbors match, the second one is deleted and the loop stays at the same position so it can check the new neighbor.
 				</p>
 				<program language="matlab">
-					function w = removeConsecutiveDuplicates(v)
+					function w = dropEqualNeighbors(v)
 						w = v;
 						i = 1;
 
@@ -2795,10 +2657,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-peakLocations">
+		<task label="vectors-coding-peakIndices">
 			<statement>
 				<p>
-					Write a function <pf>peakLocations()</pf> that takes a vector <pf>v</pf> and returns the positions of all peaks. A peak is an element that is strictly greater than its immediate neighbors. The first and last elements cannot be peaks. Use a loop.
+					⭐ Write a function <pf>peakIndices()</pf> that takes a vector <pf>v</pf> and returns the positions of all peaks. A peak is an element that is strictly greater than its immediate neighbors. The first and last elements cannot be peaks. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2820,14 +2682,14 @@
 					</row>
 				</tabular>
 
-				<sidebyside widths="56% 42%">
+				<sidebyside widths="68% 30%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							idx = peakLocations([1, 3, -3, 5, 4.5, 7, 2])
-							idx = peakLocations([7, 6, 5])
-							idx = peakLocations([1, 4, 1])
-							idx = peakLocations([1, 2, 2, 1])
+							idx = peakIndices([1, 3, -3, 5, 4.5, 7, 2])
+							idx = peakIndices([7, 6, 5])
+							idx = peakIndices([1, 4, 1])
+							idx = peakIndices([1, 2, 2, 1])
 						</program>
 					</stack>
 					<stack>
@@ -2847,7 +2709,7 @@
 					Here is one possible solution. The code preallocates enough space for every possible peak, stores the positions that qualify, and then trims away the unused entries.
 				</p>
 				<program language="matlab">
-					function idx = peakLocations(v)
+					function idx = peakIndices(v)
 						idx = zeros(1, length(v));
 						count = 0;
 
@@ -2864,10 +2726,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-locateZeros">
+		<task label="vectors-coding-findIndicesOf">
 			<statement>
 				<p>
-					Write a function <pf>locateZeros()</pf> that takes a vector <pf>v</pf> and returns a vector containing the positions of all zero elements. If <pf>v</pf> contains no zeros, return <pf>[]</pf>. Use a loop and do not use the built-in <pf>find</pf> function.
+					⭐ Write a function <pf>findIndicesOf()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the positions of all occurrences of <pf>target</pf> in <pf>v</pf>. If <pf>v</pf> contains no occurrences of <pf>target</pf>, return <pf>[]</pf>. Use a loop and do not use the built-in <pf>find</pf> function.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2885,18 +2747,18 @@
 						<cell>Outputs:</cell>
 						<cell><p><pf>idx</pf></p></cell>
 						<cell><p>(1xm) double</p></cell>
-						<cell><p>positions of all zero elements in <pf>v</pf>, or <pf>[]</pf> if there are none</p></cell>
+						<cell><p>positions of all occurrences of <pf>target</pf> in <pf>v</pf>, or <pf>[]</pf> if there are none</p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="54% 44%">
+				<sidebyside widths="68% 30%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							idx = locateZeros([3, 0, 0, 1, 1, 0, 1])
-							idx = locateZeros([0, 0, 0])
-							idx = locateZeros([1, 1, 1, 1])
-							idx = locateZeros([])
+							idx = findIndicesOf([3, 0, 0, 1, 1, 0, 1], 0)
+							idx = findIndicesOf([0, 0, 0], 0)
+							idx = findIndicesOf([1, 1, 1, 1], 0)
+							idx = findIndicesOf([], 0)
 						</program>
 					</stack>
 					<stack>
@@ -2916,12 +2778,12 @@
 					Here is one possible solution. The code preallocates enough space for the worst case, records zero locations as it scans the vector, and then trims the result.
 				</p>
 				<program language="matlab">
-					function idx = locateZeros(v)
+					function idx = findIndicesOf(v, target)
 						idx = zeros(1, length(v));
 						count = 0;
 
 						for i = 1:length(v)
-							if v(i) == 0
+							if v(i) == target
 								count = count + 1;
 								idx(count) = i;
 							end
@@ -2933,10 +2795,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-countOccurrences">
+		<task label="vectors-coding-countVal">
 			<statement>
 				<p>
-					Write a function <pf>countOccurrences()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the number of times <pf>target</pf> appears in <pf>v</pf>. Use a loop.
+					⭐ Write a function <pf>countVal()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the number of times <pf>target</pf> appears in <pf>v</pf>. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -2964,14 +2826,14 @@
 					</row>
 				</tabular>
 
-				<sidebyside widths="56% 42%">
+				<sidebyside widths="70% 28%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							count = countOccurrences([1, 1, 1, -9, 0, 0, 6, 6, -1, 6, 7, 1, 2], 1)
-							count = countOccurrences([1, 1, 1, -9, 0, 0, 6, 6, -1, 6, 7, 1, 2], -6)
-							count = countOccurrences([5, 2, 5, 2, 5], 5)
-							count = countOccurrences([], 0)
+							count = countVal([1, 1, 1, -1, 6, 7, 1], 1)
+							count = countVal([0, 6, 6, -1, 6, 7], 5)
+							count = countVal([5, 2, 5, 2, 5], 5)
+							count = countVal([], 0)
 						</program>
 					</stack>
 					<stack>
@@ -2991,7 +2853,7 @@
 					Here is one possible solution. The counter increases each time the current element matches the target value.
 				</p>
 				<program language="matlab">
-					function count = countOccurrences(v, target)
+					function count = countVal(v, target)
 						count = 0;
 
 						for x = v
@@ -3004,10 +2866,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-allNonnegative">
+		<task label="vectors-coding-allPositive">
 			<statement>
 				<p>
-					Write a function <pf>allNonnegative()</pf> that takes a vector <pf>v</pf> and returns <pf>true</pf> if every element of <pf>v</pf> is nonnegative, and <pf>false</pf> otherwise. Zero counts as nonnegative. Use a loop.
+					⭐ Write a function <pf>allPositive()</pf> that takes a vector <pf>v</pf> and returns <pf>true</pf> if every element of <pf>v</pf> is positive, and <pf>false</pf> otherwise. Zero does not count as positive. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -3025,27 +2887,27 @@
 						<cell>Outputs:</cell>
 						<cell><p><pf>result</pf></p></cell>
 						<cell><p>(1x1) logical</p></cell>
-						<cell><p><pf>true</pf> if every element of <pf>v</pf> is nonnegative, otherwise <pf>false</pf></p></cell>
+						<cell><p><pf>true</pf> if every element of <pf>v</pf> is positive, otherwise <pf>false</pf></p></cell>
 					</row>
 				</tabular>
 
-				<sidebyside widths="56% 42%">
+				<sidebyside widths="70% 28%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							result = allNonnegative([111, -90, 20, 66, -167, 42])
-							result = allNonnegative([1, 1, 1, 0, 1, 2])
-							result = allNonnegative([0])
-							result = allNonnegative([])
+							result = allPositive([11, -90, 20, 66, -1, 4])
+							result = allPositive([1, 1, 1, 0, 1, 2])
+							result = allPositive([1])
+							result = allPositive([])
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
 							result = false
+							result = false
 							result = true
-							result = true
-							result = true
+							result = false
 						</program>
 					</stack>
 				</sidebyside>
@@ -3053,10 +2915,10 @@
 
 			<solution component="exercise-solution">
 				<p>
-					Here is one possible solution. The function returns <pf>false</pf> as soon as it finds a negative element; otherwise, it finishes the loop and returns <pf>true</pf>.
+					Here is one possible solution. The function returns <pf>false</pf> as soon as it finds a non-positive element; otherwise, it finishes the loop and returns <pf>true</pf>.
 				</p>
 				<program language="matlab">
-					function result = allNonnegative(v)
+					function result = allPositive(v)
 						for x = v
 							if x &lt; 0
 								result = false;
@@ -3073,7 +2935,7 @@
 		<task label="vectors-coding-signChangeCount">
 			<statement>
 				<p>
-					Write a function <pf>signChangeCount()</pf> that takes a vector <pf>v</pf> and returns the number of times adjacent nonzero elements have opposite signs. A change from positive to zero, or from negative to zero, does not count as a sign change. Use a loop.
+					⭐ Write a function <pf>signChangeCount()</pf> that takes a vector <pf>v</pf> and returns the number of times adjacent nonzero elements have opposite signs. A change from positive to zero, or from negative to zero, does not count as a sign change. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -3135,211 +2997,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-sortAscending">
-			<statement>
-				<p>
-					Write a function <pf>sortAscending()</pf> that takes a vector <pf>v</pf> and returns a new vector containing the same values in ascending order. Do not use MATLAB’s built-in <pf>sort</pf> function. Assume you have already written <pf>myMin()</pf> and <pf>firstIndexOf()</pf>. Use a loop.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>v</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector of any length</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>w</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>elements of <pf>v</pf> sorted in ascending order</p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="52% 46%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							w = sortAscending([-4, 0, 4, 8, -12])
-							w = sortAscending([8, 1, 3, 4])
-							w = sortAscending([5])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							w = [-12, -4, 0, 4, 8]
-							w = [1, 3, 4, 8]
-							w = [5]
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-
-			<solution component="exercise-solution">
-				<p>
-					Here is one possible solution. Each pass finds the smallest remaining value, stores it in the output, and removes that occurrence from a temporary working copy.
-				</p>
-				<program language="matlab">
-					function w = sortAscending(v)
-						w = zeros(1, length(v));
-						temp = v;
-
-						for i = 1:length(v)
-							m = myMin(temp);
-							idx = firstIndexOf(temp, m);
-							w(i) = m;
-							temp(idx) = [];
-						end
-					end
-				</program>
-			</solution>
-		</task>
-
-		<task label="vectors-coding-uniqueFirsts">
-			<statement>
-				<p>
-					Write a function <pf>uniqueFirsts()</pf> that takes a vector <pf>v</pf> and returns a new vector containing the distinct values of <pf>v</pf> in the order they first appear. Use a loop. Assume you have already written <pf>vectorContains()</pf>.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>v</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector of any length</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>w</pf></p></cell>
-						<cell><p>(1xm) double</p></cell>
-						<cell><p>distinct values of <pf>v</pf>, keeping first occurrences only</p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="58% 40%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							w = uniqueFirsts([4, -3, 1, 9, 4, -8, -3])
-							w = uniqueFirsts([1, 1, 1, 0, 0, 2])
-							w = uniqueFirsts([7, 8, 9])
-							w = uniqueFirsts([])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							w = [4, -3, 1, 9, -8]
-							w = [1, 0, 2]
-							w = [7, 8, 9]
-							w = []
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-
-			<solution component="exercise-solution">
-				<p>
-					Here is one possible solution. The loop scans from left to right and appends a value only the first time it appears.
-				</p>
-				<program language="matlab">
-					function w = uniqueFirsts(v)
-						w = [];
-
-						for x = v
-							if ~vectorContains(w, x)
-								w(end + 1) = x;
-							end
-						end
-					end
-				</program>
-			</solution>
-		</task>
-
-		<task label="vectors-coding-valueCounter">
-			<statement>
-				<p>
-					Write a function <pf>valueCounter()</pf> that takes a vector <pf>v</pf> and returns two vectors: one containing the distinct values of <pf>v</pf> in first-appearance order, and one containing how many times each of those values occurs. Use a loop. Assume you have already written <pf>vectorContains()</pf> and <pf>countOccurrences()</pf>.
-				</p>
-
-				<tabular valign="top" top="minor">
-					<col width="11%" halign="right" />
-					<col width="15%" halign="left" />
-					<col width="28%" halign="center" />
-					<col width="46%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>v</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector of any length</p></cell>
-					</row>
-					<row>
-						<cell>Outputs:</cell>
-						<cell><p><pf>values</pf></p></cell>
-						<cell><p>(1xm) double</p></cell>
-						<cell><p>distinct values of <pf>v</pf> in first-appearance order</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell></cell>
-						<cell><p><pf>counts</pf></p></cell>
-						<cell><p>(1xm) double</p></cell>
-						<cell><p>number of times each value in <pf>values</pf> appears in <pf>v</pf></p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="60% 38%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							[values, counts] = valueCounter([2, 2, 3, 3, 3, 5, 2])
-							[values, counts] = valueCounter([10, 10, 10, 10])
-							[values, counts] = valueCounter([7, 8, 9])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							values = [2, 3, 5], counts = [3, 3, 1]
-							values = [10],      counts = [4]
-							values = [7, 8, 9], counts = [1, 1, 1]
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-
-			<solution component="exercise-solution">
-				<p>
-					Here is one possible solution. Each new value is added once, and its count is found with the earlier helper function.
-				</p>
-				<program language="matlab">
-					function [values, counts] = valueCounter(v)
-						values = [];
-						counts = [];
-
-						for x = v
-							if ~vectorContains(values, x)
-								values(end + 1) = x;
-								counts(end + 1) = countOccurrences(v, x);
-							end
-						end
-					end
-				</program>
-			</solution>
-		</task>
-
 		<task label="vectors-coding-smoothValues">
 			<statement>
 				<p>
-					Write a function <pf>smoothValues()</pf> that takes a vector <pf>v</pf> and a nonnegative integer <pf>k</pf>, and returns a new vector where each element is replaced by the average of itself and up to <pf>k</pf> neighbors on each side. Near the ends, use as many neighbors as are available. Use a loop. Assume you have already written <pf>myMean()</pf>.
+					⭐ Write a function <pf>smoothValues()</pf> that takes a vector <pf>v</pf> and a nonnegative integer <pf>k</pf>, and returns a new vector where each element is replaced by the average of itself and up to <pf>k</pf> neighbors on each side. Near the ends, use as many neighbors as are available. Use a loop and slicing to access the neighboring elements. Use your <pf>myMean()</pf> function to calculate the average. You may use MATLAB's <pf>max</pf> and <pf>min</pf> functions to help with the slicing, but do not use any other built-in functions.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -3405,10 +3066,10 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-secondLargest">
+		<task label="vectors-coding-nthLargest">
 			<statement>
 				<p>
-					Write a function <pf>secondLargest()</pf> that takes a vector <pf>v</pf> containing at least two distinct values, and returns the second largest value and the position of its first occurrence. If the largest value appears more than once, the second largest value is still the largest value strictly less than that maximum. Use a loop.
+					⭐ Write a function <pf>nthLargest()</pf> that takes a vector <pf>v</pf> and an integer <pf>n</pf>, and returns the nth largest value and the position of its first occurrence. If the largest value appears more than once, the nth largest value is still the largest value strictly less than that maximum. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor">
@@ -3426,7 +3087,7 @@
 						<cell>Outputs:</cell>
 						<cell><p><pf>val</pf></p></cell>
 						<cell><p>(1x1) double</p></cell>
-						<cell><p>second largest value in <pf>v</pf></p></cell>
+						<cell><p>nth largest value in <pf>v</pf></p></cell>
 					</row>
 					<row bottom="minor">
 						<cell></cell>
@@ -3440,9 +3101,9 @@
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							[val, loc] = secondLargest([1, 1, 1, -9, 0, 0, 6, 6, -1, 6, 7, 1, 2])
-							[val, loc] = secondLargest([7, 1, 6, 3])
-							[val, loc] = secondLargest([-3, -1, -8, -2])
+							[val, loc] = nthLargest([1, 1, 1, -9, 0, 0, 6, 6, -1, 6, 7, 1, 2], 2)
+							[val, loc] = nthLargest([7, 1, 6, 3], 2)
+							[val, loc] = nthLargest([-3, -1, -8, -2], 2)
 						</program>
 					</stack>
 					<stack>
@@ -3461,7 +3122,7 @@
 					Here is one possible solution. The function tracks the current largest value and the current best candidate for second largest at the same time.
 				</p>
 				<program language="matlab">
-					function [val, loc] = secondLargest(v)
+					function [val, loc] = nthLargest(v, n)
 						maxVal = v(1);
 						maxLoc = 1;
 						val = [];
@@ -3485,112 +3146,71 @@
 			</solution>
 		</task>
 
-		<task>
+		<task label="vectors-coding-properDivisors">
 			<statement>
 				<p>
-					Returns a list of proper divisors of an integer.
-					<ul>
-						<li>A <em>divisor</em> of a number, <m>N</m>, is a number that divides <m>N</m> evenly (remainder zero).</li>
-						<li>A <em>proper divisor</em> of <m>N</m> is any divisor less than <m>N</m>.</li>
-						<li>For example, the proper divisors of <m>12</m> are <m>1, 2, 3, 4, 6</m>.</li>
-					</ul>
+					⭐ Write a function <pf>proper_divisors()</pf> that takes a positive integer and returns a vector of its proper divisors. Use a loop.
 				</p>
 
-				<tabular valign="top" halign="right" top="minor">
-					<col width="12%"/>
-					<col width="88%" halign="left"/>
-					<row bottom="minor">
-						<cell>Inputs:</cell>
-						<cell>
-							<p><pf>num</pf> (1 x 1) integer</p>
-						</cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell>
-							<p><pf>divisors</pf> (1 x N) integer vector — contains the proper divisors of <pf>num</pf>.</p>
-						</cell>
-					</row>
-						<row>
-						<cell>Details:</cell>
-						<cell>
-							<p>Use a <pf>for</pf> or <pf>while</pf> loop to code this.</p>
-						</cell>
-					</row>
-					<row bottom="minor">
-							<cell/>
-						<cell>
-							<p>You will need MATLAB's <pf>mod</pf> function.</p>
-						</cell>
-					</row>
-				</tabular>
-
 				<p>
-					Examples:
-				<program>
-					<code>
-						divisors = proper_divisors(81)
-						% should return
-						% divisors = 1  3  9  27
-					</code>
-				</program>
-				<program>
-					<code>
-						divisors = proper_divisors(18111)
-						% should return
-						% divisors = 1  3  6037
-					</code>
-				</program>
-				<program>
-					<code>
-						divisors = proper_divisors(11)
-						% should return
-						% divisors = 1
-					</code>
-				</program>
-				</p>
-			</statement>
-		</task>
-	
-		<task>
-			<statement>
-				<p>
-					Remember that if the input is <pf>30</pf>, this program returns <pf>[5, 6]</pf>, not <pf>[6, 5]</pf>.
+					A <em>proper divisor</em> of <m>N</m> is any integer less than <m>N</m> that divides <m>N</m> evenly (remainder zero). For example, the proper divisors of <m>12</m> are <m>1, 2, 3, 4, 6</m>.
 				</p>
 
 				<tabular valign="top" top="minor">
-					<col width="12%"/>
-					<col width="88%"/>
-					<row bottom="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
 						<cell>Inputs:</cell>
-						<cell>
-							<p><pf>number</pf> (1 x 1) integer — positive integer.</p>
-						</cell>
+						<cell><p><pf>num</pf></p></cell>
+						<cell><p>(1x1) integer</p></cell>
+						<cell><p>positive integer</p></cell>
 					</row>
 					<row bottom="minor">
 						<cell>Outputs:</cell>
-						<cell>
-							<p><pf>pair</pf> (1 x 2) double vector — row vector containing the pair of integers that make <pf>number</pf> oblong.</p>
-						</cell>
-					</row>
-					<row>
-						<cell>Details:</cell>
-						<cell><p>If you think logically about this problem, you can write it without a loop.</p></cell>
+						<cell><p><pf>divisors</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>proper divisors of <pf>num</pf></p></cell>
 					</row>
 				</tabular>
 
-				<p>
-					Examples:
-					<program>
-						<code>
-							oblong_pair(56)
-							7  8
-							oblong_pair(99)
-							[]
-						</code>
-					</program>
-				</p>
+				<sidebyside widths="54% 44%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							divisors = proper_divisors(81)
+							divisors = proper_divisors(18111)
+							divisors = proper_divisors(11)
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							divisors = [1  3  9  27]
+							divisors = [1  3  6037]
+							divisors = [1]
+						</program>
+					</stack>
+				</sidebyside>
+
 			</statement>
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The function checks every integer less than the input to see if it divides evenly, and if so, it adds it to the result vector.
+				</p>
+				<program language="matlab">
+					function divisors = proper_divisors(num)
+						divisors = [];
+
+						for i = 1:(num - 1)
+							if mod(num, i) == 0
+								divisors(end + 1) = i;
+							end
+						end
+					end
+				</program>
+			</solution>
 		</task>
 	
 	</exercise>

@@ -62,3 +62,141 @@ tags: while, for, preallocation, vector, duplicates, unique,
 		</program>
     </p>
 </statement>
+
+
+		<task label="vectors-coding-uniqueFirsts">
+			<statement>
+				<p>
+					Write a function <pf>uniqueFirsts()</pf> that takes a vector <pf>v</pf> and returns a new vector containing the distinct values of <pf>v</pf> in the order they first appear. Use a loop. Assume you have already written <pf>vectorContains()</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>v</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>vector of any length</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>w</pf></p></cell>
+						<cell><p>(1xm) double</p></cell>
+						<cell><p>distinct values of <pf>v</pf>, keeping first occurrences only</p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="58% 40%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							w = uniqueFirsts([4, -3, 1, 9, 4, -8, -3])
+							w = uniqueFirsts([1, 1, 1, 0, 0, 2])
+							w = uniqueFirsts([7, 8, 9])
+							w = uniqueFirsts([])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							w = [4, -3, 1, 9, -8]
+							w = [1, 0, 2]
+							w = [7, 8, 9]
+							w = []
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The loop scans from left to right and appends a value only the first time it appears.
+				</p>
+				<program language="matlab">
+					function w = uniqueFirsts(v)
+						w = [];
+
+						for x = v
+							if ~vectorContains(w, x)
+								w(end + 1) = x;
+							end
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
+
+		<task label="vectors-coding-valueCounter">
+			<statement>
+				<p>
+					Write a function <pf>valueCounter()</pf> that takes a vector <pf>v</pf> and returns two vectors: one containing the distinct values of <pf>v</pf> in first-appearance order, and one containing how many times each of those values occurs. Use a loop. Assume you have already written <pf>vectorContains()</pf> and <pf>countOccurrences()</pf>.
+				</p>
+
+				<tabular valign="top" top="minor">
+					<col width="11%" halign="right" />
+					<col width="15%" halign="left" />
+					<col width="28%" halign="center" />
+					<col width="46%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>v</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>vector of any length</p></cell>
+					</row>
+					<row>
+						<cell>Outputs:</cell>
+						<cell><p><pf>values</pf></p></cell>
+						<cell><p>(1xm) double</p></cell>
+						<cell><p>distinct values of <pf>v</pf> in first-appearance order</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell></cell>
+						<cell><p><pf>counts</pf></p></cell>
+						<cell><p>(1xm) double</p></cell>
+						<cell><p>number of times each value in <pf>values</pf> appears in <pf>v</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="60% 38%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							[values, counts] = valueCounter([2, 2, 3, 3, 3, 5, 2])
+							[values, counts] = valueCounter([10, 10, 10, 10])
+							[values, counts] = valueCounter([7, 8, 9])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							values = [2, 3, 5], counts = [3, 3, 1]
+							values = [10],      counts = [4]
+							values = [7, 8, 9], counts = [1, 1, 1]
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. Each new value is added once, and its count is found with the earlier helper function.
+				</p>
+				<program language="matlab">
+					function [values, counts] = valueCounter(v)
+						values = [];
+						counts = [];
+
+						for x = v
+							if ~vectorContains(values, x)
+								values(end + 1) = x;
+								counts(end + 1) = countOccurrences(v, x);
+							end
+						end
+					end
+				</program>
+			</solution>
+		</task>
