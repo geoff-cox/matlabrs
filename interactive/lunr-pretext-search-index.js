@@ -7,7 +7,7 @@ var ptx_lunr_docs = [
   "type": "Preface",
   "number": "",
   "title": "Preface",
-  "body": "  HI    Textbook Aim & Scope  HI    Intended Audience  HI    Philosophy  HI    Textbook Structure and Approach  HI    Using this Book  Mention the interactive features and how to use and not to use them...  Other mentions...    "
+  "body": "  Textbook Aim & Scope      Intended Audience      Philosophy      Textbook Structure and Approach     "
 },
 {
   "id": "sec-installing-matlab",
