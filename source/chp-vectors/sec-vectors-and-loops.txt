@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-vectors-and-loops">
+	<title>Vectors and Loops</title>
+
+	<subsection xml:id="subsec-loop-by-index">
+		<title>Looping Over a Vector by Index</title>
+
+		<p>
+			Some calculations depend on earlier results, some need to compare an element with its neighbor, and some just do not fit cleanly into a single expression. For those cases, you still need a for-loop.
+		</p>
+
+		<p>
+			The most common pattern is to loop over the <em>positions</em> of a vector, visiting each element by its index. To do this, you need to know how many elements the vector has. MATLAB provides two built-in functions for that:
+			<dl width="narrow">
+				<li>
+					<title><pf>length(v)</pf></title>
+					<p>Returns the number of rows or columns, whichever is larger.</p>
+				</li>
+				<li>
+					<title><pf>numel(v)</pf></title>
+					<p>Returns the total number of elements.</p>
+				</li>
+			</dl>
+			Since vectors have size 1 x n (row vector) or n x 1 (column vector), <pf>length(v)</pf> and <pf>numel(v)</pf> will return the same value and can be used interchangeably.
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+				length(temps)
+				numel(temps)
+			</input>
+		</sage>
+
+		<p>
+			Both calls return <pf>7</pf>. With <pf>length</pf> in hand, you can write a for-loop that visits every position in the vector:
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+				for i = 1:length(temps)
+					fprintf('Day %d: %d degrees\n', i, temps(i))
+				end
+			</input>
+		</sage>
+
+		<p>
+			The loop variable <pf>i</pf> takes the values <pf>1, 2, 3, ..., 7</pf>, one per iteration. Inside the loop body, <pf>temps(i)</pf> pulls out the value at the <pf>i</pf>-th position. This is the workhorse pattern for looping over a vector.
+		</p>
+
+		<p>
+			Here is a slightly more interesting example. Suppose you want to find the largest temperature in the vector. You can scan the vector one element at a time and keep track of the biggest value you have seen:
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+
+				biggest = temps(1);
+				for i = 2:length(temps)
+					if temps(i) > biggest
+						biggest = temps(i);
+					end
+				end
+
+				fprintf('Largest temperature: %d\n', biggest)
+			</input>
+		</sage>
+
+		<p>
+			The loop starts at position <pf>2</pf> rather than <pf>1</pf> because <pf>biggest</pf> is initialized to the first element and there is no need to compare it with itself. Each iteration compares the current element with the running maximum and updates <pf>biggest</pf> if a larger value is found. This is the same accumulation pattern from the for-loops chapter, just applied to data stored in a vector.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-loop-over-values">
+		<title>Looping Over a Vector by Value</title>
+
+		<p>
+			There is a second way to loop over a vector that skips the index entirely. If you write a for-loop whose range is the vector itself, the loop variable takes on each <em>value</em> of the vector in turn:
+		</p>
+
+		<sage language="octave">
+			<input>
+				temps = [68, 71, 75, 74, 69, 72, 70]
+				for t = temps
+					fprintf('%d degrees\n', t)
+				end
+			</input>
+		</sage>
+
+		<p>
+			On the first iteration, <pf>t</pf> is <pf>68</pf>. On the second, it is <pf>71</pf>. And so on through the last value, <pf>70</pf>. The loop variable is no longer a position, it is the value stored at that position.
+		</p>
+
+		<p>
+			This pattern is actually the one you saw first in the for-loops chapter, back when you wrote things like <pf>for k = [10, 20, 30]</pf>. At the time, the list was written out directly in the loop header; now you know that it works just as well when the list is stored in a variable.
+		</p>
+
+		<sidebyside widths="48% 48%">
+			<stack>
+				<p>Loop by index ⤵︎</p>
+				<program language="matlab">
+					for i = 1:length(temps)
+						temps(i)
+					end
+				</program>
+			</stack>
+			<stack>
+				<p>Loop by value ⤵︎</p>
+				<program language="matlab">
+					for t = temps
+						t
+					end
+				</program>
+			</stack>
+		</sidebyside>
+
+		<p>
+			So when should you use each style? It comes down to whether you need the index or not. If you only need the value, looping by value is usually cleaner.
+		</p>
+
+	</subsection>
+
+	<subsection xml:id="subsec-building-result-vectors">
+		<title>Building a Vector Inside a Loop</title>
+
+		<p>
+			We've seen how to use a loop to scan through a vector and do something with its values (e.g., print them, find the maximum, etc.). Sometimes you want to build a new vector, one element at a time.
+		</p>
+
+		<p>
+			For example, suppose we want to convert a vector of Fahrenheit temperatures to a vector of Celsius temperatures:
+		</p>
+
+		<sage language="octave">
+			<input>
+				fahrenheit = [32, 50, 68, 86, 104];
+				celsius = zeros(1, length(fahrenheit));
+
+				for i = 1:length(fahrenheit)
+					celsius(i) = (fahrenheit(i) - 32) * 5/9;
+				end
+
+				celsius
+			</input>
+		</sage>
+
+		<p>
+			Three things are worth noticing about this pattern:
+			<ul marker="square">
+				<li>
+					The result vector <pf>celsius</pf> is created <em>before</em> the loop, using <pf>zeros</pf> to make a placeholder of the right size. This is called <term>preallocation</term>.
+				</li>
+				<li>
+					Inside the loop, <pf>celsius(i) = ...</pf> fills in one element per iteration. The index <pf>i</pf> is used on both sides: on the right to read from <pf>fahrenheit</pf> and on the left to write into <pf>celsius</pf> at the matching position.
+				</li>
+				<li>
+					After the loop finishes, <pf>celsius</pf> holds all five converted values, and you can use it just like any other vector.
+				</li>
+			</ul>
+		</p>
+
+		<p>
+			Because the input and output vectors have the same length and matching positions, this is exactly the kind of problem that could also be written with a single vectorized expression:
+		</p>
+
+		<program language="matlab">
+			celsius = (fahrenheit - 32) * 5/9;
+		</program>
+
+		<p>
+			Both versions produce the same result. For a straightforward element-by-element calculation like this one, the vectorized version is shorter and clearer, and you should prefer it. The loop version becomes necessary when the calculation for each element is more complicated. For example, when it depends on a condition, involves a helper function, or needs to look at more than one input value at a time.
+		</p>
+
+		<p>
+			Here is an example. Suppose you want to build a new vector where each element is the running total of the input vector up to that position. That is, the first element is just the first input, the second is the sum of the first two, the third is the sum of the first three, and so on.
+		</p>
+
+		<sage language="octave">
+			<input>
+				v = [3, 1, 4, 1, 5, 9, 2, 6];
+				running = zeros(1, length(v));
+
+				running(1) = v(1);
+				for i = 2:length(v)
+					running(i) = running(i - 1) + v(i);
+				end
+
+				running
+			</input>
+		</sage>
+
+		<p>
+			Each element of <pf>running</pf> depends on the <em>previous</em> element of <pf>running</pf>, which means you cannot compute them independently of one another.
+		</p>
+
+	</subsection>
+
+</section>
