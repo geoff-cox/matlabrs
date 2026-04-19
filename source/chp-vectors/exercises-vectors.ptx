@@ -348,7 +348,7 @@
 		<task label="vectors-coding-replaceElement">
 			<statement>
 				<p>
-					⭐ Write a function <pf>replaceElement()</pf> that takes a vector <pf>v</pf>, a position <pf>i</pf>, and a new value <pf>newval</pf>, and returns a new vector with the element at position <pf>i</pf> replaced by <pf>newval</pf>. All other elements should remain unchanged.
+					Write a function <pf>replaceElement()</pf> that takes a vector <pf>v</pf>, a position <pf>i</pf>, and a new value <pf>newval</pf>, and returns a new vector with the element at position <pf>i</pf> replaced by <pf>newval</pf>. All other elements should remain unchanged.
 				</p>
 
 				<tabular valign="top" top="minor" right="minor" left="minor">
@@ -542,7 +542,7 @@
 		<task label="vectors-coding-shiftAndScale">
 			<statement>
 				<p>
-					Write a function <pf>shiftAndScale()</pf> that takes a vector <pf>v</pf>, a shift <pf>s</pf>, and a scale factor <pf>k</pf>, and returns a new vector where every element has had <pf>s</pf> added to it and then been multiplied by <pf>k</pf>. Do not use a loop.
+					⭐ Write a function <pf>shiftAndScale()</pf> that takes a vector <pf>v</pf>, a shift <pf>s</pf>, and a scale factor <pf>k</pf>, and returns a new vector where every element has had <pf>s</pf> added to it and then been multiplied by <pf>k</pf>. Do not use a loop.
 				</p>
 
 				<tabular valign="top" top="minor" right="minor" left="minor">
@@ -664,7 +664,7 @@
 		<task label="vectors-coding-circleAreas">
 			<statement>
 				<p>
-					⭐ Write a function <pf>circleAreas()</pf> that takes a vector of circle radii and returns a vector of the corresponding areas. The area of a circle of radius <m>r</m> is <m>\pi r^2</m>. Do not use a loop.
+					Write a function <pf>circleAreas()</pf> that takes a vector of circle radii and returns a vector of the corresponding areas. The area of a circle of radius <m>r</m> is <m>\pi r^2</m>. Do not use a loop.
 				</p>
 
 				<tabular valign="top" top="minor" right="minor" left="minor">
@@ -720,7 +720,7 @@
 		<task label="vectors-coding-magnitudes">
 			<statement>
 				<p>
-					A two-dimensional vector with components <m>(x, y)</m> has magnitude <m>\sqrt{x^2 + y^2}</m>. Write a function <pf>magnitudes()</pf> that takes two equal-length vectors <pf>x</pf> and <pf>y</pf> — the <m>x</m>- and <m>y</m>-components of a collection of vectors and returns a vector of their magnitudes. Do not use a loop.
+					⭐ A two-dimensional vector with components <m>(x, y)</m> has magnitude <m>\sqrt{x^2 + y^2}</m>. Write a function <pf>magnitudes()</pf> that takes two equal-length vectors <pf>x</pf> and <pf>y</pf> — the <m>x</m>- and <m>y</m>-components of a collection of vectors and returns a vector of their magnitudes. Do not use a loop.
 				</p>
 
 				<tabular valign="top" top="minor" right="minor" left="minor">
@@ -854,7 +854,7 @@
 		<task label="vectors-coding-evaluateQuadratic">
 			<statement>
 				<p>
-					⭐ Write a function <pf>evalQuad()</pf> that takes three scalar coefficients <pf>a</pf>, <pf>b</pf>, and <pf>c</pf>, and a vector <pf>x</pf>, and returns a vector containing the value of the quadratic
+					Write a function <pf>evalQuad()</pf> that takes three scalar coefficients <pf>a</pf>, <pf>b</pf>, and <pf>c</pf>, and a vector <pf>x</pf>, and returns a vector containing the value of the quadratic
 					<me>y = ax^2 + bx + c</me>
 					evaluated at every element of <pf>x</pf>. Do not use a loop.
 				</p>
@@ -928,7 +928,7 @@
 		<task label="vectors-coding-compoundBalance">
 			<statement>
 				<p>
-					An investment of principal <m>P</m> dollars earning annual interest rate <m>r</m> (compounded yearly) grows to
+					⭐ An investment of principal <m>P</m> dollars earning annual interest rate <m>r</m> (compounded yearly) grows to
 					<me>B = P(1 + r)^t</me>
 					after <m>t</m> years. Write a function <pf>compBalance()</pf> that takes a scalar principal <pf>P</pf>, a scalar interest rate <pf>r</pf>, and a vector of times <pf>t</pf>, and returns a vector of the corresponding account balances. Do not use a loop.
 				</p>
@@ -988,6 +988,64 @@
 				<program language="matlab">
 					function B = balance(P, r, t)
 						B = P * (1 + r).^t;
+					end
+				</program>
+			</solution>
+		</task>
+
+		<task label="vectors-coding-digitsToNumber">
+			<statement>
+				<p>
+					⭐ Write a function <pf>digitsToNumber()</pf> that takes a row vector of decimal digits and returns the nonnegative integer formed by those digits. Do not use a loop. Instead use element-wise operations and the <pf>sum</pf> function to combine the digits into a single number.
+				</p>
+
+				<tabular valign="top" top="minor" right="minor" left="minor">
+					<col width="11%" halign="right" right="none"/>
+					<col width="13%" halign="left" right="none"/>
+					<col width="26%" halign="center" right="none"/>
+					<col width="46%" halign="left"/>
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>digits</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>row vector of digits between <pf>0</pf> and <pf>9</pf></p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>num</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number formed by the digits in <pf>digits</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="60% 38%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							num = digitsToNumber([3, 0, 0, 4])
+							num = digitsToNumber([0, 0, 6, 6])
+							num = digitsToNumber([9])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							num = 3004
+							num = 66
+							num = 9
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+
+			<solution component="exercise-solution">
+				<p>
+					Here is one possible solution. The expression <pf>10.^((n-1):-1:0)</pf> creates a vector of powers of 10 that we can use to multiply each digit by its place value. The <pf>sum</pf> function then adds up the resulting vector to get the final number.
+				</p>
+				<program language="matlab">
+					function num = digitsToNumber(digits)
+						n = length(digits);
+						num = sum(digits .* 10.^((n-1):-1:0));
 					end
 				</program>
 			</solution>
@@ -1451,6 +1509,67 @@
 	<exercise label="vectors-coding-exercise-4">
 		<title>Vectors and Loops</title>
 
+		<task label="vectors-coding-countEvens">
+			<statement>
+				<p>
+					⭐ Write a function <pf>countEvens()</pf> that takes a vector <pf>v</pf> of integers and returns the number of even elements. Use a loop.
+				</p>
+
+				<tabular valign="top" top="minor" right="minor" left="minor">
+					<col width="11%" halign="right" right="none"/>
+					<col width="13%" halign="left" right="none"/>
+					<col width="26%" halign="center" right="none"/>
+					<col width="50%" halign="left" />
+					<row>
+						<cell>Inputs:</cell>
+						<cell><p><pf>v</pf></p></cell>
+						<cell><p>(1xn) double</p></cell>
+						<cell><p>vector of integers</p></cell>
+					</row>
+					<row bottom="minor">
+						<cell>Outputs:</cell>
+						<cell><p><pf>count</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>number of even elements in <pf>v</pf></p></cell>
+					</row>
+				</tabular>
+
+				<sidebyside widths="62% 36%">
+					<stack>
+						<p>Test Cases ⤵︎</p>
+						<program language="matlab">
+							count = countEvens([1, 2, 3, 4, 5, 6])
+							count = countEvens([1, 3, 5, 7])
+							count = countEvens([2, 4, 6, 8])
+							count = countEvens([0, -2, -3, 7])
+						</program>
+					</stack>
+					<stack>
+						<p>Expected ⤵︎</p>
+						<program language="matlab">
+							count = 3
+							count = 0
+							count = 4
+							count = 2
+						</program>
+					</stack>
+				</sidebyside>
+			</statement>
+			<solution component="exercise-solution">
+				<p>Here is one possible solution:</p>
+				<program language="matlab">
+					function count = countEvens(v)
+						count = 0;
+						for x = v
+							if mod(x, 2) == 0
+								count = count + 1;
+							end
+						end
+					end
+				</program>
+			</solution>
+		</task>
+
 		<task label="vectors-coding-countAbove">
 			<statement>
 				<p>
@@ -1644,67 +1763,6 @@
 						w(1) = v(1);
 						for i = 2:length(v)
 							w(i) = w(i - 1) + v(i);
-						end
-					end
-				</program>
-			</solution>
-		</task>
-
-		<task label="vectors-coding-countEvens">
-			<statement>
-				<p>
-					⭐ Write a function <pf>countEvens()</pf> that takes a vector <pf>v</pf> of integers and returns the number of even elements. Use a loop.
-				</p>
-
-				<tabular valign="top" top="minor" right="minor" left="minor">
-					<col width="11%" halign="right" right="none"/>
-					<col width="13%" halign="left" right="none"/>
-					<col width="26%" halign="center" right="none"/>
-					<col width="50%" halign="left" />
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>v</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector of integers</p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>count</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number of even elements in <pf>v</pf></p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="62% 36%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							count = countEvens([1, 2, 3, 4, 5, 6])
-							count = countEvens([1, 3, 5, 7])
-							count = countEvens([2, 4, 6, 8])
-							count = countEvens([0, -2, -3, 7])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							count = 3
-							count = 0
-							count = 4
-							count = 2
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-			<solution component="exercise-solution">
-				<p>Here is one possible solution:</p>
-				<program language="matlab">
-					function count = countEvens(v)
-						count = 0;
-						for x = v
-							if mod(x, 2) == 0
-								count = count + 1;
-							end
 						end
 					end
 				</program>
@@ -1917,66 +1975,6 @@
 			</solution>
 		</task>
 
-		<task label="vectors-coding-digitsToNumber">
-			<statement>
-				<p>
-					Write a function <pf>digitsToNumber()</pf> that takes a row vector of decimal digits and returns the nonnegative integer formed by those digits. Use a loop and place-value arithmetic. Do not use <pf>num2str</pf>.
-				</p>
-
-				<tabular valign="top" top="minor" right="minor" left="minor">
-					<col width="11%" halign="right" right="none"/>
-					<col width="13%" halign="left" right="none"/>
-					<col width="26%" halign="center" right="none"/>
-					<col width="46%" halign="left"/>
-					<row>
-						<cell>Inputs:</cell>
-						<cell><p><pf>digits</pf></p></cell>
-						<cell><p>(1xn) double</p></cell>
-						<cell><p>row vector of digits between <pf>0</pf> and <pf>9</pf></p></cell>
-					</row>
-					<row bottom="minor">
-						<cell>Outputs:</cell>
-						<cell><p><pf>num</pf></p></cell>
-						<cell><p>(1x1) double</p></cell>
-						<cell><p>number formed by the digits in <pf>digits</pf></p></cell>
-					</row>
-				</tabular>
-
-				<sidebyside widths="60% 38%">
-					<stack>
-						<p>Test Cases ⤵︎</p>
-						<program language="matlab">
-							num = digitsToNumber([3, 0, 0, 4])
-							num = digitsToNumber([0, 0, 6, 6])
-							num = digitsToNumber([9])
-						</program>
-					</stack>
-					<stack>
-						<p>Expected ⤵︎</p>
-						<program language="matlab">
-							num = 3004
-							num = 66
-							num = 9
-						</program>
-					</stack>
-				</sidebyside>
-			</statement>
-
-			<solution component="exercise-solution">
-				<p>
-					Here is one possible solution. Each time through the loop, the current result is shifted one place to the left by multiplying by <pf>10</pf>, and then the next digit is added.
-				</p>
-				<program language="matlab">
-					function num = digitsToNumber(digits)
-						num = 0;
-						for d = digits
-							num = 10 * num + d;
-						end
-					end
-				</program>
-			</solution>
-		</task>
-
 		<task label="vectors-coding-extractDigits">
 			<statement>
 				<p>
@@ -2047,7 +2045,7 @@
 		<task label="vectors-coding-countVals">
 			<statement>
 				<p>
-					⭐ Write a function <pf>countVals()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the number of times <pf>target</pf> appears in <pf>v</pf>. Use a loop.
+					Write a function <pf>countVals()</pf> that takes a vector <pf>v</pf> and a target value <pf>target</pf>, and returns the number of times <pf>target</pf> appears in <pf>v</pf>. Use a loop.
 				</p>
 
 				<tabular valign="top" top="minor" right="minor" left="minor">
@@ -2188,7 +2186,7 @@
 		<task label="vectors-coding-reverseWithLoop">
 			<statement>
 				<p>
-					Earlier in this chapter you wrote <pf>reverseVector</pf> using slicing. Now write a function <pf>reverseWithLoop()</pf> that does the same job, but using a loop instead of slicing. Preallocate the result vector with <pf>zeros</pf>.
+					⭐ Write a function <pf>reverseWithLoop()</pf> that uses a loop to reverse the order of the values inside a vector. Preallocate the result vector with <pf>zeros</pf>.
 				</p>
 
 				<tabular valign="top" top="minor" right="minor" left="minor">
