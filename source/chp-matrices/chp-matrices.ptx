@@ -4,33 +4,15 @@
 
 	<introduction>
 		<p>
-			A vector stores an ordered list of numbers under a single name. A <term>matrix</term> stores a two-dimensional grid of numbers — values arranged in rows <em>and</em> columns. This chapter introduces matrices the same way the previous chapter introduced vectors: as a way to store collections of related data, operate on those collections all at once, and write loops that walk them when a single expression is not enough.
+			A vector stores an ordered list of numbers under a single name. A <term>matrix</term> stores a two-dimensional grid of numbers. These values are arranged in rows <em>and</em> columns.
 		</p>
 
 		<p>
-			You will find that almost everything you learned about vectors carries over without surprises. The construction techniques are the same, the indexing rules are the same, the arithmetic operators behave the same way, and the built-in functions still apply to whole collections at once. The main differences are that you now need <em>two</em> indices to point at a single value, and that loops over a matrix sometimes need to be nested — a loop inside another loop — to walk all the elements.
+			You will find that almost everything you learned about vectors carries over without surprises. The construction techniques are the same, the indexing rules are the same, the arithmetic operators behave the same way, and the built-in functions still apply to whole collections at once. The main differences are that you now need <em>two</em> indices to point at a single value, and that loops over a matrix sometimes need to be nested (i.e., a loop inside another loop) to scan through all the elements.
 		</p>
 
 		<p>
 			This chapter covers the following topics:
-			<dl>
-				<li>
-					<title>Creating and Indexing Matrices</title>
-					<p>Building matrices with bracket literals and placeholder functions; pulling individual values back out with two-index access; asking how big a matrix is; slicing rows, columns, and rectangular blocks; and modifying matrices after they have been created.</p>
-				</li>
-				<li>
-					<title>Matrix Arithmetic</title>
-					<p>Applying operators and broadcasting functions to entire matrices at once. Almost everything from the vectors chapter carries over directly, with one new piece — the long-promised explanation of why the dot operators exist.</p>
-				</li>
-				<li>
-					<title>Matrices and Loops</title>
-					<p>Combining matrices with the for-loops you already know — single loops with slicing for the per-row or per-column case, nested loops for the cases that genuinely need element-by-element control, and the rule of thumb for choosing between vectorization, slicing, and nesting.</p>
-				</li>
-			</dl>
-		</p>
-
-		<p>
-			By the end of this chapter, you will be able to store and manipulate two-dimensional collections of values, replace many simple loops with single-line vectorized expressions, and write nested loops for the cases where vectorization and slicing alone are not enough.
 		</p>
 	</introduction>
 
@@ -54,7 +36,7 @@
 						<title>Building Matrices</title>
 						<p>
 							<ul marker="square">
-								<li>Bracket literals — <pf>[1, 2; 3, 4]</pf> — with semicolons separating rows. Every row must have the same number of columns.</li>
+								<li>Bracket literals (e.g., <pf>[1, 2; 3, 4]</pf>) with semicolons separating rows. Every row must have the same number of columns.</li>
 								<li><pf>zeros(m, n)</pf> and <pf>ones(m, n)</pf> for placeholder matrices of a known shape.</li>
 							</ul>
 						</p>
