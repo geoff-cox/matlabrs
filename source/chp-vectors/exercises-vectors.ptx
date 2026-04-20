@@ -964,21 +964,22 @@
 					</row>
 				</tabular>
 
-				<sidebyside widths="53% 45%">
+				<sidebyside widths="55% 43%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							B = balance(1000, 0.05, [0,1,2])
-							B = balance(500, 0.10, [10,20])
-							B = balance(1000, 0, [0,1,2,3])
+							format shortG  % compact display
+							B = compBalance(1000, 0.05, [0,1,2])
+							B = compBalance(500, 0.10, [10,20])
+							B = compBalance(1000, 0, [0,1,2,3])
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							B ≈ [1000,1050,1102.5]
-							B ≈ [1296.87,3363.75]
-							B = [1000,1000,1000,1000]
+							B ≈ [1000, 1050, 1102.5]
+							B ≈ [1296.9, 3363.7]
+							B = [1000, 1000, 1000, 1000]
 						</program>
 					</stack>
 				</sidebyside>
@@ -986,7 +987,7 @@
 			<solution component="exercise-solution">
 				<p>Here is one possible solution:</p>
 				<program language="matlab">
-					function B = balance(P, r, t)
+					function B = compBalance(P, r, t)
 						B = P * (1 + r).^t;
 					end
 				</program>
