@@ -874,9 +874,9 @@ var ptx_lunr_docs = [
   "body": " Hello Function   Write a function named hello that accepts one input ( name ) and displays a greeting such as 'Hello Alice, nice to meet you!' . Test it with a name of your choice.     function hello(name) fprintf('Hello %s, nice to meet you!\\n', name); end hello('Alice');   "
 },
 {
-  "id": "top-down-programming-exercises",
+  "id": "top-down-flow-exercises",
   "level": "1",
-  "url": "top-down-programming-exercises.html",
+  "url": "top-down-flow-exercises.html",
   "type": "Exercises",
   "number": "2.3",
   "title": "💻 Coding Exercises",
@@ -885,7 +885,7 @@ var ptx_lunr_docs = [
 {
   "id": "scripts-coding-exercises",
   "level": "2",
-  "url": "top-down-programming-exercises.html#scripts-coding-exercises",
+  "url": "top-down-flow-exercises.html#scripts-coding-exercises",
   "type": "Exercise",
   "number": "2.3.1",
   "title": "Script Coding Exercises.",
@@ -894,7 +894,7 @@ var ptx_lunr_docs = [
 {
   "id": "functions-coding-exercises",
   "level": "2",
-  "url": "top-down-programming-exercises.html#functions-coding-exercises",
+  "url": "top-down-flow-exercises.html#functions-coding-exercises",
   "type": "Exercise",
   "number": "2.3.2",
   "title": "Function Coding Exercises.",
@@ -2608,7 +2608,7 @@ var ptx_lunr_docs = [
   "type": "Subsection",
   "number": "",
   "title": "What is a Matrix?",
-  "body": " What is a Matrix?  A vector is a one-dimensional collection of numbers — a single row or a single column. A matrix is the natural next step: a two-dimensional collection of numbers, arranged in rows and columns. Where a vector has only positions, a matrix has row positions and column positions, and you need both to point at a single value.  Matrices show up everywhere two-dimensional data does. A spreadsheet of monthly sales by region is a matrix. A grayscale image is a matrix of pixel brightnesses. A table of distances between cities is a matrix. The grid of values you would compute by evaluating a function at every combination of two inputs is a matrix. Anything you would naturally draw as a rectangular grid of numbers can be stored as one.   Vocabulary across languages  Other programming languages call the same idea a 2D array or a nested list. Python's NumPy calls them 2D arrays and treats them as a special case of a more general n-dimensional array. The vocabulary varies; the picture — a rectangular grid of numbers — is the same everywhere.   A vector is really just a matrix with one row (or one column), and almost everything you learned in the previous chapter still applies — building, indexing, slicing, modifying, vectorized arithmetic, and looping. The main differences are that you now need two indices to talk about a single element, and many of MATLAB's built-in tools take both a number of rows and a number of columns.  "
+  "body": " What is a Matrix?  A vector is a one-dimensional collection of numbers that looks like a single row or a single column. A matrix is the natural next step: a two-dimensional collection of numbers, arranged in rows and columns. Where a vector has only positions, a matrix has row positions and column positions, and you need both to point at a single value.  Matrices show up everywhere two-dimensional data does. A spreadsheet of monthly sales by region is a matrix. A grayscale image is a matrix of pixel brightnesses. A table of distances between cities is a matrix. The grid of values you would compute by evaluating a function at every combination of two inputs is a matrix. Anything you would naturally draw as a rectangular grid of numbers can be stored as one.   Vocabulary across languages  Other programming languages call the same idea a 2D array or a nested list. Python's NumPy calls them 2D arrays and treats them as a special case of a more general n-dimensional array. The vocabulary varies; the picture — a rectangular grid of numbers — is the same everywhere.   A vector is really just a matrix with one row (or one column), and almost everything you learned in the previous chapter still applies — building, indexing, slicing, modifying, vectorized arithmetic, and looping. The main differences are that you now need two indices to talk about a single element, and many of MATLAB's built-in tools take both a number of rows and a number of columns.  "
 },
 {
   "id": "subsec-what-is-a-matrix-2",
