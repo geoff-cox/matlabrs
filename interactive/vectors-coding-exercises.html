@@ -1316,21 +1316,22 @@ B = P(1 + r)^t
 <td class="l t b1 r1 l0 t0" style="max-width:300px;"><div class="para" id="vectors-coding-compoundBalance-1-2-8-4-1">account balances at each year in <code class="code-inline tex2jax_ignore language-matlab">t</code><div class="autopermalink" data-description="Paragraph"><a href="#vectors-coding-compoundBalance-1-2-8-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div></td>
 </tr>
-</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:53.5353535353535% 45.4545454545455%;column-gap:1%;">
+</table></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0.5%;margin-right:0.5%;grid-template-columns:55.5555555555556% 43.4343434343434%;column-gap:1%;">
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="vectors-coding-compoundBalance-1-3-1-1">Test Cases ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#vectors-coding-compoundBalance-1-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<pre class="program clipboardable"><code class="language-matlab">B = balance(1000, 0.05, [0,1,2])
-B = balance(500, 0.10, [10,20])
-B = balance(1000, 0, [0,1,2,3])
+<pre class="program clipboardable"><code class="language-matlab">format shortG  % compact display
+B = compBalance(1000, 0.05, [0,1,2])
+B = compBalance(500, 0.10, [10,20])
+B = compBalance(1000, 0, [0,1,2,3])
 </code></pre>
 </div>
 <div class="sbspanel sbspanel--top top" style="">
 <div class="para" id="vectors-coding-compoundBalance-1-3-2-1">Expected ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#vectors-coding-compoundBalance-1-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<pre class="program clipboardable"><code class="language-matlab">B ≈ [1000,1050,1102.5]
-B ≈ [1296.87,3363.75]
-B = [1000,1000,1000,1000]
+<pre class="program clipboardable"><code class="language-matlab">B ≈ [1000, 1050, 1102.5]
+B ≈ [1296.9, 3363.7]
+B = [1000, 1000, 1000, 1000]
 </code></pre>
 </div>
 </div></div>
