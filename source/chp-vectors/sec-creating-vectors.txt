@@ -367,7 +367,7 @@
 		</table>
 
 		<p>
-			When you write <pf>temps(4)</pf>, the <pf>4</pf> is a <em>position</em>, not a value. MATLAB looks up what is stored at position 4 and hands back <pf>74</pf>. To pull out the value <pf>74</pf>, you have to know where it lives (position 4) and ask for it by position. There is no way to ask <q>give me the value 74</q> directly — indexing always works by position.
+			When you write <pf>temps(4)</pf>, the <pf>4</pf> is a <em>position</em>, not a value. MATLAB looks up what is stored at position 4 and hands back <pf>74</pf>. To pull out the value <pf>74</pf>, you have to know where it lives (position 4) and ask for it by position. There is no way to ask <q>give me the value 74</q> directly; indexing always works by position.
 		</p>
 
 		<p>
@@ -377,7 +377,7 @@
 		<aside>
 			<title>One-based indexing</title>
 			<p>
-				MATLAB indexes vectors starting from <pf>1</pf>, so the first element is at position <pf>1</pf>. Most other languages — Python, Java, C, JavaScript — start counting from <pf>0</pf>, so the first element is at position <pf>0</pf>. Neither convention is more correct than the other, but it is a common source of bugs when switching between languages, so it is worth being aware of.
+				MATLAB indexes vectors starting from <pf>1</pf>, so the first element is at position <pf>1</pf>. Most other languages; Python, Java, C, JavaScript; start counting from <pf>0</pf>, so the first element is at position <pf>0</pf>. Neither convention is more correct than the other, but it is a common source of bugs when switching between languages, so it is worth being aware of.
 			</p>
 		</aside>
 
@@ -494,7 +494,7 @@
 		</sage>
 
 		<p>
-			<pf>temps([1, 4, 7])</pf> returns the first, fourth, and seventh values. The second example shows that indices can repeat and be in any order — <pf>temps([5, 2, 5])</pf> returns <pf>[69, 71, 69]</pf>.
+			<pf>temps([1, 4, 7])</pf> returns the first, fourth, and seventh values. The second example shows that indices can repeat and be in any order; <pf>temps([5, 2, 5])</pf> returns <pf>[69, 71, 69]</pf>.
 		</p>
 
 		<p>
@@ -504,7 +504,7 @@
 		<aside>
 			<title>Selecting everything with <pf>:</pf></title>
 			<p>
-				Writing <pf>temps(:)</pf> — a colon by itself — selects every element of the vector. For a row vector this is rarely useful on its own, but it becomes important in the matrices chapter, where it lets you grab an entire row or column at once.
+				Writing <pf>temps(:)</pf>; a colon by itself; selects every element of the vector. For a row vector this is rarely useful on its own, but it becomes important in the matrices chapter, where it lets you grab an entire row or column at once.
 			</p>
 		</aside>
 
@@ -540,7 +540,7 @@
 		</sage>
 
 		<p>
-			The number of values on the right must match the number of positions on the left — three positions, three new values.
+			The number of values on the right must match the number of positions on the left; three positions, three new values.
 		</p>
 
 		<p>
@@ -577,7 +577,7 @@
 		</sage>
 
 		<p>
-			After this, <pf>temps</pf> has only six elements, and what used to be position 4 is now position 3. Deleting elements shifts every later position down by one, which is worth remembering if you are deleting inside a loop — the positions you planned to visit may no longer refer to the values you expected.
+			After this, <pf>temps</pf> has only six elements, and what used to be position 4 is now position 3. Deleting elements shifts every later position down by one, which is worth remembering if you are deleting inside a loop; the positions you planned to visit may no longer refer to the values you expected.
 		</p>
 
 		<p>

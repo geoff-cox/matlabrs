@@ -58,9 +58,9 @@
 						<p>
 							The standalone colon <pf>:</pf> means <q>every position along this dimension.</q>
 							<ul marker="square">
-								<li><pf>A(i, :)</pf> — the entire <pf>i</pf>th row.</li>
-								<li><pf>A(:, j)</pf> — the entire <pf>j</pf>th column.</li>
-								<li><pf>A(1:2, 2:3)</pf> — a rectangular block.</li>
+								<li><pf>A(i, :)</pf>; the entire <pf>i</pf>th row.</li>
+								<li><pf>A(:, j)</pf>; the entire <pf>j</pf>th column.</li>
+								<li><pf>A(1:2, 2:3)</pf>; a rectangular block.</li>
 							</ul>
 						</p>
 					</li>
@@ -68,9 +68,9 @@
 						<title>Modifying Matrices</title>
 						<p>
 							<ul marker="square">
-								<li><pf>A(i, j) = newval</pf> — change a single element.</li>
-								<li><pf>A(i, :) = rowvec</pf> or <pf>A(:, j) = colvec</pf> — replace a whole row or column.</li>
-								<li><pf>A(i, :) = []</pf> or <pf>A(:, j) = []</pf> — delete a whole row or column. Single elements and interior blocks cannot be deleted, because the matrix must stay rectangular.</li>
+								<li><pf>A(i, j) = newval</pf>; change a single element.</li>
+								<li><pf>A(i, :) = rowvec</pf> or <pf>A(:, j) = colvec</pf>; replace a whole row or column.</li>
+								<li><pf>A(i, :) = []</pf> or <pf>A(:, j) = []</pf>; delete a whole row or column. Single elements and interior blocks cannot be deleted, because the matrix must stay rectangular.</li>
 							</ul>
 						</p>
 					</li>
@@ -85,13 +85,13 @@
 						<p>
 							Three patterns, in order from simplest to most general:
 							<ul marker="square">
-								<li><em>Vectorization</em> — no loops at all. Reach for this first whenever the calculation can be expressed as a single matrix expression.</li>
-								<li><em>Single loop with slicing</em> — when each row or column needs an irregular operation but the per-row or per-column work can be written as a vector expression. Walk the row index and use <pf>A(i, :)</pf>; or walk the column index and use <pf>A(:, j)</pf>.</li>
-								<li><em>Nested loop</em> — outer loop over rows, inner loop over columns, accessing <pf>A(i, j)</pf>. Use this when both dimensions genuinely need independent element-by-element control. The inner index changes fastest.</li>
+								<li><em>Vectorization</em>; no loops at all. Reach for this first whenever the calculation can be expressed as a single matrix expression.</li>
+								<li><em>Single loop with slicing</em>; when each row or column needs an irregular operation but the per-row or per-column work can be written as a vector expression. Walk the row index and use <pf>A(i, :)</pf>; or walk the column index and use <pf>A(:, j)</pf>.</li>
+								<li><em>Nested loop</em>; outer loop over rows, inner loop over columns, accessing <pf>A(i, j)</pf>. Use this when both dimensions genuinely need independent element-by-element control. The inner index changes fastest.</li>
 							</ul>
 						</p>
 						<p>
-							Preallocate result matrices with <pf>zeros(m, n)</pf> before any loop that builds one — the cost of growing a matrix one element at a time is much worse than for a vector.
+							Preallocate result matrices with <pf>zeros(m, n)</pf> before any loop that builds one; the cost of growing a matrix one element at a time is much worse than for a vector.
 						</p>
 					</li>
 				</dl>
