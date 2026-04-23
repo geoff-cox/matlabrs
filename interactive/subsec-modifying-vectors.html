@@ -484,7 +484,7 @@ temps(3) = 80
 <div id="subsec-modifying-vectors-6" class="ptx-sagecell sagecell-octave"><script type="text/x-sage">temps = [68, 71, 75, 74, 69, 72, 70]
 temps(1:3) = [60, 62, 64]
 </script></div>
-<div class="para" id="subsec-modifying-vectors-7">The number of values on the right must match the number of positions on the left — three positions, three new values.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-modifying-vectors-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-modifying-vectors-7">The number of values on the right must match the number of positions on the left; three positions, three new values.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-modifying-vectors-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="subsec-modifying-vectors-8">To <dfn class="terminology">grow</dfn> a vector, assign a value to a position that does not exist yet. The most common pattern is to append to the end using <code class="code-inline tex2jax_ignore language-matlab">end + 1</code>:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-modifying-vectors-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -501,7 +501,7 @@ temps(end + 1) = 66
 <div id="subsec-modifying-vectors-13" class="ptx-sagecell sagecell-octave"><script type="text/x-sage">temps = [68, 71, 75, 74, 69, 72, 70]
 temps(3) = []
 </script></div>
-<div class="para" id="subsec-modifying-vectors-14">After this, <code class="code-inline tex2jax_ignore language-matlab">temps</code> has only six elements, and what used to be position 4 is now position 3. Deleting elements shifts every later position down by one, which is worth remembering if you are deleting inside a loop — the positions you planned to visit may no longer refer to the values you expected.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-modifying-vectors-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-modifying-vectors-14">After this, <code class="code-inline tex2jax_ignore language-matlab">temps</code> has only six elements, and what used to be position 4 is now position 3. Deleting elements shifts every later position down by one, which is worth remembering if you are deleting inside a loop; the positions you planned to visit may no longer refer to the values you expected.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-modifying-vectors-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="subsec-modifying-vectors-15">Here is a summary of the three modification patterns:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-modifying-vectors-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
