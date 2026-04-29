@@ -14,7 +14,7 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MATLAB-BOOK Scalar and Element-wise Operations</title>
+<title>MATLAB-BOOK The min and max functions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -165,7 +165,7 @@ var ggbApp = new GGBApplet({"appName": "classic",
     "autoHeight": true,
     "disableAutoScale": false},
 true);
-</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="up-button button" href="sec-matrix-arithmetic.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="subsec-broadcasting-matrix-functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="subsec-floor-ceil-round.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="sec-useful-built-in-functions.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span></span><span class="nav-runestone-controls"><button onclick="runestoneComponents.popupScratchAC()" class="activecode-toggle button" title="Open Scratch ActiveCode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf097;</span><span class="name">Scratch ActiveCode</span></button></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\newcommand\DLGray{\color{Gray}}
 \newcommand\DLO{\color{BurntOrange}}
 \newcommand\DLRa{\color{WildStrawberry}}
@@ -391,9 +391,9 @@ true);
 <li class="toc-item toc-exercises"><div class="toc-title-box"><a href="vectors-coding-exercises.html" class="internal"><span class="codenumber">5.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-chapter contains-active">
+<li class="toc-item toc-chapter">
 <div class="toc-title-box"><a href="chp-matrices.html" class="internal"><span class="codenumber">6</span> <span class="title">Matrices</span></a></div>
-<ul class="structural toc-item-list contains-active">
+<ul class="structural toc-item-list">
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-creating-matrices.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Creating, Indexing, &amp; Modifying Matrices</span></a></div>
 <ul class="structural toc-item-list">
@@ -405,10 +405,10 @@ true);
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-modifying-matrices.html" class="internal"><span class="title">Modifying a Matrix</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section contains-active">
+<li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-matrix-arithmetic.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Matrix Arithmetic</span></a></div>
-<ul class="structural toc-item-list contains-active">
-<li class="toc-item toc-subsection active"><div class="toc-title-box"><a href="subsec-scalar-matrix-ops.html" class="internal"><span class="title">Scalar and Element-wise Operations</span></a></div></li>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-scalar-matrix-ops.html" class="internal"><span class="title">Scalar and Element-wise Operations</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="subsec-broadcasting-matrix-functions.html" class="internal"><span class="title">Functions That Work on Whole Matrices</span></a></div></li>
 </ul>
 </li>
@@ -425,13 +425,13 @@ true);
 <li class="toc-item toc-exercises"><div class="toc-title-box"><a href="matrices-coding-exercises.html" class="internal"><span class="codenumber">6.4</span> <span class="title">💻 Coding Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-backmatter">
+<li class="toc-item toc-backmatter contains-active">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appdx-matlab-functions.html" class="internal"><span class="codenumber">A</span> <span class="title">Quick Reference: Built-In MATLAB Functions</span></a></div></li>
-<li class="toc-item toc-appendix">
+<li class="toc-item toc-appendix contains-active">
 <div class="toc-title-box"><a href="sec-useful-built-in-functions.html" class="internal"><span class="codenumber">B</span> <span class="title">Useful Built-in Functions</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-subsection">
 <div class="toc-title-box"><a href="subsec-mod.html" class="internal"><span class="codenumber">B.1</span> <span class="title">The mod function</span></a></div>
 <ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-mod.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
@@ -440,9 +440,9 @@ true);
 <div class="toc-title-box"><a href="subsec-floor-ceil-round.html" class="internal"><span class="codenumber">B.2</span> <span class="title">The floor, ceil, and round functions</span></a></div>
 <ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-floor-ceil-round.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
 </li>
-<li class="toc-item toc-subsection">
+<li class="toc-item toc-subsection contains-active">
 <div class="toc-title-box"><a href="subsec-min-max.html" class="internal"><span class="codenumber">B.3</span> <span class="title">The min and max functions</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-min-max.html" class="internal"><span class="codenumber">B.3</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
+<ul class="structural toc-item-list active"><li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="rqs-min-max.html" class="internal"><span class="codenumber">B.3</span> <span class="title">Check Your Understanding</span></a></div></li></ul>
 </li>
 </ul>
 </li>
@@ -452,84 +452,354 @@ true);
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="subsection" id="subsec-scalar-matrix-ops">
+<section class="subsection" id="subsec-min-max">
 <h2 class="heading hide-type">
-<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Scalar and Element-wise Operations</span>
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The min and max functions</span>
 </h2>
-<div class="para" id="subsec-scalar-matrix-ops-2">Almost everything you learned about vector arithmetic in the previous chapter carries over to matrices without any changes. Operators apply to every element automatically, the dot operators do exactly what they did before, and most built-in math functions work on a whole matrix the same way they worked on a whole vector. This subsection is mostly a tour confirming that nothing surprising happens when you go from one dimension to two.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-min-max-2">The built-in functions <code class="code-inline tex2jax_ignore language-matlab">min</code> and <code class="code-inline tex2jax_ignore language-matlab">max</code> find the smallest and largest values in data. They are especially useful when you want a quick summary of a vector or matrix without writing a loop.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-min-max-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="subsec-scalar-matrix-ops-3">Combining a matrix with a scalar applies the operation to every element:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<article class="assemblage assemblage-like" id="min-max-syntax"><h2 class="heading"><span class="title"><code class="code-inline tex2jax_ignore language-matlab">min</code> and <code class="code-inline tex2jax_ignore language-matlab">max</code> Syntax.</span></h2>
+<div class="para" id="min-max-syntax-2">
+<code class="code-inline tex2jax_ignore language-matlab">smallest = min(v)</code> and <code class="code-inline tex2jax_ignore language-matlab">largest = max(v)</code><div class="autopermalink" data-description="Paragraph"><a href="#min-max-syntax-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
-<div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="subsec-scalar-matrix-ops-4-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="min-max-syntax-3">
+<code class="code-inline tex2jax_ignore language-matlab">[smallest, idx] = min(v)</code> and <code class="code-inline tex2jax_ignore language-matlab">[largest, idx] = max(v)</code><div class="autopermalink" data-description="Paragraph"><a href="#min-max-syntax-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<pre class="program clipboardable"><code class="language-matlab">A = [1, 2, 3; 4, 5, 6]
-A + 10
-2 * A
-A / 2
-</code></pre>
+<div class="para" id="min-max-syntax-4">
+<code class="code-inline tex2jax_ignore language-matlab">colMins = min(A)</code> and <code class="code-inline tex2jax_ignore language-matlab">colMaxes = max(A)</code><div class="autopermalink" data-description="Paragraph"><a href="#min-max-syntax-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="subsec-scalar-matrix-ops-4-2-1">Result ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="min-max-syntax-5">For a vector <code class="code-inline tex2jax_ignore language-matlab">v</code>, these functions return a single value. For a matrix <code class="code-inline tex2jax_ignore language-matlab">A</code>, they work column by column unless you first turn the matrix into one long vector with <code class="code-inline tex2jax_ignore language-matlab">A(:)</code>.<div class="autopermalink" data-description="Paragraph"><a href="#min-max-syntax-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<pre class="program clipboardable"><code class="language-matlab">A = [1, 2, 3;
-     4, 5, 6]
-  = [11, 12, 13;
-     14, 15, 16]
-  = [2, 4,  6;
-     8, 10, 12]
-  = [0.5, 1.0, 1.5;
-     2.0, 2.5, 3.0]
-</code></pre>
+<div class="autopermalink" data-description="Assemblage: min and max Syntax"><a href="#min-max-syntax" title="Copy heading and permalink for Assemblage: min and max Syntax" aria-label="Copy heading and permalink for Assemblage: min and max Syntax">🔗</a></div>
+</article>
+<div class="para" id="subsec-min-max-4">
+<em class="emphasis">Vectors.</em> If the input is a vector, <code class="code-inline tex2jax_ignore language-matlab">min</code> returns the smallest entry and <code class="code-inline tex2jax_ignore language-matlab">max</code> returns the largest entry. With two outputs, MATLAB also returns the position where the extreme value occurs.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-min-max-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="ex-min-max-vector"><h2 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Using <code class="code-inline tex2jax_ignore language-matlab">min</code> and <code class="code-inline tex2jax_ignore language-matlab">max</code> with a Vector.</span>
+</h2>
+<div class="para" id="ex-min-max-vector-2-1">Suppose <code class="code-inline tex2jax_ignore language-matlab">v</code> stores several measurements:<div class="autopermalink" data-description="Paragraph"><a href="#ex-min-max-vector-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">v = [12, 5, 19, 8, 19];
+x = min(v)              % returns 5
+[maxVal, idx] = max(v)  % returns 19 and 3
+</code></pre></div> 
+<div class="para" id="ex-min-max-vector-2-3">The call <code class="code-inline tex2jax_ignore language-matlab">min(v)</code> scans the whole vector and returns the smallest value. The call <code class="code-inline tex2jax_ignore language-matlab">[maxVal, idx] = max(v)</code> returns two pieces of information: the largest value, and the position of its first occurrence. Here the maximum value <code class="code-inline tex2jax_ignore language-matlab">19</code> appears twice, but MATLAB reports index <code class="code-inline tex2jax_ignore language-matlab">3</code> because that is where the first <code class="code-inline tex2jax_ignore language-matlab">19</code> appears.<div class="autopermalink" data-description="Paragraph"><a href="#ex-min-max-vector-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para" id="ex-min-max-vector-2-4">A common pattern is to combine the two functions to measure the spread of the data:<div class="autopermalink" data-description="Paragraph"><a href="#ex-min-max-vector-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">dataRange = max(v) - min(v)   % returns 14
+</code></pre></div>
+<div class="autopermalink" data-description="🌌 Example B.5: Using min and max with a Vector"><a href="#ex-min-max-vector" title="Copy heading and permalink for 🌌 Example B.5: Using min and max with a Vector" aria-label="Copy heading and permalink for 🌌 Example B.5: Using min and max with a Vector">🔗</a></div>
+</article>
+<div class="para" id="subsec-min-max-6">
+<em class="emphasis">Matrices.</em> If the input is a matrix, MATLAB applies <code class="code-inline tex2jax_ignore language-matlab">min</code> or <code class="code-inline tex2jax_ignore language-matlab">max</code> to each column separately. The result is a row vector containing one answer per column.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-min-max-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="ex-min-max-matrix-columns"><h2 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Column-wise Results for a Matrix.</span>
+</h2>
+<div class="para" id="ex-min-max-matrix-columns-2-1">Let<div class="autopermalink" data-description="Paragraph"><a href="#ex-min-max-matrix-columns-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">A = [4, 9, 2;
+     7, 3, 8;
+     1, 6, 5];
+
+colMins = min(A)            % returns [1, 3, 2]
+[colMaxes, rowIdx] = max(A) % returns [7, 9, 8] and [2, 1, 2]
+</code></pre></div> 
+<div class="para" id="ex-min-max-matrix-columns-2-3">The first output of <code class="code-inline tex2jax_ignore language-matlab">min(A)</code> is a row vector of the column minima. The two-output form of <code class="code-inline tex2jax_ignore language-matlab">max(A)</code> returns the maximum value in each column and the row where that maximum occurs. So the largest entry in column 1 is <code class="code-inline tex2jax_ignore language-matlab">7</code> in row <code class="code-inline tex2jax_ignore language-matlab">2</code>, the largest entry in column 2 is <code class="code-inline tex2jax_ignore language-matlab">9</code> in row <code class="code-inline tex2jax_ignore language-matlab">1</code>, and the largest entry in column 3 is <code class="code-inline tex2jax_ignore language-matlab">8</code> in row <code class="code-inline tex2jax_ignore language-matlab">2</code>.<div class="autopermalink" data-description="Paragraph"><a href="#ex-min-max-matrix-columns-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="🌌 Example B.6: Column-wise Results for a Matrix"><a href="#ex-min-max-matrix-columns" title="Copy heading and permalink for 🌌 Example B.6: Column-wise Results for a Matrix" aria-label="Copy heading and permalink for 🌌 Example B.6: Column-wise Results for a Matrix">🔗</a></div>
+</article>
+<div class="para" id="subsec-min-max-8">Sometimes you want the extreme value from the entire matrix, not one answer per column. The standard MATLAB idiom is to flatten the matrix with <code class="code-inline tex2jax_ignore language-matlab">A(:)</code>, which turns every entry into a single column vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-min-max-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="ex-min-max-whole-matrix"><h2 class="heading">
+<span class="type">🌌 Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finding the Extreme Value in an Entire Matrix.</span>
+</h2>
+<div class="para" id="ex-min-max-whole-matrix-2-1">Continuing with the same matrix <code class="code-inline tex2jax_ignore language-matlab">A</code>:<div class="autopermalink" data-description="Paragraph"><a href="#ex-min-max-whole-matrix-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">overallMin = min(A(:))   % returns 1
+overallMax = max(A(:))   % returns 9
+</code></pre></div> 
+<div class="para" id="ex-min-max-whole-matrix-2-3">The expression <code class="code-inline tex2jax_ignore language-matlab">A(:)</code> collects all entries of <code class="code-inline tex2jax_ignore language-matlab">A</code> into one vector, so <code class="code-inline tex2jax_ignore language-matlab">min</code> and <code class="code-inline tex2jax_ignore language-matlab">max</code> now work on the entire matrix at once.<div class="autopermalink" data-description="Paragraph"><a href="#ex-min-max-whole-matrix-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="🌌 Example B.7: Finding the Extreme Value in an Entire Matrix"><a href="#ex-min-max-whole-matrix" title="Copy heading and permalink for 🌌 Example B.7: Finding the Extreme Value in an Entire Matrix" aria-label="Copy heading and permalink for 🌌 Example B.7: Finding the Extreme Value in an Entire Matrix">🔗</a></div>
+</article>
+<section class="reading-questions" id="rqs-min-max">
+<h3 class="heading hide-type">
+<span class="type">Reading Questions</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Check Your Understanding</span>
+</h3>
+<article class="exercise exercise-like" id="rqs-min-max-2"><h3 class="heading"><span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="ptx-runestone-container"><div class="runestone tabbed_section"><div data-component="tabbedStuff">
+<div data-component="tab" data-tabname="(a)">
+<article class="task exercise-like" id="quiz-min-max-1"><h4 class="heading">
+<span class="codenumber">(a)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Smallest value in a vector.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="quiz-min-max-1-2-1">If <code class="code-inline tex2jax_ignore language-matlab">v = [7, 4, 9, 6]</code>, what does <code class="code-inline tex2jax_ignore language-matlab">min(v)</code> return?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-min-max-1" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-min-max-1_opt_a" data-correct="">
+<div class="para" id="quiz-min-max-1-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">4</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-1_opt_a">
+<div class="para" id="quiz-min-max-1-3-1-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">min</code> returns the smallest entry in the whole vector. Among 7, 4, 9, and 6, the smallest is <code class="code-inline tex2jax_ignore language-matlab">4</code>.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-1_opt_b">
+<div class="para" id="quiz-min-max-1-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">7</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-1_opt_b">
+<div class="para" id="quiz-min-max-1-3-2-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">7</code> is the first entry, but <code class="code-inline tex2jax_ignore language-matlab">min</code> looks through the entire vector, not just the first position.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-1_opt_c">
+<div class="para" id="quiz-min-max-1-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">9</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-1_opt_c">
+<div class="para" id="quiz-min-max-1-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">9</code> is the largest entry, so it is the result of <code class="code-inline tex2jax_ignore language-matlab">max(v)</code>, not <code class="code-inline tex2jax_ignore language-matlab">min(v)</code>.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-1_opt_d">
+<div class="para" id="quiz-min-max-1-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">6</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-1_opt_d">
+<div class="para" id="quiz-min-max-1-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">6</code> is neither the smallest nor the largest entry in the vector.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task B.3.1.a: Smallest value in a vector"><a href="#quiz-min-max-1" title="Copy heading and permalink for Task B.3.1.a: Smallest value in a vector" aria-label="Copy heading and permalink for Task B.3.1.a: Smallest value in a vector">🔗</a></div>
+</article>
 </div>
-<div class="para" id="subsec-scalar-matrix-ops-5">Combining two matrices of the same shape works element by element, just like it did for vectors. Addition and subtraction use the plain operators; multiplication, division, and exponentiation need the dot:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="sidebyside">
-<div class="sbsrow" style="margin-left:1%;margin-right:1%;grid-template-columns:38.7755102040816% 59.1836734693878%;column-gap:2%;">
-<div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="subsec-scalar-matrix-ops-6-1-1">Command ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<pre class="program clipboardable"><code class="language-matlab">A = [1, 2; 3, 4]
-B = [10, 20; 30, 40]
-A + B
-A .* B
-B ./ A
-</code></pre>
-</div>
-<div class="sbspanel sbspanel--top top" style="">
-<div class="para" id="subsec-scalar-matrix-ops-6-2-1">Result ⤵︎<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<pre class="program clipboardable"><code class="language-matlab">A = [1, 2;
-     3, 4]
-B = [10, 20;
-     30, 40]
-  = [11, 22;
-     33, 44]
-  = [10, 40;
-     90, 160]
-  = [10, 10;
-     10, 10]
-</code></pre>
+<div data-component="tab" data-tabname="(b)">
+<article class="task exercise-like" id="quiz-min-max-2"><h4 class="heading">
+<span class="codenumber">(b)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Index returned by max.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="quiz-min-max-2-2-1">If <code class="code-inline tex2jax_ignore language-matlab">v = [2, 11, 5, 11]</code>, what does <code class="code-inline tex2jax_ignore language-matlab">[maxVal, idx] = max(v)</code> return?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-min-max-2" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-min-max-2_opt_a" data-correct="">
+<div class="para" id="quiz-min-max-2-3-1-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">maxVal = 11</code> and <code class="code-inline tex2jax_ignore language-matlab">idx = 2</code>
 </div>
-<div class="para" id="subsec-scalar-matrix-ops-7">The same shape-matching rule applies as before: the two matrices must have the same number of rows and the same number of columns. Trying to add a 2-by-3 matrix to a 3-by-2 matrix is an error, even though both have six elements; the shapes have to match exactly, not just the totals.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-2_opt_a">
+<div class="para" id="quiz-min-max-2-3-1-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">max</code> returns the largest value and the index of its first occurrence. The value <code class="code-inline tex2jax_ignore language-matlab">11</code> appears at positions 2 and 4, so MATLAB reports index 2.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-2_opt_b">
+<div class="para" id="quiz-min-max-2-3-2-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">maxVal = 11</code> and <code class="code-inline tex2jax_ignore language-matlab">idx = 4</code>
 </div>
-<details id="subsec-scalar-matrix-ops-8" class="aside aside-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">📝<span class="colon heading-divison-mark heading-divison-mark__colon">:</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The dot, finally explained.</span>
-</h3></summary>
-<aside class="aside aside-like knowl__content">
-<div class="para" id="subsec-scalar-matrix-ops-8-2">Back in the vectors chapter, the dot in <code class="code-inline tex2jax_ignore language-matlab">.*</code>, <code class="code-inline tex2jax_ignore language-matlab">./</code>, and <code class="code-inline tex2jax_ignore language-matlab">.^</code> was introduced with the explanation that the plain versions <code class="code-inline tex2jax_ignore language-matlab">*</code>, <code class="code-inline tex2jax_ignore language-matlab">/</code>, and <code class="code-inline tex2jax_ignore language-matlab">^</code> are “reserved for matrix operations”; but at the time there were no matrices around to make sense of the rule. Now there are. When MATLAB sees <code class="code-inline tex2jax_ignore language-matlab">A * B</code> for two matrices, it performs <dfn class="terminology">matrix multiplication</dfn>, which is a completely different operation from element-wise multiplication and follows different rules about what shapes are allowed. The same is true of <code class="code-inline tex2jax_ignore language-matlab">A \ B</code>, which solves a system of equations, and <code class="code-inline tex2jax_ignore language-matlab">A^2</code>, which means <code class="code-inline tex2jax_ignore language-matlab">A * A</code> as matrix multiplication. These operations come from linear algebra, and you will see them in math classes if you have not already. For programming purposes, the rule from the vectors chapter is unchanged: if you want the operation to apply element by element, use the dot.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-scalar-matrix-ops-8-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-2_opt_b">
+<div class="para" id="quiz-min-max-2-3-2-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">11</code> is the maximum, but MATLAB reports the first position where it occurs, not the last one.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-2_opt_c">
+<div class="para" id="quiz-min-max-2-3-3-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">maxVal = 5</code> and <code class="code-inline tex2jax_ignore language-matlab">idx = 3</code>
 </div>
-</aside></details><div class="autopermalink" data-description="Subsection: Scalar and Element-wise Operations"><a href="#subsec-scalar-matrix-ops" title="Copy heading and permalink for Subsection: Scalar and Element-wise Operations" aria-label="Copy heading and permalink for Subsection: Scalar and Element-wise Operations">🔗</a></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-2_opt_c">
+<div class="para" id="quiz-min-max-2-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">5</code> is not the largest value in the vector, so it cannot be the result of <code class="code-inline tex2jax_ignore language-matlab">max(v)</code>.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-2_opt_d">
+<div class="para" id="quiz-min-max-2-3-4-1-1">
+<code class="code-inline tex2jax_ignore language-matlab">maxVal = 2</code> and <code class="code-inline tex2jax_ignore language-matlab">idx = 1</code>
+</div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-2_opt_d">
+<div class="para" id="quiz-min-max-2-3-4-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">2</code> is the first value, not the maximum value.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task B.3.1.b: Index returned by max"><a href="#quiz-min-max-2" title="Copy heading and permalink for Task B.3.1.b: Index returned by max" aria-label="Copy heading and permalink for Task B.3.1.b: Index returned by max">🔗</a></div>
+</article>
+</div>
+<div data-component="tab" data-tabname="(c)">
+<article class="task exercise-like" id="quiz-min-max-3"><h4 class="heading">
+<span class="codenumber">(c)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Matrix results are column-wise.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="quiz-min-max-3-2-1">If<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">A = [3, 8;
+     5, 1;
+     4, 6];
+</code></pre></div> 
+<div class="para" id="quiz-min-max-3-2-3">what does <code class="code-inline tex2jax_ignore language-matlab">max(A)</code> return?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-3-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-min-max-3" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-min-max-3_opt_a" data-correct="">
+<div class="para" id="quiz-min-max-3-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">[5, 8]</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-3_opt_a">
+<div class="para" id="quiz-min-max-3-3-1-2-1">For a matrix, <code class="code-inline tex2jax_ignore language-matlab">max</code> works one column at a time. The maximum of the first column is 5, and the maximum of the second column is 8.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-3_opt_b">
+<div class="para" id="quiz-min-max-3-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">[8, 5]</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-3_opt_b">
+<div class="para" id="quiz-min-max-3-3-2-2-1">These are the right numbers in the wrong order. MATLAB reports one answer per column, so the first entry comes from column 1 and the second entry comes from column 2.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-3_opt_c">
+<div class="para" id="quiz-min-max-3-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">8</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-3_opt_c">
+<div class="para" id="quiz-min-max-3-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">8</code> is the largest value in the entire matrix, but <code class="code-inline tex2jax_ignore language-matlab">max(A)</code> does not flatten the matrix automatically. It returns one maximum per column.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-3_opt_d">
+<div class="para" id="quiz-min-max-3-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">[3, 1]</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-3_opt_d">
+<div class="para" id="quiz-min-max-3-3-4-2-1">Those are not the column maxima. In fact, they are the first-row entries of the matrix.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task B.3.1.c: Matrix results are column-wise"><a href="#quiz-min-max-3" title="Copy heading and permalink for Task B.3.1.c: Matrix results are column-wise" aria-label="Copy heading and permalink for Task B.3.1.c: Matrix results are column-wise">🔗</a></div>
+</article>
+</div>
+<div data-component="tab" data-tabname="(d)">
+<article class="task exercise-like" id="quiz-min-max-4"><h4 class="heading">
+<span class="codenumber">(d)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finding the whole-matrix maximum.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="quiz-min-max-4-2-1">Which expression returns the single largest entry in a matrix <code class="code-inline tex2jax_ignore language-matlab">A</code>?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-min-max-4" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-min-max-4_opt_a" data-correct="">
+<div class="para" id="quiz-min-max-4-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">max(A(:))</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-4_opt_a">
+<div class="para" id="quiz-min-max-4-3-1-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">A(:)</code> turns every entry of the matrix into one long vector, and then <code class="code-inline tex2jax_ignore language-matlab">max</code> returns the largest value from that vector.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-4_opt_b">
+<div class="para" id="quiz-min-max-4-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">max(A)</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-4_opt_b">
+<div class="para" id="quiz-min-max-4-3-2-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">max(A)</code> returns a row vector of column maxima, not one overall maximum.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-4_opt_c">
+<div class="para" id="quiz-min-max-4-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">max(size(A))</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-4_opt_c">
+<div class="para" id="quiz-min-max-4-3-3-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">size(A)</code> describes the shape of the matrix. Its maximum tells you the larger dimension, not the largest entry of the matrix.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-4_opt_d">
+<div class="para" id="quiz-min-max-4-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">A(max)</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-4_opt_d">
+<div class="para" id="quiz-min-max-4-3-4-2-1">This is not valid syntax for asking MATLAB to search through the entries of <code class="code-inline tex2jax_ignore language-matlab">A</code>.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task B.3.1.d: Finding the whole-matrix maximum"><a href="#quiz-min-max-4" title="Copy heading and permalink for Task B.3.1.d: Finding the whole-matrix maximum" aria-label="Copy heading and permalink for Task B.3.1.d: Finding the whole-matrix maximum">🔗</a></div>
+</article>
+</div>
+<div data-component="tab" data-tabname="(e)">
+<article class="task exercise-like" id="quiz-min-max-5"><h4 class="heading">
+<span class="codenumber">(e)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Row indices from matrix max.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="quiz-min-max-5-2-1">If<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="code-box"><pre class="program clipboardable"><code class="language-matlab">A = [4, 2, 9;
+     7, 5, 1;
+     3, 8, 6];
+</code></pre></div> 
+<div class="para" id="quiz-min-max-5-2-3">what is the second output in <code class="code-inline tex2jax_ignore language-matlab">[colMaxes, rowIdx] = max(A)</code>?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-5-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-min-max-5" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-min-max-5_opt_a" data-correct="">
+<div class="para" id="quiz-min-max-5-3-1-1-1"><code class="code-inline tex2jax_ignore language-matlab">[2, 3, 1]</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-5_opt_a">
+<div class="para" id="quiz-min-max-5-3-1-2-1">The maxima occur at row 2 in column 1, row 3 in column 2, and row 1 in column 3. The second output records those row locations.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-5_opt_b">
+<div class="para" id="quiz-min-max-5-3-2-1-1"><code class="code-inline tex2jax_ignore language-matlab">[7, 8, 9]</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-5_opt_b">
+<div class="para" id="quiz-min-max-5-3-2-2-1">Those are the maximum values themselves, which belong in the first output, not the second one.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-5_opt_c">
+<div class="para" id="quiz-min-max-5-3-3-1-1"><code class="code-inline tex2jax_ignore language-matlab">[1, 2, 3]</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-5_opt_c">
+<div class="para" id="quiz-min-max-5-3-3-2-1">This would only happen if each maximum appeared on the diagonal, but that is not where the maxima are in this matrix.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-5_opt_d">
+<div class="para" id="quiz-min-max-5-3-4-1-1"><code class="code-inline tex2jax_ignore language-matlab">[3, 2, 1]</code></div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-5_opt_d">
+<div class="para" id="quiz-min-max-5-3-4-2-1">The last two positions are reversed. Check each column separately and record the row where the maximum appears.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task B.3.1.e: Row indices from matrix max"><a href="#quiz-min-max-5" title="Copy heading and permalink for Task B.3.1.e: Row indices from matrix max" aria-label="Copy heading and permalink for Task B.3.1.e: Row indices from matrix max">🔗</a></div>
+</article>
+</div>
+<div data-component="tab" data-tabname="(f)">
+<article class="task exercise-like" id="quiz-min-max-6"><h4 class="heading">
+<span class="codenumber">(f)</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Using min and max together.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone multiplechoice_section">
+<div class="exercise-statement">
+<div class="para" id="quiz-min-max-6-2-1">If <code class="code-inline tex2jax_ignore language-matlab">v = [10, 14, 6, 9]</code>, what does <code class="code-inline tex2jax_ignore language-matlab">max(v) - min(v)</code> compute?<div class="autopermalink" data-description="Paragraph"><a href="#quiz-min-max-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul data-component="multiplechoice" class="exercise-interactives" id="rs-quiz-min-max-6" data-multipleanswers="false">
+<li data-component="answer" id="rs-quiz-min-max-6_opt_a" data-correct="">
+<div class="para" id="quiz-min-max-6-3-1-1-1">The difference between the largest and smallest values</div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-6_opt_a">
+<div class="para" id="quiz-min-max-6-3-1-2-1">
+<code class="code-inline tex2jax_ignore language-matlab">max(v)</code> gives the top value and <code class="code-inline tex2jax_ignore language-matlab">min(v)</code> gives the bottom value, so subtracting them measures how spread out the data is.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-6_opt_b">
+<div class="para" id="quiz-min-max-6-3-2-1-1">The sum of all entries in the vector</div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-6_opt_b">
+<div class="para" id="quiz-min-max-6-3-2-2-1">To add every entry, you would use <code class="code-inline tex2jax_ignore language-matlab">sum(v)</code>, not <code class="code-inline tex2jax_ignore language-matlab">max(v) - min(v)</code>.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-6_opt_c">
+<div class="para" id="quiz-min-max-6-3-3-1-1">The index of the largest value</div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-6_opt_c">
+<div class="para" id="quiz-min-max-6-3-3-2-1">Indices are only returned when you ask for a second output, such as <code class="code-inline tex2jax_ignore language-matlab">[largest, idx] = max(v)</code>.</div>
+</li>
+<li data-component="answer" id="rs-quiz-min-max-6_opt_d">
+<div class="para" id="quiz-min-max-6-3-4-1-1">The average of the vector</div>
+</li>
+<li data-component="feedback" id="rs-quiz-min-max-6_opt_d">
+<div class="para" id="quiz-min-max-6-3-4-2-1">The average is computed with <code class="code-inline tex2jax_ignore language-matlab">mean(v)</code>, not by subtracting the minimum from the maximum.</div>
+</li>
+</ul>
+</div></div>
+<div class="autopermalink" data-description="Task B.3.1.f: Using min and max together"><a href="#quiz-min-max-6" title="Copy heading and permalink for Task B.3.1.f: Using min and max together" aria-label="Copy heading and permalink for Task B.3.1.f: Using min and max together">🔗</a></div>
+</article>
+</div>
+</div></div></div>
+<div class="autopermalink" data-description="Reading Question B.3.1"><a href="#rqs-min-max-2" title="Copy heading and permalink for Reading Question B.3.1" aria-label="Copy heading and permalink for Reading Question B.3.1">🔗</a></div>
+</article><div class="autopermalink" data-description="Reading Questions B.3: Check Your Understanding"><a href="#rqs-min-max" title="Copy heading and permalink for Reading Questions B.3: Check Your Understanding" aria-label="Copy heading and permalink for Reading Questions B.3: Check Your Understanding">🔗</a></div>
+</section><div class="autopermalink" data-description="Subsection B.3: The min and max functions"><a href="#subsec-min-max" title="Copy heading and permalink for Subsection B.3: The min and max functions" aria-label="Copy heading and permalink for Subsection B.3: The min and max functions">🔗</a></div>
 </section>
 </div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-broadcasting-matrix-functions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="subsec-floor-ceil-round.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
