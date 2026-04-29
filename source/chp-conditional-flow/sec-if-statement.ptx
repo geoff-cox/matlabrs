@@ -864,16 +864,33 @@
 			</task>
 
 			<task label="chk-if-end">
-					<statement><p>Every MATLAB <pf>if</pf> block must be closed with which keyword?</p></statement>
-					<choices>
-							<choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct. <pf>end</pf> closes the if block.</p></feedback></choice>
-							<choice><statement><p><pf>endif</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>, not <pf>endif</pf>.</p></feedback></choice>
-							<choice><statement><p><pf>stop</pf></p></statement><feedback><p><pf>stop</pf> is not a MATLAB keyword for closing blocks.</p></feedback></choice>
-							<choice><statement><p><pf>done</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf> to close all control structures.</p></feedback></choice>
-					</choices>
+				<statement><p>Every MATLAB <pf>if</pf> block must be closed with which keyword?</p></statement>
+				<choices>
+					<choice correct="yes"><statement><p><pf>end</pf></p></statement><feedback><p>Correct. <pf>end</pf> closes the if block.</p></feedback></choice>
+					<choice><statement><p><pf>endif</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf>, not <pf>endif</pf>.</p></feedback></choice>
+					<choice><statement><p><pf>stop</pf></p></statement><feedback><p><pf>stop</pf> is not a MATLAB keyword for closing blocks.</p></feedback></choice>
+					<choice><statement><p><pf>done</pf></p></statement><feedback><p>MATLAB uses <pf>end</pf> to close all control structures.</p></feedback></choice>
+				</choices>
 			</task>
 
 			<task label="chk-if-branches">
+				<statement><p>In an if/elseif/else chain, how many branches execute when the first condition is true?</p></statement>
+				<choices>
+					<choice correct="yes"><statement><p>Only the first true branch executes.</p></statement><feedback><p>Correct. MATLAB evaluates top to bottom and executes only the first matching branch.</p></feedback></choice>
+					<choice><statement><p>All true branches execute.</p></statement><feedback><p>No — once a true branch is found, the rest are skipped.</p></feedback></choice>
+					<choice><statement><p>The last matching branch executes.</p></statement><feedback><p>MATLAB takes the first match, not the last.</p></feedback></choice>
+					<choice><statement><p>Both the matching branch and the else branch execute.</p></statement><feedback><p>The else branch only runs when no condition is true.</p></feedback></choice>
+				</choices>
+			</task>
+
+			<task label="chk-if-false">
+				<statement><p>In MATLAB, a condition is considered false when it evaluates to:</p></statement>
+				<choices>
+					<choice correct="yes"><statement><p>Zero (0).</p></statement><feedback><p>Correct. Zero is false; any nonzero value is true.</p></feedback></choice>
+					<choice><statement><p>The string <pf>'false'</pf>.</p></statement><feedback><p>MATLAB uses numeric 0/1 for logical values, not strings.</p></feedback></choice>
+					<choice><statement><p>An empty matrix <pf>[]</pf>.</p></statement><feedback><p>An empty matrix is also treated as false, but the most common false value is 0.</p></feedback></choice>
+					<choice><statement><p>A negative number.</p></statement><feedback><p>Any nonzero number — positive or negative — is true in MATLAB.</p></feedback></choice>
+				</choices>
 					<statement><p>In an if/elseif/else chain, how many branches execute when the first condition is true?</p></statement>
 					<choices>
 							<choice correct="yes"><statement><p>Only the first true branch executes.</p></statement><feedback><p>Correct. MATLAB evaluates top to bottom and executes only the first matching branch.</p></feedback></choice>
@@ -894,15 +911,18 @@
 			</task>
 
         <task label="rq-if-trace-1">
-            <statement><p>What is printed by the following code?</p>
-            <program language="matlab">x = 5;
-if x &gt; 10
-    disp('big')
-elseif x &gt; 3
-    disp('medium')
-else
-    disp('small')
-end</program></statement>
+            <statement>
+				<p>What is printed by the following code?</p>
+				<program language="matlab">x = 5;
+					if x &gt; 10
+						disp('big')
+					elseif x &gt; 3
+						disp('medium')
+					else
+						disp('small')
+					end
+				</program>
+			</statement>
             <choices>
                 <choice correct="yes"><statement><p><c>medium</c></p></statement><feedback><p>Correct. <pf>x = 5</pf> is not greater than 10, but is greater than 3.</p></feedback></choice>
                 <choice><statement><p><c>big</c></p></statement><feedback><p><pf>5 &gt; 10</pf> is false.</p></feedback></choice>
