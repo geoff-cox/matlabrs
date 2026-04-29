@@ -2873,7 +2873,7 @@
 		<task label="vectors-coding-nthLargest">
 			<statement>
 				<p>
-					⭐ Write a function <pf>nthLargest()</pf> that takes a vector <pf>v</pf> and an integer <pf>n</pf>, and returns the nth largest value and the position of its first occurrence. If the largest value appears more than once, the nth largest value is still the largest value strictly less than that maximum. Use a loop.
+					⭐ Write a function <pf>nthLargest()</pf> that takes a vector <pf>v</pf> and an integer <pf>n</pf>, and returns the nth largest value and the position of its first occurrence. If the largest value appears more than once, the nth largest value is still the largest value strictly less than that maximum. Use a loop and MATLAB's <pf>max()</pf> function, but no other built-in functions.
 				</p>
 
 				<tabular valign="top" top="minor" right="minor" left="minor">
@@ -2901,50 +2901,51 @@
 					</row>
 				</tabular>
 
-				<sidebyside widths="62% 36%">
+				<sidebyside widths="68% 28%">
 					<stack>
 						<p>Test Cases ⤵︎</p>
 						<program language="matlab">
-							[val, loc] = nthLargest([1, 1, 1, -9, 0, 0, 6, 6, -1, 6, 7, 1, 2], 2)
-							[val, loc] = nthLargest([7, 1, 6, 3], 2)
-							[val, loc] = nthLargest([-3, -1, -8, -2], 2)
+							[val, loc] = nthLargest([5 6 6 -1 6 7 5], 2)
+							[val, loc] = nthLargest([5 6 6 -1 6 7 5], 3)
+							[val, loc] = nthLargest([7 1 6 3], 2)
+							[val, loc] = nthLargest([-3 -1 -8 -2], 2)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							val = 6,  loc = 7
-							val = 6,  loc = 3
-							val = -2, loc = 4
+							val= 6, loc= 7
+							val= 6, loc= 3
+							val=-2, loc= 4
 						</program>
 					</stack>
 				</sidebyside>
 			</statement>
 
+			<hint>
+				<p>
+					To find the nth largest value, you can repeatedly find the maximum value using MATLAB's <pf>max()</pf> function and replace it with something smaller (like <pf>-Inf</pf>) until you have found the maximum n times. Be careful to handle the case where the maximum value appears more than once.
+				</p>
+			</hint>
+
 			<solution component="exercise-solution">
 				<p>
-					Here is one possible solution. The function tracks the current largest value and the current best candidate for second largest at the same time.
+					Here is one possible solution. The code repeatedly finds the maximum value and its index, then replaces that value with negative infinity so it won't be found again. The loop continues until the nth largest value is found.
 				</p>
 				<program language="matlab">
 					function [val, loc] = nthLargest(v, n)
-						maxVal = v(1);
-						maxLoc = 1;
-						val = [];
-						loc = [];
-
-						for i = 2:length(v)
-							if v(i) &gt; maxVal
-								val = maxVal;
-								loc = maxLoc;
-								maxVal = v(i);
-								maxLoc = i;
-							elseif v(i) &lt; maxVal
-								if isempty(val) || v(i) &gt; val
-									val = v(i);
-									loc = i;
-								end
+						found = 0;
+						prevMax = -Inf;
+						while found &lt; n
+							[thisMax, idx] = max(v);
+							if prevMax ~= thisMax
+								found = found + 1;
 							end
+							prevMax = thisMax;
+							v(idx) = -Inf;
 						end
+						val = thisMax;
+						loc = idx;
 					end
 				</program>
 			</solution>

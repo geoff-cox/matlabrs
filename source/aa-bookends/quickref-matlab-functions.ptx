@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<appendix xml:id="appdx-matlab-functions" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<title>Quick Reference: Built-In MATLAB Functions</title>
+
+	<p>
+		This appendix provides a quick reference for built-in MATLAB functions
+		used throughout this textbook. Each entry includes a brief description
+		and example usage. For more detailed coverage of <pf>mod</pf>, see
+		<xref ref="subsec-mod"/>. For <pf>floor</pf>, <pf>ceil</pf>, and
+		<pf>round</pf>, see <xref ref="subsec-floor-ceil-round"/>.
+	</p>
+
+	<paragraphs xml:id="appdx-math-functions">
+		<title>Mathematical Functions</title>
+		<p>
+			<dl width="narrow">
+				<li xml:id="func-abs">
+					<title><pf>abs</pf></title>
+					<p>
+						Returns the absolute value of a number (its distance from zero).
+					</p>
+					<program language="matlab">
+						<code>
+							abs(-7)    % returns 7
+							abs(3.2)   % returns 3.2
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-sqrt">
+					<title><pf>sqrt</pf></title>
+					<p>
+						Returns the square root of a number.
+					</p>
+					<program language="matlab">
+						<code>
+							sqrt(25)   % returns 5
+							sqrt(2)    % returns 1.4142
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-factorial">
+					<title><pf>factorial</pf></title>
+					<p>
+						Returns the factorial of a non-negative integer, i.e., <m>n! = 1 \cdot 2 \cdot 3 \cdots n</m>.
+					</p>
+					<program language="matlab">
+						<code>
+							factorial(5)   % returns 120
+							factorial(0)   % returns 1
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-gcd">
+					<title><pf>gcd</pf></title>
+					<p>
+						Returns the greatest common divisor of two integers.
+					</p>
+					<program language="matlab">
+						<code>
+							gcd(12, 8)    % returns 4
+							gcd(7, 3)     % returns 1
+						</code>
+					</program>
+				</li>
+			</dl>
+		</p>
+	</paragraphs>
+
+	<paragraphs xml:id="appdx-rounding-functions">
+		<title>Rounding Functions</title>
+
+		<p>
+			See <xref ref="subsec-floor-ceil-round"/> for a detailed comparison of
+			these three functions.
+			<dl width="narrow">
+				<li xml:id="func-floor">
+					<title><pf>floor</pf></title>
+					<p>
+						Rounds a number <em>down</em> (toward <m>-\infty</m>) to the nearest integer.
+					</p>
+					<program language="matlab">
+						<code>
+							floor(3.7)    % returns 3
+							floor(-2.3)   % returns -3
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-ceil">
+					<title><pf>ceil</pf></title>
+					<p>
+						Rounds a number <em>up</em> (toward <m>+\infty</m>) to the nearest integer.
+					</p>
+					<program language="matlab">
+						<code>
+		ceil(3.2)    % returns 4
+		ceil(-2.7)   % returns -2
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-round">
+					<title><pf>round</pf></title>
+					<p>
+						Rounds to the nearest integer. Halfway values round away from zero.
+					</p>
+					<program language="matlab">
+						<code>
+		round(3.5)    % returns 4
+		round(2.3)    % returns 2
+						</code>
+					</program>
+				</li>
+			</dl>
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="appdx-trig-functions">
+		<title>Trigonometric Functions</title>
+
+		<p>
+			MATLAB's trigonometric functions use <em>radians</em>, not degrees.
+			A full circle is <m>2\pi</m> radians. To convert degrees to radians,
+			multiply by <m>\pi/180</m>.
+			<dl width="narrow">
+				<li xml:id="func-sin">
+					<title><pf>sin</pf></title>
+					<p>
+						Returns the sine of an angle given in radians.
+					</p>
+					<program language="matlab">
+						<code>
+							sin(0)        % returns 0
+							sin(pi/2)     % returns 1
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-cos">
+					<title><pf>cos</pf></title>
+					<p>
+						Returns the cosine of an angle given in radians.
+					</p>
+					<program language="matlab">
+						<code>
+							cos(0)        % returns 1
+							cos(pi)       % returns -1
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-tan">
+					<title><pf>tan</pf></title>
+					<p>
+						Returns the tangent of an angle given in radians.
+					</p>
+					<program language="matlab">
+						<code>
+							tan(0)        % returns 0
+							tan(pi/4)     % returns 1
+						</code>
+					</program>
+				</li>
+			</dl>
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="appdx-random-functions">
+		<title>Random Number Functions</title>
+		
+		<p>
+			<dl width="narrow">
+				<li xml:id="func-rand">
+					<title><pf>rand</pf></title>
+					<p>
+						Generates uniformly distributed random numbers between 0 and 1.
+					</p>
+					<program language="matlab">
+						<code>
+							rand          % a single random number in [0, 1)
+							rand(1, 5)    % a 1-by-5 row vector of random numbers
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-randi">
+					<title><pf>randi</pf></title>
+					<p>
+						Generates uniformly distributed random integers. The first argument
+						specifies the range.
+					</p>
+					<program language="matlab">
+						<code>
+							randi(6)          % random integer from 1 to 6
+							randi([0, 1])     % random integer: 0 or 1 (coin flip)
+							randi(10, 1, 5)   % five random integers from 1 to 10
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-rng">
+					<title><pf>rng</pf></title>
+					<p>
+						Sets the random number seed so that results are reproducible.
+						Using the same seed produces the same sequence of random numbers. Try it out!
+					</p>
+					<p>
+						Press <kbd>Evaluate</kbd> multiple times. Notice that the same random numbers are generated each time.
+					</p>
+					<sage language="octave">
+						<input>
+							rng(42); 
+							fprintf('%d, %d, %d\n', ...
+										randi(9), randi(9), randi(9)); 
+						</input>
+					</sage>
+					<p>
+						Now try it without <pf>rng(42)</pf>. Press <kbd>Evaluate</kbd> multiple times and see how the output changes each time.
+					</p>
+					<sage language="octave">
+						<input>
+							fprintf('%d, %d, %d\n', ...
+										randi(9), randi(9), randi(9));
+						</input>
+					</sage>
+				</li>
+			</dl>
+		</p>
+
+	</paragraphs>
+
+	<paragraphs xml:id="appdx-output-functions">
+		<title>Output/Display Functions</title>
+		<p>
+			<dl width="narrow">
+				<li xml:id="func-fprintf">
+					<title><pf>fprintf</pf></title>
+					<p>
+						Prints formatted text to the Command Window. Use <pf>%d</pf> for
+						integers, <pf>%f</pf> for decimals, <pf>%g</pf> for general numbers,
+						<pf>%s</pf> for strings, and <pf>\n</pf> for a new line.
+					</p>
+					<program language="matlab">
+						<code>
+							fprintf('The answer is %d\n', 42)
+							fprintf('Pi is approximately %.4f\n', pi)
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-disp">
+					<title><pf>disp</pf></title>
+					<p>
+						Displays a value or string in the Command Window without the
+						variable name.
+					</p>
+					<program language="matlab">
+						<code>
+							disp(42)              % displays: 42
+							disp('Hello World')   % displays: Hello World
+						</code>
+					</program>
+				</li>
+			</dl>
+		</p>
+	</paragraphs>
+
+	<paragraphs xml:id="appdx-input-functions">
+		<title>Input Functions</title>
+		<p>
+			<dl width="narrow">
+				<li xml:id="func-input">
+					<title><pf>input</pf></title>
+					<p>
+						Prompts the user to enter a value at the Command Window.
+						The program pauses until the user types a response and presses Enter.
+					</p>
+					<p>
+						The following command expects a numeric input. If the user types a number, it is stored in variable <pf>x</pf>. 
+					</p>
+					<program language="matlab">
+						<code>
+							x = input('Enter a number: ');
+						</code>
+					</program>
+					<p>
+						When you want text input, add the second argument 's'. Now, if the user types text, it is stored in variable <pf>name</pf>. 
+					</p>
+					<program language="matlab">
+						<code>
+							name = input('Enter your name: ', 's');
+						</code>
+					</program>
+				</li>
+			</dl>
+		</p>
+	</paragraphs>
+
+</appendix>
