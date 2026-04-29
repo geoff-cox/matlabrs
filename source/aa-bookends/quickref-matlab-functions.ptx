@@ -8,7 +8,8 @@
 		used throughout this textbook. Each entry includes a brief description
 		and example usage. For more detailed coverage of <pf>mod</pf>, see
 		<xref ref="subsec-mod"/>. For <pf>floor</pf>, <pf>ceil</pf>, and
-		<pf>round</pf>, see <xref ref="subsec-floor-ceil-round"/>.
+		<pf>round</pf>, see <xref ref="subsec-floor-ceil-round"/>. For
+		<pf>min</pf> and <pf>max</pf>, see <xref ref="subsec-min-max"/>.
 	</p>
 
 	<paragraphs xml:id="appdx-math-functions">
@@ -63,6 +64,34 @@
 						<code>
 							gcd(12, 8)    % returns 4
 							gcd(7, 3)     % returns 1
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-min">
+					<title><pf>min</pf></title>
+					<p>
+						Returns the smallest value in a vector. For a matrix, <pf>min(A)</pf>
+						returns a row vector containing the minimum of each column.
+					</p>
+					<program language="matlab">
+						<code>
+							min([4, 1, 9])         % returns 1
+							min([4, 9; 7, 3])      % returns [4, 3]
+						</code>
+					</program>
+				</li>
+
+				<li xml:id="func-max">
+					<title><pf>max</pf></title>
+					<p>
+						Returns the largest value in a vector. For a matrix, <pf>max(A)</pf>
+						returns a row vector containing the maximum of each column.
+					</p>
+					<program language="matlab">
+						<code>
+							max([4, 1, 9])         % returns 9
+							max([4, 9; 7, 3])      % returns [7, 9]
 						</code>
 					</program>
 				</li>

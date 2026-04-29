@@ -1,0 +1,283 @@
+<subsection xml:id="subsec-min-max">
+  <title>The min and max functions</title>
+
+  <p>
+    The built-in functions <pf>min</pf> and <pf>max</pf> find the smallest and largest values in data.
+    They are especially useful when you want a quick summary of a vector or matrix without writing a loop.
+  </p>
+
+  <assemblage xml:id="min-max-syntax">
+    <title><pf>min</pf> and <pf>max</pf> Syntax</title>
+    <p>
+      <pf>smallest = min(v)</pf> and <pf>largest = max(v)</pf>
+    </p>
+    <p>
+      <pf>[smallest, idx] = min(v)</pf> and <pf>[largest, idx] = max(v)</pf>
+    </p>
+    <p>
+      <pf>colMins = min(A)</pf> and <pf>colMaxes = max(A)</pf>
+    </p>
+    <p>
+      For a vector <pf>v</pf>, these functions return a single value. For a matrix <pf>A</pf>, they work column by column unless you first turn the matrix into one long vector with <pf>A(:)</pf>.
+    </p>
+  </assemblage>
+
+  <p>
+    <em>Vectors.</em> If the input is a vector, <pf>min</pf> returns the smallest entry and <pf>max</pf> returns the largest entry. With two outputs, MATLAB also returns the position where the extreme value occurs.
+  </p>
+
+  <example xml:id="ex-min-max-vector">
+    <title>Using <pf>min</pf> and <pf>max</pf> with a Vector</title>
+    <statement>
+      <p>
+        Suppose <pf>v</pf> stores several measurements:
+      </p>
+      <program language="matlab">
+        v = [12, 5, 19, 8, 19];
+        x = min(v)              % returns 5
+        [maxVal, idx] = max(v)  % returns 19 and 3
+      </program>
+      <p>
+        The call <pf>min(v)</pf> scans the whole vector and returns the smallest value. The call <pf>[maxVal, idx] = max(v)</pf> returns two pieces of information: the largest value, and the position of its first occurrence. Here the maximum value <pf>19</pf> appears twice, but MATLAB reports index <pf>3</pf> because that is where the first <pf>19</pf> appears.
+      </p>
+      <p>
+        A common pattern is to combine the two functions to measure the spread of the data:
+      </p>
+      <program language="matlab">
+        dataRange = max(v) - min(v)   % returns 14
+      </program>
+    </statement>
+  </example>
+
+  <p>
+    <em>Matrices.</em> If the input is a matrix, MATLAB applies <pf>min</pf> or <pf>max</pf> to each column separately. The result is a row vector containing one answer per column.
+  </p>
+
+  <example xml:id="ex-min-max-matrix-columns">
+    <title>Column-wise Results for a Matrix</title>
+    <statement>
+      <p>
+        Let
+      </p>
+      <program language="matlab">
+        A = [4, 9, 2;
+             7, 3, 8;
+             1, 6, 5];
+
+        colMins = min(A)            % returns [1, 3, 2]
+        [colMaxes, rowIdx] = max(A) % returns [7, 9, 8] and [2, 1, 2]
+      </program>
+      <p>
+        The first output of <pf>min(A)</pf> is a row vector of the column minima. The two-output form of <pf>max(A)</pf> returns the maximum value in each column and the row where that maximum occurs. So the largest entry in column 1 is <pf>7</pf> in row <pf>2</pf>, the largest entry in column 2 is <pf>9</pf> in row <pf>1</pf>, and the largest entry in column 3 is <pf>8</pf> in row <pf>2</pf>.
+      </p>
+    </statement>
+  </example>
+
+  <p>
+    Sometimes you want the extreme value from the entire matrix, not one answer per column. The standard MATLAB idiom is to flatten the matrix with <pf>A(:)</pf>, which turns every entry into a single column vector.
+  </p>
+
+  <example xml:id="ex-min-max-whole-matrix">
+    <title>Finding the Extreme Value in an Entire Matrix</title>
+    <statement>
+      <p>
+        Continuing with the same matrix <pf>A</pf>:
+      </p>
+      <program language="matlab">
+        overallMin = min(A(:))   % returns 1
+        overallMax = max(A(:))   % returns 9
+      </program>
+      <p>
+        The expression <pf>A(:)</pf> collects all entries of <pf>A</pf> into one vector, so <pf>min</pf> and <pf>max</pf> now work on the entire matrix at once.
+      </p>
+    </statement>
+  </example>
+
+  <reading-questions xml:id="rqs-min-max">
+    <title>Check Your Understanding</title>
+
+    <exercise>
+
+      <task xml:id="quiz-min-max-1">
+        <title>Smallest value in a vector</title>
+        <statement>
+          <p>
+            If <pf>v = [7, 4, 9, 6]</pf>, what does <pf>min(v)</pf> return?
+          </p>
+        </statement>
+        <choices randomize="no">
+          <choice correct="yes">
+            <statement><p><pf>4</pf></p></statement>
+            <feedback><p><pf>min</pf> returns the smallest entry in the whole vector. Among 7, 4, 9, and 6, the smallest is <pf>4</pf>.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>7</pf></p></statement>
+            <feedback><p><pf>7</pf> is the first entry, but <pf>min</pf> looks through the entire vector, not just the first position.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>9</pf></p></statement>
+            <feedback><p><pf>9</pf> is the largest entry, so it is the result of <pf>max(v)</pf>, not <pf>min(v)</pf>.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>6</pf></p></statement>
+            <feedback><p><pf>6</pf> is neither the smallest nor the largest entry in the vector.</p></feedback>
+          </choice>
+        </choices>
+      </task>
+
+      <task xml:id="quiz-min-max-2">
+        <title>Index returned by max</title>
+        <statement>
+          <p>
+            If <pf>v = [2, 11, 5, 11]</pf>, what does <pf>[maxVal, idx] = max(v)</pf> return?
+          </p>
+        </statement>
+        <choices randomize="no">
+          <choice correct="yes">
+            <statement><p><pf>maxVal = 11</pf> and <pf>idx = 2</pf></p></statement>
+            <feedback><p><pf>max</pf> returns the largest value and the index of its first occurrence. The value <pf>11</pf> appears at positions 2 and 4, so MATLAB reports index 2.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>maxVal = 11</pf> and <pf>idx = 4</pf></p></statement>
+            <feedback><p><pf>11</pf> is the maximum, but MATLAB reports the first position where it occurs, not the last one.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>maxVal = 5</pf> and <pf>idx = 3</pf></p></statement>
+            <feedback><p><pf>5</pf> is not the largest value in the vector, so it cannot be the result of <pf>max(v)</pf>.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>maxVal = 2</pf> and <pf>idx = 1</pf></p></statement>
+            <feedback><p><pf>2</pf> is the first value, not the maximum value.</p></feedback>
+          </choice>
+        </choices>
+      </task>
+
+      <task xml:id="quiz-min-max-3">
+        <title>Matrix results are column-wise</title>
+        <statement>
+          <p>
+            If
+          </p>
+          <program language="matlab">
+            A = [3, 8;
+                 5, 1;
+                 4, 6];
+          </program>
+          <p>
+            what does <pf>max(A)</pf> return?
+          </p>
+        </statement>
+        <choices randomize="no">
+          <choice correct="yes">
+            <statement><p><pf>[5, 8]</pf></p></statement>
+            <feedback><p>For a matrix, <pf>max</pf> works one column at a time. The maximum of the first column is 5, and the maximum of the second column is 8.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>[8, 5]</pf></p></statement>
+            <feedback><p>These are the right numbers in the wrong order. MATLAB reports one answer per column, so the first entry comes from column 1 and the second entry comes from column 2.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>8</pf></p></statement>
+            <feedback><p><pf>8</pf> is the largest value in the entire matrix, but <pf>max(A)</pf> does not flatten the matrix automatically. It returns one maximum per column.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>[3, 1]</pf></p></statement>
+            <feedback><p>Those are not the column maxima. In fact, they are the first-row entries of the matrix.</p></feedback>
+          </choice>
+        </choices>
+      </task>
+
+      <task xml:id="quiz-min-max-4">
+        <title>Finding the whole-matrix maximum</title>
+        <statement>
+          <p>
+            Which expression returns the single largest entry in a matrix <pf>A</pf>?
+          </p>
+        </statement>
+        <choices randomize="no">
+          <choice correct="yes">
+            <statement><p><pf>max(A(:))</pf></p></statement>
+            <feedback><p><pf>A(:)</pf> turns every entry of the matrix into one long vector, and then <pf>max</pf> returns the largest value from that vector.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>max(A)</pf></p></statement>
+            <feedback><p><pf>max(A)</pf> returns a row vector of column maxima, not one overall maximum.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>max(size(A))</pf></p></statement>
+            <feedback><p><pf>size(A)</pf> describes the shape of the matrix. Its maximum tells you the larger dimension, not the largest entry of the matrix.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>A(max)</pf></p></statement>
+            <feedback><p>This is not valid syntax for asking MATLAB to search through the entries of <pf>A</pf>.</p></feedback>
+          </choice>
+        </choices>
+      </task>
+
+      <task xml:id="quiz-min-max-5">
+        <title>Row indices from matrix max</title>
+        <statement>
+          <p>
+            If
+          </p>
+          <program language="matlab">
+            A = [4, 2, 9;
+                 7, 5, 1;
+                 3, 8, 6];
+          </program>
+          <p>
+            what is the second output in <pf>[colMaxes, rowIdx] = max(A)</pf>?
+          </p>
+        </statement>
+        <choices randomize="no">
+          <choice correct="yes">
+            <statement><p><pf>[2, 3, 1]</pf></p></statement>
+            <feedback><p>The maxima occur at row 2 in column 1, row 3 in column 2, and row 1 in column 3. The second output records those row locations.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>[7, 8, 9]</pf></p></statement>
+            <feedback><p>Those are the maximum values themselves, which belong in the first output, not the second one.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>[1, 2, 3]</pf></p></statement>
+            <feedback><p>This would only happen if each maximum appeared on the diagonal, but that is not where the maxima are in this matrix.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p><pf>[3, 2, 1]</pf></p></statement>
+            <feedback><p>The last two positions are reversed. Check each column separately and record the row where the maximum appears.</p></feedback>
+          </choice>
+        </choices>
+      </task>
+
+      <task xml:id="quiz-min-max-6">
+        <title>Using min and max together</title>
+        <statement>
+          <p>
+            If <pf>v = [10, 14, 6, 9]</pf>, what does <pf>max(v) - min(v)</pf> compute?
+          </p>
+        </statement>
+        <choices randomize="no">
+          <choice correct="yes">
+            <statement><p>The difference between the largest and smallest values</p></statement>
+            <feedback><p><pf>max(v)</pf> gives the top value and <pf>min(v)</pf> gives the bottom value, so subtracting them measures how spread out the data is.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p>The sum of all entries in the vector</p></statement>
+            <feedback><p>To add every entry, you would use <pf>sum(v)</pf>, not <pf>max(v) - min(v)</pf>.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p>The index of the largest value</p></statement>
+            <feedback><p>Indices are only returned when you ask for a second output, such as <pf>[largest, idx] = max(v)</pf>.</p></feedback>
+          </choice>
+          <choice>
+            <statement><p>The average of the vector</p></statement>
+            <feedback><p>The average is computed with <pf>mean(v)</pf>, not by subtracting the minimum from the maximum.</p></feedback>
+          </choice>
+        </choices>
+      </task>
+
+    </exercise>
+
+  </reading-questions>
+
+</subsection>
