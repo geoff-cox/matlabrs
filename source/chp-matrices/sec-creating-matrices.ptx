@@ -16,12 +16,12 @@
 		<aside>
 			<title>Vocabulary across languages</title>
 			<p>
-				Other programming languages call the same idea a <q>2D array</q> or a <q>nested list.</q> Python's NumPy calls them <q>2D arrays</q> and treats them as a special case of a more general n-dimensional array. The vocabulary varies; the picture — a rectangular grid of numbers — is the same everywhere.
+				Other programming languages call the same idea a <q>2D array</q> or a <q>nested list.</q> Python's NumPy calls them <q>2D arrays</q> and treats them as a special case of a more general n-dimensional array. The vocabulary varies; the picture; a rectangular grid of numbers; is the same everywhere.
 			</p>
 		</aside>
 
 		<p>
-			A vector is really just a matrix with one row (or one column), and almost everything you learned in the previous chapter still applies — building, indexing, slicing, modifying, vectorized arithmetic, and looping. The main differences are that you now need <em>two</em> indices to talk about a single element, and many of MATLAB's built-in tools take both a number of rows and a number of columns.
+			A vector is really just a matrix with one row (or one column), and almost everything you learned in the previous chapter still applies; building, indexing, slicing, modifying, vectorized arithmetic, and looping. The main differences are that you now need <em>two</em> indices to talk about a single element, and many of MATLAB's built-in tools take both a number of rows and a number of columns.
 		</p>
 
 	</subsection>
@@ -44,7 +44,7 @@
 		</sage>
 
 		<p>
-			MATLAB displays the result as a 3×3 grid, with one row per line. The semicolons inside the brackets are doing exactly what they did when you wrote a column vector as <pf>[1; 2; 3]</pf> back in the vectors chapter — each semicolon means <q>start a new row.</q> A column vector is just a matrix that happens to have one column.
+			MATLAB displays the result as a 3×3 grid, with one row per line. The semicolons inside the brackets are doing exactly what they did when you wrote a column vector as <pf>[1; 2; 3]</pf> back in the vectors chapter; each semicolon means <q>start a new row.</q> A column vector is just a matrix that happens to have one column.
 		</p>
 
 		<p>
@@ -76,7 +76,7 @@
 		</sidebyside>
 
 		<p>
-			Now the <q>two arguments</q> rule from the vectors chapter makes more sense — <pf>zeros</pf> and <pf>ones</pf> were always matrix functions, and a row vector was simply the special case where the first argument was <pf>1</pf>.
+			Now the <q>two arguments</q> rule from the vectors chapter makes more sense; <pf>zeros</pf> and <pf>ones</pf> were always matrix functions, and a row vector was simply the special case where the first argument was <pf>1</pf>.
 		</p>
 
 		<p>
@@ -130,7 +130,7 @@
 		</p>
 
 		<p>
-			It helps to picture a matrix the same way you pictured a vector — with positions on the outside and values on the inside — but now the positions form a grid:
+			It helps to picture a matrix the same way you pictured a vector; with positions on the outside and values on the inside; but now the positions form a grid:
 		</p>
 
 		<sidebyside widths="48% 48%" valign="middle">
@@ -175,13 +175,13 @@
 		</sidebyside>
 
 		<p>
-			When you write <pf>A(2, 3)</pf>, the <pf>2</pf> picks the second row and the <pf>3</pf> picks the third column. MATLAB looks at the cell where they meet and hands back <pf>60</pf>. The same warning from the vectors chapter applies here: indexing always works by position. There is no way to ask <q>give me the value 60</q> directly — you have to know where it lives and ask for it by its row and column.
+			When you write <pf>A(2, 3)</pf>, the <pf>2</pf> picks the second row and the <pf>3</pf> picks the third column. MATLAB looks at the cell where they meet and hands back <pf>60</pf>. The same warning from the vectors chapter applies here: indexing always works by position. There is no way to ask <q>give me the value 60</q> directly; you have to know where it lives and ask for it by its row and column.
 		</p>
 
 		<aside>
 			<title>Row first, then column</title>
 			<p>
-				The order matters. <pf>A(2, 3)</pf> and <pf>A(3, 2)</pf> are different — the first picks row 2, column 3, and the second picks row 3, column 2. The convention <q>row first, then column</q> is universal in mathematics and in nearly every programming language that supports 2D arrays, but it is also the single most common source of off-by-one bugs when working with matrices. When you find yourself getting unexpected values back, the first thing to check is whether you have the two indices in the right order.
+				The order matters. <pf>A(2, 3)</pf> and <pf>A(3, 2)</pf> are different; the first picks row 2, column 3, and the second picks row 3, column 2. The convention <q>row first, then column</q> is universal in mathematics and in nearly every programming language that supports 2D arrays, but it is also the single most common source of off-by-one bugs when working with matrices. When you find yourself getting unexpected values back, the first thing to check is whether you have the two indices in the right order.
 			</p>
 		</aside>
 
@@ -203,7 +203,7 @@
 		</p>
 
 		<p>
-			Asking for a position that does not exist — like <pf>A(5, 1)</pf> when <pf>A</pf> only has three rows — is an error, just as it was for vectors.
+			Asking for a position that does not exist; like <pf>A(5, 1)</pf> when <pf>A</pf> only has three rows; is an error, just as it was for vectors.
 		</p>
 
 	</subsection>
@@ -227,7 +227,7 @@
 		</sage>
 
 		<p>
-			The result is <pf>[2, 3]</pf> — two rows and three columns. The order matches the indexing convention: rows first, then columns.
+			The result is <pf>[2, 3]</pf>; two rows and three columns. The order matches the indexing convention: rows first, then columns.
 		</p>
 
 		<p>
@@ -259,7 +259,7 @@
 		</p>
 
 		<p>
-			The other function from the vectors chapter, <pf>numel</pf>, also still works on a matrix. It returns the <em>total</em> number of elements — rows times columns. For a 2-by-3 matrix, <pf>numel(A)</pf> returns <pf>6</pf>. This is occasionally useful when you only care how many values are in a matrix and not how they are arranged.
+			The other function from the vectors chapter, <pf>numel</pf>, also still works on a matrix. It returns the <em>total</em> number of elements; rows times columns. For a 2-by-3 matrix, <pf>numel(A)</pf> returns <pf>6</pf>. This is occasionally useful when you only care how many values are in a matrix and not how they are arranged.
 		</p>
 
 		<sage language="octave">
@@ -277,7 +277,7 @@
 		</aside>
 
 		<p>
-			You will use <pf>size</pf> constantly in the next two sections — for writing loops that adapt to whatever shape of matrix they are given, and for preallocating result matrices that match the shape of an input.
+			You will use <pf>size</pf> constantly in the next two sections; for writing loops that adapt to whatever shape of matrix they are given, and for preallocating result matrices that match the shape of an input.
 		</p>
 
 	</subsection>
@@ -286,7 +286,7 @@
 		<title>Slicing Rows, Columns, and Submatrices</title>
 
 		<p>
-			Pulling out a single value with <pf>A(i, j)</pf> is the most basic kind of indexing, but it is rarely the most useful. Much more often, you want a whole row, a whole column, or a rectangular block of the matrix. The slicing tools you learned for vectors all work here — there are just two slots to fill in instead of one.
+			Pulling out a single value with <pf>A(i, j)</pf> is the most basic kind of indexing, but it is rarely the most useful. Much more often, you want a whole row, a whole column, or a rectangular block of the matrix. The slicing tools you learned for vectors all work here; there are just two slots to fill in instead of one.
 		</p>
 
 		<p>
@@ -316,11 +316,11 @@
 		</sidebyside>
 
 		<p>
-			<pf>A(2, :)</pf> returns the entire second row as a row vector. <pf>A(:, 3)</pf> returns the entire third column as a column vector. Notice the shapes — a row pulled from a matrix comes back as a row, and a column pulled from a matrix comes back as a column. The orientation is preserved.
+			<pf>A(2, :)</pf> returns the entire second row as a row vector. <pf>A(:, 3)</pf> returns the entire third column as a column vector. Notice the shapes; a row pulled from a matrix comes back as a row, and a column pulled from a matrix comes back as a column. The orientation is preserved.
 		</p>
 
 		<p>
-			You can also use a range or a list of positions in either slot, just as you did with vectors. This is how you grab a rectangular block — a <term>submatrix</term> — out of a larger matrix:
+			You can also use a range or a list of positions in either slot, just as you did with vectors. This is how you grab a rectangular block; a <term>submatrix</term>; out of a larger matrix:
 		</p>
 
 		<sage language="octave">
@@ -332,7 +332,7 @@
 		</sage>
 
 		<p>
-			<pf>A(1:2, 2:3)</pf> returns the 2-by-2 block formed by the first two rows and the last two columns. <pf>A([1, 3], :)</pf> returns rows 1 and 3 in their entirety, skipping row 2 — this is the matrix equivalent of the out-of-order indexing you saw with vectors.
+			<pf>A(1:2, 2:3)</pf> returns the 2-by-2 block formed by the first two rows and the last two columns. <pf>A([1, 3], :)</pf> returns rows 1 and 3 in their entirety, skipping row 2; this is the matrix equivalent of the out-of-order indexing you saw with vectors.
 		</p>
 
 		<aside>
@@ -343,7 +343,7 @@
 		</aside>
 
 		<p>
-			The <pf>end</pf> keyword still works in either slot, and it refers to the last position along that dimension — last row in the row slot, last column in the column slot. This is how you grab things like <q>the bottom-right 2-by-2 corner</q> without having to know the exact size of the matrix:
+			The <pf>end</pf> keyword still works in either slot, and it refers to the last position along that dimension; last row in the row slot, last column in the column slot. This is how you grab things like <q>the bottom-right 2-by-2 corner</q> without having to know the exact size of the matrix:
 		</p>
 
 		<sage language="octave">
@@ -382,7 +382,7 @@
 		</p>
 
 		<p>
-			To <term>replace a whole row or column</term>, slice it with <pf>:</pf> on the left side of the assignment and supply a vector of new values on the right. The shape of the values has to match the shape of the slice — a row replacement needs a row vector, and a column replacement needs a column vector:
+			To <term>replace a whole row or column</term>, slice it with <pf>:</pf> on the left side of the assignment and supply a vector of new values on the right. The shape of the values has to match the shape of the slice; a row replacement needs a row vector, and a column replacement needs a column vector:
 		</p>
 
 		<sage language="octave">
@@ -409,7 +409,7 @@
 		</p>
 
 		<p>
-			The same idea extends to <term>rectangular blocks</term> of the matrix. If you slice a region with ranges in both the row and column slots, you can replace the whole block at once — either with another matrix of matching shape, or with a single scalar that fills every position in the block:
+			The same idea extends to <term>rectangular blocks</term> of the matrix. If you slice a region with ranges in both the row and column slots, you can replace the whole block at once; either with another matrix of matching shape, or with a single scalar that fills every position in the block:
 		</p>
 
 		<sage language="octave">
@@ -421,7 +421,7 @@
 		</sage>
 
 		<p>
-			The first assignment overwrites the top-right 2-by-2 block with the values from a small matrix; the second wipes out the top-left 2-by-2 block by filling it with zeros. The rule is the same one you already know — the left side picks a region, the right side supplies the values — and it works for any rectangular slice, not just whole rows and columns.
+			The first assignment overwrites the top-right 2-by-2 block with the values from a small matrix; the second wipes out the top-left 2-by-2 block by filling it with zeros. The rule is the same one you already know; the left side picks a region, the right side supplies the values; and it works for any rectangular slice, not just whole rows and columns.
 		</p>
 
 		<p>
@@ -442,14 +442,14 @@
 		<aside>
 			<title>You cannot delete a single element</title>
 			<p>
-				Deleting one element of a matrix is not allowed: writing <pf>A(2, 3) = []</pf> is an error. The reason is that a matrix has to stay rectangular — every row must have the same number of columns. Removing one element would leave the matrix with a hole in it, which is not a shape MATLAB knows how to represent. You can only delete entire rows or entire columns.
+				Deleting one element of a matrix is not allowed: writing <pf>A(2, 3) = []</pf> is an error. The reason is that a matrix has to stay rectangular; every row must have the same number of columns. Removing one element would leave the matrix with a hole in it, which is not a shape MATLAB knows how to represent. You can only delete entire rows or entire columns.
 			</p>
 		</aside>
 
 		<aside>
 			<title>Writing vs. deleting</title>
 			<p>
-				You can <em>write</em> to any rectangular region of a matrix — a single element, a row, a column, or a block — and the matrix stays the same shape. But you can only <em>delete</em> whole rows or whole columns. Writing <pf>A(2, 3) = []</pf> to delete a single element, or <pf>A(2:3, 2:3) = []</pf> to delete an interior block, are both errors. The reason is the same in both cases: a matrix has to stay rectangular, and removing anything smaller than a whole row or column would leave a hole that MATLAB cannot represent.
+				You can <em>write</em> to any rectangular region of a matrix; a single element, a row, a column, or a block; and the matrix stays the same shape. But you can only <em>delete</em> whole rows or whole columns. Writing <pf>A(2, 3) = []</pf> to delete a single element, or <pf>A(2:3, 2:3) = []</pf> to delete an interior block, are both errors. The reason is the same in both cases: a matrix has to stay rectangular, and removing anything smaller than a whole row or column would leave a hole that MATLAB cannot represent.
 			</p>
 		</aside>
 

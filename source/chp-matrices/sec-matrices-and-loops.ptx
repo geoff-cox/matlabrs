@@ -6,25 +6,25 @@
 		<title>The Need for Two Indices</title>
 
 		<p>
-			Suppose you have a matrix and you want to do something with every element — print it, check it against a condition, accumulate a total, anything that requires visiting each value individually. With a vector, a single for-loop did the job: walk one index from <pf>1</pf> to <pf>length(v)</pf>, and at each step the variable <pf>i</pf> told you which element you were looking at.
+			Suppose you have a matrix and you want to do something with every element; print it, check it against a condition, accumulate a total, anything that requires visiting each value individually. With a vector, a single for-loop did the job: walk one index from <pf>1</pf> to <pf>length(v)</pf>, and at each step the variable <pf>i</pf> told you which element you were looking at.
 		</p>
 
 		<p>
-			A matrix has two coordinates instead of one, and a single index is no longer enough. Saying <q>visit position 5</q> doesn't pick out a single element of a matrix — there is no position 5 in a grid of rows and columns. To visit every element, you need to vary <em>two</em> indices: one for the row, one for the column.
+			A matrix has two coordinates instead of one, and a single index is no longer enough. Saying <q>visit position 5</q> doesn't pick out a single element of a matrix; there is no position 5 in a grid of rows and columns. To visit every element, you need to vary <em>two</em> indices: one for the row, one for the column.
 		</p>
 
 		<p>
-			Try to write the visit-every-element loop with the tools you already have, and you will see the problem. A single loop over rows lets you pick a row, but then what? The row itself is a vector of values that you still need to walk through one at a time. A single loop over columns has the same issue from the other direction. The honest answer is that one loop is not enough — you need a loop inside another loop, with each one handling one of the two coordinates.
+			Try to write the visit-every-element loop with the tools you already have, and you will see the problem. A single loop over rows lets you pick a row, but then what? The row itself is a vector of values that you still need to walk through one at a time. A single loop over columns has the same issue from the other direction. The honest answer is that one loop is not enough; you need a loop inside another loop, with each one handling one of the two coordinates.
 		</p>
 
     <p>
-			There are two ways to handle a second dimension in a loop, and we will look at them in order from simpler to more general. The first uses the slicing tools from the previous section to handle a whole row or a whole column at once with a single loop — no nesting required, and often no inner work either. The second is the genuine nested loop, with one loop inside another, for the cases where slicing alone is not enough. Most matrix problems can be solved with the first pattern; the second is what you reach for when the first isn't powerful enough.
+			There are two ways to handle a second dimension in a loop, and we will look at them in order from simpler to more general. The first uses the slicing tools from the previous section to handle a whole row or a whole column at once with a single loop; no nesting required, and often no inner work either. The second is the genuine nested loop, with one loop inside another, for the cases where slicing alone is not enough. Most matrix problems can be solved with the first pattern; the second is what you reach for when the first isn't powerful enough.
 		</p>
 
 		<aside>
 			<title>Nested loops are not new in concept</title>
 			<p>
-				Up to this point, every loop in this book has been <q>flat</q> — a single loop with nothing inside it but ordinary code. Nested loops are not a new kind of loop; they are just two ordinary loops where the body of one happens to contain another. Everything you already know about for-loops still applies, including how to write the loop header, when to use a counter versus a value, and how the loop variable updates after each iteration. The only thing that takes practice is keeping track of what each index is doing at any given moment.
+				Up to this point, every loop in this book has been <q>flat</q>; a single loop with nothing inside it but ordinary code. Nested loops are not a new kind of loop; they are just two ordinary loops where the body of one happens to contain another. Everything you already know about for-loops still applies, including how to write the loop header, when to use a counter versus a value, and how the loop variable updates after each iteration. The only thing that takes practice is keeping track of what each index is doing at any given moment.
 			</p>
 		</aside>
 
@@ -34,11 +34,11 @@
 		<title>Looping Over Rows or Columns</title>
 
 		<p>
-			Many matrix problems are naturally <q>per row</q> or <q>per column</q> — compute the sum of each row, find the largest value in each column, normalize each row so its values add to 1. In those cases, a single loop is enough, because each iteration handles a whole row or a whole column at once instead of a single element.
+			Many matrix problems are naturally <q>per row</q> or <q>per column</q>; compute the sum of each row, find the largest value in each column, normalize each row so its values add to 1. In those cases, a single loop is enough, because each iteration handles a whole row or a whole column at once instead of a single element.
 		</p>
 
 		<p>
-			The trick is to use the slicing tools from the previous section inside the loop body. Instead of pulling out one element with <pf>A(i, j)</pf>, you pull out a whole row with <pf>A(i, :)</pf> or a whole column with <pf>A(:, j)</pf>. The slice is itself a vector, and you already know how to operate on a vector — pass it to <pf>sum</pf>, hand it to <pf>max</pf>, multiply it by a scalar, compare it against a threshold, anything you would do to any other vector.
+			The trick is to use the slicing tools from the previous section inside the loop body. Instead of pulling out one element with <pf>A(i, j)</pf>, you pull out a whole row with <pf>A(i, :)</pf> or a whole column with <pf>A(:, j)</pf>. The slice is itself a vector, and you already know how to operate on a vector; pass it to <pf>sum</pf>, hand it to <pf>max</pf>, multiply it by a scalar, compare it against a threshold, anything you would do to any other vector.
 		</p>
 
 		<p>
@@ -57,7 +57,7 @@
 		</sage>
 
 		<p>
-			Three lines of output, one per row. Inside the loop, <pf>row</pf> is a 1-by-3 vector — the current row pulled out of the matrix — and <pf>sum(row)</pf> reduces it to a single number. There is no inner loop because there is no need for one: the whole row is handled in a single expression.
+			Three lines of output, one per row. Inside the loop, <pf>row</pf> is a 1-by-3 vector; the current row pulled out of the matrix; and <pf>sum(row)</pf> reduces it to a single number. There is no inner loop because there is no need for one: the whole row is handled in a single expression.
 		</p>
 
 		<p>
@@ -80,11 +80,11 @@
 		</p>
 
 		<p>
-			Notice that in both examples, the only loop you wrote was the one walking the index <em>across</em> rows or columns. The second dimension — the values inside the row or column — was handled by passing the slice to a function that already knows how to operate on a whole vector. You replaced what would have been an inner loop with a single function call.
+			Notice that in both examples, the only loop you wrote was the one walking the index <em>across</em> rows or columns. The second dimension; the values inside the row or column; was handled by passing the slice to a function that already knows how to operate on a whole vector. You replaced what would have been an inner loop with a single function call.
 		</p>
 
 		<p>
-			This pattern works whenever the per-row or per-column operation is something a vector tool can do for you: a reduction with <pf>sum</pf>, <pf>max</pf>, <pf>min</pf>, or <pf>mean</pf>; a transformation like <pf>2 * row</pf> or <pf>sqrt(row)</pf>; a count like <pf>sum(row > 0)</pf> — anything you already know how to do to a vector. When the per-element work is more irregular than that, a single loop is no longer enough, and you need the nested-loop pattern from the next subsection.
+			This pattern works whenever the per-row or per-column operation is something a vector tool can do for you: a reduction with <pf>sum</pf>, <pf>max</pf>, <pf>min</pf>, or <pf>mean</pf>; a transformation like <pf>2 * row</pf> or <pf>sqrt(row)</pf>; a count like <pf>sum(row > 0)</pf>; anything you already know how to do to a vector. When the per-element work is more irregular than that, a single loop is no longer enough, and you need the nested-loop pattern from the next subsection.
 		</p>
 
 	</subsection>
@@ -93,13 +93,13 @@
 		<title>The Nested-Loop Pattern</title>
 
 		<p>
-			Slicing handles many matrix problems, but not all of them. Some calculations need to look at every element individually — applying a different rule to different elements based on their position, comparing each element with its neighbors, or accumulating something more intricate than a simple per-row sum. In those cases, you really do need two indices, and the way to handle two indices is with one loop inside another.
+			Slicing handles many matrix problems, but not all of them. Some calculations need to look at every element individually; applying a different rule to different elements based on their position, comparing each element with its neighbors, or accumulating something more intricate than a simple per-row sum. In those cases, you really do need two indices, and the way to handle two indices is with one loop inside another.
 		</p>
 
 		<aside>
 			<title>Nested loops are not new in concept</title>
 			<p>
-				Up to this point, every loop in this book has been <q>flat</q> — a single loop with nothing inside it but ordinary code. Nested loops are not a new kind of loop; they are just two ordinary loops where the body of one happens to contain another. Everything you already know about for-loops still applies, including how to write the loop header, when to use a counter versus a value, and how the loop variable updates after each iteration. The only thing that takes practice is keeping track of what each index is doing at any given moment.
+				Up to this point, every loop in this book has been <q>flat</q>; a single loop with nothing inside it but ordinary code. Nested loops are not a new kind of loop; they are just two ordinary loops where the body of one happens to contain another. Everything you already know about for-loops still applies, including how to write the loop header, when to use a counter versus a value, and how the loop variable updates after each iteration. The only thing that takes practice is keeping track of what each index is doing at any given moment.
 			</p>
 		</aside>
 
@@ -152,18 +152,18 @@
 		</sidebyside>
 
 		<p>
-			The key thing to notice is the order. The inner index <pf>j</pf> changes <em>fastest</em> — it cycles through every column before the outer index <pf>i</pf> moves at all. Only when the inner loop has finished does the outer loop advance to the next row, and then the inner loop starts over from the beginning.
+			The key thing to notice is the order. The inner index <pf>j</pf> changes <em>fastest</em>; it cycles through every column before the outer index <pf>i</pf> moves at all. Only when the inner loop has finished does the outer loop advance to the next row, and then the inner loop starts over from the beginning.
 		</p>
 
 		<aside>
 			<title>Inner index changes fastest</title>
 			<p>
-				The rule <q>inner index changes fastest</q> applies to nested loops in every language, not just MATLAB. You can also nest loops in the opposite order — outer loop over columns, inner loop over rows — in which case the row index changes fastest and the matrix is visited column by column instead of row by row. Both orders are valid, and the right choice depends on what you are trying to do. For most purposes, row-by-row (the order shown above) is the more natural reading order and the one you should reach for first.
+				The rule <q>inner index changes fastest</q> applies to nested loops in every language, not just MATLAB. You can also nest loops in the opposite order; outer loop over columns, inner loop over rows; in which case the row index changes fastest and the matrix is visited column by column instead of row by row. Both orders are valid, and the right choice depends on what you are trying to do. For most purposes, row-by-row (the order shown above) is the more natural reading order and the one you should reach for first.
 			</p>
 		</aside>
 
 		<p>
-			Two practical notes about the loop bounds. First, using <pf>size(A, 1)</pf> and <pf>size(A, 2)</pf> rather than hard-coded numbers means the loop adapts automatically to whatever shape <pf>A</pf> happens to be — this is the same lesson from <pf>1:length(v)</pf> in the vectors chapter, applied one dimension up. Second, the two index variables can be named anything, but <pf>i</pf> for the row index and <pf>j</pf> for the column index is the long-standing convention in MATLAB and in most other languages, and your code will be much easier to read if you stick with it.
+			Two practical notes about the loop bounds. First, using <pf>size(A, 1)</pf> and <pf>size(A, 2)</pf> rather than hard-coded numbers means the loop adapts automatically to whatever shape <pf>A</pf> happens to be; this is the same lesson from <pf>1:length(v)</pf> in the vectors chapter, applied one dimension up. Second, the two index variables can be named anything, but <pf>i</pf> for the row index and <pf>j</pf> for the column index is the long-standing convention in MATLAB and in most other languages, and your code will be much easier to read if you stick with it.
 		</p>
 
 		<p>
@@ -186,13 +186,13 @@
 		</sage>
 
 		<p>
-			The accumulator <pf>total</pf> starts at zero and is updated once per inner iteration — that is, once per element. When both loops finish, <pf>total</pf> holds the sum of all nine values. This is the same accumulation pattern from the for-loops chapter, with the only change being that the values being accumulated come from a 2D source instead of a 1D one.
+			The accumulator <pf>total</pf> starts at zero and is updated once per inner iteration; that is, once per element. When both loops finish, <pf>total</pf> holds the sum of all nine values. This is the same accumulation pattern from the for-loops chapter, with the only change being that the values being accumulated come from a 2D source instead of a 1D one.
 		</p>
 
 		<aside>
 			<title>When to nest and when not to</title>
 			<p>
-				Whenever you find yourself about to write an inner loop, ask whether the inner loop is really doing something a vector operation could do for you. If the inner loop is just summing values, taking a max or min, applying a function to every element, or any other <q>reduce a vector to one number</q> or <q>transform a vector to another vector</q> task, you almost certainly don't need it — the previous subsection's pattern handles it with a single loop and a slice. Reach for a true nested loop only when both dimensions genuinely require independent control.
+				Whenever you find yourself about to write an inner loop, ask whether the inner loop is really doing something a vector operation could do for you. If the inner loop is just summing values, taking a max or min, applying a function to every element, or any other <q>reduce a vector to one number</q> or <q>transform a vector to another vector</q> task, you almost certainly don't need it; the previous subsection's pattern handles it with a single loop and a slice. Reach for a true nested loop only when both dimensions genuinely require independent control.
 			</p>
 		</aside>
 
@@ -202,11 +202,11 @@
 		<title>Building a Result Matrix</title>
 
 		<p>
-			In the vectors chapter, you learned to build a result vector inside a loop: preallocate it with <pf>zeros</pf>, then fill in one element per iteration. The same pattern works for matrices, with two changes — the placeholder has two dimensions, and you fill it in using two indices instead of one.
+			In the vectors chapter, you learned to build a result vector inside a loop: preallocate it with <pf>zeros</pf>, then fill in one element per iteration. The same pattern works for matrices, with two changes; the placeholder has two dimensions, and you fill it in using two indices instead of one.
 		</p>
 
 		<p>
-			Here is the canonical example. Suppose you want to build a multiplication table — a matrix where the entry at row <pf>i</pf>, column <pf>j</pf> is <pf>i * j</pf>. There is no single vectorized expression that produces this using only the tools you have so far, so a nested loop is the natural way to do it:
+			Here is the canonical example. Suppose you want to build a multiplication table; a matrix where the entry at row <pf>i</pf>, column <pf>j</pf> is <pf>i * j</pf>. There is no single vectorized expression that produces this using only the tools you have so far, so a nested loop is the natural way to do it:
 		</p>
 
 		<sage language="octave">
@@ -235,13 +235,13 @@
 					Inside the inner loop, <pf>M(i, j) = ...</pf> fills in one element per iteration. The two indices are used both for reading the input (here, the values <pf>i</pf> and <pf>j</pf> themselves) and for writing the output at the matching position.
 				</li>
 				<li>
-					After both loops finish, <pf>M</pf> holds all twenty values, and you can use it just like any other matrix — pass it to a function, slice it, return it from a function.
+					After both loops finish, <pf>M</pf> holds all twenty values, and you can use it just like any other matrix; pass it to a function, slice it, return it from a function.
 				</li>
 			</ul>
 		</p>
 
 		<p>
-			Preallocation is even more important here than it was for vectors. Growing a matrix one element at a time inside a nested loop multiplies the cost — every assignment that expands the matrix has to copy every value that's already there. For a 100-by-100 result matrix, that's the difference between ten thousand quick writes and ten thousand expensive copies. Preallocating with <pf>zeros</pf> avoids the problem entirely: the full block of memory is set aside once, before either loop starts, and the loops just fill in slots that are already there.
+			Preallocation is even more important here than it was for vectors. Growing a matrix one element at a time inside a nested loop multiplies the cost; every assignment that expands the matrix has to copy every value that's already there. For a 100-by-100 result matrix, that's the difference between ten thousand quick writes and ten thousand expensive copies. Preallocating with <pf>zeros</pf> avoids the problem entirely: the full block of memory is set aside once, before either loop starts, and the loops just fill in slots that are already there.
 		</p>
 
 		<p>
@@ -262,7 +262,7 @@
 		</sage>
 
 		<p>
-			The result <pf>rowSums</pf> is a column vector with one entry per row of <pf>A</pf>, holding the sum of that row. This example also shows the slicing pattern from earlier in the section in action — the inner work is a single <pf>sum</pf> call on a row slice, so there is no inner loop. The single outer loop walks the rows, and each iteration produces one element of the result.
+			The result <pf>rowSums</pf> is a column vector with one entry per row of <pf>A</pf>, holding the sum of that row. This example also shows the slicing pattern from earlier in the section in action; the inner work is a single <pf>sum</pf> call on a row slice, so there is no inner loop. The single outer loop walks the rows, and each iteration produces one element of the result.
 		</p>
 
 		<aside>
@@ -282,7 +282,7 @@
 		</p>
 
 		<p>
-			The short answer is the same one from the vectors chapter: <em>prefer the most vectorized form that solves the problem.</em> Vectorized expressions are shorter, easier to read, less error-prone, and faster to run. Loops are powerful, but they introduce bookkeeping — index variables, accumulators, preallocation — that you don't have to think about when a single expression does the job.
+			The short answer is the same one from the vectors chapter: <em>prefer the most vectorized form that solves the problem.</em> Vectorized expressions are shorter, easier to read, less error-prone, and faster to run. Loops are powerful, but they introduce bookkeeping; index variables, accumulators, preallocation; that you don't have to think about when a single expression does the job.
 		</p>
 
 		<p>
@@ -327,7 +327,7 @@
 			<ul marker="square">
 				<li>
 					<p>
-						<em>When the calculation cannot be expressed as a single matrix expression.</em> Some operations genuinely need element-by-element control — for example, when each element depends on its neighbors, or when the rule changes from element to element in a way that no built-in function captures.
+						<em>When the calculation cannot be expressed as a single matrix expression.</em> Some operations genuinely need element-by-element control; for example, when each element depends on its neighbors, or when the rule changes from element to element in a way that no built-in function captures.
 					</p>
 				</li>
 				<li>

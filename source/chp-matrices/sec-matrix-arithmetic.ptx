@@ -71,13 +71,13 @@
 		</sidebyside>
 
 		<p>
-			The same shape-matching rule applies as before: the two matrices must have the same number of rows and the same number of columns. Trying to add a 2-by-3 matrix to a 3-by-2 matrix is an error, even though both have six elements — the shapes have to match exactly, not just the totals.
+			The same shape-matching rule applies as before: the two matrices must have the same number of rows and the same number of columns. Trying to add a 2-by-3 matrix to a 3-by-2 matrix is an error, even though both have six elements; the shapes have to match exactly, not just the totals.
 		</p>
 
 		<aside>
 			<title>The dot, finally explained</title>
 			<p>
-				Back in the vectors chapter, the dot in <pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> was introduced with the explanation that the plain versions <pf>*</pf>, <pf>/</pf>, and <pf>^</pf> are <q>reserved for matrix operations</q> — but at the time there were no matrices around to make sense of the rule. Now there are. When MATLAB sees <pf>A * B</pf> for two matrices, it performs <term>matrix multiplication</term>, which is a completely different operation from element-wise multiplication and follows different rules about what shapes are allowed. The same is true of <pf>A \ B</pf>, which solves a system of equations, and <pf>A^2</pf>, which means <pf>A * A</pf> as matrix multiplication. These operations come from linear algebra, and you will see them in math classes if you have not already. For programming purposes, the rule from the vectors chapter is unchanged: if you want the operation to apply element by element, use the dot.
+				Back in the vectors chapter, the dot in <pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> was introduced with the explanation that the plain versions <pf>*</pf>, <pf>/</pf>, and <pf>^</pf> are <q>reserved for matrix operations</q>; but at the time there were no matrices around to make sense of the rule. Now there are. When MATLAB sees <pf>A * B</pf> for two matrices, it performs <term>matrix multiplication</term>, which is a completely different operation from element-wise multiplication and follows different rules about what shapes are allowed. The same is true of <pf>A \ B</pf>, which solves a system of equations, and <pf>A^2</pf>, which means <pf>A * A</pf> as matrix multiplication. These operations come from linear algebra, and you will see them in math classes if you have not already. For programming purposes, the rule from the vectors chapter is unchanged: if you want the operation to apply element by element, use the dot.
 			</p>
 		</aside>
 
@@ -135,7 +135,7 @@
 		</p>
 
 		<p>
-			The big-picture message of this section is short: <em>operators and functions that worked on vectors work on matrices the same way</em>. Scalar-with-matrix, element-wise matrix-with-matrix, broadcasting functions — all three are direct extensions of what you already knew, with no surprises and no new rules. The next section turns to the cases where vectorization is not enough and you need a loop after all.
+			The big-picture message of this section is short: <em>operators and functions that worked on vectors work on matrices the same way</em>. Scalar-with-matrix, element-wise matrix-with-matrix, broadcasting functions; all three are direct extensions of what you already knew, with no surprises and no new rules. The next section turns to the cases where vectorization is not enough and you need a loop after all.
 		</p>
 
 	</subsection>

@@ -4,7 +4,7 @@
 
 	<introduction>
 		<p>
-			Up to this point, every variable you have created has stored a single number. That is enough for many problems, but it gets unwieldy fast when you are working with a whole collection of related values — the daily high temperatures for a week, the exam scores for a class, the <m>x</m>-coordinates of points on a curve. This chapter introduces <term>vectors</term>: a way to store an entire ordered collection of numbers under a single variable name, and to operate on the whole collection at once.
+			Up to this point, every variable you have created has stored a single number. That is enough for many problems, but it gets unwieldy fast when you are working with a whole collection of related values; the daily high temperatures for a week, the exam scores for a class, the <m>x</m>-coordinates of points on a curve. This chapter introduces <term>vectors</term>: a way to store an entire ordered collection of numbers under a single variable name, and to operate on the whole collection at once.
 		</p>
 
 		<p>
@@ -24,7 +24,7 @@
 				</li>
 				<li>
 					<title>Vectors and Loops</title>
-					<p>Combining vectors with the for-loops you already know — for the situations where a single vectorized expression is not enough, and for building up a result vector one element at a time.</p>
+					<p>Combining vectors with the for-loops you already know; for the situations where a single vectorized expression is not enough, and for building up a result vector one element at a time.</p>
 				</li>
 			</dl>
 		</p>
@@ -62,9 +62,9 @@
 						<title>Building Vectors</title>
 						<p>
 							<ul marker="square">
-								<li>Bracket literals — <pf>[88, 92, 75]</pf> — when you know the values.</li>
-								<li>Colon notation — <pf>start:step:stop</pf> — when the values follow a regular pattern.</li>
-								<li><pf>zeros(1, n)</pf> and <pf>ones(1, n)</pf> — when you need a placeholder of known size.</li>
+								<li>Bracket literals; <pf>[88, 92, 75]</pf>; when you know the values.</li>
+								<li>Colon notation; <pf>start:step:stop</pf>; when the values follow a regular pattern.</li>
+								<li><pf>zeros(1, n)</pf> and <pf>ones(1, n)</pf>; when you need a placeholder of known size.</li>
 							</ul>
 						</p>
 					</li>
@@ -81,9 +81,9 @@
 						<title>Modifying Vectors</title>
 						<p>
 							<ul marker="square">
-								<li><pf>v(i) = newval</pf> — change a value.</li>
-								<li><pf>v(end + 1) = newval</pf> — grow the vector by one.</li>
-								<li><pf>v(i) = []</pf> — delete an element; later positions shift down.</li>
+								<li><pf>v(i) = newval</pf>; change a value.</li>
+								<li><pf>v(end + 1) = newval</pf>; grow the vector by one.</li>
+								<li><pf>v(i) = []</pf>; delete an element; later positions shift down.</li>
 							</ul>
 						</p>
 					</li>
@@ -93,7 +93,7 @@
 							Most operators and built-in functions work on whole vectors at once, applying the operation to every element without a loop.
 							<ul marker="square">
 								<li><pf>+</pf> and <pf>-</pf> work element-wise without a dot.</li>
-								<li><pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> need the dot — plain <pf>*</pf>, <pf>/</pf>, and <pf>^</pf> are reserved for matrix operations.</li>
+								<li><pf>.*</pf>, <pf>./</pf>, and <pf>.^</pf> need the dot; plain <pf>*</pf>, <pf>/</pf>, and <pf>^</pf> are reserved for matrix operations.</li>
 								<li>Functions like <pf>sqrt</pf>, <pf>sin</pf>, <pf>abs</pf>, and <pf>round</pf> apply to every element automatically.</li>
 								<li>Aggregate functions like <pf>sum</pf>, <pf>prod</pf>, <pf>max</pf>, <pf>min</pf>, and <pf>mean</pf> reduce a whole vector to a single number.</li>
 							</ul>
@@ -104,8 +104,8 @@
 						<p>
 							Two ways to loop over a vector:
 							<ul marker="square">
-								<li><pf>for i = 1:length(v)</pf> — by index, when you need the position.</li>
-								<li><pf>for x = v</pf> — by value, when you only need the element.</li>
+								<li><pf>for i = 1:length(v)</pf>; by index, when you need the position.</li>
+								<li><pf>for x = v</pf>; by value, when you only need the element.</li>
 							</ul>
 						</p>
 						<p>
