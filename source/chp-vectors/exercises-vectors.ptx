@@ -2873,9 +2873,11 @@
 		<task label="vectors-coding-nthLargest">
 			<statement>
 				<p>
-					⭐ Write a function <pf>nthLargest()</pf> that takes a vector <pf>v</pf> and an integer <pf>n</pf>, and returns the nth largest value and the position of its first occurrence. If the largest value appears more than once, the nth largest value is still the largest value strictly less than that maximum. Use a loop and MATLAB's <pf>max()</pf> function, but no other built-in functions.
+					⭐ Write a function <pf>nthLargest()</pf> that takes a vector <pf>v</pf> and an integer <pf>n</pf>, and returns the nth largest value and the position of its first occurrence. If the largest value appears more than once, the nth largest value is still the largest value strictly less than that maximum. If no such value exists, return <pf>NaN</pf> and <pf>-1</pf>.
 				</p>
-
+				<p>
+					Use a loop and MATLAB's <xref ref="func-max-vector" text="title" /> function, but no other built-in functions.
+				</p>
 				<tabular valign="top" top="minor" right="minor" left="minor">
 					<col width="11%" halign="right" right="none"/>
 					<col width="13%" halign="left" right="none"/>
@@ -2885,7 +2887,13 @@
 						<cell>Inputs:</cell>
 						<cell><p><pf>v</pf></p></cell>
 						<cell><p>(1xn) double</p></cell>
-						<cell><p>vector containing at least two distinct values</p></cell>
+						<cell><p>vector containing numeric values</p></cell>
+					</row>
+					<row>
+						<cell></cell>
+						<cell><p><pf>n</pf></p></cell>
+						<cell><p>(1x1) double</p></cell>
+						<cell><p>which largest value to find (1 for largest, 2 for second largest, etc.)</p></cell>
 					</row>
 					<row>
 						<cell>Outputs:</cell>
@@ -2909,14 +2917,17 @@
 							[val, loc] = nthLargest([5 6 6 -1 6 7 5], 3)
 							[val, loc] = nthLargest([7 1 6 3], 2)
 							[val, loc] = nthLargest([-3 -1 -8 -2], 2)
+							[val, loc] = nthLargest([10 10 10], 2)
 						</program>
 					</stack>
 					<stack>
 						<p>Expected ⤵︎</p>
 						<program language="matlab">
-							val= 6, loc= 7
+							val= 6, loc= 2
+							val= 5, loc= 1
 							val= 6, loc= 3
-							val=-2, loc= 4
+							val= -2, loc= 4
+							val= NaN, loc= -1
 						</program>
 					</stack>
 				</sidebyside>
@@ -2944,8 +2955,13 @@
 							prevMax = thisMax;
 							v(idx) = -Inf;
 						end
-						val = thisMax;
-						loc = idx;
+						if thisMax &gt; -Inf
+							val = thisMax;
+							loc = idx;
+						else
+							val = NaN;
+							loc = -1;
+						end
 					end
 				</program>
 			</solution>

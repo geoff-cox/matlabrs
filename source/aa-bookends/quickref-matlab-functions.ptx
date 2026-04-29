@@ -61,39 +61,55 @@
 						Returns the greatest common divisor of two integers.
 					</p>
 					<program language="matlab">
-						<code>
-							gcd(12, 8)    % returns 4
-							gcd(7, 3)     % returns 1
-						</code>
+						gcd(12, 8)    % returns 4
+						gcd(7, 3)     % returns 1
 					</program>
 				</li>
 
-				<li xml:id="func-min">
+				<li xml:id="func-min-vector">
 					<title><pf>min</pf></title>
 					<p>
-						Returns the smallest value in a vector. For a matrix, <pf>min(A)</pf>
-						returns a row vector containing the minimum of each column.
+						Returns the smallest value &amp; its location in a vector.
 					</p>
-					<program language="matlab">
-						<code>
-							min([4, 1, 9])         % returns 1
-							min([4, 9; 7, 3])      % returns [4, 3]
-						</code>
-					</program>
+					<sidebyside widths="56% 42%">
+						<stack>
+							<p>Sample Commands ⤵︎</p>
+							<program language="matlab">
+								x = min([4, 1, 9])
+								[y, loc] = min([4, 9, 7, 3])
+							</program>
+						</stack>
+						<stack>
+							<p>Return Values ⤵︎</p>
+							<program language="matlab">
+								x = 1
+								y = 3, loc = 4
+							</program>
+						</stack>
+					</sidebyside>
 				</li>
 
-				<li xml:id="func-max">
+				<li xml:id="func-max-vector">
 					<title><pf>max</pf></title>
 					<p>
-						Returns the largest value in a vector. For a matrix, <pf>max(A)</pf>
-						returns a row vector containing the maximum of each column.
+						Returns the largest value &amp; its location in a vector.
 					</p>
-					<program language="matlab">
-						<code>
-							max([4, 1, 9])         % returns 9
-							max([4, 9; 7, 3])      % returns [7, 9]
-						</code>
-					</program>
+					<sidebyside widths="56% 42%">
+						<stack>
+							<p>Sample Commands ⤵︎</p>
+							<program language="matlab">
+								x = max([4, 1, 9])
+								[y, loc] = max([4, 9, 7, 3])
+							</program>
+						</stack>
+						<stack>
+							<p>Return Values ⤵︎</p>
+							<program language="matlab">
+								x = 9
+								y = 9, loc = 2
+							</program>
+						</stack>
+					</sidebyside>
 				</li>
 			</dl>
 		</p>
