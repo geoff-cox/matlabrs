@@ -1,6 +1,6 @@
 # Agent Skill: Drafting Chapters for Geoff's MATLAB Textbook
 
-This document captures the workflow, voice, and pedagogical conventions established while drafting the Vectors and Matrices chapters of Geoff's introductory MATLAB/Octave textbook. Use it as the playbook for future chapters.
+This document captures the workflow, voice, and pedagogical conventions established while drafting the Vectors and Matrices chapters of Geoff's introductory MATLAB textbook. Use it as the playbook for future chapters.
 
 ---
 
